@@ -48,6 +48,7 @@ export type Threat = {
   evidence?: Array<Evidence> | null | undefined;
   id?: string | undefined;
   malware?: ThreatMalware | undefined;
+  name?: string | undefined;
   source?: ThreatSource | undefined;
   tactic?: Array<string> | null | undefined;
   type?: Array<string> | null | undefined;
@@ -81,6 +82,7 @@ export const Threat$inboundSchema: z.ZodType<Threat, z.ZodTypeDef, unknown> = z
     evidence: z.nullable(z.array(Evidence$inboundSchema)).optional(),
     id: z.string().optional(),
     malware: ThreatMalware$inboundSchema.optional(),
+    name: z.string().optional(),
     source: ThreatSource$inboundSchema.optional(),
     tactic: z.nullable(z.array(z.string())).optional(),
     type: z.nullable(z.array(z.string())).optional(),
@@ -94,6 +96,7 @@ export type Threat$Outbound = {
   evidence?: Array<Evidence$Outbound> | null | undefined;
   id?: string | undefined;
   malware?: ThreatMalware$Outbound | undefined;
+  name?: string | undefined;
   source?: string | undefined;
   tactic?: Array<string> | null | undefined;
   type?: Array<string> | null | undefined;
@@ -111,6 +114,7 @@ export const Threat$outboundSchema: z.ZodType<
   evidence: z.nullable(z.array(Evidence$outboundSchema)).optional(),
   id: z.string().optional(),
   malware: ThreatMalware$outboundSchema.optional(),
+  name: z.string().optional(),
   source: ThreatSource$outboundSchema.optional(),
   tactic: z.nullable(z.array(z.string())).optional(),
   type: z.nullable(z.array(z.string())).optional(),

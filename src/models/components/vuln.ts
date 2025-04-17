@@ -65,6 +65,7 @@ export type Vuln = {
   id?: string | undefined;
   kev?: Array<Kev> | null | undefined;
   metrics?: Metrics | undefined;
+  name?: string | undefined;
   riskSource?: VulnRiskSource | undefined;
   severity?: VulnSeverity | undefined;
   source?: VulnSource | undefined;
@@ -139,6 +140,7 @@ export const Vuln$inboundSchema: z.ZodType<Vuln, z.ZodTypeDef, unknown> = z
     id: z.string().optional(),
     kev: z.nullable(z.array(Kev$inboundSchema)).optional(),
     metrics: Metrics$inboundSchema.optional(),
+    name: z.string().optional(),
     risk_source: VulnRiskSource$inboundSchema.optional(),
     severity: VulnSeverity$inboundSchema.optional(),
     source: VulnSource$inboundSchema.optional(),
@@ -157,6 +159,7 @@ export type Vuln$Outbound = {
   id?: string | undefined;
   kev?: Array<Kev$Outbound> | null | undefined;
   metrics?: Metrics$Outbound | undefined;
+  name?: string | undefined;
   risk_source?: string | undefined;
   severity?: string | undefined;
   source?: string | undefined;
@@ -172,6 +175,7 @@ export const Vuln$outboundSchema: z.ZodType<Vuln$Outbound, z.ZodTypeDef, Vuln> =
     id: z.string().optional(),
     kev: z.nullable(z.array(Kev$outboundSchema)).optional(),
     metrics: Metrics$outboundSchema.optional(),
+    name: z.string().optional(),
     riskSource: VulnRiskSource$outboundSchema.optional(),
     severity: VulnSeverity$outboundSchema.optional(),
     source: VulnSource$outboundSchema.optional(),

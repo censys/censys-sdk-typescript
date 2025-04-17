@@ -363,6 +363,7 @@ export * from "./saprouter.js";
 export * from "./saprouterclientinfo.js";
 export * from "./saprouterrouterinfo.js";
 export * from "./saprouterrouterversioninfo.js";
+export * from "./scadaview.js";
 export * from "./scpi.js";
 export * from "./screenshot.js";
 export * from "./searchaggregateinputbody.js";
