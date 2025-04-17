@@ -14,7 +14,7 @@ export const tool$globalDataGetWebProperty: ToolDefinition<typeof args> = {
   name: "global-data-get-web-property",
   description: `Asset / WebProperty
 
-Get a Webproperty`,
+Get a WebProperty`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await globalDataGetWebProperty(

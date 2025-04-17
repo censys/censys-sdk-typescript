@@ -509,7 +509,7 @@ run();
 
 ## getWebProperty
 
-Get a Webproperty
+Get a WebProperty
 
 ### Example Usage
 

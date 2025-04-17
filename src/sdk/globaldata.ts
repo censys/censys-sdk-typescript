@@ -122,7 +122,7 @@ export class GlobalData extends ClientSDK {
    * Asset / WebProperty
    *
    * @remarks
-   * Get a Webproperty
+   * Get a WebProperty
    */
   async getWebProperty(
     request: operations.V3GlobaldataAssetWebpropertyRequest,

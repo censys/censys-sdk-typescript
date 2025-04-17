@@ -58,6 +58,7 @@ export type Risk = {
   evidence?: Array<Evidence> | null | undefined;
   id?: string | undefined;
   metrics?: Metrics | undefined;
+  name?: string | undefined;
   riskSource?: RiskSource | undefined;
   severity?: Severity | undefined;
   source?: RiskSource1 | undefined;
@@ -129,6 +130,7 @@ export const Risk$inboundSchema: z.ZodType<Risk, z.ZodTypeDef, unknown> = z
     evidence: z.nullable(z.array(Evidence$inboundSchema)).optional(),
     id: z.string().optional(),
     metrics: Metrics$inboundSchema.optional(),
+    name: z.string().optional(),
     risk_source: RiskSource$inboundSchema.optional(),
     severity: Severity$inboundSchema.optional(),
     source: RiskSource1$inboundSchema.optional(),
@@ -146,6 +148,7 @@ export type Risk$Outbound = {
   evidence?: Array<Evidence$Outbound> | null | undefined;
   id?: string | undefined;
   metrics?: Metrics$Outbound | undefined;
+  name?: string | undefined;
   risk_source?: string | undefined;
   severity?: string | undefined;
   source?: string | undefined;
@@ -160,6 +163,7 @@ export const Risk$outboundSchema: z.ZodType<Risk$Outbound, z.ZodTypeDef, Risk> =
     evidence: z.nullable(z.array(Evidence$outboundSchema)).optional(),
     id: z.string().optional(),
     metrics: Metrics$outboundSchema.optional(),
+    name: z.string().optional(),
     riskSource: RiskSource$outboundSchema.optional(),
     severity: Severity$outboundSchema.optional(),
     source: RiskSource1$outboundSchema.optional(),

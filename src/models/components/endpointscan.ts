@@ -93,6 +93,12 @@ import {
   RedlionWeb$outboundSchema,
 } from "./redlionweb.js";
 import {
+  ScadaView,
+  ScadaView$inboundSchema,
+  ScadaView$Outbound,
+  ScadaView$outboundSchema,
+} from "./scadaview.js";
+import {
   Screenshot,
   Screenshot$inboundSchema,
   Screenshot$Outbound,
@@ -139,6 +145,7 @@ export type EndpointScan = {
   prometheus?: Prometheus | undefined;
   prometheusTarget?: PrometheusTarget | undefined;
   redlionWeb?: RedlionWeb | undefined;
+  scadaView?: ScadaView | undefined;
   scanTime?: string | undefined;
   screenshots?: Array<Screenshot> | null | undefined;
   tls?: Tls | undefined;
@@ -194,6 +201,7 @@ export const EndpointScan$inboundSchema: z.ZodType<
   prometheus: Prometheus$inboundSchema.optional(),
   prometheus_target: PrometheusTarget$inboundSchema.optional(),
   redlion_web: RedlionWeb$inboundSchema.optional(),
+  scada_view: ScadaView$inboundSchema.optional(),
   scan_time: z.string().optional(),
   screenshots: z.nullable(z.array(Screenshot$inboundSchema)).optional(),
   tls: Tls$inboundSchema.optional(),
@@ -209,6 +217,7 @@ export const EndpointScan$inboundSchema: z.ZodType<
     "plex_media_server": "plexMediaServer",
     "prometheus_target": "prometheusTarget",
     "redlion_web": "redlionWeb",
+    "scada_view": "scadaView",
     "scan_time": "scanTime",
     "transport_protocol": "transportProtocol",
   });
@@ -238,6 +247,7 @@ export type EndpointScan$Outbound = {
   prometheus?: Prometheus$Outbound | undefined;
   prometheus_target?: PrometheusTarget$Outbound | undefined;
   redlion_web?: RedlionWeb$Outbound | undefined;
+  scada_view?: ScadaView$Outbound | undefined;
   scan_time?: string | undefined;
   screenshots?: Array<Screenshot$Outbound> | null | undefined;
   tls?: Tls$Outbound | undefined;
@@ -272,6 +282,7 @@ export const EndpointScan$outboundSchema: z.ZodType<
   prometheus: Prometheus$outboundSchema.optional(),
   prometheusTarget: PrometheusTarget$outboundSchema.optional(),
   redlionWeb: RedlionWeb$outboundSchema.optional(),
+  scadaView: ScadaView$outboundSchema.optional(),
   scanTime: z.string().optional(),
   screenshots: z.nullable(z.array(Screenshot$outboundSchema)).optional(),
   tls: Tls$outboundSchema.optional(),
@@ -287,6 +298,7 @@ export const EndpointScan$outboundSchema: z.ZodType<
     plexMediaServer: "plex_media_server",
     prometheusTarget: "prometheus_target",
     redlionWeb: "redlion_web",
+    scadaView: "scada_view",
     scanTime: "scan_time",
     transportProtocol: "transport_protocol",
   });

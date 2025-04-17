@@ -18,7 +18,7 @@ Developer-friendly & type-safe Typescript SDK specifically catered to leverage *
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
-* [openapi](#openapi)
+* [censys-sdk-typescript](#censys-sdk-typescript)
   * [SDK Installation](#sdk-installation)
   * [Requirements](#requirements)
   * [SDK Example Usage](#sdk-example-usage)
@@ -40,34 +40,30 @@ Developer-friendly & type-safe Typescript SDK specifically catered to leverage *
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
-> [!TIP]
-> To finish publishing your SDK to npm and others you must [run your first generation action](https://www.speakeasy.com/docs/github-setup#step-by-step-guide).
-
-
 The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https://pnpm.io/), [bun](https://bun.sh/) or [yarn](https://classic.yarnpkg.com/en/) package managers.
 
 ### NPM
 
 ```bash
-npm add <UNSET>
+npm add censys-sdk-typescript
 ```
 
 ### PNPM
 
 ```bash
-pnpm add <UNSET>
+pnpm add censys-sdk-typescript
 ```
 
 ### Bun
 
 ```bash
-bun add <UNSET>
+bun add censys-sdk-typescript
 ```
 
 ### Yarn
 
 ```bash
-yarn add <UNSET> zod
+yarn add censys-sdk-typescript zod
 
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.

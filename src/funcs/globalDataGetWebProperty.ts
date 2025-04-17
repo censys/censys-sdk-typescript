@@ -28,7 +28,7 @@ import { Result } from "../types/fp.js";
  * Asset / WebProperty
  *
  * @remarks
- * Get a Webproperty
+ * Get a WebProperty
  */
 export function globalDataGetWebProperty(
   client: SDKCore,

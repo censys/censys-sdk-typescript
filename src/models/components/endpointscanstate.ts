@@ -92,6 +92,12 @@ import {
   RedlionWeb$Outbound,
   RedlionWeb$outboundSchema,
 } from "./redlionweb.js";
+import {
+  ScadaView,
+  ScadaView$inboundSchema,
+  ScadaView$Outbound,
+  ScadaView$outboundSchema,
+} from "./scadaview.js";
 
 export const TransportProtocol = {
   Unknown: "unknown",
@@ -124,6 +130,7 @@ export type EndpointScanState = {
   prometheus?: Prometheus | undefined;
   prometheusTarget?: PrometheusTarget | undefined;
   redlionWeb?: RedlionWeb | undefined;
+  scadaView?: ScadaView | undefined;
   scanTime?: string | undefined;
   transportProtocol?: TransportProtocol | undefined;
 };
@@ -176,6 +183,7 @@ export const EndpointScanState$inboundSchema: z.ZodType<
   prometheus: Prometheus$inboundSchema.optional(),
   prometheus_target: PrometheusTarget$inboundSchema.optional(),
   redlion_web: RedlionWeb$inboundSchema.optional(),
+  scada_view: ScadaView$inboundSchema.optional(),
   scan_time: z.string().optional(),
   transport_protocol: TransportProtocol$inboundSchema.optional(),
 }).transform((v) => {
@@ -188,6 +196,7 @@ export const EndpointScanState$inboundSchema: z.ZodType<
     "plex_media_server": "plexMediaServer",
     "prometheus_target": "prometheusTarget",
     "redlion_web": "redlionWeb",
+    "scada_view": "scadaView",
     "scan_time": "scanTime",
     "transport_protocol": "transportProtocol",
   });
@@ -216,6 +225,7 @@ export type EndpointScanState$Outbound = {
   prometheus?: Prometheus$Outbound | undefined;
   prometheus_target?: PrometheusTarget$Outbound | undefined;
   redlion_web?: RedlionWeb$Outbound | undefined;
+  scada_view?: ScadaView$Outbound | undefined;
   scan_time?: string | undefined;
   transport_protocol?: string | undefined;
 };
@@ -247,6 +257,7 @@ export const EndpointScanState$outboundSchema: z.ZodType<
   prometheus: Prometheus$outboundSchema.optional(),
   prometheusTarget: PrometheusTarget$outboundSchema.optional(),
   redlionWeb: RedlionWeb$outboundSchema.optional(),
+  scadaView: ScadaView$outboundSchema.optional(),
   scanTime: z.string().optional(),
   transportProtocol: TransportProtocol$outboundSchema.optional(),
 }).transform((v) => {
@@ -259,6 +270,7 @@ export const EndpointScanState$outboundSchema: z.ZodType<
     plexMediaServer: "plex_media_server",
     prometheusTarget: "prometheus_target",
     redlionWeb: "redlion_web",
+    scadaView: "scada_view",
     scanTime: "scan_time",
     transportProtocol: "transport_protocol",
   });

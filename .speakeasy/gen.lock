@@ -1,17 +1,20 @@
 lockVersion: 2.0.0
 id: 50d8a8aa-8772-4a95-9f7b-f8e1bd905c4e
 management:
-  docChecksum: aef8f9aef732a78054f5060b10a33017
-  docVersion: 1.0.0
-  speakeasyVersion: 1.531.2
-  generationVersion: 2.570.0
-  releaseVersion: 0.2.1
-  configChecksum: 4da75b0773d37349b136068a7df8d52d
+  docChecksum: 52da46172710e5dbb166fe5a9e0ce7c3
+  docVersion: 1.0.1
+  speakeasyVersion: 1.533.0
+  generationVersion: 2.578.0
+  releaseVersion: 0.2.2
+  configChecksum: 6cf086ff2933b836cbbd4e1523d63ed2
+  repoURL: https://github.com/censys/censys-sdk-typescript.git
+  installationURL: https://github.com/censys/censys-sdk-typescript
+  published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.21.5
+    core: 3.21.6
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
@@ -431,6 +434,7 @@ generatedFiles:
   - docs/models/components/saprouterclientinfo.md
   - docs/models/components/saprouterrouterinfo.md
   - docs/models/components/saprouterrouterversioninfo.md
+  - docs/models/components/scadaview.md
   - docs/models/components/scope.md
   - docs/models/components/scpi.md
   - docs/models/components/screenshot.md
@@ -1034,6 +1038,7 @@ generatedFiles:
   - src/models/components/saprouterclientinfo.ts
   - src/models/components/saprouterrouterinfo.ts
   - src/models/components/saprouterrouterversioninfo.ts
+  - src/models/components/scadaview.ts
   - src/models/components/scpi.ts
   - src/models/components/screenshot.ts
   - src/models/components/searchaggregateinputbody.ts

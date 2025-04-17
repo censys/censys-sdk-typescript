@@ -15,7 +15,7 @@ export type V3CollectionsSearchQueryGlobals = {
 
 export type V3CollectionsSearchQueryRequest = {
   /**
-   * The ID of a Censys organization to associate the request with. See the [Getting Started docs](https://docs.censys.com/reference/get-started#/set-your-organization-id) for more information.
+   * The ID of a Censys organization to associate the request with. See the [Getting Started docs](https://docs.censys.com/reference/get-started#step-3-set-your-organization-id) for more information.
    */
   organizationId?: string | undefined;
   /**
