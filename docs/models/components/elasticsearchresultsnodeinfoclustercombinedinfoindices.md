@@ -1,0 +1,17 @@
+# ElasticSearchResultsNodeInfoClusterCombinedInfoIndices
+
+## Example Usage
+
+```typescript
+import { ElasticSearchResultsNodeInfoClusterCombinedInfoIndices } from "censys-sdk-typescript/models/components";
+
+let value: ElasticSearchResultsNodeInfoClusterCombinedInfoIndices = {};
+```
+
+## Fields
+
+| Field                                                                                                                                                            | Type                                                                                                                                                             | Required                                                                                                                                                         | Description                                                                                                                                                      |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `count`                                                                                                                                                          | *number*                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                               | N/A                                                                                                                                                              |
+| `docs`                                                                                                                                                           | [components.ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesDocs](../../models/components/elasticsearchresultsnodeinfoclustercombinedinfoindicesdocs.md)   | :heavy_minus_sign:                                                                                                                                               | N/A                                                                                                                                                              |
+| `store`                                                                                                                                                          | [components.ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesStore](../../models/components/elasticsearchresultsnodeinfoclustercombinedinfoindicesstore.md) | :heavy_minus_sign:                                                                                                                                               | N/A                                                                                                                                                              |

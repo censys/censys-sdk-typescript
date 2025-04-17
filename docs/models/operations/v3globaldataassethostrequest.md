@@ -1,0 +1,20 @@
+# V3GlobaldataAssetHostRequest
+
+## Example Usage
+
+```typescript
+import { V3GlobaldataAssetHostRequest } from "censys-sdk-typescript/models/operations";
+
+let value: V3GlobaldataAssetHostRequest = {
+  organizationId: "<id>",
+  hostId: "<id>",
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                                                        | Type                                                                                                                                                                                         | Required                                                                                                                                                                                     | Description                                                                                                                                                                                  |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `organizationId`                                                                                                                                                                             | *string*                                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                           | The ID of a Censys organization to associate the request with. See the [Getting Started docs](https://docs.censys.com/reference/get-started#/set-your-organization-id) for more information. |
+| `hostId`                                                                                                                                                                                     | *string*                                                                                                                                                                                     | :heavy_check_mark:                                                                                                                                                                           | The IP address of a host.                                                                                                                                                                    |
+| `atTime`                                                                                                                                                                                     | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)                                                                                                | :heavy_minus_sign:                                                                                                                                                                           | RFC3339 Timestamp to view a host at a specific point in time. Must be a valid RFC3339 string. Ensure that you suffix the date with T00:00:00Z or a specific time.                            |

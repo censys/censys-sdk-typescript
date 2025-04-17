@@ -1,0 +1,20 @@
+# V3CollectionsCrudUpdateRequest
+
+## Example Usage
+
+```typescript
+import { V3CollectionsCrudUpdateRequest } from "censys-sdk-typescript/models/operations";
+
+let value: V3CollectionsCrudUpdateRequest = {
+  organizationId: "<id>",
+  collectionUid: "<id>",
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                                                        | Type                                                                                                                                                                                         | Required                                                                                                                                                                                     | Description                                                                                                                                                                                  |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `organizationId`                                                                                                                                                                             | *string*                                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                           | The ID of a Censys organization to associate the request with. See the [Getting Started docs](https://docs.censys.com/reference/get-started#/set-your-organization-id) for more information. |
+| `collectionUid`                                                                                                                                                                              | *string*                                                                                                                                                                                     | :heavy_check_mark:                                                                                                                                                                           | The UID for the collection                                                                                                                                                                   |
+| `crudUpdateInputBody`                                                                                                                                                                        | [components.CrudUpdateInputBody](../../models/components/crudupdateinputbody.md)                                                                                                             | :heavy_minus_sign:                                                                                                                                                                           | N/A                                                                                                                                                                                          |

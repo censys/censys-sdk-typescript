@@ -1,0 +1,21 @@
+# ZLint
+
+## Example Usage
+
+```typescript
+import { ZLint } from "censys-sdk-typescript/models/components";
+
+let value: ZLint = {};
+```
+
+## Fields
+
+| Field                                                                                                       | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
+| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `errorsPresent`                                                                                             | *boolean*                                                                                                   | :heavy_minus_sign:                                                                                          | Whether the certificate's attributes triggered any error lints for non-conformance to the X.509 standard.   |
+| `failedLints`                                                                                               | *string*[]                                                                                                  | :heavy_minus_sign:                                                                                          | A list of lint names which failed, if applicable.                                                           |
+| `fatalsPresent`                                                                                             | *boolean*                                                                                                   | :heavy_minus_sign:                                                                                          | Whether the certificate's attributes triggered any fatal lints for non-conformance to the X.509 standard.   |
+| `noticesPresent`                                                                                            | *boolean*                                                                                                   | :heavy_minus_sign:                                                                                          | Whether the certificate's attributes triggered any notice lints for non-conformance to the X.509 standard.  |
+| `timestamp`                                                                                                 | *string*                                                                                                    | :heavy_minus_sign:                                                                                          | An RFC-3339-formated timestamp indicating when the certificate was linted.                                  |
+| `version`                                                                                                   | *number*                                                                                                    | :heavy_minus_sign:                                                                                          | The version of Zlint used to lint the certificate.                                                          |
+| `warningsPresent`                                                                                           | *boolean*                                                                                                   | :heavy_minus_sign:                                                                                          | Whether the certificate's attributes triggered any warning lints for non-conformance to the X.509 standard. |

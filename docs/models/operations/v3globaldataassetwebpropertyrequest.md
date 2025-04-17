@@ -1,0 +1,20 @@
+# V3GlobaldataAssetWebpropertyRequest
+
+## Example Usage
+
+```typescript
+import { V3GlobaldataAssetWebpropertyRequest } from "censys-sdk-typescript/models/operations";
+
+let value: V3GlobaldataAssetWebpropertyRequest = {
+  organizationId: "<id>",
+  webpropertyId: "<id>",
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                                                        | Type                                                                                                                                                                                         | Required                                                                                                                                                                                     | Description                                                                                                                                                                                  |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `organizationId`                                                                                                                                                                             | *string*                                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                           | The ID of a Censys organization to associate the request with. See the [Getting Started docs](https://docs.censys.com/reference/get-started#/set-your-organization-id) for more information. |
+| `webpropertyId`                                                                                                                                                                              | *string*                                                                                                                                                                                     | :heavy_check_mark:                                                                                                                                                                           | A web property host identifier, the format is hostname:port.                                                                                                                                 |
+| `atTime`                                                                                                                                                                                     | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)                                                                                                | :heavy_minus_sign:                                                                                                                                                                           | RFC3339 Timestamp to view a webproperty at a specific point in time. Must be a valid RFC3339 string. Ensure that you suffix the date with T00:00:00Z or a specific time                      |

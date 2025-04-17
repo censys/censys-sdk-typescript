@@ -1,0 +1,16 @@
+# ForwardDnsResolved
+
+## Example Usage
+
+```typescript
+import { ForwardDnsResolved } from "censys-sdk-typescript/models/components";
+
+let value: ForwardDnsResolved = {};
+```
+
+## Fields
+
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `name`             | *string*           | :heavy_minus_sign: | N/A                |
+| `resolveTime`      | *string*           | :heavy_minus_sign: | N/A                |

@@ -1,0 +1,20 @@
+# PrometheusResponse
+
+## Example Usage
+
+```typescript
+import { PrometheusResponse } from "censys-sdk-typescript/models/components";
+
+let value: PrometheusResponse = {};
+```
+
+## Fields
+
+| Field                                                                                                              | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| `activeTargets`                                                                                                    | [components.PrometheusResponseActiveTarget](../../models/components/prometheusresponseactivetarget.md)[]           | :heavy_minus_sign:                                                                                                 | List of active targets.                                                                                            |
+| `allVersions`                                                                                                      | *string*[]                                                                                                         | :heavy_minus_sign:                                                                                                 | List of the versions of everything that Prometheus finds i.e., version of Prometheus, Go, Node, cAdvisor, etc.     |
+| `configExposed`                                                                                                    | *boolean*                                                                                                          | :heavy_minus_sign:                                                                                                 | True when the config endpoint is exposed.                                                                          |
+| `droppedTargets`                                                                                                   | [components.PrometheusResponseDroppedTarget](../../models/components/prometheusresponsedroppedtarget.md)[]         | :heavy_minus_sign:                                                                                                 | List of dropped targets.                                                                                           |
+| `goVersions`                                                                                                       | *string*[]                                                                                                         | :heavy_minus_sign:                                                                                                 | List of the versions of Go.                                                                                        |
+| `prometheusVersions`                                                                                               | [components.PrometheusResponsePrometheusVersion](../../models/components/prometheusresponseprometheusversion.md)[] | :heavy_minus_sign:                                                                                                 | N/A                                                                                                                |

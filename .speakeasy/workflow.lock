@@ -1,0 +1,36 @@
+speakeasyVersion: 1.531.2
+sources:
+    converge-source:
+        sourceNamespace: converge-source
+        sourceRevisionDigest: sha256:6fb5968dae33817d41e589fe836d1ec8fd2cc97d35dd48915e76e6b23de598d6
+        sourceBlobDigest: sha256:f0c938f6ae6fad9813dca4011fbfc614dea39eff2a92c865a5fc3e99e5bb6b45
+        tags:
+            - latest
+            - 1.0.0
+targets:
+    censys-sdk-typescript:
+        source: converge-source
+        sourceNamespace: converge-source
+        sourceRevisionDigest: sha256:6fb5968dae33817d41e589fe836d1ec8fd2cc97d35dd48915e76e6b23de598d6
+        sourceBlobDigest: sha256:f0c938f6ae6fad9813dca4011fbfc614dea39eff2a92c865a5fc3e99e5bb6b45
+        codeSamplesNamespace: converge-source-typescript-code-samples
+        codeSamplesRevisionDigest: sha256:ef2ce6d51b89c4b46e097d771fbafa9faf6158e7be0a8261343334ea48451bb1
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        converge-source:
+            inputs:
+                - location: https://raw.githubusercontent.com/censys/censys-sdk-openapi/refs/heads/main/openapi.yaml
+            registry:
+                location: registry.speakeasyapi.dev/censys/censys/converge-source
+    targets:
+        censys-sdk-typescript:
+            target: typescript
+            source: converge-source
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/censys/censys/converge-source-typescript-code-samples
+                labelOverride:
+                    fixedValue: Typescript (SDK)
+                blocking: false
