@@ -1,0 +1,29 @@
+# Webproperty
+
+## Example Usage
+
+```typescript
+import { Webproperty } from "@censys/platform-sdk/models/components";
+
+let value: Webproperty = {};
+```
+
+## Fields
+
+| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `cert`                                                                         | [components.Certificate](../../models/components/certificate.md)               | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `endpoints`                                                                    | [components.EndpointScanState](../../models/components/endpointscanstate.md)[] | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `exposures`                                                                    | [components.Risk](../../models/components/risk.md)[]                           | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `hardware`                                                                     | [components.Attribute](../../models/components/attribute.md)[]                 | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `hostname`                                                                     | *string*                                                                       | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `jarm`                                                                         | [components.JarmScan](../../models/components/jarmscan.md)                     | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `labels`                                                                       | [components.Label](../../models/components/label.md)[]                         | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `misconfigs`                                                                   | [components.Risk](../../models/components/risk.md)[]                           | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `operatingSystems`                                                             | [components.Attribute](../../models/components/attribute.md)[]                 | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `port`                                                                         | *number*                                                                       | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `scanTime`                                                                     | *string*                                                                       | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `software`                                                                     | [components.Attribute](../../models/components/attribute.md)[]                 | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `threats`                                                                      | [components.Threat](../../models/components/threat.md)[]                       | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `tls`                                                                          | [components.Tls](../../models/components/tls.md)                               | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `vulns`                                                                        | [components.Vuln](../../models/components/vuln.md)[]                           | :heavy_minus_sign:                                                             | N/A                                                                            |

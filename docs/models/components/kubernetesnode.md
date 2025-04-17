@@ -1,0 +1,24 @@
+# KubernetesNode
+
+## Example Usage
+
+```typescript
+import { KubernetesNode } from "@censys/platform-sdk/models/components";
+
+let value: KubernetesNode = {};
+```
+
+## Fields
+
+| Field                                                                                           | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `addresses`                                                                                     | [components.KubernetesNodeNodeAddress](../../models/components/kubernetesnodenodeaddress.md)[]  | :heavy_minus_sign:                                                                              | N/A                                                                                             |
+| `architecture`                                                                                  | *string*                                                                                        | :heavy_minus_sign:                                                                              | The Architecture reported by the node.                                                          |
+| `containerRuntimeVersion`                                                                       | *string*                                                                                        | :heavy_minus_sign:                                                                              | ContainerRuntime Version reported by the node through runtime remote API (e.g. docker://1.5.0). |
+| `images`                                                                                        | *string*[]                                                                                      | :heavy_minus_sign:                                                                              | List of container images on this node                                                           |
+| `kernelVersion`                                                                                 | *string*                                                                                        | :heavy_minus_sign:                                                                              | Kernel Version reported by the node from 'uname -r' (e.g. 3.16.0-0.bpo.4-amd64).                |
+| `kubeProxyVersion`                                                                              | *string*                                                                                        | :heavy_minus_sign:                                                                              | KubeProxy Version reported by the node.                                                         |
+| `kubeletVersion`                                                                                | *string*                                                                                        | :heavy_minus_sign:                                                                              | Kubelet Version reported by the node.                                                           |
+| `name`                                                                                          | *string*                                                                                        | :heavy_minus_sign:                                                                              | N/A                                                                                             |
+| `operatingSystem`                                                                               | *string*                                                                                        | :heavy_minus_sign:                                                                              | The Operating System reported by the node.                                                      |
+| `osImage`                                                                                       | *string*                                                                                        | :heavy_minus_sign:                                                                              | OS Image reported by the node from /etc/os-release (e.g. Debian GNU/Linux 7 (wheezy)).          |

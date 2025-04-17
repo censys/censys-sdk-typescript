@@ -1,0 +1,16 @@
+# ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr
+
+## Example Usage
+
+```typescript
+import { ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr } from "@censys/platform-sdk/models/components";
+
+let value: ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr = {};
+```
+
+## Fields
+
+| Field                                                                                                                                                                    | Type                                                                                                                                                                     | Required                                                                                                                                                                 | Description                                                                                                                                                              |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `ml`                                                                                                                                                                     | [components.ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrML](../../models/components/elasticsearchresultsnodeinfonodesnodedatanodesettingsnodeattrml.md) | :heavy_minus_sign:                                                                                                                                                       | N/A                                                                                                                                                                      |
+| `xpackInstalled`                                                                                                                                                         | *string*                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                       | N/A                                                                                                                                                                      |

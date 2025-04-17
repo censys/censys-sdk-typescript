@@ -1,0 +1,22 @@
+# WebpropertyAsset
+
+## Example Usage
+
+```typescript
+import { WebpropertyAsset } from "@censys/platform-sdk/models/components";
+
+let value: WebpropertyAsset = {
+  extensions: {
+    "key": "<value>",
+    "key1": "<value>",
+  },
+  resource: {},
+};
+```
+
+## Fields
+
+| Field                                                            | Type                                                             | Required                                                         | Description                                                      |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `extensions`                                                     | Record<string, *any*>                                            | :heavy_check_mark:                                               | N/A                                                              |
+| `resource`                                                       | [components.Webproperty](../../models/components/webproperty.md) | :heavy_check_mark:                                               | N/A                                                              |

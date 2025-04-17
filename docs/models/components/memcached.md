@@ -1,0 +1,19 @@
+# Memcached
+
+## Example Usage
+
+```typescript
+import { Memcached } from "@censys/platform-sdk/models/components";
+
+let value: Memcached = {};
+```
+
+## Fields
+
+| Field                                                                                                                        | Type                                                                                                                         | Required                                                                                                                     | Description                                                                                                                  |
+| ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `asciiBindingProtocolEnabled`                                                                                                | *boolean*                                                                                                                    | :heavy_minus_sign:                                                                                                           | Whether server responds to a handshake using the ASCII wire format of the protocol.                                          |
+| `binaryBindingProtocolEnabled`                                                                                               | *boolean*                                                                                                                    | :heavy_minus_sign:                                                                                                           | Whether server responds to a handshake using the binary wire format of the protocol.                                         |
+| `respondsToUdp`                                                                                                              | *boolean*                                                                                                                    | :heavy_minus_sign:                                                                                                           | Whether the server on the UDP port with the same number responds to a handshake using the ASCII wire format of the protocol. |
+| `stats`                                                                                                                      | Record<string, *string*>                                                                                                     | :heavy_minus_sign:                                                                                                           | Server information returned in response to the stats command, as a set of key:value pairs.                                   |
+| `version`                                                                                                                    | *string*                                                                                                                     | :heavy_minus_sign:                                                                                                           | The Memcached version indicated in the server's response.                                                                    |

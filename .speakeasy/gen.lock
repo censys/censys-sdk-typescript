@@ -1,0 +1,1402 @@
+lockVersion: 2.0.0
+id: 50d8a8aa-8772-4a95-9f7b-f8e1bd905c4e
+management:
+  docChecksum: 3c398bac678d6a7c9b412318e55bf2c0
+  docVersion: 1.0.16
+  speakeasyVersion: 1.586.0
+  generationVersion: 2.661.4
+  releaseVersion: 0.4.3
+  configChecksum: 98befad27c15a769c18f5ff41eea9941
+  repoURL: https://github.com/censys/censys-sdk-typescript.git
+  installationURL: https://github.com/censys/censys-sdk-typescript
+  published: true
+features:
+  typescript:
+    additionalDependencies: 0.1.0
+    constsAndDefaults: 0.1.12
+    core: 3.21.14
+    defaultEnabledRetries: 0.1.0
+    enumUnions: 0.1.0
+    envVarSecurityUsage: 0.1.2
+    examples: 2.82.1
+    globalSecurity: 2.82.13
+    globalSecurityCallbacks: 0.1.0
+    globalSecurityFlattening: 0.1.0
+    globalServerURLs: 2.82.5
+    globals: 2.82.2
+    ignores: 2.81.1
+    nameOverrides: 2.81.2
+    nullables: 0.1.1
+    responseFormat: 0.2.3
+    retries: 2.83.0
+    sdkHooks: 0.3.0
+generatedFiles:
+  - .gitattributes
+  - .npmignore
+  - FUNCTIONS.md
+  - RUNTIMES.md
+  - USAGE.md
+  - docs/lib/utils/retryconfig.md
+  - docs/models/components/activemq.md
+  - docs/models/components/amqp.md
+  - docs/models/components/amqpprotocol.md
+  - docs/models/components/amqpversion.md
+  - docs/models/components/analyticscapabilities.md
+  - docs/models/components/anyconnect.md
+  - docs/models/components/attackcomplexity.md
+  - docs/models/components/attackrequirements.md
+  - docs/models/components/attackvector.md
+  - docs/models/components/attribute.md
+  - docs/models/components/auth.md
+  - docs/models/components/authorityinfoaccess.md
+  - docs/models/components/automatable.md
+  - docs/models/components/autonomoussystem.md
+  - docs/models/components/availability.md
+  - docs/models/components/bacnet.md
+  - docs/models/components/basicconstraints.md
+  - docs/models/components/cabforganizationid.md
+  - docs/models/components/capabilities.md
+  - docs/models/components/certificate.md
+  - docs/models/components/certificateasset.md
+  - docs/models/components/certificateextensions.md
+  - docs/models/components/certificateparsed.md
+  - docs/models/components/certificatepolicy.md
+  - docs/models/components/certificaterevocation.md
+  - docs/models/components/certificaterevocationrevocationinfo.md
+  - docs/models/components/changetype.md
+  - docs/models/components/checkpointtopology.md
+  - docs/models/components/chromecast.md
+  - docs/models/components/chromecastapplication.md
+  - docs/models/components/chromecastnamespace.md
+  - docs/models/components/chromecastvolume.md
+  - docs/models/components/chromedevtools.md
+  - docs/models/components/chromedevtoolstarget.md
+  - docs/models/components/ciscoipsla.md
+  - docs/models/components/ciscoipslahandshake.md
+  - docs/models/components/ciscoipslahandshakeheader.md
+  - docs/models/components/ciscoipslahandshakemessage.md
+  - docs/models/components/ciscoipslameasureresponse.md
+  - docs/models/components/cmore.md
+  - docs/models/components/coap.md
+  - docs/models/components/cobaltstrike.md
+  - docs/models/components/cobaltstrikeconfig.md
+  - docs/models/components/cobaltstrikehttpconfig.md
+  - docs/models/components/cobaltstrikepostex.md
+  - docs/models/components/collection.md
+  - docs/models/components/collectionevent.md
+  - docs/models/components/collectioneventsresponse.md
+  - docs/models/components/collectionstatus.md
+  - docs/models/components/confidentiality.md
+  - docs/models/components/connection.md
+  - docs/models/components/contact.md
+  - docs/models/components/coordinates.md
+  - docs/models/components/countcondition.md
+  - docs/models/components/cpe.md
+  - docs/models/components/cpelifecycle.md
+  - docs/models/components/crestroncp3.md
+  - docs/models/components/crestrondinap2.md
+  - docs/models/components/crudcreateinputbody.md
+  - docs/models/components/crudupdateinputbody.md
+  - docs/models/components/cryptsetup.md
+  - docs/models/components/ct.md
+  - docs/models/components/ctrecord.md
+  - docs/models/components/cvss.md
+  - docs/models/components/cvsscomponents.md
+  - docs/models/components/cvssv4.md
+  - docs/models/components/cvssv4components.md
+  - docs/models/components/cvssv4componentsattackcomplexity.md
+  - docs/models/components/cvssv4componentsattackvector.md
+  - docs/models/components/cvssv4componentsavailability.md
+  - docs/models/components/cvssv4componentsconfidentiality.md
+  - docs/models/components/cvssv4componentsintegrity.md
+  - docs/models/components/cvssv4componentsprivilegesrequired.md
+  - docs/models/components/cvssv4componentsuserinteraction.md
+  - docs/models/components/cwe.md
+  - docs/models/components/cwmp.md
+  - docs/models/components/darkcomet.md
+  - docs/models/components/darkgate.md
+  - docs/models/components/darkgatefile.md
+  - docs/models/components/dcerpc.md
+  - docs/models/components/dcerpcendpoint.md
+  - docs/models/components/desktopinfo.md
+  - docs/models/components/devicecapabilities.md
+  - docs/models/components/deviceiocapabilities.md
+  - docs/models/components/dhcpdiscover.md
+  - docs/models/components/dhcpdiscoverdeviceinfo.md
+  - docs/models/components/dhcpdiscoveripaddress.md
+  - docs/models/components/dhcpdiscoverresponseparams.md
+  - docs/models/components/distinguishedname.md
+  - docs/models/components/dnp3.md
+  - docs/models/components/dns.md
+  - docs/models/components/dnsedns.md
+  - docs/models/components/dnsresourcerecord.md
+  - docs/models/components/dnsresourcerecordtype.md
+  - docs/models/components/dsacryptographickey.md
+  - docs/models/components/dsapublickey.md
+  - docs/models/components/dtls.md
+  - docs/models/components/dvrip.md
+  - docs/models/components/dvrippartitioncapability.md
+  - docs/models/components/ecdsacryptographickey.md
+  - docs/models/components/ecdsapublickey.md
+  - docs/models/components/ed25519cryptographickey.md
+  - docs/models/components/edipartyname.md
+  - docs/models/components/eip.md
+  - docs/models/components/eipidentity.md
+  - docs/models/components/eipinterface.md
+  - docs/models/components/eipservice.md
+  - docs/models/components/elasticsearch.md
+  - docs/models/components/elasticsearchresultsnodeinfo.md
+  - docs/models/components/elasticsearchresultsnodeinfoclustercombinedinfo.md
+  - docs/models/components/elasticsearchresultsnodeinfoclustercombinedinfofilesystem.md
+  - docs/models/components/elasticsearchresultsnodeinfoclustercombinedinfoindices.md
+  - docs/models/components/elasticsearchresultsnodeinfoclustercombinedinfoindicesdocs.md
+  - docs/models/components/elasticsearchresultsnodeinfoclustercombinedinfoindicesstore.md
+  - docs/models/components/elasticsearchresultsnodeinfonodes.md
+  - docs/models/components/elasticsearchresultsnodeinfonodesnodedata.md
+  - docs/models/components/elasticsearchresultsnodeinfonodesnodedatajvm.md
+  - docs/models/components/elasticsearchresultsnodeinfonodesnodedatamodules.md
+  - docs/models/components/elasticsearchresultsnodeinfonodesnodedatanodesettings.md
+  - docs/models/components/elasticsearchresultsnodeinfonodesnodedatanodesettingsnode.md
+  - docs/models/components/elasticsearchresultsnodeinfonodesnodedatanodesettingsnodeattr.md
+  - docs/models/components/elasticsearchresultsnodeinfonodesnodedatanodesettingsnodeattrml.md
+  - docs/models/components/elasticsearchresultsnodeinfonodesnodedataos.md
+  - docs/models/components/elasticsearchresultsnodeinfonodesnodedatathreadpool.md
+  - docs/models/components/elasticsearchsysteminfo.md
+  - docs/models/components/elasticsearchsysteminfover.md
+  - docs/models/components/elffile.md
+  - docs/models/components/endpointscan.md
+  - docs/models/components/endpointscanned.md
+  - docs/models/components/endpointscanstate.md
+  - docs/models/components/endpointscantransportprotocol.md
+  - docs/models/components/epmd.md
+  - docs/models/components/epss.md
+  - docs/models/components/errordetail.md
+  - docs/models/components/etcd.md
+  - docs/models/components/etcdv2.md
+  - docs/models/components/etcdv3.md
+  - docs/models/components/etcdversion.md
+  - docs/models/components/ethereum.md
+  - docs/models/components/ethereumversion.md
+  - docs/models/components/eventassetchange.md
+  - docs/models/components/eventscapabilities.md
+  - docs/models/components/eventstatuschange.md
+  - docs/models/components/evidence.md
+  - docs/models/components/export.md
+  - docs/models/components/exportlist.md
+  - docs/models/components/extendedkeyusage.md
+  - docs/models/components/extension.md
+  - docs/models/components/fielddiff.md
+  - docs/models/components/fieldvaluepair.md
+  - docs/models/components/floatvalue.md
+  - docs/models/components/fortigate.md
+  - docs/models/components/forwarddnsresolved.md
+  - docs/models/components/fox.md
+  - docs/models/components/ftp.md
+  - docs/models/components/gearman.md
+  - docs/models/components/generalnames.md
+  - docs/models/components/generalsubtreeip.md
+  - docs/models/components/graphql.md
+  - docs/models/components/hidvertx.md
+  - docs/models/components/hikvision.md
+  - docs/models/components/hikvisionplatform.md
+  - docs/models/components/hikvisionplatformlibrary.md
+  - docs/models/components/host.md
+  - docs/models/components/hostasset.md
+  - docs/models/components/hostdns.md
+  - docs/models/components/hostdnsforwardresolution.md
+  - docs/models/components/hostdnsreverseresolution.md
+  - docs/models/components/hosttimeline.md
+  - docs/models/components/hosttimelineevent.md
+  - docs/models/components/hosttimelineeventasset.md
+  - docs/models/components/http.md
+  - docs/models/components/httpfavicon.md
+  - docs/models/components/httprepeatedheaders.md
+  - docs/models/components/ibmnje.md
+  - docs/models/components/ike.md
+  - docs/models/components/ikev1.md
+  - docs/models/components/ikev2.md
+  - docs/models/components/imagecapabilities.md
+  - docs/models/components/imap.md
+  - docs/models/components/integrity.md
+  - docs/models/components/iota.md
+  - docs/models/components/ipmi.md
+  - docs/models/components/ipmicapabilities.md
+  - docs/models/components/ipmicapabilitiesauthstatus.md
+  - docs/models/components/ipmicapabilitiescompletioncode.md
+  - docs/models/components/ipmicapabilitiesextendedcapabilities.md
+  - docs/models/components/ipmicapabilitiessupportedauthtypes.md
+  - docs/models/components/ipmicommandpayload.md
+  - docs/models/components/ipmicommandpayloadcommandnumber.md
+  - docs/models/components/ipmicommandpayloadpackednetfn.md
+  - docs/models/components/ipmicommandpayloadpackednetfnlogicalunitnumber.md
+  - docs/models/components/ipmicommandpayloadpackednetfnnetfn.md
+  - docs/models/components/ipmirmcpheader.md
+  - docs/models/components/ipmirmcpheadermessageclass.md
+  - docs/models/components/ipmisessionheader.md
+  - docs/models/components/ipmisessionheaderauthtype.md
+  - docs/models/components/ipp.md
+  - docs/models/components/ippattribute.md
+  - docs/models/components/iscsi.md
+  - docs/models/components/ivantiavalanche.md
+  - docs/models/components/ja4tscanscan.md
+  - docs/models/components/jarmscan.md
+  - docs/models/components/jarmscanned.md
+  - docs/models/components/jarmscantransportprotocol.md
+  - docs/models/components/kev.md
+  - docs/models/components/kevsource.md
+  - docs/models/components/keyalgorithm.md
+  - docs/models/components/keyusage.md
+  - docs/models/components/krpc.md
+  - docs/models/components/kubernetes.md
+  - docs/models/components/kubernetesendpoint.md
+  - docs/models/components/kubernetesendpointsubset.md
+  - docs/models/components/kubernetesendpointsubsetendpointaddress.md
+  - docs/models/components/kubernetesendpointsubsetport.md
+  - docs/models/components/kubernetesnode.md
+  - docs/models/components/kubernetesnodenodeaddress.md
+  - docs/models/components/kubernetesrole.md
+  - docs/models/components/kubernetesrolerule.md
+  - docs/models/components/kubernetesversioninfo.md
+  - docs/models/components/l2tp.md
+  - docs/models/components/l2tpattributevalues.md
+  - docs/models/components/l2tpsccrp.md
+  - docs/models/components/l2tpstopccn.md
+  - docs/models/components/label.md
+  - docs/models/components/labelsource.md
+  - docs/models/components/ldap.md
+  - docs/models/components/ldapattribute.md
+  - docs/models/components/listcollectionsresponsev1.md
+  - docs/models/components/location.md
+  - docs/models/components/locationupdated.md
+  - docs/models/components/lpd.md
+  - docs/models/components/lpdmessage.md
+  - docs/models/components/mdns.md
+  - docs/models/components/mdnsresult.md
+  - docs/models/components/mediacapabilities.md
+  - docs/models/components/mediaprofile.md
+  - docs/models/components/mediastreaming.md
+  - docs/models/components/members.md
+  - docs/models/components/memcached.md
+  - docs/models/components/metrics.md
+  - docs/models/components/minecraft.md
+  - docs/models/components/mms.md
+  - docs/models/components/modbus.md
+  - docs/models/components/modbusexceptionresponse.md
+  - docs/models/components/modbusmeiresponse.md
+  - docs/models/components/monerop2p.md
+  - docs/models/components/monerop2pentry.md
+  - docs/models/components/monerop2ppayload.md
+  - docs/models/components/monerop2ppingresponse.md
+  - docs/models/components/monerop2presponseheader.md
+  - docs/models/components/mongodb.md
+  - docs/models/components/mongodbbuildinfo.md
+  - docs/models/components/mongodbbuildinfobuildenvironment.md
+  - docs/models/components/mongodbismaster.md
+  - docs/models/components/mqtt.md
+  - docs/models/components/mqttconnectionackreturn.md
+  - docs/models/components/mqttsubscriptionackreturn.md
+  - docs/models/components/mssql.md
+  - docs/models/components/mssqlpreloginoptions.md
+  - docs/models/components/mssqlpreloginoptionsserverversion.md
+  - docs/models/components/murmur.md
+  - docs/models/components/murmurmessage.md
+  - docs/models/components/murmurmessagemurmurheader.md
+  - docs/models/components/murmurmurmurversion.md
+  - docs/models/components/mysql.md
+  - docs/models/components/nameconstraints.md
+  - docs/models/components/natsio.md
+  - docs/models/components/nbd.md
+  - docs/models/components/network.md
+  - docs/models/components/networkcapabilities.md
+  - docs/models/components/newstatus.md
+  - docs/models/components/nfsmountd.md
+  - docs/models/components/nmea.md
+  - docs/models/components/nmeanmeamessage.md
+  - docs/models/components/nodeinfov0.md
+  - docs/models/components/nodeinfov1.md
+  - docs/models/components/nodeinfov2.md
+  - docs/models/components/noticereference.md
+  - docs/models/components/ntlminfo.md
+  - docs/models/components/ntp.md
+  - docs/models/components/ntpntpheader.md
+  - docs/models/components/ntrip.md
+  - docs/models/components/oldstatus.md
+  - docs/models/components/ollama.md
+  - docs/models/components/ollamamodel.md
+  - docs/models/components/onc.md
+  - docs/models/components/onvif.md
+  - docs/models/components/onvifhostname.md
+  - docs/models/components/onvifservice.md
+  - docs/models/components/opcua.md
+  - docs/models/components/opcuadescription.md
+  - docs/models/components/opcuaendpoint.md
+  - docs/models/components/opcualocalizedtext.md
+  - docs/models/components/opcuausertokenpolicy.md
+  - docs/models/components/opendirectory.md
+  - docs/models/components/opendirectoryfile.md
+  - docs/models/components/openvpn.md
+  - docs/models/components/oracle.md
+  - docs/models/components/oracledescriptor.md
+  - docs/models/components/organization.md
+  - docs/models/components/othername.md
+  - docs/models/components/pantiltzoomcapabilities.md
+  - docs/models/components/parsestatus.md
+  - docs/models/components/pcanywhere.md
+  - docs/models/components/pcanywherestatus.md
+  - docs/models/components/peer.md
+  - docs/models/components/pgbouncer.md
+  - docs/models/components/pgbouncerstartupcapabilities.md
+  - docs/models/components/pixelformat.md
+  - docs/models/components/plexmediaserver.md
+  - docs/models/components/pop3.md
+  - docs/models/components/port.md
+  - docs/models/components/portmap.md
+  - docs/models/components/portmapv2entry.md
+  - docs/models/components/portmapv3entry.md
+  - docs/models/components/postgres.md
+  - docs/models/components/pprof.md
+  - docs/models/components/pptp.md
+  - docs/models/components/pptpresponseinfo.md
+  - docs/models/components/pptpversion.md
+  - docs/models/components/privilegesrequired.md
+  - docs/models/components/profinetcm.md
+  - docs/models/components/prometheus.md
+  - docs/models/components/prometheusmetricfamily.md
+  - docs/models/components/prometheusresponse.md
+  - docs/models/components/prometheusresponseactivetarget.md
+  - docs/models/components/prometheusresponseactivetargetdiscoveredlabels.md
+  - docs/models/components/prometheusresponseactivetargetlabels.md
+  - docs/models/components/prometheusresponsedroppedtarget.md
+  - docs/models/components/prometheusresponseprometheusversion.md
+  - docs/models/components/prometheustarget.md
+  - docs/models/components/providerurgency.md
+  - docs/models/components/qcstatements.md
+  - docs/models/components/qcstatementsmonetaryvalue.md
+  - docs/models/components/qcstatementsparsedstatements.md
+  - docs/models/components/qcstatementspdslocation.md
+  - docs/models/components/qcstatementsqclegislation.md
+  - docs/models/components/qcstatementsqctype.md
+  - docs/models/components/rcode.md
+  - docs/models/components/rdate.md
+  - docs/models/components/rdp.md
+  - docs/models/components/rdpcertificateinfo.md
+  - docs/models/components/rdpconnectresponse.md
+  - docs/models/components/rdpdomainparameters.md
+  - docs/models/components/rdpembeddedrsacert.md
+  - docs/models/components/rdpprotocolflags.md
+  - docs/models/components/rdpsecurityprotocol.md
+  - docs/models/components/rdpversion.md
+  - docs/models/components/realport.md
+  - docs/models/components/reason.md
+  - docs/models/components/recordingcapabilities.md
+  - docs/models/components/recordtype.md
+  - docs/models/components/recovery.md
+  - docs/models/components/redis.md
+  - docs/models/components/redisrawoutput.md
+  - docs/models/components/redline.md
+  - docs/models/components/redlioncrimson.md
+  - docs/models/components/redlionweb.md
+  - docs/models/components/reject.md
+  - docs/models/components/rejecttype.md
+  - docs/models/components/replaycapabilities.md
+  - docs/models/components/representativeinfo.md
+  - docs/models/components/representativeinforeason.md
+  - docs/models/components/responseenvelopecertificateasset.md
+  - docs/models/components/responseenvelopecollection.md
+  - docs/models/components/responseenvelopecollectioneventsresponse.md
+  - docs/models/components/responseenvelopehostasset.md
+  - docs/models/components/responseenvelopehosttimeline.md
+  - docs/models/components/responseenvelopelistcertificateasset.md
+  - docs/models/components/responseenvelopelistcollectionsresponsev1.md
+  - docs/models/components/responseenvelopelisthostasset.md
+  - docs/models/components/responseenvelopelistwebpropertyasset.md
+  - docs/models/components/responseenvelopesearchaggregateresponse.md
+  - docs/models/components/responseenvelopesearchqueryresponse.md
+  - docs/models/components/responseenvelopevaluecountsresponse.md
+  - docs/models/components/responseenvelopewebpropertyasset.md
+  - docs/models/components/reversednsresolved.md
+  - docs/models/components/rifatron.md
+  - docs/models/components/ripple.md
+  - docs/models/components/rippleclioresults.md
+  - docs/models/components/rippledpublicresults.md
+  - docs/models/components/ripplepeerresults.md
+  - docs/models/components/risk.md
+  - docs/models/components/risksource.md
+  - docs/models/components/risksource1.md
+  - docs/models/components/rlogin.md
+  - docs/models/components/rocketmq.md
+  - docs/models/components/rocketmqclusterinfo.md
+  - docs/models/components/rocketmqresponseheader.md
+  - docs/models/components/rocketmqtopiclist.md
+  - docs/models/components/rootstore.md
+  - docs/models/components/rootstorechain.md
+  - docs/models/components/routeupdated.md
+  - docs/models/components/routing.md
+  - docs/models/components/rsacryptographickey.md
+  - docs/models/components/rsapublickey.md
+  - docs/models/components/rtsp.md
+  - docs/models/components/s7.md
+  - docs/models/components/safety.md
+  - docs/models/components/saprouter.md
+  - docs/models/components/saprouterclientinfo.md
+  - docs/models/components/saprouterrouterinfo.md
+  - docs/models/components/saprouterrouterversioninfo.md
+  - docs/models/components/scadaview.md
+  - docs/models/components/scope.md
+  - docs/models/components/scpi.md
+  - docs/models/components/screenshot.md
+  - docs/models/components/searchaggregateinputbody.md
+  - docs/models/components/searchaggregateresponse.md
+  - docs/models/components/searchaggregateresponsebucket.md
+  - docs/models/components/searchcapabilities.md
+  - docs/models/components/searchqueryhit.md
+  - docs/models/components/searchqueryinputbody.md
+  - docs/models/components/searchqueryresponse.md
+  - docs/models/components/searchvaluecountsinputbody.md
+  - docs/models/components/security.md
+  - docs/models/components/securitycapabilities.md
+  - docs/models/components/ser2net.md
+  - docs/models/components/ser2netserialparameters.md
+  - docs/models/components/serverconfig.md
+  - docs/models/components/serversync.md
+  - docs/models/components/servertype.md
+  - docs/models/components/service.md
+  - docs/models/components/servicescan.md
+  - docs/models/components/servicescanned.md
+  - docs/models/components/servicescantransportprotocol.md
+  - docs/models/components/servicetransportprotocol.md
+  - docs/models/components/sevendaystodie.md
+  - docs/models/components/severity.md
+  - docs/models/components/signature.md
+  - docs/models/components/signedcertificatetimestamp.md
+  - docs/models/components/signedcertificatetimestampsignature.md
+  - docs/models/components/sip.md
+  - docs/models/components/skinny.md
+  - docs/models/components/smb.md
+  - docs/models/components/smbheaderlog.md
+  - docs/models/components/smbnegotiationlog.md
+  - docs/models/components/smbsessionsetuplog.md
+  - docs/models/components/smbsmbcapabilities.md
+  - docs/models/components/smbsmbversions.md
+  - docs/models/components/smtp.md
+  - docs/models/components/snmp.md
+  - docs/models/components/snmpengine.md
+  - docs/models/components/snmpinterfaces.md
+  - docs/models/components/snmpphysical.md
+  - docs/models/components/snmpsystem.md
+  - docs/models/components/snmpsystemservices.md
+  - docs/models/components/socks.md
+  - docs/models/components/source.md
+  - docs/models/components/spice.md
+  - docs/models/components/ssdp.md
+  - docs/models/components/ssh.md
+  - docs/models/components/sshalgorithmselection.md
+  - docs/models/components/sshalgorithmselectiondirectionalgorithms.md
+  - docs/models/components/sshendpointid.md
+  - docs/models/components/sshkexinitmessage.md
+  - docs/models/components/sshserverhostkey.md
+  - docs/models/components/status.md
+  - docs/models/components/statusreason.md
+  - docs/models/components/steam.md
+  - docs/models/components/subjectkeyinfo.md
+  - docs/models/components/systemcapabilities.md
+  - docs/models/components/tacacsplus.md
+  - docs/models/components/target.md
+  - docs/models/components/teamviewer.md
+  - docs/models/components/telnet.md
+  - docs/models/components/textmessage.md
+  - docs/models/components/threat.md
+  - docs/models/components/threatactor.md
+  - docs/models/components/threatdetails.md
+  - docs/models/components/threatmalware.md
+  - docs/models/components/threatsource.md
+  - docs/models/components/tibia.md
+  - docs/models/components/tls.md
+  - docs/models/components/tlschain.md
+  - docs/models/components/tlsversiondata.md
+  - docs/models/components/torservicedescriptor.md
+  - docs/models/components/tplinkkasa.md
+  - docs/models/components/transportprotocol.md
+  - docs/models/components/type.md
+  - docs/models/components/unitronicspcom.md
+  - docs/models/components/unrecognizedpublickey.md
+  - docs/models/components/upnp.md
+  - docs/models/components/upnpdevice.md
+  - docs/models/components/upnpservice.md
+  - docs/models/components/upnpspecversion.md
+  - docs/models/components/user.md
+  - docs/models/components/userinteraction.md
+  - docs/models/components/usernotice.md
+  - docs/models/components/validation.md
+  - docs/models/components/validationlevel.md
+  - docs/models/components/validityperiod.md
+  - docs/models/components/valuecountsresponse.md
+  - docs/models/components/valuedensity.md
+  - docs/models/components/ventrilo.md
+  - docs/models/components/ventriloheader.md
+  - docs/models/components/ventrilomessage.md
+  - docs/models/components/version.md
+  - docs/models/components/versionselected.md
+  - docs/models/components/vnc.md
+  - docs/models/components/vnckeyvalue.md
+  - docs/models/components/vuln.md
+  - docs/models/components/vulnerabilityresponseeffort.md
+  - docs/models/components/vulnrisksource.md
+  - docs/models/components/vulnseverity.md
+  - docs/models/components/vulnsource.md
+  - docs/models/components/weblogict3.md
+  - docs/models/components/webproperty.md
+  - docs/models/components/webpropertyasset.md
+  - docs/models/components/whois.md
+  - docs/models/components/whoisupdated.md
+  - docs/models/components/winrm.md
+  - docs/models/components/worker.md
+  - docs/models/components/wsdiscovery.md
+  - docs/models/components/x11.md
+  - docs/models/components/zeromq.md
+  - docs/models/components/zeromqgreeting.md
+  - docs/models/components/zeromqhandshake.md
+  - docs/models/components/zlint.md
+  - docs/models/errors/errormodel.md
+  - docs/models/operations/assetchangetypes.md
+  - docs/models/operations/changetypes.md
+  - docs/models/operations/statuschangetypes.md
+  - docs/models/operations/v3collectionscrudcreateglobals.md
+  - docs/models/operations/v3collectionscrudcreaterequest.md
+  - docs/models/operations/v3collectionscrudcreateresponse.md
+  - docs/models/operations/v3collectionscruddeleteglobals.md
+  - docs/models/operations/v3collectionscruddeleterequest.md
+  - docs/models/operations/v3collectionscruddeleteresponse.md
+  - docs/models/operations/v3collectionscrudgetglobals.md
+  - docs/models/operations/v3collectionscrudgetrequest.md
+  - docs/models/operations/v3collectionscrudgetresponse.md
+  - docs/models/operations/v3collectionscrudlistglobals.md
+  - docs/models/operations/v3collectionscrudlistrequest.md
+  - docs/models/operations/v3collectionscrudlistresponse.md
+  - docs/models/operations/v3collectionscrudupdateglobals.md
+  - docs/models/operations/v3collectionscrudupdaterequest.md
+  - docs/models/operations/v3collectionscrudupdateresponse.md
+  - docs/models/operations/v3collectionslisteventsglobals.md
+  - docs/models/operations/v3collectionslisteventsrequest.md
+  - docs/models/operations/v3collectionslisteventsresponse.md
+  - docs/models/operations/v3collectionssearchaggregateglobals.md
+  - docs/models/operations/v3collectionssearchaggregaterequest.md
+  - docs/models/operations/v3collectionssearchaggregateresponse.md
+  - docs/models/operations/v3collectionssearchqueryglobals.md
+  - docs/models/operations/v3collectionssearchqueryrequest.md
+  - docs/models/operations/v3collectionssearchqueryresponse.md
+  - docs/models/operations/v3globaldataassetcertificateglobals.md
+  - docs/models/operations/v3globaldataassetcertificatelistglobals.md
+  - docs/models/operations/v3globaldataassetcertificatelistrequest.md
+  - docs/models/operations/v3globaldataassetcertificatelistresponse.md
+  - docs/models/operations/v3globaldataassetcertificaterequest.md
+  - docs/models/operations/v3globaldataassetcertificateresponse.md
+  - docs/models/operations/v3globaldataassethostglobals.md
+  - docs/models/operations/v3globaldataassethostlistglobals.md
+  - docs/models/operations/v3globaldataassethostlistrequest.md
+  - docs/models/operations/v3globaldataassethostlistresponse.md
+  - docs/models/operations/v3globaldataassethostrequest.md
+  - docs/models/operations/v3globaldataassethostresponse.md
+  - docs/models/operations/v3globaldataassethosttimelineglobals.md
+  - docs/models/operations/v3globaldataassethosttimelinerequest.md
+  - docs/models/operations/v3globaldataassethosttimelineresponse.md
+  - docs/models/operations/v3globaldataassetwebpropertyglobals.md
+  - docs/models/operations/v3globaldataassetwebpropertylistglobals.md
+  - docs/models/operations/v3globaldataassetwebpropertylistrequest.md
+  - docs/models/operations/v3globaldataassetwebpropertylistresponse.md
+  - docs/models/operations/v3globaldataassetwebpropertyrequest.md
+  - docs/models/operations/v3globaldataassetwebpropertyresponse.md
+  - docs/models/operations/v3globaldatasearchaggregateglobals.md
+  - docs/models/operations/v3globaldatasearchaggregaterequest.md
+  - docs/models/operations/v3globaldatasearchaggregateresponse.md
+  - docs/models/operations/v3globaldatasearchqueryglobals.md
+  - docs/models/operations/v3globaldatasearchqueryrequest.md
+  - docs/models/operations/v3globaldatasearchqueryresponse.md
+  - docs/models/operations/v3threathuntingvaluecountsglobals.md
+  - docs/models/operations/v3threathuntingvaluecountsrequest.md
+  - docs/models/operations/v3threathuntingvaluecountsresponse.md
+  - docs/sdks/collections/README.md
+  - docs/sdks/globaldata/README.md
+  - docs/sdks/sdk/README.md
+  - docs/sdks/threathunting/README.md
+  - eslint.config.mjs
+  - examples/.env.template
+  - examples/README.md
+  - examples/globalDataSearch.example.ts
+  - examples/package.json
+  - jsr.json
+  - package.json
+  - src/core.ts
+  - src/funcs/collectionsAggregate.ts
+  - src/funcs/collectionsCreate.ts
+  - src/funcs/collectionsDelete.ts
+  - src/funcs/collectionsGet.ts
+  - src/funcs/collectionsList.ts
+  - src/funcs/collectionsListEvents.ts
+  - src/funcs/collectionsSearch.ts
+  - src/funcs/collectionsUpdate.ts
+  - src/funcs/globalDataAggregate.ts
+  - src/funcs/globalDataGetCertificate.ts
+  - src/funcs/globalDataGetCertificates.ts
+  - src/funcs/globalDataGetHost.ts
+  - src/funcs/globalDataGetHostTimeline.ts
+  - src/funcs/globalDataGetHosts.ts
+  - src/funcs/globalDataGetWebProperties.ts
+  - src/funcs/globalDataGetWebProperty.ts
+  - src/funcs/globalDataSearch.ts
+  - src/funcs/threatHuntingValueCounts.ts
+  - src/hooks/hooks.ts
+  - src/hooks/index.ts
+  - src/hooks/types.ts
+  - src/index.ts
+  - src/lib/base64.ts
+  - src/lib/config.ts
+  - src/lib/dlv.ts
+  - src/lib/encodings.ts
+  - src/lib/files.ts
+  - src/lib/http.ts
+  - src/lib/is-plain-object.ts
+  - src/lib/logger.ts
+  - src/lib/matchers.ts
+  - src/lib/primitives.ts
+  - src/lib/retries.ts
+  - src/lib/schemas.ts
+  - src/lib/sdks.ts
+  - src/lib/security.ts
+  - src/lib/url.ts
+  - src/models/components/activemq.ts
+  - src/models/components/amqp.ts
+  - src/models/components/amqpprotocol.ts
+  - src/models/components/amqpversion.ts
+  - src/models/components/analyticscapabilities.ts
+  - src/models/components/anyconnect.ts
+  - src/models/components/attribute.ts
+  - src/models/components/auth.ts
+  - src/models/components/authorityinfoaccess.ts
+  - src/models/components/autonomoussystem.ts
+  - src/models/components/bacnet.ts
+  - src/models/components/basicconstraints.ts
+  - src/models/components/cabforganizationid.ts
+  - src/models/components/capabilities.ts
+  - src/models/components/certificate.ts
+  - src/models/components/certificateasset.ts
+  - src/models/components/certificateextensions.ts
+  - src/models/components/certificateparsed.ts
+  - src/models/components/certificatepolicy.ts
+  - src/models/components/certificaterevocation.ts
+  - src/models/components/certificaterevocationrevocationinfo.ts
+  - src/models/components/checkpointtopology.ts
+  - src/models/components/chromecast.ts
+  - src/models/components/chromecastapplication.ts
+  - src/models/components/chromecastnamespace.ts
+  - src/models/components/chromecastvolume.ts
+  - src/models/components/chromedevtools.ts
+  - src/models/components/chromedevtoolstarget.ts
+  - src/models/components/ciscoipsla.ts
+  - src/models/components/ciscoipslahandshake.ts
+  - src/models/components/ciscoipslahandshakeheader.ts
+  - src/models/components/ciscoipslahandshakemessage.ts
+  - src/models/components/ciscoipslameasureresponse.ts
+  - src/models/components/cmore.ts
+  - src/models/components/coap.ts
+  - src/models/components/cobaltstrike.ts
+  - src/models/components/cobaltstrikeconfig.ts
+  - src/models/components/cobaltstrikehttpconfig.ts
+  - src/models/components/cobaltstrikepostex.ts
+  - src/models/components/collection.ts
+  - src/models/components/collectionevent.ts
+  - src/models/components/collectioneventsresponse.ts
+  - src/models/components/connection.ts
+  - src/models/components/contact.ts
+  - src/models/components/coordinates.ts
+  - src/models/components/countcondition.ts
+  - src/models/components/cpe.ts
+  - src/models/components/cpelifecycle.ts
+  - src/models/components/crestroncp3.ts
+  - src/models/components/crestrondinap2.ts
+  - src/models/components/crudcreateinputbody.ts
+  - src/models/components/crudupdateinputbody.ts
+  - src/models/components/cryptsetup.ts
+  - src/models/components/ct.ts
+  - src/models/components/ctrecord.ts
+  - src/models/components/cvss.ts
+  - src/models/components/cvsscomponents.ts
+  - src/models/components/cvssv4.ts
+  - src/models/components/cvssv4components.ts
+  - src/models/components/cwe.ts
+  - src/models/components/cwmp.ts
+  - src/models/components/darkcomet.ts
+  - src/models/components/darkgate.ts
+  - src/models/components/darkgatefile.ts
+  - src/models/components/dcerpc.ts
+  - src/models/components/dcerpcendpoint.ts
+  - src/models/components/desktopinfo.ts
+  - src/models/components/devicecapabilities.ts
+  - src/models/components/deviceiocapabilities.ts
+  - src/models/components/dhcpdiscover.ts
+  - src/models/components/dhcpdiscoverdeviceinfo.ts
+  - src/models/components/dhcpdiscoveripaddress.ts
+  - src/models/components/dhcpdiscoverresponseparams.ts
+  - src/models/components/distinguishedname.ts
+  - src/models/components/dnp3.ts
+  - src/models/components/dns.ts
+  - src/models/components/dnsedns.ts
+  - src/models/components/dnsresourcerecord.ts
+  - src/models/components/dsacryptographickey.ts
+  - src/models/components/dsapublickey.ts
+  - src/models/components/dtls.ts
+  - src/models/components/dvrip.ts
+  - src/models/components/dvrippartitioncapability.ts
+  - src/models/components/ecdsacryptographickey.ts
+  - src/models/components/ecdsapublickey.ts
+  - src/models/components/ed25519cryptographickey.ts
+  - src/models/components/edipartyname.ts
+  - src/models/components/eip.ts
+  - src/models/components/eipidentity.ts
+  - src/models/components/eipinterface.ts
+  - src/models/components/eipservice.ts
+  - src/models/components/elasticsearch.ts
+  - src/models/components/elasticsearchresultsnodeinfo.ts
+  - src/models/components/elasticsearchresultsnodeinfoclustercombinedinfo.ts
+  - src/models/components/elasticsearchresultsnodeinfoclustercombinedinfofilesystem.ts
+  - src/models/components/elasticsearchresultsnodeinfoclustercombinedinfoindices.ts
+  - src/models/components/elasticsearchresultsnodeinfoclustercombinedinfoindicesdocs.ts
+  - src/models/components/elasticsearchresultsnodeinfoclustercombinedinfoindicesstore.ts
+  - src/models/components/elasticsearchresultsnodeinfonodes.ts
+  - src/models/components/elasticsearchresultsnodeinfonodesnodedata.ts
+  - src/models/components/elasticsearchresultsnodeinfonodesnodedatajvm.ts
+  - src/models/components/elasticsearchresultsnodeinfonodesnodedatamodules.ts
+  - src/models/components/elasticsearchresultsnodeinfonodesnodedatanodesettings.ts
+  - src/models/components/elasticsearchresultsnodeinfonodesnodedatanodesettingsnode.ts
+  - src/models/components/elasticsearchresultsnodeinfonodesnodedatanodesettingsnodeattr.ts
+  - src/models/components/elasticsearchresultsnodeinfonodesnodedatanodesettingsnodeattrml.ts
+  - src/models/components/elasticsearchresultsnodeinfonodesnodedataos.ts
+  - src/models/components/elasticsearchresultsnodeinfonodesnodedatathreadpool.ts
+  - src/models/components/elasticsearchsysteminfo.ts
+  - src/models/components/elasticsearchsysteminfover.ts
+  - src/models/components/elffile.ts
+  - src/models/components/endpointscan.ts
+  - src/models/components/endpointscanned.ts
+  - src/models/components/endpointscanstate.ts
+  - src/models/components/epmd.ts
+  - src/models/components/epss.ts
+  - src/models/components/errordetail.ts
+  - src/models/components/etcd.ts
+  - src/models/components/etcdv2.ts
+  - src/models/components/etcdv3.ts
+  - src/models/components/etcdversion.ts
+  - src/models/components/ethereum.ts
+  - src/models/components/ethereumversion.ts
+  - src/models/components/eventassetchange.ts
+  - src/models/components/eventscapabilities.ts
+  - src/models/components/eventstatuschange.ts
+  - src/models/components/evidence.ts
+  - src/models/components/export.ts
+  - src/models/components/exportlist.ts
+  - src/models/components/extendedkeyusage.ts
+  - src/models/components/extension.ts
+  - src/models/components/fielddiff.ts
+  - src/models/components/fieldvaluepair.ts
+  - src/models/components/floatvalue.ts
+  - src/models/components/fortigate.ts
+  - src/models/components/forwarddnsresolved.ts
+  - src/models/components/fox.ts
+  - src/models/components/ftp.ts
+  - src/models/components/gearman.ts
+  - src/models/components/generalnames.ts
+  - src/models/components/generalsubtreeip.ts
+  - src/models/components/graphql.ts
+  - src/models/components/hidvertx.ts
+  - src/models/components/hikvision.ts
+  - src/models/components/hikvisionplatform.ts
+  - src/models/components/hikvisionplatformlibrary.ts
+  - src/models/components/host.ts
+  - src/models/components/hostasset.ts
+  - src/models/components/hostdns.ts
+  - src/models/components/hostdnsforwardresolution.ts
+  - src/models/components/hostdnsreverseresolution.ts
+  - src/models/components/hosttimeline.ts
+  - src/models/components/hosttimelineevent.ts
+  - src/models/components/hosttimelineeventasset.ts
+  - src/models/components/http.ts
+  - src/models/components/httpfavicon.ts
+  - src/models/components/httprepeatedheaders.ts
+  - src/models/components/ibmnje.ts
+  - src/models/components/ike.ts
+  - src/models/components/ikev1.ts
+  - src/models/components/ikev2.ts
+  - src/models/components/imagecapabilities.ts
+  - src/models/components/imap.ts
+  - src/models/components/index.ts
+  - src/models/components/iota.ts
+  - src/models/components/ipmi.ts
+  - src/models/components/ipmicapabilities.ts
+  - src/models/components/ipmicapabilitiesauthstatus.ts
+  - src/models/components/ipmicapabilitiescompletioncode.ts
+  - src/models/components/ipmicapabilitiesextendedcapabilities.ts
+  - src/models/components/ipmicapabilitiessupportedauthtypes.ts
+  - src/models/components/ipmicommandpayload.ts
+  - src/models/components/ipmicommandpayloadcommandnumber.ts
+  - src/models/components/ipmicommandpayloadpackednetfn.ts
+  - src/models/components/ipmicommandpayloadpackednetfnlogicalunitnumber.ts
+  - src/models/components/ipmicommandpayloadpackednetfnnetfn.ts
+  - src/models/components/ipmirmcpheader.ts
+  - src/models/components/ipmirmcpheadermessageclass.ts
+  - src/models/components/ipmisessionheader.ts
+  - src/models/components/ipmisessionheaderauthtype.ts
+  - src/models/components/ipp.ts
+  - src/models/components/ippattribute.ts
+  - src/models/components/iscsi.ts
+  - src/models/components/ivantiavalanche.ts
+  - src/models/components/ja4tscanscan.ts
+  - src/models/components/jarmscan.ts
+  - src/models/components/jarmscanned.ts
+  - src/models/components/kev.ts
+  - src/models/components/keyalgorithm.ts
+  - src/models/components/keyusage.ts
+  - src/models/components/krpc.ts
+  - src/models/components/kubernetes.ts
+  - src/models/components/kubernetesendpoint.ts
+  - src/models/components/kubernetesendpointsubset.ts
+  - src/models/components/kubernetesendpointsubsetendpointaddress.ts
+  - src/models/components/kubernetesendpointsubsetport.ts
+  - src/models/components/kubernetesnode.ts
+  - src/models/components/kubernetesnodenodeaddress.ts
+  - src/models/components/kubernetesrole.ts
+  - src/models/components/kubernetesrolerule.ts
+  - src/models/components/kubernetesversioninfo.ts
+  - src/models/components/l2tp.ts
+  - src/models/components/l2tpattributevalues.ts
+  - src/models/components/l2tpsccrp.ts
+  - src/models/components/l2tpstopccn.ts
+  - src/models/components/label.ts
+  - src/models/components/ldap.ts
+  - src/models/components/ldapattribute.ts
+  - src/models/components/listcollectionsresponsev1.ts
+  - src/models/components/location.ts
+  - src/models/components/locationupdated.ts
+  - src/models/components/lpd.ts
+  - src/models/components/lpdmessage.ts
+  - src/models/components/mdns.ts
+  - src/models/components/mdnsresult.ts
+  - src/models/components/mediacapabilities.ts
+  - src/models/components/mediaprofile.ts
+  - src/models/components/mediastreaming.ts
+  - src/models/components/members.ts
+  - src/models/components/memcached.ts
+  - src/models/components/metrics.ts
+  - src/models/components/minecraft.ts
+  - src/models/components/mms.ts
+  - src/models/components/modbus.ts
+  - src/models/components/modbusexceptionresponse.ts
+  - src/models/components/modbusmeiresponse.ts
+  - src/models/components/monerop2p.ts
+  - src/models/components/monerop2pentry.ts
+  - src/models/components/monerop2ppayload.ts
+  - src/models/components/monerop2ppingresponse.ts
+  - src/models/components/monerop2presponseheader.ts
+  - src/models/components/mongodb.ts
+  - src/models/components/mongodbbuildinfo.ts
+  - src/models/components/mongodbbuildinfobuildenvironment.ts
+  - src/models/components/mongodbismaster.ts
+  - src/models/components/mqtt.ts
+  - src/models/components/mqttconnectionackreturn.ts
+  - src/models/components/mqttsubscriptionackreturn.ts
+  - src/models/components/mssql.ts
+  - src/models/components/mssqlpreloginoptions.ts
+  - src/models/components/mssqlpreloginoptionsserverversion.ts
+  - src/models/components/murmur.ts
+  - src/models/components/murmurmessage.ts
+  - src/models/components/murmurmessagemurmurheader.ts
+  - src/models/components/murmurmurmurversion.ts
+  - src/models/components/mysql.ts
+  - src/models/components/nameconstraints.ts
+  - src/models/components/natsio.ts
+  - src/models/components/nbd.ts
+  - src/models/components/network.ts
+  - src/models/components/networkcapabilities.ts
+  - src/models/components/nfsmountd.ts
+  - src/models/components/nmea.ts
+  - src/models/components/nmeanmeamessage.ts
+  - src/models/components/nodeinfov0.ts
+  - src/models/components/nodeinfov1.ts
+  - src/models/components/nodeinfov2.ts
+  - src/models/components/noticereference.ts
+  - src/models/components/ntlminfo.ts
+  - src/models/components/ntp.ts
+  - src/models/components/ntpntpheader.ts
+  - src/models/components/ntrip.ts
+  - src/models/components/ollama.ts
+  - src/models/components/ollamamodel.ts
+  - src/models/components/onc.ts
+  - src/models/components/onvif.ts
+  - src/models/components/onvifhostname.ts
+  - src/models/components/onvifservice.ts
+  - src/models/components/opcua.ts
+  - src/models/components/opcuadescription.ts
+  - src/models/components/opcuaendpoint.ts
+  - src/models/components/opcualocalizedtext.ts
+  - src/models/components/opcuausertokenpolicy.ts
+  - src/models/components/opendirectory.ts
+  - src/models/components/opendirectoryfile.ts
+  - src/models/components/openvpn.ts
+  - src/models/components/oracle.ts
+  - src/models/components/oracledescriptor.ts
+  - src/models/components/organization.ts
+  - src/models/components/othername.ts
+  - src/models/components/pantiltzoomcapabilities.ts
+  - src/models/components/pcanywhere.ts
+  - src/models/components/pcanywherestatus.ts
+  - src/models/components/peer.ts
+  - src/models/components/pgbouncer.ts
+  - src/models/components/pgbouncerstartupcapabilities.ts
+  - src/models/components/pixelformat.ts
+  - src/models/components/plexmediaserver.ts
+  - src/models/components/pop3.ts
+  - src/models/components/port.ts
+  - src/models/components/portmap.ts
+  - src/models/components/portmapv2entry.ts
+  - src/models/components/portmapv3entry.ts
+  - src/models/components/postgres.ts
+  - src/models/components/pprof.ts
+  - src/models/components/pptp.ts
+  - src/models/components/pptpresponseinfo.ts
+  - src/models/components/pptpversion.ts
+  - src/models/components/profinetcm.ts
+  - src/models/components/prometheus.ts
+  - src/models/components/prometheusmetricfamily.ts
+  - src/models/components/prometheusresponse.ts
+  - src/models/components/prometheusresponseactivetarget.ts
+  - src/models/components/prometheusresponseactivetargetdiscoveredlabels.ts
+  - src/models/components/prometheusresponseactivetargetlabels.ts
+  - src/models/components/prometheusresponsedroppedtarget.ts
+  - src/models/components/prometheusresponseprometheusversion.ts
+  - src/models/components/prometheustarget.ts
+  - src/models/components/qcstatements.ts
+  - src/models/components/qcstatementsmonetaryvalue.ts
+  - src/models/components/qcstatementsparsedstatements.ts
+  - src/models/components/qcstatementspdslocation.ts
+  - src/models/components/qcstatementsqclegislation.ts
+  - src/models/components/qcstatementsqctype.ts
+  - src/models/components/rdate.ts
+  - src/models/components/rdp.ts
+  - src/models/components/rdpcertificateinfo.ts
+  - src/models/components/rdpconnectresponse.ts
+  - src/models/components/rdpdomainparameters.ts
+  - src/models/components/rdpembeddedrsacert.ts
+  - src/models/components/rdpprotocolflags.ts
+  - src/models/components/rdpsecurityprotocol.ts
+  - src/models/components/rdpversion.ts
+  - src/models/components/realport.ts
+  - src/models/components/recordingcapabilities.ts
+  - src/models/components/redis.ts
+  - src/models/components/redisrawoutput.ts
+  - src/models/components/redline.ts
+  - src/models/components/redlioncrimson.ts
+  - src/models/components/redlionweb.ts
+  - src/models/components/reject.ts
+  - src/models/components/replaycapabilities.ts
+  - src/models/components/representativeinfo.ts
+  - src/models/components/responseenvelopecertificateasset.ts
+  - src/models/components/responseenvelopecollection.ts
+  - src/models/components/responseenvelopecollectioneventsresponse.ts
+  - src/models/components/responseenvelopehostasset.ts
+  - src/models/components/responseenvelopehosttimeline.ts
+  - src/models/components/responseenvelopelistcertificateasset.ts
+  - src/models/components/responseenvelopelistcollectionsresponsev1.ts
+  - src/models/components/responseenvelopelisthostasset.ts
+  - src/models/components/responseenvelopelistwebpropertyasset.ts
+  - src/models/components/responseenvelopesearchaggregateresponse.ts
+  - src/models/components/responseenvelopesearchqueryresponse.ts
+  - src/models/components/responseenvelopevaluecountsresponse.ts
+  - src/models/components/responseenvelopewebpropertyasset.ts
+  - src/models/components/reversednsresolved.ts
+  - src/models/components/rifatron.ts
+  - src/models/components/ripple.ts
+  - src/models/components/rippleclioresults.ts
+  - src/models/components/rippledpublicresults.ts
+  - src/models/components/ripplepeerresults.ts
+  - src/models/components/risk.ts
+  - src/models/components/rlogin.ts
+  - src/models/components/rocketmq.ts
+  - src/models/components/rocketmqclusterinfo.ts
+  - src/models/components/rocketmqresponseheader.ts
+  - src/models/components/rocketmqtopiclist.ts
+  - src/models/components/rootstore.ts
+  - src/models/components/rootstorechain.ts
+  - src/models/components/routeupdated.ts
+  - src/models/components/routing.ts
+  - src/models/components/rsacryptographickey.ts
+  - src/models/components/rsapublickey.ts
+  - src/models/components/rtsp.ts
+  - src/models/components/s7.ts
+  - src/models/components/saprouter.ts
+  - src/models/components/saprouterclientinfo.ts
+  - src/models/components/saprouterrouterinfo.ts
+  - src/models/components/saprouterrouterversioninfo.ts
+  - src/models/components/scadaview.ts
+  - src/models/components/scpi.ts
+  - src/models/components/screenshot.ts
+  - src/models/components/searchaggregateinputbody.ts
+  - src/models/components/searchaggregateresponse.ts
+  - src/models/components/searchaggregateresponsebucket.ts
+  - src/models/components/searchcapabilities.ts
+  - src/models/components/searchqueryhit.ts
+  - src/models/components/searchqueryinputbody.ts
+  - src/models/components/searchqueryresponse.ts
+  - src/models/components/searchvaluecountsinputbody.ts
+  - src/models/components/security.ts
+  - src/models/components/securitycapabilities.ts
+  - src/models/components/ser2net.ts
+  - src/models/components/ser2netserialparameters.ts
+  - src/models/components/serverconfig.ts
+  - src/models/components/serversync.ts
+  - src/models/components/service.ts
+  - src/models/components/servicescan.ts
+  - src/models/components/servicescanned.ts
+  - src/models/components/sevendaystodie.ts
+  - src/models/components/signature.ts
+  - src/models/components/signedcertificatetimestamp.ts
+  - src/models/components/signedcertificatetimestampsignature.ts
+  - src/models/components/sip.ts
+  - src/models/components/skinny.ts
+  - src/models/components/smb.ts
+  - src/models/components/smbheaderlog.ts
+  - src/models/components/smbnegotiationlog.ts
+  - src/models/components/smbsessionsetuplog.ts
+  - src/models/components/smbsmbcapabilities.ts
+  - src/models/components/smbsmbversions.ts
+  - src/models/components/smtp.ts
+  - src/models/components/snmp.ts
+  - src/models/components/snmpengine.ts
+  - src/models/components/snmpinterfaces.ts
+  - src/models/components/snmpphysical.ts
+  - src/models/components/snmpsystem.ts
+  - src/models/components/snmpsystemservices.ts
+  - src/models/components/socks.ts
+  - src/models/components/spice.ts
+  - src/models/components/ssdp.ts
+  - src/models/components/ssh.ts
+  - src/models/components/sshalgorithmselection.ts
+  - src/models/components/sshalgorithmselectiondirectionalgorithms.ts
+  - src/models/components/sshendpointid.ts
+  - src/models/components/sshkexinitmessage.ts
+  - src/models/components/sshserverhostkey.ts
+  - src/models/components/status.ts
+  - src/models/components/steam.ts
+  - src/models/components/subjectkeyinfo.ts
+  - src/models/components/systemcapabilities.ts
+  - src/models/components/tacacsplus.ts
+  - src/models/components/target.ts
+  - src/models/components/teamviewer.ts
+  - src/models/components/telnet.ts
+  - src/models/components/textmessage.ts
+  - src/models/components/threat.ts
+  - src/models/components/threatactor.ts
+  - src/models/components/threatdetails.ts
+  - src/models/components/threatmalware.ts
+  - src/models/components/tibia.ts
+  - src/models/components/tls.ts
+  - src/models/components/tlschain.ts
+  - src/models/components/tlsversiondata.ts
+  - src/models/components/torservicedescriptor.ts
+  - src/models/components/tplinkkasa.ts
+  - src/models/components/unitronicspcom.ts
+  - src/models/components/unrecognizedpublickey.ts
+  - src/models/components/upnp.ts
+  - src/models/components/upnpdevice.ts
+  - src/models/components/upnpservice.ts
+  - src/models/components/upnpspecversion.ts
+  - src/models/components/user.ts
+  - src/models/components/usernotice.ts
+  - src/models/components/validation.ts
+  - src/models/components/validityperiod.ts
+  - src/models/components/valuecountsresponse.ts
+  - src/models/components/ventrilo.ts
+  - src/models/components/ventriloheader.ts
+  - src/models/components/ventrilomessage.ts
+  - src/models/components/vnc.ts
+  - src/models/components/vnckeyvalue.ts
+  - src/models/components/vuln.ts
+  - src/models/components/weblogict3.ts
+  - src/models/components/webproperty.ts
+  - src/models/components/webpropertyasset.ts
+  - src/models/components/whois.ts
+  - src/models/components/whoisupdated.ts
+  - src/models/components/winrm.ts
+  - src/models/components/worker.ts
+  - src/models/components/wsdiscovery.ts
+  - src/models/components/x11.ts
+  - src/models/components/zeromq.ts
+  - src/models/components/zeromqgreeting.ts
+  - src/models/components/zeromqhandshake.ts
+  - src/models/components/zlint.ts
+  - src/models/errors/errormodel.ts
+  - src/models/errors/httpclienterrors.ts
+  - src/models/errors/index.ts
+  - src/models/errors/responsevalidationerror.ts
+  - src/models/errors/sdkbaseerror.ts
+  - src/models/errors/sdkerror.ts
+  - src/models/errors/sdkvalidationerror.ts
+  - src/models/operations/index.ts
+  - src/models/operations/v3collectionscrudcreate.ts
+  - src/models/operations/v3collectionscruddelete.ts
+  - src/models/operations/v3collectionscrudget.ts
+  - src/models/operations/v3collectionscrudlist.ts
+  - src/models/operations/v3collectionscrudupdate.ts
+  - src/models/operations/v3collectionslistevents.ts
+  - src/models/operations/v3collectionssearchaggregate.ts
+  - src/models/operations/v3collectionssearchquery.ts
+  - src/models/operations/v3globaldataassetcertificate.ts
+  - src/models/operations/v3globaldataassetcertificatelist.ts
+  - src/models/operations/v3globaldataassethost.ts
+  - src/models/operations/v3globaldataassethostlist.ts
+  - src/models/operations/v3globaldataassethosttimeline.ts
+  - src/models/operations/v3globaldataassetwebproperty.ts
+  - src/models/operations/v3globaldataassetwebpropertylist.ts
+  - src/models/operations/v3globaldatasearchaggregate.ts
+  - src/models/operations/v3globaldatasearchquery.ts
+  - src/models/operations/v3threathuntingvaluecounts.ts
+  - src/sdk/collections.ts
+  - src/sdk/globaldata.ts
+  - src/sdk/index.ts
+  - src/sdk/sdk.ts
+  - src/sdk/threathunting.ts
+  - src/types/async.ts
+  - src/types/blobs.ts
+  - src/types/constdatetime.ts
+  - src/types/enums.ts
+  - src/types/fp.ts
+  - src/types/index.ts
+  - src/types/operations.ts
+  - src/types/rfcdate.ts
+  - src/types/streams.ts
+  - tsconfig.json
+examples:
+  v3-collections-crud-list:
+    speakeasy-default-v3-collections-crud-list:
+      parameters:
+        query:
+          organization_id: "<id>"
+          page_token: "<next_page_token>"
+          page_size: 1
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-collections-crud-create:
+    speakeasy-default-v3-collections-crud-create:
+      parameters:
+        query:
+          organization_id: "<id>"
+      requestBody:
+        application/json: {"description": "Hosts with services with AsyncRAT indicator in cert subject DN", "name": "Hosts services with AsyncRAT indicator", "query": "host.services.cert.parsed.subject_dn: \"asyncrat\""}
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-collections-crud-delete:
+    speakeasy-default-v3-collections-crud-delete:
+      parameters:
+        path:
+          collection_uid: "11111111-2222-3333-4444-555555555555"
+        query:
+          organization_id: "<id>"
+      responses:
+        "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-collections-crud-get:
+    speakeasy-default-v3-collections-crud-get:
+      parameters:
+        path:
+          collection_uid: "11111111-2222-3333-4444-555555555555"
+        query:
+          organization_id: "<id>"
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-collections-crud-update:
+    speakeasy-default-v3-collections-crud-update:
+      parameters:
+        path:
+          collection_uid: "11111111-2222-3333-4444-555555555555"
+        query:
+          organization_id: "<id>"
+      requestBody:
+        application/json: {"description": "Hosts with services with AsyncRAT indicator in cert subject DN", "name": "Hosts services with AsyncRAT indicator", "query": "host.services.cert.parsed.subject_dn: \"asyncrat\""}
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-collections-list-events:
+    speakeasy-default-v3-collections-list-events:
+      parameters:
+        path:
+          collection_uid: "11111111-2222-3333-4444-555555555555"
+        query:
+          organization_id: "<id>"
+          page_size: 1
+          page_token: "<next_page_token>"
+          start_time: "2025-01-01T00:00:00Z"
+          end_time: "2025-01-02T00:00:00Z"
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-collections-search-aggregate:
+    speakeasy-default-v3-collections-search-aggregate:
+      parameters:
+        path:
+          collection_uid: "11111111-2222-3333-4444-555555555555"
+        query:
+          organization_id: "<id>"
+      requestBody:
+        application/json: {"field": "web.endpoints.http.html_title", "filter_by_query": false, "number_of_buckets": 100, "query": "web: *"}
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-collections-search-query:
+    speakeasy-default-v3-collections-search-query:
+      parameters:
+        path:
+          collection_uid: "<id>"
+        query:
+          organization_id: "<id>"
+      requestBody:
+        application/json: {"fields": ["host.ip"], "page_size": 1, "page_token": "<next_page_token>", "query": "host.services: (protocol=SSH and not port: 22)"}
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-globaldata-asset-certificate-list:
+    speakeasy-default-v3-globaldata-asset-certificate-list:
+      parameters:
+        query:
+          organization_id: "<id>"
+          certificate_ids: ["3daf2843a77b6f4e6af43cd9b6f6746053b8c928e056e8a724808db8905a94cf"]
+      responses:
+        "200":
+          application/vnd.censys.api.v3.certificate.v1+json: {}
+        "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-globaldata-asset-certificate:
+    speakeasy-default-v3-globaldata-asset-certificate:
+      parameters:
+        path:
+          certificate_id: "3daf2843a77b6f4e6af43cd9b6f6746053b8c928e056e8a724808db8905a94cf"
+        query:
+          organization_id: "<id>"
+      responses:
+        "200":
+          application/vnd.censys.api.v3.certificate.v1+json: {}
+        "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-globaldata-asset-host-list:
+    speakeasy-default-v3-globaldata-asset-host-list:
+      parameters:
+        query:
+          organization_id: "<id>"
+          host_ids: ["8.8.8.8"]
+      responses:
+        "200":
+          application/vnd.censys.api.v3.host.v1+json: {}
+        "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-globaldata-asset-host:
+    speakeasy-default-v3-globaldata-asset-host:
+      parameters:
+        path:
+          host_id: "8.8.8.8"
+        query:
+          organization_id: "<id>"
+          at_time: "2025-01-01T00:00:00Z"
+      responses:
+        "200":
+          application/vnd.censys.api.v3.host.v1+json: {}
+        "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-globaldata-asset-host-timeline:
+    speakeasy-default-v3-globaldata-asset-host-timeline:
+      parameters:
+        path:
+          host_id: "8.8.8.8"
+        query:
+          organization_id: "<id>"
+          start_time: "2025-01-01T00:00:00Z"
+          end_time: "2025-01-02T00:00:00Z"
+      responses:
+        "200":
+          application/vnd.censys.api.v3.host_timeline_event.v1+json: {}
+        "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-globaldata-asset-webproperty-list:
+    speakeasy-default-v3-globaldata-asset-webproperty-list:
+      parameters:
+        query:
+          organization_id: "<id>"
+          webproperty_ids: ["platform.censys.io:80"]
+      responses:
+        "200":
+          application/vnd.censys.api.v3.webproperty.v1+json: {}
+        "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-globaldata-asset-webproperty:
+    speakeasy-default-v3-globaldata-asset-webproperty:
+      parameters:
+        path:
+          webproperty_id: "platform.censys.io:80"
+        query:
+          organization_id: "<id>"
+          at_time: "2025-01-01T00:00:00Z"
+      responses:
+        "200":
+          application/vnd.censys.api.v3.webproperty.v1+json: {}
+        "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-globaldata-search-aggregate:
+    speakeasy-default-v3-globaldata-search-aggregate:
+      parameters:
+        query:
+          organization_id: "<id>"
+      requestBody:
+        application/json: {"field": "web.endpoints.http.html_title", "filter_by_query": false, "number_of_buckets": 100, "query": "web: *"}
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-globaldata-search-query:
+    speakeasy-default-v3-globaldata-search-query:
+      parameters:
+        query:
+          organization_id: "<id>"
+      requestBody:
+        application/json: {"fields": ["host.ip"], "page_size": 1, "page_token": "<next_page_token>", "query": "host.services: (protocol=SSH and not port: 22)"}
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-threathunting-value-counts:
+    speakeasy-default-v3-threathunting-value-counts:
+      parameters:
+        query:
+          organization_id: "<id>"
+      requestBody:
+        application/json: {"and_count_conditions": [{"field_value_pairs": [{"field": "host.services.port", "value": "80"}]}, {"field_value_pairs": []}]}
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+examplesVersion: 1.0.2
+generatedTests: {}

@@ -1,0 +1,90 @@
+name: Test SDK on PR
+
+permissions:
+  checks: write
+  contents: read
+  pull-requests: read
+  statuses: write
+  id-token: write
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+
+jobs:
+  test-typescript-sdk:
+    name: Test TypeScript SDK
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Build and Pack SDK
+        id: build-sdk
+        working-directory: ${{ github.workspace }}
+        run: |
+          npm install
+          npm run build
+
+          if npm run prepublishOnly 2>/dev/null; then
+            echo "SDK built successfully"
+          else
+            echo "No build script found, skipping build step"
+          fi
+
+          # Pack the SDK as a tarball
+          npm pack
+
+          # Get the package name and version
+          PACKAGE_NAME=$(node -p "require('./package.json').name")
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          TARBALL_NAME="${PACKAGE_NAME}-${PACKAGE_VERSION}.tgz"
+
+          # Set output for use in other steps
+          echo "tarball_name=$TARBALL_NAME" >> $GITHUB_OUTPUT
+
+          echo "Built and packed SDK: $TARBALL_NAME"
+
+      - name: Install SDK
+        run: |
+          cd tests
+
+          # Check if we have a tarball to install
+          if [ -n "${{ steps.build-sdk.outputs.tarball_name }}" ]; then
+            echo "Installing SDK from tarball: ${{ steps.build-sdk.outputs.tarball_name }}"
+            npm install "$GITHUB_WORKSPACE/${{ steps.build-sdk.outputs.tarball_name }}"
+            echo "Installed SDK from tarball"
+          else
+            echo "No tarball available, cannot install SDK"
+            exit 1
+          fi
+
+      - name: Run tests with SDK
+        env:
+          ORG_ID: ${{ secrets.ORG_ID }}
+          TOKEN: ${{ secrets.TOKEN }}
+        run: |
+          cd tests
+          echo "Running tests..."
+
+          npm ci
+          npm test
+
+      - name: Cleanup
+        if: always()
+        run: |
+          # Clean up the tarball
+          if [ -n "${{ steps.build-sdk.outputs.tarball_name }}" ]; then
+            rm -f "$GITHUB_WORKSPACE/${{ steps.build-sdk.outputs.tarball_name }}"
+            echo "Cleaned up tarball: ${{ steps.build-sdk.outputs.tarball_name }}"
+          fi
