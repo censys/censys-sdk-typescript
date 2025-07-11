@@ -12,9 +12,9 @@ const args = {
 
 export const tool$globalDataGetWebProperties: ToolDefinition<typeof args> = {
   name: "global-data-get-web-properties",
-  description: `Asset / WebProperty Bulk
+  description: `Get multiple web properties
 
-Get multiple WebProperties`,
+Retrieve information about multiple web properties. Web properties are identified using a combination of a hostname and port joined with a colon, such as \`platform.censys.io:80\`.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await globalDataGetWebProperties(

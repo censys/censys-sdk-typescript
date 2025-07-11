@@ -12,9 +12,9 @@ const args = {
 
 export const tool$collectionsUpdate: ToolDefinition<typeof args> = {
   name: "collections-update",
-  description: `Update a Collection
+  description: `Update a collection
 
-Update a Collection`,
+Update a collection's name, description, and/or query.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await collectionsUpdate(

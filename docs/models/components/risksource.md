@@ -5,11 +5,11 @@
 ```typescript
 import { RiskSource } from "censys-sdk-typescript/models/components";
 
-let value: RiskSource = "unspecified";
+let value: RiskSource = "";
 ```
 
 ## Values
 
 ```typescript
-"unspecified" | "censys" | "cve"
+"" | "censys" | "cve"
 ```

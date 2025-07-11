@@ -6,7 +6,6 @@
 import { V3CollectionsCrudDeleteRequest } from "censys-sdk-typescript/models/operations";
 
 let value: V3CollectionsCrudDeleteRequest = {
-  organizationId: "<id>",
   collectionUid: "c275d685-cb86-4b3f-876e-5b9720ff4421",
 };
 ```

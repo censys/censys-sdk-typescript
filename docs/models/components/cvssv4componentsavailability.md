@@ -7,11 +7,11 @@ If an attack renders information unavailable, such as when a system crashes or t
 ```typescript
 import { CVSSv4ComponentsAvailability } from "censys-sdk-typescript/models/components";
 
-let value: CVSSv4ComponentsAvailability = "unspecified";
+let value: CVSSv4ComponentsAvailability = "";
 ```
 
 ## Values
 
 ```typescript
-"unspecified" | "none" | "low" | "high"
+"" | "none" | "low" | "high"
 ```

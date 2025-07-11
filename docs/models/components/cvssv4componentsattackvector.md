@@ -13,5 +13,5 @@ let value: CVSSv4ComponentsAttackVector = "network";
 ## Values
 
 ```typescript
-"unspecified" | "network" | "adjacent" | "local" | "physical"
+"" | "network" | "adjacent" | "local" | "physical"
 ```

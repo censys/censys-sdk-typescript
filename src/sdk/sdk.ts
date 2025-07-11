@@ -5,6 +5,7 @@
 import { ClientSDK } from "../lib/sdks.js";
 import { Collections } from "./collections.js";
 import { GlobalData } from "./globaldata.js";
+import { ThreatHunting } from "./threathunting.js";
 
 export class SDK extends ClientSDK {
   private _collections?: Collections;
@@ -15,5 +16,10 @@ export class SDK extends ClientSDK {
   private _globalData?: GlobalData;
   get globalData(): GlobalData {
     return (this._globalData ??= new GlobalData(this._options));
+  }
+
+  private _threatHunting?: ThreatHunting;
+  get threatHunting(): ThreatHunting {
+    return (this._threatHunting ??= new ThreatHunting(this._options));
   }
 }

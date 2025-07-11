@@ -12,9 +12,9 @@ const args = {
 
 export const tool$collectionsList: ToolDefinition<typeof args> = {
   name: "collections-list",
-  description: `List Collections
+  description: `List collections
 
-List Collections`,
+List all collections for an organization. Retrieved information includes collection ID, name, query, description, status, and asset count.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await collectionsList(

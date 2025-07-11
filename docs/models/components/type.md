@@ -7,11 +7,11 @@ The certificate's type. Options include root, intermediate, or leaf.
 ```typescript
 import { Type } from "censys-sdk-typescript/models/components";
 
-let value: Type = "unknown";
+let value: Type = "";
 ```
 
 ## Values
 
 ```typescript
-"unknown" | "root" | "intermediate" | "leaf"
+"" | "root" | "intermediate" | "leaf"
 ```

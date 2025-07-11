@@ -13,7 +13,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  * An enumerated value indicating the issuer-supplied reason for the revocation.
  */
 export const Reason = {
-  Unknown: "unknown",
+  Unknown: "",
   Unspecified: "unspecified",
   KeyCompromise: "key_compromise",
   CaCompromise: "ca_compromise",

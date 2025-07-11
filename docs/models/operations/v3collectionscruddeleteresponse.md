@@ -8,7 +8,9 @@ import { V3CollectionsCrudDeleteResponse } from "censys-sdk-typescript/models/op
 let value: V3CollectionsCrudDeleteResponse = {
   headers: {
     "key": [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
     ],
   },
 };

@@ -5,11 +5,11 @@
 ```typescript
 import { VulnSource } from "censys-sdk-typescript/models/components";
 
-let value: VulnSource = "undefined";
+let value: VulnSource = "";
 ```
 
 ## Values
 
 ```typescript
-"undefined" | "censys" | "recog" | "wappalyzer" | "third_party"
+"" | "censys" | "recog" | "wappalyzer" | "third_party"
 ```

@@ -7,11 +7,11 @@ Describes whether a user, other than the attacker, is required to do anything or
 ```typescript
 import { CVSSv4ComponentsUserInteraction } from "censys-sdk-typescript/models/components";
 
-let value: CVSSv4ComponentsUserInteraction = "unspecified";
+let value: CVSSv4ComponentsUserInteraction = "";
 ```
 
 ## Values
 
 ```typescript
-"unspecified" | "none" | "required"
+"" | "none" | "required"
 ```

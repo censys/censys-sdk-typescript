@@ -8,16 +8,16 @@ import { ListCollectionsResponseV1 } from "censys-sdk-typescript/models/componen
 let value: ListCollectionsResponseV1 = {
   collections: [
     {
-      addedAssets24Hours: 764202,
-      createTime: new Date("2024-07-18T13:49:42.010Z"),
-      description: "following lest arrogantly likable",
+      addedAssets24Hours: 220488,
+      createTime: new Date("2023-02-08T06:29:28.344Z"),
+      description: "scornful persecute that gee wetly innocently",
       id: "<id>",
       name: "<value>",
       query: "<value>",
-      removedAssets24Hours: 441712,
-      status: "paused",
-      statusReason: "query_changed",
-      totalAssets: 410811,
+      removedAssets24Hours: 804923,
+      status: "archived",
+      statusReason: "unspecified",
+      totalAssets: 78699,
     },
   ],
   nextPageToken: "<value>",

@@ -11,5 +11,5 @@ let value: RepresentativeInfoReason = "zscaler";
 ## Values
 
 ```typescript
-"unknown" | "protocol_port_count" | "incapsula" | "zscaler"
+"" | "protocol_port_count" | "incapsula" | "zscaler"
 ```

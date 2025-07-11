@@ -11,5 +11,5 @@ let value: RiskSource1 = "recog";
 ## Values
 
 ```typescript
-"undefined" | "censys" | "recog" | "wappalyzer" | "third_party"
+"" | "censys" | "recog" | "wappalyzer" | "third_party"
 ```

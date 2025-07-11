@@ -25,7 +25,7 @@ import {
  * A enumerated field indicating the result of the request. The most common values are defined in RFC 1035.
  */
 export const RCode = {
-  UnknownCode: "unknown_code",
+  Unknown: "",
   Success: "success",
   FormatError: "format_error",
   ServerFailure: "server_failure",
@@ -55,7 +55,7 @@ export type RCode = ClosedEnum<typeof RCode>;
  * An enumerated value indicating the behavior of the server. An AUTHORITATIVE server fulfills requests for domain names it controls, which are not listed by the server. FORWARDING and RECURSIVE_RESOLVER servers fulfill requests indirectly for domain names they do not control. A RECURSIVE_RESOLVER will query ip.parrotdns.com itself, resulting in its own IP address being present in the dns.answers.response field.
  */
 export const ServerType = {
-  Unknown: "unknown",
+  Unknown: "",
   RecursiveResolver: "recursive_resolver",
   Authoritative: "authoritative",
   Forwarding: "forwarding",

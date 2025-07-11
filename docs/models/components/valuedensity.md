@@ -5,11 +5,11 @@
 ```typescript
 import { ValueDensity } from "censys-sdk-typescript/models/components";
 
-let value: ValueDensity = "not_defined";
+let value: ValueDensity = "";
 ```
 
 ## Values
 
 ```typescript
-"not_defined" | "diffuse" | "concentrated"
+"" | "diffuse" | "concentrated"
 ```

@@ -13,5 +13,5 @@ let value: Availability = "high";
 ## Values
 
 ```typescript
-"unspecified" | "none" | "low" | "high"
+"" | "none" | "low" | "high"
 ```

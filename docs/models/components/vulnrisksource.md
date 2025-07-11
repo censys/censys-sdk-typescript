@@ -11,5 +11,5 @@ let value: VulnRiskSource = "censys";
 ## Values
 
 ```typescript
-"unspecified" | "censys" | "cve"
+"" | "censys" | "cve"
 ```

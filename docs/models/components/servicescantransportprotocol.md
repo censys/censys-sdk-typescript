@@ -11,5 +11,5 @@ let value: ServiceScanTransportProtocol = "tcp";
 ## Values
 
 ```typescript
-"unknown" | "tcp" | "udp" | "icmp" | "quic"
+"" | "tcp" | "udp" | "icmp" | "quic"
 ```

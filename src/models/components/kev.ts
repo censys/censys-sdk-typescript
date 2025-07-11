@@ -13,7 +13,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  * The source checked to determine whether the CVE is in the KEV catalog.
  */
 export const KEVSource = {
-  Unspecified: "unspecified",
+  Unknown: "",
   Cisa: "cisa",
   ThirdParty: "third_party",
 } as const;

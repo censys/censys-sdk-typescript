@@ -6,7 +6,6 @@
 import { V3CollectionsSearchAggregateRequest } from "censys-sdk-typescript/models/operations";
 
 let value: V3CollectionsSearchAggregateRequest = {
-  organizationId: "<id>",
   collectionUid: "f39d9e3e-ab68-48c7-93a3-90a6a0017745",
   searchAggregateInputBody: {
     field: "<value>",

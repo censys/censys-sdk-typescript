@@ -172,18 +172,17 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.globalData.search({
-    organizationId: "<id>",
     searchQueryInputBody: {
       query: "<value>",
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -200,27 +199,31 @@ run();
 
 ### [collections](docs/sdks/collections/README.md)
 
-* [list](docs/sdks/collections/README.md#list) - List Collections
-* [create](docs/sdks/collections/README.md#create) - Create a Collection
-* [delete](docs/sdks/collections/README.md#delete) - Delete a Collection
-* [get](docs/sdks/collections/README.md#get) - Get a Collection
-* [update](docs/sdks/collections/README.md#update) - Update a Collection
-* [listEvents](docs/sdks/collections/README.md#listevents) - List a Collection's events
-* [aggregate](docs/sdks/collections/README.md#aggregate) - Search / Aggregate
-* [search](docs/sdks/collections/README.md#search) - Search / Query
+* [list](docs/sdks/collections/README.md#list) - List collections
+* [create](docs/sdks/collections/README.md#create) - Create a collection
+* [delete](docs/sdks/collections/README.md#delete) - Delete a collection
+* [get](docs/sdks/collections/README.md#get) - Get a collection
+* [update](docs/sdks/collections/README.md#update) - Update a collection
+* [listEvents](docs/sdks/collections/README.md#listevents) - Get a collection's events
+* [aggregate](docs/sdks/collections/README.md#aggregate) - Aggregate results for a search query within a collection
+* [search](docs/sdks/collections/README.md#search) - Run a search query within a collection
 
 ### [globalData](docs/sdks/globaldata/README.md)
 
-* [getCertificates](docs/sdks/globaldata/README.md#getcertificates) - Asset / Certificate Bulk
-* [getCertificate](docs/sdks/globaldata/README.md#getcertificate) - Asset / Certificate
-* [getHosts](docs/sdks/globaldata/README.md#gethosts) - Asset / Host Bulk
-* [getHost](docs/sdks/globaldata/README.md#gethost) - Asset / Host
-* [getHostTimeline](docs/sdks/globaldata/README.md#gethosttimeline) - Asset / Host Timeline
-* [getWebProperties](docs/sdks/globaldata/README.md#getwebproperties) - Asset / WebProperty Bulk
-* [getWebProperty](docs/sdks/globaldata/README.md#getwebproperty) - Asset / WebProperty
-* [aggregate](docs/sdks/globaldata/README.md#aggregate) - Search / Aggregate
-* [search](docs/sdks/globaldata/README.md#search) - Search / Query
+* [getCertificates](docs/sdks/globaldata/README.md#getcertificates) - Get multiple certificates
+* [getCertificate](docs/sdks/globaldata/README.md#getcertificate) - Get a certificate
+* [getHosts](docs/sdks/globaldata/README.md#gethosts) - Get multiple hosts
+* [getHost](docs/sdks/globaldata/README.md#gethost) - Get a host
+* [getHostTimeline](docs/sdks/globaldata/README.md#gethosttimeline) - Get host event history
+* [getWebProperties](docs/sdks/globaldata/README.md#getwebproperties) - Get multiple web properties
+* [getWebProperty](docs/sdks/globaldata/README.md#getwebproperty) - Get a web property
+* [aggregate](docs/sdks/globaldata/README.md#aggregate) - Aggregate results for a search query
+* [search](docs/sdks/globaldata/README.md#search) - Run a search query
 
+
+### [threatHunting](docs/sdks/threathunting/README.md)
+
+* [valueCounts](docs/sdks/threathunting/README.md#valuecounts) - CensEye: Retrieve value counts to discover pivots
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -240,23 +243,24 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`collectionsAggregate`](docs/sdks/collections/README.md#aggregate) - Search / Aggregate
-- [`collectionsCreate`](docs/sdks/collections/README.md#create) - Create a Collection
-- [`collectionsDelete`](docs/sdks/collections/README.md#delete) - Delete a Collection
-- [`collectionsGet`](docs/sdks/collections/README.md#get) - Get a Collection
-- [`collectionsList`](docs/sdks/collections/README.md#list) - List Collections
-- [`collectionsListEvents`](docs/sdks/collections/README.md#listevents) - List a Collection's events
-- [`collectionsSearch`](docs/sdks/collections/README.md#search) - Search / Query
-- [`collectionsUpdate`](docs/sdks/collections/README.md#update) - Update a Collection
-- [`globalDataAggregate`](docs/sdks/globaldata/README.md#aggregate) - Search / Aggregate
-- [`globalDataGetCertificate`](docs/sdks/globaldata/README.md#getcertificate) - Asset / Certificate
-- [`globalDataGetCertificates`](docs/sdks/globaldata/README.md#getcertificates) - Asset / Certificate Bulk
-- [`globalDataGetHost`](docs/sdks/globaldata/README.md#gethost) - Asset / Host
-- [`globalDataGetHosts`](docs/sdks/globaldata/README.md#gethosts) - Asset / Host Bulk
-- [`globalDataGetHostTimeline`](docs/sdks/globaldata/README.md#gethosttimeline) - Asset / Host Timeline
-- [`globalDataGetWebProperties`](docs/sdks/globaldata/README.md#getwebproperties) - Asset / WebProperty Bulk
-- [`globalDataGetWebProperty`](docs/sdks/globaldata/README.md#getwebproperty) - Asset / WebProperty
-- [`globalDataSearch`](docs/sdks/globaldata/README.md#search) - Search / Query
+- [`collectionsAggregate`](docs/sdks/collections/README.md#aggregate) - Aggregate results for a search query within a collection
+- [`collectionsCreate`](docs/sdks/collections/README.md#create) - Create a collection
+- [`collectionsDelete`](docs/sdks/collections/README.md#delete) - Delete a collection
+- [`collectionsGet`](docs/sdks/collections/README.md#get) - Get a collection
+- [`collectionsList`](docs/sdks/collections/README.md#list) - List collections
+- [`collectionsListEvents`](docs/sdks/collections/README.md#listevents) - Get a collection's events
+- [`collectionsSearch`](docs/sdks/collections/README.md#search) - Run a search query within a collection
+- [`collectionsUpdate`](docs/sdks/collections/README.md#update) - Update a collection
+- [`globalDataAggregate`](docs/sdks/globaldata/README.md#aggregate) - Aggregate results for a search query
+- [`globalDataGetCertificate`](docs/sdks/globaldata/README.md#getcertificate) - Get a certificate
+- [`globalDataGetCertificates`](docs/sdks/globaldata/README.md#getcertificates) - Get multiple certificates
+- [`globalDataGetHost`](docs/sdks/globaldata/README.md#gethost) - Get a host
+- [`globalDataGetHosts`](docs/sdks/globaldata/README.md#gethosts) - Get multiple hosts
+- [`globalDataGetHostTimeline`](docs/sdks/globaldata/README.md#gethosttimeline) - Get host event history
+- [`globalDataGetWebProperties`](docs/sdks/globaldata/README.md#getwebproperties) - Get multiple web properties
+- [`globalDataGetWebProperty`](docs/sdks/globaldata/README.md#getwebproperty) - Get a web property
+- [`globalDataSearch`](docs/sdks/globaldata/README.md#search) - Run a search query
+- [`threatHuntingValueCounts`](docs/sdks/threathunting/README.md#valuecounts) - CensEye: Retrieve value counts to discover pivots
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -266,7 +270,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 A parameter is configured globally. This parameter may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
 
-For example, you can set `organization_id` to `"<id>"` at SDK initialization and then you do not have to pass the same value on calls to operations like `list`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+For example, you can set `organization_id` to `` at SDK initialization and then you do not have to pass the same value on calls to operations like `list`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
 
 
 ### Available Globals
@@ -283,15 +287,13 @@ The following global parameter is available.
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await sdk.collections.list({
-    organizationId: "<id>",
-  });
+  const result = await sdk.collections.list({});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -310,13 +312,12 @@ To change the default retry strategy for a single API call, simply provide a ret
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await sdk.collections.list({
-    organizationId: "<id>",
-  }, {
+  const result = await sdk.collections.list({}, {
     retries: {
       strategy: "backoff",
       backoff: {
@@ -329,7 +330,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -352,15 +352,13 @@ const sdk = new SDK({
     },
     retryConnectionErrors: false,
   },
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await sdk.collections.list({
-    organizationId: "<id>",
-  });
+  const result = await sdk.collections.list({});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -372,53 +370,47 @@ run();
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Some methods specify known errors which can be thrown. All the known errors are enumerated in the `models/errors/errors.ts` module. The known errors for a method are documented under the *Errors* tables in SDK docs. For example, the `list` method may throw the following errors:
+[`SDKBaseError`](./src/models/errors/sdkbaseerror.ts) is the base class for all HTTP error responses. It has the following properties:
 
-| Error Type        | Status Code | Content Type             |
-| ----------------- | ----------- | ------------------------ |
-| errors.ErrorModel | 401, 403    | application/problem+json |
-| errors.SDKError   | 4XX, 5XX    | \*/\*                    |
+| Property            | Type       | Description                                                                             |
+| ------------------- | ---------- | --------------------------------------------------------------------------------------- |
+| `error.message`     | `string`   | Error message                                                                           |
+| `error.statusCode`  | `number`   | HTTP response status code eg `404`                                                      |
+| `error.headers`     | `Headers`  | HTTP response headers                                                                   |
+| `error.body`        | `string`   | HTTP body. Can be empty string if no body is returned.                                  |
+| `error.rawResponse` | `Response` | Raw HTTP response                                                                       |
+| `error.data$`       |            | Optional. Some errors may contain structured data. [See Error Classes](#error-classes). |
 
-If the method throws an error and it is not captured by the known errors, it will default to throwing a `SDKError`.
-
+### Example
 ```typescript
 import { SDK } from "censys-sdk-typescript";
-import {
-  ErrorModel,
-  SDKValidationError,
-} from "censys-sdk-typescript/models/errors";
+import * as errors from "censys-sdk-typescript/models/errors";
 
 const sdk = new SDK({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  let result;
   try {
-    result = await sdk.collections.list({
-      organizationId: "<id>",
-    });
+    const result = await sdk.collections.list({});
 
-    // Handle the result
     console.log(result);
-  } catch (err) {
-    switch (true) {
-      // The server response does not match the expected SDK schema
-      case (err instanceof SDKValidationError): {
-        // Pretty-print will provide a human-readable multi-line error message
-        console.error(err.pretty());
-        // Raw value may also be inspected
-        console.error(err.rawValue);
-        return;
-      }
-      case (err instanceof ErrorModel): {
-        // Handle err.data$: ErrorModelData
-        console.error(err);
-        return;
-      }
-      default: {
-        // Other errors such as network errors, see HTTPClientErrors for more details
-        throw err;
+  } catch (error) {
+    // The base class for HTTP error responses
+    if (error instanceof errors.SDKBaseError) {
+      console.log(error.message);
+      console.log(error.statusCode);
+      console.log(error.body);
+      console.log(error.headers);
+
+      // Depending on the method different errors may be thrown
+      if (error instanceof errors.ErrorModel) {
+        console.log(error.data$.detail); // string
+        console.log(error.data$.errors); // ErrorDetail[]
+        console.log(error.data$.instance); // string
+        console.log(error.data$.status); // number
+        console.log(error.data$.title); // string
       }
     }
   }
@@ -428,17 +420,27 @@ run();
 
 ```
 
-Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted multi-line string since validation errors can list many issues and the plain error string may be difficult read when debugging.
+### Error Classes
+**Primary errors:**
+* [`SDKBaseError`](./src/models/errors/sdkbaseerror.ts): The base class for HTTP error responses.
+  * [`ErrorModel`](./src/models/errors/errormodel.ts): Request does not contain a valid Authorization token.
 
-In some rare cases, the SDK can fail to get a response from the server or even make the request due to unexpected circumstances such as network conditions. These types of errors are captured in the `models/errors/httpclienterrors.ts` module:
+<details><summary>Less common errors (6)</summary>
 
-| HTTP Client Error                                    | Description                                          |
-| ---------------------------------------------------- | ---------------------------------------------------- |
-| RequestAbortedError                                  | HTTP request was aborted by the client               |
-| RequestTimeoutError                                  | HTTP request timed out due to an AbortSignal signal  |
-| ConnectionError                                      | HTTP client was unable to make a request to a server |
-| InvalidRequestError                                  | Any input used to create a request is invalid        |
-| UnexpectedClientError                                | Unrecognised or unexpected error                     |
+<br />
+
+**Network errors:**
+* [`ConnectionError`](./src/models/errors/httpclienterrors.ts): HTTP client was unable to make a request to a server.
+* [`RequestTimeoutError`](./src/models/errors/httpclienterrors.ts): HTTP request timed out due to an AbortSignal signal.
+* [`RequestAbortedError`](./src/models/errors/httpclienterrors.ts): HTTP request was aborted by the client.
+* [`InvalidRequestError`](./src/models/errors/httpclienterrors.ts): Any input used to create a request is invalid.
+* [`UnexpectedClientError`](./src/models/errors/httpclienterrors.ts): Unrecognised or unexpected error.
+
+
+**Inherit from [`SDKBaseError`](./src/models/errors/sdkbaseerror.ts)**:
+* [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
+
+</details>
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -452,15 +454,13 @@ import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
   serverURL: "https://api.platform.censys.io",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await sdk.collections.list({
-    organizationId: "<id>",
-  });
+  const result = await sdk.collections.list({});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -535,14 +535,12 @@ import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+  organizationId: "<id>",
 });
 
 async function run() {
-  const result = await sdk.collections.list({
-    organizationId: "<id>",
-  });
+  const result = await sdk.collections.list({});
 
-  // Handle the result
   console.log(result);
 }
 

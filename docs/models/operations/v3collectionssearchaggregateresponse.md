@@ -7,9 +7,7 @@ import { V3CollectionsSearchAggregateResponse } from "censys-sdk-typescript/mode
 
 let value: V3CollectionsSearchAggregateResponse = {
   headers: {
-    "key": [
-      "<value>",
-    ],
+    "key": [],
   },
   result: {},
 };

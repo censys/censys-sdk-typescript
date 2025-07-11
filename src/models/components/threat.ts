@@ -33,7 +33,7 @@ import {
 } from "./threatmalware.js";
 
 export const ThreatSource = {
-  Undefined: "undefined",
+  Unknown: "",
   Censys: "censys",
   Recog: "recog",
   Wappalyzer: "wappalyzer",

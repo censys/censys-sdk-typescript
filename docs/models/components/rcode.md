@@ -13,5 +13,5 @@ let value: RCode = "bad_cookie";
 ## Values
 
 ```typescript
-"unknown_code" | "success" | "format_error" | "server_failure" | "name_error" | "not_implemented" | "refused" | "yx_domain" | "yx_rrset" | "nx_rrset" | "not_auth" | "not_zone" | "bad_sig" | "bad_key" | "bad_time" | "bad_mode" | "bad_name" | "bad_alg" | "bad_trunc" | "bad_cookie"
+"" | "success" | "format_error" | "server_failure" | "name_error" | "not_implemented" | "refused" | "yx_domain" | "yx_rrset" | "nx_rrset" | "not_auth" | "not_zone" | "bad_sig" | "bad_key" | "bad_time" | "bad_mode" | "bad_name" | "bad_alg" | "bad_trunc" | "bad_cookie"
 ```

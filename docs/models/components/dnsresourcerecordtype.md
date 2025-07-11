@@ -13,5 +13,5 @@ let value: DnsResourceRecordType = "a";
 ## Values
 
 ```typescript
-"unknown" | "a" | "txt" | "ns"
+"" | "a" | "txt" | "ns"
 ```

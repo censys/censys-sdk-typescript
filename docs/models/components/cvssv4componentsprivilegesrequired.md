@@ -13,5 +13,5 @@ let value: CVSSv4ComponentsPrivilegesRequired = "none";
 ## Values
 
 ```typescript
-"unspecified" | "none" | "low" | "high"
+"" | "none" | "low" | "high"
 ```

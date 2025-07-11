@@ -12,9 +12,9 @@ const args = {
 
 export const tool$collectionsCreate: ToolDefinition<typeof args> = {
   name: "collections-create",
-  description: `Create a Collection
+  description: `Create a collection
 
-Create a Collection`,
+Create a new collection.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await collectionsCreate(

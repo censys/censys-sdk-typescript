@@ -9,7 +9,7 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const Version = {
-  Unknown: "unknown",
+  Unknown: "",
   SsLv2: "ss_lv_2",
   SsLv3: "ss_lv_3",
   Tlsv10: "tlsv1_0",

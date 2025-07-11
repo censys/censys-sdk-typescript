@@ -13,5 +13,5 @@ let value: PrivilegesRequired = "none";
 ## Values
 
 ```typescript
-"unspecified" | "none" | "low" | "high"
+"" | "none" | "low" | "high"
 ```

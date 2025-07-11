@@ -63,6 +63,12 @@ import {
   Ollama$outboundSchema,
 } from "./ollama.js";
 import {
+  OpenDirectory,
+  OpenDirectory$inboundSchema,
+  OpenDirectory$Outbound,
+  OpenDirectory$outboundSchema,
+} from "./opendirectory.js";
+import {
   PlexMediaServer,
   PlexMediaServer$inboundSchema,
   PlexMediaServer$Outbound,
@@ -112,7 +118,7 @@ import {
 } from "./tls.js";
 
 export const EndpointScanTransportProtocol = {
-  Unknown: "unknown",
+  Unknown: "",
   Tcp: "tcp",
   Udp: "udp",
   Icmp: "icmp",
@@ -138,6 +144,7 @@ export type EndpointScan = {
   ivantiAvalanche?: IvantiAvalanche | undefined;
   kubernetes?: Kubernetes | undefined;
   ollama?: Ollama | undefined;
+  openDirectory?: OpenDirectory | undefined;
   path?: string | undefined;
   plexMediaServer?: PlexMediaServer | undefined;
   port?: number | undefined;
@@ -194,6 +201,7 @@ export const EndpointScan$inboundSchema: z.ZodType<
   ivanti_avalanche: IvantiAvalanche$inboundSchema.optional(),
   kubernetes: Kubernetes$inboundSchema.optional(),
   ollama: Ollama$inboundSchema.optional(),
+  open_directory: OpenDirectory$inboundSchema.optional(),
   path: z.string().optional(),
   plex_media_server: PlexMediaServer$inboundSchema.optional(),
   port: z.number().int().optional(),
@@ -214,6 +222,7 @@ export const EndpointScan$inboundSchema: z.ZodType<
     "endpoint_type": "endpointType",
     "is_success": "isSuccess",
     "ivanti_avalanche": "ivantiAvalanche",
+    "open_directory": "openDirectory",
     "plex_media_server": "plexMediaServer",
     "prometheus_target": "prometheusTarget",
     "redlion_web": "redlionWeb",
@@ -240,6 +249,7 @@ export type EndpointScan$Outbound = {
   ivanti_avalanche?: IvantiAvalanche$Outbound | undefined;
   kubernetes?: Kubernetes$Outbound | undefined;
   ollama?: Ollama$Outbound | undefined;
+  open_directory?: OpenDirectory$Outbound | undefined;
   path?: string | undefined;
   plex_media_server?: PlexMediaServer$Outbound | undefined;
   port?: number | undefined;
@@ -275,6 +285,7 @@ export const EndpointScan$outboundSchema: z.ZodType<
   ivantiAvalanche: IvantiAvalanche$outboundSchema.optional(),
   kubernetes: Kubernetes$outboundSchema.optional(),
   ollama: Ollama$outboundSchema.optional(),
+  openDirectory: OpenDirectory$outboundSchema.optional(),
   path: z.string().optional(),
   plexMediaServer: PlexMediaServer$outboundSchema.optional(),
   port: z.number().int().optional(),
@@ -295,6 +306,7 @@ export const EndpointScan$outboundSchema: z.ZodType<
     endpointType: "endpoint_type",
     isSuccess: "is_success",
     ivantiAvalanche: "ivanti_avalanche",
+    openDirectory: "open_directory",
     plexMediaServer: "plex_media_server",
     prometheusTarget: "prometheus_target",
     redlionWeb: "redlion_web",

@@ -15,8 +15,8 @@ let value: Collection = {
   query: "<value>",
   removedAssets24Hours: 501776,
   status: "archived",
-  statusReason: "too_many_assets",
-  totalAssets: 780908,
+  statusReason: "query_changed",
+  totalAssets: 559084,
 };
 ```
 

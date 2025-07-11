@@ -5,11 +5,11 @@
 ```typescript
 import { Source } from "censys-sdk-typescript/models/components";
 
-let value: Source = "undefined";
+let value: Source = "";
 ```
 
 ## Values
 
 ```typescript
-"undefined" | "censys" | "recog" | "wappalyzer" | "third_party"
+"" | "censys" | "recog" | "wappalyzer" | "third_party"
 ```

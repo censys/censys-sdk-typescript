@@ -8,7 +8,9 @@ import { V3CollectionsCrudListResponse } from "censys-sdk-typescript/models/oper
 let value: V3CollectionsCrudListResponse = {
   headers: {
     "key": [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
     ],
   },
   result: {},

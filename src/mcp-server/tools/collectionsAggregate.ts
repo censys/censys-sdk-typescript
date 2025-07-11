@@ -12,9 +12,9 @@ const args = {
 
 export const tool$collectionsAggregate: ToolDefinition<typeof args> = {
   name: "collections-aggregate",
-  description: `Search / Aggregate
+  description: `Aggregate results for a search query within a collection
 
-Run an aggregation via a Collection data set`,
+Aggregate results for a Platform search query that targets a collection's assets. This functionality is equivalent to the [Report Builder](https://docs.censys.com/docs/platform-report-builder#/) in the Platform web UI.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await collectionsAggregate(

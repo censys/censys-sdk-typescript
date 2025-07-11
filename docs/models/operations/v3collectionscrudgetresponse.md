@@ -8,7 +8,14 @@ import { V3CollectionsCrudGetResponse } from "censys-sdk-typescript/models/opera
 let value: V3CollectionsCrudGetResponse = {
   headers: {
     "key": [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
+    ],
+    "key1": [
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
     ],
   },
   result: {},

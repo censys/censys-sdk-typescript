@@ -12,9 +12,9 @@ const args = {
 
 export const tool$globalDataAggregate: ToolDefinition<typeof args> = {
   name: "global-data-aggregate",
-  description: `Search / Aggregate
+  description: `Aggregate results for a search query
 
-Run an aggregation via the Global data set`,
+Aggregate results for a Platform search query. This functionality is equivalent to the [Report Builder](https://docs.censys.com/docs/platform-report-builder#/) in the Platform web UI.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await globalDataAggregate(

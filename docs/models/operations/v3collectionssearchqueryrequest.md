@@ -6,7 +6,6 @@
 import { V3CollectionsSearchQueryRequest } from "censys-sdk-typescript/models/operations";
 
 let value: V3CollectionsSearchQueryRequest = {
-  organizationId: "<id>",
   collectionUid: "<id>",
   searchQueryInputBody: {
     query: "<value>",

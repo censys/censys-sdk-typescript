@@ -11,5 +11,5 @@ let value: Recovery = "user";
 ## Values
 
 ```typescript
-"not_defined" | "automatic" | "user" | "irrecoverable"
+"" | "automatic" | "user" | "irrecoverable"
 ```

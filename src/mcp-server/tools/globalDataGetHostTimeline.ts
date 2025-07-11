@@ -12,9 +12,9 @@ const args = {
 
 export const tool$globalDataGetHostTimeline: ToolDefinition<typeof args> = {
   name: "global-data-get-host-timeline",
-  description: `Asset / Host Timeline
+  description: `Get host event history
 
-Get the timeline of events for a Host`,
+Retrieve event history for a host. A host ID is its IP address.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await globalDataGetHostTimeline(

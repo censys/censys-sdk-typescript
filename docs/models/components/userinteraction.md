@@ -13,5 +13,5 @@ let value: UserInteraction = "required";
 ## Values
 
 ```typescript
-"unspecified" | "none" | "required"
+"" | "none" | "required"
 ```

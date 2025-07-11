@@ -6,7 +6,6 @@
 import { V3GlobaldataAssetCertificateRequest } from "censys-sdk-typescript/models/operations";
 
 let value: V3GlobaldataAssetCertificateRequest = {
-  organizationId: "<id>",
   certificateId: "<id>",
 };
 ```

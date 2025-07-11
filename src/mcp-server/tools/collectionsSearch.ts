@@ -12,9 +12,9 @@ const args = {
 
 export const tool$collectionsSearch: ToolDefinition<typeof args> = {
   name: "collections-search",
-  description: `Search / Query
+  description: `Run a search query within a collection
 
-Run a query via a Collection data set`,
+Run a search query across a collection's assets. Reference the [documentation on Censys Query Language](https://docs.censys.com/docs/censys-query-language#/) for information about query syntax.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await collectionsSearch(

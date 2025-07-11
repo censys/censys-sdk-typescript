@@ -63,6 +63,12 @@ import {
   Ollama$outboundSchema,
 } from "./ollama.js";
 import {
+  OpenDirectory,
+  OpenDirectory$inboundSchema,
+  OpenDirectory$Outbound,
+  OpenDirectory$outboundSchema,
+} from "./opendirectory.js";
+import {
   PlexMediaServer,
   PlexMediaServer$inboundSchema,
   PlexMediaServer$Outbound,
@@ -98,9 +104,15 @@ import {
   ScadaView$Outbound,
   ScadaView$outboundSchema,
 } from "./scadaview.js";
+import {
+  Screenshot,
+  Screenshot$inboundSchema,
+  Screenshot$Outbound,
+  Screenshot$outboundSchema,
+} from "./screenshot.js";
 
 export const TransportProtocol = {
-  Unknown: "unknown",
+  Unknown: "",
   Tcp: "tcp",
   Udp: "udp",
   Icmp: "icmp",
@@ -123,6 +135,7 @@ export type EndpointScanState = {
   ivantiAvalanche?: IvantiAvalanche | undefined;
   kubernetes?: Kubernetes | undefined;
   ollama?: Ollama | undefined;
+  openDirectory?: OpenDirectory | undefined;
   path?: string | undefined;
   plexMediaServer?: PlexMediaServer | undefined;
   port?: number | undefined;
@@ -132,6 +145,7 @@ export type EndpointScanState = {
   redlionWeb?: RedlionWeb | undefined;
   scadaView?: ScadaView | undefined;
   scanTime?: string | undefined;
+  screenshots?: Array<Screenshot> | null | undefined;
   transportProtocol?: TransportProtocol | undefined;
 };
 
@@ -176,6 +190,7 @@ export const EndpointScanState$inboundSchema: z.ZodType<
   ivanti_avalanche: IvantiAvalanche$inboundSchema.optional(),
   kubernetes: Kubernetes$inboundSchema.optional(),
   ollama: Ollama$inboundSchema.optional(),
+  open_directory: OpenDirectory$inboundSchema.optional(),
   path: z.string().optional(),
   plex_media_server: PlexMediaServer$inboundSchema.optional(),
   port: z.number().int().optional(),
@@ -185,6 +200,7 @@ export const EndpointScanState$inboundSchema: z.ZodType<
   redlion_web: RedlionWeb$inboundSchema.optional(),
   scada_view: ScadaView$inboundSchema.optional(),
   scan_time: z.string().optional(),
+  screenshots: z.nullable(z.array(Screenshot$inboundSchema)).optional(),
   transport_protocol: TransportProtocol$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -193,6 +209,7 @@ export const EndpointScanState$inboundSchema: z.ZodType<
     "cobalt_strike": "cobaltStrike",
     "endpoint_type": "endpointType",
     "ivanti_avalanche": "ivantiAvalanche",
+    "open_directory": "openDirectory",
     "plex_media_server": "plexMediaServer",
     "prometheus_target": "prometheusTarget",
     "redlion_web": "redlionWeb",
@@ -218,6 +235,7 @@ export type EndpointScanState$Outbound = {
   ivanti_avalanche?: IvantiAvalanche$Outbound | undefined;
   kubernetes?: Kubernetes$Outbound | undefined;
   ollama?: Ollama$Outbound | undefined;
+  open_directory?: OpenDirectory$Outbound | undefined;
   path?: string | undefined;
   plex_media_server?: PlexMediaServer$Outbound | undefined;
   port?: number | undefined;
@@ -227,6 +245,7 @@ export type EndpointScanState$Outbound = {
   redlion_web?: RedlionWeb$Outbound | undefined;
   scada_view?: ScadaView$Outbound | undefined;
   scan_time?: string | undefined;
+  screenshots?: Array<Screenshot$Outbound> | null | undefined;
   transport_protocol?: string | undefined;
 };
 
@@ -250,6 +269,7 @@ export const EndpointScanState$outboundSchema: z.ZodType<
   ivantiAvalanche: IvantiAvalanche$outboundSchema.optional(),
   kubernetes: Kubernetes$outboundSchema.optional(),
   ollama: Ollama$outboundSchema.optional(),
+  openDirectory: OpenDirectory$outboundSchema.optional(),
   path: z.string().optional(),
   plexMediaServer: PlexMediaServer$outboundSchema.optional(),
   port: z.number().int().optional(),
@@ -259,6 +279,7 @@ export const EndpointScanState$outboundSchema: z.ZodType<
   redlionWeb: RedlionWeb$outboundSchema.optional(),
   scadaView: ScadaView$outboundSchema.optional(),
   scanTime: z.string().optional(),
+  screenshots: z.nullable(z.array(Screenshot$outboundSchema)).optional(),
   transportProtocol: TransportProtocol$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -267,6 +288,7 @@ export const EndpointScanState$outboundSchema: z.ZodType<
     cobaltStrike: "cobalt_strike",
     endpointType: "endpoint_type",
     ivantiAvalanche: "ivanti_avalanche",
+    openDirectory: "open_directory",
     plexMediaServer: "plex_media_server",
     prometheusTarget: "prometheus_target",
     redlionWeb: "redlion_web",

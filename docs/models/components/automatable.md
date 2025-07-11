@@ -11,5 +11,5 @@ let value: Automatable = "no";
 ## Values
 
 ```typescript
-"not_defined" | "no" | "yes"
+"" | "no" | "yes"
 ```

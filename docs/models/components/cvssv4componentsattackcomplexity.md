@@ -13,5 +13,5 @@ let value: CVSSv4ComponentsAttackComplexity = "high";
 ## Values
 
 ```typescript
-"unspecified" | "low" | "high"
+"" | "low" | "high"
 ```

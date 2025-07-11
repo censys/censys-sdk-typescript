@@ -16,10 +16,10 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class Collections extends ClientSDK {
   /**
-   * List Collections
+   * List collections
    *
    * @remarks
-   * List Collections
+   * List all collections for an organization. Retrieved information includes collection ID, name, query, description, status, and asset count.
    */
   async list(
     request: operations.V3CollectionsCrudListRequest,
@@ -33,10 +33,10 @@ export class Collections extends ClientSDK {
   }
 
   /**
-   * Create a Collection
+   * Create a collection
    *
    * @remarks
-   * Create a Collection
+   * Create a new collection.
    */
   async create(
     request: operations.V3CollectionsCrudCreateRequest,
@@ -50,10 +50,10 @@ export class Collections extends ClientSDK {
   }
 
   /**
-   * Delete a Collection
+   * Delete a collection
    *
    * @remarks
-   * Delete a Collection
+   * Delete a collection.
    */
   async delete(
     request: operations.V3CollectionsCrudDeleteRequest,
@@ -67,10 +67,10 @@ export class Collections extends ClientSDK {
   }
 
   /**
-   * Get a Collection
+   * Get a collection
    *
    * @remarks
-   * Get a Collection
+   * Retrieve information about a collection. Obtain the collection ID using the [list collections endpoint](https://docs.censys.com/reference/v3-collections-crud-list#/) or via the collection URL when using the web console. Retrieved information includes its name, query, description, status, and asset count.
    */
   async get(
     request: operations.V3CollectionsCrudGetRequest,
@@ -84,10 +84,10 @@ export class Collections extends ClientSDK {
   }
 
   /**
-   * Update a Collection
+   * Update a collection
    *
    * @remarks
-   * Update a Collection
+   * Update a collection's name, description, and/or query.
    */
   async update(
     request: operations.V3CollectionsCrudUpdateRequest,
@@ -101,10 +101,10 @@ export class Collections extends ClientSDK {
   }
 
   /**
-   * List a Collection's events
+   * Get a collection's events
    *
    * @remarks
-   * List a Collection's events
+   * Retrieve the event history for a collection. This includes the addition or removal of assets as well as collection status changes.
    */
   async listEvents(
     request: operations.V3CollectionsListEventsRequest,
@@ -118,10 +118,10 @@ export class Collections extends ClientSDK {
   }
 
   /**
-   * Search / Aggregate
+   * Aggregate results for a search query within a collection
    *
    * @remarks
-   * Run an aggregation via a Collection data set
+   * Aggregate results for a Platform search query that targets a collection's assets. This functionality is equivalent to the [Report Builder](https://docs.censys.com/docs/platform-report-builder#/) in the Platform web UI.
    */
   async aggregate(
     request: operations.V3CollectionsSearchAggregateRequest,
@@ -135,10 +135,10 @@ export class Collections extends ClientSDK {
   }
 
   /**
-   * Search / Query
+   * Run a search query within a collection
    *
    * @remarks
-   * Run a query via a Collection data set
+   * Run a search query across a collection's assets. Reference the [documentation on Censys Query Language](https://docs.censys.com/docs/censys-query-language#/) for information about query syntax.
    */
   async search(
     request: operations.V3CollectionsSearchQueryRequest,

@@ -4,6 +4,7 @@
 
 import * as z from "zod";
 import * as components from "../components/index.js";
+import { SDKBaseError } from "./sdkbaseerror.js";
 
 export type ErrorModelData = {
   /**
@@ -32,7 +33,7 @@ export type ErrorModelData = {
   type?: string;
 };
 
-export class ErrorModel extends Error {
+export class ErrorModel extends SDKBaseError {
   /**
    * A human-readable explanation specific to this occurrence of the problem.
    */
@@ -61,13 +62,15 @@ export class ErrorModel extends Error {
   /** The original data that was passed to this error instance. */
   data$: ErrorModelData;
 
-  constructor(err: ErrorModelData) {
+  constructor(
+    err: ErrorModelData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.detail != null) this.detail = err.detail;
     if (err.errors != null) this.errors = err.errors;
     if (err.instance != null) this.instance = err.instance;
@@ -91,9 +94,16 @@ export const ErrorModel$inboundSchema: z.ZodType<
   status: z.number().int().optional(),
   title: z.string().optional(),
   type: z.string().default("about:blank"),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
-    return new ErrorModel(v);
+    return new ErrorModel(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

@@ -12,9 +12,9 @@ const args = {
 
 export const tool$globalDataGetHost: ToolDefinition<typeof args> = {
   name: "global-data-get-host",
-  description: `Asset / Host
+  description: `Get a host
 
-Get a Host`,
+Retrieve information about a single host. A host ID is its IP address.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await globalDataGetHost(

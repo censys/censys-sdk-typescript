@@ -11,8 +11,8 @@ let value: SearchQueryResponse = {
   ],
   nextPageToken: "<value>",
   previousPageToken: "<value>",
-  queryDurationMillis: 434449,
-  totalHits: 6984.95,
+  queryDurationMillis: 132259,
+  totalHits: 2796.22,
 };
 ```
 

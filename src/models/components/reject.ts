@@ -9,7 +9,7 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const RejectType = {
-  Unrecognized: "unrecognized",
+  Unknown: "",
   WrongVersion: "wrong_version",
   InvalidUsername: "invalid_username",
   WrongUserPw: "wrong_user_pw",

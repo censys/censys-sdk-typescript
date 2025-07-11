@@ -11,5 +11,5 @@ let value: JarmScanTransportProtocol = "quic";
 ## Values
 
 ```typescript
-"unknown" | "tcp" | "udp" | "icmp" | "quic"
+"" | "tcp" | "udp" | "icmp" | "quic"
 ```

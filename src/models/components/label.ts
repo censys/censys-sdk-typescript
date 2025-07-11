@@ -15,7 +15,7 @@ import {
 } from "./evidence.js";
 
 export const LabelSource = {
-  Undefined: "undefined",
+  Unknown: "",
   Censys: "censys",
   Recog: "recog",
   Wappalyzer: "wappalyzer",

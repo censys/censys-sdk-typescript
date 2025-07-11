@@ -7,19 +7,19 @@ Endpoints related to the Global Data product
 
 ### Available Operations
 
-* [getCertificates](#getcertificates) - Asset / Certificate Bulk
-* [getCertificate](#getcertificate) - Asset / Certificate
-* [getHosts](#gethosts) - Asset / Host Bulk
-* [getHost](#gethost) - Asset / Host
-* [getHostTimeline](#gethosttimeline) - Asset / Host Timeline
-* [getWebProperties](#getwebproperties) - Asset / WebProperty Bulk
-* [getWebProperty](#getwebproperty) - Asset / WebProperty
-* [aggregate](#aggregate) - Search / Aggregate
-* [search](#search) - Search / Query
+* [getCertificates](#getcertificates) - Get multiple certificates
+* [getCertificate](#getcertificate) - Get a certificate
+* [getHosts](#gethosts) - Get multiple hosts
+* [getHost](#gethost) - Get a host
+* [getHostTimeline](#gethosttimeline) - Get host event history
+* [getWebProperties](#getwebproperties) - Get multiple web properties
+* [getWebProperty](#getwebproperty) - Get a web property
+* [aggregate](#aggregate) - Aggregate results for a search query
+* [search](#search) - Run a search query
 
 ## getCertificates
 
-Get multiple Certificates
+Retrieve information about multiple certificates. A certificate ID is its SHA-256 fingerprint in the Censys dataset.
 
 ### Example Usage
 
@@ -27,18 +27,15 @@ Get multiple Certificates
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.globalData.getCertificates({
-    organizationId: "<id>",
-    certificateIds: [
-      "<value>",
-    ],
+    certificateIds: [],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -56,25 +53,20 @@ import { globalDataGetCertificates } from "censys-sdk-typescript/funcs/globalDat
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await globalDataGetCertificates(sdk, {
-    organizationId: "<id>",
-    certificateIds: [
-      "<value>",
-    ],
+    certificateIds: [],
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("globalDataGetCertificates failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -102,7 +94,7 @@ run();
 
 ## getCertificate
 
-Get a Certificate
+Retrieve information about a single certificate. A certificate ID is its SHA-256 fingerprint in the Censys dataset.
 
 ### Example Usage
 
@@ -110,16 +102,15 @@ Get a Certificate
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.globalData.getCertificate({
-    organizationId: "<id>",
     certificateId: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -137,23 +128,20 @@ import { globalDataGetCertificate } from "censys-sdk-typescript/funcs/globalData
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await globalDataGetCertificate(sdk, {
-    organizationId: "<id>",
     certificateId: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("globalDataGetCertificate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -181,7 +169,7 @@ run();
 
 ## getHosts
 
-Get multiple Hosts
+Retrieve information about multiple hosts. A host ID is its IP address.
 
 ### Example Usage
 
@@ -189,18 +177,17 @@ Get multiple Hosts
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.globalData.getHosts({
-    organizationId: "<id>",
     hostIds: [
-
+      "<value 1>",
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -218,25 +205,22 @@ import { globalDataGetHosts } from "censys-sdk-typescript/funcs/globalDataGetHos
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await globalDataGetHosts(sdk, {
-    organizationId: "<id>",
     hostIds: [
-  
+      "<value 1>",
     ],
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("globalDataGetHosts failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -264,7 +248,7 @@ run();
 
 ## getHost
 
-Get a Host
+Retrieve information about a single host. A host ID is its IP address.
 
 ### Example Usage
 
@@ -272,16 +256,15 @@ Get a Host
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.globalData.getHost({
-    organizationId: "<id>",
     hostId: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -299,23 +282,20 @@ import { globalDataGetHost } from "censys-sdk-typescript/funcs/globalDataGetHost
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await globalDataGetHost(sdk, {
-    organizationId: "<id>",
     hostId: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("globalDataGetHost failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -343,7 +323,7 @@ run();
 
 ## getHostTimeline
 
-Get the timeline of events for a Host
+Retrieve event history for a host. A host ID is its IP address.
 
 ### Example Usage
 
@@ -351,18 +331,17 @@ Get the timeline of events for a Host
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.globalData.getHostTimeline({
-    organizationId: "<id>",
     hostId: "<id>",
-    startTime: new Date("2024-04-27T09:30:08.024Z"),
-    endTime: new Date("2023-04-13T10:41:42.221Z"),
+    startTime: new Date("2024-10-02T01:32:37.490Z"),
+    endTime: new Date("2025-02-08T13:31:28.844Z"),
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -380,25 +359,22 @@ import { globalDataGetHostTimeline } from "censys-sdk-typescript/funcs/globalDat
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await globalDataGetHostTimeline(sdk, {
-    organizationId: "<id>",
     hostId: "<id>",
-    startTime: new Date("2024-04-27T09:30:08.024Z"),
-    endTime: new Date("2023-04-13T10:41:42.221Z"),
+    startTime: new Date("2024-10-02T01:32:37.490Z"),
+    endTime: new Date("2025-02-08T13:31:28.844Z"),
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("globalDataGetHostTimeline failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -426,7 +402,7 @@ run();
 
 ## getWebProperties
 
-Get multiple WebProperties
+Retrieve information about multiple web properties. Web properties are identified using a combination of a hostname and port joined with a colon, such as `platform.censys.io:80`.
 
 ### Example Usage
 
@@ -434,18 +410,17 @@ Get multiple WebProperties
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.globalData.getWebProperties({
-    organizationId: "<id>",
     webpropertyIds: [
-      "<value>",
+      "<value 1>",
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -463,25 +438,22 @@ import { globalDataGetWebProperties } from "censys-sdk-typescript/funcs/globalDa
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await globalDataGetWebProperties(sdk, {
-    organizationId: "<id>",
     webpropertyIds: [
-      "<value>",
+      "<value 1>",
     ],
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("globalDataGetWebProperties failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -509,7 +481,7 @@ run();
 
 ## getWebProperty
 
-Get a WebProperty
+Retrieve information about a single web property. Web properties are identified using a combination of a hostname and port joined with a colon, such as `platform.censys.io:80`.
 
 ### Example Usage
 
@@ -517,16 +489,15 @@ Get a WebProperty
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.globalData.getWebProperty({
-    organizationId: "<id>",
     webpropertyId: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -544,23 +515,20 @@ import { globalDataGetWebProperty } from "censys-sdk-typescript/funcs/globalData
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await globalDataGetWebProperty(sdk, {
-    organizationId: "<id>",
     webpropertyId: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("globalDataGetWebProperty failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -588,7 +556,7 @@ run();
 
 ## aggregate
 
-Run an aggregation via the Global data set
+Aggregate results for a Platform search query. This functionality is equivalent to the [Report Builder](https://docs.censys.com/docs/platform-report-builder#/) in the Platform web UI.
 
 ### Example Usage
 
@@ -596,20 +564,19 @@ Run an aggregation via the Global data set
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.globalData.aggregate({
-    organizationId: "<id>",
     searchAggregateInputBody: {
       field: "<value>",
-      numberOfBuckets: 590414,
+      numberOfBuckets: 309828,
       query: "<value>",
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -627,27 +594,24 @@ import { globalDataAggregate } from "censys-sdk-typescript/funcs/globalDataAggre
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await globalDataAggregate(sdk, {
-    organizationId: "<id>",
     searchAggregateInputBody: {
       field: "<value>",
-      numberOfBuckets: 590414,
+      numberOfBuckets: 309828,
       query: "<value>",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("globalDataAggregate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -675,7 +639,7 @@ run();
 
 ## search
 
-Search the Global data set
+Run a search query across Censys data. Reference the [documentation on Censys Query Language](https://docs.censys.com/docs/censys-query-language#/) for information about query syntax.
 
 ### Example Usage
 
@@ -683,18 +647,17 @@ Search the Global data set
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.globalData.search({
-    organizationId: "<id>",
     searchQueryInputBody: {
       query: "<value>",
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -712,25 +675,22 @@ import { globalDataSearch } from "censys-sdk-typescript/funcs/globalDataSearch.j
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await globalDataSearch(sdk, {
-    organizationId: "<id>",
     searchQueryInputBody: {
       query: "<value>",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("globalDataSearch failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

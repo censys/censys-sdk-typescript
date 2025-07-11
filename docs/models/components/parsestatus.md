@@ -11,5 +11,5 @@ let value: ParseStatus = "success";
 ## Values
 
 ```typescript
-"unknown" | "success" | "fail" | "corrupted"
+"" | "success" | "fail" | "corrupted"
 ```
