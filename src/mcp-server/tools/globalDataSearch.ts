@@ -12,9 +12,9 @@ const args = {
 
 export const tool$globalDataSearch: ToolDefinition<typeof args> = {
   name: "global-data-search",
-  description: `Search / Query
+  description: `Run a search query
 
-Search the Global data set`,
+Run a search query across Censys data. Reference the [documentation on Censys Query Language](https://docs.censys.com/docs/censys-query-language#/) for information about query syntax.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await globalDataSearch(

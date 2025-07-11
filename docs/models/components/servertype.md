@@ -13,5 +13,5 @@ let value: ServerType = "redirecting";
 ## Values
 
 ```typescript
-"unknown" | "recursive_resolver" | "authoritative" | "forwarding" | "redirecting"
+"" | "recursive_resolver" | "authoritative" | "forwarding" | "redirecting"
 ```

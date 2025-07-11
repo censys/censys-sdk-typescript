@@ -8,14 +8,14 @@ import { SearchAggregateResponse } from "censys-sdk-typescript/models/components
 let value: SearchAggregateResponse = {
   buckets: [
     {
-      count: 616503,
+      count: 121902,
       key: "<key>",
     },
   ],
   isMoreThanTotalHits: false,
-  otherCount: 553921,
-  queryDurationMillis: 121902,
-  totalCount: 758580,
+  otherCount: 174546,
+  queryDurationMillis: 870736,
+  totalCount: 698163,
 };
 ```
 

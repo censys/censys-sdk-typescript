@@ -11,5 +11,5 @@ let value: LabelSource = "censys";
 ## Values
 
 ```typescript
-"undefined" | "censys" | "recog" | "wappalyzer" | "third_party"
+"" | "censys" | "recog" | "wappalyzer" | "third_party"
 ```

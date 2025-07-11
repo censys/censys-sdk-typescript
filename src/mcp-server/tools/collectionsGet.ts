@@ -12,9 +12,9 @@ const args = {
 
 export const tool$collectionsGet: ToolDefinition<typeof args> = {
   name: "collections-get",
-  description: `Get a Collection
+  description: `Get a collection
 
-Get a Collection`,
+Retrieve information about a collection. Obtain the collection ID using the [list collections endpoint](https://docs.censys.com/reference/v3-collections-crud-list#/) or via the collection URL when using the web console. Retrieved information includes its name, query, description, status, and asset count.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await collectionsGet(

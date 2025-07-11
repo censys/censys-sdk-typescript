@@ -12,9 +12,9 @@ const args = {
 
 export const tool$globalDataGetCertificate: ToolDefinition<typeof args> = {
   name: "global-data-get-certificate",
-  description: `Asset / Certificate
+  description: `Get a certificate
 
-Get a Certificate`,
+Retrieve information about a single certificate. A certificate ID is its SHA-256 fingerprint in the Censys dataset.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await globalDataGetCertificate(

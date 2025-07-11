@@ -8,7 +8,15 @@ import { V3GlobaldataAssetWebpropertyResponse } from "censys-sdk-typescript/mode
 let value: V3GlobaldataAssetWebpropertyResponse = {
   headers: {
     "key": [
-      "<value>",
+      "<value 1>",
+    ],
+    "key1": [
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
+    ],
+    "key2": [
+      "<value 1>",
     ],
   },
   result: {},

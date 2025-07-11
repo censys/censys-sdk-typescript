@@ -8,7 +8,9 @@ import { V3GlobaldataAssetCertificateResponse } from "censys-sdk-typescript/mode
 let value: V3GlobaldataAssetCertificateResponse = {
   headers: {
     "key": [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
     ],
   },
   result: {},

@@ -7,18 +7,18 @@ Endpoints related to the Collections product
 
 ### Available Operations
 
-* [list](#list) - List Collections
-* [create](#create) - Create a Collection
-* [delete](#delete) - Delete a Collection
-* [get](#get) - Get a Collection
-* [update](#update) - Update a Collection
-* [listEvents](#listevents) - List a Collection's events
-* [aggregate](#aggregate) - Search / Aggregate
-* [search](#search) - Search / Query
+* [list](#list) - List collections
+* [create](#create) - Create a collection
+* [delete](#delete) - Delete a collection
+* [get](#get) - Get a collection
+* [update](#update) - Update a collection
+* [listEvents](#listevents) - Get a collection's events
+* [aggregate](#aggregate) - Aggregate results for a search query within a collection
+* [search](#search) - Run a search query within a collection
 
 ## list
 
-List Collections
+List all collections for an organization. Retrieved information includes collection ID, name, query, description, status, and asset count.
 
 ### Example Usage
 
@@ -26,15 +26,13 @@ List Collections
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await sdk.collections.list({
-    organizationId: "<id>",
-  });
+  const result = await sdk.collections.list({});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -52,22 +50,18 @@ import { collectionsList } from "censys-sdk-typescript/funcs/collectionsList.js"
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const res = await collectionsList(sdk, {
-    organizationId: "<id>",
-  });
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await collectionsList(sdk, {});
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("collectionsList failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -95,7 +89,7 @@ run();
 
 ## create
 
-Create a Collection
+Create a new collection.
 
 ### Example Usage
 
@@ -103,15 +97,13 @@ Create a Collection
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await sdk.collections.create({
-    organizationId: "<id>",
-  });
+  const result = await sdk.collections.create({});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -129,22 +121,18 @@ import { collectionsCreate } from "censys-sdk-typescript/funcs/collectionsCreate
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const res = await collectionsCreate(sdk, {
-    organizationId: "<id>",
-  });
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await collectionsCreate(sdk, {});
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("collectionsCreate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -172,7 +160,7 @@ run();
 
 ## delete
 
-Delete a Collection
+Delete a collection.
 
 ### Example Usage
 
@@ -180,16 +168,15 @@ Delete a Collection
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.collections.delete({
-    organizationId: "<id>",
-    collectionUid: "<id>",
+    collectionUid: "d9ed2825-23bc-46db-bc4b-b4ac6c48f664",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -207,23 +194,20 @@ import { collectionsDelete } from "censys-sdk-typescript/funcs/collectionsDelete
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await collectionsDelete(sdk, {
-    organizationId: "<id>",
-    collectionUid: "<id>",
+    collectionUid: "d9ed2825-23bc-46db-bc4b-b4ac6c48f664",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("collectionsDelete failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -251,7 +235,7 @@ run();
 
 ## get
 
-Get a Collection
+Retrieve information about a collection. Obtain the collection ID using the [list collections endpoint](https://docs.censys.com/reference/v3-collections-crud-list#/) or via the collection URL when using the web console. Retrieved information includes its name, query, description, status, and asset count.
 
 ### Example Usage
 
@@ -259,16 +243,15 @@ Get a Collection
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.collections.get({
-    organizationId: "<id>",
-    collectionUid: "<id>",
+    collectionUid: "4d6d3f55-e4ae-405b-8d0f-4207b74028ab",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -286,23 +269,20 @@ import { collectionsGet } from "censys-sdk-typescript/funcs/collectionsGet.js";
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await collectionsGet(sdk, {
-    organizationId: "<id>",
-    collectionUid: "<id>",
+    collectionUid: "4d6d3f55-e4ae-405b-8d0f-4207b74028ab",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("collectionsGet failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -330,7 +310,7 @@ run();
 
 ## update
 
-Update a Collection
+Update a collection's name, description, and/or query.
 
 ### Example Usage
 
@@ -338,16 +318,15 @@ Update a Collection
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.collections.update({
-    organizationId: "<id>",
     collectionUid: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -365,23 +344,20 @@ import { collectionsUpdate } from "censys-sdk-typescript/funcs/collectionsUpdate
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await collectionsUpdate(sdk, {
-    organizationId: "<id>",
     collectionUid: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("collectionsUpdate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -409,7 +385,7 @@ run();
 
 ## listEvents
 
-List a Collection's events
+Retrieve the event history for a collection. This includes the addition or removal of assets as well as collection status changes.
 
 ### Example Usage
 
@@ -417,16 +393,15 @@ List a Collection's events
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.collections.listEvents({
-    organizationId: "<id>",
-    collectionUid: "<id>",
+    collectionUid: "ddc110c4-03da-472a-98af-be013b92eff5",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -444,23 +419,20 @@ import { collectionsListEvents } from "censys-sdk-typescript/funcs/collectionsLi
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await collectionsListEvents(sdk, {
-    organizationId: "<id>",
-    collectionUid: "<id>",
+    collectionUid: "ddc110c4-03da-472a-98af-be013b92eff5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("collectionsListEvents failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -488,7 +460,7 @@ run();
 
 ## aggregate
 
-Run an aggregation via a Collection data set
+Aggregate results for a Platform search query that targets a collection's assets. This functionality is equivalent to the [Report Builder](https://docs.censys.com/docs/platform-report-builder#/) in the Platform web UI.
 
 ### Example Usage
 
@@ -496,21 +468,20 @@ Run an aggregation via a Collection data set
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.collections.aggregate({
-    organizationId: "<id>",
-    collectionUid: "<id>",
+    collectionUid: "ee98f78d-a47d-44fb-89f4-0626ceaf34d7",
     searchAggregateInputBody: {
       field: "<value>",
-      numberOfBuckets: 590414,
+      numberOfBuckets: 829469,
       query: "<value>",
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -528,28 +499,25 @@ import { collectionsAggregate } from "censys-sdk-typescript/funcs/collectionsAgg
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await collectionsAggregate(sdk, {
-    organizationId: "<id>",
-    collectionUid: "<id>",
+    collectionUid: "ee98f78d-a47d-44fb-89f4-0626ceaf34d7",
     searchAggregateInputBody: {
       field: "<value>",
-      numberOfBuckets: 590414,
+      numberOfBuckets: 829469,
       query: "<value>",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("collectionsAggregate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -577,7 +545,7 @@ run();
 
 ## search
 
-Run a query via a Collection data set
+Run a search query across a collection's assets. Reference the [documentation on Censys Query Language](https://docs.censys.com/docs/censys-query-language#/) for information about query syntax.
 
 ### Example Usage
 
@@ -585,19 +553,18 @@ Run a query via a Collection data set
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.collections.search({
-    organizationId: "<id>",
     collectionUid: "<id>",
     searchQueryInputBody: {
       query: "<value>",
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -615,26 +582,23 @@ import { collectionsSearch } from "censys-sdk-typescript/funcs/collectionsSearch
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await collectionsSearch(sdk, {
-    organizationId: "<id>",
     collectionUid: "<id>",
     searchQueryInputBody: {
       query: "<value>",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("collectionsSearch failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

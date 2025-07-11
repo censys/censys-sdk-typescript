@@ -6,7 +6,6 @@
 import { V3CollectionsCrudUpdateRequest } from "censys-sdk-typescript/models/operations";
 
 let value: V3CollectionsCrudUpdateRequest = {
-  organizationId: "<id>",
   collectionUid: "<id>",
 };
 ```

@@ -35,7 +35,7 @@ import {
 } from "./zlint.js";
 
 export const ParseStatus = {
-  Unknown: "unknown",
+  Unknown: "",
   Success: "success",
   Fail: "fail",
   Corrupted: "corrupted",
@@ -46,7 +46,7 @@ export type ParseStatus = ClosedEnum<typeof ParseStatus>;
  * The extent to which the certificate's issuer validated the identity of the entity requesting the certificate. Options include Domain validated (DV), Organization Validated (OV), or Extended Validation (EV).
  */
 export const ValidationLevel = {
-  Unknown: "unknown",
+  Unknown: "",
   Dv: "dv",
   Ov: "ov",
   Ev: "ev",

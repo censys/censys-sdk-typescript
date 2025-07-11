@@ -8,7 +8,9 @@ import { V3GlobaldataAssetHostResponse } from "censys-sdk-typescript/models/oper
 let value: V3GlobaldataAssetHostResponse = {
   headers: {
     "key": [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
     ],
   },
   result: {},

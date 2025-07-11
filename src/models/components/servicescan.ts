@@ -417,6 +417,12 @@ import {
   Pptp$outboundSchema,
 } from "./pptp.js";
 import {
+  ProfinetCm,
+  ProfinetCm$inboundSchema,
+  ProfinetCm$Outbound,
+  ProfinetCm$outboundSchema,
+} from "./profinetcm.js";
+import {
   Rdate,
   Rdate$inboundSchema,
   Rdate$Outbound,
@@ -440,6 +446,12 @@ import {
   Redis$Outbound,
   Redis$outboundSchema,
 } from "./redis.js";
+import {
+  Redline,
+  Redline$inboundSchema,
+  Redline$Outbound,
+  Redline$outboundSchema,
+} from "./redline.js";
 import {
   RedlionCrimson,
   RedlionCrimson$inboundSchema,
@@ -665,7 +677,7 @@ import {
 } from "./zeromq.js";
 
 export const ServiceScanTransportProtocol = {
-  Unknown: "unknown",
+  Unknown: "",
   Tcp: "tcp",
   Udp: "udp",
   Icmp: "icmp",
@@ -749,11 +761,13 @@ export type ServiceScan = {
   portmap?: Portmap | undefined;
   postgres?: Postgres | undefined;
   pptp?: Pptp | undefined;
+  profinetCm?: ProfinetCm | undefined;
   protocol?: string | undefined;
   rdate?: Rdate | undefined;
   rdp?: Rdp | undefined;
   realport?: Realport | undefined;
   redis?: Redis | undefined;
+  redline?: Redline | undefined;
   redlionCrimson?: RedlionCrimson | undefined;
   representativeInfo?: RepresentativeInfo | undefined;
   rifatron?: Rifatron | undefined;
@@ -896,11 +910,13 @@ export const ServiceScan$inboundSchema: z.ZodType<
   portmap: Portmap$inboundSchema.optional(),
   postgres: Postgres$inboundSchema.optional(),
   pptp: Pptp$inboundSchema.optional(),
+  profinet_cm: ProfinetCm$inboundSchema.optional(),
   protocol: z.string().optional(),
   rdate: Rdate$inboundSchema.optional(),
   rdp: Rdp$inboundSchema.optional(),
   realport: Realport$inboundSchema.optional(),
   redis: Redis$inboundSchema.optional(),
+  redline: Redline$inboundSchema.optional(),
   redlion_crimson: RedlionCrimson$inboundSchema.optional(),
   representative_info: RepresentativeInfo$inboundSchema.optional(),
   rifatron: Rifatron$inboundSchema.optional(),
@@ -957,6 +973,7 @@ export const ServiceScan$inboundSchema: z.ZodType<
     "nfs_mountd": "nfsMountd",
     "opc_ua": "opcUa",
     "pc_anywhere": "pcAnywhere",
+    "profinet_cm": "profinetCm",
     "redlion_crimson": "redlionCrimson",
     "representative_info": "representativeInfo",
     "sap_router": "sapRouter",
@@ -1047,11 +1064,13 @@ export type ServiceScan$Outbound = {
   portmap?: Portmap$Outbound | undefined;
   postgres?: Postgres$Outbound | undefined;
   pptp?: Pptp$Outbound | undefined;
+  profinet_cm?: ProfinetCm$Outbound | undefined;
   protocol?: string | undefined;
   rdate?: Rdate$Outbound | undefined;
   rdp?: Rdp$Outbound | undefined;
   realport?: Realport$Outbound | undefined;
   redis?: Redis$Outbound | undefined;
+  redline?: Redline$Outbound | undefined;
   redlion_crimson?: RedlionCrimson$Outbound | undefined;
   representative_info?: RepresentativeInfo$Outbound | undefined;
   rifatron?: Rifatron$Outbound | undefined;
@@ -1173,11 +1192,13 @@ export const ServiceScan$outboundSchema: z.ZodType<
   portmap: Portmap$outboundSchema.optional(),
   postgres: Postgres$outboundSchema.optional(),
   pptp: Pptp$outboundSchema.optional(),
+  profinetCm: ProfinetCm$outboundSchema.optional(),
   protocol: z.string().optional(),
   rdate: Rdate$outboundSchema.optional(),
   rdp: Rdp$outboundSchema.optional(),
   realport: Realport$outboundSchema.optional(),
   redis: Redis$outboundSchema.optional(),
+  redline: Redline$outboundSchema.optional(),
   redlionCrimson: RedlionCrimson$outboundSchema.optional(),
   representativeInfo: RepresentativeInfo$outboundSchema.optional(),
   rifatron: Rifatron$outboundSchema.optional(),
@@ -1234,6 +1255,7 @@ export const ServiceScan$outboundSchema: z.ZodType<
     nfsMountd: "nfs_mountd",
     opcUa: "opc_ua",
     pcAnywhere: "pc_anywhere",
+    profinetCm: "profinet_cm",
     redlionCrimson: "redlion_crimson",
     representativeInfo: "representative_info",
     sapRouter: "sap_router",

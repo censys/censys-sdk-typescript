@@ -6,7 +6,6 @@
 import { V3GlobaldataSearchQueryRequest } from "censys-sdk-typescript/models/operations";
 
 let value: V3GlobaldataSearchQueryRequest = {
-  organizationId: "<id>",
   searchQueryInputBody: {
     query: "<value>",
   },

@@ -10,7 +10,7 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const RepresentativeInfoReason = {
-  Unknown: "unknown",
+  Unknown: "",
   ProtocolPortCount: "protocol_port_count",
   Incapsula: "incapsula",
   Zscaler: "zscaler",

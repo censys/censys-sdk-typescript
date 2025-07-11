@@ -8,7 +8,7 @@ import { V3GlobaldataAssetHostTimelineResponse } from "censys-sdk-typescript/mod
 let value: V3GlobaldataAssetHostTimelineResponse = {
   headers: {
     "key": [
-      "<value>",
+      "<value 1>",
     ],
   },
   result: {},

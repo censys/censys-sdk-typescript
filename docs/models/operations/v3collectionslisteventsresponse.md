@@ -8,7 +8,8 @@ import { V3CollectionsListEventsResponse } from "censys-sdk-typescript/models/op
 let value: V3CollectionsListEventsResponse = {
   headers: {
     "key": [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
     ],
   },
   result: {},

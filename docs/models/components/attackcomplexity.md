@@ -7,11 +7,11 @@ Indicates conditions beyond the attacker’s control that must exist in order to
 ```typescript
 import { AttackComplexity } from "censys-sdk-typescript/models/components";
 
-let value: AttackComplexity = "unspecified";
+let value: AttackComplexity = "";
 ```
 
 ## Values
 
 ```typescript
-"unspecified" | "low" | "high"
+"" | "low" | "high"
 ```

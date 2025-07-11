@@ -10,7 +10,7 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export const JarmScanTransportProtocol = {
-  Unknown: "unknown",
+  Unknown: "",
   Tcp: "tcp",
   Udp: "udp",
   Icmp: "icmp",

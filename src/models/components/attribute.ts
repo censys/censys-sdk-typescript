@@ -28,7 +28,7 @@ import {
 } from "./evidence.js";
 
 export const Source = {
-  Undefined: "undefined",
+  Unknown: "",
   Censys: "censys",
   Recog: "recog",
   Wappalyzer: "wappalyzer",

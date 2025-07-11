@@ -6,11 +6,7 @@
 import { V3GlobaldataAssetCertificateListResponse } from "censys-sdk-typescript/models/operations";
 
 let value: V3GlobaldataAssetCertificateListResponse = {
-  headers: {
-    "key": [
-      "<value>",
-    ],
-  },
+  headers: {},
   result: {},
 };
 ```

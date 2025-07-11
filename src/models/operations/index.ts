@@ -19,3 +19,4 @@ export * from "./v3globaldataassetwebproperty.js";
 export * from "./v3globaldataassetwebpropertylist.js";
 export * from "./v3globaldatasearchaggregate.js";
 export * from "./v3globaldatasearchquery.js";
+export * from "./v3threathuntingvaluecounts.js";

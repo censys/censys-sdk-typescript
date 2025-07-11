@@ -11,5 +11,5 @@ let value: AttackRequirements = "present";
 ## Values
 
 ```typescript
-"unspecified" | "none" | "present"
+"" | "none" | "present"
 ```

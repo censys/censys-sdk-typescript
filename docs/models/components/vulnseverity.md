@@ -11,5 +11,5 @@ let value: VulnSeverity = "medium";
 ## Values
 
 ```typescript
-"unspecified" | "low" | "medium" | "high" | "critical"
+"" | "low" | "medium" | "high" | "critical"
 ```

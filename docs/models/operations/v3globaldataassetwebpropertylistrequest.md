@@ -6,9 +6,10 @@
 import { V3GlobaldataAssetWebpropertyListRequest } from "censys-sdk-typescript/models/operations";
 
 let value: V3GlobaldataAssetWebpropertyListRequest = {
-  organizationId: "<id>",
   webpropertyIds: [
-    "<value>",
+    "<value 1>",
+    "<value 2>",
+    "<value 3>",
   ],
 };
 ```

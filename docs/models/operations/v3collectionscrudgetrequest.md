@@ -6,7 +6,6 @@
 import { V3CollectionsCrudGetRequest } from "censys-sdk-typescript/models/operations";
 
 let value: V3CollectionsCrudGetRequest = {
-  organizationId: "<id>",
   collectionUid: "2147049c-198f-4e4e-9bcc-a7b46358611e",
 };
 ```

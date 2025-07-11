@@ -12,9 +12,9 @@ const args = {
 
 export const tool$collectionsListEvents: ToolDefinition<typeof args> = {
   name: "collections-list-events",
-  description: `List a Collection's events
+  description: `Get a collection's events
 
-List a Collection's events`,
+Retrieve the event history for a collection. This includes the addition or removal of assets as well as collection status changes.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await collectionsListEvents(

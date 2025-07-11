@@ -17,10 +17,10 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class GlobalData extends ClientSDK {
   /**
-   * Asset / Certificate Bulk
+   * Get multiple certificates
    *
    * @remarks
-   * Get multiple Certificates
+   * Retrieve information about multiple certificates. A certificate ID is its SHA-256 fingerprint in the Censys dataset.
    */
   async getCertificates(
     request: operations.V3GlobaldataAssetCertificateListRequest,
@@ -34,10 +34,10 @@ export class GlobalData extends ClientSDK {
   }
 
   /**
-   * Asset / Certificate
+   * Get a certificate
    *
    * @remarks
-   * Get a Certificate
+   * Retrieve information about a single certificate. A certificate ID is its SHA-256 fingerprint in the Censys dataset.
    */
   async getCertificate(
     request: operations.V3GlobaldataAssetCertificateRequest,
@@ -51,10 +51,10 @@ export class GlobalData extends ClientSDK {
   }
 
   /**
-   * Asset / Host Bulk
+   * Get multiple hosts
    *
    * @remarks
-   * Get multiple Hosts
+   * Retrieve information about multiple hosts. A host ID is its IP address.
    */
   async getHosts(
     request: operations.V3GlobaldataAssetHostListRequest,
@@ -68,10 +68,10 @@ export class GlobalData extends ClientSDK {
   }
 
   /**
-   * Asset / Host
+   * Get a host
    *
    * @remarks
-   * Get a Host
+   * Retrieve information about a single host. A host ID is its IP address.
    */
   async getHost(
     request: operations.V3GlobaldataAssetHostRequest,
@@ -85,10 +85,10 @@ export class GlobalData extends ClientSDK {
   }
 
   /**
-   * Asset / Host Timeline
+   * Get host event history
    *
    * @remarks
-   * Get the timeline of events for a Host
+   * Retrieve event history for a host. A host ID is its IP address.
    */
   async getHostTimeline(
     request: operations.V3GlobaldataAssetHostTimelineRequest,
@@ -102,10 +102,10 @@ export class GlobalData extends ClientSDK {
   }
 
   /**
-   * Asset / WebProperty Bulk
+   * Get multiple web properties
    *
    * @remarks
-   * Get multiple WebProperties
+   * Retrieve information about multiple web properties. Web properties are identified using a combination of a hostname and port joined with a colon, such as `platform.censys.io:80`.
    */
   async getWebProperties(
     request: operations.V3GlobaldataAssetWebpropertyListRequest,
@@ -119,10 +119,10 @@ export class GlobalData extends ClientSDK {
   }
 
   /**
-   * Asset / WebProperty
+   * Get a web property
    *
    * @remarks
-   * Get a WebProperty
+   * Retrieve information about a single web property. Web properties are identified using a combination of a hostname and port joined with a colon, such as `platform.censys.io:80`.
    */
   async getWebProperty(
     request: operations.V3GlobaldataAssetWebpropertyRequest,
@@ -136,10 +136,10 @@ export class GlobalData extends ClientSDK {
   }
 
   /**
-   * Search / Aggregate
+   * Aggregate results for a search query
    *
    * @remarks
-   * Run an aggregation via the Global data set
+   * Aggregate results for a Platform search query. This functionality is equivalent to the [Report Builder](https://docs.censys.com/docs/platform-report-builder#/) in the Platform web UI.
    */
   async aggregate(
     request: operations.V3GlobaldataSearchAggregateRequest,
@@ -153,10 +153,10 @@ export class GlobalData extends ClientSDK {
   }
 
   /**
-   * Search / Query
+   * Run a search query
    *
    * @remarks
-   * Search the Global data set
+   * Run a search query across Censys data. Reference the [documentation on Censys Query Language](https://docs.censys.com/docs/censys-query-language#/) for information about query syntax.
    */
   async search(
     request: operations.V3GlobaldataSearchQueryRequest,

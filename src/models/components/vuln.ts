@@ -34,14 +34,14 @@ import {
 } from "./metrics.js";
 
 export const VulnRiskSource = {
-  Unspecified: "unspecified",
+  Unknown: "",
   Censys: "censys",
   Cve: "cve",
 } as const;
 export type VulnRiskSource = ClosedEnum<typeof VulnRiskSource>;
 
 export const VulnSeverity = {
-  Unspecified: "unspecified",
+  Unknown: "",
   Low: "low",
   Medium: "medium",
   High: "high",
@@ -50,7 +50,7 @@ export const VulnSeverity = {
 export type VulnSeverity = ClosedEnum<typeof VulnSeverity>;
 
 export const VulnSource = {
-  Undefined: "undefined",
+  Unknown: "",
   Censys: "censys",
   Recog: "recog",
   Wappalyzer: "wappalyzer",

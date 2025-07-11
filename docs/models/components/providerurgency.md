@@ -11,5 +11,5 @@ let value: ProviderUrgency = "clear";
 ## Values
 
 ```typescript
-"not_defined" | "clear" | "green" | "amber" | "red"
+"" | "clear" | "green" | "amber" | "red"
 ```

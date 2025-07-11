@@ -13,5 +13,5 @@ let value: Reason = "privilege_withdrawn";
 ## Values
 
 ```typescript
-"unknown" | "unspecified" | "key_compromise" | "ca_compromise" | "affiliation_changed" | "superseded" | "cessation_of_operation" | "certificate_hold" | "remove_from_crl" | "privilege_withdrawn" | "aa_compromise"
+"" | "unspecified" | "key_compromise" | "ca_compromise" | "affiliation_changed" | "superseded" | "cessation_of_operation" | "certificate_hold" | "remove_from_crl" | "privilege_withdrawn" | "aa_compromise"
 ```

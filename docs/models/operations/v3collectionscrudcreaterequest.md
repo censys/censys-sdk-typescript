@@ -5,9 +5,7 @@
 ```typescript
 import { V3CollectionsCrudCreateRequest } from "censys-sdk-typescript/models/operations";
 
-let value: V3CollectionsCrudCreateRequest = {
-  organizationId: "<id>",
-};
+let value: V3CollectionsCrudCreateRequest = {};
 ```
 
 ## Fields

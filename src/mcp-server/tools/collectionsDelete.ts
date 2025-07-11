@@ -12,9 +12,9 @@ const args = {
 
 export const tool$collectionsDelete: ToolDefinition<typeof args> = {
   name: "collections-delete",
-  description: `Delete a Collection
+  description: `Delete a collection
 
-Delete a Collection`,
+Delete a collection.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await collectionsDelete(

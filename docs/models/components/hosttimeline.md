@@ -8,13 +8,11 @@ import { HostTimeline } from "censys-sdk-typescript/models/components";
 let value: HostTimeline = {
   events: [
     {
-      extensions: {
-        "key": "<value>",
-      },
+      extensions: {},
       resource: {},
     },
   ],
-  scannedTo: new Date("2024-10-12T15:55:05.148Z"),
+  scannedTo: new Date("2025-10-25T20:03:11.542Z"),
 };
 ```
 

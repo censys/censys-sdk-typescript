@@ -8,7 +8,13 @@ import { V3GlobaldataSearchAggregateResponse } from "censys-sdk-typescript/model
 let value: V3GlobaldataSearchAggregateResponse = {
   headers: {
     "key": [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
+      "<value 3>",
+    ],
+    "key1": [
+      "<value 1>",
+      "<value 2>",
     ],
   },
   result: {},

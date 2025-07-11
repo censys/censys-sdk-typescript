@@ -13,5 +13,5 @@ let value: ValidationLevel = "ov";
 ## Values
 
 ```typescript
-"unknown" | "dv" | "ov" | "ev"
+"" | "dv" | "ov" | "ev"
 ```

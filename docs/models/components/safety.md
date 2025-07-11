@@ -11,5 +11,5 @@ let value: Safety = "present";
 ## Values
 
 ```typescript
-"not_defined" | "negligible" | "present"
+"" | "negligible" | "present"
 ```

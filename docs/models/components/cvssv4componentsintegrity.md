@@ -7,11 +7,11 @@ Refers to whether the protected information has been tampered with or changed in
 ```typescript
 import { CVSSv4ComponentsIntegrity } from "censys-sdk-typescript/models/components";
 
-let value: CVSSv4ComponentsIntegrity = "unspecified";
+let value: CVSSv4ComponentsIntegrity = "";
 ```
 
 ## Values
 
 ```typescript
-"unspecified" | "none" | "low" | "high"
+"" | "none" | "low" | "high"
 ```

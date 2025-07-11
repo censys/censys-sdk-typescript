@@ -28,14 +28,14 @@ import {
 } from "./metrics.js";
 
 export const RiskSource = {
-  Unspecified: "unspecified",
+  Unknown: "",
   Censys: "censys",
   Cve: "cve",
 } as const;
 export type RiskSource = ClosedEnum<typeof RiskSource>;
 
 export const Severity = {
-  Unspecified: "unspecified",
+  Unknown: "",
   Low: "low",
   Medium: "medium",
   High: "high",
@@ -44,7 +44,7 @@ export const Severity = {
 export type Severity = ClosedEnum<typeof Severity>;
 
 export const RiskSource1 = {
-  Undefined: "undefined",
+  Unknown: "",
   Censys: "censys",
   Recog: "recog",
   Wappalyzer: "wappalyzer",

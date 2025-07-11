@@ -13,5 +13,5 @@ let value: Integrity = "high";
 ## Values
 
 ```typescript
-"unspecified" | "none" | "low" | "high"
+"" | "none" | "low" | "high"
 ```

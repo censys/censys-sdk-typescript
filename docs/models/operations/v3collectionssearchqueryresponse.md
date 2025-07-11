@@ -7,8 +7,10 @@ import { V3CollectionsSearchQueryResponse } from "censys-sdk-typescript/models/o
 
 let value: V3CollectionsSearchQueryResponse = {
   headers: {
-    "key": [
-      "<value>",
+    "key": [],
+    "key1": [
+      "<value 1>",
+      "<value 2>",
     ],
   },
   result: {},

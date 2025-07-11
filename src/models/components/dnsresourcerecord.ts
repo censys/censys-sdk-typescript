@@ -12,7 +12,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  * An enumerated field indicating what type of data is in the "services.dns.additionals.response" field. For example, "A" signifies that the value in "services.dns.additionals.response" is an IPv4 address for the FQDN in "services.dns.additionals.name".
  */
 export const DnsResourceRecordType = {
-  Unknown: "unknown",
+  Unknown: "",
   A: "a",
   Txt: "txt",
   Ns: "ns",

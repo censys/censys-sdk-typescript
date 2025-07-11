@@ -19,7 +19,7 @@ import {
  * The certificate's type. Options include root, intermediate, or leaf.
  */
 export const Type = {
-  Unknown: "unknown",
+  Unknown: "",
   Root: "root",
   Intermediate: "intermediate",
   Leaf: "leaf",

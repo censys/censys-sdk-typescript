@@ -6,7 +6,6 @@
 import { V3GlobaldataAssetHostTimelineRequest } from "censys-sdk-typescript/models/operations";
 
 let value: V3GlobaldataAssetHostTimelineRequest = {
-  organizationId: "<id>",
   hostId: "<id>",
   startTime: new Date("2023-05-20T11:54:20.505Z"),
   endTime: new Date("2025-11-17T23:04:28.201Z"),

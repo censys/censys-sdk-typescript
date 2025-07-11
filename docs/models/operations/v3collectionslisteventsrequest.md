@@ -6,7 +6,6 @@
 import { V3CollectionsListEventsRequest } from "censys-sdk-typescript/models/operations";
 
 let value: V3CollectionsListEventsRequest = {
-  organizationId: "<id>",
   collectionUid: "cec4a458-fc30-4930-add0-f9349a621b06",
 };
 ```

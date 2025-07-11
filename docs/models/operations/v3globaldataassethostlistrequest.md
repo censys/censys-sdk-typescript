@@ -6,9 +6,8 @@
 import { V3GlobaldataAssetHostListRequest } from "censys-sdk-typescript/models/operations";
 
 let value: V3GlobaldataAssetHostListRequest = {
-  organizationId: "<id>",
   hostIds: [
-    "<value>",
+    "<value 1>",
   ],
 };
 ```

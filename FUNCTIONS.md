@@ -21,43 +21,26 @@ specific category of applications.
 ```typescript
 import { SDKCore } from "censys-sdk-typescript/core.js";
 import { globalDataSearch } from "censys-sdk-typescript/funcs/globalDataSearch.js";
-import { SDKValidationError } from "censys-sdk-typescript/models/errors/sdkvalidationerror.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await globalDataSearch(sdk, {
-    organizationId: "<id>",
     searchQueryInputBody: {
       query: "<value>",
     },
   });
-
-  switch (true) {
-    case res.ok:
-      // The success case will be handled outside of the switch block
-      break;
-    case res.error instanceof SDKValidationError:
-      // Pretty-print validation errors.
-      return console.log(res.error.pretty());
-    case res.error instanceof Error:
-      return console.log(res.error);
-    default:
-      // TypeScript's type checking will fail on the following line if the above
-      // cases were not exhaustive.
-      res.error satisfies never;
-      throw new Error("Assertion failed: expected error checks to be exhaustive: " + res.error);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("globalDataSearch failed:", res.error);
   }
-
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

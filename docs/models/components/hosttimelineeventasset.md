@@ -6,9 +6,7 @@
 import { HostTimelineEventAsset } from "censys-sdk-typescript/models/components";
 
 let value: HostTimelineEventAsset = {
-  extensions: {
-    "key": "<value>",
-  },
+  extensions: {},
   resource: {},
 };
 ```

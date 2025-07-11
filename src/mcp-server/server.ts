@@ -30,6 +30,7 @@ import { tool$globalDataGetHostTimeline } from "./tools/globalDataGetHostTimelin
 import { tool$globalDataGetWebProperties } from "./tools/globalDataGetWebProperties.js";
 import { tool$globalDataGetWebProperty } from "./tools/globalDataGetWebProperty.js";
 import { tool$globalDataSearch } from "./tools/globalDataSearch.js";
+import { tool$threatHuntingValueCounts } from "./tools/threatHuntingValueCounts.js";
 
 export function createMCPServer(deps: {
   logger: ConsoleLogger;
@@ -42,7 +43,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "SDK",
-    version: "0.2.2",
+    version: "0.3.0",
   });
 
   const client = new SDKCore({
@@ -90,6 +91,7 @@ export function createMCPServer(deps: {
   tool(tool$globalDataGetWebProperty);
   tool(tool$globalDataAggregate);
   tool(tool$globalDataSearch);
+  tool(tool$threatHuntingValueCounts);
 
   return server;
 }

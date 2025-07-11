@@ -8,6 +8,7 @@ import { HostAsset } from "censys-sdk-typescript/models/components";
 let value: HostAsset = {
   extensions: {
     "key": "<value>",
+    "key1": "<value>",
   },
   resource: {},
 };

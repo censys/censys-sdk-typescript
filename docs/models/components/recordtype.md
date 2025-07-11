@@ -11,5 +11,5 @@ let value: RecordType = "aaaa";
 ## Values
 
 ```typescript
-"unspecified" | "a" | "aaaa"
+"" | "a" | "aaaa"
 ```

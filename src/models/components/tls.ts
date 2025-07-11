@@ -25,7 +25,7 @@ import {
  * Certificate version v1(0), v2(1), v3(2).
  */
 export const VersionSelected = {
-  Unknown: "unknown",
+  Unknown: "",
   SsLv2: "ss_lv_2",
   SsLv3: "ss_lv_3",
   Tlsv10: "tlsv1_0",

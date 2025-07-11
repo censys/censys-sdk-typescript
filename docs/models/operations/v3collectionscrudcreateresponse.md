@@ -8,7 +8,8 @@ import { V3CollectionsCrudCreateResponse } from "censys-sdk-typescript/models/op
 let value: V3CollectionsCrudCreateResponse = {
   headers: {
     "key": [
-      "<value>",
+      "<value 1>",
+      "<value 2>",
     ],
   },
   result: {},

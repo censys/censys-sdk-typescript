@@ -13,5 +13,5 @@ let value: KEVSource = "cisa";
 ## Values
 
 ```typescript
-"unspecified" | "cisa" | "third_party"
+"" | "cisa" | "third_party"
 ```

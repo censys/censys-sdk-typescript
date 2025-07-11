@@ -7,11 +7,11 @@ Indicates the level of access required for an attacker to exploit the vulnerabil
 ```typescript
 import { AttackVector } from "censys-sdk-typescript/models/components";
 
-let value: AttackVector = "unspecified";
+let value: AttackVector = "";
 ```
 
 ## Values
 
 ```typescript
-"unspecified" | "network" | "adjacent" | "local" | "physical"
+"" | "network" | "adjacent" | "local" | "physical"
 ```

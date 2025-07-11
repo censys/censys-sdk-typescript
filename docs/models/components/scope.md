@@ -7,11 +7,11 @@ Determines whether a vulnerability in one system or component can impact another
 ```typescript
 import { Scope } from "censys-sdk-typescript/models/components";
 
-let value: Scope = "unspecified";
+let value: Scope = "";
 ```
 
 ## Values
 
 ```typescript
-"unspecified" | "unchanged" | "changed"
+"" | "unchanged" | "changed"
 ```

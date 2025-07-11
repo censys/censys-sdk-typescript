@@ -11,5 +11,5 @@ let value: Severity = "critical";
 ## Values
 
 ```typescript
-"unspecified" | "low" | "medium" | "high" | "critical"
+"" | "low" | "medium" | "high" | "critical"
 ```
