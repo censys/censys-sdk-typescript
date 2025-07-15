@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 50d8a8aa-8772-4a95-9f7b-f8e1bd905c4e
 management:
-  docChecksum: da764aca16cefa712b9f73e3ac4916f7
-  docVersion: 1.0.12
+  docChecksum: a844969dfbf23c99712514cad5e92fdc
+  docVersion: 1.0.13
   speakeasyVersion: 1.582.0
   generationVersion: 2.657.1
-  releaseVersion: 0.3.1
-  configChecksum: 0d6b780757a3f15b23aa019e97489587
+  releaseVersion: 0.4.0
+  configChecksum: 6a9ee531615f8e780ae6f184c8dda297
   repoURL: https://github.com/censys/censys-sdk-typescript.git
   installationURL: https://github.com/censys/censys-sdk-typescript
   published: true
@@ -25,7 +25,6 @@ features:
     globalServerURLs: 2.82.5
     globals: 2.82.2
     ignores: 2.81.1
-    mcpServer: 0.9.3
     nameOverrides: 2.81.2
     nullables: 0.1.1
     responseFormat: 0.2.3
@@ -664,37 +663,6 @@ generatedFiles:
   - src/lib/sdks.ts
   - src/lib/security.ts
   - src/lib/url.ts
-  - src/mcp-server/build.mts
-  - src/mcp-server/cli.ts
-  - src/mcp-server/cli/start/command.ts
-  - src/mcp-server/cli/start/impl.ts
-  - src/mcp-server/console-logger.ts
-  - src/mcp-server/extensions.ts
-  - src/mcp-server/mcp-server.ts
-  - src/mcp-server/prompts.ts
-  - src/mcp-server/resources.ts
-  - src/mcp-server/scopes.ts
-  - src/mcp-server/server.ts
-  - src/mcp-server/shared.ts
-  - src/mcp-server/tools.ts
-  - src/mcp-server/tools/collectionsAggregate.ts
-  - src/mcp-server/tools/collectionsCreate.ts
-  - src/mcp-server/tools/collectionsDelete.ts
-  - src/mcp-server/tools/collectionsGet.ts
-  - src/mcp-server/tools/collectionsList.ts
-  - src/mcp-server/tools/collectionsListEvents.ts
-  - src/mcp-server/tools/collectionsSearch.ts
-  - src/mcp-server/tools/collectionsUpdate.ts
-  - src/mcp-server/tools/globalDataAggregate.ts
-  - src/mcp-server/tools/globalDataGetCertificate.ts
-  - src/mcp-server/tools/globalDataGetCertificates.ts
-  - src/mcp-server/tools/globalDataGetHost.ts
-  - src/mcp-server/tools/globalDataGetHostTimeline.ts
-  - src/mcp-server/tools/globalDataGetHosts.ts
-  - src/mcp-server/tools/globalDataGetWebProperties.ts
-  - src/mcp-server/tools/globalDataGetWebProperty.ts
-  - src/mcp-server/tools/globalDataSearch.ts
-  - src/mcp-server/tools/threatHuntingValueCounts.ts
   - src/models/components/activemq.ts
   - src/models/components/amqp.ts
   - src/models/components/amqpprotocol.ts
