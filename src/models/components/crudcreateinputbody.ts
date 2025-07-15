@@ -11,7 +11,7 @@ export type CrudCreateInputBody = {
   /**
    * description of the collection
    */
-  description: string;
+  description?: string | undefined;
   /**
    * name of the collection
    */
@@ -28,14 +28,14 @@ export const CrudCreateInputBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  description: z.string(),
+  description: z.string().optional(),
   name: z.string(),
   query: z.string(),
 });
 
 /** @internal */
 export type CrudCreateInputBody$Outbound = {
-  description: string;
+  description?: string | undefined;
   name: string;
   query: string;
 };
@@ -46,7 +46,7 @@ export const CrudCreateInputBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CrudCreateInputBody
 > = z.object({
-  description: z.string(),
+  description: z.string().optional(),
   name: z.string(),
   query: z.string(),
 });

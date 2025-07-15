@@ -8,24 +8,14 @@ import { V3ThreathuntingValueCountsRequest } from "censys-sdk-typescript/models/
 let value: V3ThreathuntingValueCountsRequest = {
   searchValueCountsInputBody: {
     andCountConditions: [
-      [
-        {
-          field: "<value>",
-          value: "<value>",
-        },
-      ],
-      [
-        {
-          field: "<value>",
-          value: "<value>",
-        },
-      ],
-      [
-        {
-          field: "<value>",
-          value: "<value>",
-        },
-      ],
+      {
+        fieldValuePairs: [
+          {
+            field: "host.services.port",
+            value: "80",
+          },
+        ],
+      },
     ],
   },
 };

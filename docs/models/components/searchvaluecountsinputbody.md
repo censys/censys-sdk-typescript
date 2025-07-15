@@ -6,14 +6,12 @@
 import { SearchValueCountsInputBody } from "censys-sdk-typescript/models/components";
 
 let value: SearchValueCountsInputBody = {
-  andCountConditions: [
-    [],
-  ],
+  andCountConditions: [],
 };
 ```
 
 ## Fields
 
-| Field                                                                                                        | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
-| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| `andCountConditions`                                                                                         | [components.FieldValuePair](../../models/components/fieldvaluepair.md)[][]                                   | :heavy_check_mark:                                                                                           | Groups of field-value pairs to count matches for. Each group must target fields from the same nested object. |
+| Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `andCountConditions`                                                     | [components.CountCondition](../../models/components/countcondition.md)[] | :heavy_check_mark:                                                       | Groups of field-value pairs to count matches for.                        |

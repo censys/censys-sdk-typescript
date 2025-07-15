@@ -8,17 +8,17 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  FieldValuePair,
-  FieldValuePair$inboundSchema,
-  FieldValuePair$Outbound,
-  FieldValuePair$outboundSchema,
-} from "./fieldvaluepair.js";
+  CountCondition,
+  CountCondition$inboundSchema,
+  CountCondition$Outbound,
+  CountCondition$outboundSchema,
+} from "./countcondition.js";
 
 export type SearchValueCountsInputBody = {
   /**
-   * Groups of field-value pairs to count matches for. Each group must target fields from the same nested object.
+   * Groups of field-value pairs to count matches for.
    */
-  andCountConditions: Array<Array<FieldValuePair> | null> | null;
+  andCountConditions: Array<CountCondition> | null;
 };
 
 /** @internal */
@@ -27,9 +27,7 @@ export const SearchValueCountsInputBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  and_count_conditions: z.nullable(
-    z.array(z.nullable(z.array(FieldValuePair$inboundSchema))),
-  ),
+  and_count_conditions: z.nullable(z.array(CountCondition$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     "and_count_conditions": "andCountConditions",
@@ -38,7 +36,7 @@ export const SearchValueCountsInputBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type SearchValueCountsInputBody$Outbound = {
-  and_count_conditions: Array<Array<FieldValuePair$Outbound> | null> | null;
+  and_count_conditions: Array<CountCondition$Outbound> | null;
 };
 
 /** @internal */
@@ -47,9 +45,7 @@ export const SearchValueCountsInputBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SearchValueCountsInputBody
 > = z.object({
-  andCountConditions: z.nullable(
-    z.array(z.nullable(z.array(FieldValuePair$outboundSchema))),
-  ),
+  andCountConditions: z.nullable(z.array(CountCondition$outboundSchema)),
 }).transform((v) => {
   return remap$(v, {
     andCountConditions: "and_count_conditions",

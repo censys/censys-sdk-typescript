@@ -47,6 +47,7 @@ export * from "./collectioneventsresponse.js";
 export * from "./connection.js";
 export * from "./contact.js";
 export * from "./coordinates.js";
+export * from "./countcondition.js";
 export * from "./cpe.js";
 export * from "./cpelifecycle.js";
 export * from "./crestroncp3.js";

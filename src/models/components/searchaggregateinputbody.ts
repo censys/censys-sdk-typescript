@@ -10,15 +10,15 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SearchAggregateInputBody = {
   /**
-   * Specify field to aggregate by.
+   * field to aggregate by
    */
   field: string;
   /**
-   * Number of buckets to split results into.
+   * number of buckets to split results into
    */
   numberOfBuckets: number;
   /**
-   * CenQL query string to search upon.
+   * CenQL query string to search upon
    */
   query: string;
 };

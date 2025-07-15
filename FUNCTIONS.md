@@ -25,14 +25,19 @@ import { globalDataSearch } from "censys-sdk-typescript/funcs/globalDataSearch.j
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await globalDataSearch(sdk, {
     searchQueryInputBody: {
-      query: "<value>",
+      fields: [
+        "host.ip",
+      ],
+      pageSize: 1,
+      pageToken: "<next_page_token>",
+      query: "host.services: (protocol=SSH and not port: 22)",
     },
   });
   if (res.ok) {

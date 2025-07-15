@@ -8,7 +8,12 @@ import { V3CollectionsSearchQueryRequest } from "censys-sdk-typescript/models/op
 let value: V3CollectionsSearchQueryRequest = {
   collectionUid: "<id>",
   searchQueryInputBody: {
-    query: "<value>",
+    fields: [
+      "host.ip",
+    ],
+    pageSize: 1,
+    pageToken: "<next_page_token>",
+    query: "host.services: (protocol=SSH and not port: 22)",
   },
 };
 ```
