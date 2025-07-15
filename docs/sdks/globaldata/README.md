@@ -27,13 +27,15 @@ Retrieve information about multiple certificates. A certificate ID is its SHA-25
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.globalData.getCertificates({
-    certificateIds: [],
+    certificateIds: [
+      "3daf2843a77b6f4e6af43cd9b6f6746053b8c928e056e8a724808db8905a94cf",
+    ],
   });
 
   console.log(result);
@@ -53,13 +55,15 @@ import { globalDataGetCertificates } from "censys-sdk-typescript/funcs/globalDat
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await globalDataGetCertificates(sdk, {
-    certificateIds: [],
+    certificateIds: [
+      "3daf2843a77b6f4e6af43cd9b6f6746053b8c928e056e8a724808db8905a94cf",
+    ],
   });
   if (res.ok) {
     const { value: result } = res;
@@ -102,13 +106,13 @@ Retrieve information about a single certificate. A certificate ID is its SHA-256
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.globalData.getCertificate({
-    certificateId: "<id>",
+    certificateId: "3daf2843a77b6f4e6af43cd9b6f6746053b8c928e056e8a724808db8905a94cf",
   });
 
   console.log(result);
@@ -128,13 +132,13 @@ import { globalDataGetCertificate } from "censys-sdk-typescript/funcs/globalData
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await globalDataGetCertificate(sdk, {
-    certificateId: "<id>",
+    certificateId: "3daf2843a77b6f4e6af43cd9b6f6746053b8c928e056e8a724808db8905a94cf",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -177,14 +181,14 @@ Retrieve information about multiple hosts. A host ID is its IP address.
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.globalData.getHosts({
     hostIds: [
-      "<value 1>",
+      "8.8.8.8",
     ],
   });
 
@@ -205,14 +209,14 @@ import { globalDataGetHosts } from "censys-sdk-typescript/funcs/globalDataGetHos
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await globalDataGetHosts(sdk, {
     hostIds: [
-      "<value 1>",
+      "8.8.8.8",
     ],
   });
   if (res.ok) {
@@ -256,13 +260,14 @@ Retrieve information about a single host. A host ID is its IP address.
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.globalData.getHost({
-    hostId: "<id>",
+    hostId: "8.8.8.8",
+    atTime: new Date("2025-01-01T00:00:00Z"),
   });
 
   console.log(result);
@@ -282,13 +287,14 @@ import { globalDataGetHost } from "censys-sdk-typescript/funcs/globalDataGetHost
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await globalDataGetHost(sdk, {
-    hostId: "<id>",
+    hostId: "8.8.8.8",
+    atTime: new Date("2025-01-01T00:00:00Z"),
   });
   if (res.ok) {
     const { value: result } = res;
@@ -331,15 +337,15 @@ Retrieve event history for a host. A host ID is its IP address.
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.globalData.getHostTimeline({
-    hostId: "<id>",
-    startTime: new Date("2024-10-02T01:32:37.490Z"),
-    endTime: new Date("2025-02-08T13:31:28.844Z"),
+    hostId: "8.8.8.8",
+    startTime: new Date("2025-01-01T00:00:00Z"),
+    endTime: new Date("2025-01-02T00:00:00Z"),
   });
 
   console.log(result);
@@ -359,15 +365,15 @@ import { globalDataGetHostTimeline } from "censys-sdk-typescript/funcs/globalDat
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await globalDataGetHostTimeline(sdk, {
-    hostId: "<id>",
-    startTime: new Date("2024-10-02T01:32:37.490Z"),
-    endTime: new Date("2025-02-08T13:31:28.844Z"),
+    hostId: "8.8.8.8",
+    startTime: new Date("2025-01-01T00:00:00Z"),
+    endTime: new Date("2025-01-02T00:00:00Z"),
   });
   if (res.ok) {
     const { value: result } = res;
@@ -410,14 +416,14 @@ Retrieve information about multiple web properties. Web properties are identifie
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.globalData.getWebProperties({
     webpropertyIds: [
-      "<value 1>",
+      "platform.censys.io:80",
     ],
   });
 
@@ -438,14 +444,14 @@ import { globalDataGetWebProperties } from "censys-sdk-typescript/funcs/globalDa
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await globalDataGetWebProperties(sdk, {
     webpropertyIds: [
-      "<value 1>",
+      "platform.censys.io:80",
     ],
   });
   if (res.ok) {
@@ -489,13 +495,14 @@ Retrieve information about a single web property. Web properties are identified 
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.globalData.getWebProperty({
-    webpropertyId: "<id>",
+    webpropertyId: "platform.censys.io:80",
+    atTime: new Date("2025-01-01T00:00:00Z"),
   });
 
   console.log(result);
@@ -515,13 +522,14 @@ import { globalDataGetWebProperty } from "censys-sdk-typescript/funcs/globalData
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await globalDataGetWebProperty(sdk, {
-    webpropertyId: "<id>",
+    webpropertyId: "platform.censys.io:80",
+    atTime: new Date("2025-01-01T00:00:00Z"),
   });
   if (res.ok) {
     const { value: result } = res;
@@ -564,16 +572,16 @@ Aggregate results for a Platform search query. This functionality is equivalent 
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.globalData.aggregate({
     searchAggregateInputBody: {
-      field: "<value>",
-      numberOfBuckets: 309828,
-      query: "<value>",
+      field: "web.endpoints.http.html_title",
+      numberOfBuckets: 100,
+      query: "web: *",
     },
   });
 
@@ -594,16 +602,16 @@ import { globalDataAggregate } from "censys-sdk-typescript/funcs/globalDataAggre
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await globalDataAggregate(sdk, {
     searchAggregateInputBody: {
-      field: "<value>",
-      numberOfBuckets: 309828,
-      query: "<value>",
+      field: "web.endpoints.http.html_title",
+      numberOfBuckets: 100,
+      query: "web: *",
     },
   });
   if (res.ok) {
@@ -647,14 +655,19 @@ Run a search query across Censys data. Reference the [documentation on Censys Qu
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.globalData.search({
     searchQueryInputBody: {
-      query: "<value>",
+      fields: [
+        "host.ip",
+      ],
+      pageSize: 1,
+      pageToken: "<next_page_token>",
+      query: "host.services: (protocol=SSH and not port: 22)",
     },
   });
 
@@ -675,14 +688,19 @@ import { globalDataSearch } from "censys-sdk-typescript/funcs/globalDataSearch.j
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await globalDataSearch(sdk, {
     searchQueryInputBody: {
-      query: "<value>",
+      fields: [
+        "host.ip",
+      ],
+      pageSize: 1,
+      pageToken: "<next_page_token>",
+      query: "host.services: (protocol=SSH and not port: 22)",
     },
   });
   if (res.ok) {

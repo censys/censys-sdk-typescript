@@ -19,7 +19,7 @@ Get counts of web assets for specific field-value pairs and combinations of fiel
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -27,13 +27,17 @@ async function run() {
   const result = await sdk.threatHunting.valueCounts({
     searchValueCountsInputBody: {
       andCountConditions: [
-        [
-          {
-            field: "<value>",
-            value: "<value>",
-          },
-        ],
-        [],
+        {
+          fieldValuePairs: [
+            {
+              field: "host.services.port",
+              value: "80",
+            },
+          ],
+        },
+        {
+          fieldValuePairs: [],
+        },
       ],
     },
   });
@@ -55,7 +59,7 @@ import { threatHuntingValueCounts } from "censys-sdk-typescript/funcs/threatHunt
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -63,13 +67,17 @@ async function run() {
   const res = await threatHuntingValueCounts(sdk, {
     searchValueCountsInputBody: {
       andCountConditions: [
-        [
-          {
-            field: "<value>",
-            value: "<value>",
-          },
-        ],
-        [],
+        {
+          fieldValuePairs: [
+            {
+              field: "host.services.port",
+              value: "80",
+            },
+          ],
+        },
+        {
+          fieldValuePairs: [],
+        },
       ],
     },
   });

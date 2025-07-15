@@ -6,14 +6,14 @@
 import { FieldValuePair } from "censys-sdk-typescript/models/components";
 
 let value: FieldValuePair = {
-  field: "<value>",
-  value: "<value>",
+  field: "host.services.port",
+  value: "80",
 };
 ```
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `field`            | *string*           | :heavy_check_mark: | The field to match |
-| `value`            | *string*           | :heavy_check_mark: | The value to match |
+| Field              | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `field`            | *string*           | :heavy_check_mark: | The field to match | host.services.port |
+| `value`            | *string*           | :heavy_check_mark: | The value to match | 80                 |

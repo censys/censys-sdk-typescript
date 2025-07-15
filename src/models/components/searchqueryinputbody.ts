@@ -10,19 +10,19 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SearchQueryInputBody = {
   /**
-   * Specify fields to return in response and ignore others.
+   * specify fields to return in response and ignore others
    */
   fields?: Array<string> | null | undefined;
   /**
-   * Amount of results to return per page.
+   * amount of results to return per page
    */
   pageSize?: number | null | undefined;
   /**
-   * Page token for the requested page of search results.
+   * page token for the requested page of search results
    */
   pageToken?: string | undefined;
   /**
-   * CenQL query string to search upon.
+   * CenQL query string to search upon
    */
   query: string;
 };

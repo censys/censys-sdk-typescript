@@ -7,9 +7,9 @@ import { V3GlobaldataSearchAggregateRequest } from "censys-sdk-typescript/models
 
 let value: V3GlobaldataSearchAggregateRequest = {
   searchAggregateInputBody: {
-    field: "<value>",
-    numberOfBuckets: 777285,
-    query: "<value>",
+    field: "web.endpoints.http.html_title",
+    numberOfBuckets: 100,
+    query: "web: *",
   },
 };
 ```

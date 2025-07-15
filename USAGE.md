@@ -3,14 +3,19 @@
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.globalData.search({
     searchQueryInputBody: {
-      query: "<value>",
+      fields: [
+        "host.ip",
+      ],
+      pageSize: 1,
+      pageToken: "<next_page_token>",
+      query: "host.services: (protocol=SSH and not port: 22)",
     },
   });
 

@@ -19,7 +19,7 @@ export type V3CollectionsCrudGetRequest = {
    */
   organizationId?: string | undefined;
   /**
-   * The UID for the collection
+   * The UID for the collection. Obtain the collection ID using the [list collections endpoint](https://docs.censys.com/reference/v3-collections-crud-list#/) or via the collection URL when using the web console.
    */
   collectionUid: string;
 };

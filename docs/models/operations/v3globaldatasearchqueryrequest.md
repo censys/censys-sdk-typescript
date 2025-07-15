@@ -7,7 +7,12 @@ import { V3GlobaldataSearchQueryRequest } from "censys-sdk-typescript/models/ope
 
 let value: V3GlobaldataSearchQueryRequest = {
   searchQueryInputBody: {
-    query: "<value>",
+    fields: [
+      "host.ip",
+    ],
+    pageSize: 1,
+    pageToken: "<next_page_token>",
+    query: "host.services: (protocol=SSH and not port: 22)",
   },
 };
 ```

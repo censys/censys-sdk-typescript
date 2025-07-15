@@ -172,14 +172,19 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.globalData.search({
     searchQueryInputBody: {
-      query: "<value>",
+      fields: [
+        "host.ip",
+      ],
+      pageSize: 1,
+      pageToken: "<next_page_token>",
+      query: "host.services: (protocol=SSH and not port: 22)",
     },
   });
 
@@ -287,12 +292,15 @@ The following global parameter is available.
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await sdk.collections.list({});
+  const result = await sdk.collections.list({
+    pageToken: "<next_page_token>",
+    pageSize: 1,
+  });
 
   console.log(result);
 }
@@ -312,12 +320,15 @@ To change the default retry strategy for a single API call, simply provide a ret
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await sdk.collections.list({}, {
+  const result = await sdk.collections.list({
+    pageToken: "<next_page_token>",
+    pageSize: 1,
+  }, {
     retries: {
       strategy: "backoff",
       backoff: {
@@ -352,12 +363,15 @@ const sdk = new SDK({
     },
     retryConnectionErrors: false,
   },
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await sdk.collections.list({});
+  const result = await sdk.collections.list({
+    pageToken: "<next_page_token>",
+    pageSize: 1,
+  });
 
   console.log(result);
 }
@@ -387,13 +401,16 @@ import { SDK } from "censys-sdk-typescript";
 import * as errors from "censys-sdk-typescript/models/errors";
 
 const sdk = new SDK({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   try {
-    const result = await sdk.collections.list({});
+    const result = await sdk.collections.list({
+      pageToken: "<next_page_token>",
+      pageSize: 1,
+    });
 
     console.log(result);
   } catch (error) {
@@ -454,12 +471,15 @@ import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
   serverURL: "https://api.platform.censys.io",
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await sdk.collections.list({});
+  const result = await sdk.collections.list({
+    pageToken: "<next_page_token>",
+    pageSize: 1,
+  });
 
   console.log(result);
 }
@@ -535,11 +555,14 @@ import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
 });
 
 async function run() {
-  const result = await sdk.collections.list({});
+  const result = await sdk.collections.list({
+    pageToken: "<next_page_token>",
+    pageSize: 1,
+  });
 
   console.log(result);
 }

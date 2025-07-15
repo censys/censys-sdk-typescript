@@ -26,12 +26,15 @@ List all collections for an organization. Retrieved information includes collect
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await sdk.collections.list({});
+  const result = await sdk.collections.list({
+    pageToken: "<next_page_token>",
+    pageSize: 1,
+  });
 
   console.log(result);
 }
@@ -50,12 +53,15 @@ import { collectionsList } from "censys-sdk-typescript/funcs/collectionsList.js"
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const res = await collectionsList(sdk, {});
+  const res = await collectionsList(sdk, {
+    pageToken: "<next_page_token>",
+    pageSize: 1,
+  });
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
@@ -97,12 +103,18 @@ Create a new collection.
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await sdk.collections.create({});
+  const result = await sdk.collections.create({
+    crudCreateInputBody: {
+      description: "Hosts with services with AsyncRAT indicator in cert subject DN",
+      name: "Hosts services with AsyncRAT indicator",
+      query: "host.services.cert.parsed.subject_dn: \"asyncrat\"",
+    },
+  });
 
   console.log(result);
 }
@@ -121,12 +133,18 @@ import { collectionsCreate } from "censys-sdk-typescript/funcs/collectionsCreate
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const res = await collectionsCreate(sdk, {});
+  const res = await collectionsCreate(sdk, {
+    crudCreateInputBody: {
+      description: "Hosts with services with AsyncRAT indicator in cert subject DN",
+      name: "Hosts services with AsyncRAT indicator",
+      query: "host.services.cert.parsed.subject_dn: \"asyncrat\"",
+    },
+  });
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
@@ -168,13 +186,13 @@ Delete a collection.
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.collections.delete({
-    collectionUid: "d9ed2825-23bc-46db-bc4b-b4ac6c48f664",
+    collectionUid: "11111111-2222-3333-4444-555555555555",
   });
 
   console.log(result);
@@ -194,13 +212,13 @@ import { collectionsDelete } from "censys-sdk-typescript/funcs/collectionsDelete
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await collectionsDelete(sdk, {
-    collectionUid: "d9ed2825-23bc-46db-bc4b-b4ac6c48f664",
+    collectionUid: "11111111-2222-3333-4444-555555555555",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -235,7 +253,7 @@ run();
 
 ## get
 
-Retrieve information about a collection. Obtain the collection ID using the [list collections endpoint](https://docs.censys.com/reference/v3-collections-crud-list#/) or via the collection URL when using the web console. Retrieved information includes its name, query, description, status, and asset count.
+Retrieve information about a collection. Retrieved information includes its name, query, description, status, and asset count.
 
 ### Example Usage
 
@@ -243,13 +261,13 @@ Retrieve information about a collection. Obtain the collection ID using the [lis
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.collections.get({
-    collectionUid: "4d6d3f55-e4ae-405b-8d0f-4207b74028ab",
+    collectionUid: "11111111-2222-3333-4444-555555555555",
   });
 
   console.log(result);
@@ -269,13 +287,13 @@ import { collectionsGet } from "censys-sdk-typescript/funcs/collectionsGet.js";
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await collectionsGet(sdk, {
-    collectionUid: "4d6d3f55-e4ae-405b-8d0f-4207b74028ab",
+    collectionUid: "11111111-2222-3333-4444-555555555555",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -318,13 +336,18 @@ Update a collection's name, description, and/or query.
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.collections.update({
-    collectionUid: "<id>",
+    collectionUid: "11111111-2222-3333-4444-555555555555",
+    crudUpdateInputBody: {
+      description: "Hosts with services with AsyncRAT indicator in cert subject DN",
+      name: "Hosts services with AsyncRAT indicator",
+      query: "host.services.cert.parsed.subject_dn: \"asyncrat\"",
+    },
   });
 
   console.log(result);
@@ -344,13 +367,18 @@ import { collectionsUpdate } from "censys-sdk-typescript/funcs/collectionsUpdate
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await collectionsUpdate(sdk, {
-    collectionUid: "<id>",
+    collectionUid: "11111111-2222-3333-4444-555555555555",
+    crudUpdateInputBody: {
+      description: "Hosts with services with AsyncRAT indicator in cert subject DN",
+      name: "Hosts services with AsyncRAT indicator",
+      query: "host.services.cert.parsed.subject_dn: \"asyncrat\"",
+    },
   });
   if (res.ok) {
     const { value: result } = res;
@@ -393,13 +421,17 @@ Retrieve the event history for a collection. This includes the addition or remov
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.collections.listEvents({
-    collectionUid: "ddc110c4-03da-472a-98af-be013b92eff5",
+    collectionUid: "11111111-2222-3333-4444-555555555555",
+    pageSize: 1,
+    pageToken: "<next_page_token>",
+    startTime: new Date("2025-01-01T00:00:00Z"),
+    endTime: new Date("2025-01-02T00:00:00Z"),
   });
 
   console.log(result);
@@ -419,13 +451,17 @@ import { collectionsListEvents } from "censys-sdk-typescript/funcs/collectionsLi
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await collectionsListEvents(sdk, {
-    collectionUid: "ddc110c4-03da-472a-98af-be013b92eff5",
+    collectionUid: "11111111-2222-3333-4444-555555555555",
+    pageSize: 1,
+    pageToken: "<next_page_token>",
+    startTime: new Date("2025-01-01T00:00:00Z"),
+    endTime: new Date("2025-01-02T00:00:00Z"),
   });
   if (res.ok) {
     const { value: result } = res;
@@ -468,17 +504,17 @@ Aggregate results for a Platform search query that targets a collection's assets
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const result = await sdk.collections.aggregate({
-    collectionUid: "ee98f78d-a47d-44fb-89f4-0626ceaf34d7",
+    collectionUid: "11111111-2222-3333-4444-555555555555",
     searchAggregateInputBody: {
-      field: "<value>",
-      numberOfBuckets: 829469,
-      query: "<value>",
+      field: "web.endpoints.http.html_title",
+      numberOfBuckets: 100,
+      query: "web: *",
     },
   });
 
@@ -499,17 +535,17 @@ import { collectionsAggregate } from "censys-sdk-typescript/funcs/collectionsAgg
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   const res = await collectionsAggregate(sdk, {
-    collectionUid: "ee98f78d-a47d-44fb-89f4-0626ceaf34d7",
+    collectionUid: "11111111-2222-3333-4444-555555555555",
     searchAggregateInputBody: {
-      field: "<value>",
-      numberOfBuckets: 829469,
-      query: "<value>",
+      field: "web.endpoints.http.html_title",
+      numberOfBuckets: 100,
+      query: "web: *",
     },
   });
   if (res.ok) {
@@ -553,7 +589,7 @@ Run a search query across a collection's assets. Reference the [documentation on
 import { SDK } from "censys-sdk-typescript";
 
 const sdk = new SDK({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -561,7 +597,12 @@ async function run() {
   const result = await sdk.collections.search({
     collectionUid: "<id>",
     searchQueryInputBody: {
-      query: "<value>",
+      fields: [
+        "host.ip",
+      ],
+      pageSize: 1,
+      pageToken: "<next_page_token>",
+      query: "host.services: (protocol=SSH and not port: 22)",
     },
   });
 
@@ -582,7 +623,7 @@ import { collectionsSearch } from "censys-sdk-typescript/funcs/collectionsSearch
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "<id>",
+  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -590,7 +631,12 @@ async function run() {
   const res = await collectionsSearch(sdk, {
     collectionUid: "<id>",
     searchQueryInputBody: {
-      query: "<value>",
+      fields: [
+        "host.ip",
+      ],
+      pageSize: 1,
+      pageToken: "<next_page_token>",
+      query: "host.services: (protocol=SSH and not port: 22)",
     },
   });
   if (res.ok) {

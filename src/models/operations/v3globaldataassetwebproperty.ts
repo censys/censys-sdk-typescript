@@ -19,7 +19,7 @@ export type V3GlobaldataAssetWebpropertyRequest = {
    */
   organizationId?: string | undefined;
   /**
-   * A web property host identifier, the format is hostname:port.
+   * A web property identifier.
    */
   webpropertyId: string;
   /**

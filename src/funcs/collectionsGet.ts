@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Get a collection
  *
  * @remarks
- * Retrieve information about a collection. Obtain the collection ID using the [list collections endpoint](https://docs.censys.com/reference/v3-collections-crud-list#/) or via the collection URL when using the web console. Retrieved information includes its name, query, description, status, and asset count.
+ * Retrieve information about a collection. Retrieved information includes its name, query, description, status, and asset count.
  */
 export function collectionsGet(
   client: SDKCore,
