@@ -52,10 +52,11 @@ jobs:
           echo "TypeScript SDK was regenerated: ${{ needs.generate.outputs.typescript_regenerated }}"
 
             - name: Setup tests directory
+      - name: Install SDK
         run: |
           cd tests
           npm install "$GITHUB_WORKSPACE/${{ needs.generate.outputs.typescript_directory }}"
-          
+
           echo "Installed SDK from typescript directory"
 
       - name: Run tests with SDK
@@ -66,5 +67,3 @@ jobs:
           cd tests
           echo "Running existing tests..."
           npm test
-
-
