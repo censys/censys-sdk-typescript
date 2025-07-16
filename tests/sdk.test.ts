@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import { SDK } from "../src/sdk";
+import { SDK } from "censys-sdk-typescript";
 import {
   V3CollectionsCrudCreateRequest,
   V3CollectionsCrudDeleteRequest,
@@ -18,7 +18,7 @@ import {
   V3GlobaldataSearchAggregateRequest,
   V3GlobaldataSearchQueryRequest,
   V3ThreathuntingValueCountsRequest,
-} from "../src/models/operations";
+} from "censys-sdk-typescript/models/operations";
 
 describe("Censys SDK", () => {
   let sdk: SDK;

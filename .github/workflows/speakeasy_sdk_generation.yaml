@@ -344,8 +344,6 @@ jobs:
           registry-url: "https://registry.npmjs.org"
       - name: Install dependencies
         run: npm install
-      - name: Run tests
-        run: npm run test
       - name: Publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.npm_token }}

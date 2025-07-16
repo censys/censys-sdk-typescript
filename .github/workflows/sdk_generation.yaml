@@ -28,3 +28,43 @@ jobs:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
       npm_token: ${{ secrets.NPM_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+
+  test-typescript-sdk:
+    name: Test TypeScript SDK
+    runs-on: ubuntu-latest
+    needs: [generate]
+    if: ${{ needs.generate.outputs.typescript_regenerated == 'true' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.generate.outputs.commit_hash }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+
+      - name: Display TypeScript SDK directory
+        run: |
+          echo "TypeScript SDK directory: ${{ needs.generate.outputs.typescript_directory }}"
+          echo "TypeScript SDK was regenerated: ${{ needs.generate.outputs.typescript_regenerated }}"
+
+            - name: Setup tests directory
+        run: |
+          cd tests
+          npm install "$GITHUB_WORKSPACE/${{ needs.generate.outputs.typescript_directory }}"
+          
+          echo "Installed SDK from typescript directory"
+
+      - name: Run tests with SDK
+        env:
+          ORG_ID: ${{ secrets.ORG_ID }}
+          TOKEN: ${{ secrets.TOKEN }}
+        run: |
+          cd tests
+          echo "Running existing tests..."
+          npm test
+
+
