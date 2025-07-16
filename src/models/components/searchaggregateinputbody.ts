@@ -14,6 +14,10 @@ export type SearchAggregateInputBody = {
    */
   field: string;
   /**
+   * Controls whether aggregation results are limited to values that match the query. When true, only field values that satisfy the query constraints are included in aggregation counts. When false, aggregation includes all field values from records that match the query, even if those specific field values don't match the query constraints. For example, if the query is 'host.services.protocol=SSH' and you are aggregating by 'host.services.port' - when true, only shows SSH ports; when false, shows all ports on hosts that have SSH services.
+   */
+  filterByQuery?: boolean | undefined;
+  /**
    * number of buckets to split results into
    */
   numberOfBuckets: number;
@@ -30,10 +34,12 @@ export const SearchAggregateInputBody$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   field: z.string(),
+  filter_by_query: z.boolean().default(false),
   number_of_buckets: z.number().int(),
   query: z.string(),
 }).transform((v) => {
   return remap$(v, {
+    "filter_by_query": "filterByQuery",
     "number_of_buckets": "numberOfBuckets",
   });
 });
@@ -41,6 +47,7 @@ export const SearchAggregateInputBody$inboundSchema: z.ZodType<
 /** @internal */
 export type SearchAggregateInputBody$Outbound = {
   field: string;
+  filter_by_query: boolean;
   number_of_buckets: number;
   query: string;
 };
@@ -52,10 +59,12 @@ export const SearchAggregateInputBody$outboundSchema: z.ZodType<
   SearchAggregateInputBody
 > = z.object({
   field: z.string(),
+  filterByQuery: z.boolean().default(false),
   numberOfBuckets: z.number().int(),
   query: z.string(),
 }).transform((v) => {
   return remap$(v, {
+    filterByQuery: "filter_by_query",
     numberOfBuckets: "number_of_buckets",
   });
 });
