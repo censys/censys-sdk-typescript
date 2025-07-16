@@ -1,6 +1,6 @@
 {
   "name": "censys-sdk-typescript",
-  "version": "0.4.0",
+  "version": "0.0.1",
   "author": "Speakeasy",
   "main": "./index.js",
   "sideEffects": false,
@@ -23,5 +23,8 @@
     "typescript": "^5.4.5",
     "typescript-eslint": "^8.22.0",
     "zod": "^3.25.17"
+  },
+  "dependencies": {
+    
   }
 }

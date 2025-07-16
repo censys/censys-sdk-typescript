@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 50d8a8aa-8772-4a95-9f7b-f8e1bd905c4e
 management:
-  docChecksum: a844969dfbf23c99712514cad5e92fdc
-  docVersion: 1.0.13
+  docChecksum: 7ec08f60156196a67f38ca9e9771cb11
+  docVersion: 1.0.14
   speakeasyVersion: 1.582.0
   generationVersion: 2.657.1
-  releaseVersion: 0.4.0
-  configChecksum: 6a9ee531615f8e780ae6f184c8dda297
+  releaseVersion: 0.0.1
+  configChecksum: 35c6996aef73a180a39d50216f4fa776
   repoURL: https://github.com/censys/censys-sdk-typescript.git
   installationURL: https://github.com/censys/censys-sdk-typescript
   published: true
@@ -1255,7 +1255,7 @@ examples:
         query:
           organization_id: "<id>"
       requestBody:
-        application/json: {"field": "web.endpoints.http.html_title", "number_of_buckets": 100, "query": "web: *"}
+        application/json: {"field": "web.endpoints.http.html_title", "filter_by_query": false, "number_of_buckets": 100, "query": "web: *"}
       responses:
         "200":
           application/json: {}
@@ -1366,7 +1366,7 @@ examples:
         query:
           organization_id: "<id>"
       requestBody:
-        application/json: {"field": "web.endpoints.http.html_title", "number_of_buckets": 100, "query": "web: *"}
+        application/json: {"field": "web.endpoints.http.html_title", "filter_by_query": false, "number_of_buckets": 100, "query": "web: *"}
       responses:
         "200":
           application/json: {}
