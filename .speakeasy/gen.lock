@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 50d8a8aa-8772-4a95-9f7b-f8e1bd905c4e
 management:
-  docChecksum: a844969dfbf23c99712514cad5e92fdc
-  docVersion: 1.0.13
-  speakeasyVersion: 1.582.0
-  generationVersion: 2.657.1
-  releaseVersion: 0.4.0
-  configChecksum: 6a9ee531615f8e780ae6f184c8dda297
+  docChecksum: dce20e026e742ebfde842017a2be9d0f
+  docVersion: 1.0.15
+  speakeasyVersion: 1.584.0
+  generationVersion: 2.660.0
+  releaseVersion: 0.4.1
+  configChecksum: 22eb99c3d977c90d7f18c82749361275
   repoURL: https://github.com/censys/censys-sdk-typescript.git
   installationURL: https://github.com/censys/censys-sdk-typescript
   published: true
@@ -94,6 +94,7 @@ generatedFiles:
   - docs/models/components/cpe.md
   - docs/models/components/cpelifecycle.md
   - docs/models/components/crestroncp3.md
+  - docs/models/components/crestrondinap2.md
   - docs/models/components/crudcreateinputbody.md
   - docs/models/components/crudupdateinputbody.md
   - docs/models/components/cryptsetup.md
@@ -712,6 +713,7 @@ generatedFiles:
   - src/models/components/cpe.ts
   - src/models/components/cpelifecycle.ts
   - src/models/components/crestroncp3.ts
+  - src/models/components/crestrondinap2.ts
   - src/models/components/crudcreateinputbody.ts
   - src/models/components/crudupdateinputbody.ts
   - src/models/components/cryptsetup.ts
@@ -1255,7 +1257,7 @@ examples:
         query:
           organization_id: "<id>"
       requestBody:
-        application/json: {"field": "web.endpoints.http.html_title", "number_of_buckets": 100, "query": "web: *"}
+        application/json: {"field": "web.endpoints.http.html_title", "filter_by_query": false, "number_of_buckets": 100, "query": "web: *"}
       responses:
         "200":
           application/json: {}
@@ -1366,7 +1368,7 @@ examples:
         query:
           organization_id: "<id>"
       requestBody:
-        application/json: {"field": "web.endpoints.http.html_title", "number_of_buckets": 100, "query": "web: *"}
+        application/json: {"field": "web.endpoints.http.html_title", "filter_by_query": false, "number_of_buckets": 100, "query": "web: *"}
       responses:
         "200":
           application/json: {}

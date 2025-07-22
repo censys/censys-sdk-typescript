@@ -81,6 +81,12 @@ import {
   CrestronCp3$outboundSchema,
 } from "./crestroncp3.js";
 import {
+  CrestronDinAp2,
+  CrestronDinAp2$inboundSchema,
+  CrestronDinAp2$Outbound,
+  CrestronDinAp2$outboundSchema,
+} from "./crestrondinap2.js";
+import {
   Cwmp,
   Cwmp$inboundSchema,
   Cwmp$Outbound,
@@ -756,6 +762,7 @@ export type Service = {
   cmore?: Cmore | undefined;
   coap?: Coap | undefined;
   crestronCp3?: CrestronCp3 | undefined;
+  crestronDinAp2?: CrestronDinAp2 | undefined;
   cwmp?: Cwmp | undefined;
   darkcomet?: Darkcomet | undefined;
   darkgate?: Darkgate | undefined;
@@ -914,6 +921,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     cmore: Cmore$inboundSchema.optional(),
     coap: Coap$inboundSchema.optional(),
     crestron_cp3: CrestronCp3$inboundSchema.optional(),
+    crestron_din_ap2: CrestronDinAp2$inboundSchema.optional(),
     cwmp: Cwmp$inboundSchema.optional(),
     darkcomet: Darkcomet$inboundSchema.optional(),
     darkgate: Darkgate$inboundSchema.optional(),
@@ -1040,6 +1048,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
       "checkpoint_topology": "checkpointTopology",
       "cisco_ipsla": "ciscoIpsla",
       "crestron_cp3": "crestronCp3",
+      "crestron_din_ap2": "crestronDinAp2",
       "dvr_ip": "dvrIp",
       "elf_file": "elfFile",
       "hid_vertx": "hidVertx",
@@ -1081,6 +1090,7 @@ export type Service$Outbound = {
   cmore?: Cmore$Outbound | undefined;
   coap?: Coap$Outbound | undefined;
   crestron_cp3?: CrestronCp3$Outbound | undefined;
+  crestron_din_ap2?: CrestronDinAp2$Outbound | undefined;
   cwmp?: Cwmp$Outbound | undefined;
   darkcomet?: Darkcomet$Outbound | undefined;
   darkgate?: Darkgate$Outbound | undefined;
@@ -1221,6 +1231,7 @@ export const Service$outboundSchema: z.ZodType<
   cmore: Cmore$outboundSchema.optional(),
   coap: Coap$outboundSchema.optional(),
   crestronCp3: CrestronCp3$outboundSchema.optional(),
+  crestronDinAp2: CrestronDinAp2$outboundSchema.optional(),
   cwmp: Cwmp$outboundSchema.optional(),
   darkcomet: Darkcomet$outboundSchema.optional(),
   darkgate: Darkgate$outboundSchema.optional(),
@@ -1347,6 +1358,7 @@ export const Service$outboundSchema: z.ZodType<
     checkpointTopology: "checkpoint_topology",
     ciscoIpsla: "cisco_ipsla",
     crestronCp3: "crestron_cp3",
+    crestronDinAp2: "crestron_din_ap2",
     dvrIp: "dvr_ip",
     elfFile: "elf_file",
     hidVertx: "hid_vertx",
