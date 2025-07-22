@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 50d8a8aa-8772-4a95-9f7b-f8e1bd905c4e
 management:
-  docChecksum: dce20e026e742ebfde842017a2be9d0f
-  docVersion: 1.0.15
-  speakeasyVersion: 1.584.0
-  generationVersion: 2.660.0
-  releaseVersion: 0.4.1
-  configChecksum: 22eb99c3d977c90d7f18c82749361275
+  docChecksum: 3c398bac678d6a7c9b412318e55bf2c0
+  docVersion: 1.0.16
+  speakeasyVersion: 1.586.0
+  generationVersion: 2.661.4
+  releaseVersion: 0.4.2
+  configChecksum: 6d4309591e9072e1a26101af8bbbaec8
   repoURL: https://github.com/censys/censys-sdk-typescript.git
   installationURL: https://github.com/censys/censys-sdk-typescript
   published: true
