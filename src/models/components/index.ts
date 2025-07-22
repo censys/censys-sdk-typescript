@@ -51,6 +51,7 @@ export * from "./countcondition.js";
 export * from "./cpe.js";
 export * from "./cpelifecycle.js";
 export * from "./crestroncp3.js";
+export * from "./crestrondinap2.js";
 export * from "./crudcreateinputbody.js";
 export * from "./crudupdateinputbody.js";
 export * from "./cryptsetup.js";
