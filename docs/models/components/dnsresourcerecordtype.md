@@ -5,7 +5,7 @@ An enumerated field indicating what type of data is in the "services.dns.additio
 ## Example Usage
 
 ```typescript
-import { DnsResourceRecordType } from "censys-sdk-typescript/models/components";
+import { DnsResourceRecordType } from "@censys/platform-sdk/models/components";
 
 let value: DnsResourceRecordType = "a";
 ```

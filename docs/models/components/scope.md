@@ -5,7 +5,7 @@ Determines whether a vulnerability in one system or component can impact another
 ## Example Usage
 
 ```typescript
-import { Scope } from "censys-sdk-typescript/models/components";
+import { Scope } from "@censys/platform-sdk/models/components";
 
 let value: Scope = "";
 ```

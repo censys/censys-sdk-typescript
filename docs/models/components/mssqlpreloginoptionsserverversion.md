@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { MssqlPreloginOptionsServerVersion } from "censys-sdk-typescript/models/components";
+import { MssqlPreloginOptionsServerVersion } from "@censys/platform-sdk/models/components";
 
 let value: MssqlPreloginOptionsServerVersion = {};
 ```

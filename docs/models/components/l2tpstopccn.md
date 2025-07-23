@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { L2TpStopCcn } from "censys-sdk-typescript/models/components";
+import { L2TpStopCcn } from "@censys/platform-sdk/models/components";
 
 let value: L2TpStopCcn = {};
 ```

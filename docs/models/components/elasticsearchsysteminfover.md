@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ElasticSearchSystemInfoVer } from "censys-sdk-typescript/models/components";
+import { ElasticSearchSystemInfoVer } from "@censys/platform-sdk/models/components";
 
 let value: ElasticSearchSystemInfoVer = {};
 ```

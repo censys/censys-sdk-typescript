@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ResponseEnvelopeListWebpropertyAsset } from "censys-sdk-typescript/models/components";
+import { ResponseEnvelopeListWebpropertyAsset } from "@censys/platform-sdk/models/components";
 
 let value: ResponseEnvelopeListWebpropertyAsset = {};
 ```

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CobaltStrikeConfig } from "censys-sdk-typescript/models/components";
+import { CobaltStrikeConfig } from "@censys/platform-sdk/models/components";
 
 let value: CobaltStrikeConfig = {};
 ```

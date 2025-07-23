@@ -1,6 +1,6 @@
 <!-- Start SDK Example Usage [usage] -->
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   organizationId: "11111111-2222-3333-4444-555555555555",

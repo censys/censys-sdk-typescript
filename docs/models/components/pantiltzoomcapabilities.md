@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { PanTiltZoomCapabilities } from "censys-sdk-typescript/models/components";
+import { PanTiltZoomCapabilities } from "@censys/platform-sdk/models/components";
 
 let value: PanTiltZoomCapabilities = {};
 ```

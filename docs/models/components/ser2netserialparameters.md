@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Ser2NetSerialParameters } from "censys-sdk-typescript/models/components";
+import { Ser2NetSerialParameters } from "@censys/platform-sdk/models/components";
 
 let value: Ser2NetSerialParameters = {};
 ```

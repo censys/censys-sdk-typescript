@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { OpenDirectoryFile } from "censys-sdk-typescript/models/components";
+import { OpenDirectoryFile } from "@censys/platform-sdk/models/components";
 
 let value: OpenDirectoryFile = {};
 ```

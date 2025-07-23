@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ForwardDnsResolved } from "censys-sdk-typescript/models/components";
+import { ForwardDnsResolved } from "@censys/platform-sdk/models/components";
 
 let value: ForwardDnsResolved = {};
 ```

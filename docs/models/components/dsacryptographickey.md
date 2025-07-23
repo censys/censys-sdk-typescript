@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DSACryptographicKey } from "censys-sdk-typescript/models/components";
+import { DSACryptographicKey } from "@censys/platform-sdk/models/components";
 
 let value: DSACryptographicKey = {};
 ```

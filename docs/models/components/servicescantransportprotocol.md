@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ServiceScanTransportProtocol } from "censys-sdk-typescript/models/components";
+import { ServiceScanTransportProtocol } from "@censys/platform-sdk/models/components";
 
 let value: ServiceScanTransportProtocol = "tcp";
 ```

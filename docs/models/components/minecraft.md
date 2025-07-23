@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Minecraft } from "censys-sdk-typescript/models/components";
+import { Minecraft } from "@censys/platform-sdk/models/components";
 
 let value: Minecraft = {};
 ```

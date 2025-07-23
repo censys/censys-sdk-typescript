@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DvrIpPartitionCapability } from "censys-sdk-typescript/models/components";
+import { DvrIpPartitionCapability } from "@censys/platform-sdk/models/components";
 
 let value: DvrIpPartitionCapability = {};
 ```

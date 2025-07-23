@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SshAlgorithmSelectionDirectionAlgorithms } from "censys-sdk-typescript/models/components";
+import { SshAlgorithmSelectionDirectionAlgorithms } from "@censys/platform-sdk/models/components";
 
 let value: SshAlgorithmSelectionDirectionAlgorithms = {};
 ```

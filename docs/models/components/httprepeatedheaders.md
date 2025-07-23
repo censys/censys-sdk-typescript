@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { HttpRepeatedHeaders } from "censys-sdk-typescript/models/components";
+import { HttpRepeatedHeaders } from "@censys/platform-sdk/models/components";
 
 let value: HttpRepeatedHeaders = {};
 ```

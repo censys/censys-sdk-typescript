@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CiscoIpslaMeasureResponse } from "censys-sdk-typescript/models/components";
+import { CiscoIpslaMeasureResponse } from "@censys/platform-sdk/models/components";
 
 let value: CiscoIpslaMeasureResponse = {};
 ```

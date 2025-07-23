@@ -24,7 +24,7 @@ Retrieve information about multiple certificates. A certificate ID is its SHA-25
 ### Example Usage
 
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   organizationId: "11111111-2222-3333-4444-555555555555",
@@ -49,8 +49,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "censys-sdk-typescript/core.js";
-import { globalDataGetCertificates } from "censys-sdk-typescript/funcs/globalDataGetCertificates.js";
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { globalDataGetCertificates } from "@censys/platform-sdk/funcs/globalDataGetCertificates.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -103,7 +103,7 @@ Retrieve information about a single certificate. A certificate ID is its SHA-256
 ### Example Usage
 
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   organizationId: "11111111-2222-3333-4444-555555555555",
@@ -126,8 +126,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "censys-sdk-typescript/core.js";
-import { globalDataGetCertificate } from "censys-sdk-typescript/funcs/globalDataGetCertificate.js";
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { globalDataGetCertificate } from "@censys/platform-sdk/funcs/globalDataGetCertificate.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -178,7 +178,7 @@ Retrieve information about multiple hosts. A host ID is its IP address.
 ### Example Usage
 
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   organizationId: "11111111-2222-3333-4444-555555555555",
@@ -203,8 +203,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "censys-sdk-typescript/core.js";
-import { globalDataGetHosts } from "censys-sdk-typescript/funcs/globalDataGetHosts.js";
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { globalDataGetHosts } from "@censys/platform-sdk/funcs/globalDataGetHosts.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -257,7 +257,7 @@ Retrieve information about a single host. A host ID is its IP address.
 ### Example Usage
 
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   organizationId: "11111111-2222-3333-4444-555555555555",
@@ -281,8 +281,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "censys-sdk-typescript/core.js";
-import { globalDataGetHost } from "censys-sdk-typescript/funcs/globalDataGetHost.js";
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { globalDataGetHost } from "@censys/platform-sdk/funcs/globalDataGetHost.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -334,7 +334,7 @@ Retrieve event history for a host. A host ID is its IP address.
 ### Example Usage
 
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   organizationId: "11111111-2222-3333-4444-555555555555",
@@ -359,8 +359,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "censys-sdk-typescript/core.js";
-import { globalDataGetHostTimeline } from "censys-sdk-typescript/funcs/globalDataGetHostTimeline.js";
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { globalDataGetHostTimeline } from "@censys/platform-sdk/funcs/globalDataGetHostTimeline.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -413,7 +413,7 @@ Retrieve information about multiple web properties. Web properties are identifie
 ### Example Usage
 
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   organizationId: "11111111-2222-3333-4444-555555555555",
@@ -438,8 +438,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "censys-sdk-typescript/core.js";
-import { globalDataGetWebProperties } from "censys-sdk-typescript/funcs/globalDataGetWebProperties.js";
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { globalDataGetWebProperties } from "@censys/platform-sdk/funcs/globalDataGetWebProperties.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -492,7 +492,7 @@ Retrieve information about a single web property. Web properties are identified 
 ### Example Usage
 
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   organizationId: "11111111-2222-3333-4444-555555555555",
@@ -516,8 +516,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "censys-sdk-typescript/core.js";
-import { globalDataGetWebProperty } from "censys-sdk-typescript/funcs/globalDataGetWebProperty.js";
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { globalDataGetWebProperty } from "@censys/platform-sdk/funcs/globalDataGetWebProperty.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -569,7 +569,7 @@ Aggregate results for a Platform search query. This functionality is equivalent 
 ### Example Usage
 
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   organizationId: "11111111-2222-3333-4444-555555555555",
@@ -596,8 +596,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "censys-sdk-typescript/core.js";
-import { globalDataAggregate } from "censys-sdk-typescript/funcs/globalDataAggregate.js";
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { globalDataAggregate } from "@censys/platform-sdk/funcs/globalDataAggregate.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -652,7 +652,7 @@ Run a search query across Censys data. Reference the [documentation on Censys Qu
 ### Example Usage
 
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   organizationId: "11111111-2222-3333-4444-555555555555",
@@ -682,8 +682,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "censys-sdk-typescript/core.js";
-import { globalDataSearch } from "censys-sdk-typescript/funcs/globalDataSearch.js";
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { globalDataSearch } from "@censys/platform-sdk/funcs/globalDataSearch.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

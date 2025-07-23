@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { V3GlobaldataSearchQueryGlobals } from "censys-sdk-typescript/models/operations";
+import { V3GlobaldataSearchQueryGlobals } from "@censys/platform-sdk/models/operations";
 
 let value: V3GlobaldataSearchQueryGlobals = {};
 ```

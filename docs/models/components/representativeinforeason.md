@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { RepresentativeInfoReason } from "censys-sdk-typescript/models/components";
+import { RepresentativeInfoReason } from "@censys/platform-sdk/models/components";
 
 let value: RepresentativeInfoReason = "zscaler";
 ```

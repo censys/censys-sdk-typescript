@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ElasticSearchResultsNodeInfoNodesNodeDataNodeSettings } from "censys-sdk-typescript/models/components";
+import { ElasticSearchResultsNodeInfoNodesNodeDataNodeSettings } from "@censys/platform-sdk/models/components";
 
 let value: ElasticSearchResultsNodeInfoNodesNodeDataNodeSettings = {};
 ```

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { EventAssetChange } from "censys-sdk-typescript/models/components";
+import { EventAssetChange } from "@censys/platform-sdk/models/components";
 
 let value: EventAssetChange = {
   changeType: "added",

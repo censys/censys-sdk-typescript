@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { PrometheusResponseDroppedTarget } from "censys-sdk-typescript/models/components";
+import { PrometheusResponseDroppedTarget } from "@censys/platform-sdk/models/components";
 
 let value: PrometheusResponseDroppedTarget = {};
 ```

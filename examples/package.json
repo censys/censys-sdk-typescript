@@ -1,5 +1,5 @@
 {
-  "name": "censys-sdk-typescript-examples",
+  "name": "@censys/platform-sdk-examples",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -13,6 +13,6 @@
     "tsx": "^4.19.2"
   },
   "dependencies": {
-    "censys-sdk-typescript": "file:.."
+    "@censys/platform-sdk": "file:.."
   }
 }

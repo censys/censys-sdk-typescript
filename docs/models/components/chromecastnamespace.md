@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ChromecastNamespace } from "censys-sdk-typescript/models/components";
+import { ChromecastNamespace } from "@censys/platform-sdk/models/components";
 
 let value: ChromecastNamespace = {};
 ```

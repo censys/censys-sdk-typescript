@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SearchAggregateInputBody } from "censys-sdk-typescript/models/components";
+import { SearchAggregateInputBody } from "@censys/platform-sdk/models/components";
 
 let value: SearchAggregateInputBody = {
   field: "web.endpoints.http.html_title",

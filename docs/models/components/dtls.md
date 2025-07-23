@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Dtls } from "censys-sdk-typescript/models/components";
+import { Dtls } from "@censys/platform-sdk/models/components";
 
 let value: Dtls = {};
 ```

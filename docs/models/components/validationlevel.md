@@ -5,7 +5,7 @@ The extent to which the certificate's issuer validated the identity of the entit
 ## Example Usage
 
 ```typescript
-import { ValidationLevel } from "censys-sdk-typescript/models/components";
+import { ValidationLevel } from "@censys/platform-sdk/models/components";
 
 let value: ValidationLevel = "ov";
 ```

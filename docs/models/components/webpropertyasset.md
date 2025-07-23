@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { WebpropertyAsset } from "censys-sdk-typescript/models/components";
+import { WebpropertyAsset } from "@censys/platform-sdk/models/components";
 
 let value: WebpropertyAsset = {
   extensions: {

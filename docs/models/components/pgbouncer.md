@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Pgbouncer } from "censys-sdk-typescript/models/components";
+import { Pgbouncer } from "@censys/platform-sdk/models/components";
 
 let value: Pgbouncer = {};
 ```

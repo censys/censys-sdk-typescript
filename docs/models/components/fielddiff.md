@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { FieldDiff } from "censys-sdk-typescript/models/components";
+import { FieldDiff } from "@censys/platform-sdk/models/components";
 
 let value: FieldDiff = {};
 ```

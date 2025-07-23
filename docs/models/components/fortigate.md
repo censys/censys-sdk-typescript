@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Fortigate } from "censys-sdk-typescript/models/components";
+import { Fortigate } from "@censys/platform-sdk/models/components";
 
 let value: Fortigate = {};
 ```

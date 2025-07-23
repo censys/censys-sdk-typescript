@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { QcStatementsQcType } from "censys-sdk-typescript/models/components";
+import { QcStatementsQcType } from "@censys/platform-sdk/models/components";
 
 let value: QcStatementsQcType = {};
 ```

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SapRouter } from "censys-sdk-typescript/models/components";
+import { SapRouter } from "@censys/platform-sdk/models/components";
 
 let value: SapRouter = {};
 ```

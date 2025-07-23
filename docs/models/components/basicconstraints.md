@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { BasicConstraints } from "censys-sdk-typescript/models/components";
+import { BasicConstraints } from "@censys/platform-sdk/models/components";
 
 let value: BasicConstraints = {};
 ```

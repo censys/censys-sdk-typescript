@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { RejectType } from "censys-sdk-typescript/models/components";
+import { RejectType } from "@censys/platform-sdk/models/components";
 
 let value: RejectType = "username_in_use";
 ```

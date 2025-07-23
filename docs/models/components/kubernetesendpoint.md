@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { KubernetesEndpoint } from "censys-sdk-typescript/models/components";
+import { KubernetesEndpoint } from "@censys/platform-sdk/models/components";
 
 let value: KubernetesEndpoint = {};
 ```

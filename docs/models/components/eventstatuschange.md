@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { EventStatusChange } from "censys-sdk-typescript/models/components";
+import { EventStatusChange } from "@censys/platform-sdk/models/components";
 
 let value: EventStatusChange = {
   eventTime: new Date("2023-05-14T08:59:51.518Z"),

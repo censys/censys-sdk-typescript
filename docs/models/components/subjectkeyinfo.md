@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SubjectKeyInfo } from "censys-sdk-typescript/models/components";
+import { SubjectKeyInfo } from "@censys/platform-sdk/models/components";
 
 let value: SubjectKeyInfo = {};
 ```

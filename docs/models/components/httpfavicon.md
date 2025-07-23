@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { HttpFavicon } from "censys-sdk-typescript/models/components";
+import { HttpFavicon } from "@censys/platform-sdk/models/components";
 
 let value: HttpFavicon = {};
 ```

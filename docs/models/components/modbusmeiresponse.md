@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ModbusMEIResponse } from "censys-sdk-typescript/models/components";
+import { ModbusMEIResponse } from "@censys/platform-sdk/models/components";
 
 let value: ModbusMEIResponse = {};
 ```

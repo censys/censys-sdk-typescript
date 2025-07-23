@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ErrorModel } from "censys-sdk-typescript/models/errors";
+import { ErrorModel } from "@censys/platform-sdk/models/errors";
 
 // No examples available for this model
 ```

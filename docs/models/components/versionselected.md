@@ -5,7 +5,7 @@ Certificate version v1(0), v2(1), v3(2).
 ## Example Usage
 
 ```typescript
-import { VersionSelected } from "censys-sdk-typescript/models/components";
+import { VersionSelected } from "@censys/platform-sdk/models/components";
 
 let value: VersionSelected = "dtlsv1_0";
 ```

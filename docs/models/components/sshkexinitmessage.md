@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SshKexInitMessage } from "censys-sdk-typescript/models/components";
+import { SshKexInitMessage } from "@censys/platform-sdk/models/components";
 
 let value: SshKexInitMessage = {};
 ```

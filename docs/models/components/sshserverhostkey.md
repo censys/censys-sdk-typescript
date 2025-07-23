@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SshServerHostKey } from "censys-sdk-typescript/models/components";
+import { SshServerHostKey } from "@censys/platform-sdk/models/components";
 
 let value: SshServerHostKey = {};
 ```

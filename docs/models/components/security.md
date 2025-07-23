@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Security } from "censys-sdk-typescript/models/components";
+import { Security } from "@censys/platform-sdk/models/components";
 
 let value: Security = {
   personalAccessToken: "<value>",

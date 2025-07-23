@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { RdpDomainParameters } from "censys-sdk-typescript/models/components";
+import { RdpDomainParameters } from "@censys/platform-sdk/models/components";
 
 let value: RdpDomainParameters = {};
 ```

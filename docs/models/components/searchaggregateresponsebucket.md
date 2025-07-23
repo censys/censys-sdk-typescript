@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SearchAggregateResponseBucket } from "censys-sdk-typescript/models/components";
+import { SearchAggregateResponseBucket } from "@censys/platform-sdk/models/components";
 
 let value: SearchAggregateResponseBucket = {
   count: 479943,

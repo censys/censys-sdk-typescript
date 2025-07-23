@@ -5,7 +5,7 @@ A enumerated field indicating the result of the request. The most common values 
 ## Example Usage
 
 ```typescript
-import { RCode } from "censys-sdk-typescript/models/components";
+import { RCode } from "@censys/platform-sdk/models/components";
 
 let value: RCode = "bad_cookie";
 ```

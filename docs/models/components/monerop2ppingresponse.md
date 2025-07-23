@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { MoneroP2PPingResponse } from "censys-sdk-typescript/models/components";
+import { MoneroP2PPingResponse } from "@censys/platform-sdk/models/components";
 
 let value: MoneroP2PPingResponse = {};
 ```

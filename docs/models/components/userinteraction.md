@@ -5,7 +5,7 @@ Describes whether a user, other than the attacker, is required to do anything or
 ## Example Usage
 
 ```typescript
-import { UserInteraction } from "censys-sdk-typescript/models/components";
+import { UserInteraction } from "@censys/platform-sdk/models/components";
 
 let value: UserInteraction = "required";
 ```

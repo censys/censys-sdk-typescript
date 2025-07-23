@@ -23,7 +23,7 @@ List all collections for an organization. Retrieved information includes collect
 ### Example Usage
 
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   organizationId: "11111111-2222-3333-4444-555555555555",
@@ -47,8 +47,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "censys-sdk-typescript/core.js";
-import { collectionsList } from "censys-sdk-typescript/funcs/collectionsList.js";
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { collectionsList } from "@censys/platform-sdk/funcs/collectionsList.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -100,7 +100,7 @@ Create a new collection.
 ### Example Usage
 
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   organizationId: "11111111-2222-3333-4444-555555555555",
@@ -127,8 +127,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "censys-sdk-typescript/core.js";
-import { collectionsCreate } from "censys-sdk-typescript/funcs/collectionsCreate.js";
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { collectionsCreate } from "@censys/platform-sdk/funcs/collectionsCreate.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -183,7 +183,7 @@ Delete a collection.
 ### Example Usage
 
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   organizationId: "11111111-2222-3333-4444-555555555555",
@@ -206,8 +206,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "censys-sdk-typescript/core.js";
-import { collectionsDelete } from "censys-sdk-typescript/funcs/collectionsDelete.js";
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { collectionsDelete } from "@censys/platform-sdk/funcs/collectionsDelete.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -258,7 +258,7 @@ Retrieve information about a collection. Retrieved information includes its name
 ### Example Usage
 
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   organizationId: "11111111-2222-3333-4444-555555555555",
@@ -281,8 +281,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "censys-sdk-typescript/core.js";
-import { collectionsGet } from "censys-sdk-typescript/funcs/collectionsGet.js";
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { collectionsGet } from "@censys/platform-sdk/funcs/collectionsGet.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -333,7 +333,7 @@ Update a collection's name, description, and/or query.
 ### Example Usage
 
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   organizationId: "11111111-2222-3333-4444-555555555555",
@@ -361,8 +361,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "censys-sdk-typescript/core.js";
-import { collectionsUpdate } from "censys-sdk-typescript/funcs/collectionsUpdate.js";
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { collectionsUpdate } from "@censys/platform-sdk/funcs/collectionsUpdate.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -418,7 +418,7 @@ Retrieve the event history for a collection. This includes the addition or remov
 ### Example Usage
 
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   organizationId: "11111111-2222-3333-4444-555555555555",
@@ -445,8 +445,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "censys-sdk-typescript/core.js";
-import { collectionsListEvents } from "censys-sdk-typescript/funcs/collectionsListEvents.js";
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { collectionsListEvents } from "@censys/platform-sdk/funcs/collectionsListEvents.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -501,7 +501,7 @@ Aggregate results for a Platform search query that targets a collection's assets
 ### Example Usage
 
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   organizationId: "11111111-2222-3333-4444-555555555555",
@@ -529,8 +529,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "censys-sdk-typescript/core.js";
-import { collectionsAggregate } from "censys-sdk-typescript/funcs/collectionsAggregate.js";
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { collectionsAggregate } from "@censys/platform-sdk/funcs/collectionsAggregate.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -586,7 +586,7 @@ Run a search query across a collection's assets. Reference the [documentation on
 ### Example Usage
 
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   organizationId: "11111111-2222-3333-4444-555555555555",
@@ -617,8 +617,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "censys-sdk-typescript/core.js";
-import { collectionsSearch } from "censys-sdk-typescript/funcs/collectionsSearch.js";
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { collectionsSearch } from "@censys/platform-sdk/funcs/collectionsSearch.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { V3GlobaldataAssetWebpropertyRequest } from "censys-sdk-typescript/models/operations";
+import { V3GlobaldataAssetWebpropertyRequest } from "@censys/platform-sdk/models/operations";
 
 let value: V3GlobaldataAssetWebpropertyRequest = {
   webpropertyId: "platform.censys.io:80",

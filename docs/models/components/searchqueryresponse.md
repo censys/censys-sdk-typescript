@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SearchQueryResponse } from "censys-sdk-typescript/models/components";
+import { SearchQueryResponse } from "@censys/platform-sdk/models/components";
 
 let value: SearchQueryResponse = {
   hits: [

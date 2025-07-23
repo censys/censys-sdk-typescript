@@ -5,7 +5,7 @@ If an attack renders information unavailable, such as when a system crashes or t
 ## Example Usage
 
 ```typescript
-import { CVSSv4ComponentsAvailability } from "censys-sdk-typescript/models/components";
+import { CVSSv4ComponentsAvailability } from "@censys/platform-sdk/models/components";
 
 let value: CVSSv4ComponentsAvailability = "";
 ```

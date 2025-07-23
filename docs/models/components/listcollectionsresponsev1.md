@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ListCollectionsResponseV1 } from "censys-sdk-typescript/models/components";
+import { ListCollectionsResponseV1 } from "@censys/platform-sdk/models/components";
 
 let value: ListCollectionsResponseV1 = {
   collections: [

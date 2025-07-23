@@ -16,7 +16,7 @@ Get counts of web assets for specific field-value pairs and combinations of fiel
 ### Example Usage
 
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   organizationId: "11111111-2222-3333-4444-555555555555",
@@ -53,8 +53,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "censys-sdk-typescript/core.js";
-import { threatHuntingValueCounts } from "censys-sdk-typescript/funcs/threatHuntingValueCounts.js";
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { threatHuntingValueCounts } from "@censys/platform-sdk/funcs/threatHuntingValueCounts.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

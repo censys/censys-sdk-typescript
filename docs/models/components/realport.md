@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Realport } from "censys-sdk-typescript/models/components";
+import { Realport } from "@censys/platform-sdk/models/components";
 
 let value: Realport = {};
 ```

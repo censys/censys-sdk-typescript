@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { MongodbBuildInfo } from "censys-sdk-typescript/models/components";
+import { MongodbBuildInfo } from "@censys/platform-sdk/models/components";
 
 let value: MongodbBuildInfo = {};
 ```

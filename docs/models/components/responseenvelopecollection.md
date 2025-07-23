@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ResponseEnvelopeCollection } from "censys-sdk-typescript/models/components";
+import { ResponseEnvelopeCollection } from "@censys/platform-sdk/models/components";
 
 let value: ResponseEnvelopeCollection = {};
 ```

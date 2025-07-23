@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { PcAnywhereStatus } from "censys-sdk-typescript/models/components";
+import { PcAnywhereStatus } from "@censys/platform-sdk/models/components";
 
 let value: PcAnywhereStatus = {};
 ```

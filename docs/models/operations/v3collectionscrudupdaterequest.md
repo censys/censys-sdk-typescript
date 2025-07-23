@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { V3CollectionsCrudUpdateRequest } from "censys-sdk-typescript/models/operations";
+import { V3CollectionsCrudUpdateRequest } from "@censys/platform-sdk/models/operations";
 
 let value: V3CollectionsCrudUpdateRequest = {
   collectionUid: "11111111-2222-3333-4444-555555555555",

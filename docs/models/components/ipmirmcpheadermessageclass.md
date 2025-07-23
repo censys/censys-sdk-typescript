@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { IpmiRMCPHeaderMessageClass } from "censys-sdk-typescript/models/components";
+import { IpmiRMCPHeaderMessageClass } from "@censys/platform-sdk/models/components";
 
 let value: IpmiRMCPHeaderMessageClass = {};
 ```

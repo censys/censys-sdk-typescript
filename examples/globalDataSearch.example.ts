@@ -5,13 +5,13 @@
 import dotenv from "dotenv";
 dotenv.config();
 /**
- * Example usage of the censys-sdk-typescript SDK
+ * Example usage of the @censys/platform-sdk SDK
  *
  * To run this example from the examples directory:
  * npm run build && npx tsx globalDataSearch.ts
  */
 
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   organizationId: "11111111-2222-3333-4444-555555555555",

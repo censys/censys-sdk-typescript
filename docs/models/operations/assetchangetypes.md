@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { AssetChangeTypes } from "censys-sdk-typescript/models/operations";
+import { AssetChangeTypes } from "@censys/platform-sdk/models/operations";
 
 let value: AssetChangeTypes = "added";
 ```

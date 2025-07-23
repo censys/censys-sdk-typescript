@@ -5,7 +5,7 @@ Refers to the disclosure of sensitive information to authorized and unauthorized
 ## Example Usage
 
 ```typescript
-import { CVSSv4ComponentsConfidentiality } from "censys-sdk-typescript/models/components";
+import { CVSSv4ComponentsConfidentiality } from "@censys/platform-sdk/models/components";
 
 let value: CVSSv4ComponentsConfidentiality = "low";
 ```

@@ -1,6 +1,6 @@
-# censys-sdk-typescript Examples
+# @censys/platform-sdk Examples
 
-This directory contains example scripts demonstrating how to use the censys-sdk-typescript SDK.
+This directory contains example scripts demonstrating how to use the @censys/platform-sdk SDK.
 
 ## Prerequisites
 

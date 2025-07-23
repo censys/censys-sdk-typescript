@@ -5,7 +5,7 @@ Refers to whether the protected information has been tampered with or changed in
 ## Example Usage
 
 ```typescript
-import { CVSSv4ComponentsIntegrity } from "censys-sdk-typescript/models/components";
+import { CVSSv4ComponentsIntegrity } from "@censys/platform-sdk/models/components";
 
 let value: CVSSv4ComponentsIntegrity = "";
 ```

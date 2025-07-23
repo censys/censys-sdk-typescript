@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SnmpEngine } from "censys-sdk-typescript/models/components";
+import { SnmpEngine } from "@censys/platform-sdk/models/components";
 
 let value: SnmpEngine = {};
 ```

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ProfinetCm } from "censys-sdk-typescript/models/components";
+import { ProfinetCm } from "@censys/platform-sdk/models/components";
 
 let value: ProfinetCm = {};
 ```

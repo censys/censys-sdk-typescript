@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { VncKeyValue } from "censys-sdk-typescript/models/components";
+import { VncKeyValue } from "@censys/platform-sdk/models/components";
 
 let value: VncKeyValue = {};
 ```

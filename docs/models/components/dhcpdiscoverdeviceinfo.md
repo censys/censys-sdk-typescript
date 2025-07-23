@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DhcpdiscoverDeviceInfo } from "censys-sdk-typescript/models/components";
+import { DhcpdiscoverDeviceInfo } from "@censys/platform-sdk/models/components";
 
 let value: DhcpdiscoverDeviceInfo = {};
 ```

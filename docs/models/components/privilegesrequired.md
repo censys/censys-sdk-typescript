@@ -5,7 +5,7 @@ Describes the level of privileges or access an attacker must have before success
 ## Example Usage
 
 ```typescript
-import { PrivilegesRequired } from "censys-sdk-typescript/models/components";
+import { PrivilegesRequired } from "@censys/platform-sdk/models/components";
 
 let value: PrivilegesRequired = "none";
 ```

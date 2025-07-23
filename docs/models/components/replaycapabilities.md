@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ReplayCapabilities } from "censys-sdk-typescript/models/components";
+import { ReplayCapabilities } from "@censys/platform-sdk/models/components";
 
 let value: ReplayCapabilities = {};
 ```

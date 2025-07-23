@@ -5,7 +5,7 @@ Indicates the level of access required for an attacker to exploit the vulnerabil
 ## Example Usage
 
 ```typescript
-import { AttackVector } from "censys-sdk-typescript/models/components";
+import { AttackVector } from "@censys/platform-sdk/models/components";
 
 let value: AttackVector = "";
 ```

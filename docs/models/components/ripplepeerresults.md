@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { RipplePeerResults } from "censys-sdk-typescript/models/components";
+import { RipplePeerResults } from "@censys/platform-sdk/models/components";
 
 let value: RipplePeerResults = {};
 ```

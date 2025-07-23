@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { TorServiceDescriptor } from "censys-sdk-typescript/models/components";
+import { TorServiceDescriptor } from "@censys/platform-sdk/models/components";
 
 let value: TorServiceDescriptor = {};
 ```

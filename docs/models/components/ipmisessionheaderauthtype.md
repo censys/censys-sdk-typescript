@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { IpmiSessionHeaderAuthType } from "censys-sdk-typescript/models/components";
+import { IpmiSessionHeaderAuthType } from "@censys/platform-sdk/models/components";
 
 let value: IpmiSessionHeaderAuthType = {};
 ```

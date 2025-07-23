@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ReverseDnsResolved } from "censys-sdk-typescript/models/components";
+import { ReverseDnsResolved } from "@censys/platform-sdk/models/components";
 
 let value: ReverseDnsResolved = {};
 ```

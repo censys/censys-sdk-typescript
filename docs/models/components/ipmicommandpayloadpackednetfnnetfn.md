@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { IpmiCommandPayloadPackedNetFnNetFn } from "censys-sdk-typescript/models/components";
+import { IpmiCommandPayloadPackedNetFnNetFn } from "@censys/platform-sdk/models/components";
 
 let value: IpmiCommandPayloadPackedNetFnNetFn = {};
 ```

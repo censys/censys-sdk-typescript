@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DhcpdiscoverIpAddress } from "censys-sdk-typescript/models/components";
+import { DhcpdiscoverIpAddress } from "@censys/platform-sdk/models/components";
 
 let value: DhcpdiscoverIpAddress = {};
 ```

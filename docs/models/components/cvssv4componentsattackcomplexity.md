@@ -5,7 +5,7 @@ Indicates conditions beyond the attacker’s control that must exist in order to
 ## Example Usage
 
 ```typescript
-import { CVSSv4ComponentsAttackComplexity } from "censys-sdk-typescript/models/components";
+import { CVSSv4ComponentsAttackComplexity } from "@censys/platform-sdk/models/components";
 
 let value: CVSSv4ComponentsAttackComplexity = "high";
 ```

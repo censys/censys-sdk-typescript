@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { MoneroP2PPayload } from "censys-sdk-typescript/models/components";
+import { MoneroP2PPayload } from "@censys/platform-sdk/models/components";
 
 let value: MoneroP2PPayload = {};
 ```

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { DeviceIOCapabilities } from "censys-sdk-typescript/models/components";
+import { DeviceIOCapabilities } from "@censys/platform-sdk/models/components";
 
 let value: DeviceIOCapabilities = {};
 ```

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { FieldValuePair } from "censys-sdk-typescript/models/components";
+import { FieldValuePair } from "@censys/platform-sdk/models/components";
 
 let value: FieldValuePair = {
   field: "host.services.port",

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CollectionEventsResponse } from "censys-sdk-typescript/models/components";
+import { CollectionEventsResponse } from "@censys/platform-sdk/models/components";
 
 let value: CollectionEventsResponse = {
   events: [

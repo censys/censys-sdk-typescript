@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Peer } from "censys-sdk-typescript/models/components";
+import { Peer } from "@censys/platform-sdk/models/components";
 
 let value: Peer = {};
 ```

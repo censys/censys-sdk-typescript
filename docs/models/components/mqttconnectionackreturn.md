@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { MqttConnectionAckReturn } from "censys-sdk-typescript/models/components";
+import { MqttConnectionAckReturn } from "@censys/platform-sdk/models/components";
 
 let value: MqttConnectionAckReturn = {};
 ```

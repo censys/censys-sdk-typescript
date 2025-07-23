@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { HostAsset } from "censys-sdk-typescript/models/components";
+import { HostAsset } from "@censys/platform-sdk/models/components";
 
 let value: HostAsset = {
   extensions: {

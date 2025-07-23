@@ -5,7 +5,7 @@ Describes whether a user, other than the attacker, is required to do anything or
 ## Example Usage
 
 ```typescript
-import { CVSSv4ComponentsUserInteraction } from "censys-sdk-typescript/models/components";
+import { CVSSv4ComponentsUserInteraction } from "@censys/platform-sdk/models/components";
 
 let value: CVSSv4ComponentsUserInteraction = "";
 ```

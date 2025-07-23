@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { VentriloHeader } from "censys-sdk-typescript/models/components";
+import { VentriloHeader } from "@censys/platform-sdk/models/components";
 
 let value: VentriloHeader = {};
 ```

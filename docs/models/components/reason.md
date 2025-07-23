@@ -5,7 +5,7 @@ An enumerated value indicating the issuer-supplied reason for the revocation.
 ## Example Usage
 
 ```typescript
-import { Reason } from "censys-sdk-typescript/models/components";
+import { Reason } from "@censys/platform-sdk/models/components";
 
 let value: Reason = "privilege_withdrawn";
 ```

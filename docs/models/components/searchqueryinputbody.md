@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SearchQueryInputBody } from "censys-sdk-typescript/models/components";
+import { SearchQueryInputBody } from "@censys/platform-sdk/models/components";
 
 let value: SearchQueryInputBody = {
   fields: [

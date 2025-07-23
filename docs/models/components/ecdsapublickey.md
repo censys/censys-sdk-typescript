@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { EcdsaPublicKey } from "censys-sdk-typescript/models/components";
+import { EcdsaPublicKey } from "@censys/platform-sdk/models/components";
 
 let value: EcdsaPublicKey = {};
 ```

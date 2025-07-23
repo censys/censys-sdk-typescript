@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GeneralSubtreeIp } from "censys-sdk-typescript/models/components";
+import { GeneralSubtreeIp } from "@censys/platform-sdk/models/components";
 
 let value: GeneralSubtreeIp = {};
 ```

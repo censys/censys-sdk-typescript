@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CrudUpdateInputBody } from "censys-sdk-typescript/models/components";
+import { CrudUpdateInputBody } from "@censys/platform-sdk/models/components";
 
 let value: CrudUpdateInputBody = {
   description: "Hosts with services with AsyncRAT indicator in cert subject DN",

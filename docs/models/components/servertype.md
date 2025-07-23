@@ -5,7 +5,7 @@ An enumerated value indicating the behavior of the server. An AUTHORITATIVE serv
 ## Example Usage
 
 ```typescript
-import { ServerType } from "censys-sdk-typescript/models/components";
+import { ServerType } from "@censys/platform-sdk/models/components";
 
 let value: ServerType = "redirecting";
 ```

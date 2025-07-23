@@ -5,8 +5,8 @@ management:
   docVersion: 1.0.16
   speakeasyVersion: 1.586.0
   generationVersion: 2.661.4
-  releaseVersion: 0.4.2
-  configChecksum: 6d4309591e9072e1a26101af8bbbaec8
+  releaseVersion: 0.4.3
+  configChecksum: 98befad27c15a769c18f5ff41eea9941
   repoURL: https://github.com/censys/censys-sdk-typescript.git
   installationURL: https://github.com/censys/censys-sdk-typescript
   published: true

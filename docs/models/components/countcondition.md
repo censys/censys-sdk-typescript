@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CountCondition } from "censys-sdk-typescript/models/components";
+import { CountCondition } from "@censys/platform-sdk/models/components";
 
 let value: CountCondition = {
   fieldValuePairs: [

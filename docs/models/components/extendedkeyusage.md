@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ExtendedKeyUsage } from "censys-sdk-typescript/models/components";
+import { ExtendedKeyUsage } from "@censys/platform-sdk/models/components";
 
 let value: ExtendedKeyUsage = {};
 ```

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SignedCertificateTimestampSignature } from "censys-sdk-typescript/models/components";
+import { SignedCertificateTimestampSignature } from "@censys/platform-sdk/models/components";
 
 let value: SignedCertificateTimestampSignature = {};
 ```

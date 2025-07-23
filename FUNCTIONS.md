@@ -19,8 +19,8 @@ specific category of applications.
 ## Example
 
 ```typescript
-import { SDKCore } from "censys-sdk-typescript/core.js";
-import { globalDataSearch } from "censys-sdk-typescript/funcs/globalDataSearch.js";
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { globalDataSearch } from "@censys/platform-sdk/funcs/globalDataSearch.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

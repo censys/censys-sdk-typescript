@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Mongodb } from "censys-sdk-typescript/models/components";
+import { Mongodb } from "@censys/platform-sdk/models/components";
 
 let value: Mongodb = {};
 ```

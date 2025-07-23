@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ValidityPeriod } from "censys-sdk-typescript/models/components";
+import { ValidityPeriod } from "@censys/platform-sdk/models/components";
 
 let value: ValidityPeriod = {};
 ```

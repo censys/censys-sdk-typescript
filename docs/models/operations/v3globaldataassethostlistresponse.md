@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { V3GlobaldataAssetHostListResponse } from "censys-sdk-typescript/models/operations";
+import { V3GlobaldataAssetHostListResponse } from "@censys/platform-sdk/models/operations";
 
 let value: V3GlobaldataAssetHostListResponse = {
   headers: {

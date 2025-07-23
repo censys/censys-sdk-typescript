@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { CiscoIpslaHandshake } from "censys-sdk-typescript/models/components";
+import { CiscoIpslaHandshake } from "@censys/platform-sdk/models/components";
 
 let value: CiscoIpslaHandshake = {};
 ```

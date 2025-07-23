@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Telnet } from "censys-sdk-typescript/models/components";
+import { Telnet } from "@censys/platform-sdk/models/components";
 
 let value: Telnet = {};
 ```

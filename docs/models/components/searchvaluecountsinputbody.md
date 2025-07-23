@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { SearchValueCountsInputBody } from "censys-sdk-typescript/models/components";
+import { SearchValueCountsInputBody } from "@censys/platform-sdk/models/components";
 
 let value: SearchValueCountsInputBody = {
   andCountConditions: [],

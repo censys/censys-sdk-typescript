@@ -45,25 +45,25 @@ The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https
 ### NPM
 
 ```bash
-npm add censys-sdk-typescript
+npm add @censys/platform-sdk
 ```
 
 ### PNPM
 
 ```bash
-pnpm add censys-sdk-typescript
+pnpm add @censys/platform-sdk
 ```
 
 ### Bun
 
 ```bash
-bun add censys-sdk-typescript
+bun add @censys/platform-sdk
 ```
 
 ### Yarn
 
 ```bash
-yarn add censys-sdk-typescript zod
+yarn add @censys/platform-sdk zod
 
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
@@ -82,7 +82,7 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ### Example
 
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   organizationId: "11111111-2222-3333-4444-555555555555",
@@ -202,7 +202,7 @@ The following global parameter is available.
 ### Example
 
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   organizationId: "11111111-2222-3333-4444-555555555555",
@@ -230,7 +230,7 @@ Some of the endpoints in this SDK support retries.  If you use the SDK without a
 
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   organizationId: "11111111-2222-3333-4444-555555555555",
@@ -263,7 +263,7 @@ run();
 
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   retryConfig: {
@@ -310,8 +310,8 @@ run();
 
 ### Example
 ```typescript
-import { SDK } from "censys-sdk-typescript";
-import * as errors from "censys-sdk-typescript/models/errors";
+import { SDK } from "@censys/platform-sdk";
+import * as errors from "@censys/platform-sdk/models/errors";
 
 const sdk = new SDK({
   organizationId: "11111111-2222-3333-4444-555555555555",
@@ -380,7 +380,7 @@ run();
 
 The default server can be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   serverURL: "https://api.platform.censys.io",
@@ -420,8 +420,8 @@ custom header and a timeout to requests and how to use the `"requestError"` hook
 to log errors:
 
 ```typescript
-import { SDK } from "censys-sdk-typescript";
-import { HTTPClient } from "censys-sdk-typescript/lib/http";
+import { SDK } from "@censys/platform-sdk";
+import { HTTPClient } from "@censys/platform-sdk/lib/http";
 
 const httpClient = new HTTPClient({
   // fetcher takes a function that has the same signature as native `fetch`.
@@ -464,7 +464,7 @@ This SDK supports the following security scheme globally:
 
 To authenticate with the API the `personalAccessToken` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
@@ -496,7 +496,7 @@ You can pass a logger that matches `console`'s interface as an SDK option.
 > Beware that debug logging will reveal secrets, like API tokens in headers, in log messages printed to a console or files. It's recommended to use this feature only during local development and not in production.
 
 ```typescript
-import { SDK } from "censys-sdk-typescript";
+import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({ debugLogger: console });
 ```

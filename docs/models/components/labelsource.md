@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { LabelSource } from "censys-sdk-typescript/models/components";
+import { LabelSource } from "@censys/platform-sdk/models/components";
 
 let value: LabelSource = "censys";
 ```

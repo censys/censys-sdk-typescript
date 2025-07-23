@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ElasticSearchResultsNodeInfoClusterCombinedInfoIndices } from "censys-sdk-typescript/models/components";
+import { ElasticSearchResultsNodeInfoClusterCombinedInfoIndices } from "@censys/platform-sdk/models/components";
 
 let value: ElasticSearchResultsNodeInfoClusterCombinedInfoIndices = {};
 ```
