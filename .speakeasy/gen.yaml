@@ -53,7 +53,7 @@ typescript:
   methodArguments: require-security-and-request
   moduleFormat: commonjs
   outputModelSuffix: output
-  packageName: censys-sdk-typescript
+  packageName: '@censys/platform-sdk'
   responseFormat: flat
   templateVersion: v2
   useIndexModules: true
