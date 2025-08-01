@@ -1,0 +1,18 @@
+# V3GlobaldataScansGetRequest
+
+## Example Usage
+
+```typescript
+import { V3GlobaldataScansGetRequest } from "@censys/platform-sdk/models/operations";
+
+let value: V3GlobaldataScansGetRequest = {
+  scanId: "52c0b248-2d9f-473a-ac2b-035721dab52e",
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                                                              | Type                                                                                                                                                                                               | Required                                                                                                                                                                                           | Description                                                                                                                                                                                        |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `organizationId`                                                                                                                                                                                   | *string*                                                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                                                 | The ID of a Censys organization to associate the request with. See the [Getting Started docs](https://docs.censys.com/reference/get-started#step-3-set-your-organization-id) for more information. |
+| `scanId`                                                                                                                                                                                           | *string*                                                                                                                                                                                           | :heavy_check_mark:                                                                                                                                                                                 | The unique identifier of the tracked scan                                                                                                                                                          |

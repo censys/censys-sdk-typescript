@@ -8,6 +8,12 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
+  ElasticSearchErrorMessage,
+  ElasticSearchErrorMessage$inboundSchema,
+  ElasticSearchErrorMessage$Outbound,
+  ElasticSearchErrorMessage$outboundSchema,
+} from "./elasticsearcherrormessage.js";
+import {
   ElasticSearchResultsNodeInfo,
   ElasticSearchResultsNodeInfo$inboundSchema,
   ElasticSearchResultsNodeInfo$Outbound,
@@ -21,6 +27,7 @@ import {
 } from "./elasticsearchsysteminfo.js";
 
 export type ElasticSearch = {
+  errorMessage?: ElasticSearchErrorMessage | undefined;
   resultsNodeInfo?: ElasticSearchResultsNodeInfo | undefined;
   systemInfo?: ElasticSearchSystemInfo | undefined;
 };
@@ -31,10 +38,12 @@ export const ElasticSearch$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  error_message: ElasticSearchErrorMessage$inboundSchema.optional(),
   results_node_info: ElasticSearchResultsNodeInfo$inboundSchema.optional(),
   system_info: ElasticSearchSystemInfo$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
+    "error_message": "errorMessage",
     "results_node_info": "resultsNodeInfo",
     "system_info": "systemInfo",
   });
@@ -42,6 +51,7 @@ export const ElasticSearch$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ElasticSearch$Outbound = {
+  error_message?: ElasticSearchErrorMessage$Outbound | undefined;
   results_node_info?: ElasticSearchResultsNodeInfo$Outbound | undefined;
   system_info?: ElasticSearchSystemInfo$Outbound | undefined;
 };
@@ -52,10 +62,12 @@ export const ElasticSearch$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ElasticSearch
 > = z.object({
+  errorMessage: ElasticSearchErrorMessage$outboundSchema.optional(),
   resultsNodeInfo: ElasticSearchResultsNodeInfo$outboundSchema.optional(),
   systemInfo: ElasticSearchSystemInfo$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
+    errorMessage: "error_message",
     resultsNodeInfo: "results_node_info",
     systemInfo: "system_info",
   });

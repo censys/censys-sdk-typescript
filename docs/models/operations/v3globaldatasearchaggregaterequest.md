@@ -7,9 +7,9 @@ import { V3GlobaldataSearchAggregateRequest } from "@censys/platform-sdk/models/
 
 let value: V3GlobaldataSearchAggregateRequest = {
   searchAggregateInputBody: {
-    field: "web.endpoints.http.html_title",
+    field: "host.services.port",
     numberOfBuckets: 100,
-    query: "web: *",
+    query: "host.services.protocol=SSH",
   },
 };
 ```

@@ -3,11 +3,15 @@
  */
 
 import { globalDataAggregate } from "../funcs/globalDataAggregate.js";
+import { globalDataCreateTrackedScan } from "../funcs/globalDataCreateTrackedScan.js";
 import { globalDataGetCertificate } from "../funcs/globalDataGetCertificate.js";
 import { globalDataGetCertificates } from "../funcs/globalDataGetCertificates.js";
 import { globalDataGetHost } from "../funcs/globalDataGetHost.js";
+import { globalDataGetHostObservationsWithCertificate } from "../funcs/globalDataGetHostObservationsWithCertificate.js";
 import { globalDataGetHosts } from "../funcs/globalDataGetHosts.js";
 import { globalDataGetHostTimeline } from "../funcs/globalDataGetHostTimeline.js";
+import { globalDataGetTrackedScan } from "../funcs/globalDataGetTrackedScan.js";
+import { globalDataGetTrackedScanThreatHunting } from "../funcs/globalDataGetTrackedScanThreatHunting.js";
 import { globalDataGetWebProperties } from "../funcs/globalDataGetWebProperties.js";
 import { globalDataGetWebProperty } from "../funcs/globalDataGetWebProperty.js";
 import { globalDataSearch } from "../funcs/globalDataSearch.js";
@@ -44,6 +48,25 @@ export class GlobalData extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V3GlobaldataAssetCertificateResponse> {
     return unwrapAsync(globalDataGetCertificate(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Host Observations With Certificate
+   *
+   * @remarks
+   * Retrieve historical observations of hosts associated with a certificate fingerprint. Useful for threat hunting, detection engineering, and timeline generation.
+   */
+  async getHostObservationsWithCertificate(
+    request: operations.V3GlobaldataGetHostObservationsWithCertificateRequest,
+    options?: RequestOptions,
+  ): Promise<
+    operations.V3GlobaldataGetHostObservationsWithCertificateResponse
+  > {
+    return unwrapAsync(globalDataGetHostObservationsWithCertificate(
       this,
       request,
       options,
@@ -136,6 +159,41 @@ export class GlobalData extends ClientSDK {
   }
 
   /**
+   * Create a tracked rescan
+   *
+   * @remarks
+   * Create a new tracked rescan for a known service or web property. Rescans are used to update information for previously discovered targets. The scan will be queued. The response will contain a scan ID that you can use with the [get tracked scan details endpoint](https://docs.censys.com/reference/v3-globaldata-scans-get#/) to monitor its status and results.<br><br>This endpoint is available to all Enterprise customers.
+   */
+  async createTrackedScan(
+    request: operations.V3GlobaldataScansRescanRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3GlobaldataScansRescanResponse> {
+    return unwrapAsync(globalDataCreateTrackedScan(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get tracked scan details
+   *
+   * @remarks
+   * Retrieve the current status and results of a tracked scan by its ID.
+   *         This endpoint works for both discovery scans and rescans.
+   */
+  async getTrackedScan(
+    request: operations.V3GlobaldataScansGetRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3GlobaldataScansGetResponse> {
+    return unwrapAsync(globalDataGetTrackedScan(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Aggregate results for a search query
    *
    * @remarks
@@ -163,6 +221,24 @@ export class GlobalData extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V3GlobaldataSearchQueryResponse> {
     return unwrapAsync(globalDataSearch(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get tracked scan details
+   *
+   * @remarks
+   * Retrieve the current status and results of a tracked scan by its ID.
+   *         This endpoint works for both discovery scans and rescans.
+   */
+  async getTrackedScanThreatHunting(
+    request: operations.V3ThreathuntingScansGetRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3ThreathuntingScansGetResponse> {
+    return unwrapAsync(globalDataGetTrackedScanThreatHunting(
       this,
       request,
       options,

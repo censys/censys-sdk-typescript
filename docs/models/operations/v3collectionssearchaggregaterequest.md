@@ -8,9 +8,9 @@ import { V3CollectionsSearchAggregateRequest } from "@censys/platform-sdk/models
 let value: V3CollectionsSearchAggregateRequest = {
   collectionUid: "11111111-2222-3333-4444-555555555555",
   searchAggregateInputBody: {
-    field: "web.endpoints.http.html_title",
+    field: "host.services.port",
     numberOfBuckets: 100,
-    query: "web: *",
+    query: "host.services.protocol=SSH",
   },
 };
 ```

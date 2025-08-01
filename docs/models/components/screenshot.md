@@ -12,4 +12,5 @@ let value: Screenshot = {};
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
+| `extractedText`    | *string*           | :heavy_minus_sign: | N/A                |
 | `handle`           | *string*           | :heavy_minus_sign: | N/A                |
