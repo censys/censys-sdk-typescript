@@ -11,7 +11,6 @@ let value: V3GlobaldataSearchQueryRequest = {
       "host.ip",
     ],
     pageSize: 1,
-    pageToken: "<next_page_token>",
     query: "host.services: (protocol=SSH and not port: 22)",
   },
 };

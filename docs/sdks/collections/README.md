@@ -22,6 +22,7 @@ List all collections for an organization. Retrieved information includes collect
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3-collections-crud-list" method="get" path="/v3/collections" -->
 ```typescript
 import { SDK } from "@censys/platform-sdk";
 
@@ -99,6 +100,7 @@ Create a new collection.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3-collections-crud-create" method="post" path="/v3/collections" -->
 ```typescript
 import { SDK } from "@censys/platform-sdk";
 
@@ -182,6 +184,7 @@ Delete a collection.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3-collections-crud-delete" method="delete" path="/v3/collections/{collection_uid}" -->
 ```typescript
 import { SDK } from "@censys/platform-sdk";
 
@@ -257,6 +260,7 @@ Retrieve information about a collection. Retrieved information includes its name
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3-collections-crud-get" method="get" path="/v3/collections/{collection_uid}" -->
 ```typescript
 import { SDK } from "@censys/platform-sdk";
 
@@ -332,6 +336,7 @@ Update a collection's name, description, and/or query.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3-collections-crud-update" method="put" path="/v3/collections/{collection_uid}" -->
 ```typescript
 import { SDK } from "@censys/platform-sdk";
 
@@ -417,6 +422,7 @@ Retrieve the event history for a collection. This includes the addition or remov
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3-collections-list-events" method="get" path="/v3/collections/{collection_uid}/events" -->
 ```typescript
 import { SDK } from "@censys/platform-sdk";
 
@@ -500,6 +506,7 @@ Aggregate results for a Platform search query that targets a collection's assets
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3-collections-search-aggregate" method="post" path="/v3/collections/{collection_uid}/search/aggregate" -->
 ```typescript
 import { SDK } from "@censys/platform-sdk";
 
@@ -512,9 +519,9 @@ async function run() {
   const result = await sdk.collections.aggregate({
     collectionUid: "11111111-2222-3333-4444-555555555555",
     searchAggregateInputBody: {
-      field: "web.endpoints.http.html_title",
+      field: "host.services.port",
       numberOfBuckets: 100,
-      query: "web: *",
+      query: "host.services.protocol=SSH",
     },
   });
 
@@ -543,9 +550,9 @@ async function run() {
   const res = await collectionsAggregate(sdk, {
     collectionUid: "11111111-2222-3333-4444-555555555555",
     searchAggregateInputBody: {
-      field: "web.endpoints.http.html_title",
+      field: "host.services.port",
       numberOfBuckets: 100,
-      query: "web: *",
+      query: "host.services.protocol=SSH",
     },
   });
   if (res.ok) {
@@ -585,6 +592,7 @@ Run a search query across a collection's assets. Reference the [documentation on
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3-collections-search-query" method="post" path="/v3/collections/{collection_uid}/search/query" -->
 ```typescript
 import { SDK } from "@censys/platform-sdk";
 
@@ -601,7 +609,6 @@ async function run() {
         "host.ip",
       ],
       pageSize: 1,
-      pageToken: "<next_page_token>",
       query: "host.services: (protocol=SSH and not port: 22)",
     },
   });
@@ -635,7 +642,6 @@ async function run() {
         "host.ip",
       ],
       pageSize: 1,
-      pageToken: "<next_page_token>",
       query: "host.services: (protocol=SSH and not port: 22)",
     },
   });

@@ -96,7 +96,6 @@ async function run() {
         "host.ip",
       ],
       pageSize: 1,
-      pageToken: "<next_page_token>",
       query: "host.services: (protocol=SSH and not port: 22)",
     },
   });
@@ -130,6 +129,7 @@ run();
 
 * [getCertificates](docs/sdks/globaldata/README.md#getcertificates) - Get multiple certificates
 * [getCertificate](docs/sdks/globaldata/README.md#getcertificate) - Get a certificate
+* [getHostObservationsWithCertificate](docs/sdks/globaldata/README.md#gethostobservationswithcertificate) - Get Host Observations With Certificate
 * [getHosts](docs/sdks/globaldata/README.md#gethosts) - Get multiple hosts
 * [getHost](docs/sdks/globaldata/README.md#gethost) - Get a host
 * [getHostTimeline](docs/sdks/globaldata/README.md#gethosttimeline) - Get host event history
@@ -173,6 +173,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`globalDataGetCertificate`](docs/sdks/globaldata/README.md#getcertificate) - Get a certificate
 - [`globalDataGetCertificates`](docs/sdks/globaldata/README.md#getcertificates) - Get multiple certificates
 - [`globalDataGetHost`](docs/sdks/globaldata/README.md#gethost) - Get a host
+- [`globalDataGetHostObservationsWithCertificate`](docs/sdks/globaldata/README.md#gethostobservationswithcertificate) - Get Host Observations With Certificate
 - [`globalDataGetHosts`](docs/sdks/globaldata/README.md#gethosts) - Get multiple hosts
 - [`globalDataGetHostTimeline`](docs/sdks/globaldata/README.md#gethosttimeline) - Get host event history
 - [`globalDataGetWebProperties`](docs/sdks/globaldata/README.md#getwebproperties) - Get multiple web properties

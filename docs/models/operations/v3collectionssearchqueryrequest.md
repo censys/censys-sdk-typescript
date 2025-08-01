@@ -12,7 +12,6 @@ let value: V3CollectionsSearchQueryRequest = {
       "host.ip",
     ],
     pageSize: 1,
-    pageToken: "<next_page_token>",
     query: "host.services: (protocol=SSH and not port: 22)",
   },
 };

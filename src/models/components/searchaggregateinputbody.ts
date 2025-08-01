@@ -10,6 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SearchAggregateInputBody = {
   /**
+   * Specifies which document level's count is returned per term bucket, primarily for nested fields. This is the same functionality available in the Count By dropdown in the Report Builder UI. When aggregating on nested fields like 'host.services.port': empty string (default) counts documents at the deepest level containing the field; '.' counts root documents (e.g. counts matching 'host'); 'host.services' counts documents at the specified nested level.
+   */
+  countByLevel?: string | undefined;
+  /**
    * field to aggregate by
    */
   field: string;
@@ -33,12 +37,14 @@ export const SearchAggregateInputBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  count_by_level: z.string().optional(),
   field: z.string(),
   filter_by_query: z.boolean().default(false),
   number_of_buckets: z.number().int(),
   query: z.string(),
 }).transform((v) => {
   return remap$(v, {
+    "count_by_level": "countByLevel",
     "filter_by_query": "filterByQuery",
     "number_of_buckets": "numberOfBuckets",
   });
@@ -46,6 +52,7 @@ export const SearchAggregateInputBody$inboundSchema: z.ZodType<
 
 /** @internal */
 export type SearchAggregateInputBody$Outbound = {
+  count_by_level?: string | undefined;
   field: string;
   filter_by_query: boolean;
   number_of_buckets: number;
@@ -58,12 +65,14 @@ export const SearchAggregateInputBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SearchAggregateInputBody
 > = z.object({
+  countByLevel: z.string().optional(),
   field: z.string(),
   filterByQuery: z.boolean().default(false),
   numberOfBuckets: z.number().int(),
   query: z.string(),
 }).transform((v) => {
   return remap$(v, {
+    countByLevel: "count_by_level",
     filterByQuery: "filter_by_query",
     numberOfBuckets: "number_of_buckets",
   });
