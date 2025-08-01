@@ -3,11 +3,13 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Screenshot = {
+  extractedText?: string | undefined;
   handle?: string | undefined;
 };
 
@@ -17,11 +19,17 @@ export const Screenshot$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  extracted_text: z.string().optional(),
   handle: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "extracted_text": "extractedText",
+  });
 });
 
 /** @internal */
 export type Screenshot$Outbound = {
+  extracted_text?: string | undefined;
   handle?: string | undefined;
 };
 
@@ -31,7 +39,12 @@ export const Screenshot$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Screenshot
 > = z.object({
+  extractedText: z.string().optional(),
   handle: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    extractedText: "extracted_text",
+  });
 });
 
 /**

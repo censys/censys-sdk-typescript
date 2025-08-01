@@ -19,6 +19,10 @@ export type SearchValueCountsInputBody = {
    * Groups of field-value pairs to count matches for.
    */
   andCountConditions: Array<CountCondition> | null;
+  /**
+   * CenQL query string to filter documents
+   */
+  query?: string | undefined;
 };
 
 /** @internal */
@@ -28,6 +32,7 @@ export const SearchValueCountsInputBody$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   and_count_conditions: z.nullable(z.array(CountCondition$inboundSchema)),
+  query: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "and_count_conditions": "andCountConditions",
@@ -37,6 +42,7 @@ export const SearchValueCountsInputBody$inboundSchema: z.ZodType<
 /** @internal */
 export type SearchValueCountsInputBody$Outbound = {
   and_count_conditions: Array<CountCondition$Outbound> | null;
+  query?: string | undefined;
 };
 
 /** @internal */
@@ -46,6 +52,7 @@ export const SearchValueCountsInputBody$outboundSchema: z.ZodType<
   SearchValueCountsInputBody
 > = z.object({
   andCountConditions: z.nullable(z.array(CountCondition$outboundSchema)),
+  query: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     andCountConditions: "and_count_conditions",

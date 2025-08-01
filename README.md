@@ -96,7 +96,6 @@ async function run() {
         "host.ip",
       ],
       pageSize: 1,
-      pageToken: "<next_page_token>",
       query: "host.services: (protocol=SSH and not port: 22)",
     },
   });
@@ -130,17 +129,24 @@ run();
 
 * [getCertificates](docs/sdks/globaldata/README.md#getcertificates) - Get multiple certificates
 * [getCertificate](docs/sdks/globaldata/README.md#getcertificate) - Get a certificate
+* [getHostObservationsWithCertificate](docs/sdks/globaldata/README.md#gethostobservationswithcertificate) - Get Host Observations With Certificate
 * [getHosts](docs/sdks/globaldata/README.md#gethosts) - Get multiple hosts
 * [getHost](docs/sdks/globaldata/README.md#gethost) - Get a host
 * [getHostTimeline](docs/sdks/globaldata/README.md#gethosttimeline) - Get host event history
 * [getWebProperties](docs/sdks/globaldata/README.md#getwebproperties) - Get multiple web properties
 * [getWebProperty](docs/sdks/globaldata/README.md#getwebproperty) - Get a web property
+* [createTrackedScan](docs/sdks/globaldata/README.md#createtrackedscan) - Create a tracked rescan
+* [getTrackedScan](docs/sdks/globaldata/README.md#gettrackedscan) - Get tracked scan details
 * [aggregate](docs/sdks/globaldata/README.md#aggregate) - Aggregate results for a search query
 * [search](docs/sdks/globaldata/README.md#search) - Run a search query
+* [getTrackedScanThreatHunting](docs/sdks/globaldata/README.md#gettrackedscanthreathunting) - Get tracked scan details
 
 
 ### [threatHunting](docs/sdks/threathunting/README.md)
 
+* [getTrackedScan](docs/sdks/threathunting/README.md#gettrackedscan) - Get tracked scan details
+* [createTrackedScan](docs/sdks/threathunting/README.md#createtrackedscan) - Create a tracked discovery scan
+* [getTrackedScanThreatHunting](docs/sdks/threathunting/README.md#gettrackedscanthreathunting) - Get tracked scan details
 * [valueCounts](docs/sdks/threathunting/README.md#valuecounts) - CensEye: Retrieve value counts to discover pivots
 
 </details>
@@ -170,14 +176,21 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`collectionsSearch`](docs/sdks/collections/README.md#search) - Run a search query within a collection
 - [`collectionsUpdate`](docs/sdks/collections/README.md#update) - Update a collection
 - [`globalDataAggregate`](docs/sdks/globaldata/README.md#aggregate) - Aggregate results for a search query
+- [`globalDataCreateTrackedScan`](docs/sdks/globaldata/README.md#createtrackedscan) - Create a tracked rescan
 - [`globalDataGetCertificate`](docs/sdks/globaldata/README.md#getcertificate) - Get a certificate
 - [`globalDataGetCertificates`](docs/sdks/globaldata/README.md#getcertificates) - Get multiple certificates
 - [`globalDataGetHost`](docs/sdks/globaldata/README.md#gethost) - Get a host
+- [`globalDataGetHostObservationsWithCertificate`](docs/sdks/globaldata/README.md#gethostobservationswithcertificate) - Get Host Observations With Certificate
 - [`globalDataGetHosts`](docs/sdks/globaldata/README.md#gethosts) - Get multiple hosts
 - [`globalDataGetHostTimeline`](docs/sdks/globaldata/README.md#gethosttimeline) - Get host event history
+- [`globalDataGetTrackedScan`](docs/sdks/globaldata/README.md#gettrackedscan) - Get tracked scan details
+- [`globalDataGetTrackedScan`](docs/sdks/threathunting/README.md#gettrackedscan) - Get tracked scan details
+- [`globalDataGetTrackedScanThreatHunting`](docs/sdks/globaldata/README.md#gettrackedscanthreathunting) - Get tracked scan details
+- [`globalDataGetTrackedScanThreatHunting`](docs/sdks/threathunting/README.md#gettrackedscanthreathunting) - Get tracked scan details
 - [`globalDataGetWebProperties`](docs/sdks/globaldata/README.md#getwebproperties) - Get multiple web properties
 - [`globalDataGetWebProperty`](docs/sdks/globaldata/README.md#getwebproperty) - Get a web property
 - [`globalDataSearch`](docs/sdks/globaldata/README.md#search) - Run a search query
+- [`threatHuntingCreateTrackedScan`](docs/sdks/threathunting/README.md#createtrackedscan) - Create a tracked discovery scan
 - [`threatHuntingValueCounts`](docs/sdks/threathunting/README.md#valuecounts) - CensEye: Retrieve value counts to discover pivots
 
 </details>
@@ -353,7 +366,7 @@ run();
 ### Error Classes
 **Primary errors:**
 * [`SDKBaseError`](./src/models/errors/sdkbaseerror.ts): The base class for HTTP error responses.
-  * [`ErrorModel`](./src/models/errors/errormodel.ts): Request does not contain a valid Authorization token.
+  * [`ErrorModel`](./src/models/errors/errormodel.ts): Request does not contain a valid Authorization token. *
 
 <details><summary>Less common errors (6)</summary>
 
@@ -371,6 +384,8 @@ run();
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
+
+\* Check [the method documentation](#available-resources-and-operations) to see if the error is applicable.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->

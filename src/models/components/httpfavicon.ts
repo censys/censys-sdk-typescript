@@ -10,6 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type HttpFavicon = {
   hashMd5?: string | undefined;
+  /**
+   * A 64-bit 'perceptual' hash of the favicon
+   */
+  hashPhash?: string | undefined;
   hashSha256?: string | undefined;
   /**
    * A hash expressed as a signed decimal integer, provided for compatability with Shodan search.
@@ -32,6 +36,7 @@ export const HttpFavicon$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   hash_md5: z.string().optional(),
+  hash_phash: z.string().optional(),
   hash_sha256: z.string().optional(),
   hash_shodan: z.number().int().optional(),
   name: z.string().optional(),
@@ -39,6 +44,7 @@ export const HttpFavicon$inboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     "hash_md5": "hashMd5",
+    "hash_phash": "hashPhash",
     "hash_sha256": "hashSha256",
     "hash_shodan": "hashShodan",
   });
@@ -47,6 +53,7 @@ export const HttpFavicon$inboundSchema: z.ZodType<
 /** @internal */
 export type HttpFavicon$Outbound = {
   hash_md5?: string | undefined;
+  hash_phash?: string | undefined;
   hash_sha256?: string | undefined;
   hash_shodan?: number | undefined;
   name?: string | undefined;
@@ -60,6 +67,7 @@ export const HttpFavicon$outboundSchema: z.ZodType<
   HttpFavicon
 > = z.object({
   hashMd5: z.string().optional(),
+  hashPhash: z.string().optional(),
   hashSha256: z.string().optional(),
   hashShodan: z.number().int().optional(),
   name: z.string().optional(),
@@ -67,6 +75,7 @@ export const HttpFavicon$outboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     hashMd5: "hash_md5",
+    hashPhash: "hash_phash",
     hashSha256: "hash_sha256",
     hashShodan: "hash_shodan",
   });
