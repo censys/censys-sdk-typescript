@@ -9,7 +9,6 @@ Endpoints related to the Global Data product
 
 * [getCertificates](#getcertificates) - Get multiple certificates
 * [getCertificate](#getcertificate) - Get a certificate
-* [getHostObservationsWithCertificate](#gethostobservationswithcertificate) - Get Host Observations With Certificate
 * [getHosts](#gethosts) - Get multiple hosts
 * [getHost](#gethost) - Get a host
 * [getHostTimeline](#gethosttimeline) - Get host event history
@@ -169,92 +168,6 @@ run();
 ### Response
 
 **Promise\<[operations.V3GlobaldataAssetCertificateResponse](../../models/operations/v3globaldataassetcertificateresponse.md)\>**
-
-### Errors
-
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.ErrorModel        | 401, 403                 | application/problem+json |
-| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
-
-## getHostObservationsWithCertificate
-
-Retrieve historical observations of hosts associated with a certificate fingerprint. Useful for threat hunting, detection engineering, and timeline generation.
-
-### Example Usage
-
-<!-- UsageSnippet language="typescript" operationID="v3-globaldata-get-host-observations-with-certificate" method="get" path="/v3/global/asset/certificate/{certificate_id}/observations/hosts" -->
-```typescript
-import { SDK } from "@censys/platform-sdk";
-
-const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
-  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
-});
-
-async function run() {
-  const result = await sdk.globalData.getHostObservationsWithCertificate({
-    certificateId: "55af8a301eb51abdaf7c31bec951638fe5a99d5d92117eca2be493026613fa46",
-    startTime: "2023-01-01T00:00:00Z",
-    endTime: "2023-12-31T23:59:59Z",
-    port: 443,
-    protocol: "TCP",
-    pageSize: 50,
-  });
-
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { SDKCore } from "@censys/platform-sdk/core.js";
-import { globalDataGetHostObservationsWithCertificate } from "@censys/platform-sdk/funcs/globalDataGetHostObservationsWithCertificate.js";
-
-// Use `SDKCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
-  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
-});
-
-async function run() {
-  const res = await globalDataGetHostObservationsWithCertificate(sdk, {
-    certificateId: "55af8a301eb51abdaf7c31bec951638fe5a99d5d92117eca2be493026613fa46",
-    startTime: "2023-01-01T00:00:00Z",
-    endTime: "2023-12-31T23:59:59Z",
-    port: 443,
-    protocol: "TCP",
-    pageSize: 50,
-  });
-  if (res.ok) {
-    const { value: result } = res;
-    console.log(result);
-  } else {
-    console.log("globalDataGetHostObservationsWithCertificate failed:", res.error);
-  }
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.V3GlobaldataGetHostObservationsWithCertificateRequest](../../models/operations/v3globaldatagethostobservationswithcertificaterequest.md)                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[operations.V3GlobaldataGetHostObservationsWithCertificateResponse](../../models/operations/v3globaldatagethostobservationswithcertificateresponse.md)\>**
 
 ### Errors
 

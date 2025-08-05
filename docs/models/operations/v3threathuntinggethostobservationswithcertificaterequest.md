@@ -1,11 +1,11 @@
-# V3GlobaldataGetHostObservationsWithCertificateRequest
+# V3ThreathuntingGetHostObservationsWithCertificateRequest
 
 ## Example Usage
 
 ```typescript
-import { V3GlobaldataGetHostObservationsWithCertificateRequest } from "@censys/platform-sdk/models/operations";
+import { V3ThreathuntingGetHostObservationsWithCertificateRequest } from "@censys/platform-sdk/models/operations";
 
-let value: V3GlobaldataGetHostObservationsWithCertificateRequest = {
+let value: V3ThreathuntingGetHostObservationsWithCertificateRequest = {
   certificateId:
     "55af8a301eb51abdaf7c31bec951638fe5a99d5d92117eca2be493026613fa46",
   startTime: "2023-01-01T00:00:00Z",

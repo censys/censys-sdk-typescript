@@ -5,6 +5,7 @@
 import { globalDataGetTrackedScan } from "../funcs/globalDataGetTrackedScan.js";
 import { globalDataGetTrackedScanThreatHunting } from "../funcs/globalDataGetTrackedScanThreatHunting.js";
 import { threatHuntingCreateTrackedScan } from "../funcs/threatHuntingCreateTrackedScan.js";
+import { threatHuntingGetHostObservationsWithCertificate } from "../funcs/threatHuntingGetHostObservationsWithCertificate.js";
 import { threatHuntingValueCounts } from "../funcs/threatHuntingValueCounts.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
@@ -23,6 +24,26 @@ export class ThreatHunting extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V3GlobaldataScansGetResponse> {
     return unwrapAsync(globalDataGetTrackedScan(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Host Observations With Certificate
+   *
+   * @remarks
+   * Retrieve historical observations of hosts associated with a certificate fingerprint. Useful for threat hunting, detection engineering, and timeline generation.
+   */
+  async getHostObservationsWithCertificate(
+    request:
+      operations.V3ThreathuntingGetHostObservationsWithCertificateRequest,
+    options?: RequestOptions,
+  ): Promise<
+    operations.V3ThreathuntingGetHostObservationsWithCertificateResponse
+  > {
+    return unwrapAsync(threatHuntingGetHostObservationsWithCertificate(
       this,
       request,
       options,

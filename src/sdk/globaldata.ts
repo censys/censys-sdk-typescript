@@ -7,7 +7,6 @@ import { globalDataCreateTrackedScan } from "../funcs/globalDataCreateTrackedSca
 import { globalDataGetCertificate } from "../funcs/globalDataGetCertificate.js";
 import { globalDataGetCertificates } from "../funcs/globalDataGetCertificates.js";
 import { globalDataGetHost } from "../funcs/globalDataGetHost.js";
-import { globalDataGetHostObservationsWithCertificate } from "../funcs/globalDataGetHostObservationsWithCertificate.js";
 import { globalDataGetHosts } from "../funcs/globalDataGetHosts.js";
 import { globalDataGetHostTimeline } from "../funcs/globalDataGetHostTimeline.js";
 import { globalDataGetTrackedScan } from "../funcs/globalDataGetTrackedScan.js";
@@ -48,25 +47,6 @@ export class GlobalData extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V3GlobaldataAssetCertificateResponse> {
     return unwrapAsync(globalDataGetCertificate(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * Get Host Observations With Certificate
-   *
-   * @remarks
-   * Retrieve historical observations of hosts associated with a certificate fingerprint. Useful for threat hunting, detection engineering, and timeline generation.
-   */
-  async getHostObservationsWithCertificate(
-    request: operations.V3GlobaldataGetHostObservationsWithCertificateRequest,
-    options?: RequestOptions,
-  ): Promise<
-    operations.V3GlobaldataGetHostObservationsWithCertificateResponse
-  > {
-    return unwrapAsync(globalDataGetHostObservationsWithCertificate(
       this,
       request,
       options,

@@ -31,13 +31,13 @@ import { Result } from "../types/fp.js";
  * @remarks
  * Retrieve historical observations of hosts associated with a certificate fingerprint. Useful for threat hunting, detection engineering, and timeline generation.
  */
-export function globalDataGetHostObservationsWithCertificate(
+export function threatHuntingGetHostObservationsWithCertificate(
   client: SDKCore,
-  request: operations.V3GlobaldataGetHostObservationsWithCertificateRequest,
+  request: operations.V3ThreathuntingGetHostObservationsWithCertificateRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.V3GlobaldataGetHostObservationsWithCertificateResponse,
+    operations.V3ThreathuntingGetHostObservationsWithCertificateResponse,
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -58,12 +58,12 @@ export function globalDataGetHostObservationsWithCertificate(
 
 async function $do(
   client: SDKCore,
-  request: operations.V3GlobaldataGetHostObservationsWithCertificateRequest,
+  request: operations.V3ThreathuntingGetHostObservationsWithCertificateRequest,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      operations.V3GlobaldataGetHostObservationsWithCertificateResponse,
+      operations.V3ThreathuntingGetHostObservationsWithCertificateResponse,
       | errors.ErrorModel
       | SDKBaseError
       | ResponseValidationError
@@ -81,7 +81,7 @@ async function $do(
     request,
     (value) =>
       operations
-        .V3GlobaldataGetHostObservationsWithCertificateRequest$outboundSchema
+        .V3ThreathuntingGetHostObservationsWithCertificateRequest$outboundSchema
         .parse(value),
     "Input validation failed",
   );
@@ -99,7 +99,7 @@ async function $do(
   };
 
   const path = pathToFunc(
-    "/v3/global/asset/certificate/{certificate_id}/observations/hosts",
+    "/v3/threat-hunting/certificate/{certificate_id}/observations/hosts",
   )(pathParams);
 
   const query = encodeFormQuery({
@@ -126,7 +126,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "v3-globaldata-get-host-observations-with-certificate",
+    operationID: "v3-threathunting-get-host-observations-with-certificate",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -170,7 +170,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.V3GlobaldataGetHostObservationsWithCertificateResponse,
+    operations.V3ThreathuntingGetHostObservationsWithCertificateResponse,
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -184,7 +184,7 @@ async function $do(
     M.json(
       200,
       operations
-        .V3GlobaldataGetHostObservationsWithCertificateResponse$inboundSchema,
+        .V3ThreathuntingGetHostObservationsWithCertificateResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
     M.jsonErr([401, 403], errors.ErrorModel$inboundSchema, {
