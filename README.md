@@ -129,7 +129,6 @@ run();
 
 * [getCertificates](docs/sdks/globaldata/README.md#getcertificates) - Get multiple certificates
 * [getCertificate](docs/sdks/globaldata/README.md#getcertificate) - Get a certificate
-* [getHostObservationsWithCertificate](docs/sdks/globaldata/README.md#gethostobservationswithcertificate) - Get Host Observations With Certificate
 * [getHosts](docs/sdks/globaldata/README.md#gethosts) - Get multiple hosts
 * [getHost](docs/sdks/globaldata/README.md#gethost) - Get a host
 * [getHostTimeline](docs/sdks/globaldata/README.md#gethosttimeline) - Get host event history
@@ -145,6 +144,7 @@ run();
 ### [threatHunting](docs/sdks/threathunting/README.md)
 
 * [getTrackedScan](docs/sdks/threathunting/README.md#gettrackedscan) - Get tracked scan details
+* [getHostObservationsWithCertificate](docs/sdks/threathunting/README.md#gethostobservationswithcertificate) - Get Host Observations With Certificate
 * [createTrackedScan](docs/sdks/threathunting/README.md#createtrackedscan) - Create a tracked discovery scan
 * [getTrackedScanThreatHunting](docs/sdks/threathunting/README.md#gettrackedscanthreathunting) - Get tracked scan details
 * [valueCounts](docs/sdks/threathunting/README.md#valuecounts) - CensEye: Retrieve value counts to discover pivots
@@ -180,7 +180,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`globalDataGetCertificate`](docs/sdks/globaldata/README.md#getcertificate) - Get a certificate
 - [`globalDataGetCertificates`](docs/sdks/globaldata/README.md#getcertificates) - Get multiple certificates
 - [`globalDataGetHost`](docs/sdks/globaldata/README.md#gethost) - Get a host
-- [`globalDataGetHostObservationsWithCertificate`](docs/sdks/globaldata/README.md#gethostobservationswithcertificate) - Get Host Observations With Certificate
 - [`globalDataGetHosts`](docs/sdks/globaldata/README.md#gethosts) - Get multiple hosts
 - [`globalDataGetHostTimeline`](docs/sdks/globaldata/README.md#gethosttimeline) - Get host event history
 - [`globalDataGetTrackedScan`](docs/sdks/globaldata/README.md#gettrackedscan) - Get tracked scan details
@@ -191,6 +190,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`globalDataGetWebProperty`](docs/sdks/globaldata/README.md#getwebproperty) - Get a web property
 - [`globalDataSearch`](docs/sdks/globaldata/README.md#search) - Run a search query
 - [`threatHuntingCreateTrackedScan`](docs/sdks/threathunting/README.md#createtrackedscan) - Create a tracked discovery scan
+- [`threatHuntingGetHostObservationsWithCertificate`](docs/sdks/threathunting/README.md#gethostobservationswithcertificate) - Get Host Observations With Certificate
 - [`threatHuntingValueCounts`](docs/sdks/threathunting/README.md#valuecounts) - CensEye: Retrieve value counts to discover pivots
 
 </details>
