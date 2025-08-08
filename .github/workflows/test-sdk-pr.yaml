@@ -48,7 +48,12 @@ jobs:
           # Get the package name and version
           PACKAGE_NAME=$(node -p "require('./package.json').name")
           PACKAGE_VERSION=$(node -p "require('./package.json').version")
-          TARBALL_NAME="${PACKAGE_NAME}-${PACKAGE_VERSION}.tgz"
+
+          # npm pack creates tarballs with the format: scope-package-name-version.tgz
+          # For @censys/platform-sdk, it becomes censys-platform-sdk-0.5.1.tgz
+          # Remove the @ symbol and replace / with -
+          TARBALL_NAME="${PACKAGE_NAME#@}-${PACKAGE_VERSION}.tgz"
+          TARBALL_NAME="${TARBALL_NAME//\//-}"
 
           # Set output for use in other steps
           echo "tarball_name=$TARBALL_NAME" >> $GITHUB_OUTPUT
