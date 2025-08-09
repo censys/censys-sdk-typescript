@@ -12,6 +12,8 @@ export * from "./v3collectionssearchaggregate.js";
 export * from "./v3collectionssearchquery.js";
 export * from "./v3globaldataassetcertificate.js";
 export * from "./v3globaldataassetcertificatelist.js";
+export * from "./v3globaldataassetcertificatelistraw.js";
+export * from "./v3globaldataassetcertificateraw.js";
 export * from "./v3globaldataassethost.js";
 export * from "./v3globaldataassethostlist.js";
 export * from "./v3globaldataassethosttimeline.js";
