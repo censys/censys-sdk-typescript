@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 50d8a8aa-8772-4a95-9f7b-f8e1bd905c4e
 management:
-  docChecksum: b4f8f6d248cb74d458e3f2f57c93bd34
-  docVersion: 1.0.25
-  speakeasyVersion: 1.596.1
-  generationVersion: 2.672.0
-  releaseVersion: 0.5.1
-  configChecksum: 9848fd299a99e28313774f11c2298f4b
+  docChecksum: cc68301b753d933fe714938181cb540b
+  docVersion: 1.0.29
+  speakeasyVersion: 1.600.2
+  generationVersion: 2.677.3
+  releaseVersion: 0.6.0
+  configChecksum: 22b6ea07283c8c27435cf09536724fb3
   repoURL: https://github.com/censys/censys-sdk-typescript.git
   installationURL: https://github.com/censys/censys-sdk-typescript
   published: true
@@ -14,11 +14,12 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.21.19
+    core: 3.21.20
     defaultEnabledRetries: 0.1.0
+    downloadStreams: 0.1.1
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
-    examples: 2.82.1
+    examples: 2.82.2
     globalSecurity: 2.82.13
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
@@ -44,6 +45,7 @@ generatedFiles:
   - docs/models/components/amqpversion.md
   - docs/models/components/analyticscapabilities.md
   - docs/models/components/anyconnect.md
+  - docs/models/components/asteriskmanagerinterface.md
   - docs/models/components/attackcomplexity.md
   - docs/models/components/attackrequirements.md
   - docs/models/components/attackvector.md
@@ -342,6 +344,7 @@ generatedFiles:
   - docs/models/components/opendirectory.md
   - docs/models/components/opendirectoryfile.md
   - docs/models/components/openvpn.md
+  - docs/models/components/openvpnmgmt.md
   - docs/models/components/oracle.md
   - docs/models/components/oracledescriptor.md
   - docs/models/components/organization.md
@@ -383,6 +386,7 @@ generatedFiles:
   - docs/models/components/qcstatementspdslocation.md
   - docs/models/components/qcstatementsqclegislation.md
   - docs/models/components/qcstatementsqctype.md
+  - docs/models/components/rawcertificateresponse.md
   - docs/models/components/rcode.md
   - docs/models/components/rdate.md
   - docs/models/components/rdp.md
@@ -417,6 +421,7 @@ generatedFiles:
   - docs/models/components/responseenvelopelistcertificateasset.md
   - docs/models/components/responseenvelopelistcollectionsresponsev1.md
   - docs/models/components/responseenvelopelisthostasset.md
+  - docs/models/components/responseenvelopelistrawcertificateresponse.md
   - docs/models/components/responseenvelopelistwebpropertyasset.md
   - docs/models/components/responseenvelopesearchaggregateresponse.md
   - docs/models/components/responseenvelopesearchqueryresponse.md
@@ -615,8 +620,14 @@ generatedFiles:
   - docs/models/operations/v3collectionssearchqueryresponse.md
   - docs/models/operations/v3globaldataassetcertificateglobals.md
   - docs/models/operations/v3globaldataassetcertificatelistglobals.md
+  - docs/models/operations/v3globaldataassetcertificatelistrawglobals.md
+  - docs/models/operations/v3globaldataassetcertificatelistrawrequest.md
+  - docs/models/operations/v3globaldataassetcertificatelistrawresponse.md
   - docs/models/operations/v3globaldataassetcertificatelistrequest.md
   - docs/models/operations/v3globaldataassetcertificatelistresponse.md
+  - docs/models/operations/v3globaldataassetcertificaterawglobals.md
+  - docs/models/operations/v3globaldataassetcertificaterawrequest.md
+  - docs/models/operations/v3globaldataassetcertificaterawresponse.md
   - docs/models/operations/v3globaldataassetcertificaterequest.md
   - docs/models/operations/v3globaldataassetcertificateresponse.md
   - docs/models/operations/v3globaldataassethostglobals.md
@@ -681,7 +692,9 @@ generatedFiles:
   - src/funcs/globalDataAggregate.ts
   - src/funcs/globalDataCreateTrackedScan.ts
   - src/funcs/globalDataGetCertificate.ts
+  - src/funcs/globalDataGetCertificateRaw.ts
   - src/funcs/globalDataGetCertificates.ts
+  - src/funcs/globalDataGetCertificatesRaw.ts
   - src/funcs/globalDataGetHost.ts
   - src/funcs/globalDataGetHostTimeline.ts
   - src/funcs/globalDataGetHosts.ts
@@ -718,6 +731,7 @@ generatedFiles:
   - src/models/components/amqpversion.ts
   - src/models/components/analyticscapabilities.ts
   - src/models/components/anyconnect.ts
+  - src/models/components/asteriskmanagerinterface.ts
   - src/models/components/attribute.ts
   - src/models/components/auth.ts
   - src/models/components/authorityinfoaccess.ts
@@ -991,6 +1005,7 @@ generatedFiles:
   - src/models/components/opendirectory.ts
   - src/models/components/opendirectoryfile.ts
   - src/models/components/openvpn.ts
+  - src/models/components/openvpnmgmt.ts
   - src/models/components/oracle.ts
   - src/models/components/oracledescriptor.ts
   - src/models/components/organization.ts
@@ -1029,6 +1044,7 @@ generatedFiles:
   - src/models/components/qcstatementspdslocation.ts
   - src/models/components/qcstatementsqclegislation.ts
   - src/models/components/qcstatementsqctype.ts
+  - src/models/components/rawcertificateresponse.ts
   - src/models/components/rdate.ts
   - src/models/components/rdp.ts
   - src/models/components/rdpcertificateinfo.ts
@@ -1057,6 +1073,7 @@ generatedFiles:
   - src/models/components/responseenvelopelistcertificateasset.ts
   - src/models/components/responseenvelopelistcollectionsresponsev1.ts
   - src/models/components/responseenvelopelisthostasset.ts
+  - src/models/components/responseenvelopelistrawcertificateresponse.ts
   - src/models/components/responseenvelopelistwebpropertyasset.ts
   - src/models/components/responseenvelopesearchaggregateresponse.ts
   - src/models/components/responseenvelopesearchqueryresponse.ts
@@ -1211,6 +1228,8 @@ generatedFiles:
   - src/models/operations/v3collectionssearchquery.ts
   - src/models/operations/v3globaldataassetcertificate.ts
   - src/models/operations/v3globaldataassetcertificatelist.ts
+  - src/models/operations/v3globaldataassetcertificatelistraw.ts
+  - src/models/operations/v3globaldataassetcertificateraw.ts
   - src/models/operations/v3globaldataassethost.ts
   - src/models/operations/v3globaldataassethostlist.ts
   - src/models/operations/v3globaldataassethosttimeline.ts
@@ -1545,6 +1564,29 @@ examples:
       responses:
         "200":
           application/json: {}
+        "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-globaldata-asset-certificate-list-raw:
+    speakeasy-default-v3-globaldata-asset-certificate-list-raw:
+      parameters:
+        query:
+          organization_id: "<id>"
+          certificate_ids: ["3daf2843a77b6f4e6af43cd9b6f6746053b8c928e056e8a724808db8905a94cf"]
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-globaldata-asset-certificate-raw:
+    speakeasy-default-v3-globaldata-asset-certificate-raw:
+      parameters:
+        path:
+          certificate_id: "3daf2843a77b6f4e6af43cd9b6f6746053b8c928e056e8a724808db8905a94cf"
+        query:
+          organization_id: "<id>"
+      responses:
+        "200":
+          application/x-pem-file: "x-file: example.file"
         "401":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
 examplesVersion: 1.0.2

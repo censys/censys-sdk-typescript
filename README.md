@@ -128,7 +128,9 @@ run();
 ### [globalData](docs/sdks/globaldata/README.md)
 
 * [getCertificates](docs/sdks/globaldata/README.md#getcertificates) - Get multiple certificates
+* [getCertificatesRaw](docs/sdks/globaldata/README.md#getcertificatesraw) - Get multiple certificates in PEM format
 * [getCertificate](docs/sdks/globaldata/README.md#getcertificate) - Get a certificate
+* [getCertificateRaw](docs/sdks/globaldata/README.md#getcertificateraw) - Get a certificate in PEM format
 * [getHosts](docs/sdks/globaldata/README.md#gethosts) - Get multiple hosts
 * [getHost](docs/sdks/globaldata/README.md#gethost) - Get a host
 * [getHostTimeline](docs/sdks/globaldata/README.md#gethosttimeline) - Get host event history
@@ -178,7 +180,9 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`globalDataAggregate`](docs/sdks/globaldata/README.md#aggregate) - Aggregate results for a search query
 - [`globalDataCreateTrackedScan`](docs/sdks/globaldata/README.md#createtrackedscan) - Create a tracked rescan
 - [`globalDataGetCertificate`](docs/sdks/globaldata/README.md#getcertificate) - Get a certificate
+- [`globalDataGetCertificateRaw`](docs/sdks/globaldata/README.md#getcertificateraw) - Get a certificate in PEM format
 - [`globalDataGetCertificates`](docs/sdks/globaldata/README.md#getcertificates) - Get multiple certificates
+- [`globalDataGetCertificatesRaw`](docs/sdks/globaldata/README.md#getcertificatesraw) - Get multiple certificates in PEM format
 - [`globalDataGetHost`](docs/sdks/globaldata/README.md#gethost) - Get a host
 - [`globalDataGetHosts`](docs/sdks/globaldata/README.md#gethosts) - Get multiple hosts
 - [`globalDataGetHostTimeline`](docs/sdks/globaldata/README.md#gethosttimeline) - Get host event history

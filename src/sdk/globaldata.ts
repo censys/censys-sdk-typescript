@@ -5,7 +5,9 @@
 import { globalDataAggregate } from "../funcs/globalDataAggregate.js";
 import { globalDataCreateTrackedScan } from "../funcs/globalDataCreateTrackedScan.js";
 import { globalDataGetCertificate } from "../funcs/globalDataGetCertificate.js";
+import { globalDataGetCertificateRaw } from "../funcs/globalDataGetCertificateRaw.js";
 import { globalDataGetCertificates } from "../funcs/globalDataGetCertificates.js";
+import { globalDataGetCertificatesRaw } from "../funcs/globalDataGetCertificatesRaw.js";
 import { globalDataGetHost } from "../funcs/globalDataGetHost.js";
 import { globalDataGetHosts } from "../funcs/globalDataGetHosts.js";
 import { globalDataGetHostTimeline } from "../funcs/globalDataGetHostTimeline.js";
@@ -37,6 +39,23 @@ export class GlobalData extends ClientSDK {
   }
 
   /**
+   * Get multiple certificates in PEM format
+   *
+   * @remarks
+   * Retrieve the raw PEM-encoded format for multiple certificates. A certificate ID is its SHA-256 fingerprint in the Censys dataset.
+   */
+  async getCertificatesRaw(
+    request: operations.V3GlobaldataAssetCertificateListRawRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3GlobaldataAssetCertificateListRawResponse> {
+    return unwrapAsync(globalDataGetCertificatesRaw(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Get a certificate
    *
    * @remarks
@@ -47,6 +66,23 @@ export class GlobalData extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V3GlobaldataAssetCertificateResponse> {
     return unwrapAsync(globalDataGetCertificate(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get a certificate in PEM format
+   *
+   * @remarks
+   * Retrieve the raw PEM-encoded format of a certificate. A certificate ID is its SHA-256 fingerprint in the Censys dataset.
+   */
+  async getCertificateRaw(
+    request: operations.V3GlobaldataAssetCertificateRawRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3GlobaldataAssetCertificateRawResponse> {
+    return unwrapAsync(globalDataGetCertificateRaw(
       this,
       request,
       options,

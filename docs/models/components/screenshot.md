@@ -14,3 +14,4 @@ let value: Screenshot = {};
 | ------------------ | ------------------ | ------------------ | ------------------ |
 | `extractedText`    | *string*           | :heavy_minus_sign: | N/A                |
 | `handle`           | *string*           | :heavy_minus_sign: | N/A                |
+| `phash`            | *string*           | :heavy_minus_sign: | N/A                |
