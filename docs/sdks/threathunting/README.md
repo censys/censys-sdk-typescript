@@ -7,16 +7,15 @@ Endpoints related to the Threat Hunting product
 
 ### Available Operations
 
-* [getTrackedScan](#gettrackedscan) - Get tracked scan details
-* [getHostObservationsWithCertificate](#gethostobservationswithcertificate) - Get Host Observations With Certificate
-* [createTrackedScan](#createtrackedscan) - Create a tracked discovery scan
-* [getTrackedScanThreatHunting](#gettrackedscanthreathunting) - Get tracked scan details
+* [getTrackedScan](#gettrackedscan) - Get scan status
+* [getHostObservationsWithCertificate](#gethostobservationswithcertificate) - Get host history for a certificate
+* [createTrackedScan](#createtrackedscan) - Live Discovery: Initiate a new scan
+* [getTrackedScanThreatHunting](#gettrackedscanthreathunting) - Get scan status
 * [valueCounts](#valuecounts) - CensEye: Retrieve value counts to discover pivots
 
 ## getTrackedScan
 
-Retrieve the current status and results of a tracked scan by its ID.
-        This endpoint works for both discovery scans and rescans.
+Retrieve the current status of a scan by its ID. This endpoint works for both [Live Discovery scans](https://docs.censys.com/reference/v3-threathunting-scans-discovery#/) and [Live Rescans](https://docs.censys.com/reference/v3-globaldata-scans-rescan#/).<br><br>If the scan was successful, perform a lookup on the target asset to retrieve detailed scan information.<br><br>This endpoint is available to all Enterprise customers.
 
 ### Example Usage
 
@@ -92,7 +91,7 @@ run();
 
 ## getHostObservationsWithCertificate
 
-Retrieve historical observations of hosts associated with a certificate fingerprint. Useful for threat hunting, detection engineering, and timeline generation.
+Retrieve the historical observations of hosts associated with a certificate. This is useful for threat hunting, detection engineering, and timeline generation. Certificate history is also visible to Threat Hunting users in the Platform UI on the [certificate timeline](https://docs.censys.com/docs/platform-threat-hunting-use-cert-history-to-build-better-detections#/).<br><br>You can define a specific time frame of interest. If you do not specify a time frame, this endpoint will search the historical dataset that is available to your account. You may also filter results by port and transport protocol.<br><br>This endpoint is available to organizations that have access to the Threat Hunting module.
 
 ### Example Usage
 
@@ -178,7 +177,7 @@ run();
 
 ## createTrackedScan
 
-Create a new tracked discovery scan for a specified target. Discovery scans are used to scan new targets that have not been previously identified. The scan will be queued. The response will contain a scan ID that you can use with the [get tracked scan details endpoint](https://docs.censys.com/reference/v3-globaldata-scans-get#/) to monitor its status and results.<br><br>This endpoint is available to organizations that have access to the Threat Hunting module.
+Initiate a scan to look for a currently unobserved service at a specific IP and port (`ip:port`) or hostname and port (`hostname:port`). This is equivalent to the [Live Discovery](https://docs.censys.com/docs/platform-threat-hunting-use-live-scan-and-rescan-to-validate-infrastructure#/) feature available in the UI, but you can also target web properties in addition to hosts.<br><br>The scan may take several minutes to complete. The response will contain a scan ID that you can use to [monitor the scan's status](https://docs.censys.com/reference/v3-threathunting-scans-get#/). After the scan completes, perform a lookup on the target asset to retrieve detailed scan information.<br><br>This endpoint is available to organizations that have access to the Threat Hunting module.
 
 ### Example Usage
 
@@ -268,8 +267,7 @@ run();
 
 ## getTrackedScanThreatHunting
 
-Retrieve the current status and results of a tracked scan by its ID.
-        This endpoint works for both discovery scans and rescans.
+Retrieve the current status of a scan by its ID. This endpoint works for both [Live Discovery scans](https://docs.censys.com/reference/v3-threathunting-scans-discovery#/) and [Live Rescans](https://docs.censys.com/reference/v3-globaldata-scans-rescan#/).<br><br>If the scan was successful, perform a lookup on the target asset to retrieve detailed scan information.<br><br>This endpoint is available to all Enterprise customers.
 
 ### Example Usage
 

@@ -8,7 +8,7 @@ dotenv.config();
  * Example usage of the @censys/platform-sdk SDK
  *
  * To run this example from the examples directory:
- * npm run build && npx tsx globalDataSearch.ts
+ * npm run build && npx tsx globalDataSearch.example.ts
  */
 
 import { SDK } from "@censys/platform-sdk";

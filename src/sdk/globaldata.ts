@@ -3,9 +3,12 @@
  */
 
 import { globalDataAggregate } from "../funcs/globalDataAggregate.js";
+import { globalDataConvertLegacySearchQueries } from "../funcs/globalDataConvertLegacySearchQueries.js";
 import { globalDataCreateTrackedScan } from "../funcs/globalDataCreateTrackedScan.js";
 import { globalDataGetCertificate } from "../funcs/globalDataGetCertificate.js";
+import { globalDataGetCertificateRaw } from "../funcs/globalDataGetCertificateRaw.js";
 import { globalDataGetCertificates } from "../funcs/globalDataGetCertificates.js";
+import { globalDataGetCertificatesRaw } from "../funcs/globalDataGetCertificatesRaw.js";
 import { globalDataGetHost } from "../funcs/globalDataGetHost.js";
 import { globalDataGetHosts } from "../funcs/globalDataGetHosts.js";
 import { globalDataGetHostTimeline } from "../funcs/globalDataGetHostTimeline.js";
@@ -37,6 +40,23 @@ export class GlobalData extends ClientSDK {
   }
 
   /**
+   * Get multiple certificates in PEM format
+   *
+   * @remarks
+   * Retrieve the raw PEM-encoded format for multiple certificates. A certificate ID is its SHA-256 fingerprint in the Censys dataset.
+   */
+  async getCertificatesRaw(
+    request: operations.V3GlobaldataAssetCertificateListRawRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3GlobaldataAssetCertificateListRawResponse> {
+    return unwrapAsync(globalDataGetCertificatesRaw(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Get a certificate
    *
    * @remarks
@@ -47,6 +67,23 @@ export class GlobalData extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V3GlobaldataAssetCertificateResponse> {
     return unwrapAsync(globalDataGetCertificate(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get a certificate in PEM format
+   *
+   * @remarks
+   * Retrieve the raw PEM-encoded format of a certificate. A certificate ID is its SHA-256 fingerprint in the Censys dataset.
+   */
+  async getCertificateRaw(
+    request: operations.V3GlobaldataAssetCertificateRawRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3GlobaldataAssetCertificateRawResponse> {
+    return unwrapAsync(globalDataGetCertificateRaw(
       this,
       request,
       options,
@@ -139,10 +176,10 @@ export class GlobalData extends ClientSDK {
   }
 
   /**
-   * Create a tracked rescan
+   * Live Rescan: Initiate a new rescan
    *
    * @remarks
-   * Create a new tracked rescan for a known service or web property. Rescans are used to update information for previously discovered targets. The scan will be queued. The response will contain a scan ID that you can use with the [get tracked scan details endpoint](https://docs.censys.com/reference/v3-globaldata-scans-get#/) to monitor its status and results.<br><br>This endpoint is available to all Enterprise customers.
+   * Initiate a rescan for a known host service at a specific IP and port (`ip:port`) or hostname and port (`hostname:port`). This is equivalent to the [Live Rescan](https://docs.censys.com/docs/platform-live-rescan#/) feature available in the UI, but you can also target web properties in addition to hosts.<br><br>The scan may take several minutes to complete. The response will contain a scan ID that you can use to [monitor the scan's status](https://docs.censys.com/reference/v3-globaldata-scans-get#/). After the scan completes, perform a lookup on the target asset to retrieve detailed scan information.<br><br>This endpoint is available to all Enterprise customers.
    */
   async createTrackedScan(
     request: operations.V3GlobaldataScansRescanRequest,
@@ -156,11 +193,10 @@ export class GlobalData extends ClientSDK {
   }
 
   /**
-   * Get tracked scan details
+   * Get scan status
    *
    * @remarks
-   * Retrieve the current status and results of a tracked scan by its ID.
-   *         This endpoint works for both discovery scans and rescans.
+   * Retrieve the current status of a scan by its ID. This endpoint works for both [Live Discovery scans](https://docs.censys.com/reference/v3-threathunting-scans-discovery#/) and [Live Rescans](https://docs.censys.com/reference/v3-globaldata-scans-rescan#/).<br><br>If the scan was successful, perform a lookup on the target asset to retrieve detailed scan information.<br><br>This endpoint is available to all Enterprise customers.
    */
   async getTrackedScan(
     request: operations.V3GlobaldataScansGetRequest,
@@ -191,6 +227,23 @@ export class GlobalData extends ClientSDK {
   }
 
   /**
+   * Convert Legacy Search queries to Platform queries
+   *
+   * @remarks
+   * Convert Censys Search Language queries used in Legacy Search into Censys Query Language (CenQL) queries for use in the Platform.<br><br>Reference the [documentation on CenQL](https://docs.censys.com/docs/censys-query-language) for more information about query syntax.
+   */
+  async convertLegacySearchQueries(
+    request: operations.V3GlobaldataSearchConvertRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3GlobaldataSearchConvertResponse> {
+    return unwrapAsync(globalDataConvertLegacySearchQueries(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Run a search query
    *
    * @remarks
@@ -208,11 +261,10 @@ export class GlobalData extends ClientSDK {
   }
 
   /**
-   * Get tracked scan details
+   * Get scan status
    *
    * @remarks
-   * Retrieve the current status and results of a tracked scan by its ID.
-   *         This endpoint works for both discovery scans and rescans.
+   * Retrieve the current status of a scan by its ID. This endpoint works for both [Live Discovery scans](https://docs.censys.com/reference/v3-threathunting-scans-discovery#/) and [Live Rescans](https://docs.censys.com/reference/v3-globaldata-scans-rescan#/).<br><br>If the scan was successful, perform a lookup on the target asset to retrieve detailed scan information.<br><br>This endpoint is available to all Enterprise customers.
    */
   async getTrackedScanThreatHunting(
     request: operations.V3ThreathuntingScansGetRequest,

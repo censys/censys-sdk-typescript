@@ -128,25 +128,28 @@ run();
 ### [globalData](docs/sdks/globaldata/README.md)
 
 * [getCertificates](docs/sdks/globaldata/README.md#getcertificates) - Get multiple certificates
+* [getCertificatesRaw](docs/sdks/globaldata/README.md#getcertificatesraw) - Get multiple certificates in PEM format
 * [getCertificate](docs/sdks/globaldata/README.md#getcertificate) - Get a certificate
+* [getCertificateRaw](docs/sdks/globaldata/README.md#getcertificateraw) - Get a certificate in PEM format
 * [getHosts](docs/sdks/globaldata/README.md#gethosts) - Get multiple hosts
 * [getHost](docs/sdks/globaldata/README.md#gethost) - Get a host
 * [getHostTimeline](docs/sdks/globaldata/README.md#gethosttimeline) - Get host event history
 * [getWebProperties](docs/sdks/globaldata/README.md#getwebproperties) - Get multiple web properties
 * [getWebProperty](docs/sdks/globaldata/README.md#getwebproperty) - Get a web property
-* [createTrackedScan](docs/sdks/globaldata/README.md#createtrackedscan) - Create a tracked rescan
-* [getTrackedScan](docs/sdks/globaldata/README.md#gettrackedscan) - Get tracked scan details
+* [createTrackedScan](docs/sdks/globaldata/README.md#createtrackedscan) - Live Rescan: Initiate a new rescan
+* [getTrackedScan](docs/sdks/globaldata/README.md#gettrackedscan) - Get scan status
 * [aggregate](docs/sdks/globaldata/README.md#aggregate) - Aggregate results for a search query
+* [convertLegacySearchQueries](docs/sdks/globaldata/README.md#convertlegacysearchqueries) - Convert Legacy Search queries to Platform queries
 * [search](docs/sdks/globaldata/README.md#search) - Run a search query
-* [getTrackedScanThreatHunting](docs/sdks/globaldata/README.md#gettrackedscanthreathunting) - Get tracked scan details
+* [getTrackedScanThreatHunting](docs/sdks/globaldata/README.md#gettrackedscanthreathunting) - Get scan status
 
 
 ### [threatHunting](docs/sdks/threathunting/README.md)
 
-* [getTrackedScan](docs/sdks/threathunting/README.md#gettrackedscan) - Get tracked scan details
-* [getHostObservationsWithCertificate](docs/sdks/threathunting/README.md#gethostobservationswithcertificate) - Get Host Observations With Certificate
-* [createTrackedScan](docs/sdks/threathunting/README.md#createtrackedscan) - Create a tracked discovery scan
-* [getTrackedScanThreatHunting](docs/sdks/threathunting/README.md#gettrackedscanthreathunting) - Get tracked scan details
+* [getTrackedScan](docs/sdks/threathunting/README.md#gettrackedscan) - Get scan status
+* [getHostObservationsWithCertificate](docs/sdks/threathunting/README.md#gethostobservationswithcertificate) - Get host history for a certificate
+* [createTrackedScan](docs/sdks/threathunting/README.md#createtrackedscan) - Live Discovery: Initiate a new scan
+* [getTrackedScanThreatHunting](docs/sdks/threathunting/README.md#gettrackedscanthreathunting) - Get scan status
 * [valueCounts](docs/sdks/threathunting/README.md#valuecounts) - CensEye: Retrieve value counts to discover pivots
 
 </details>
@@ -176,21 +179,24 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`collectionsSearch`](docs/sdks/collections/README.md#search) - Run a search query within a collection
 - [`collectionsUpdate`](docs/sdks/collections/README.md#update) - Update a collection
 - [`globalDataAggregate`](docs/sdks/globaldata/README.md#aggregate) - Aggregate results for a search query
-- [`globalDataCreateTrackedScan`](docs/sdks/globaldata/README.md#createtrackedscan) - Create a tracked rescan
+- [`globalDataConvertLegacySearchQueries`](docs/sdks/globaldata/README.md#convertlegacysearchqueries) - Convert Legacy Search queries to Platform queries
+- [`globalDataCreateTrackedScan`](docs/sdks/globaldata/README.md#createtrackedscan) - Live Rescan: Initiate a new rescan
 - [`globalDataGetCertificate`](docs/sdks/globaldata/README.md#getcertificate) - Get a certificate
+- [`globalDataGetCertificateRaw`](docs/sdks/globaldata/README.md#getcertificateraw) - Get a certificate in PEM format
 - [`globalDataGetCertificates`](docs/sdks/globaldata/README.md#getcertificates) - Get multiple certificates
+- [`globalDataGetCertificatesRaw`](docs/sdks/globaldata/README.md#getcertificatesraw) - Get multiple certificates in PEM format
 - [`globalDataGetHost`](docs/sdks/globaldata/README.md#gethost) - Get a host
 - [`globalDataGetHosts`](docs/sdks/globaldata/README.md#gethosts) - Get multiple hosts
 - [`globalDataGetHostTimeline`](docs/sdks/globaldata/README.md#gethosttimeline) - Get host event history
-- [`globalDataGetTrackedScan`](docs/sdks/globaldata/README.md#gettrackedscan) - Get tracked scan details
-- [`globalDataGetTrackedScan`](docs/sdks/threathunting/README.md#gettrackedscan) - Get tracked scan details
-- [`globalDataGetTrackedScanThreatHunting`](docs/sdks/globaldata/README.md#gettrackedscanthreathunting) - Get tracked scan details
-- [`globalDataGetTrackedScanThreatHunting`](docs/sdks/threathunting/README.md#gettrackedscanthreathunting) - Get tracked scan details
+- [`globalDataGetTrackedScan`](docs/sdks/globaldata/README.md#gettrackedscan) - Get scan status
+- [`globalDataGetTrackedScan`](docs/sdks/threathunting/README.md#gettrackedscan) - Get scan status
+- [`globalDataGetTrackedScanThreatHunting`](docs/sdks/globaldata/README.md#gettrackedscanthreathunting) - Get scan status
+- [`globalDataGetTrackedScanThreatHunting`](docs/sdks/threathunting/README.md#gettrackedscanthreathunting) - Get scan status
 - [`globalDataGetWebProperties`](docs/sdks/globaldata/README.md#getwebproperties) - Get multiple web properties
 - [`globalDataGetWebProperty`](docs/sdks/globaldata/README.md#getwebproperty) - Get a web property
 - [`globalDataSearch`](docs/sdks/globaldata/README.md#search) - Run a search query
-- [`threatHuntingCreateTrackedScan`](docs/sdks/threathunting/README.md#createtrackedscan) - Create a tracked discovery scan
-- [`threatHuntingGetHostObservationsWithCertificate`](docs/sdks/threathunting/README.md#gethostobservationswithcertificate) - Get Host Observations With Certificate
+- [`threatHuntingCreateTrackedScan`](docs/sdks/threathunting/README.md#createtrackedscan) - Live Discovery: Initiate a new scan
+- [`threatHuntingGetHostObservationsWithCertificate`](docs/sdks/threathunting/README.md#gethostobservationswithcertificate) - Get host history for a certificate
 - [`threatHuntingValueCounts`](docs/sdks/threathunting/README.md#valuecounts) - CensEye: Retrieve value counts to discover pivots
 
 </details>
