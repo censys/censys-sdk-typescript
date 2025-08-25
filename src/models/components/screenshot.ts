@@ -11,6 +11,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type Screenshot = {
   extractedText?: string | undefined;
   handle?: string | undefined;
+  phash?: string | undefined;
 };
 
 /** @internal */
@@ -21,6 +22,7 @@ export const Screenshot$inboundSchema: z.ZodType<
 > = z.object({
   extracted_text: z.string().optional(),
   handle: z.string().optional(),
+  phash: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "extracted_text": "extractedText",
@@ -31,6 +33,7 @@ export const Screenshot$inboundSchema: z.ZodType<
 export type Screenshot$Outbound = {
   extracted_text?: string | undefined;
   handle?: string | undefined;
+  phash?: string | undefined;
 };
 
 /** @internal */
@@ -41,6 +44,7 @@ export const Screenshot$outboundSchema: z.ZodType<
 > = z.object({
   extractedText: z.string().optional(),
   handle: z.string().optional(),
+  phash: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     extractedText: "extracted_text",

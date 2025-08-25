@@ -26,10 +26,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Create a tracked rescan
+ * Live Rescan: Initiate a new rescan
  *
  * @remarks
- * Create a new tracked rescan for a known service or web property. Rescans are used to update information for previously discovered targets. The scan will be queued. The response will contain a scan ID that you can use with the [get tracked scan details endpoint](https://docs.censys.com/reference/v3-globaldata-scans-get#/) to monitor its status and results.<br><br>This endpoint is available to all Enterprise customers.
+ * Initiate a rescan for a known host service at a specific IP and port (`ip:port`) or hostname and port (`hostname:port`). This is equivalent to the [Live Rescan](https://docs.censys.com/docs/platform-live-rescan#/) feature available in the UI, but you can also target web properties in addition to hosts.<br><br>The scan may take several minutes to complete. The response will contain a scan ID that you can use to [monitor the scan's status](https://docs.censys.com/reference/v3-globaldata-scans-get#/). After the scan completes, perform a lookup on the target asset to retrieve detailed scan information.<br><br>This endpoint is available to all Enterprise customers. It costs 10 credits to execute.
  */
 export function globalDataCreateTrackedScan(
   client: SDKCore,

@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Get host event history
  *
  * @remarks
- * Retrieve event history for a host. A host ID is its IP address.
+ * Retrieve event history for a host. A host ID is its IP address.<br><br>Note that when a service protocol changes after a new scan (for example, from `UNKNOWN` to `NETBIOS`), this information will only be reflected in the `scan` object. It will not be shown in the `service_scanned diff` object.
  */
 export function globalDataGetHostTimeline(
   client: SDKCore,

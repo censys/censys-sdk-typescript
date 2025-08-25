@@ -26,11 +26,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get tracked scan details
+ * Get scan status
  *
  * @remarks
- * Retrieve the current status and results of a tracked scan by its ID.
- *         This endpoint works for both discovery scans and rescans.
+ * Retrieve the current status of a scan by its ID. This endpoint works for both [Live Discovery scans](https://docs.censys.com/reference/v3-threathunting-scans-discovery#/) and [Live Rescans](https://docs.censys.com/reference/v3-globaldata-scans-rescan#/).<br><br>If the scan was successful, perform a lookup on the target asset to retrieve detailed scan information.<br><br>This endpoint is available to all Enterprise customers. This endpoint does not cost any credits to execute.
  */
 export function globalDataGetTrackedScan(
   client: SDKCore,
