@@ -1,11 +1,11 @@
-# V3GlobaldataAssetCertificateListGlobals
+# V3GlobaldataSearchConvertGlobals
 
 ## Example Usage
 
 ```typescript
-import { V3GlobaldataAssetCertificateListGlobals } from "@censys/platform-sdk/models/operations";
+import { V3GlobaldataSearchConvertGlobals } from "@censys/platform-sdk/models/operations";
 
-let value: V3GlobaldataAssetCertificateListGlobals = {};
+let value: V3GlobaldataSearchConvertGlobals = {};
 ```
 
 ## Fields

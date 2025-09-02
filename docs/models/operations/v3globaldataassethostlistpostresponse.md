@@ -1,17 +1,16 @@
-# V3GlobaldataAssetHostListResponse
+# V3GlobaldataAssetHostListPostResponse
 
 ## Example Usage
 
 ```typescript
-import { V3GlobaldataAssetHostListResponse } from "@censys/platform-sdk/models/operations";
+import { V3GlobaldataAssetHostListPostResponse } from "@censys/platform-sdk/models/operations";
 
-let value: V3GlobaldataAssetHostListResponse = {
+let value: V3GlobaldataAssetHostListPostResponse = {
   headers: {
     "key": [
       "<value 1>",
-    ],
-    "key1": [
-      "<value 1>",
+      "<value 2>",
+      "<value 3>",
     ],
   },
   result: {},

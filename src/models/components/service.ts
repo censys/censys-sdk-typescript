@@ -27,6 +27,12 @@ import {
   AnyConnect$outboundSchema,
 } from "./anyconnect.js";
 import {
+  AsteriskManagerInterface,
+  AsteriskManagerInterface$inboundSchema,
+  AsteriskManagerInterface$Outbound,
+  AsteriskManagerInterface$outboundSchema,
+} from "./asteriskmanagerinterface.js";
+import {
   Attribute,
   Attribute$inboundSchema,
   Attribute$Outbound,
@@ -417,6 +423,12 @@ import {
   Openvpn$outboundSchema,
 } from "./openvpn.js";
 import {
+  OpenvpnMgmt,
+  OpenvpnMgmt$inboundSchema,
+  OpenvpnMgmt$Outbound,
+  OpenvpnMgmt$outboundSchema,
+} from "./openvpnmgmt.js";
+import {
   Oracle,
   Oracle$inboundSchema,
   Oracle$Outbound,
@@ -751,6 +763,7 @@ export type Service = {
   activemq?: Activemq | undefined;
   amqp?: Amqp | undefined;
   anyConnect?: AnyConnect | undefined;
+  asteriskManagerInterface?: AsteriskManagerInterface | undefined;
   bacnet?: Bacnet | undefined;
   banner?: string | undefined;
   bannerHashSha256?: string | undefined;
@@ -822,6 +835,7 @@ export type Service = {
   onvif?: Onvif | undefined;
   opcUa?: OpcUa | undefined;
   openvpn?: Openvpn | undefined;
+  openvpnMgmt?: OpenvpnMgmt | undefined;
   operatingSystems?: Array<Attribute> | null | undefined;
   oracle?: Oracle | undefined;
   pcAnywhere?: PcAnywhere | undefined;
@@ -910,6 +924,8 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     activemq: Activemq$inboundSchema.optional(),
     amqp: Amqp$inboundSchema.optional(),
     any_connect: AnyConnect$inboundSchema.optional(),
+    asterisk_manager_interface: AsteriskManagerInterface$inboundSchema
+      .optional(),
     bacnet: Bacnet$inboundSchema.optional(),
     banner: z.string().optional(),
     banner_hash_sha256: z.string().optional(),
@@ -981,6 +997,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     onvif: Onvif$inboundSchema.optional(),
     opc_ua: OpcUa$inboundSchema.optional(),
     openvpn: Openvpn$inboundSchema.optional(),
+    openvpn_mgmt: OpenvpnMgmt$inboundSchema.optional(),
     operating_systems: z.nullable(z.array(Attribute$inboundSchema)).optional(),
     oracle: Oracle$inboundSchema.optional(),
     pc_anywhere: PcAnywhere$inboundSchema.optional(),
@@ -1043,6 +1060,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
   }).transform((v) => {
     return remap$(v, {
       "any_connect": "anyConnect",
+      "asterisk_manager_interface": "asteriskManagerInterface",
       "banner_hash_sha256": "bannerHashSha256",
       "banner_hex": "bannerHex",
       "checkpoint_topology": "checkpointTopology",
@@ -1056,6 +1074,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
       "nats_io": "natsIo",
       "nfs_mountd": "nfsMountd",
       "opc_ua": "opcUa",
+      "openvpn_mgmt": "openvpnMgmt",
       "operating_systems": "operatingSystems",
       "pc_anywhere": "pcAnywhere",
       "profinet_cm": "profinetCm",
@@ -1079,6 +1098,7 @@ export type Service$Outbound = {
   activemq?: Activemq$Outbound | undefined;
   amqp?: Amqp$Outbound | undefined;
   any_connect?: AnyConnect$Outbound | undefined;
+  asterisk_manager_interface?: AsteriskManagerInterface$Outbound | undefined;
   bacnet?: Bacnet$Outbound | undefined;
   banner?: string | undefined;
   banner_hash_sha256?: string | undefined;
@@ -1150,6 +1170,7 @@ export type Service$Outbound = {
   onvif?: Onvif$Outbound | undefined;
   opc_ua?: OpcUa$Outbound | undefined;
   openvpn?: Openvpn$Outbound | undefined;
+  openvpn_mgmt?: OpenvpnMgmt$Outbound | undefined;
   operating_systems?: Array<Attribute$Outbound> | null | undefined;
   oracle?: Oracle$Outbound | undefined;
   pc_anywhere?: PcAnywhere$Outbound | undefined;
@@ -1220,6 +1241,7 @@ export const Service$outboundSchema: z.ZodType<
   activemq: Activemq$outboundSchema.optional(),
   amqp: Amqp$outboundSchema.optional(),
   anyConnect: AnyConnect$outboundSchema.optional(),
+  asteriskManagerInterface: AsteriskManagerInterface$outboundSchema.optional(),
   bacnet: Bacnet$outboundSchema.optional(),
   banner: z.string().optional(),
   bannerHashSha256: z.string().optional(),
@@ -1291,6 +1313,7 @@ export const Service$outboundSchema: z.ZodType<
   onvif: Onvif$outboundSchema.optional(),
   opcUa: OpcUa$outboundSchema.optional(),
   openvpn: Openvpn$outboundSchema.optional(),
+  openvpnMgmt: OpenvpnMgmt$outboundSchema.optional(),
   operatingSystems: z.nullable(z.array(Attribute$outboundSchema)).optional(),
   oracle: Oracle$outboundSchema.optional(),
   pcAnywhere: PcAnywhere$outboundSchema.optional(),
@@ -1353,6 +1376,7 @@ export const Service$outboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     anyConnect: "any_connect",
+    asteriskManagerInterface: "asterisk_manager_interface",
     bannerHashSha256: "banner_hash_sha256",
     bannerHex: "banner_hex",
     checkpointTopology: "checkpoint_topology",
@@ -1366,6 +1390,7 @@ export const Service$outboundSchema: z.ZodType<
     natsIo: "nats_io",
     nfsMountd: "nfs_mountd",
     opcUa: "opc_ua",
+    openvpnMgmt: "openvpn_mgmt",
     operatingSystems: "operating_systems",
     pcAnywhere: "pc_anywhere",
     profinetCm: "profinet_cm",

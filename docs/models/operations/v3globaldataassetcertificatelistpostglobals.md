@@ -1,11 +1,11 @@
-# V3GlobaldataAssetWebpropertyListGlobals
+# V3GlobaldataAssetCertificateListPostGlobals
 
 ## Example Usage
 
 ```typescript
-import { V3GlobaldataAssetWebpropertyListGlobals } from "@censys/platform-sdk/models/operations";
+import { V3GlobaldataAssetCertificateListPostGlobals } from "@censys/platform-sdk/models/operations";
 
-let value: V3GlobaldataAssetWebpropertyListGlobals = {};
+let value: V3GlobaldataAssetCertificateListPostGlobals = {};
 ```
 
 ## Fields

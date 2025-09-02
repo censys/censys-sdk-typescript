@@ -10,7 +10,7 @@ let value: ScansRescanInputBody = {
     serviceId: {
       ip: "8.8.8.8",
       port: 443,
-      protocol: "HTTPS",
+      protocol: "HTTP",
       transportProtocol: "udp",
     },
   },

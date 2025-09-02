@@ -27,6 +27,12 @@ import {
   AnyConnect$outboundSchema,
 } from "./anyconnect.js";
 import {
+  AsteriskManagerInterface,
+  AsteriskManagerInterface$inboundSchema,
+  AsteriskManagerInterface$Outbound,
+  AsteriskManagerInterface$outboundSchema,
+} from "./asteriskmanagerinterface.js";
+import {
   Bacnet,
   Bacnet$inboundSchema,
   Bacnet$Outbound,
@@ -381,6 +387,12 @@ import {
   Openvpn$outboundSchema,
 } from "./openvpn.js";
 import {
+  OpenvpnMgmt,
+  OpenvpnMgmt$inboundSchema,
+  OpenvpnMgmt$Outbound,
+  OpenvpnMgmt$outboundSchema,
+} from "./openvpnmgmt.js";
+import {
   Oracle,
   Oracle$inboundSchema,
   Oracle$Outbound,
@@ -697,6 +709,7 @@ export type ServiceScan = {
   activemq?: Activemq | undefined;
   amqp?: Amqp | undefined;
   anyConnect?: AnyConnect | undefined;
+  asteriskManagerInterface?: AsteriskManagerInterface | undefined;
   bacnet?: Bacnet | undefined;
   banner?: string | undefined;
   bannerHashSha256?: string | undefined;
@@ -760,6 +773,7 @@ export type ServiceScan = {
   onvif?: Onvif | undefined;
   opcUa?: OpcUa | undefined;
   openvpn?: Openvpn | undefined;
+  openvpnMgmt?: OpenvpnMgmt | undefined;
   oracle?: Oracle | undefined;
   pcAnywhere?: PcAnywhere | undefined;
   pgbouncer?: Pgbouncer | undefined;
@@ -847,6 +861,7 @@ export const ServiceScan$inboundSchema: z.ZodType<
   activemq: Activemq$inboundSchema.optional(),
   amqp: Amqp$inboundSchema.optional(),
   any_connect: AnyConnect$inboundSchema.optional(),
+  asterisk_manager_interface: AsteriskManagerInterface$inboundSchema.optional(),
   bacnet: Bacnet$inboundSchema.optional(),
   banner: z.string().optional(),
   banner_hash_sha256: z.string().optional(),
@@ -910,6 +925,7 @@ export const ServiceScan$inboundSchema: z.ZodType<
   onvif: Onvif$inboundSchema.optional(),
   opc_ua: OpcUa$inboundSchema.optional(),
   openvpn: Openvpn$inboundSchema.optional(),
+  openvpn_mgmt: OpenvpnMgmt$inboundSchema.optional(),
   oracle: Oracle$inboundSchema.optional(),
   pc_anywhere: PcAnywhere$inboundSchema.optional(),
   pgbouncer: Pgbouncer$inboundSchema.optional(),
@@ -968,6 +984,7 @@ export const ServiceScan$inboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     "any_connect": "anyConnect",
+    "asterisk_manager_interface": "asteriskManagerInterface",
     "banner_hash_sha256": "bannerHashSha256",
     "checkpoint_topology": "checkpointTopology",
     "cisco_ipsla": "ciscoIpsla",
@@ -981,6 +998,7 @@ export const ServiceScan$inboundSchema: z.ZodType<
     "nats_io": "natsIo",
     "nfs_mountd": "nfsMountd",
     "opc_ua": "opcUa",
+    "openvpn_mgmt": "openvpnMgmt",
     "pc_anywhere": "pcAnywhere",
     "profinet_cm": "profinetCm",
     "redlion_crimson": "redlionCrimson",
@@ -1003,6 +1021,7 @@ export type ServiceScan$Outbound = {
   activemq?: Activemq$Outbound | undefined;
   amqp?: Amqp$Outbound | undefined;
   any_connect?: AnyConnect$Outbound | undefined;
+  asterisk_manager_interface?: AsteriskManagerInterface$Outbound | undefined;
   bacnet?: Bacnet$Outbound | undefined;
   banner?: string | undefined;
   banner_hash_sha256?: string | undefined;
@@ -1066,6 +1085,7 @@ export type ServiceScan$Outbound = {
   onvif?: Onvif$Outbound | undefined;
   opc_ua?: OpcUa$Outbound | undefined;
   openvpn?: Openvpn$Outbound | undefined;
+  openvpn_mgmt?: OpenvpnMgmt$Outbound | undefined;
   oracle?: Oracle$Outbound | undefined;
   pc_anywhere?: PcAnywhere$Outbound | undefined;
   pgbouncer?: Pgbouncer$Outbound | undefined;
@@ -1132,6 +1152,7 @@ export const ServiceScan$outboundSchema: z.ZodType<
   activemq: Activemq$outboundSchema.optional(),
   amqp: Amqp$outboundSchema.optional(),
   anyConnect: AnyConnect$outboundSchema.optional(),
+  asteriskManagerInterface: AsteriskManagerInterface$outboundSchema.optional(),
   bacnet: Bacnet$outboundSchema.optional(),
   banner: z.string().optional(),
   bannerHashSha256: z.string().optional(),
@@ -1195,6 +1216,7 @@ export const ServiceScan$outboundSchema: z.ZodType<
   onvif: Onvif$outboundSchema.optional(),
   opcUa: OpcUa$outboundSchema.optional(),
   openvpn: Openvpn$outboundSchema.optional(),
+  openvpnMgmt: OpenvpnMgmt$outboundSchema.optional(),
   oracle: Oracle$outboundSchema.optional(),
   pcAnywhere: PcAnywhere$outboundSchema.optional(),
   pgbouncer: Pgbouncer$outboundSchema.optional(),
@@ -1253,6 +1275,7 @@ export const ServiceScan$outboundSchema: z.ZodType<
 }).transform((v) => {
   return remap$(v, {
     anyConnect: "any_connect",
+    asteriskManagerInterface: "asterisk_manager_interface",
     bannerHashSha256: "banner_hash_sha256",
     checkpointTopology: "checkpoint_topology",
     ciscoIpsla: "cisco_ipsla",
@@ -1266,6 +1289,7 @@ export const ServiceScan$outboundSchema: z.ZodType<
     natsIo: "nats_io",
     nfsMountd: "nfs_mountd",
     opcUa: "opc_ua",
+    openvpnMgmt: "openvpn_mgmt",
     pcAnywhere: "pc_anywhere",
     profinetCm: "profinet_cm",
     redlionCrimson: "redlion_crimson",

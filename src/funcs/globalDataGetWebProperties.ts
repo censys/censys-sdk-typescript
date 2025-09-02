@@ -3,7 +3,7 @@
  */
 
 import { SDKCore } from "../core.js";
-import { encodeFormQuery } from "../lib/encodings.js";
+import { encodeFormQuery, encodeJSON } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -33,11 +33,11 @@ import { Result } from "../types/fp.js";
  */
 export function globalDataGetWebProperties(
   client: SDKCore,
-  request: operations.V3GlobaldataAssetWebpropertyListRequest,
+  request: operations.V3GlobaldataAssetWebpropertyListPostRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.V3GlobaldataAssetWebpropertyListResponse,
+    operations.V3GlobaldataAssetWebpropertyListPostResponse,
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -58,12 +58,12 @@ export function globalDataGetWebProperties(
 
 async function $do(
   client: SDKCore,
-  request: operations.V3GlobaldataAssetWebpropertyListRequest,
+  request: operations.V3GlobaldataAssetWebpropertyListPostRequest,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      operations.V3GlobaldataAssetWebpropertyListResponse,
+      operations.V3GlobaldataAssetWebpropertyListPostResponse,
       | errors.ErrorModel
       | SDKBaseError
       | ResponseValidationError
@@ -80,26 +80,27 @@ async function $do(
   const parsed = safeParse(
     request,
     (value) =>
-      operations.V3GlobaldataAssetWebpropertyListRequest$outboundSchema.parse(
-        value,
-      ),
+      operations.V3GlobaldataAssetWebpropertyListPostRequest$outboundSchema
+        .parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = null;
+  const body = encodeJSON("body", payload.AssetWebpropertyListInputBody, {
+    explode: true,
+  });
 
   const path = pathToFunc("/v3/global/asset/webproperty")();
 
   const query = encodeFormQuery({
     "organization_id": payload.organization_id
       ?? client._options.organizationId,
-    "webproperty_ids": payload.webproperty_ids,
   }, { explode: false });
 
   const headers = new Headers(compactMap({
+    "Content-Type": "application/json",
     Accept: "application/vnd.censys.api.v3.webproperty.v1+json",
   }));
 
@@ -112,7 +113,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "v3-globaldata-asset-webproperty-list",
+    operationID: "v3-globaldata-asset-webproperty-list-post",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -126,7 +127,7 @@ async function $do(
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
-    method: "GET",
+    method: "POST",
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
@@ -156,7 +157,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.V3GlobaldataAssetWebpropertyListResponse,
+    operations.V3GlobaldataAssetWebpropertyListPostResponse,
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -169,7 +170,7 @@ async function $do(
   >(
     M.json(
       200,
-      operations.V3GlobaldataAssetWebpropertyListResponse$inboundSchema,
+      operations.V3GlobaldataAssetWebpropertyListPostResponse$inboundSchema,
       {
         ctype: "application/vnd.censys.api.v3.webproperty.v1+json",
         hdrs: true,

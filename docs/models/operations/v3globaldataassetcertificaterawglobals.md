@@ -1,11 +1,11 @@
-# V3GlobaldataAssetHostListGlobals
+# V3GlobaldataAssetCertificateRawGlobals
 
 ## Example Usage
 
 ```typescript
-import { V3GlobaldataAssetHostListGlobals } from "@censys/platform-sdk/models/operations";
+import { V3GlobaldataAssetCertificateRawGlobals } from "@censys/platform-sdk/models/operations";
 
-let value: V3GlobaldataAssetHostListGlobals = {};
+let value: V3GlobaldataAssetCertificateRawGlobals = {};
 ```
 
 ## Fields

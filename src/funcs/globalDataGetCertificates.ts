@@ -3,7 +3,7 @@
  */
 
 import { SDKCore } from "../core.js";
-import { encodeFormQuery } from "../lib/encodings.js";
+import { encodeFormQuery, encodeJSON } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -33,11 +33,11 @@ import { Result } from "../types/fp.js";
  */
 export function globalDataGetCertificates(
   client: SDKCore,
-  request: operations.V3GlobaldataAssetCertificateListRequest,
+  request: operations.V3GlobaldataAssetCertificateListPostRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.V3GlobaldataAssetCertificateListResponse,
+    operations.V3GlobaldataAssetCertificateListPostResponse,
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -58,12 +58,12 @@ export function globalDataGetCertificates(
 
 async function $do(
   client: SDKCore,
-  request: operations.V3GlobaldataAssetCertificateListRequest,
+  request: operations.V3GlobaldataAssetCertificateListPostRequest,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      operations.V3GlobaldataAssetCertificateListResponse,
+      operations.V3GlobaldataAssetCertificateListPostResponse,
       | errors.ErrorModel
       | SDKBaseError
       | ResponseValidationError
@@ -80,26 +80,27 @@ async function $do(
   const parsed = safeParse(
     request,
     (value) =>
-      operations.V3GlobaldataAssetCertificateListRequest$outboundSchema.parse(
-        value,
-      ),
+      operations.V3GlobaldataAssetCertificateListPostRequest$outboundSchema
+        .parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = null;
+  const body = encodeJSON("body", payload.AssetCertificateListInputBody, {
+    explode: true,
+  });
 
   const path = pathToFunc("/v3/global/asset/certificate")();
 
   const query = encodeFormQuery({
-    "certificate_ids": payload.certificate_ids,
     "organization_id": payload.organization_id
       ?? client._options.organizationId,
   }, { explode: false });
 
   const headers = new Headers(compactMap({
+    "Content-Type": "application/json",
     Accept: "application/vnd.censys.api.v3.certificate.v1+json",
   }));
 
@@ -112,7 +113,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "v3-globaldata-asset-certificate-list",
+    operationID: "v3-globaldata-asset-certificate-list-post",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -126,7 +127,7 @@ async function $do(
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
-    method: "GET",
+    method: "POST",
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
@@ -156,7 +157,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.V3GlobaldataAssetCertificateListResponse,
+    operations.V3GlobaldataAssetCertificateListPostResponse,
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -169,7 +170,7 @@ async function $do(
   >(
     M.json(
       200,
-      operations.V3GlobaldataAssetCertificateListResponse$inboundSchema,
+      operations.V3GlobaldataAssetCertificateListPostResponse$inboundSchema,
       {
         ctype: "application/vnd.censys.api.v3.certificate.v1+json",
         hdrs: true,

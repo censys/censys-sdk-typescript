@@ -3,7 +3,7 @@
  */
 
 import { SDKCore } from "../core.js";
-import { encodeFormQuery } from "../lib/encodings.js";
+import { encodeFormQuery, encodeJSON } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -33,11 +33,11 @@ import { Result } from "../types/fp.js";
  */
 export function globalDataGetHosts(
   client: SDKCore,
-  request: operations.V3GlobaldataAssetHostListRequest,
+  request: operations.V3GlobaldataAssetHostListPostRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.V3GlobaldataAssetHostListResponse,
+    operations.V3GlobaldataAssetHostListPostResponse,
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -58,12 +58,12 @@ export function globalDataGetHosts(
 
 async function $do(
   client: SDKCore,
-  request: operations.V3GlobaldataAssetHostListRequest,
+  request: operations.V3GlobaldataAssetHostListPostRequest,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      operations.V3GlobaldataAssetHostListResponse,
+      operations.V3GlobaldataAssetHostListPostResponse,
       | errors.ErrorModel
       | SDKBaseError
       | ResponseValidationError
@@ -80,24 +80,28 @@ async function $do(
   const parsed = safeParse(
     request,
     (value) =>
-      operations.V3GlobaldataAssetHostListRequest$outboundSchema.parse(value),
+      operations.V3GlobaldataAssetHostListPostRequest$outboundSchema.parse(
+        value,
+      ),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = null;
+  const body = encodeJSON("body", payload.AssetHostListInputBody, {
+    explode: true,
+  });
 
   const path = pathToFunc("/v3/global/asset/host")();
 
   const query = encodeFormQuery({
-    "host_ids": payload.host_ids,
     "organization_id": payload.organization_id
       ?? client._options.organizationId,
   }, { explode: false });
 
   const headers = new Headers(compactMap({
+    "Content-Type": "application/json",
     Accept: "application/vnd.censys.api.v3.host.v1+json",
   }));
 
@@ -110,7 +114,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "v3-globaldata-asset-host-list",
+    operationID: "v3-globaldata-asset-host-list-post",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -124,7 +128,7 @@ async function $do(
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
-    method: "GET",
+    method: "POST",
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
@@ -154,7 +158,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.V3GlobaldataAssetHostListResponse,
+    operations.V3GlobaldataAssetHostListPostResponse,
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -165,11 +169,15 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, operations.V3GlobaldataAssetHostListResponse$inboundSchema, {
-      ctype: "application/vnd.censys.api.v3.host.v1+json",
-      hdrs: true,
-      key: "Result",
-    }),
+    M.json(
+      200,
+      operations.V3GlobaldataAssetHostListPostResponse$inboundSchema,
+      {
+        ctype: "application/vnd.censys.api.v3.host.v1+json",
+        hdrs: true,
+        key: "Result",
+      },
+    ),
     M.jsonErr([401, 403], errors.ErrorModel$inboundSchema, {
       ctype: "application/problem+json",
     }),

@@ -3,7 +3,7 @@
  */
 
 import { SDKCore } from "../core.js";
-import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
+import { encodeFormQuery, encodeJSON } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -26,19 +26,18 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get tracked scan details
+ * Convert Legacy Search queries to Platform queries
  *
  * @remarks
- * Retrieve the current status and results of a tracked scan by its ID.
- *         This endpoint works for both discovery scans and rescans.
+ * Convert Censys Search Language queries used in Legacy Search into Censys Query Language (CenQL) queries for use in the Platform.<br><br>Reference the [documentation on CenQL](https://docs.censys.com/docs/censys-query-language) for more information about query syntax.
  */
-export function globalDataGetTrackedScanThreatHunting(
+export function globalDataConvertLegacySearchQueries(
   client: SDKCore,
-  request: operations.V3ThreathuntingScansGetRequest,
+  request: operations.V3GlobaldataSearchConvertRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.V3ThreathuntingScansGetResponse,
+    operations.V3GlobaldataSearchConvertResponse,
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -59,12 +58,12 @@ export function globalDataGetTrackedScanThreatHunting(
 
 async function $do(
   client: SDKCore,
-  request: operations.V3ThreathuntingScansGetRequest,
+  request: operations.V3GlobaldataSearchConvertRequest,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      operations.V3ThreathuntingScansGetResponse,
+      operations.V3GlobaldataSearchConvertResponse,
       | errors.ErrorModel
       | SDKBaseError
       | ResponseValidationError
@@ -81,23 +80,18 @@ async function $do(
   const parsed = safeParse(
     request,
     (value) =>
-      operations.V3ThreathuntingScansGetRequest$outboundSchema.parse(value),
+      operations.V3GlobaldataSearchConvertRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = null;
+  const body = encodeJSON("body", payload.SearchConvertQueryInputBody, {
+    explode: true,
+  });
 
-  const pathParams = {
-    scan_id: encodeSimple("scan_id", payload.scan_id, {
-      explode: false,
-      charEncoding: "percent",
-    }),
-  };
-
-  const path = pathToFunc("/v3/threat-hunting/scans/{scan_id}")(pathParams);
+  const path = pathToFunc("/v3/global/search/convert")();
 
   const query = encodeFormQuery({
     "organization_id": payload.organization_id
@@ -105,7 +99,8 @@ async function $do(
   }, { explode: false });
 
   const headers = new Headers(compactMap({
-    Accept: "application/vnd.censys.api.v3.trackedscan.v1+json",
+    "Content-Type": "application/json",
+    Accept: "application/json",
   }));
 
   const secConfig = await extractSecurity(client._options.personalAccessToken);
@@ -117,7 +112,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "v3-threathunting-scans-get",
+    operationID: "v3-globaldata-search-convert",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -131,7 +126,7 @@ async function $do(
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
-    method: "GET",
+    method: "POST",
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
@@ -147,7 +142,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["401", "403", "4XX", "5XX"],
+    errorCodes: ["401", "4XX", "500", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -161,7 +156,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.V3ThreathuntingScansGetResponse,
+    operations.V3GlobaldataSearchConvertResponse,
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -172,12 +167,14 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, operations.V3ThreathuntingScansGetResponse$inboundSchema, {
-      ctype: "application/vnd.censys.api.v3.trackedscan.v1+json",
+    M.json(200, operations.V3GlobaldataSearchConvertResponse$inboundSchema, {
       hdrs: true,
       key: "Result",
     }),
-    M.jsonErr([401, 403], errors.ErrorModel$inboundSchema, {
+    M.jsonErr(401, errors.ErrorModel$inboundSchema, {
+      ctype: "application/problem+json",
+    }),
+    M.jsonErr(500, errors.ErrorModel$inboundSchema, {
       ctype: "application/problem+json",
     }),
     M.fail("4XX"),

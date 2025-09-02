@@ -44,6 +44,7 @@ export type Rdp = {
   protocolFlags?: RdpProtocolFlags | undefined;
   selectedSecurityProtocol?: RdpSecurityProtocol | undefined;
   version?: RdpVersion | undefined;
+  x224CcPduDstref?: number | undefined;
   x224CcPduSrcref?: number | undefined;
 };
 
@@ -55,6 +56,7 @@ export const Rdp$inboundSchema: z.ZodType<Rdp, z.ZodTypeDef, unknown> = z
     protocol_flags: RdpProtocolFlags$inboundSchema.optional(),
     selected_security_protocol: RdpSecurityProtocol$inboundSchema.optional(),
     version: RdpVersion$inboundSchema.optional(),
+    x224_cc_pdu_dstref: z.number().int().optional(),
     x224_cc_pdu_srcref: z.number().int().optional(),
   }).transform((v) => {
     return remap$(v, {
@@ -62,6 +64,7 @@ export const Rdp$inboundSchema: z.ZodType<Rdp, z.ZodTypeDef, unknown> = z
       "connect_response": "connectResponse",
       "protocol_flags": "protocolFlags",
       "selected_security_protocol": "selectedSecurityProtocol",
+      "x224_cc_pdu_dstref": "x224CcPduDstref",
       "x224_cc_pdu_srcref": "x224CcPduSrcref",
     });
   });
@@ -73,6 +76,7 @@ export type Rdp$Outbound = {
   protocol_flags?: RdpProtocolFlags$Outbound | undefined;
   selected_security_protocol?: RdpSecurityProtocol$Outbound | undefined;
   version?: RdpVersion$Outbound | undefined;
+  x224_cc_pdu_dstref?: number | undefined;
   x224_cc_pdu_srcref?: number | undefined;
 };
 
@@ -84,6 +88,7 @@ export const Rdp$outboundSchema: z.ZodType<Rdp$Outbound, z.ZodTypeDef, Rdp> = z
     protocolFlags: RdpProtocolFlags$outboundSchema.optional(),
     selectedSecurityProtocol: RdpSecurityProtocol$outboundSchema.optional(),
     version: RdpVersion$outboundSchema.optional(),
+    x224CcPduDstref: z.number().int().optional(),
     x224CcPduSrcref: z.number().int().optional(),
   }).transform((v) => {
     return remap$(v, {
@@ -91,6 +96,7 @@ export const Rdp$outboundSchema: z.ZodType<Rdp$Outbound, z.ZodTypeDef, Rdp> = z
       connectResponse: "connect_response",
       protocolFlags: "protocol_flags",
       selectedSecurityProtocol: "selected_security_protocol",
+      x224CcPduDstref: "x224_cc_pdu_dstref",
       x224CcPduSrcref: "x224_cc_pdu_srcref",
     });
   });
