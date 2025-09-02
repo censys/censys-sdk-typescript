@@ -21,7 +21,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.5.1
+  version: 0.6.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -56,4 +56,5 @@ typescript:
   packageName: '@censys/platform-sdk'
   responseFormat: flat
   templateVersion: v2
+  usageSDKInitImports: []
   useIndexModules: true

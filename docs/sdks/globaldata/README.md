@@ -8,17 +8,19 @@ Endpoints related to the Global Data product
 ### Available Operations
 
 * [getCertificates](#getcertificates) - Get multiple certificates
+* [getCertificatesRaw](#getcertificatesraw) - Get multiple certificates in PEM format
 * [getCertificate](#getcertificate) - Get a certificate
+* [getCertificateRaw](#getcertificateraw) - Get a certificate in PEM format
 * [getHosts](#gethosts) - Get multiple hosts
 * [getHost](#gethost) - Get a host
 * [getHostTimeline](#gethosttimeline) - Get host event history
 * [getWebProperties](#getwebproperties) - Get multiple web properties
 * [getWebProperty](#getwebproperty) - Get a web property
-* [createTrackedScan](#createtrackedscan) - Create a tracked rescan
-* [getTrackedScan](#gettrackedscan) - Get tracked scan details
+* [createTrackedScan](#createtrackedscan) - Live Rescan: Initiate a new rescan
+* [getTrackedScan](#gettrackedscan) - Get scan status
 * [aggregate](#aggregate) - Aggregate results for a search query
+* [convertLegacySearchQueries](#convertlegacysearchqueries) - Convert Legacy Search queries to Platform queries
 * [search](#search) - Run a search query
-* [getTrackedScanThreatHunting](#gettrackedscanthreathunting) - Get tracked scan details
 
 ## getCertificates
 
@@ -26,7 +28,7 @@ Retrieve information about multiple certificates. A certificate ID is its SHA-25
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="v3-globaldata-asset-certificate-list" method="get" path="/v3/global/asset/certificate" -->
+<!-- UsageSnippet language="typescript" operationID="v3-globaldata-asset-certificate-list-post" method="post" path="/v3/global/asset/certificate" -->
 ```typescript
 import { SDK } from "@censys/platform-sdk";
 
@@ -37,9 +39,11 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.globalData.getCertificates({
-    certificateIds: [
-      "3daf2843a77b6f4e6af43cd9b6f6746053b8c928e056e8a724808db8905a94cf",
-    ],
+    assetCertificateListInputBody: {
+      certificateIds: [
+        "3daf2843a77b6f4e6af43cd9b6f6746053b8c928e056e8a724808db8905a94cf",
+      ],
+    },
   });
 
   console.log(result);
@@ -65,9 +69,11 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await globalDataGetCertificates(sdk, {
-    certificateIds: [
-      "3daf2843a77b6f4e6af43cd9b6f6746053b8c928e056e8a724808db8905a94cf",
-    ],
+    assetCertificateListInputBody: {
+      certificateIds: [
+        "3daf2843a77b6f4e6af43cd9b6f6746053b8c928e056e8a724808db8905a94cf",
+      ],
+    },
   });
   if (res.ok) {
     const { value: result } = res;
@@ -84,20 +90,104 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.V3GlobaldataAssetCertificateListRequest](../../models/operations/v3globaldataassetcertificatelistrequest.md)                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.V3GlobaldataAssetCertificateListPostRequest](../../models/operations/v3globaldataassetcertificatelistpostrequest.md)                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.V3GlobaldataAssetCertificateListResponse](../../models/operations/v3globaldataassetcertificatelistresponse.md)\>**
+**Promise\<[operations.V3GlobaldataAssetCertificateListPostResponse](../../models/operations/v3globaldataassetcertificatelistpostresponse.md)\>**
 
 ### Errors
 
 | Error Type               | Status Code              | Content Type             |
 | ------------------------ | ------------------------ | ------------------------ |
 | errors.ErrorModel        | 401, 403                 | application/problem+json |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+
+## getCertificatesRaw
+
+Retrieve the raw PEM-encoded format for multiple certificates. A certificate ID is its SHA-256 fingerprint in the Censys dataset.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v3-globaldata-asset-certificate-list-raw-post" method="post" path="/v3/global/asset/certificate/raw" -->
+```typescript
+import { SDK } from "@censys/platform-sdk";
+
+const sdk = new SDK({
+  organizationId: "11111111-2222-3333-4444-555555555555",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.globalData.getCertificatesRaw({
+    assetCertificateListInputBody: {
+      certificateIds: [
+        "3daf2843a77b6f4e6af43cd9b6f6746053b8c928e056e8a724808db8905a94cf",
+      ],
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { globalDataGetCertificatesRaw } from "@censys/platform-sdk/funcs/globalDataGetCertificatesRaw.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  organizationId: "11111111-2222-3333-4444-555555555555",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await globalDataGetCertificatesRaw(sdk, {
+    assetCertificateListInputBody: {
+      certificateIds: [
+        "3daf2843a77b6f4e6af43cd9b6f6746053b8c928e056e8a724808db8905a94cf",
+      ],
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("globalDataGetCertificatesRaw failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3GlobaldataAssetCertificateListRawPostRequest](../../models/operations/v3globaldataassetcertificatelistrawpostrequest.md)                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3GlobaldataAssetCertificateListRawPostResponse](../../models/operations/v3globaldataassetcertificatelistrawpostresponse.md)\>**
+
+### Errors
+
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| errors.ErrorModel        | 401, 404                 | application/problem+json |
 | errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
 ## getCertificate
@@ -176,13 +266,89 @@ run();
 | errors.ErrorModel        | 401, 403                 | application/problem+json |
 | errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
+## getCertificateRaw
+
+Retrieve the raw PEM-encoded format of a certificate. A certificate ID is its SHA-256 fingerprint in the Censys dataset.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v3-globaldata-asset-certificate-raw" method="get" path="/v3/global/asset/certificate/{certificate_id}/raw" -->
+```typescript
+import { SDK } from "@censys/platform-sdk";
+
+const sdk = new SDK({
+  organizationId: "11111111-2222-3333-4444-555555555555",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.globalData.getCertificateRaw({
+    certificateId: "3daf2843a77b6f4e6af43cd9b6f6746053b8c928e056e8a724808db8905a94cf",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { globalDataGetCertificateRaw } from "@censys/platform-sdk/funcs/globalDataGetCertificateRaw.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  organizationId: "11111111-2222-3333-4444-555555555555",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await globalDataGetCertificateRaw(sdk, {
+    certificateId: "3daf2843a77b6f4e6af43cd9b6f6746053b8c928e056e8a724808db8905a94cf",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("globalDataGetCertificateRaw failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3GlobaldataAssetCertificateRawRequest](../../models/operations/v3globaldataassetcertificaterawrequest.md)                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3GlobaldataAssetCertificateRawResponse](../../models/operations/v3globaldataassetcertificaterawresponse.md)\>**
+
+### Errors
+
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| errors.ErrorModel        | 401, 403                 | application/problem+json |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+
 ## getHosts
 
 Retrieve information about multiple hosts. A host ID is its IP address.
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="v3-globaldata-asset-host-list" method="get" path="/v3/global/asset/host" -->
+<!-- UsageSnippet language="typescript" operationID="v3-globaldata-asset-host-list-post" method="post" path="/v3/global/asset/host" -->
 ```typescript
 import { SDK } from "@censys/platform-sdk";
 
@@ -193,9 +359,11 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.globalData.getHosts({
-    hostIds: [
-      "8.8.8.8",
-    ],
+    assetHostListInputBody: {
+      hostIds: [
+        "8.8.8.8",
+      ],
+    },
   });
 
   console.log(result);
@@ -221,9 +389,11 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await globalDataGetHosts(sdk, {
-    hostIds: [
-      "8.8.8.8",
-    ],
+    assetHostListInputBody: {
+      hostIds: [
+        "8.8.8.8",
+      ],
+    },
   });
   if (res.ok) {
     const { value: result } = res;
@@ -240,14 +410,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.V3GlobaldataAssetHostListRequest](../../models/operations/v3globaldataassethostlistrequest.md)                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.V3GlobaldataAssetHostListPostRequest](../../models/operations/v3globaldataassethostlistpostrequest.md)                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.V3GlobaldataAssetHostListResponse](../../models/operations/v3globaldataassethostlistresponse.md)\>**
+**Promise\<[operations.V3GlobaldataAssetHostListPostResponse](../../models/operations/v3globaldataassethostlistpostresponse.md)\>**
 
 ### Errors
 
@@ -336,7 +506,7 @@ run();
 
 ## getHostTimeline
 
-Retrieve event history for a host. A host ID is its IP address.
+Retrieve event history for a host. A host ID is its IP address.<br><br>Note that when a service protocol changes after a new scan (for example, from `UNKNOWN` to `NETBIOS`), this information will only be reflected in the `scan` object. It will not be shown in the `service_scanned diff` object.
 
 ### Example Usage
 
@@ -352,8 +522,8 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.globalData.getHostTimeline({
     hostId: "8.8.8.8",
-    startTime: new Date("2025-01-01T00:00:00Z"),
-    endTime: new Date("2025-01-02T00:00:00Z"),
+    startTime: new Date("2025-01-02T00:00:00Z"),
+    endTime: new Date("2025-01-01T00:00:00Z"),
   });
 
   console.log(result);
@@ -380,8 +550,8 @@ const sdk = new SDKCore({
 async function run() {
   const res = await globalDataGetHostTimeline(sdk, {
     hostId: "8.8.8.8",
-    startTime: new Date("2025-01-01T00:00:00Z"),
-    endTime: new Date("2025-01-02T00:00:00Z"),
+    startTime: new Date("2025-01-02T00:00:00Z"),
+    endTime: new Date("2025-01-01T00:00:00Z"),
   });
   if (res.ok) {
     const { value: result } = res;
@@ -420,7 +590,7 @@ Retrieve information about multiple web properties. Web properties are identifie
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="v3-globaldata-asset-webproperty-list" method="get" path="/v3/global/asset/webproperty" -->
+<!-- UsageSnippet language="typescript" operationID="v3-globaldata-asset-webproperty-list-post" method="post" path="/v3/global/asset/webproperty" -->
 ```typescript
 import { SDK } from "@censys/platform-sdk";
 
@@ -431,9 +601,11 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.globalData.getWebProperties({
-    webpropertyIds: [
-      "platform.censys.io:80",
-    ],
+    assetWebpropertyListInputBody: {
+      webpropertyIds: [
+        "platform.censys.io:80",
+      ],
+    },
   });
 
   console.log(result);
@@ -459,9 +631,11 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await globalDataGetWebProperties(sdk, {
-    webpropertyIds: [
-      "platform.censys.io:80",
-    ],
+    assetWebpropertyListInputBody: {
+      webpropertyIds: [
+        "platform.censys.io:80",
+      ],
+    },
   });
   if (res.ok) {
     const { value: result } = res;
@@ -478,14 +652,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.V3GlobaldataAssetWebpropertyListRequest](../../models/operations/v3globaldataassetwebpropertylistrequest.md)                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.V3GlobaldataAssetWebpropertyListPostRequest](../../models/operations/v3globaldataassetwebpropertylistpostrequest.md)                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.V3GlobaldataAssetWebpropertyListResponse](../../models/operations/v3globaldataassetwebpropertylistresponse.md)\>**
+**Promise\<[operations.V3GlobaldataAssetWebpropertyListPostResponse](../../models/operations/v3globaldataassetwebpropertylistpostresponse.md)\>**
 
 ### Errors
 
@@ -574,7 +748,7 @@ run();
 
 ## createTrackedScan
 
-Create a new tracked rescan for a known service or web property. Rescans are used to update information for previously discovered targets. The scan will be queued. The response will contain a scan ID that you can use with the [get tracked scan details endpoint](https://docs.censys.com/reference/v3-globaldata-scans-get#/) to monitor its status and results.<br><br>This endpoint is available to all Enterprise customers.
+Initiate a rescan for a known host service at a specific IP and port (`ip:port`) or hostname and port (`hostname:port`). This is equivalent to the [Live Rescan](https://docs.censys.com/docs/platform-live-rescan#/) feature available in the UI, but you can also target web properties in addition to hosts.<br><br>The scan may take several minutes to complete. The response will contain a scan ID that you can use to [monitor the scan's status](https://docs.censys.com/reference/v3-globaldata-scans-get#/). After the scan completes, perform a lookup on the target asset to retrieve detailed scan information.<br><br>This endpoint is available to all Enterprise customers. It costs 10 credits to execute.
 
 ### Example Usage
 
@@ -664,8 +838,7 @@ run();
 
 ## getTrackedScan
 
-Retrieve the current status and results of a tracked scan by its ID.
-        This endpoint works for both discovery scans and rescans.
+Retrieve the current status of a scan by its ID. This endpoint works for both [Live Discovery scans](https://docs.censys.com/reference/v3-threathunting-scans-discovery#/) and [Live Rescans](https://docs.censys.com/reference/v3-globaldata-scans-rescan#/).<br><br>If the scan was successful, perform a lookup on the target asset to retrieve detailed scan information.<br><br>This endpoint is available to all Enterprise customers. This endpoint does not cost any credits to execute.
 
 ### Example Usage
 
@@ -823,6 +996,95 @@ run();
 | errors.ErrorModel        | 401, 403                 | application/problem+json |
 | errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
+## convertLegacySearchQueries
+
+Convert Censys Search Language queries used in Legacy Search into Censys Query Language (CenQL) queries for use in the Platform.<br><br>Reference the [documentation on CenQL](https://docs.censys.com/docs/censys-query-language) for more information about query syntax.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v3-globaldata-search-convert" method="post" path="/v3/global/search/convert" -->
+```typescript
+import { SDK } from "@censys/platform-sdk";
+
+const sdk = new SDK({
+  organizationId: "11111111-2222-3333-4444-555555555555",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.globalData.convertLegacySearchQueries({
+    searchConvertQueryInputBody: {
+      queries: [
+        "<value 1>",
+        "<value 2>",
+        "<value 3>",
+      ],
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { globalDataConvertLegacySearchQueries } from "@censys/platform-sdk/funcs/globalDataConvertLegacySearchQueries.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  organizationId: "11111111-2222-3333-4444-555555555555",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await globalDataConvertLegacySearchQueries(sdk, {
+    searchConvertQueryInputBody: {
+      queries: [
+        "<value 1>",
+        "<value 2>",
+        "<value 3>",
+      ],
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("globalDataConvertLegacySearchQueries failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3GlobaldataSearchConvertRequest](../../models/operations/v3globaldatasearchconvertrequest.md)                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3GlobaldataSearchConvertResponse](../../models/operations/v3globaldatasearchconvertresponse.md)\>**
+
+### Errors
+
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| errors.ErrorModel        | 401                      | application/problem+json |
+| errors.ErrorModel        | 500                      | application/problem+json |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+
 ## search
 
 Run a search query across Censys data. Reference the [documentation on Censys Query Language](https://docs.censys.com/docs/censys-query-language#/) for information about query syntax.
@@ -903,83 +1165,6 @@ run();
 ### Response
 
 **Promise\<[operations.V3GlobaldataSearchQueryResponse](../../models/operations/v3globaldatasearchqueryresponse.md)\>**
-
-### Errors
-
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.ErrorModel        | 401, 403                 | application/problem+json |
-| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
-
-## getTrackedScanThreatHunting
-
-Retrieve the current status and results of a tracked scan by its ID.
-        This endpoint works for both discovery scans and rescans.
-
-### Example Usage
-
-<!-- UsageSnippet language="typescript" operationID="v3-threathunting-scans-get" method="get" path="/v3/threat-hunting/scans/{scan_id}" -->
-```typescript
-import { SDK } from "@censys/platform-sdk";
-
-const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
-  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
-});
-
-async function run() {
-  const result = await sdk.globalData.getTrackedScanThreatHunting({
-    scanId: "cd62e794-9f12-4c2f-b5b3-153853aaf8d9",
-  });
-
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { SDKCore } from "@censys/platform-sdk/core.js";
-import { globalDataGetTrackedScanThreatHunting } from "@censys/platform-sdk/funcs/globalDataGetTrackedScanThreatHunting.js";
-
-// Use `SDKCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
-  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
-});
-
-async function run() {
-  const res = await globalDataGetTrackedScanThreatHunting(sdk, {
-    scanId: "cd62e794-9f12-4c2f-b5b3-153853aaf8d9",
-  });
-  if (res.ok) {
-    const { value: result } = res;
-    console.log(result);
-  } else {
-    console.log("globalDataGetTrackedScanThreatHunting failed:", res.error);
-  }
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.V3ThreathuntingScansGetRequest](../../models/operations/v3threathuntingscansgetrequest.md)                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[operations.V3ThreathuntingScansGetResponse](../../models/operations/v3threathuntingscansgetresponse.md)\>**
 
 ### Errors
 

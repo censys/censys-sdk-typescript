@@ -1,11 +1,11 @@
-# V3GlobaldataAssetCertificateListResponse
+# V3GlobaldataAssetCertificateListPostResponse
 
 ## Example Usage
 
 ```typescript
-import { V3GlobaldataAssetCertificateListResponse } from "@censys/platform-sdk/models/operations";
+import { V3GlobaldataAssetCertificateListPostResponse } from "@censys/platform-sdk/models/operations";
 
-let value: V3GlobaldataAssetCertificateListResponse = {
+let value: V3GlobaldataAssetCertificateListPostResponse = {
   headers: {},
   result: {},
 };
