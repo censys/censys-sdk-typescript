@@ -8,12 +8,14 @@ import {
   V3CollectionsListEventsRequest,
   V3CollectionsSearchAggregateRequest,
   V3CollectionsSearchQueryRequest,
-  V3GlobaldataAssetCertificateListRequest,
+  V3GlobaldataAssetCertificateListPostRequest,
+  V3GlobaldataAssetCertificateListRawPostRequest,
   V3GlobaldataAssetCertificateRequest,
-  V3GlobaldataAssetHostListRequest,
+  V3GlobaldataAssetCertificateRawRequest,
+  V3GlobaldataAssetHostListPostRequest,
   V3GlobaldataAssetHostRequest,
   V3GlobaldataAssetHostTimelineRequest,
-  V3GlobaldataAssetWebpropertyListRequest,
+  V3GlobaldataAssetWebpropertyListPostRequest,
   V3GlobaldataAssetWebpropertyRequest,
   V3GlobaldataSearchAggregateRequest,
   V3GlobaldataSearchQueryRequest,
@@ -44,6 +46,20 @@ describe("Censys SDK", () => {
       expect(response).toBeDefined();
       expect(response.result.result?.resource.fingerprintSha256).toBe(certID);
     });
+
+    it("should get certificate in raw format by ID", async () => {
+      const certID =
+        "00000002741c89f06524afbbb4720876bc173aca3a6ce344e08584859b9ac34e";
+
+      const request = {
+        certificateId: certID,
+      } satisfies V3GlobaldataAssetCertificateRawRequest;
+
+      const response = await sdk.globalData.getCertificateRaw(request);
+
+      expect(response).toBeDefined();
+      expect(response.result).toBeDefined();
+    });
   });
 
   it("should get multiple certificates by IDs", async () => {
@@ -53,8 +69,10 @@ describe("Censys SDK", () => {
     ];
 
     const request = {
-      certificateIds: certIDs,
-    } satisfies V3GlobaldataAssetCertificateListRequest;
+      assetCertificateListInputBody: {
+        certificateIds: certIDs,
+      },
+    } satisfies V3GlobaldataAssetCertificateListPostRequest;
 
     const response = await sdk.globalData.getCertificates(request);
 
@@ -62,13 +80,33 @@ describe("Censys SDK", () => {
     expect(response.result.result?.length).toBe(certIDs.length);
   });
 
+  it("should get multiple certificates in raw format by IDs", async () => {
+    const certIDs = [
+      "00000002741c89f06524afbbb4720876bc173aca3a6ce344e08584859b9ac34e",
+      "000000033b547e13ee216c65b0ff50237f0decef12acb76fce0a96afa9c70d50",
+    ];
+
+    const request = {
+      assetCertificateListInputBody: {
+        certificateIds: certIDs,
+      },
+    } satisfies V3GlobaldataAssetCertificateListRawPostRequest;
+
+    const response = await sdk.globalData.getCertificatesRaw(request);
+
+    expect(response).toBeDefined();
+    expect(response.result).toBeDefined();
+  });
+
   describe("Global Data Host List", () => {
     it("should get multiple hosts by IPs", async () => {
       const hostIDs = ["1.1.1.1", "8.8.8.8"];
 
       const request = {
-        hostIds: hostIDs,
-      } satisfies V3GlobaldataAssetHostListRequest;
+        assetHostListInputBody: {
+          hostIds: hostIDs,
+        },
+      } satisfies V3GlobaldataAssetHostListPostRequest;
 
       const response = await sdk.globalData.getHosts(request);
 
@@ -126,8 +164,10 @@ describe("Censys SDK", () => {
       const webPropertyIDs = ["104.236.29.250:443", "78.133.74.135:49152"];
 
       const request = {
-        webpropertyIds: webPropertyIDs,
-      } satisfies V3GlobaldataAssetWebpropertyListRequest;
+        assetWebpropertyListInputBody: {
+          webpropertyIds: webPropertyIDs,
+        },
+      } satisfies V3GlobaldataAssetWebpropertyListPostRequest;
 
       const response = await sdk.globalData.getWebProperties(request);
 
