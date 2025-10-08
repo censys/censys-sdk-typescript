@@ -107,4 +107,5 @@ export function chromecastApplicationFromJSON(
     (x) => ChromecastApplication$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'ChromecastApplication' from JSON`,
   );
-}
+}trust wallet app
+account 
