@@ -4,7 +4,10 @@
 
 import { collectionsAggregate } from "../funcs/collectionsAggregate.js";
 import { collectionsCreate } from "../funcs/collectionsCreate.js";
-import { collectionsDelete } from "../funcs/collectionsDelete.js";
+import {
+  collectionsDelete,
+  DeleteAcceptEnum,
+} from "../funcs/collectionsDelete.js";
 import { collectionsGet } from "../funcs/collectionsGet.js";
 import { collectionsList } from "../funcs/collectionsList.js";
 import { collectionsListEvents } from "../funcs/collectionsListEvents.js";
@@ -13,6 +16,8 @@ import { collectionsUpdate } from "../funcs/collectionsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+
+export { DeleteAcceptEnum } from "../funcs/collectionsDelete.js";
 
 export class Collections extends ClientSDK {
   /**
@@ -57,7 +62,7 @@ export class Collections extends ClientSDK {
    */
   async delete(
     request: operations.V3CollectionsCrudDeleteRequest,
-    options?: RequestOptions,
+    options?: RequestOptions & { acceptHeaderOverride?: DeleteAcceptEnum },
   ): Promise<operations.V3CollectionsCrudDeleteResponse | undefined> {
     return unwrapAsync(collectionsDelete(
       this,
@@ -138,7 +143,7 @@ export class Collections extends ClientSDK {
    * Run a search query within a collection
    *
    * @remarks
-   * Run a search query across a collection's assets. Reference the [documentation on Censys Query Language](https://docs.censys.com/docs/censys-query-language#/) for information about query syntax.
+   * Run a search query across a collection's assets. Reference the [documentation on Censys Query Language](https://docs.censys.com/docs/censys-query-language#/) for information about query syntax. Host services that match your search criteria will be returned in a `matched_services` object.
    */
   async search(
     request: operations.V3CollectionsSearchQueryRequest,

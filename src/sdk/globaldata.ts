@@ -22,10 +22,10 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class GlobalData extends ClientSDK {
   /**
-   * Get multiple certificates
+   * Retrieve multiple certificates
    *
    * @remarks
-   * Retrieve information about multiple certificates. A certificate ID is its SHA-256 fingerprint in the Censys dataset.
+   * Retrieve information about multiple certificates. You can retrieve up to 1,000 certificates per call. A certificate ID is its SHA-256 fingerprint in the Censys dataset.
    */
   async getCertificates(
     request: operations.V3GlobaldataAssetCertificateListPostRequest,
@@ -39,10 +39,10 @@ export class GlobalData extends ClientSDK {
   }
 
   /**
-   * Get multiple certificates in PEM format
+   * Retrieve multiple certificates in PEM format
    *
    * @remarks
-   * Retrieve the raw PEM-encoded format for multiple certificates. A certificate ID is its SHA-256 fingerprint in the Censys dataset.
+   * Retrieve the raw PEM-encoded format for multiple certificates. You can retrieve up to 1,000 certificates per call. A certificate ID is its SHA-256 fingerprint in the Censys dataset.
    */
   async getCertificatesRaw(
     request: operations.V3GlobaldataAssetCertificateListRawPostRequest,
@@ -90,10 +90,10 @@ export class GlobalData extends ClientSDK {
   }
 
   /**
-   * Get multiple hosts
+   * Retrieve multiple hosts
    *
    * @remarks
-   * Retrieve information about multiple hosts. A host ID is its IP address.
+   * Retrieve information about multiple hosts. You can retrieve up to 100 hosts per call. A host ID is its IP address.
    */
   async getHosts(
     request: operations.V3GlobaldataAssetHostListPostRequest,
@@ -127,7 +127,7 @@ export class GlobalData extends ClientSDK {
    * Get host event history
    *
    * @remarks
-   * Retrieve event history for a host. A host ID is its IP address.<br><br>Note that when a service protocol changes after a new scan (for example, from `UNKNOWN` to `NETBIOS`), this information will only be reflected in the `scan` object. It will not be shown in the `service_scanned diff` object.
+   * Retrieve event history for a host. A host ID is its IP address.<br><br>Note that when a service protocol changes after a new scan (for example, from `UNKNOWN` to `NETBIOS`), this information will be reflected in the `scan` object.
    */
   async getHostTimeline(
     request: operations.V3GlobaldataAssetHostTimelineRequest,
@@ -141,10 +141,10 @@ export class GlobalData extends ClientSDK {
   }
 
   /**
-   * Get multiple web properties
+   * Retrieve multiple web properties
    *
    * @remarks
-   * Retrieve information about multiple web properties. Web properties are identified using a combination of a hostname and port joined with a colon, such as `platform.censys.io:80`.
+   * Retrieve information about multiple web properties. You can retrieve up to 100 web properties per call. Web properties are identified using a combination of a hostname and port joined with a colon, such as `platform.censys.io:80`.
    */
   async getWebProperties(
     request: operations.V3GlobaldataAssetWebpropertyListPostRequest,
@@ -246,7 +246,7 @@ export class GlobalData extends ClientSDK {
    * Run a search query
    *
    * @remarks
-   * Run a search query across Censys data. Reference the [documentation on Censys Query Language](https://docs.censys.com/docs/censys-query-language#/) for information about query syntax.
+   * Run a search query across Censys data. Reference the [documentation on Censys Query Language](https://docs.censys.com/docs/censys-query-language#/) for information about query syntax. Host services that match your search criteria will be returned in a `matched_services` object.
    */
   async search(
     request: operations.V3GlobaldataSearchQueryRequest,

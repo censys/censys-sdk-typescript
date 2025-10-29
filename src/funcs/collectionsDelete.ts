@@ -25,6 +25,11 @@ import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
+export enum DeleteAcceptEnum {
+  applicationJson = "application/json",
+  applicationProblemPlusJson = "application/problem+json",
+}
+
 /**
  * Delete a collection
  *
@@ -34,10 +39,11 @@ import { Result } from "../types/fp.js";
 export function collectionsDelete(
   client: SDKCore,
   request: operations.V3CollectionsCrudDeleteRequest,
-  options?: RequestOptions,
+  options?: RequestOptions & { acceptHeaderOverride?: DeleteAcceptEnum },
 ): APIPromise<
   Result<
     operations.V3CollectionsCrudDeleteResponse | undefined,
+    | errors.AuthenticationError
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -59,11 +65,12 @@ export function collectionsDelete(
 async function $do(
   client: SDKCore,
   request: operations.V3CollectionsCrudDeleteRequest,
-  options?: RequestOptions,
+  options?: RequestOptions & { acceptHeaderOverride?: DeleteAcceptEnum },
 ): Promise<
   [
     Result<
       operations.V3CollectionsCrudDeleteResponse | undefined,
+      | errors.AuthenticationError
       | errors.ErrorModel
       | SDKBaseError
       | ResponseValidationError
@@ -104,7 +111,8 @@ async function $do(
   }, { explode: false });
 
   const headers = new Headers(compactMap({
-    Accept: "application/problem+json",
+    Accept: options?.acceptHeaderOverride
+      || "application/json;q=1, application/problem+json;q=0",
   }));
 
   const secConfig = await extractSecurity(client._options.personalAccessToken);
@@ -117,7 +125,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v3-collections-crud-delete",
-    oAuth2Scopes: [],
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 
@@ -146,7 +154,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["401", "403", "4XX", "5XX"],
+    errorCodes: ["401", "403", "404", "4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -161,6 +169,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.V3CollectionsCrudDeleteResponse | undefined,
+    | errors.AuthenticationError
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -176,7 +185,8 @@ async function $do(
       operations.V3CollectionsCrudDeleteResponse$inboundSchema.optional(),
       { hdrs: true },
     ),
-    M.jsonErr([401, 403], errors.ErrorModel$inboundSchema, {
+    M.jsonErr(401, errors.AuthenticationError$inboundSchema),
+    M.jsonErr([403, 404], errors.ErrorModel$inboundSchema, {
       ctype: "application/problem+json",
     }),
     M.fail("4XX"),

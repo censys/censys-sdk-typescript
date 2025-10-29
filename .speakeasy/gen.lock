@@ -1,26 +1,27 @@
 lockVersion: 2.0.0
 id: 50d8a8aa-8772-4a95-9f7b-f8e1bd905c4e
 management:
-  docChecksum: 9ca30cd9f14db131dfe52085958534f6
-  docVersion: 1.0.35
-  speakeasyVersion: 1.607.0
-  generationVersion: 2.690.1
-  releaseVersion: 0.6.0
-  configChecksum: c692a22f15302850f0c58949a5b2ca0e
+  docChecksum: 67a9f5069f046c1aed6b8d00da11b24c
+  docVersion: 1.0.46
+  speakeasyVersion: 1.642.2
+  generationVersion: 2.731.6
+  releaseVersion: 0.7.0
+  configChecksum: 4a6fd17440f422d032db9e5819d53dc1
   repoURL: https://github.com/censys/censys-sdk-typescript.git
   installationURL: https://github.com/censys/censys-sdk-typescript
   published: true
 features:
   typescript:
+    acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.21.21
+    core: 3.24.1
     defaultEnabledRetries: 0.1.0
     downloadStreams: 0.1.1
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
     examples: 2.82.3
-    globalSecurity: 2.82.13
+    globalSecurity: 2.82.14
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.5
@@ -31,7 +32,7 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
-    unions: 2.85.11
+    unions: 2.86.0
 generatedFiles:
   - .gitattributes
   - .npmignore
@@ -55,6 +56,7 @@ generatedFiles:
   - docs/models/components/attackvector.md
   - docs/models/components/attribute.md
   - docs/models/components/auth.md
+  - docs/models/components/authenticationerrordetail.md
   - docs/models/components/authorityinfoaccess.md
   - docs/models/components/automatable.md
   - docs/models/components/autonomoussystem.md
@@ -176,6 +178,7 @@ generatedFiles:
   - docs/models/components/endpointscan.md
   - docs/models/components/endpointscanned.md
   - docs/models/components/endpointscanstate.md
+  - docs/models/components/endpointscanstatetransportprotocol.md
   - docs/models/components/endpointscantransportprotocol.md
   - docs/models/components/epmd.md
   - docs/models/components/epss.md
@@ -211,6 +214,7 @@ generatedFiles:
   - docs/models/components/hikvisionplatformlibrary.md
   - docs/models/components/host.md
   - docs/models/components/hostasset.md
+  - docs/models/components/hostassetwithmatchedservices.md
   - docs/models/components/hostdns.md
   - docs/models/components/hostdnsforwardresolution.md
   - docs/models/components/hostdnsreverseresolution.md
@@ -283,6 +287,7 @@ generatedFiles:
   - docs/models/components/locationupdated.md
   - docs/models/components/lpd.md
   - docs/models/components/lpdmessage.md
+  - docs/models/components/matchedservice.md
   - docs/models/components/mdns.md
   - docs/models/components/mdnsresult.md
   - docs/models/components/mediacapabilities.md
@@ -291,6 +296,7 @@ generatedFiles:
   - docs/models/components/members.md
   - docs/models/components/memcached.md
   - docs/models/components/metrics.md
+  - docs/models/components/mikrotikwinbox.md
   - docs/models/components/minecraft.md
   - docs/models/components/mms.md
   - docs/models/components/modbus.md
@@ -600,6 +606,7 @@ generatedFiles:
   - docs/models/components/zeromqgreeting.md
   - docs/models/components/zeromqhandshake.md
   - docs/models/components/zlint.md
+  - docs/models/errors/authenticationerror.md
   - docs/models/errors/errormodel.md
   - docs/models/operations/assetchangetypes.md
   - docs/models/operations/changetypes.md
@@ -684,7 +691,6 @@ generatedFiles:
   - docs/models/operations/v3threathuntingvaluecountsresponse.md
   - docs/sdks/collections/README.md
   - docs/sdks/globaldata/README.md
-  - docs/sdks/sdk/README.md
   - docs/sdks/threathunting/README.md
   - eslint.config.mjs
   - examples/.env.template
@@ -752,6 +758,7 @@ generatedFiles:
   - src/models/components/asteriskmanagerinterface.ts
   - src/models/components/attribute.ts
   - src/models/components/auth.ts
+  - src/models/components/authenticationerrordetail.ts
   - src/models/components/authorityinfoaccess.ts
   - src/models/components/autonomoussystem.ts
   - src/models/components/bacnet.ts
@@ -894,6 +901,7 @@ generatedFiles:
   - src/models/components/hikvisionplatformlibrary.ts
   - src/models/components/host.ts
   - src/models/components/hostasset.ts
+  - src/models/components/hostassetwithmatchedservices.ts
   - src/models/components/hostdns.ts
   - src/models/components/hostdnsforwardresolution.ts
   - src/models/components/hostdnsreverseresolution.ts
@@ -961,6 +969,7 @@ generatedFiles:
   - src/models/components/locationupdated.ts
   - src/models/components/lpd.ts
   - src/models/components/lpdmessage.ts
+  - src/models/components/matchedservice.ts
   - src/models/components/mdns.ts
   - src/models/components/mdnsresult.ts
   - src/models/components/mediacapabilities.ts
@@ -969,6 +978,7 @@ generatedFiles:
   - src/models/components/members.ts
   - src/models/components/memcached.ts
   - src/models/components/metrics.ts
+  - src/models/components/mikrotikwinbox.ts
   - src/models/components/minecraft.ts
   - src/models/components/mms.ts
   - src/models/components/modbus.ts
@@ -1232,6 +1242,7 @@ generatedFiles:
   - src/models/components/zeromqgreeting.ts
   - src/models/components/zeromqhandshake.ts
   - src/models/components/zlint.ts
+  - src/models/errors/authenticationerror.ts
   - src/models/errors/errormodel.ts
   - src/models/errors/httpclienterrors.ts
   - src/models/errors/index.ts
@@ -1294,6 +1305,9 @@ examples:
           application/json: {}
         "401":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   v3-collections-crud-create:
     speakeasy-default-v3-collections-crud-create:
       parameters:
@@ -1306,6 +1320,9 @@ examples:
           application/json: {}
         "401":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   v3-collections-crud-delete:
     speakeasy-default-v3-collections-crud-delete:
       parameters:
@@ -1315,6 +1332,9 @@ examples:
           organization_id: "<id>"
       responses:
         "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   v3-collections-crud-get:
     speakeasy-default-v3-collections-crud-get:
@@ -1327,6 +1347,9 @@ examples:
         "200":
           application/json: {}
         "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   v3-collections-crud-update:
     speakeasy-default-v3-collections-crud-update:
@@ -1341,6 +1364,9 @@ examples:
         "200":
           application/json: {}
         "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   v3-collections-list-events:
     speakeasy-default-v3-collections-list-events:
@@ -1358,6 +1384,9 @@ examples:
           application/json: {}
         "401":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   v3-collections-search-aggregate:
     speakeasy-default-v3-collections-search-aggregate:
       parameters:
@@ -1372,6 +1401,9 @@ examples:
           application/json: {}
         "401":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   v3-collections-search-query:
     speakeasy-default-v3-collections-search-query:
       parameters:
@@ -1385,6 +1417,9 @@ examples:
         "200":
           application/json: {}
         "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   v3-globaldata-asset-certificate-list:
     speakeasy-default-v3-globaldata-asset-certificate-list:
@@ -1408,6 +1443,9 @@ examples:
         "200":
           application/vnd.censys.api.v3.certificate.v1+json: {}
         "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   v3-globaldata-asset-host-list:
     speakeasy-default-v3-globaldata-asset-host-list:
@@ -1433,6 +1471,9 @@ examples:
           application/vnd.censys.api.v3.host.v1+json: {}
         "401":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   v3-globaldata-asset-host-timeline:
     speakeasy-default-v3-globaldata-asset-host-timeline:
       parameters:
@@ -1446,6 +1487,9 @@ examples:
         "200":
           application/vnd.censys.api.v3.host_timeline_event.v1+json: {}
         "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   v3-globaldata-asset-webproperty-list:
     speakeasy-default-v3-globaldata-asset-webproperty-list:
@@ -1471,6 +1515,9 @@ examples:
           application/vnd.censys.api.v3.webproperty.v1+json: {}
         "401":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   v3-globaldata-search-aggregate:
     speakeasy-default-v3-globaldata-search-aggregate:
       parameters:
@@ -1482,6 +1529,9 @@ examples:
         "200":
           application/json: {}
         "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   v3-globaldata-search-query:
     speakeasy-default-v3-globaldata-search-query:
@@ -1495,6 +1545,9 @@ examples:
           application/json: {}
         "401":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   v3-threathunting-value-counts:
     speakeasy-default-v3-threathunting-value-counts:
       parameters:
@@ -1506,6 +1559,9 @@ examples:
         "200":
           application/json: {}
         "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   v3-globaldata-get-host-observations-with-certificate:
     speakeasy-default-v3-globaldata-get-host-observations-with-certificate:
@@ -1536,6 +1592,9 @@ examples:
           application/json: {}
         "401":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   v3-globaldata-scans-get:
     speakeasy-default-v3-globaldata-scans-get:
       parameters:
@@ -1547,6 +1606,9 @@ examples:
         "200":
           application/vnd.censys.api.v3.trackedscan.v1+json: {}
         "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   v3-threathunting-scans-get:
     speakeasy-default-v3-threathunting-scans-get:
@@ -1560,6 +1622,9 @@ examples:
           application/vnd.censys.api.v3.trackedscan.v1+json: {}
         "401":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   v3-threathunting-scans-discovery:
     speakeasy-default-v3-threathunting-scans-discovery:
       parameters:
@@ -1571,6 +1636,9 @@ examples:
         "200":
           application/json: {}
         "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   v3-threathunting-get-host-observations-with-certificate:
     speakeasy-default-v3-threathunting-get-host-observations-with-certificate:
@@ -1589,6 +1657,9 @@ examples:
           application/json: {}
         "401":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   v3-globaldata-asset-certificate-list-post:
     speakeasy-default-v3-globaldata-asset-certificate-list-post:
       parameters:
@@ -1600,6 +1671,9 @@ examples:
         "200":
           application/vnd.censys.api.v3.certificate.v1+json: {}
         "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   v3-globaldata-asset-certificate-list-raw-post:
     speakeasy-default-v3-globaldata-asset-certificate-list-raw-post:
@@ -1613,6 +1687,9 @@ examples:
           application/json: {}
         "401":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   v3-globaldata-asset-certificate-raw:
     speakeasy-default-v3-globaldata-asset-certificate-raw:
       parameters:
@@ -1625,17 +1702,23 @@ examples:
           application/x-pem-file: "x-file: example.file"
         "401":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   v3-globaldata-asset-host-list-post:
     speakeasy-default-v3-globaldata-asset-host-list-post:
       parameters:
         query:
           organization_id: "<id>"
       requestBody:
-        application/json: {"host_ids": ["8.8.8.8"]}
+        application/json: {"at_time": "2025-01-01T00:00:00Z", "host_ids": ["8.8.8.8"]}
       responses:
         "200":
           application/vnd.censys.api.v3.host.v1+json: {}
         "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   v3-globaldata-asset-webproperty-list-post:
     speakeasy-default-v3-globaldata-asset-webproperty-list-post:
@@ -1643,11 +1726,14 @@ examples:
         query:
           organization_id: "<id>"
       requestBody:
-        application/json: {"webproperty_ids": ["platform.censys.io:80"]}
+        application/json: {"at_time": "2025-01-01T00:00:00Z", "webproperty_ids": ["platform.censys.io:80"]}
       responses:
         "200":
           application/vnd.censys.api.v3.webproperty.v1+json: {}
         "401":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
   v3-globaldata-search-convert:
     speakeasy-default-v3-globaldata-search-convert:
@@ -1661,7 +1747,10 @@ examples:
           application/json: {}
         "401":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
         "500":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+        "403":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
 examplesVersion: 1.0.2
 generatedTests: {}

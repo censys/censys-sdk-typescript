@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Run a search query within a collection
  *
  * @remarks
- * Run a search query across a collection's assets. Reference the [documentation on Censys Query Language](https://docs.censys.com/docs/censys-query-language#/) for information about query syntax.
+ * Run a search query across a collection's assets. Reference the [documentation on Censys Query Language](https://docs.censys.com/docs/censys-query-language#/) for information about query syntax. Host services that match your search criteria will be returned in a `matched_services` object.
  */
 export function collectionsSearch(
   client: SDKCore,
@@ -38,6 +38,7 @@ export function collectionsSearch(
 ): APIPromise<
   Result<
     operations.V3CollectionsSearchQueryResponse,
+    | errors.AuthenticationError
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -64,6 +65,7 @@ async function $do(
   [
     Result<
       operations.V3CollectionsSearchQueryResponse,
+      | errors.AuthenticationError
       | errors.ErrorModel
       | SDKBaseError
       | ResponseValidationError
@@ -122,7 +124,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v3-collections-search-query",
-    oAuth2Scopes: [],
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 
@@ -151,7 +153,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["401", "403", "4XX", "5XX"],
+    errorCodes: ["401", "403", "404", "4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -166,6 +168,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.V3CollectionsSearchQueryResponse,
+    | errors.AuthenticationError
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -180,7 +183,8 @@ async function $do(
       hdrs: true,
       key: "Result",
     }),
-    M.jsonErr([401, 403], errors.ErrorModel$inboundSchema, {
+    M.jsonErr(401, errors.AuthenticationError$inboundSchema),
+    M.jsonErr([403, 404], errors.ErrorModel$inboundSchema, {
       ctype: "application/problem+json",
     }),
     M.fail("4XX"),

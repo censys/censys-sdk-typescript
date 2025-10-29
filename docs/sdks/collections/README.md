@@ -89,10 +89,11 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.ErrorModel        | 401, 403                 | application/problem+json |
-| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403                        | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## create
 
@@ -173,10 +174,11 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.ErrorModel        | 401, 403                 | application/problem+json |
-| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403                        | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## delete
 
@@ -249,10 +251,11 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.ErrorModel        | 401, 403                 | application/problem+json |
-| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 404                   | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## get
 
@@ -325,10 +328,11 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.ErrorModel        | 401, 403                 | application/problem+json |
-| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 404                   | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## update
 
@@ -411,10 +415,11 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.ErrorModel        | 401, 403                 | application/problem+json |
-| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 404                   | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## listEvents
 
@@ -495,10 +500,11 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.ErrorModel        | 401, 403                 | application/problem+json |
-| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 404                   | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## aggregate
 
@@ -581,14 +587,15 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.ErrorModel        | 401, 403                 | application/problem+json |
-| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 404, 422              | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## search
 
-Run a search query across a collection's assets. Reference the [documentation on Censys Query Language](https://docs.censys.com/docs/censys-query-language#/) for information about query syntax.
+Run a search query across a collection's assets. Reference the [documentation on Censys Query Language](https://docs.censys.com/docs/censys-query-language#/) for information about query syntax. Host services that match your search criteria will be returned in a `matched_services` object.
 
 ### Example Usage
 
@@ -671,7 +678,8 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.ErrorModel        | 401, 403                 | application/problem+json |
-| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 404                   | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |

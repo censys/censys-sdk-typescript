@@ -26,10 +26,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get multiple certificates
+ * Retrieve multiple certificates
  *
  * @remarks
- * Retrieve information about multiple certificates. A certificate ID is its SHA-256 fingerprint in the Censys dataset.
+ * Retrieve information about multiple certificates. You can retrieve up to 1,000 certificates per call. A certificate ID is its SHA-256 fingerprint in the Censys dataset.
  */
 export function globalDataGetCertificates(
   client: SDKCore,
@@ -38,6 +38,7 @@ export function globalDataGetCertificates(
 ): APIPromise<
   Result<
     operations.V3GlobaldataAssetCertificateListPostResponse,
+    | errors.AuthenticationError
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -64,6 +65,7 @@ async function $do(
   [
     Result<
       operations.V3GlobaldataAssetCertificateListPostResponse,
+      | errors.AuthenticationError
       | errors.ErrorModel
       | SDKBaseError
       | ResponseValidationError
@@ -114,7 +116,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v3-globaldata-asset-certificate-list-post",
-    oAuth2Scopes: [],
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 
@@ -143,7 +145,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["401", "403", "4XX", "5XX"],
+    errorCodes: ["401", "403", "404", "4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -158,6 +160,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.V3GlobaldataAssetCertificateListPostResponse,
+    | errors.AuthenticationError
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -177,7 +180,8 @@ async function $do(
         key: "Result",
       },
     ),
-    M.jsonErr([401, 403], errors.ErrorModel$inboundSchema, {
+    M.jsonErr(401, errors.AuthenticationError$inboundSchema),
+    M.jsonErr([403, 404], errors.ErrorModel$inboundSchema, {
       ctype: "application/problem+json",
     }),
     M.fail("4XX"),

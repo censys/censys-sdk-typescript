@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Get host event history
  *
  * @remarks
- * Retrieve event history for a host. A host ID is its IP address.<br><br>Note that when a service protocol changes after a new scan (for example, from `UNKNOWN` to `NETBIOS`), this information will only be reflected in the `scan` object. It will not be shown in the `service_scanned diff` object.
+ * Retrieve event history for a host. A host ID is its IP address.<br><br>Note that when a service protocol changes after a new scan (for example, from `UNKNOWN` to `NETBIOS`), this information will be reflected in the `scan` object.
  */
 export function globalDataGetHostTimeline(
   client: SDKCore,
@@ -38,6 +38,7 @@ export function globalDataGetHostTimeline(
 ): APIPromise<
   Result<
     operations.V3GlobaldataAssetHostTimelineResponse,
+    | errors.AuthenticationError
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -64,6 +65,7 @@ async function $do(
   [
     Result<
       operations.V3GlobaldataAssetHostTimelineResponse,
+      | errors.AuthenticationError
       | errors.ErrorModel
       | SDKBaseError
       | ResponseValidationError
@@ -123,7 +125,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v3-globaldata-asset-host-timeline",
-    oAuth2Scopes: [],
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 
@@ -167,6 +169,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.V3GlobaldataAssetHostTimelineResponse,
+    | errors.AuthenticationError
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -186,7 +189,8 @@ async function $do(
         key: "Result",
       },
     ),
-    M.jsonErr([401, 403], errors.ErrorModel$inboundSchema, {
+    M.jsonErr(401, errors.AuthenticationError$inboundSchema),
+    M.jsonErr(403, errors.ErrorModel$inboundSchema, {
       ctype: "application/problem+json",
     }),
     M.fail("4XX"),

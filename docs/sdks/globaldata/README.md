@@ -7,14 +7,14 @@ Endpoints related to the Global Data product
 
 ### Available Operations
 
-* [getCertificates](#getcertificates) - Get multiple certificates
-* [getCertificatesRaw](#getcertificatesraw) - Get multiple certificates in PEM format
+* [getCertificates](#getcertificates) - Retrieve multiple certificates
+* [getCertificatesRaw](#getcertificatesraw) - Retrieve multiple certificates in PEM format
 * [getCertificate](#getcertificate) - Get a certificate
 * [getCertificateRaw](#getcertificateraw) - Get a certificate in PEM format
-* [getHosts](#gethosts) - Get multiple hosts
+* [getHosts](#gethosts) - Retrieve multiple hosts
 * [getHost](#gethost) - Get a host
 * [getHostTimeline](#gethosttimeline) - Get host event history
-* [getWebProperties](#getwebproperties) - Get multiple web properties
+* [getWebProperties](#getwebproperties) - Retrieve multiple web properties
 * [getWebProperty](#getwebproperty) - Get a web property
 * [createTrackedScan](#createtrackedscan) - Live Rescan: Initiate a new rescan
 * [getTrackedScan](#gettrackedscan) - Get scan status
@@ -24,7 +24,7 @@ Endpoints related to the Global Data product
 
 ## getCertificates
 
-Retrieve information about multiple certificates. A certificate ID is its SHA-256 fingerprint in the Censys dataset.
+Retrieve information about multiple certificates. You can retrieve up to 1,000 certificates per call. A certificate ID is its SHA-256 fingerprint in the Censys dataset.
 
 ### Example Usage
 
@@ -101,14 +101,15 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.ErrorModel        | 401, 403                 | application/problem+json |
-| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 404                   | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getCertificatesRaw
 
-Retrieve the raw PEM-encoded format for multiple certificates. A certificate ID is its SHA-256 fingerprint in the Censys dataset.
+Retrieve the raw PEM-encoded format for multiple certificates. You can retrieve up to 1,000 certificates per call. A certificate ID is its SHA-256 fingerprint in the Censys dataset.
 
 ### Example Usage
 
@@ -185,10 +186,11 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.ErrorModel        | 401, 404                 | application/problem+json |
-| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 404                   | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getCertificate
 
@@ -261,10 +263,11 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.ErrorModel        | 401, 403                 | application/problem+json |
-| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 404                   | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getCertificateRaw
 
@@ -337,14 +340,15 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.ErrorModel        | 401, 403                 | application/problem+json |
-| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 404                   | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getHosts
 
-Retrieve information about multiple hosts. A host ID is its IP address.
+Retrieve information about multiple hosts. You can retrieve up to 100 hosts per call. A host ID is its IP address.
 
 ### Example Usage
 
@@ -360,6 +364,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.globalData.getHosts({
     assetHostListInputBody: {
+      atTime: new Date("2025-01-01T00:00:00Z"),
       hostIds: [
         "8.8.8.8",
       ],
@@ -390,6 +395,7 @@ const sdk = new SDKCore({
 async function run() {
   const res = await globalDataGetHosts(sdk, {
     assetHostListInputBody: {
+      atTime: new Date("2025-01-01T00:00:00Z"),
       hostIds: [
         "8.8.8.8",
       ],
@@ -421,10 +427,11 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.ErrorModel        | 401, 403                 | application/problem+json |
-| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403                        | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getHost
 
@@ -499,14 +506,15 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.ErrorModel        | 401, 403                 | application/problem+json |
-| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 404                   | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getHostTimeline
 
-Retrieve event history for a host. A host ID is its IP address.<br><br>Note that when a service protocol changes after a new scan (for example, from `UNKNOWN` to `NETBIOS`), this information will only be reflected in the `scan` object. It will not be shown in the `service_scanned diff` object.
+Retrieve event history for a host. A host ID is its IP address.<br><br>Note that when a service protocol changes after a new scan (for example, from `UNKNOWN` to `NETBIOS`), this information will be reflected in the `scan` object.
 
 ### Example Usage
 
@@ -579,14 +587,15 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.ErrorModel        | 401, 403                 | application/problem+json |
-| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403                        | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getWebProperties
 
-Retrieve information about multiple web properties. Web properties are identified using a combination of a hostname and port joined with a colon, such as `platform.censys.io:80`.
+Retrieve information about multiple web properties. You can retrieve up to 100 web properties per call. Web properties are identified using a combination of a hostname and port joined with a colon, such as `platform.censys.io:80`.
 
 ### Example Usage
 
@@ -602,6 +611,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.globalData.getWebProperties({
     assetWebpropertyListInputBody: {
+      atTime: new Date("2025-01-01T00:00:00Z"),
       webpropertyIds: [
         "platform.censys.io:80",
       ],
@@ -632,6 +642,7 @@ const sdk = new SDKCore({
 async function run() {
   const res = await globalDataGetWebProperties(sdk, {
     assetWebpropertyListInputBody: {
+      atTime: new Date("2025-01-01T00:00:00Z"),
       webpropertyIds: [
         "platform.censys.io:80",
       ],
@@ -663,10 +674,11 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.ErrorModel        | 401, 403                 | application/problem+json |
-| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403                        | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getWebProperty
 
@@ -741,10 +753,11 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.ErrorModel        | 401, 403                 | application/problem+json |
-| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 422                   | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## createTrackedScan
 
@@ -831,10 +844,11 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.ErrorModel        | 401, 403                 | application/problem+json |
-| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403                        | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getTrackedScan
 
@@ -907,10 +921,11 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.ErrorModel        | 401, 403                 | application/problem+json |
-| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 404                   | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## aggregate
 
@@ -991,10 +1006,11 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.ErrorModel        | 401, 403                 | application/problem+json |
-| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 422                   | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## convertLegacySearchQueries
 
@@ -1079,15 +1095,16 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.ErrorModel        | 401                      | application/problem+json |
-| errors.ErrorModel        | 500                      | application/problem+json |
-| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403                        | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## search
 
-Run a search query across Censys data. Reference the [documentation on Censys Query Language](https://docs.censys.com/docs/censys-query-language#/) for information about query syntax.
+Run a search query across Censys data. Reference the [documentation on Censys Query Language](https://docs.censys.com/docs/censys-query-language#/) for information about query syntax. Host services that match your search criteria will be returned in a `matched_services` object.
 
 ### Example Usage
 
@@ -1168,7 +1185,8 @@ run();
 
 ### Errors
 
-| Error Type               | Status Code              | Content Type             |
-| ------------------------ | ------------------------ | ------------------------ |
-| errors.ErrorModel        | 401, 403                 | application/problem+json |
-| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403                        | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |

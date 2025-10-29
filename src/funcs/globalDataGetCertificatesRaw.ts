@@ -26,10 +26,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get multiple certificates in PEM format
+ * Retrieve multiple certificates in PEM format
  *
  * @remarks
- * Retrieve the raw PEM-encoded format for multiple certificates. A certificate ID is its SHA-256 fingerprint in the Censys dataset.
+ * Retrieve the raw PEM-encoded format for multiple certificates. You can retrieve up to 1,000 certificates per call. A certificate ID is its SHA-256 fingerprint in the Censys dataset.
  */
 export function globalDataGetCertificatesRaw(
   client: SDKCore,
@@ -38,6 +38,7 @@ export function globalDataGetCertificatesRaw(
 ): APIPromise<
   Result<
     operations.V3GlobaldataAssetCertificateListRawPostResponse,
+    | errors.AuthenticationError
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -64,6 +65,7 @@ async function $do(
   [
     Result<
       operations.V3GlobaldataAssetCertificateListRawPostResponse,
+      | errors.AuthenticationError
       | errors.ErrorModel
       | SDKBaseError
       | ResponseValidationError
@@ -114,7 +116,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v3-globaldata-asset-certificate-list-raw-post",
-    oAuth2Scopes: [],
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 
@@ -143,7 +145,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["401", "404", "4XX", "5XX"],
+    errorCodes: ["401", "403", "404", "4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -158,6 +160,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.V3GlobaldataAssetCertificateListRawPostResponse,
+    | errors.AuthenticationError
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -173,7 +176,8 @@ async function $do(
       operations.V3GlobaldataAssetCertificateListRawPostResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
-    M.jsonErr([401, 404], errors.ErrorModel$inboundSchema, {
+    M.jsonErr(401, errors.AuthenticationError$inboundSchema),
+    M.jsonErr([403, 404], errors.ErrorModel$inboundSchema, {
       ctype: "application/problem+json",
     }),
     M.fail("4XX"),
