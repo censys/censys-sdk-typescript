@@ -26,10 +26,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get multiple web properties
+ * Retrieve multiple web properties
  *
  * @remarks
- * Retrieve information about multiple web properties. Web properties are identified using a combination of a hostname and port joined with a colon, such as `platform.censys.io:80`.
+ * Retrieve information about multiple web properties. You can retrieve up to 100 web properties per call. Web properties are identified using a combination of a hostname and port joined with a colon, such as `platform.censys.io:80`.
  */
 export function globalDataGetWebProperties(
   client: SDKCore,
@@ -38,6 +38,7 @@ export function globalDataGetWebProperties(
 ): APIPromise<
   Result<
     operations.V3GlobaldataAssetWebpropertyListPostResponse,
+    | errors.AuthenticationError
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -64,6 +65,7 @@ async function $do(
   [
     Result<
       operations.V3GlobaldataAssetWebpropertyListPostResponse,
+      | errors.AuthenticationError
       | errors.ErrorModel
       | SDKBaseError
       | ResponseValidationError
@@ -114,7 +116,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v3-globaldata-asset-webproperty-list-post",
-    oAuth2Scopes: [],
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 
@@ -158,6 +160,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.V3GlobaldataAssetWebpropertyListPostResponse,
+    | errors.AuthenticationError
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -177,7 +180,8 @@ async function $do(
         key: "Result",
       },
     ),
-    M.jsonErr([401, 403], errors.ErrorModel$inboundSchema, {
+    M.jsonErr(401, errors.AuthenticationError$inboundSchema),
+    M.jsonErr(403, errors.ErrorModel$inboundSchema, {
       ctype: "application/problem+json",
     }),
     M.fail("4XX"),

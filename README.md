@@ -63,10 +63,7 @@ bun add @censys/platform-sdk
 ### Yarn
 
 ```bash
-yarn add @censys/platform-sdk zod
-
-# Note that Yarn does not install peer dependencies automatically. You will need
-# to install zod as shown above.
+yarn add @censys/platform-sdk
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -127,21 +124,20 @@ run();
 
 ### [globalData](docs/sdks/globaldata/README.md)
 
-* [getCertificates](docs/sdks/globaldata/README.md#getcertificates) - Get multiple certificates
-* [getCertificatesRaw](docs/sdks/globaldata/README.md#getcertificatesraw) - Get multiple certificates in PEM format
+* [getCertificates](docs/sdks/globaldata/README.md#getcertificates) - Retrieve multiple certificates
+* [getCertificatesRaw](docs/sdks/globaldata/README.md#getcertificatesraw) - Retrieve multiple certificates in PEM format
 * [getCertificate](docs/sdks/globaldata/README.md#getcertificate) - Get a certificate
 * [getCertificateRaw](docs/sdks/globaldata/README.md#getcertificateraw) - Get a certificate in PEM format
-* [getHosts](docs/sdks/globaldata/README.md#gethosts) - Get multiple hosts
+* [getHosts](docs/sdks/globaldata/README.md#gethosts) - Retrieve multiple hosts
 * [getHost](docs/sdks/globaldata/README.md#gethost) - Get a host
 * [getHostTimeline](docs/sdks/globaldata/README.md#gethosttimeline) - Get host event history
-* [getWebProperties](docs/sdks/globaldata/README.md#getwebproperties) - Get multiple web properties
+* [getWebProperties](docs/sdks/globaldata/README.md#getwebproperties) - Retrieve multiple web properties
 * [getWebProperty](docs/sdks/globaldata/README.md#getwebproperty) - Get a web property
 * [createTrackedScan](docs/sdks/globaldata/README.md#createtrackedscan) - Live Rescan: Initiate a new rescan
 * [getTrackedScan](docs/sdks/globaldata/README.md#gettrackedscan) - Get scan status
 * [aggregate](docs/sdks/globaldata/README.md#aggregate) - Aggregate results for a search query
 * [convertLegacySearchQueries](docs/sdks/globaldata/README.md#convertlegacysearchqueries) - Convert Legacy Search queries to Platform queries
 * [search](docs/sdks/globaldata/README.md#search) - Run a search query
-
 
 ### [threatHunting](docs/sdks/threathunting/README.md)
 
@@ -181,13 +177,13 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`globalDataCreateTrackedScan`](docs/sdks/globaldata/README.md#createtrackedscan) - Live Rescan: Initiate a new rescan
 - [`globalDataGetCertificate`](docs/sdks/globaldata/README.md#getcertificate) - Get a certificate
 - [`globalDataGetCertificateRaw`](docs/sdks/globaldata/README.md#getcertificateraw) - Get a certificate in PEM format
-- [`globalDataGetCertificates`](docs/sdks/globaldata/README.md#getcertificates) - Get multiple certificates
-- [`globalDataGetCertificatesRaw`](docs/sdks/globaldata/README.md#getcertificatesraw) - Get multiple certificates in PEM format
+- [`globalDataGetCertificates`](docs/sdks/globaldata/README.md#getcertificates) - Retrieve multiple certificates
+- [`globalDataGetCertificatesRaw`](docs/sdks/globaldata/README.md#getcertificatesraw) - Retrieve multiple certificates in PEM format
 - [`globalDataGetHost`](docs/sdks/globaldata/README.md#gethost) - Get a host
-- [`globalDataGetHosts`](docs/sdks/globaldata/README.md#gethosts) - Get multiple hosts
+- [`globalDataGetHosts`](docs/sdks/globaldata/README.md#gethosts) - Retrieve multiple hosts
 - [`globalDataGetHostTimeline`](docs/sdks/globaldata/README.md#gethosttimeline) - Get host event history
 - [`globalDataGetTrackedScan`](docs/sdks/globaldata/README.md#gettrackedscan) - Get scan status
-- [`globalDataGetWebProperties`](docs/sdks/globaldata/README.md#getwebproperties) - Get multiple web properties
+- [`globalDataGetWebProperties`](docs/sdks/globaldata/README.md#getwebproperties) - Retrieve multiple web properties
 - [`globalDataGetWebProperty`](docs/sdks/globaldata/README.md#getwebproperty) - Get a web property
 - [`globalDataSearch`](docs/sdks/globaldata/README.md#search) - Run a search query
 - [`threatHuntingCreateTrackedScan`](docs/sdks/threathunting/README.md#createtrackedscan) - Live Discovery: Initiate a new scan
@@ -350,12 +346,8 @@ async function run() {
       console.log(error.headers);
 
       // Depending on the method different errors may be thrown
-      if (error instanceof errors.ErrorModel) {
-        console.log(error.data$.detail); // string
-        console.log(error.data$.errors); // ErrorDetail[]
-        console.log(error.data$.instance); // string
-        console.log(error.data$.status); // number
-        console.log(error.data$.title); // string
+      if (error instanceof errors.AuthenticationError) {
+        console.log(error.data$.error); // components.AuthenticationErrorDetail
       }
     }
   }
@@ -368,7 +360,8 @@ run();
 ### Error Classes
 **Primary errors:**
 * [`SDKBaseError`](./src/models/errors/sdkbaseerror.ts): The base class for HTTP error responses.
-  * [`ErrorModel`](./src/models/errors/errormodel.ts): Request does not contain a valid Authorization token.
+  * [`AuthenticationError`](./src/models/errors/authenticationerror.ts): Request does not contain a valid Authorization token. Status code `401`.
+  * [`ErrorModel`](./src/models/errors/errormodel.ts): User does not have permission to access this data.
 
 <details><summary>Less common errors (6)</summary>
 
@@ -462,7 +455,7 @@ httpClient.addHook("requestError", (error, request) => {
   console.groupEnd();
 });
 
-const sdk = new SDK({ httpClient });
+const sdk = new SDK({ httpClient: httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 

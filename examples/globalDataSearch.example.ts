@@ -19,7 +19,7 @@ const sdk = new SDK({
 });
 
 async function main() {
-  const result = await sdk.search({
+  const result = await sdk.globalData.search({
     searchQueryInputBody: {
       fields: [
         "host.ip",

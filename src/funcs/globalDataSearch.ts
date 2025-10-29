@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Run a search query
  *
  * @remarks
- * Run a search query across Censys data. Reference the [documentation on Censys Query Language](https://docs.censys.com/docs/censys-query-language#/) for information about query syntax.
+ * Run a search query across Censys data. Reference the [documentation on Censys Query Language](https://docs.censys.com/docs/censys-query-language#/) for information about query syntax. Host services that match your search criteria will be returned in a `matched_services` object.
  */
 export function globalDataSearch(
   client: SDKCore,
@@ -38,6 +38,7 @@ export function globalDataSearch(
 ): APIPromise<
   Result<
     operations.V3GlobaldataSearchQueryResponse,
+    | errors.AuthenticationError
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -64,6 +65,7 @@ async function $do(
   [
     Result<
       operations.V3GlobaldataSearchQueryResponse,
+      | errors.AuthenticationError
       | errors.ErrorModel
       | SDKBaseError
       | ResponseValidationError
@@ -113,7 +115,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v3-globaldata-search-query",
-    oAuth2Scopes: [],
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 
@@ -157,6 +159,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.V3GlobaldataSearchQueryResponse,
+    | errors.AuthenticationError
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -171,7 +174,8 @@ async function $do(
       hdrs: true,
       key: "Result",
     }),
-    M.jsonErr([401, 403], errors.ErrorModel$inboundSchema, {
+    M.jsonErr(401, errors.AuthenticationError$inboundSchema),
+    M.jsonErr(403, errors.ErrorModel$inboundSchema, {
       ctype: "application/problem+json",
     }),
     M.fail("4XX"),

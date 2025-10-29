@@ -26,10 +26,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get multiple hosts
+ * Retrieve multiple hosts
  *
  * @remarks
- * Retrieve information about multiple hosts. A host ID is its IP address.
+ * Retrieve information about multiple hosts. You can retrieve up to 100 hosts per call. A host ID is its IP address.
  */
 export function globalDataGetHosts(
   client: SDKCore,
@@ -38,6 +38,7 @@ export function globalDataGetHosts(
 ): APIPromise<
   Result<
     operations.V3GlobaldataAssetHostListPostResponse,
+    | errors.AuthenticationError
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -64,6 +65,7 @@ async function $do(
   [
     Result<
       operations.V3GlobaldataAssetHostListPostResponse,
+      | errors.AuthenticationError
       | errors.ErrorModel
       | SDKBaseError
       | ResponseValidationError
@@ -115,7 +117,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v3-globaldata-asset-host-list-post",
-    oAuth2Scopes: [],
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 
@@ -159,6 +161,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.V3GlobaldataAssetHostListPostResponse,
+    | errors.AuthenticationError
     | errors.ErrorModel
     | SDKBaseError
     | ResponseValidationError
@@ -178,7 +181,8 @@ async function $do(
         key: "Result",
       },
     ),
-    M.jsonErr([401, 403], errors.ErrorModel$inboundSchema, {
+    M.jsonErr(401, errors.AuthenticationError$inboundSchema),
+    M.jsonErr(403, errors.ErrorModel$inboundSchema, {
       ctype: "application/problem+json",
     }),
     M.fail("4XX"),
