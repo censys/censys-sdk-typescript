@@ -7,30 +7,10 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Evidence,
-  Evidence$inboundSchema,
-  Evidence$Outbound,
-  Evidence$outboundSchema,
-} from "./evidence.js";
-import {
-  ThreatActor,
-  ThreatActor$inboundSchema,
-  ThreatActor$Outbound,
-  ThreatActor$outboundSchema,
-} from "./threatactor.js";
-import {
-  ThreatDetails,
-  ThreatDetails$inboundSchema,
-  ThreatDetails$Outbound,
-  ThreatDetails$outboundSchema,
-} from "./threatdetails.js";
-import {
-  ThreatMalware,
-  ThreatMalware$inboundSchema,
-  ThreatMalware$Outbound,
-  ThreatMalware$outboundSchema,
-} from "./threatmalware.js";
+import { Evidence, Evidence$inboundSchema } from "./evidence.js";
+import { ThreatActor, ThreatActor$inboundSchema } from "./threatactor.js";
+import { ThreatDetails, ThreatDetails$inboundSchema } from "./threatdetails.js";
+import { ThreatMalware, ThreatMalware$inboundSchema } from "./threatmalware.js";
 
 export const ThreatSource = {
   Unknown: "",
@@ -59,21 +39,6 @@ export const ThreatSource$inboundSchema: z.ZodNativeEnum<typeof ThreatSource> =
   z.nativeEnum(ThreatSource);
 
 /** @internal */
-export const ThreatSource$outboundSchema: z.ZodNativeEnum<typeof ThreatSource> =
-  ThreatSource$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ThreatSource$ {
-  /** @deprecated use `ThreatSource$inboundSchema` instead. */
-  export const inboundSchema = ThreatSource$inboundSchema;
-  /** @deprecated use `ThreatSource$outboundSchema` instead. */
-  export const outboundSchema = ThreatSource$outboundSchema;
-}
-
-/** @internal */
 export const Threat$inboundSchema: z.ZodType<Threat, z.ZodTypeDef, unknown> = z
   .object({
     actors: z.nullable(z.array(ThreatActor$inboundSchema)).optional(),
@@ -87,55 +52,6 @@ export const Threat$inboundSchema: z.ZodType<Threat, z.ZodTypeDef, unknown> = z
     tactic: z.nullable(z.array(z.string())).optional(),
     type: z.nullable(z.array(z.string())).optional(),
   });
-
-/** @internal */
-export type Threat$Outbound = {
-  actors?: Array<ThreatActor$Outbound> | null | undefined;
-  confidence?: number | undefined;
-  details?: ThreatDetails$Outbound | undefined;
-  evidence?: Array<Evidence$Outbound> | null | undefined;
-  id?: string | undefined;
-  malware?: ThreatMalware$Outbound | undefined;
-  name?: string | undefined;
-  source?: string | undefined;
-  tactic?: Array<string> | null | undefined;
-  type?: Array<string> | null | undefined;
-};
-
-/** @internal */
-export const Threat$outboundSchema: z.ZodType<
-  Threat$Outbound,
-  z.ZodTypeDef,
-  Threat
-> = z.object({
-  actors: z.nullable(z.array(ThreatActor$outboundSchema)).optional(),
-  confidence: z.number().optional(),
-  details: ThreatDetails$outboundSchema.optional(),
-  evidence: z.nullable(z.array(Evidence$outboundSchema)).optional(),
-  id: z.string().optional(),
-  malware: ThreatMalware$outboundSchema.optional(),
-  name: z.string().optional(),
-  source: ThreatSource$outboundSchema.optional(),
-  tactic: z.nullable(z.array(z.string())).optional(),
-  type: z.nullable(z.array(z.string())).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Threat$ {
-  /** @deprecated use `Threat$inboundSchema` instead. */
-  export const inboundSchema = Threat$inboundSchema;
-  /** @deprecated use `Threat$outboundSchema` instead. */
-  export const outboundSchema = Threat$outboundSchema;
-  /** @deprecated use `Threat$Outbound` instead. */
-  export type Outbound = Threat$Outbound;
-}
-
-export function threatToJSON(threat: Threat): string {
-  return JSON.stringify(Threat$outboundSchema.parse(threat));
-}
 
 export function threatFromJSON(
   jsonString: string,

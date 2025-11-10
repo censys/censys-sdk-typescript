@@ -10,14 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SapRouterRouterInfo,
   SapRouterRouterInfo$inboundSchema,
-  SapRouterRouterInfo$Outbound,
-  SapRouterRouterInfo$outboundSchema,
 } from "./saprouterrouterinfo.js";
 import {
   SapRouterRouterVersionInfo,
   SapRouterRouterVersionInfo$inboundSchema,
-  SapRouterRouterVersionInfo$Outbound,
-  SapRouterRouterVersionInfo$outboundSchema,
 } from "./saprouterrouterversioninfo.js";
 
 export type SapRouter = {
@@ -39,44 +35,6 @@ export const SapRouter$inboundSchema: z.ZodType<
     "router_version_info": "routerVersionInfo",
   });
 });
-
-/** @internal */
-export type SapRouter$Outbound = {
-  router_info?: SapRouterRouterInfo$Outbound | undefined;
-  router_version_info?: SapRouterRouterVersionInfo$Outbound | undefined;
-};
-
-/** @internal */
-export const SapRouter$outboundSchema: z.ZodType<
-  SapRouter$Outbound,
-  z.ZodTypeDef,
-  SapRouter
-> = z.object({
-  routerInfo: SapRouterRouterInfo$outboundSchema.optional(),
-  routerVersionInfo: SapRouterRouterVersionInfo$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    routerInfo: "router_info",
-    routerVersionInfo: "router_version_info",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SapRouter$ {
-  /** @deprecated use `SapRouter$inboundSchema` instead. */
-  export const inboundSchema = SapRouter$inboundSchema;
-  /** @deprecated use `SapRouter$outboundSchema` instead. */
-  export const outboundSchema = SapRouter$outboundSchema;
-  /** @deprecated use `SapRouter$Outbound` instead. */
-  export type Outbound = SapRouter$Outbound;
-}
-
-export function sapRouterToJSON(sapRouter: SapRouter): string {
-  return JSON.stringify(SapRouter$outboundSchema.parse(sapRouter));
-}
 
 export function sapRouterFromJSON(
   jsonString: string,

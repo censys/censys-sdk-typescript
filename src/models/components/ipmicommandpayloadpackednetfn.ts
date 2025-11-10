@@ -10,14 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   IpmiCommandPayloadPackedNetFnLogicalUnitNumber,
   IpmiCommandPayloadPackedNetFnLogicalUnitNumber$inboundSchema,
-  IpmiCommandPayloadPackedNetFnLogicalUnitNumber$Outbound,
-  IpmiCommandPayloadPackedNetFnLogicalUnitNumber$outboundSchema,
 } from "./ipmicommandpayloadpackednetfnlogicalunitnumber.js";
 import {
   IpmiCommandPayloadPackedNetFnNetFn,
   IpmiCommandPayloadPackedNetFnNetFn$inboundSchema,
-  IpmiCommandPayloadPackedNetFnNetFn$Outbound,
-  IpmiCommandPayloadPackedNetFnNetFn$outboundSchema,
 } from "./ipmicommandpayloadpackednetfnnetfn.js";
 
 export type IpmiCommandPayloadPackedNetFn = {
@@ -47,55 +43,6 @@ export const IpmiCommandPayloadPackedNetFn$inboundSchema: z.ZodType<
     "net_fn": "netFn",
   });
 });
-
-/** @internal */
-export type IpmiCommandPayloadPackedNetFn$Outbound = {
-  logical_unit_number?:
-    | IpmiCommandPayloadPackedNetFnLogicalUnitNumber$Outbound
-    | undefined;
-  net_fn?: IpmiCommandPayloadPackedNetFnNetFn$Outbound | undefined;
-  raw?: number | undefined;
-};
-
-/** @internal */
-export const IpmiCommandPayloadPackedNetFn$outboundSchema: z.ZodType<
-  IpmiCommandPayloadPackedNetFn$Outbound,
-  z.ZodTypeDef,
-  IpmiCommandPayloadPackedNetFn
-> = z.object({
-  logicalUnitNumber:
-    IpmiCommandPayloadPackedNetFnLogicalUnitNumber$outboundSchema.optional(),
-  netFn: IpmiCommandPayloadPackedNetFnNetFn$outboundSchema.optional(),
-  raw: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    logicalUnitNumber: "logical_unit_number",
-    netFn: "net_fn",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IpmiCommandPayloadPackedNetFn$ {
-  /** @deprecated use `IpmiCommandPayloadPackedNetFn$inboundSchema` instead. */
-  export const inboundSchema = IpmiCommandPayloadPackedNetFn$inboundSchema;
-  /** @deprecated use `IpmiCommandPayloadPackedNetFn$outboundSchema` instead. */
-  export const outboundSchema = IpmiCommandPayloadPackedNetFn$outboundSchema;
-  /** @deprecated use `IpmiCommandPayloadPackedNetFn$Outbound` instead. */
-  export type Outbound = IpmiCommandPayloadPackedNetFn$Outbound;
-}
-
-export function ipmiCommandPayloadPackedNetFnToJSON(
-  ipmiCommandPayloadPackedNetFn: IpmiCommandPayloadPackedNetFn,
-): string {
-  return JSON.stringify(
-    IpmiCommandPayloadPackedNetFn$outboundSchema.parse(
-      ipmiCommandPayloadPackedNetFn,
-    ),
-  );
-}
 
 export function ipmiCommandPayloadPackedNetFnFromJSON(
   jsonString: string,

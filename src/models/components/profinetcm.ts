@@ -31,47 +31,6 @@ export const ProfinetCm$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type ProfinetCm$Outbound = {
-  byte_order?: string | undefined;
-  lookup_response_raw?: string | undefined;
-  multiple_fragments?: boolean | undefined;
-};
-
-/** @internal */
-export const ProfinetCm$outboundSchema: z.ZodType<
-  ProfinetCm$Outbound,
-  z.ZodTypeDef,
-  ProfinetCm
-> = z.object({
-  byteOrder: z.string().optional(),
-  lookupResponseRaw: z.string().optional(),
-  multipleFragments: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    byteOrder: "byte_order",
-    lookupResponseRaw: "lookup_response_raw",
-    multipleFragments: "multiple_fragments",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ProfinetCm$ {
-  /** @deprecated use `ProfinetCm$inboundSchema` instead. */
-  export const inboundSchema = ProfinetCm$inboundSchema;
-  /** @deprecated use `ProfinetCm$outboundSchema` instead. */
-  export const outboundSchema = ProfinetCm$outboundSchema;
-  /** @deprecated use `ProfinetCm$Outbound` instead. */
-  export type Outbound = ProfinetCm$Outbound;
-}
-
-export function profinetCmToJSON(profinetCm: ProfinetCm): string {
-  return JSON.stringify(ProfinetCm$outboundSchema.parse(profinetCm));
-}
-
 export function profinetCmFromJSON(
   jsonString: string,
 ): SafeParseResult<ProfinetCm, SDKValidationError> {

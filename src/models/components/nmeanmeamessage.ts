@@ -33,51 +33,6 @@ export const NmeaNmeaMessage$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type NmeaNmeaMessage$Outbound = {
-  fields?: Array<string> | null | undefined;
-  sentence_id?: string | undefined;
-  talker_id?: string | undefined;
-  talker_name?: string | undefined;
-};
-
-/** @internal */
-export const NmeaNmeaMessage$outboundSchema: z.ZodType<
-  NmeaNmeaMessage$Outbound,
-  z.ZodTypeDef,
-  NmeaNmeaMessage
-> = z.object({
-  fields: z.nullable(z.array(z.string())).optional(),
-  sentenceId: z.string().optional(),
-  talkerId: z.string().optional(),
-  talkerName: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    sentenceId: "sentence_id",
-    talkerId: "talker_id",
-    talkerName: "talker_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NmeaNmeaMessage$ {
-  /** @deprecated use `NmeaNmeaMessage$inboundSchema` instead. */
-  export const inboundSchema = NmeaNmeaMessage$inboundSchema;
-  /** @deprecated use `NmeaNmeaMessage$outboundSchema` instead. */
-  export const outboundSchema = NmeaNmeaMessage$outboundSchema;
-  /** @deprecated use `NmeaNmeaMessage$Outbound` instead. */
-  export type Outbound = NmeaNmeaMessage$Outbound;
-}
-
-export function nmeaNmeaMessageToJSON(
-  nmeaNmeaMessage: NmeaNmeaMessage,
-): string {
-  return JSON.stringify(NmeaNmeaMessage$outboundSchema.parse(nmeaNmeaMessage));
-}
-
 export function nmeaNmeaMessageFromJSON(
   jsonString: string,
 ): SafeParseResult<NmeaNmeaMessage, SDKValidationError> {

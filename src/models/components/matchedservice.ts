@@ -30,22 +30,6 @@ export const TransportProtocol$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(TransportProtocol);
 
 /** @internal */
-export const TransportProtocol$outboundSchema: z.ZodNativeEnum<
-  typeof TransportProtocol
-> = TransportProtocol$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TransportProtocol$ {
-  /** @deprecated use `TransportProtocol$inboundSchema` instead. */
-  export const inboundSchema = TransportProtocol$inboundSchema;
-  /** @deprecated use `TransportProtocol$outboundSchema` instead. */
-  export const outboundSchema = TransportProtocol$outboundSchema;
-}
-
-/** @internal */
 export const MatchedService$inboundSchema: z.ZodType<
   MatchedService,
   z.ZodTypeDef,
@@ -59,45 +43,6 @@ export const MatchedService$inboundSchema: z.ZodType<
     "transport_protocol": "transportProtocol",
   });
 });
-
-/** @internal */
-export type MatchedService$Outbound = {
-  port?: number | undefined;
-  protocol?: string | undefined;
-  transport_protocol?: string | undefined;
-};
-
-/** @internal */
-export const MatchedService$outboundSchema: z.ZodType<
-  MatchedService$Outbound,
-  z.ZodTypeDef,
-  MatchedService
-> = z.object({
-  port: z.number().int().optional(),
-  protocol: z.string().optional(),
-  transportProtocol: TransportProtocol$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    transportProtocol: "transport_protocol",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MatchedService$ {
-  /** @deprecated use `MatchedService$inboundSchema` instead. */
-  export const inboundSchema = MatchedService$inboundSchema;
-  /** @deprecated use `MatchedService$outboundSchema` instead. */
-  export const outboundSchema = MatchedService$outboundSchema;
-  /** @deprecated use `MatchedService$Outbound` instead. */
-  export type Outbound = MatchedService$Outbound;
-}
-
-export function matchedServiceToJSON(matchedService: MatchedService): string {
-  return JSON.stringify(MatchedService$outboundSchema.parse(matchedService));
-}
 
 export function matchedServiceFromJSON(
   jsonString: string,

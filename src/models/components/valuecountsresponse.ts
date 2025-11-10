@@ -25,45 +25,6 @@ export const ValueCountsResponse$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type ValueCountsResponse$Outbound = {
-  and_count_results: Array<number> | null;
-};
-
-/** @internal */
-export const ValueCountsResponse$outboundSchema: z.ZodType<
-  ValueCountsResponse$Outbound,
-  z.ZodTypeDef,
-  ValueCountsResponse
-> = z.object({
-  andCountResults: z.nullable(z.array(z.number())),
-}).transform((v) => {
-  return remap$(v, {
-    andCountResults: "and_count_results",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ValueCountsResponse$ {
-  /** @deprecated use `ValueCountsResponse$inboundSchema` instead. */
-  export const inboundSchema = ValueCountsResponse$inboundSchema;
-  /** @deprecated use `ValueCountsResponse$outboundSchema` instead. */
-  export const outboundSchema = ValueCountsResponse$outboundSchema;
-  /** @deprecated use `ValueCountsResponse$Outbound` instead. */
-  export type Outbound = ValueCountsResponse$Outbound;
-}
-
-export function valueCountsResponseToJSON(
-  valueCountsResponse: ValueCountsResponse,
-): string {
-  return JSON.stringify(
-    ValueCountsResponse$outboundSchema.parse(valueCountsResponse),
-  );
-}
-
 export function valueCountsResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<ValueCountsResponse, SDKValidationError> {

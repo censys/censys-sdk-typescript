@@ -25,45 +25,6 @@ export const QCStatementsQCLegislation$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type QCStatementsQCLegislation$Outbound = {
-  country_codes?: Array<string> | null | undefined;
-};
-
-/** @internal */
-export const QCStatementsQCLegislation$outboundSchema: z.ZodType<
-  QCStatementsQCLegislation$Outbound,
-  z.ZodTypeDef,
-  QCStatementsQCLegislation
-> = z.object({
-  countryCodes: z.nullable(z.array(z.string())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    countryCodes: "country_codes",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace QCStatementsQCLegislation$ {
-  /** @deprecated use `QCStatementsQCLegislation$inboundSchema` instead. */
-  export const inboundSchema = QCStatementsQCLegislation$inboundSchema;
-  /** @deprecated use `QCStatementsQCLegislation$outboundSchema` instead. */
-  export const outboundSchema = QCStatementsQCLegislation$outboundSchema;
-  /** @deprecated use `QCStatementsQCLegislation$Outbound` instead. */
-  export type Outbound = QCStatementsQCLegislation$Outbound;
-}
-
-export function qcStatementsQCLegislationToJSON(
-  qcStatementsQCLegislation: QCStatementsQCLegislation,
-): string {
-  return JSON.stringify(
-    QCStatementsQCLegislation$outboundSchema.parse(qcStatementsQCLegislation),
-  );
-}
-
 export function qcStatementsQCLegislationFromJSON(
   jsonString: string,
 ): SafeParseResult<QCStatementsQCLegislation, SDKValidationError> {

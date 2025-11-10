@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  User,
-  User$inboundSchema,
-  User$Outbound,
-  User$outboundSchema,
-} from "./user.js";
+import { User, User$inboundSchema } from "./user.js";
 
 export type Steam = {
   broadcastingActive?: boolean | undefined;
@@ -87,101 +82,6 @@ export const Steam$inboundSchema: z.ZodType<Steam, z.ZodTypeDef, unknown> = z
       "vr_link_caps": "vrLinkCaps",
     });
   });
-
-/** @internal */
-export type Steam$Outbound = {
-  broadcasting_active?: boolean | undefined;
-  connect_port?: number | undefined;
-  content_cache_port?: number | undefined;
-  download_lan_peer_group?: number | undefined;
-  enabled_services?: number | undefined;
-  euniverse?: number | undefined;
-  games_running?: boolean | undefined;
-  hostname?: string | undefined;
-  ip_addresses?: Array<string> | null | undefined;
-  is64bit?: boolean | undefined;
-  mac_addresses?: Array<string> | null | undefined;
-  min_version?: number | undefined;
-  ostype?: number | undefined;
-  public_ip_address?: string | undefined;
-  remoteplay_active?: boolean | undefined;
-  screen_locked?: boolean | undefined;
-  steam_deck?: boolean | undefined;
-  steam_version?: string | undefined;
-  supported_services?: number | undefined;
-  users?: Array<User$Outbound> | null | undefined;
-  version?: number | undefined;
-  vr_active?: boolean | undefined;
-  vr_link_caps?: string | undefined;
-};
-
-/** @internal */
-export const Steam$outboundSchema: z.ZodType<
-  Steam$Outbound,
-  z.ZodTypeDef,
-  Steam
-> = z.object({
-  broadcastingActive: z.boolean().optional(),
-  connectPort: z.number().int().optional(),
-  contentCachePort: z.number().int().optional(),
-  downloadLanPeerGroup: z.number().int().optional(),
-  enabledServices: z.number().int().optional(),
-  euniverse: z.number().int().optional(),
-  gamesRunning: z.boolean().optional(),
-  hostname: z.string().optional(),
-  ipAddresses: z.nullable(z.array(z.string())).optional(),
-  is64bit: z.boolean().optional(),
-  macAddresses: z.nullable(z.array(z.string())).optional(),
-  minVersion: z.number().int().optional(),
-  ostype: z.number().int().optional(),
-  publicIpAddress: z.string().optional(),
-  remoteplayActive: z.boolean().optional(),
-  screenLocked: z.boolean().optional(),
-  steamDeck: z.boolean().optional(),
-  steamVersion: z.string().optional(),
-  supportedServices: z.number().int().optional(),
-  users: z.nullable(z.array(User$outboundSchema)).optional(),
-  version: z.number().int().optional(),
-  vrActive: z.boolean().optional(),
-  vrLinkCaps: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    broadcastingActive: "broadcasting_active",
-    connectPort: "connect_port",
-    contentCachePort: "content_cache_port",
-    downloadLanPeerGroup: "download_lan_peer_group",
-    enabledServices: "enabled_services",
-    gamesRunning: "games_running",
-    ipAddresses: "ip_addresses",
-    macAddresses: "mac_addresses",
-    minVersion: "min_version",
-    publicIpAddress: "public_ip_address",
-    remoteplayActive: "remoteplay_active",
-    screenLocked: "screen_locked",
-    steamDeck: "steam_deck",
-    steamVersion: "steam_version",
-    supportedServices: "supported_services",
-    vrActive: "vr_active",
-    vrLinkCaps: "vr_link_caps",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Steam$ {
-  /** @deprecated use `Steam$inboundSchema` instead. */
-  export const inboundSchema = Steam$inboundSchema;
-  /** @deprecated use `Steam$outboundSchema` instead. */
-  export const outboundSchema = Steam$outboundSchema;
-  /** @deprecated use `Steam$Outbound` instead. */
-  export type Outbound = Steam$Outbound;
-}
-
-export function steamToJSON(steam: Steam): string {
-  return JSON.stringify(Steam$outboundSchema.parse(steam));
-}
 
 export function steamFromJSON(
   jsonString: string,

@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   WebpropertyAsset,
   WebpropertyAsset$inboundSchema,
-  WebpropertyAsset$Outbound,
-  WebpropertyAsset$outboundSchema,
 } from "./webpropertyasset.js";
 
 export type ResponseEnvelopeWebpropertyAsset = {
@@ -25,43 +23,6 @@ export const ResponseEnvelopeWebpropertyAsset$inboundSchema: z.ZodType<
 > = z.object({
   result: WebpropertyAsset$inboundSchema.optional(),
 });
-
-/** @internal */
-export type ResponseEnvelopeWebpropertyAsset$Outbound = {
-  result?: WebpropertyAsset$Outbound | undefined;
-};
-
-/** @internal */
-export const ResponseEnvelopeWebpropertyAsset$outboundSchema: z.ZodType<
-  ResponseEnvelopeWebpropertyAsset$Outbound,
-  z.ZodTypeDef,
-  ResponseEnvelopeWebpropertyAsset
-> = z.object({
-  result: WebpropertyAsset$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseEnvelopeWebpropertyAsset$ {
-  /** @deprecated use `ResponseEnvelopeWebpropertyAsset$inboundSchema` instead. */
-  export const inboundSchema = ResponseEnvelopeWebpropertyAsset$inboundSchema;
-  /** @deprecated use `ResponseEnvelopeWebpropertyAsset$outboundSchema` instead. */
-  export const outboundSchema = ResponseEnvelopeWebpropertyAsset$outboundSchema;
-  /** @deprecated use `ResponseEnvelopeWebpropertyAsset$Outbound` instead. */
-  export type Outbound = ResponseEnvelopeWebpropertyAsset$Outbound;
-}
-
-export function responseEnvelopeWebpropertyAssetToJSON(
-  responseEnvelopeWebpropertyAsset: ResponseEnvelopeWebpropertyAsset,
-): string {
-  return JSON.stringify(
-    ResponseEnvelopeWebpropertyAsset$outboundSchema.parse(
-      responseEnvelopeWebpropertyAsset,
-    ),
-  );
-}
 
 export function responseEnvelopeWebpropertyAssetFromJSON(
   jsonString: string,

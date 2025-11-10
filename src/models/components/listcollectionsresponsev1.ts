@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Collection,
-  Collection$inboundSchema,
-  Collection$Outbound,
-  Collection$outboundSchema,
-} from "./collection.js";
+import { Collection, Collection$inboundSchema } from "./collection.js";
 
 export type ListCollectionsResponseV1 = {
   collections: Array<Collection> | null;
@@ -32,47 +27,6 @@ export const ListCollectionsResponseV1$inboundSchema: z.ZodType<
     "next_page_token": "nextPageToken",
   });
 });
-
-/** @internal */
-export type ListCollectionsResponseV1$Outbound = {
-  collections: Array<Collection$Outbound> | null;
-  next_page_token: string;
-};
-
-/** @internal */
-export const ListCollectionsResponseV1$outboundSchema: z.ZodType<
-  ListCollectionsResponseV1$Outbound,
-  z.ZodTypeDef,
-  ListCollectionsResponseV1
-> = z.object({
-  collections: z.nullable(z.array(Collection$outboundSchema)),
-  nextPageToken: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    nextPageToken: "next_page_token",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ListCollectionsResponseV1$ {
-  /** @deprecated use `ListCollectionsResponseV1$inboundSchema` instead. */
-  export const inboundSchema = ListCollectionsResponseV1$inboundSchema;
-  /** @deprecated use `ListCollectionsResponseV1$outboundSchema` instead. */
-  export const outboundSchema = ListCollectionsResponseV1$outboundSchema;
-  /** @deprecated use `ListCollectionsResponseV1$Outbound` instead. */
-  export type Outbound = ListCollectionsResponseV1$Outbound;
-}
-
-export function listCollectionsResponseV1ToJSON(
-  listCollectionsResponseV1: ListCollectionsResponseV1,
-): string {
-  return JSON.stringify(
-    ListCollectionsResponseV1$outboundSchema.parse(listCollectionsResponseV1),
-  );
-}
 
 export function listCollectionsResponseV1FromJSON(
   jsonString: string,

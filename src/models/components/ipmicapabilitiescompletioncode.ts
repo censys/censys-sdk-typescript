@@ -28,45 +28,6 @@ export const IpmiCapabilitiesCompletionCode$inboundSchema: z.ZodType<
   raw: z.number().int().optional(),
 });
 
-/** @internal */
-export type IpmiCapabilitiesCompletionCode$Outbound = {
-  name?: string | undefined;
-  raw?: number | undefined;
-};
-
-/** @internal */
-export const IpmiCapabilitiesCompletionCode$outboundSchema: z.ZodType<
-  IpmiCapabilitiesCompletionCode$Outbound,
-  z.ZodTypeDef,
-  IpmiCapabilitiesCompletionCode
-> = z.object({
-  name: z.string().optional(),
-  raw: z.number().int().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IpmiCapabilitiesCompletionCode$ {
-  /** @deprecated use `IpmiCapabilitiesCompletionCode$inboundSchema` instead. */
-  export const inboundSchema = IpmiCapabilitiesCompletionCode$inboundSchema;
-  /** @deprecated use `IpmiCapabilitiesCompletionCode$outboundSchema` instead. */
-  export const outboundSchema = IpmiCapabilitiesCompletionCode$outboundSchema;
-  /** @deprecated use `IpmiCapabilitiesCompletionCode$Outbound` instead. */
-  export type Outbound = IpmiCapabilitiesCompletionCode$Outbound;
-}
-
-export function ipmiCapabilitiesCompletionCodeToJSON(
-  ipmiCapabilitiesCompletionCode: IpmiCapabilitiesCompletionCode,
-): string {
-  return JSON.stringify(
-    IpmiCapabilitiesCompletionCode$outboundSchema.parse(
-      ipmiCapabilitiesCompletionCode,
-    ),
-  );
-}
-
 export function ipmiCapabilitiesCompletionCodeFromJSON(
   jsonString: string,
 ): SafeParseResult<IpmiCapabilitiesCompletionCode, SDKValidationError> {

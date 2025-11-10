@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Port,
-  Port$inboundSchema,
-  Port$Outbound,
-  Port$outboundSchema,
-} from "./port.js";
+import { Port, Port$inboundSchema } from "./port.js";
 
 export type RippledPublicResults = {
   buildVersion?: string | undefined;
@@ -48,63 +43,6 @@ export const RippledPublicResults$inboundSchema: z.ZodType<
     "validation_quorum": "validationQuorum",
   });
 });
-
-/** @internal */
-export type RippledPublicResults$Outbound = {
-  build_version?: string | undefined;
-  hostid?: string | undefined;
-  network_id?: number | undefined;
-  peers?: number | undefined;
-  ports?: Array<Port$Outbound> | null | undefined;
-  pubkey_node?: string | undefined;
-  server_state?: string | undefined;
-  validation_quorum?: number | undefined;
-};
-
-/** @internal */
-export const RippledPublicResults$outboundSchema: z.ZodType<
-  RippledPublicResults$Outbound,
-  z.ZodTypeDef,
-  RippledPublicResults
-> = z.object({
-  buildVersion: z.string().optional(),
-  hostid: z.string().optional(),
-  networkId: z.number().int().optional(),
-  peers: z.number().int().optional(),
-  ports: z.nullable(z.array(Port$outboundSchema)).optional(),
-  pubkeyNode: z.string().optional(),
-  serverState: z.string().optional(),
-  validationQuorum: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    buildVersion: "build_version",
-    networkId: "network_id",
-    pubkeyNode: "pubkey_node",
-    serverState: "server_state",
-    validationQuorum: "validation_quorum",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RippledPublicResults$ {
-  /** @deprecated use `RippledPublicResults$inboundSchema` instead. */
-  export const inboundSchema = RippledPublicResults$inboundSchema;
-  /** @deprecated use `RippledPublicResults$outboundSchema` instead. */
-  export const outboundSchema = RippledPublicResults$outboundSchema;
-  /** @deprecated use `RippledPublicResults$Outbound` instead. */
-  export type Outbound = RippledPublicResults$Outbound;
-}
-
-export function rippledPublicResultsToJSON(
-  rippledPublicResults: RippledPublicResults,
-): string {
-  return JSON.stringify(
-    RippledPublicResults$outboundSchema.parse(rippledPublicResults),
-  );
-}
 
 export function rippledPublicResultsFromJSON(
   jsonString: string,

@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   KubernetesRoleRule,
   KubernetesRoleRule$inboundSchema,
-  KubernetesRoleRule$Outbound,
-  KubernetesRoleRule$outboundSchema,
 } from "./kubernetesrolerule.js";
 
 export type KubernetesRole = {
@@ -30,39 +28,6 @@ export const KubernetesRole$inboundSchema: z.ZodType<
   name: z.string().optional(),
   rules: z.nullable(z.array(KubernetesRoleRule$inboundSchema)).optional(),
 });
-
-/** @internal */
-export type KubernetesRole$Outbound = {
-  name?: string | undefined;
-  rules?: Array<KubernetesRoleRule$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const KubernetesRole$outboundSchema: z.ZodType<
-  KubernetesRole$Outbound,
-  z.ZodTypeDef,
-  KubernetesRole
-> = z.object({
-  name: z.string().optional(),
-  rules: z.nullable(z.array(KubernetesRoleRule$outboundSchema)).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace KubernetesRole$ {
-  /** @deprecated use `KubernetesRole$inboundSchema` instead. */
-  export const inboundSchema = KubernetesRole$inboundSchema;
-  /** @deprecated use `KubernetesRole$outboundSchema` instead. */
-  export const outboundSchema = KubernetesRole$outboundSchema;
-  /** @deprecated use `KubernetesRole$Outbound` instead. */
-  export type Outbound = KubernetesRole$Outbound;
-}
-
-export function kubernetesRoleToJSON(kubernetesRole: KubernetesRole): string {
-  return JSON.stringify(KubernetesRole$outboundSchema.parse(kubernetesRole));
-}
 
 export function kubernetesRoleFromJSON(
   jsonString: string,

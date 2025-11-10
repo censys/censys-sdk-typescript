@@ -6,18 +6,8 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  FieldDiff,
-  FieldDiff$inboundSchema,
-  FieldDiff$Outbound,
-  FieldDiff$outboundSchema,
-} from "./fielddiff.js";
-import {
-  Whois,
-  Whois$inboundSchema,
-  Whois$Outbound,
-  Whois$outboundSchema,
-} from "./whois.js";
+import { FieldDiff, FieldDiff$inboundSchema } from "./fielddiff.js";
+import { Whois, Whois$inboundSchema } from "./whois.js";
 
 export type WhoisUpdated = {
   diff?: { [k: string]: FieldDiff } | undefined;
@@ -33,39 +23,6 @@ export const WhoisUpdated$inboundSchema: z.ZodType<
   diff: z.record(FieldDiff$inboundSchema).optional(),
   whois: Whois$inboundSchema.optional(),
 });
-
-/** @internal */
-export type WhoisUpdated$Outbound = {
-  diff?: { [k: string]: FieldDiff$Outbound } | undefined;
-  whois?: Whois$Outbound | undefined;
-};
-
-/** @internal */
-export const WhoisUpdated$outboundSchema: z.ZodType<
-  WhoisUpdated$Outbound,
-  z.ZodTypeDef,
-  WhoisUpdated
-> = z.object({
-  diff: z.record(FieldDiff$outboundSchema).optional(),
-  whois: Whois$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WhoisUpdated$ {
-  /** @deprecated use `WhoisUpdated$inboundSchema` instead. */
-  export const inboundSchema = WhoisUpdated$inboundSchema;
-  /** @deprecated use `WhoisUpdated$outboundSchema` instead. */
-  export const outboundSchema = WhoisUpdated$outboundSchema;
-  /** @deprecated use `WhoisUpdated$Outbound` instead. */
-  export type Outbound = WhoisUpdated$Outbound;
-}
-
-export function whoisUpdatedToJSON(whoisUpdated: WhoisUpdated): string {
-  return JSON.stringify(WhoisUpdated$outboundSchema.parse(whoisUpdated));
-}
 
 export function whoisUpdatedFromJSON(
   jsonString: string,

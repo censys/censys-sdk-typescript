@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  SmbHeaderLog,
-  SmbHeaderLog$inboundSchema,
-  SmbHeaderLog$Outbound,
-  SmbHeaderLog$outboundSchema,
-} from "./smbheaderlog.js";
+import { SmbHeaderLog, SmbHeaderLog$inboundSchema } from "./smbheaderlog.js";
 
 export type SmbNegotiationLog = {
   authenticationTypes?: Array<string> | null | undefined;
@@ -50,65 +45,6 @@ export const SmbNegotiationLog$inboundSchema: z.ZodType<
     "system_time": "systemTime",
   });
 });
-
-/** @internal */
-export type SmbNegotiationLog$Outbound = {
-  authentication_types?: Array<string> | null | undefined;
-  capabilities?: number | undefined;
-  dialect_revision?: number | undefined;
-  header_log?: SmbHeaderLog$Outbound | undefined;
-  security_mode?: number | undefined;
-  server_guid?: string | undefined;
-  server_start_time?: number | undefined;
-  system_time?: number | undefined;
-};
-
-/** @internal */
-export const SmbNegotiationLog$outboundSchema: z.ZodType<
-  SmbNegotiationLog$Outbound,
-  z.ZodTypeDef,
-  SmbNegotiationLog
-> = z.object({
-  authenticationTypes: z.nullable(z.array(z.string())).optional(),
-  capabilities: z.number().int().optional(),
-  dialectRevision: z.number().int().optional(),
-  headerLog: SmbHeaderLog$outboundSchema.optional(),
-  securityMode: z.number().int().optional(),
-  serverGuid: z.string().optional(),
-  serverStartTime: z.number().int().optional(),
-  systemTime: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    authenticationTypes: "authentication_types",
-    dialectRevision: "dialect_revision",
-    headerLog: "header_log",
-    securityMode: "security_mode",
-    serverGuid: "server_guid",
-    serverStartTime: "server_start_time",
-    systemTime: "system_time",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SmbNegotiationLog$ {
-  /** @deprecated use `SmbNegotiationLog$inboundSchema` instead. */
-  export const inboundSchema = SmbNegotiationLog$inboundSchema;
-  /** @deprecated use `SmbNegotiationLog$outboundSchema` instead. */
-  export const outboundSchema = SmbNegotiationLog$outboundSchema;
-  /** @deprecated use `SmbNegotiationLog$Outbound` instead. */
-  export type Outbound = SmbNegotiationLog$Outbound;
-}
-
-export function smbNegotiationLogToJSON(
-  smbNegotiationLog: SmbNegotiationLog,
-): string {
-  return JSON.stringify(
-    SmbNegotiationLog$outboundSchema.parse(smbNegotiationLog),
-  );
-}
 
 export function smbNegotiationLogFromJSON(
   jsonString: string,

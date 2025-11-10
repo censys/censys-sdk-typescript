@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   HostTimelineEvent,
   HostTimelineEvent$inboundSchema,
-  HostTimelineEvent$Outbound,
-  HostTimelineEvent$outboundSchema,
 } from "./hosttimelineevent.js";
 
 export type HostTimelineEventAsset = {
@@ -27,43 +25,6 @@ export const HostTimelineEventAsset$inboundSchema: z.ZodType<
   extensions: z.record(z.any()),
   resource: HostTimelineEvent$inboundSchema,
 });
-
-/** @internal */
-export type HostTimelineEventAsset$Outbound = {
-  extensions: { [k: string]: any };
-  resource: HostTimelineEvent$Outbound;
-};
-
-/** @internal */
-export const HostTimelineEventAsset$outboundSchema: z.ZodType<
-  HostTimelineEventAsset$Outbound,
-  z.ZodTypeDef,
-  HostTimelineEventAsset
-> = z.object({
-  extensions: z.record(z.any()),
-  resource: HostTimelineEvent$outboundSchema,
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HostTimelineEventAsset$ {
-  /** @deprecated use `HostTimelineEventAsset$inboundSchema` instead. */
-  export const inboundSchema = HostTimelineEventAsset$inboundSchema;
-  /** @deprecated use `HostTimelineEventAsset$outboundSchema` instead. */
-  export const outboundSchema = HostTimelineEventAsset$outboundSchema;
-  /** @deprecated use `HostTimelineEventAsset$Outbound` instead. */
-  export type Outbound = HostTimelineEventAsset$Outbound;
-}
-
-export function hostTimelineEventAssetToJSON(
-  hostTimelineEventAsset: HostTimelineEventAsset,
-): string {
-  return JSON.stringify(
-    HostTimelineEventAsset$outboundSchema.parse(hostTimelineEventAsset),
-  );
-}
 
 export function hostTimelineEventAssetFromJSON(
   jsonString: string,

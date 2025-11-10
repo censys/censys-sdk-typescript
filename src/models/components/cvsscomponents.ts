@@ -160,58 +160,12 @@ export const AttackComplexity$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(AttackComplexity);
 
 /** @internal */
-export const AttackComplexity$outboundSchema: z.ZodNativeEnum<
-  typeof AttackComplexity
-> = AttackComplexity$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AttackComplexity$ {
-  /** @deprecated use `AttackComplexity$inboundSchema` instead. */
-  export const inboundSchema = AttackComplexity$inboundSchema;
-  /** @deprecated use `AttackComplexity$outboundSchema` instead. */
-  export const outboundSchema = AttackComplexity$outboundSchema;
-}
-
-/** @internal */
 export const AttackVector$inboundSchema: z.ZodNativeEnum<typeof AttackVector> =
   z.nativeEnum(AttackVector);
 
 /** @internal */
-export const AttackVector$outboundSchema: z.ZodNativeEnum<typeof AttackVector> =
-  AttackVector$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AttackVector$ {
-  /** @deprecated use `AttackVector$inboundSchema` instead. */
-  export const inboundSchema = AttackVector$inboundSchema;
-  /** @deprecated use `AttackVector$outboundSchema` instead. */
-  export const outboundSchema = AttackVector$outboundSchema;
-}
-
-/** @internal */
 export const Availability$inboundSchema: z.ZodNativeEnum<typeof Availability> =
   z.nativeEnum(Availability);
-
-/** @internal */
-export const Availability$outboundSchema: z.ZodNativeEnum<typeof Availability> =
-  Availability$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Availability$ {
-  /** @deprecated use `Availability$inboundSchema` instead. */
-  export const inboundSchema = Availability$inboundSchema;
-  /** @deprecated use `Availability$outboundSchema` instead. */
-  export const outboundSchema = Availability$outboundSchema;
-}
 
 /** @internal */
 export const Confidentiality$inboundSchema: z.ZodNativeEnum<
@@ -219,39 +173,8 @@ export const Confidentiality$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(Confidentiality);
 
 /** @internal */
-export const Confidentiality$outboundSchema: z.ZodNativeEnum<
-  typeof Confidentiality
-> = Confidentiality$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Confidentiality$ {
-  /** @deprecated use `Confidentiality$inboundSchema` instead. */
-  export const inboundSchema = Confidentiality$inboundSchema;
-  /** @deprecated use `Confidentiality$outboundSchema` instead. */
-  export const outboundSchema = Confidentiality$outboundSchema;
-}
-
-/** @internal */
 export const Integrity$inboundSchema: z.ZodNativeEnum<typeof Integrity> = z
   .nativeEnum(Integrity);
-
-/** @internal */
-export const Integrity$outboundSchema: z.ZodNativeEnum<typeof Integrity> =
-  Integrity$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Integrity$ {
-  /** @deprecated use `Integrity$inboundSchema` instead. */
-  export const inboundSchema = Integrity$inboundSchema;
-  /** @deprecated use `Integrity$outboundSchema` instead. */
-  export const outboundSchema = Integrity$outboundSchema;
-}
 
 /** @internal */
 export const PrivilegesRequired$inboundSchema: z.ZodNativeEnum<
@@ -259,61 +182,14 @@ export const PrivilegesRequired$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(PrivilegesRequired);
 
 /** @internal */
-export const PrivilegesRequired$outboundSchema: z.ZodNativeEnum<
-  typeof PrivilegesRequired
-> = PrivilegesRequired$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PrivilegesRequired$ {
-  /** @deprecated use `PrivilegesRequired$inboundSchema` instead. */
-  export const inboundSchema = PrivilegesRequired$inboundSchema;
-  /** @deprecated use `PrivilegesRequired$outboundSchema` instead. */
-  export const outboundSchema = PrivilegesRequired$outboundSchema;
-}
-
-/** @internal */
 export const Scope$inboundSchema: z.ZodNativeEnum<typeof Scope> = z.nativeEnum(
   Scope,
 );
 
 /** @internal */
-export const Scope$outboundSchema: z.ZodNativeEnum<typeof Scope> =
-  Scope$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Scope$ {
-  /** @deprecated use `Scope$inboundSchema` instead. */
-  export const inboundSchema = Scope$inboundSchema;
-  /** @deprecated use `Scope$outboundSchema` instead. */
-  export const outboundSchema = Scope$outboundSchema;
-}
-
-/** @internal */
 export const UserInteraction$inboundSchema: z.ZodNativeEnum<
   typeof UserInteraction
 > = z.nativeEnum(UserInteraction);
-
-/** @internal */
-export const UserInteraction$outboundSchema: z.ZodNativeEnum<
-  typeof UserInteraction
-> = UserInteraction$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UserInteraction$ {
-  /** @deprecated use `UserInteraction$inboundSchema` instead. */
-  export const inboundSchema = UserInteraction$inboundSchema;
-  /** @deprecated use `UserInteraction$outboundSchema` instead. */
-  export const outboundSchema = UserInteraction$outboundSchema;
-}
 
 /** @internal */
 export const CVSSComponents$inboundSchema: z.ZodType<
@@ -337,58 +213,6 @@ export const CVSSComponents$inboundSchema: z.ZodType<
     "user_interaction": "userInteraction",
   });
 });
-
-/** @internal */
-export type CVSSComponents$Outbound = {
-  attack_complexity?: string | undefined;
-  attack_vector?: string | undefined;
-  availability?: string | undefined;
-  confidentiality?: string | undefined;
-  integrity?: string | undefined;
-  privileges_required?: string | undefined;
-  scope?: string | undefined;
-  user_interaction?: string | undefined;
-};
-
-/** @internal */
-export const CVSSComponents$outboundSchema: z.ZodType<
-  CVSSComponents$Outbound,
-  z.ZodTypeDef,
-  CVSSComponents
-> = z.object({
-  attackComplexity: AttackComplexity$outboundSchema.optional(),
-  attackVector: AttackVector$outboundSchema.optional(),
-  availability: Availability$outboundSchema.optional(),
-  confidentiality: Confidentiality$outboundSchema.optional(),
-  integrity: Integrity$outboundSchema.optional(),
-  privilegesRequired: PrivilegesRequired$outboundSchema.optional(),
-  scope: Scope$outboundSchema.optional(),
-  userInteraction: UserInteraction$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    attackComplexity: "attack_complexity",
-    attackVector: "attack_vector",
-    privilegesRequired: "privileges_required",
-    userInteraction: "user_interaction",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CVSSComponents$ {
-  /** @deprecated use `CVSSComponents$inboundSchema` instead. */
-  export const inboundSchema = CVSSComponents$inboundSchema;
-  /** @deprecated use `CVSSComponents$outboundSchema` instead. */
-  export const outboundSchema = CVSSComponents$outboundSchema;
-  /** @deprecated use `CVSSComponents$Outbound` instead. */
-  export type Outbound = CVSSComponents$Outbound;
-}
-
-export function cvssComponentsToJSON(cvssComponents: CVSSComponents): string {
-  return JSON.stringify(CVSSComponents$outboundSchema.parse(cvssComponents));
-}
 
 export function cvssComponentsFromJSON(
   jsonString: string,

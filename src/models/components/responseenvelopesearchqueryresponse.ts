@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SearchQueryResponse,
   SearchQueryResponse$inboundSchema,
-  SearchQueryResponse$Outbound,
-  SearchQueryResponse$outboundSchema,
 } from "./searchqueryresponse.js";
 
 export type ResponseEnvelopeSearchQueryResponse = {
@@ -25,45 +23,6 @@ export const ResponseEnvelopeSearchQueryResponse$inboundSchema: z.ZodType<
 > = z.object({
   result: SearchQueryResponse$inboundSchema.optional(),
 });
-
-/** @internal */
-export type ResponseEnvelopeSearchQueryResponse$Outbound = {
-  result?: SearchQueryResponse$Outbound | undefined;
-};
-
-/** @internal */
-export const ResponseEnvelopeSearchQueryResponse$outboundSchema: z.ZodType<
-  ResponseEnvelopeSearchQueryResponse$Outbound,
-  z.ZodTypeDef,
-  ResponseEnvelopeSearchQueryResponse
-> = z.object({
-  result: SearchQueryResponse$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseEnvelopeSearchQueryResponse$ {
-  /** @deprecated use `ResponseEnvelopeSearchQueryResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    ResponseEnvelopeSearchQueryResponse$inboundSchema;
-  /** @deprecated use `ResponseEnvelopeSearchQueryResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    ResponseEnvelopeSearchQueryResponse$outboundSchema;
-  /** @deprecated use `ResponseEnvelopeSearchQueryResponse$Outbound` instead. */
-  export type Outbound = ResponseEnvelopeSearchQueryResponse$Outbound;
-}
-
-export function responseEnvelopeSearchQueryResponseToJSON(
-  responseEnvelopeSearchQueryResponse: ResponseEnvelopeSearchQueryResponse,
-): string {
-  return JSON.stringify(
-    ResponseEnvelopeSearchQueryResponse$outboundSchema.parse(
-      responseEnvelopeSearchQueryResponse,
-    ),
-  );
-}
 
 export function responseEnvelopeSearchQueryResponseFromJSON(
   jsonString: string,

@@ -7,17 +7,10 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  MediaProfile,
-  MediaProfile$inboundSchema,
-  MediaProfile$Outbound,
-  MediaProfile$outboundSchema,
-} from "./mediaprofile.js";
+import { MediaProfile, MediaProfile$inboundSchema } from "./mediaprofile.js";
 import {
   MediaStreaming,
   MediaStreaming$inboundSchema,
-  MediaStreaming$Outbound,
-  MediaStreaming$outboundSchema,
 } from "./mediastreaming.js";
 
 export type MediaCapabilities = {
@@ -47,56 +40,6 @@ export const MediaCapabilities$inboundSchema: z.ZodType<
     "video_source_mode": "videoSourceMode",
   });
 });
-
-/** @internal */
-export type MediaCapabilities$Outbound = {
-  osd?: boolean | undefined;
-  profile?: MediaProfile$Outbound | undefined;
-  rotation?: boolean | undefined;
-  snapshot_uri?: boolean | undefined;
-  streaming?: MediaStreaming$Outbound | undefined;
-  video_source_mode?: boolean | undefined;
-};
-
-/** @internal */
-export const MediaCapabilities$outboundSchema: z.ZodType<
-  MediaCapabilities$Outbound,
-  z.ZodTypeDef,
-  MediaCapabilities
-> = z.object({
-  osd: z.boolean().optional(),
-  profile: MediaProfile$outboundSchema.optional(),
-  rotation: z.boolean().optional(),
-  snapshotUri: z.boolean().optional(),
-  streaming: MediaStreaming$outboundSchema.optional(),
-  videoSourceMode: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    snapshotUri: "snapshot_uri",
-    videoSourceMode: "video_source_mode",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MediaCapabilities$ {
-  /** @deprecated use `MediaCapabilities$inboundSchema` instead. */
-  export const inboundSchema = MediaCapabilities$inboundSchema;
-  /** @deprecated use `MediaCapabilities$outboundSchema` instead. */
-  export const outboundSchema = MediaCapabilities$outboundSchema;
-  /** @deprecated use `MediaCapabilities$Outbound` instead. */
-  export type Outbound = MediaCapabilities$Outbound;
-}
-
-export function mediaCapabilitiesToJSON(
-  mediaCapabilities: MediaCapabilities,
-): string {
-  return JSON.stringify(
-    MediaCapabilities$outboundSchema.parse(mediaCapabilities),
-  );
-}
 
 export function mediaCapabilitiesFromJSON(
   jsonString: string,

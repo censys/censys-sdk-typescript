@@ -30,49 +30,6 @@ export const ElfFile$inboundSchema: z.ZodType<ElfFile, z.ZodTypeDef, unknown> =
     });
   });
 
-/** @internal */
-export type ElfFile$Outbound = {
-  class?: string | undefined;
-  data?: string | undefined;
-  machine?: string | undefined;
-  os_abi?: string | undefined;
-  type?: string | undefined;
-};
-
-/** @internal */
-export const ElfFile$outboundSchema: z.ZodType<
-  ElfFile$Outbound,
-  z.ZodTypeDef,
-  ElfFile
-> = z.object({
-  class: z.string().optional(),
-  data: z.string().optional(),
-  machine: z.string().optional(),
-  osAbi: z.string().optional(),
-  type: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    osAbi: "os_abi",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ElfFile$ {
-  /** @deprecated use `ElfFile$inboundSchema` instead. */
-  export const inboundSchema = ElfFile$inboundSchema;
-  /** @deprecated use `ElfFile$outboundSchema` instead. */
-  export const outboundSchema = ElfFile$outboundSchema;
-  /** @deprecated use `ElfFile$Outbound` instead. */
-  export type Outbound = ElfFile$Outbound;
-}
-
-export function elfFileToJSON(elfFile: ElfFile): string {
-  return JSON.stringify(ElfFile$outboundSchema.parse(elfFile));
-}
-
 export function elfFileFromJSON(
   jsonString: string,
 ): SafeParseResult<ElfFile, SDKValidationError> {

@@ -19,36 +19,6 @@ export const Port$inboundSchema: z.ZodType<Port, z.ZodTypeDef, unknown> = z
     protocol: z.nullable(z.array(z.string())).optional(),
   });
 
-/** @internal */
-export type Port$Outbound = {
-  port?: string | undefined;
-  protocol?: Array<string> | null | undefined;
-};
-
-/** @internal */
-export const Port$outboundSchema: z.ZodType<Port$Outbound, z.ZodTypeDef, Port> =
-  z.object({
-    port: z.string().optional(),
-    protocol: z.nullable(z.array(z.string())).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Port$ {
-  /** @deprecated use `Port$inboundSchema` instead. */
-  export const inboundSchema = Port$inboundSchema;
-  /** @deprecated use `Port$outboundSchema` instead. */
-  export const outboundSchema = Port$outboundSchema;
-  /** @deprecated use `Port$Outbound` instead. */
-  export type Outbound = Port$Outbound;
-}
-
-export function portToJSON(port: Port): string {
-  return JSON.stringify(Port$outboundSchema.parse(port));
-}
-
 export function portFromJSON(
   jsonString: string,
 ): SafeParseResult<Port, SDKValidationError> {

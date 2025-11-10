@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  PixelFormat,
-  PixelFormat$inboundSchema,
-  PixelFormat$Outbound,
-  PixelFormat$outboundSchema,
-} from "./pixelformat.js";
+import { PixelFormat, PixelFormat$inboundSchema } from "./pixelformat.js";
 
 export type DesktopInfo = {
   height?: number | undefined;
@@ -37,48 +32,6 @@ export const DesktopInfo$inboundSchema: z.ZodType<
     "pixel_format": "pixelFormat",
   });
 });
-
-/** @internal */
-export type DesktopInfo$Outbound = {
-  height?: number | undefined;
-  name_len?: number | undefined;
-  pixel_format?: PixelFormat$Outbound | undefined;
-  width?: number | undefined;
-};
-
-/** @internal */
-export const DesktopInfo$outboundSchema: z.ZodType<
-  DesktopInfo$Outbound,
-  z.ZodTypeDef,
-  DesktopInfo
-> = z.object({
-  height: z.number().int().optional(),
-  nameLen: z.number().int().optional(),
-  pixelFormat: PixelFormat$outboundSchema.optional(),
-  width: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    nameLen: "name_len",
-    pixelFormat: "pixel_format",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DesktopInfo$ {
-  /** @deprecated use `DesktopInfo$inboundSchema` instead. */
-  export const inboundSchema = DesktopInfo$inboundSchema;
-  /** @deprecated use `DesktopInfo$outboundSchema` instead. */
-  export const outboundSchema = DesktopInfo$outboundSchema;
-  /** @deprecated use `DesktopInfo$Outbound` instead. */
-  export type Outbound = DesktopInfo$Outbound;
-}
-
-export function desktopInfoToJSON(desktopInfo: DesktopInfo): string {
-  return JSON.stringify(DesktopInfo$outboundSchema.parse(desktopInfo));
-}
 
 export function desktopInfoFromJSON(
   jsonString: string,

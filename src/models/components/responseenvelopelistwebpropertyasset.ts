@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   WebpropertyAsset,
   WebpropertyAsset$inboundSchema,
-  WebpropertyAsset$Outbound,
-  WebpropertyAsset$outboundSchema,
 } from "./webpropertyasset.js";
 
 export type ResponseEnvelopeListWebpropertyAsset = {
@@ -25,45 +23,6 @@ export const ResponseEnvelopeListWebpropertyAsset$inboundSchema: z.ZodType<
 > = z.object({
   result: z.nullable(z.array(WebpropertyAsset$inboundSchema)).optional(),
 });
-
-/** @internal */
-export type ResponseEnvelopeListWebpropertyAsset$Outbound = {
-  result?: Array<WebpropertyAsset$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const ResponseEnvelopeListWebpropertyAsset$outboundSchema: z.ZodType<
-  ResponseEnvelopeListWebpropertyAsset$Outbound,
-  z.ZodTypeDef,
-  ResponseEnvelopeListWebpropertyAsset
-> = z.object({
-  result: z.nullable(z.array(WebpropertyAsset$outboundSchema)).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseEnvelopeListWebpropertyAsset$ {
-  /** @deprecated use `ResponseEnvelopeListWebpropertyAsset$inboundSchema` instead. */
-  export const inboundSchema =
-    ResponseEnvelopeListWebpropertyAsset$inboundSchema;
-  /** @deprecated use `ResponseEnvelopeListWebpropertyAsset$outboundSchema` instead. */
-  export const outboundSchema =
-    ResponseEnvelopeListWebpropertyAsset$outboundSchema;
-  /** @deprecated use `ResponseEnvelopeListWebpropertyAsset$Outbound` instead. */
-  export type Outbound = ResponseEnvelopeListWebpropertyAsset$Outbound;
-}
-
-export function responseEnvelopeListWebpropertyAssetToJSON(
-  responseEnvelopeListWebpropertyAsset: ResponseEnvelopeListWebpropertyAsset,
-): string {
-  return JSON.stringify(
-    ResponseEnvelopeListWebpropertyAsset$outboundSchema.parse(
-      responseEnvelopeListWebpropertyAsset,
-    ),
-  );
-}
 
 export function responseEnvelopeListWebpropertyAssetFromJSON(
   jsonString: string,

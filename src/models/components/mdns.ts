@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  MdnsResult,
-  MdnsResult$inboundSchema,
-  MdnsResult$Outbound,
-  MdnsResult$outboundSchema,
-} from "./mdnsresult.js";
+import { MdnsResult, MdnsResult$inboundSchema } from "./mdnsresult.js";
 
 export type Mdns = {
   multipleResponses?: boolean | undefined;
@@ -31,42 +26,6 @@ export const Mdns$inboundSchema: z.ZodType<Mdns, z.ZodTypeDef, unknown> = z
       "multiple_responses": "multipleResponses",
     });
   });
-
-/** @internal */
-export type Mdns$Outbound = {
-  multiple_responses?: boolean | undefined;
-  names?: Array<string> | null | undefined;
-  results?: Array<MdnsResult$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const Mdns$outboundSchema: z.ZodType<Mdns$Outbound, z.ZodTypeDef, Mdns> =
-  z.object({
-    multipleResponses: z.boolean().optional(),
-    names: z.nullable(z.array(z.string())).optional(),
-    results: z.nullable(z.array(MdnsResult$outboundSchema)).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      multipleResponses: "multiple_responses",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Mdns$ {
-  /** @deprecated use `Mdns$inboundSchema` instead. */
-  export const inboundSchema = Mdns$inboundSchema;
-  /** @deprecated use `Mdns$outboundSchema` instead. */
-  export const outboundSchema = Mdns$outboundSchema;
-  /** @deprecated use `Mdns$Outbound` instead. */
-  export type Outbound = Mdns$Outbound;
-}
-
-export function mdnsToJSON(mdns: Mdns): string {
-  return JSON.stringify(Mdns$outboundSchema.parse(mdns));
-}
 
 export function mdnsFromJSON(
   jsonString: string,

@@ -24,45 +24,6 @@ export const SapRouterRouterVersionInfo$inboundSchema: z.ZodType<
   version: z.number().int().optional(),
 });
 
-/** @internal */
-export type SapRouterRouterVersionInfo$Outbound = {
-  name?: string | undefined;
-  release?: number | undefined;
-  version?: number | undefined;
-};
-
-/** @internal */
-export const SapRouterRouterVersionInfo$outboundSchema: z.ZodType<
-  SapRouterRouterVersionInfo$Outbound,
-  z.ZodTypeDef,
-  SapRouterRouterVersionInfo
-> = z.object({
-  name: z.string().optional(),
-  release: z.number().int().optional(),
-  version: z.number().int().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SapRouterRouterVersionInfo$ {
-  /** @deprecated use `SapRouterRouterVersionInfo$inboundSchema` instead. */
-  export const inboundSchema = SapRouterRouterVersionInfo$inboundSchema;
-  /** @deprecated use `SapRouterRouterVersionInfo$outboundSchema` instead. */
-  export const outboundSchema = SapRouterRouterVersionInfo$outboundSchema;
-  /** @deprecated use `SapRouterRouterVersionInfo$Outbound` instead. */
-  export type Outbound = SapRouterRouterVersionInfo$Outbound;
-}
-
-export function sapRouterRouterVersionInfoToJSON(
-  sapRouterRouterVersionInfo: SapRouterRouterVersionInfo,
-): string {
-  return JSON.stringify(
-    SapRouterRouterVersionInfo$outboundSchema.parse(sapRouterRouterVersionInfo),
-  );
-}
-
 export function sapRouterRouterVersionInfoFromJSON(
   jsonString: string,
 ): SafeParseResult<SapRouterRouterVersionInfo, SDKValidationError> {

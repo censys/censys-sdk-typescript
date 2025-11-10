@@ -40,47 +40,6 @@ export const ValidityPeriod$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type ValidityPeriod$Outbound = {
-  length_seconds?: number | undefined;
-  not_after?: string | undefined;
-  not_before?: string | undefined;
-};
-
-/** @internal */
-export const ValidityPeriod$outboundSchema: z.ZodType<
-  ValidityPeriod$Outbound,
-  z.ZodTypeDef,
-  ValidityPeriod
-> = z.object({
-  lengthSeconds: z.number().int().optional(),
-  notAfter: z.string().optional(),
-  notBefore: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    lengthSeconds: "length_seconds",
-    notAfter: "not_after",
-    notBefore: "not_before",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ValidityPeriod$ {
-  /** @deprecated use `ValidityPeriod$inboundSchema` instead. */
-  export const inboundSchema = ValidityPeriod$inboundSchema;
-  /** @deprecated use `ValidityPeriod$outboundSchema` instead. */
-  export const outboundSchema = ValidityPeriod$outboundSchema;
-  /** @deprecated use `ValidityPeriod$Outbound` instead. */
-  export type Outbound = ValidityPeriod$Outbound;
-}
-
-export function validityPeriodToJSON(validityPeriod: ValidityPeriod): string {
-  return JSON.stringify(ValidityPeriod$outboundSchema.parse(validityPeriod));
-}
-
 export function validityPeriodFromJSON(
   jsonString: string,
 ): SafeParseResult<ValidityPeriod, SDKValidationError> {

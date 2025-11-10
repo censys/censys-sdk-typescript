@@ -24,47 +24,6 @@ export const PgbouncerStartupCapabilities$inboundSchema: z.ZodType<
   v4: z.boolean().optional(),
 });
 
-/** @internal */
-export type PgbouncerStartupCapabilities$Outbound = {
-  v2?: boolean | undefined;
-  v3?: boolean | undefined;
-  v4?: boolean | undefined;
-};
-
-/** @internal */
-export const PgbouncerStartupCapabilities$outboundSchema: z.ZodType<
-  PgbouncerStartupCapabilities$Outbound,
-  z.ZodTypeDef,
-  PgbouncerStartupCapabilities
-> = z.object({
-  v2: z.boolean().optional(),
-  v3: z.boolean().optional(),
-  v4: z.boolean().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PgbouncerStartupCapabilities$ {
-  /** @deprecated use `PgbouncerStartupCapabilities$inboundSchema` instead. */
-  export const inboundSchema = PgbouncerStartupCapabilities$inboundSchema;
-  /** @deprecated use `PgbouncerStartupCapabilities$outboundSchema` instead. */
-  export const outboundSchema = PgbouncerStartupCapabilities$outboundSchema;
-  /** @deprecated use `PgbouncerStartupCapabilities$Outbound` instead. */
-  export type Outbound = PgbouncerStartupCapabilities$Outbound;
-}
-
-export function pgbouncerStartupCapabilitiesToJSON(
-  pgbouncerStartupCapabilities: PgbouncerStartupCapabilities,
-): string {
-  return JSON.stringify(
-    PgbouncerStartupCapabilities$outboundSchema.parse(
-      pgbouncerStartupCapabilities,
-    ),
-  );
-}
-
 export function pgbouncerStartupCapabilitiesFromJSON(
   jsonString: string,
 ): SafeParseResult<PgbouncerStartupCapabilities, SDKValidationError> {

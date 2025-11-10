@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  UpnpService,
-  UpnpService$inboundSchema,
-  UpnpService$Outbound,
-  UpnpService$outboundSchema,
-} from "./upnpservice.js";
+import { UpnpService, UpnpService$inboundSchema } from "./upnpservice.js";
 
 export type UpnpDevice = {
   deviceType?: string | undefined;
@@ -71,79 +66,6 @@ export const UpnpDevice$inboundSchema: z.ZodType<
     "service_list": "serviceList",
   });
 });
-
-/** @internal */
-export type UpnpDevice$Outbound = {
-  device_type?: string | undefined;
-  friendly_name?: string | undefined;
-  id?: number | undefined;
-  manufacturer?: string | undefined;
-  manufacturer_url?: string | undefined;
-  model_description?: string | undefined;
-  model_name?: string | undefined;
-  model_number?: string | undefined;
-  model_url?: string | undefined;
-  parent_id?: number | undefined;
-  presentation_url?: string | undefined;
-  serial_number?: string | undefined;
-  service_list?: Array<UpnpService$Outbound> | null | undefined;
-  udn?: string | undefined;
-  upc?: string | undefined;
-};
-
-/** @internal */
-export const UpnpDevice$outboundSchema: z.ZodType<
-  UpnpDevice$Outbound,
-  z.ZodTypeDef,
-  UpnpDevice
-> = z.object({
-  deviceType: z.string().optional(),
-  friendlyName: z.string().optional(),
-  id: z.number().int().optional(),
-  manufacturer: z.string().optional(),
-  manufacturerUrl: z.string().optional(),
-  modelDescription: z.string().optional(),
-  modelName: z.string().optional(),
-  modelNumber: z.string().optional(),
-  modelUrl: z.string().optional(),
-  parentId: z.number().int().optional(),
-  presentationUrl: z.string().optional(),
-  serialNumber: z.string().optional(),
-  serviceList: z.nullable(z.array(UpnpService$outboundSchema)).optional(),
-  udn: z.string().optional(),
-  upc: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    deviceType: "device_type",
-    friendlyName: "friendly_name",
-    manufacturerUrl: "manufacturer_url",
-    modelDescription: "model_description",
-    modelName: "model_name",
-    modelNumber: "model_number",
-    modelUrl: "model_url",
-    parentId: "parent_id",
-    presentationUrl: "presentation_url",
-    serialNumber: "serial_number",
-    serviceList: "service_list",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpnpDevice$ {
-  /** @deprecated use `UpnpDevice$inboundSchema` instead. */
-  export const inboundSchema = UpnpDevice$inboundSchema;
-  /** @deprecated use `UpnpDevice$outboundSchema` instead. */
-  export const outboundSchema = UpnpDevice$outboundSchema;
-  /** @deprecated use `UpnpDevice$Outbound` instead. */
-  export type Outbound = UpnpDevice$Outbound;
-}
-
-export function upnpDeviceToJSON(upnpDevice: UpnpDevice): string {
-  return JSON.stringify(UpnpDevice$outboundSchema.parse(upnpDevice));
-}
 
 export function upnpDeviceFromJSON(
   jsonString: string,

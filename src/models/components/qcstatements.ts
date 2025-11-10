@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   QcStatementsParsedStatements,
   QcStatementsParsedStatements$inboundSchema,
-  QcStatementsParsedStatements$Outbound,
-  QcStatementsParsedStatements$outboundSchema,
 } from "./qcstatementsparsedstatements.js";
 
 export type QcStatements = {
@@ -27,39 +25,6 @@ export const QcStatements$inboundSchema: z.ZodType<
   ids: z.nullable(z.array(z.string())).optional(),
   parsed: QcStatementsParsedStatements$inboundSchema.optional(),
 });
-
-/** @internal */
-export type QcStatements$Outbound = {
-  ids?: Array<string> | null | undefined;
-  parsed?: QcStatementsParsedStatements$Outbound | undefined;
-};
-
-/** @internal */
-export const QcStatements$outboundSchema: z.ZodType<
-  QcStatements$Outbound,
-  z.ZodTypeDef,
-  QcStatements
-> = z.object({
-  ids: z.nullable(z.array(z.string())).optional(),
-  parsed: QcStatementsParsedStatements$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace QcStatements$ {
-  /** @deprecated use `QcStatements$inboundSchema` instead. */
-  export const inboundSchema = QcStatements$inboundSchema;
-  /** @deprecated use `QcStatements$outboundSchema` instead. */
-  export const outboundSchema = QcStatements$outboundSchema;
-  /** @deprecated use `QcStatements$Outbound` instead. */
-  export type Outbound = QcStatements$Outbound;
-}
-
-export function qcStatementsToJSON(qcStatements: QcStatements): string {
-  return JSON.stringify(QcStatements$outboundSchema.parse(qcStatements));
-}
 
 export function qcStatementsFromJSON(
   jsonString: string,

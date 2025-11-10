@@ -33,41 +33,6 @@ export const RsaPublicKey$inboundSchema: z.ZodType<
   modulus: z.string().optional(),
 });
 
-/** @internal */
-export type RsaPublicKey$Outbound = {
-  exponent?: number | undefined;
-  length?: number | undefined;
-  modulus?: string | undefined;
-};
-
-/** @internal */
-export const RsaPublicKey$outboundSchema: z.ZodType<
-  RsaPublicKey$Outbound,
-  z.ZodTypeDef,
-  RsaPublicKey
-> = z.object({
-  exponent: z.number().int().optional(),
-  length: z.number().int().optional(),
-  modulus: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RsaPublicKey$ {
-  /** @deprecated use `RsaPublicKey$inboundSchema` instead. */
-  export const inboundSchema = RsaPublicKey$inboundSchema;
-  /** @deprecated use `RsaPublicKey$outboundSchema` instead. */
-  export const outboundSchema = RsaPublicKey$outboundSchema;
-  /** @deprecated use `RsaPublicKey$Outbound` instead. */
-  export type Outbound = RsaPublicKey$Outbound;
-}
-
-export function rsaPublicKeyToJSON(rsaPublicKey: RsaPublicKey): string {
-  return JSON.stringify(RsaPublicKey$outboundSchema.parse(rsaPublicKey));
-}
-
 export function rsaPublicKeyFromJSON(
   jsonString: string,
 ): SafeParseResult<RsaPublicKey, SDKValidationError> {

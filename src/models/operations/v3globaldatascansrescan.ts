@@ -27,85 +27,6 @@ export type V3GlobaldataScansRescanResponse = {
 };
 
 /** @internal */
-export const V3GlobaldataScansRescanGlobals$inboundSchema: z.ZodType<
-  V3GlobaldataScansRescanGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  organization_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "organization_id": "organizationId",
-  });
-});
-
-/** @internal */
-export type V3GlobaldataScansRescanGlobals$Outbound = {
-  organization_id?: string | undefined;
-};
-
-/** @internal */
-export const V3GlobaldataScansRescanGlobals$outboundSchema: z.ZodType<
-  V3GlobaldataScansRescanGlobals$Outbound,
-  z.ZodTypeDef,
-  V3GlobaldataScansRescanGlobals
-> = z.object({
-  organizationId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    organizationId: "organization_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3GlobaldataScansRescanGlobals$ {
-  /** @deprecated use `V3GlobaldataScansRescanGlobals$inboundSchema` instead. */
-  export const inboundSchema = V3GlobaldataScansRescanGlobals$inboundSchema;
-  /** @deprecated use `V3GlobaldataScansRescanGlobals$outboundSchema` instead. */
-  export const outboundSchema = V3GlobaldataScansRescanGlobals$outboundSchema;
-  /** @deprecated use `V3GlobaldataScansRescanGlobals$Outbound` instead. */
-  export type Outbound = V3GlobaldataScansRescanGlobals$Outbound;
-}
-
-export function v3GlobaldataScansRescanGlobalsToJSON(
-  v3GlobaldataScansRescanGlobals: V3GlobaldataScansRescanGlobals,
-): string {
-  return JSON.stringify(
-    V3GlobaldataScansRescanGlobals$outboundSchema.parse(
-      v3GlobaldataScansRescanGlobals,
-    ),
-  );
-}
-
-export function v3GlobaldataScansRescanGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<V3GlobaldataScansRescanGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V3GlobaldataScansRescanGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3GlobaldataScansRescanGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const V3GlobaldataScansRescanRequest$inboundSchema: z.ZodType<
-  V3GlobaldataScansRescanRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  organization_id: z.string().optional(),
-  ScansRescanInputBody: components.ScansRescanInputBody$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "organization_id": "organizationId",
-    "ScansRescanInputBody": "scansRescanInputBody",
-  });
-});
-
-/** @internal */
 export type V3GlobaldataScansRescanRequest$Outbound = {
   organization_id?: string | undefined;
   ScansRescanInputBody: components.ScansRescanInputBody$Outbound;
@@ -126,19 +47,6 @@ export const V3GlobaldataScansRescanRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3GlobaldataScansRescanRequest$ {
-  /** @deprecated use `V3GlobaldataScansRescanRequest$inboundSchema` instead. */
-  export const inboundSchema = V3GlobaldataScansRescanRequest$inboundSchema;
-  /** @deprecated use `V3GlobaldataScansRescanRequest$outboundSchema` instead. */
-  export const outboundSchema = V3GlobaldataScansRescanRequest$outboundSchema;
-  /** @deprecated use `V3GlobaldataScansRescanRequest$Outbound` instead. */
-  export type Outbound = V3GlobaldataScansRescanRequest$Outbound;
-}
-
 export function v3GlobaldataScansRescanRequestToJSON(
   v3GlobaldataScansRescanRequest: V3GlobaldataScansRescanRequest,
 ): string {
@@ -146,16 +54,6 @@ export function v3GlobaldataScansRescanRequestToJSON(
     V3GlobaldataScansRescanRequest$outboundSchema.parse(
       v3GlobaldataScansRescanRequest,
     ),
-  );
-}
-
-export function v3GlobaldataScansRescanRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<V3GlobaldataScansRescanRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V3GlobaldataScansRescanRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3GlobaldataScansRescanRequest' from JSON`,
   );
 }
 
@@ -173,50 +71,6 @@ export const V3GlobaldataScansRescanResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
-/** @internal */
-export type V3GlobaldataScansRescanResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-  Result: components.ResponseEnvelopeTrackedScan$Outbound;
-};
-
-/** @internal */
-export const V3GlobaldataScansRescanResponse$outboundSchema: z.ZodType<
-  V3GlobaldataScansRescanResponse$Outbound,
-  z.ZodTypeDef,
-  V3GlobaldataScansRescanResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-  result: components.ResponseEnvelopeTrackedScan$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-    result: "Result",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3GlobaldataScansRescanResponse$ {
-  /** @deprecated use `V3GlobaldataScansRescanResponse$inboundSchema` instead. */
-  export const inboundSchema = V3GlobaldataScansRescanResponse$inboundSchema;
-  /** @deprecated use `V3GlobaldataScansRescanResponse$outboundSchema` instead. */
-  export const outboundSchema = V3GlobaldataScansRescanResponse$outboundSchema;
-  /** @deprecated use `V3GlobaldataScansRescanResponse$Outbound` instead. */
-  export type Outbound = V3GlobaldataScansRescanResponse$Outbound;
-}
-
-export function v3GlobaldataScansRescanResponseToJSON(
-  v3GlobaldataScansRescanResponse: V3GlobaldataScansRescanResponse,
-): string {
-  return JSON.stringify(
-    V3GlobaldataScansRescanResponse$outboundSchema.parse(
-      v3GlobaldataScansRescanResponse,
-    ),
-  );
-}
 
 export function v3GlobaldataScansRescanResponseFromJSON(
   jsonString: string,

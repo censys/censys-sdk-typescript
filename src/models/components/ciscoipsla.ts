@@ -10,14 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CiscoIpslaHandshake,
   CiscoIpslaHandshake$inboundSchema,
-  CiscoIpslaHandshake$Outbound,
-  CiscoIpslaHandshake$outboundSchema,
 } from "./ciscoipslahandshake.js";
 import {
   CiscoIpslaMeasureResponse,
   CiscoIpslaMeasureResponse$inboundSchema,
-  CiscoIpslaMeasureResponse$Outbound,
-  CiscoIpslaMeasureResponse$outboundSchema,
 } from "./ciscoipslameasureresponse.js";
 
 export type CiscoIpsla = {
@@ -38,43 +34,6 @@ export const CiscoIpsla$inboundSchema: z.ZodType<
     "measure_response": "measureResponse",
   });
 });
-
-/** @internal */
-export type CiscoIpsla$Outbound = {
-  handshake?: CiscoIpslaHandshake$Outbound | undefined;
-  measure_response?: CiscoIpslaMeasureResponse$Outbound | undefined;
-};
-
-/** @internal */
-export const CiscoIpsla$outboundSchema: z.ZodType<
-  CiscoIpsla$Outbound,
-  z.ZodTypeDef,
-  CiscoIpsla
-> = z.object({
-  handshake: CiscoIpslaHandshake$outboundSchema.optional(),
-  measureResponse: CiscoIpslaMeasureResponse$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    measureResponse: "measure_response",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CiscoIpsla$ {
-  /** @deprecated use `CiscoIpsla$inboundSchema` instead. */
-  export const inboundSchema = CiscoIpsla$inboundSchema;
-  /** @deprecated use `CiscoIpsla$outboundSchema` instead. */
-  export const outboundSchema = CiscoIpsla$outboundSchema;
-  /** @deprecated use `CiscoIpsla$Outbound` instead. */
-  export type Outbound = CiscoIpsla$Outbound;
-}
-
-export function ciscoIpslaToJSON(ciscoIpsla: CiscoIpsla): string {
-  return JSON.stringify(CiscoIpsla$outboundSchema.parse(ciscoIpsla));
-}
 
 export function ciscoIpslaFromJSON(
   jsonString: string,

@@ -6,12 +6,7 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  HostAsset,
-  HostAsset$inboundSchema,
-  HostAsset$Outbound,
-  HostAsset$outboundSchema,
-} from "./hostasset.js";
+import { HostAsset, HostAsset$inboundSchema } from "./hostasset.js";
 
 export type ResponseEnvelopeListHostAsset = {
   result?: Array<HostAsset> | null | undefined;
@@ -25,43 +20,6 @@ export const ResponseEnvelopeListHostAsset$inboundSchema: z.ZodType<
 > = z.object({
   result: z.nullable(z.array(HostAsset$inboundSchema)).optional(),
 });
-
-/** @internal */
-export type ResponseEnvelopeListHostAsset$Outbound = {
-  result?: Array<HostAsset$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const ResponseEnvelopeListHostAsset$outboundSchema: z.ZodType<
-  ResponseEnvelopeListHostAsset$Outbound,
-  z.ZodTypeDef,
-  ResponseEnvelopeListHostAsset
-> = z.object({
-  result: z.nullable(z.array(HostAsset$outboundSchema)).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseEnvelopeListHostAsset$ {
-  /** @deprecated use `ResponseEnvelopeListHostAsset$inboundSchema` instead. */
-  export const inboundSchema = ResponseEnvelopeListHostAsset$inboundSchema;
-  /** @deprecated use `ResponseEnvelopeListHostAsset$outboundSchema` instead. */
-  export const outboundSchema = ResponseEnvelopeListHostAsset$outboundSchema;
-  /** @deprecated use `ResponseEnvelopeListHostAsset$Outbound` instead. */
-  export type Outbound = ResponseEnvelopeListHostAsset$Outbound;
-}
-
-export function responseEnvelopeListHostAssetToJSON(
-  responseEnvelopeListHostAsset: ResponseEnvelopeListHostAsset,
-): string {
-  return JSON.stringify(
-    ResponseEnvelopeListHostAsset$outboundSchema.parse(
-      responseEnvelopeListHostAsset,
-    ),
-  );
-}
 
 export function responseEnvelopeListHostAssetFromJSON(
   jsonString: string,

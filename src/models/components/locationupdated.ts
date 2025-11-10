@@ -6,12 +6,7 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Location,
-  Location$inboundSchema,
-  Location$Outbound,
-  Location$outboundSchema,
-} from "./location.js";
+import { Location, Location$inboundSchema } from "./location.js";
 
 export type LocationUpdated = {
   location?: Location | undefined;
@@ -25,39 +20,6 @@ export const LocationUpdated$inboundSchema: z.ZodType<
 > = z.object({
   location: Location$inboundSchema.optional(),
 });
-
-/** @internal */
-export type LocationUpdated$Outbound = {
-  location?: Location$Outbound | undefined;
-};
-
-/** @internal */
-export const LocationUpdated$outboundSchema: z.ZodType<
-  LocationUpdated$Outbound,
-  z.ZodTypeDef,
-  LocationUpdated
-> = z.object({
-  location: Location$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LocationUpdated$ {
-  /** @deprecated use `LocationUpdated$inboundSchema` instead. */
-  export const inboundSchema = LocationUpdated$inboundSchema;
-  /** @deprecated use `LocationUpdated$outboundSchema` instead. */
-  export const outboundSchema = LocationUpdated$outboundSchema;
-  /** @deprecated use `LocationUpdated$Outbound` instead. */
-  export type Outbound = LocationUpdated$Outbound;
-}
-
-export function locationUpdatedToJSON(
-  locationUpdated: LocationUpdated,
-): string {
-  return JSON.stringify(LocationUpdated$outboundSchema.parse(locationUpdated));
-}
 
 export function locationUpdatedFromJSON(
   jsonString: string,

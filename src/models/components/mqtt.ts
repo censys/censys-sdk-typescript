@@ -10,14 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   MqttConnectionAckReturn,
   MqttConnectionAckReturn$inboundSchema,
-  MqttConnectionAckReturn$Outbound,
-  MqttConnectionAckReturn$outboundSchema,
 } from "./mqttconnectionackreturn.js";
 import {
   MqttSubscriptionAckReturn,
   MqttSubscriptionAckReturn$inboundSchema,
-  MqttSubscriptionAckReturn$Outbound,
-  MqttSubscriptionAckReturn$outboundSchema,
 } from "./mqttsubscriptionackreturn.js";
 
 export type Mqtt = {
@@ -42,44 +38,6 @@ export const Mqtt$inboundSchema: z.ZodType<Mqtt, z.ZodTypeDef, unknown> = z
       "subscription_ack_return": "subscriptionAckReturn",
     });
   });
-
-/** @internal */
-export type Mqtt$Outbound = {
-  connection_ack_raw?: string | undefined;
-  connection_ack_return?: MqttConnectionAckReturn$Outbound | undefined;
-  subscription_ack_return?: MqttSubscriptionAckReturn$Outbound | undefined;
-};
-
-/** @internal */
-export const Mqtt$outboundSchema: z.ZodType<Mqtt$Outbound, z.ZodTypeDef, Mqtt> =
-  z.object({
-    connectionAckRaw: z.string().optional(),
-    connectionAckReturn: MqttConnectionAckReturn$outboundSchema.optional(),
-    subscriptionAckReturn: MqttSubscriptionAckReturn$outboundSchema.optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      connectionAckRaw: "connection_ack_raw",
-      connectionAckReturn: "connection_ack_return",
-      subscriptionAckReturn: "subscription_ack_return",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Mqtt$ {
-  /** @deprecated use `Mqtt$inboundSchema` instead. */
-  export const inboundSchema = Mqtt$inboundSchema;
-  /** @deprecated use `Mqtt$outboundSchema` instead. */
-  export const outboundSchema = Mqtt$outboundSchema;
-  /** @deprecated use `Mqtt$Outbound` instead. */
-  export type Outbound = Mqtt$Outbound;
-}
-
-export function mqttToJSON(mqtt: Mqtt): string {
-  return JSON.stringify(Mqtt$outboundSchema.parse(mqtt));
-}
 
 export function mqttFromJSON(
   jsonString: string,

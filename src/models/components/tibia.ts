@@ -38,57 +38,6 @@ export const Tibia$inboundSchema: z.ZodType<Tibia, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type Tibia$Outbound = {
-  client_version?: string | undefined;
-  location?: string | undefined;
-  login_ip?: string | undefined;
-  login_port?: string | undefined;
-  name?: string | undefined;
-  server?: string | undefined;
-  url?: string | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const Tibia$outboundSchema: z.ZodType<
-  Tibia$Outbound,
-  z.ZodTypeDef,
-  Tibia
-> = z.object({
-  clientVersion: z.string().optional(),
-  location: z.string().optional(),
-  loginIp: z.string().optional(),
-  loginPort: z.string().optional(),
-  name: z.string().optional(),
-  server: z.string().optional(),
-  url: z.string().optional(),
-  version: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    clientVersion: "client_version",
-    loginIp: "login_ip",
-    loginPort: "login_port",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Tibia$ {
-  /** @deprecated use `Tibia$inboundSchema` instead. */
-  export const inboundSchema = Tibia$inboundSchema;
-  /** @deprecated use `Tibia$outboundSchema` instead. */
-  export const outboundSchema = Tibia$outboundSchema;
-  /** @deprecated use `Tibia$Outbound` instead. */
-  export type Outbound = Tibia$Outbound;
-}
-
-export function tibiaToJSON(tibia: Tibia): string {
-  return JSON.stringify(Tibia$outboundSchema.parse(tibia));
-}
-
 export function tibiaFromJSON(
   jsonString: string,
 ): SafeParseResult<Tibia, SDKValidationError> {

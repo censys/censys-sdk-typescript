@@ -44,64 +44,6 @@ export const RecordingCapabilities$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type RecordingCapabilities$Outbound = {
-  dynamic_recordings?: boolean | undefined;
-  dynamic_tracks?: boolean | undefined;
-  encoding?: string | undefined;
-  max_rate?: number | undefined;
-  max_recordings?: number | undefined;
-  max_recordings_job?: number | undefined;
-  max_total_rate?: number | undefined;
-  options?: boolean | undefined;
-};
-
-/** @internal */
-export const RecordingCapabilities$outboundSchema: z.ZodType<
-  RecordingCapabilities$Outbound,
-  z.ZodTypeDef,
-  RecordingCapabilities
-> = z.object({
-  dynamicRecordings: z.boolean().optional(),
-  dynamicTracks: z.boolean().optional(),
-  encoding: z.string().optional(),
-  maxRate: z.number().int().optional(),
-  maxRecordings: z.number().int().optional(),
-  maxRecordingsJob: z.number().int().optional(),
-  maxTotalRate: z.number().int().optional(),
-  options: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    dynamicRecordings: "dynamic_recordings",
-    dynamicTracks: "dynamic_tracks",
-    maxRate: "max_rate",
-    maxRecordings: "max_recordings",
-    maxRecordingsJob: "max_recordings_job",
-    maxTotalRate: "max_total_rate",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RecordingCapabilities$ {
-  /** @deprecated use `RecordingCapabilities$inboundSchema` instead. */
-  export const inboundSchema = RecordingCapabilities$inboundSchema;
-  /** @deprecated use `RecordingCapabilities$outboundSchema` instead. */
-  export const outboundSchema = RecordingCapabilities$outboundSchema;
-  /** @deprecated use `RecordingCapabilities$Outbound` instead. */
-  export type Outbound = RecordingCapabilities$Outbound;
-}
-
-export function recordingCapabilitiesToJSON(
-  recordingCapabilities: RecordingCapabilities,
-): string {
-  return JSON.stringify(
-    RecordingCapabilities$outboundSchema.parse(recordingCapabilities),
-  );
-}
-
 export function recordingCapabilitiesFromJSON(
   jsonString: string,
 ): SafeParseResult<RecordingCapabilities, SDKValidationError> {

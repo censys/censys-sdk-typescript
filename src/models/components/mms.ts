@@ -21,38 +21,6 @@ export const Mms$inboundSchema: z.ZodType<Mms, z.ZodTypeDef, unknown> = z
     vendor: z.string().optional(),
   });
 
-/** @internal */
-export type Mms$Outbound = {
-  model?: string | undefined;
-  revision?: string | undefined;
-  vendor?: string | undefined;
-};
-
-/** @internal */
-export const Mms$outboundSchema: z.ZodType<Mms$Outbound, z.ZodTypeDef, Mms> = z
-  .object({
-    model: z.string().optional(),
-    revision: z.string().optional(),
-    vendor: z.string().optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Mms$ {
-  /** @deprecated use `Mms$inboundSchema` instead. */
-  export const inboundSchema = Mms$inboundSchema;
-  /** @deprecated use `Mms$outboundSchema` instead. */
-  export const outboundSchema = Mms$outboundSchema;
-  /** @deprecated use `Mms$Outbound` instead. */
-  export type Outbound = Mms$Outbound;
-}
-
-export function mmsToJSON(mms: Mms): string {
-  return JSON.stringify(Mms$outboundSchema.parse(mms));
-}
-
 export function mmsFromJSON(
   jsonString: string,
 ): SafeParseResult<Mms, SDKValidationError> {

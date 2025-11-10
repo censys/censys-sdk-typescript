@@ -33,53 +33,6 @@ export const Ser2NetSerialParameters$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type Ser2NetSerialParameters$Outbound = {
-  baud_rate?: string | undefined;
-  data_bits?: string | undefined;
-  parity?: string | undefined;
-  stop_bits?: string | undefined;
-};
-
-/** @internal */
-export const Ser2NetSerialParameters$outboundSchema: z.ZodType<
-  Ser2NetSerialParameters$Outbound,
-  z.ZodTypeDef,
-  Ser2NetSerialParameters
-> = z.object({
-  baudRate: z.string().optional(),
-  dataBits: z.string().optional(),
-  parity: z.string().optional(),
-  stopBits: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    baudRate: "baud_rate",
-    dataBits: "data_bits",
-    stopBits: "stop_bits",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Ser2NetSerialParameters$ {
-  /** @deprecated use `Ser2NetSerialParameters$inboundSchema` instead. */
-  export const inboundSchema = Ser2NetSerialParameters$inboundSchema;
-  /** @deprecated use `Ser2NetSerialParameters$outboundSchema` instead. */
-  export const outboundSchema = Ser2NetSerialParameters$outboundSchema;
-  /** @deprecated use `Ser2NetSerialParameters$Outbound` instead. */
-  export type Outbound = Ser2NetSerialParameters$Outbound;
-}
-
-export function ser2NetSerialParametersToJSON(
-  ser2NetSerialParameters: Ser2NetSerialParameters,
-): string {
-  return JSON.stringify(
-    Ser2NetSerialParameters$outboundSchema.parse(ser2NetSerialParameters),
-  );
-}
-
 export function ser2NetSerialParametersFromJSON(
   jsonString: string,
 ): SafeParseResult<Ser2NetSerialParameters, SDKValidationError> {

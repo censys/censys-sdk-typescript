@@ -20,37 +20,6 @@ export const RootStoreChain$inboundSchema: z.ZodType<
   sha256fp: z.nullable(z.array(z.string())).optional(),
 });
 
-/** @internal */
-export type RootStoreChain$Outbound = {
-  sha256fp?: Array<string> | null | undefined;
-};
-
-/** @internal */
-export const RootStoreChain$outboundSchema: z.ZodType<
-  RootStoreChain$Outbound,
-  z.ZodTypeDef,
-  RootStoreChain
-> = z.object({
-  sha256fp: z.nullable(z.array(z.string())).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RootStoreChain$ {
-  /** @deprecated use `RootStoreChain$inboundSchema` instead. */
-  export const inboundSchema = RootStoreChain$inboundSchema;
-  /** @deprecated use `RootStoreChain$outboundSchema` instead. */
-  export const outboundSchema = RootStoreChain$outboundSchema;
-  /** @deprecated use `RootStoreChain$Outbound` instead. */
-  export type Outbound = RootStoreChain$Outbound;
-}
-
-export function rootStoreChainToJSON(rootStoreChain: RootStoreChain): string {
-  return JSON.stringify(RootStoreChain$outboundSchema.parse(rootStoreChain));
-}
-
 export function rootStoreChainFromJSON(
   jsonString: string,
 ): SafeParseResult<RootStoreChain, SDKValidationError> {

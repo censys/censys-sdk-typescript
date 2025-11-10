@@ -20,37 +20,6 @@ export const Rifatron$inboundSchema: z.ZodType<
   model: z.string().optional(),
 });
 
-/** @internal */
-export type Rifatron$Outbound = {
-  model?: string | undefined;
-};
-
-/** @internal */
-export const Rifatron$outboundSchema: z.ZodType<
-  Rifatron$Outbound,
-  z.ZodTypeDef,
-  Rifatron
-> = z.object({
-  model: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Rifatron$ {
-  /** @deprecated use `Rifatron$inboundSchema` instead. */
-  export const inboundSchema = Rifatron$inboundSchema;
-  /** @deprecated use `Rifatron$outboundSchema` instead. */
-  export const outboundSchema = Rifatron$outboundSchema;
-  /** @deprecated use `Rifatron$Outbound` instead. */
-  export type Outbound = Rifatron$Outbound;
-}
-
-export function rifatronToJSON(rifatron: Rifatron): string {
-  return JSON.stringify(Rifatron$outboundSchema.parse(rifatron));
-}
-
 export function rifatronFromJSON(
   jsonString: string,
 ): SafeParseResult<Rifatron, SDKValidationError> {

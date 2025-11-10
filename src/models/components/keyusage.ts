@@ -81,67 +81,6 @@ export const KeyUsage$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type KeyUsage$Outbound = {
-  certificate_sign?: boolean | undefined;
-  content_commitment?: boolean | undefined;
-  crl_sign?: boolean | undefined;
-  data_encipherment?: boolean | undefined;
-  decipher_only?: boolean | undefined;
-  digital_signature?: boolean | undefined;
-  encipher_only?: boolean | undefined;
-  key_agreement?: boolean | undefined;
-  key_encipherment?: boolean | undefined;
-  value?: number | undefined;
-};
-
-/** @internal */
-export const KeyUsage$outboundSchema: z.ZodType<
-  KeyUsage$Outbound,
-  z.ZodTypeDef,
-  KeyUsage
-> = z.object({
-  certificateSign: z.boolean().optional(),
-  contentCommitment: z.boolean().optional(),
-  crlSign: z.boolean().optional(),
-  dataEncipherment: z.boolean().optional(),
-  decipherOnly: z.boolean().optional(),
-  digitalSignature: z.boolean().optional(),
-  encipherOnly: z.boolean().optional(),
-  keyAgreement: z.boolean().optional(),
-  keyEncipherment: z.boolean().optional(),
-  value: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    certificateSign: "certificate_sign",
-    contentCommitment: "content_commitment",
-    crlSign: "crl_sign",
-    dataEncipherment: "data_encipherment",
-    decipherOnly: "decipher_only",
-    digitalSignature: "digital_signature",
-    encipherOnly: "encipher_only",
-    keyAgreement: "key_agreement",
-    keyEncipherment: "key_encipherment",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace KeyUsage$ {
-  /** @deprecated use `KeyUsage$inboundSchema` instead. */
-  export const inboundSchema = KeyUsage$inboundSchema;
-  /** @deprecated use `KeyUsage$outboundSchema` instead. */
-  export const outboundSchema = KeyUsage$outboundSchema;
-  /** @deprecated use `KeyUsage$Outbound` instead. */
-  export type Outbound = KeyUsage$Outbound;
-}
-
-export function keyUsageToJSON(keyUsage: KeyUsage): string {
-  return JSON.stringify(KeyUsage$outboundSchema.parse(keyUsage));
-}
-
 export function keyUsageFromJSON(
   jsonString: string,
 ): SafeParseResult<KeyUsage, SDKValidationError> {

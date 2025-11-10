@@ -10,14 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PortmapV2Entry,
   PortmapV2Entry$inboundSchema,
-  PortmapV2Entry$Outbound,
-  PortmapV2Entry$outboundSchema,
 } from "./portmapv2entry.js";
 import {
   PortmapV3Entry,
   PortmapV3Entry$inboundSchema,
-  PortmapV3Entry$Outbound,
-  PortmapV3Entry$outboundSchema,
 } from "./portmapv3entry.js";
 
 export type Portmap = {
@@ -36,44 +32,6 @@ export const Portmap$inboundSchema: z.ZodType<Portmap, z.ZodTypeDef, unknown> =
       "v3_entries": "v3Entries",
     });
   });
-
-/** @internal */
-export type Portmap$Outbound = {
-  v2_entries?: Array<PortmapV2Entry$Outbound> | null | undefined;
-  v3_entries?: Array<PortmapV3Entry$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const Portmap$outboundSchema: z.ZodType<
-  Portmap$Outbound,
-  z.ZodTypeDef,
-  Portmap
-> = z.object({
-  v2Entries: z.nullable(z.array(PortmapV2Entry$outboundSchema)).optional(),
-  v3Entries: z.nullable(z.array(PortmapV3Entry$outboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    v2Entries: "v2_entries",
-    v3Entries: "v3_entries",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Portmap$ {
-  /** @deprecated use `Portmap$inboundSchema` instead. */
-  export const inboundSchema = Portmap$inboundSchema;
-  /** @deprecated use `Portmap$outboundSchema` instead. */
-  export const outboundSchema = Portmap$outboundSchema;
-  /** @deprecated use `Portmap$Outbound` instead. */
-  export type Outbound = Portmap$Outbound;
-}
-
-export function portmapToJSON(portmap: Portmap): string {
-  return JSON.stringify(Portmap$outboundSchema.parse(portmap));
-}
 
 export function portmapFromJSON(
   jsonString: string,

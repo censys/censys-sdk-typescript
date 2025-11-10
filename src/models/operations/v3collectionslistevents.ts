@@ -79,162 +79,18 @@ export type V3CollectionsListEventsResponse = {
 };
 
 /** @internal */
-export const V3CollectionsListEventsGlobals$inboundSchema: z.ZodType<
-  V3CollectionsListEventsGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  organization_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "organization_id": "organizationId",
-  });
-});
-
-/** @internal */
-export type V3CollectionsListEventsGlobals$Outbound = {
-  organization_id?: string | undefined;
-};
-
-/** @internal */
-export const V3CollectionsListEventsGlobals$outboundSchema: z.ZodType<
-  V3CollectionsListEventsGlobals$Outbound,
-  z.ZodTypeDef,
-  V3CollectionsListEventsGlobals
-> = z.object({
-  organizationId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    organizationId: "organization_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3CollectionsListEventsGlobals$ {
-  /** @deprecated use `V3CollectionsListEventsGlobals$inboundSchema` instead. */
-  export const inboundSchema = V3CollectionsListEventsGlobals$inboundSchema;
-  /** @deprecated use `V3CollectionsListEventsGlobals$outboundSchema` instead. */
-  export const outboundSchema = V3CollectionsListEventsGlobals$outboundSchema;
-  /** @deprecated use `V3CollectionsListEventsGlobals$Outbound` instead. */
-  export type Outbound = V3CollectionsListEventsGlobals$Outbound;
-}
-
-export function v3CollectionsListEventsGlobalsToJSON(
-  v3CollectionsListEventsGlobals: V3CollectionsListEventsGlobals,
-): string {
-  return JSON.stringify(
-    V3CollectionsListEventsGlobals$outboundSchema.parse(
-      v3CollectionsListEventsGlobals,
-    ),
-  );
-}
-
-export function v3CollectionsListEventsGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<V3CollectionsListEventsGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V3CollectionsListEventsGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3CollectionsListEventsGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const ChangeTypes$inboundSchema: z.ZodNativeEnum<typeof ChangeTypes> = z
+export const ChangeTypes$outboundSchema: z.ZodNativeEnum<typeof ChangeTypes> = z
   .nativeEnum(ChangeTypes);
-
-/** @internal */
-export const ChangeTypes$outboundSchema: z.ZodNativeEnum<typeof ChangeTypes> =
-  ChangeTypes$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ChangeTypes$ {
-  /** @deprecated use `ChangeTypes$inboundSchema` instead. */
-  export const inboundSchema = ChangeTypes$inboundSchema;
-  /** @deprecated use `ChangeTypes$outboundSchema` instead. */
-  export const outboundSchema = ChangeTypes$outboundSchema;
-}
-
-/** @internal */
-export const AssetChangeTypes$inboundSchema: z.ZodNativeEnum<
-  typeof AssetChangeTypes
-> = z.nativeEnum(AssetChangeTypes);
 
 /** @internal */
 export const AssetChangeTypes$outboundSchema: z.ZodNativeEnum<
   typeof AssetChangeTypes
-> = AssetChangeTypes$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AssetChangeTypes$ {
-  /** @deprecated use `AssetChangeTypes$inboundSchema` instead. */
-  export const inboundSchema = AssetChangeTypes$inboundSchema;
-  /** @deprecated use `AssetChangeTypes$outboundSchema` instead. */
-  export const outboundSchema = AssetChangeTypes$outboundSchema;
-}
-
-/** @internal */
-export const StatusChangeTypes$inboundSchema: z.ZodNativeEnum<
-  typeof StatusChangeTypes
-> = z.nativeEnum(StatusChangeTypes);
+> = z.nativeEnum(AssetChangeTypes);
 
 /** @internal */
 export const StatusChangeTypes$outboundSchema: z.ZodNativeEnum<
   typeof StatusChangeTypes
-> = StatusChangeTypes$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace StatusChangeTypes$ {
-  /** @deprecated use `StatusChangeTypes$inboundSchema` instead. */
-  export const inboundSchema = StatusChangeTypes$inboundSchema;
-  /** @deprecated use `StatusChangeTypes$outboundSchema` instead. */
-  export const outboundSchema = StatusChangeTypes$outboundSchema;
-}
-
-/** @internal */
-export const V3CollectionsListEventsRequest$inboundSchema: z.ZodType<
-  V3CollectionsListEventsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  organization_id: z.string().optional(),
-  collection_uid: z.string(),
-  page_size: z.number().int().optional(),
-  page_token: z.string().optional(),
-  change_types: z.nullable(z.array(ChangeTypes$inboundSchema)).optional(),
-  asset_change_types: z.nullable(z.array(AssetChangeTypes$inboundSchema))
-    .optional(),
-  status_change_types: z.nullable(z.array(StatusChangeTypes$inboundSchema))
-    .optional(),
-  start_time: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  end_time: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "organization_id": "organizationId",
-    "collection_uid": "collectionUid",
-    "page_size": "pageSize",
-    "page_token": "pageToken",
-    "change_types": "changeTypes",
-    "asset_change_types": "assetChangeTypes",
-    "status_change_types": "statusChangeTypes",
-    "start_time": "startTime",
-    "end_time": "endTime",
-  });
-});
+> = z.nativeEnum(StatusChangeTypes);
 
 /** @internal */
 export type V3CollectionsListEventsRequest$Outbound = {
@@ -280,19 +136,6 @@ export const V3CollectionsListEventsRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3CollectionsListEventsRequest$ {
-  /** @deprecated use `V3CollectionsListEventsRequest$inboundSchema` instead. */
-  export const inboundSchema = V3CollectionsListEventsRequest$inboundSchema;
-  /** @deprecated use `V3CollectionsListEventsRequest$outboundSchema` instead. */
-  export const outboundSchema = V3CollectionsListEventsRequest$outboundSchema;
-  /** @deprecated use `V3CollectionsListEventsRequest$Outbound` instead. */
-  export type Outbound = V3CollectionsListEventsRequest$Outbound;
-}
-
 export function v3CollectionsListEventsRequestToJSON(
   v3CollectionsListEventsRequest: V3CollectionsListEventsRequest,
 ): string {
@@ -300,16 +143,6 @@ export function v3CollectionsListEventsRequestToJSON(
     V3CollectionsListEventsRequest$outboundSchema.parse(
       v3CollectionsListEventsRequest,
     ),
-  );
-}
-
-export function v3CollectionsListEventsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<V3CollectionsListEventsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V3CollectionsListEventsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3CollectionsListEventsRequest' from JSON`,
   );
 }
 
@@ -327,50 +160,6 @@ export const V3CollectionsListEventsResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
-/** @internal */
-export type V3CollectionsListEventsResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-  Result: components.ResponseEnvelopeCollectionEventsResponse$Outbound;
-};
-
-/** @internal */
-export const V3CollectionsListEventsResponse$outboundSchema: z.ZodType<
-  V3CollectionsListEventsResponse$Outbound,
-  z.ZodTypeDef,
-  V3CollectionsListEventsResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-  result: components.ResponseEnvelopeCollectionEventsResponse$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-    result: "Result",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3CollectionsListEventsResponse$ {
-  /** @deprecated use `V3CollectionsListEventsResponse$inboundSchema` instead. */
-  export const inboundSchema = V3CollectionsListEventsResponse$inboundSchema;
-  /** @deprecated use `V3CollectionsListEventsResponse$outboundSchema` instead. */
-  export const outboundSchema = V3CollectionsListEventsResponse$outboundSchema;
-  /** @deprecated use `V3CollectionsListEventsResponse$Outbound` instead. */
-  export type Outbound = V3CollectionsListEventsResponse$Outbound;
-}
-
-export function v3CollectionsListEventsResponseToJSON(
-  v3CollectionsListEventsResponse: V3CollectionsListEventsResponse,
-): string {
-  return JSON.stringify(
-    V3CollectionsListEventsResponse$outboundSchema.parse(
-      v3CollectionsListEventsResponse,
-    ),
-  );
-}
 
 export function v3CollectionsListEventsResponseFromJSON(
   jsonString: string,

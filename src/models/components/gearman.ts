@@ -6,18 +6,8 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Status,
-  Status$inboundSchema,
-  Status$Outbound,
-  Status$outboundSchema,
-} from "./status.js";
-import {
-  Worker,
-  Worker$inboundSchema,
-  Worker$Outbound,
-  Worker$outboundSchema,
-} from "./worker.js";
+import { Status, Status$inboundSchema } from "./status.js";
+import { Worker, Worker$inboundSchema } from "./worker.js";
 
 export type Gearman = {
   status?: Array<Status> | null | undefined;
@@ -32,41 +22,6 @@ export const Gearman$inboundSchema: z.ZodType<Gearman, z.ZodTypeDef, unknown> =
     version: z.string().optional(),
     workers: z.nullable(z.array(Worker$inboundSchema)).optional(),
   });
-
-/** @internal */
-export type Gearman$Outbound = {
-  status?: Array<Status$Outbound> | null | undefined;
-  version?: string | undefined;
-  workers?: Array<Worker$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const Gearman$outboundSchema: z.ZodType<
-  Gearman$Outbound,
-  z.ZodTypeDef,
-  Gearman
-> = z.object({
-  status: z.nullable(z.array(Status$outboundSchema)).optional(),
-  version: z.string().optional(),
-  workers: z.nullable(z.array(Worker$outboundSchema)).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Gearman$ {
-  /** @deprecated use `Gearman$inboundSchema` instead. */
-  export const inboundSchema = Gearman$inboundSchema;
-  /** @deprecated use `Gearman$outboundSchema` instead. */
-  export const outboundSchema = Gearman$outboundSchema;
-  /** @deprecated use `Gearman$Outbound` instead. */
-  export type Outbound = Gearman$Outbound;
-}
-
-export function gearmanToJSON(gearman: Gearman): string {
-  return JSON.stringify(Gearman$outboundSchema.parse(gearman));
-}
 
 export function gearmanFromJSON(
   jsonString: string,

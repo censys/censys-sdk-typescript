@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   KubernetesNodeNodeAddress,
   KubernetesNodeNodeAddress$inboundSchema,
-  KubernetesNodeNodeAddress$Outbound,
-  KubernetesNodeNodeAddress$outboundSchema,
 } from "./kubernetesnodenodeaddress.js";
 
 export type KubernetesNode = {
@@ -78,65 +76,6 @@ export const KubernetesNode$inboundSchema: z.ZodType<
     "os_image": "osImage",
   });
 });
-
-/** @internal */
-export type KubernetesNode$Outbound = {
-  addresses?: Array<KubernetesNodeNodeAddress$Outbound> | null | undefined;
-  architecture?: string | undefined;
-  container_runtime_version?: string | undefined;
-  images?: Array<string> | null | undefined;
-  kernel_version?: string | undefined;
-  kube_proxy_version?: string | undefined;
-  kubelet_version?: string | undefined;
-  name?: string | undefined;
-  operating_system?: string | undefined;
-  os_image?: string | undefined;
-};
-
-/** @internal */
-export const KubernetesNode$outboundSchema: z.ZodType<
-  KubernetesNode$Outbound,
-  z.ZodTypeDef,
-  KubernetesNode
-> = z.object({
-  addresses: z.nullable(z.array(KubernetesNodeNodeAddress$outboundSchema))
-    .optional(),
-  architecture: z.string().optional(),
-  containerRuntimeVersion: z.string().optional(),
-  images: z.nullable(z.array(z.string())).optional(),
-  kernelVersion: z.string().optional(),
-  kubeProxyVersion: z.string().optional(),
-  kubeletVersion: z.string().optional(),
-  name: z.string().optional(),
-  operatingSystem: z.string().optional(),
-  osImage: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    containerRuntimeVersion: "container_runtime_version",
-    kernelVersion: "kernel_version",
-    kubeProxyVersion: "kube_proxy_version",
-    kubeletVersion: "kubelet_version",
-    operatingSystem: "operating_system",
-    osImage: "os_image",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace KubernetesNode$ {
-  /** @deprecated use `KubernetesNode$inboundSchema` instead. */
-  export const inboundSchema = KubernetesNode$inboundSchema;
-  /** @deprecated use `KubernetesNode$outboundSchema` instead. */
-  export const outboundSchema = KubernetesNode$outboundSchema;
-  /** @deprecated use `KubernetesNode$Outbound` instead. */
-  export type Outbound = KubernetesNode$Outbound;
-}
-
-export function kubernetesNodeToJSON(kubernetesNode: KubernetesNode): string {
-  return JSON.stringify(KubernetesNode$outboundSchema.parse(kubernetesNode));
-}
 
 export function kubernetesNodeFromJSON(
   jsonString: string,

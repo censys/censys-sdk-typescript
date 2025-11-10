@@ -41,57 +41,6 @@ export const OllamaModel$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type OllamaModel$Outbound = {
-  digest?: string | undefined;
-  expires_at?: string | undefined;
-  family?: string | undefined;
-  model?: string | undefined;
-  name?: string | undefined;
-  parent_model?: string | undefined;
-  size?: number | undefined;
-  size_vram?: number | undefined;
-};
-
-/** @internal */
-export const OllamaModel$outboundSchema: z.ZodType<
-  OllamaModel$Outbound,
-  z.ZodTypeDef,
-  OllamaModel
-> = z.object({
-  digest: z.string().optional(),
-  expiresAt: z.string().optional(),
-  family: z.string().optional(),
-  model: z.string().optional(),
-  name: z.string().optional(),
-  parentModel: z.string().optional(),
-  size: z.number().int().optional(),
-  sizeVram: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    expiresAt: "expires_at",
-    parentModel: "parent_model",
-    sizeVram: "size_vram",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OllamaModel$ {
-  /** @deprecated use `OllamaModel$inboundSchema` instead. */
-  export const inboundSchema = OllamaModel$inboundSchema;
-  /** @deprecated use `OllamaModel$outboundSchema` instead. */
-  export const outboundSchema = OllamaModel$outboundSchema;
-  /** @deprecated use `OllamaModel$Outbound` instead. */
-  export type Outbound = OllamaModel$Outbound;
-}
-
-export function ollamaModelToJSON(ollamaModel: OllamaModel): string {
-  return JSON.stringify(OllamaModel$outboundSchema.parse(ollamaModel));
-}
-
 export function ollamaModelFromJSON(
   jsonString: string,
 ): SafeParseResult<OllamaModel, SDKValidationError> {

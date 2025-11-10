@@ -29,48 +29,6 @@ export const Members$inboundSchema: z.ZodType<Members, z.ZodTypeDef, unknown> =
     });
   });
 
-/** @internal */
-export type Members$Outbound = {
-  client_urls?: Array<string> | null | undefined;
-  id?: string | undefined;
-  name?: string | undefined;
-  peer_urls?: Array<string> | null | undefined;
-};
-
-/** @internal */
-export const Members$outboundSchema: z.ZodType<
-  Members$Outbound,
-  z.ZodTypeDef,
-  Members
-> = z.object({
-  clientUrls: z.nullable(z.array(z.string())).optional(),
-  id: z.string().optional(),
-  name: z.string().optional(),
-  peerUrls: z.nullable(z.array(z.string())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    clientUrls: "client_urls",
-    peerUrls: "peer_urls",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Members$ {
-  /** @deprecated use `Members$inboundSchema` instead. */
-  export const inboundSchema = Members$inboundSchema;
-  /** @deprecated use `Members$outboundSchema` instead. */
-  export const outboundSchema = Members$outboundSchema;
-  /** @deprecated use `Members$Outbound` instead. */
-  export type Outbound = Members$Outbound;
-}
-
-export function membersToJSON(members: Members): string {
-  return JSON.stringify(Members$outboundSchema.parse(members));
-}
-
 export function membersFromJSON(
   jsonString: string,
 ): SafeParseResult<Members, SDKValidationError> {

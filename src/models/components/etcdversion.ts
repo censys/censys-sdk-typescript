@@ -22,39 +22,6 @@ export const EtcdVersion$inboundSchema: z.ZodType<
   server: z.string().optional(),
 });
 
-/** @internal */
-export type EtcdVersion$Outbound = {
-  cluster?: string | undefined;
-  server?: string | undefined;
-};
-
-/** @internal */
-export const EtcdVersion$outboundSchema: z.ZodType<
-  EtcdVersion$Outbound,
-  z.ZodTypeDef,
-  EtcdVersion
-> = z.object({
-  cluster: z.string().optional(),
-  server: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EtcdVersion$ {
-  /** @deprecated use `EtcdVersion$inboundSchema` instead. */
-  export const inboundSchema = EtcdVersion$inboundSchema;
-  /** @deprecated use `EtcdVersion$outboundSchema` instead. */
-  export const outboundSchema = EtcdVersion$outboundSchema;
-  /** @deprecated use `EtcdVersion$Outbound` instead. */
-  export type Outbound = EtcdVersion$Outbound;
-}
-
-export function etcdVersionToJSON(etcdVersion: EtcdVersion): string {
-  return JSON.stringify(EtcdVersion$outboundSchema.parse(etcdVersion));
-}
-
 export function etcdVersionFromJSON(
   jsonString: string,
 ): SafeParseResult<EtcdVersion, SDKValidationError> {

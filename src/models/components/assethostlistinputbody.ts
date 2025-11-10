@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AssetHostListInputBody = {
   /**
@@ -18,22 +15,6 @@ export type AssetHostListInputBody = {
    */
   hostIds: Array<string> | null;
 };
-
-/** @internal */
-export const AssetHostListInputBody$inboundSchema: z.ZodType<
-  AssetHostListInputBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  at_time: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  host_ids: z.nullable(z.array(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    "at_time": "atTime",
-    "host_ids": "hostIds",
-  });
-});
 
 /** @internal */
 export type AssetHostListInputBody$Outbound = {
@@ -56,33 +37,10 @@ export const AssetHostListInputBody$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AssetHostListInputBody$ {
-  /** @deprecated use `AssetHostListInputBody$inboundSchema` instead. */
-  export const inboundSchema = AssetHostListInputBody$inboundSchema;
-  /** @deprecated use `AssetHostListInputBody$outboundSchema` instead. */
-  export const outboundSchema = AssetHostListInputBody$outboundSchema;
-  /** @deprecated use `AssetHostListInputBody$Outbound` instead. */
-  export type Outbound = AssetHostListInputBody$Outbound;
-}
-
 export function assetHostListInputBodyToJSON(
   assetHostListInputBody: AssetHostListInputBody,
 ): string {
   return JSON.stringify(
     AssetHostListInputBody$outboundSchema.parse(assetHostListInputBody),
-  );
-}
-
-export function assetHostListInputBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<AssetHostListInputBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AssetHostListInputBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AssetHostListInputBody' from JSON`,
   );
 }

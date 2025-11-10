@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ChromecastNamespace,
   ChromecastNamespace$inboundSchema,
-  ChromecastNamespace$Outbound,
-  ChromecastNamespace$outboundSchema,
 } from "./chromecastnamespace.js";
 
 export type ChromecastApplication = {
@@ -44,60 +42,6 @@ export const ChromecastApplication$inboundSchema: z.ZodType<
     "transport_id": "transportId",
   });
 });
-
-/** @internal */
-export type ChromecastApplication$Outbound = {
-  app_id?: string | undefined;
-  app_type?: string | undefined;
-  display_name?: string | undefined;
-  namespaces?: Array<ChromecastNamespace$Outbound> | null | undefined;
-  session_id?: string | undefined;
-  transport_id?: string | undefined;
-};
-
-/** @internal */
-export const ChromecastApplication$outboundSchema: z.ZodType<
-  ChromecastApplication$Outbound,
-  z.ZodTypeDef,
-  ChromecastApplication
-> = z.object({
-  appId: z.string().optional(),
-  appType: z.string().optional(),
-  displayName: z.string().optional(),
-  namespaces: z.nullable(z.array(ChromecastNamespace$outboundSchema))
-    .optional(),
-  sessionId: z.string().optional(),
-  transportId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    appId: "app_id",
-    appType: "app_type",
-    displayName: "display_name",
-    sessionId: "session_id",
-    transportId: "transport_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ChromecastApplication$ {
-  /** @deprecated use `ChromecastApplication$inboundSchema` instead. */
-  export const inboundSchema = ChromecastApplication$inboundSchema;
-  /** @deprecated use `ChromecastApplication$outboundSchema` instead. */
-  export const outboundSchema = ChromecastApplication$outboundSchema;
-  /** @deprecated use `ChromecastApplication$Outbound` instead. */
-  export type Outbound = ChromecastApplication$Outbound;
-}
-
-export function chromecastApplicationToJSON(
-  chromecastApplication: ChromecastApplication,
-): string {
-  return JSON.stringify(
-    ChromecastApplication$outboundSchema.parse(chromecastApplication),
-  );
-}
 
 export function chromecastApplicationFromJSON(
   jsonString: string,

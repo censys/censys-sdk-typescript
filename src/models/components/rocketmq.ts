@@ -10,14 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   RocketmqClusterInfo,
   RocketmqClusterInfo$inboundSchema,
-  RocketmqClusterInfo$Outbound,
-  RocketmqClusterInfo$outboundSchema,
 } from "./rocketmqclusterinfo.js";
 import {
   RocketmqTopicList,
   RocketmqTopicList$inboundSchema,
-  RocketmqTopicList$Outbound,
-  RocketmqTopicList$outboundSchema,
 } from "./rocketmqtopiclist.js";
 
 export type Rocketmq = {
@@ -40,45 +36,6 @@ export const Rocketmq$inboundSchema: z.ZodType<
     "cluster_info": "clusterInfo",
   });
 });
-
-/** @internal */
-export type Rocketmq$Outbound = {
-  cluster_info?: RocketmqClusterInfo$Outbound | undefined;
-  topics?: RocketmqTopicList$Outbound | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const Rocketmq$outboundSchema: z.ZodType<
-  Rocketmq$Outbound,
-  z.ZodTypeDef,
-  Rocketmq
-> = z.object({
-  clusterInfo: RocketmqClusterInfo$outboundSchema.optional(),
-  topics: RocketmqTopicList$outboundSchema.optional(),
-  version: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    clusterInfo: "cluster_info",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Rocketmq$ {
-  /** @deprecated use `Rocketmq$inboundSchema` instead. */
-  export const inboundSchema = Rocketmq$inboundSchema;
-  /** @deprecated use `Rocketmq$outboundSchema` instead. */
-  export const outboundSchema = Rocketmq$outboundSchema;
-  /** @deprecated use `Rocketmq$Outbound` instead. */
-  export type Outbound = Rocketmq$Outbound;
-}
-
-export function rocketmqToJSON(rocketmq: Rocketmq): string {
-  return JSON.stringify(Rocketmq$outboundSchema.parse(rocketmq));
-}
 
 export function rocketmqFromJSON(
   jsonString: string,

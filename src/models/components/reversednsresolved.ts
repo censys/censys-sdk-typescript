@@ -27,47 +27,6 @@ export const ReverseDnsResolved$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type ReverseDnsResolved$Outbound = {
-  names?: Array<string> | null | undefined;
-  resolve_time?: string | undefined;
-};
-
-/** @internal */
-export const ReverseDnsResolved$outboundSchema: z.ZodType<
-  ReverseDnsResolved$Outbound,
-  z.ZodTypeDef,
-  ReverseDnsResolved
-> = z.object({
-  names: z.nullable(z.array(z.string())).optional(),
-  resolveTime: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    resolveTime: "resolve_time",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReverseDnsResolved$ {
-  /** @deprecated use `ReverseDnsResolved$inboundSchema` instead. */
-  export const inboundSchema = ReverseDnsResolved$inboundSchema;
-  /** @deprecated use `ReverseDnsResolved$outboundSchema` instead. */
-  export const outboundSchema = ReverseDnsResolved$outboundSchema;
-  /** @deprecated use `ReverseDnsResolved$Outbound` instead. */
-  export type Outbound = ReverseDnsResolved$Outbound;
-}
-
-export function reverseDnsResolvedToJSON(
-  reverseDnsResolved: ReverseDnsResolved,
-): string {
-  return JSON.stringify(
-    ReverseDnsResolved$outboundSchema.parse(reverseDnsResolved),
-  );
-}
-
 export function reverseDnsResolvedFromJSON(
   jsonString: string,
 ): SafeParseResult<ReverseDnsResolved, SDKValidationError> {

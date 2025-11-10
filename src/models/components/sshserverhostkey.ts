@@ -10,26 +10,18 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DSACryptographicKey,
   DSACryptographicKey$inboundSchema,
-  DSACryptographicKey$Outbound,
-  DSACryptographicKey$outboundSchema,
 } from "./dsacryptographickey.js";
 import {
   ECDSACryptographicKey,
   ECDSACryptographicKey$inboundSchema,
-  ECDSACryptographicKey$Outbound,
-  ECDSACryptographicKey$outboundSchema,
 } from "./ecdsacryptographickey.js";
 import {
   Ed25519CryptographicKey,
   Ed25519CryptographicKey$inboundSchema,
-  Ed25519CryptographicKey$Outbound,
-  Ed25519CryptographicKey$outboundSchema,
 } from "./ed25519cryptographickey.js";
 import {
   RSACryptographicKey,
   RSACryptographicKey$inboundSchema,
-  RSACryptographicKey$Outbound,
-  RSACryptographicKey$outboundSchema,
 } from "./rsacryptographickey.js";
 
 export type SshServerHostKey = {
@@ -63,60 +55,6 @@ export const SshServerHostKey$inboundSchema: z.ZodType<
     "rsa_public_key": "rsaPublicKey",
   });
 });
-
-/** @internal */
-export type SshServerHostKey$Outbound = {
-  certkey_public_key?: string | undefined;
-  dsa_public_key?: DSACryptographicKey$Outbound | undefined;
-  ecdsa_public_key?: ECDSACryptographicKey$Outbound | undefined;
-  ed25519_public_key?: Ed25519CryptographicKey$Outbound | undefined;
-  fingerprint_sha256?: string | undefined;
-  rsa_public_key?: RSACryptographicKey$Outbound | undefined;
-};
-
-/** @internal */
-export const SshServerHostKey$outboundSchema: z.ZodType<
-  SshServerHostKey$Outbound,
-  z.ZodTypeDef,
-  SshServerHostKey
-> = z.object({
-  certkeyPublicKey: z.string().optional(),
-  dsaPublicKey: DSACryptographicKey$outboundSchema.optional(),
-  ecdsaPublicKey: ECDSACryptographicKey$outboundSchema.optional(),
-  ed25519PublicKey: Ed25519CryptographicKey$outboundSchema.optional(),
-  fingerprintSha256: z.string().optional(),
-  rsaPublicKey: RSACryptographicKey$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    certkeyPublicKey: "certkey_public_key",
-    dsaPublicKey: "dsa_public_key",
-    ecdsaPublicKey: "ecdsa_public_key",
-    ed25519PublicKey: "ed25519_public_key",
-    fingerprintSha256: "fingerprint_sha256",
-    rsaPublicKey: "rsa_public_key",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SshServerHostKey$ {
-  /** @deprecated use `SshServerHostKey$inboundSchema` instead. */
-  export const inboundSchema = SshServerHostKey$inboundSchema;
-  /** @deprecated use `SshServerHostKey$outboundSchema` instead. */
-  export const outboundSchema = SshServerHostKey$outboundSchema;
-  /** @deprecated use `SshServerHostKey$Outbound` instead. */
-  export type Outbound = SshServerHostKey$Outbound;
-}
-
-export function sshServerHostKeyToJSON(
-  sshServerHostKey: SshServerHostKey,
-): string {
-  return JSON.stringify(
-    SshServerHostKey$outboundSchema.parse(sshServerHostKey),
-  );
-}
 
 export function sshServerHostKeyFromJSON(
   jsonString: string,

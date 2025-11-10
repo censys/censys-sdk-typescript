@@ -40,60 +40,6 @@ export const CiscoIpslaMeasureResponse$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type CiscoIpslaMeasureResponse$Outbound = {
-  flags?: number | undefined;
-  payload?: string | undefined;
-  receive_seq?: number | undefined;
-  receive_time?: number | undefined;
-  send_seq?: number | undefined;
-  send_time?: number | undefined;
-  type?: number | undefined;
-};
-
-/** @internal */
-export const CiscoIpslaMeasureResponse$outboundSchema: z.ZodType<
-  CiscoIpslaMeasureResponse$Outbound,
-  z.ZodTypeDef,
-  CiscoIpslaMeasureResponse
-> = z.object({
-  flags: z.number().int().optional(),
-  payload: z.string().optional(),
-  receiveSeq: z.number().int().optional(),
-  receiveTime: z.number().int().optional(),
-  sendSeq: z.number().int().optional(),
-  sendTime: z.number().int().optional(),
-  type: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    receiveSeq: "receive_seq",
-    receiveTime: "receive_time",
-    sendSeq: "send_seq",
-    sendTime: "send_time",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CiscoIpslaMeasureResponse$ {
-  /** @deprecated use `CiscoIpslaMeasureResponse$inboundSchema` instead. */
-  export const inboundSchema = CiscoIpslaMeasureResponse$inboundSchema;
-  /** @deprecated use `CiscoIpslaMeasureResponse$outboundSchema` instead. */
-  export const outboundSchema = CiscoIpslaMeasureResponse$outboundSchema;
-  /** @deprecated use `CiscoIpslaMeasureResponse$Outbound` instead. */
-  export type Outbound = CiscoIpslaMeasureResponse$Outbound;
-}
-
-export function ciscoIpslaMeasureResponseToJSON(
-  ciscoIpslaMeasureResponse: CiscoIpslaMeasureResponse,
-): string {
-  return JSON.stringify(
-    CiscoIpslaMeasureResponse$outboundSchema.parse(ciscoIpslaMeasureResponse),
-  );
-}
-
 export function ciscoIpslaMeasureResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<CiscoIpslaMeasureResponse, SDKValidationError> {

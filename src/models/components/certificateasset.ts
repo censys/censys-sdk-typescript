@@ -6,12 +6,7 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Certificate,
-  Certificate$inboundSchema,
-  Certificate$Outbound,
-  Certificate$outboundSchema,
-} from "./certificate.js";
+import { Certificate, Certificate$inboundSchema } from "./certificate.js";
 
 export type CertificateAsset = {
   extensions: { [k: string]: any };
@@ -27,43 +22,6 @@ export const CertificateAsset$inboundSchema: z.ZodType<
   extensions: z.record(z.any()),
   resource: Certificate$inboundSchema,
 });
-
-/** @internal */
-export type CertificateAsset$Outbound = {
-  extensions: { [k: string]: any };
-  resource: Certificate$Outbound;
-};
-
-/** @internal */
-export const CertificateAsset$outboundSchema: z.ZodType<
-  CertificateAsset$Outbound,
-  z.ZodTypeDef,
-  CertificateAsset
-> = z.object({
-  extensions: z.record(z.any()),
-  resource: Certificate$outboundSchema,
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CertificateAsset$ {
-  /** @deprecated use `CertificateAsset$inboundSchema` instead. */
-  export const inboundSchema = CertificateAsset$inboundSchema;
-  /** @deprecated use `CertificateAsset$outboundSchema` instead. */
-  export const outboundSchema = CertificateAsset$outboundSchema;
-  /** @deprecated use `CertificateAsset$Outbound` instead. */
-  export type Outbound = CertificateAsset$Outbound;
-}
-
-export function certificateAssetToJSON(
-  certificateAsset: CertificateAsset,
-): string {
-  return JSON.stringify(
-    CertificateAsset$outboundSchema.parse(certificateAsset),
-  );
-}
 
 export function certificateAssetFromJSON(
   jsonString: string,

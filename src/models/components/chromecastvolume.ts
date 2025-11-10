@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  FloatValue,
-  FloatValue$inboundSchema,
-  FloatValue$Outbound,
-  FloatValue$outboundSchema,
-} from "./floatvalue.js";
+import { FloatValue, FloatValue$inboundSchema } from "./floatvalue.js";
 
 export type ChromecastVolume = {
   controlType?: string | undefined;
@@ -37,52 +32,6 @@ export const ChromecastVolume$inboundSchema: z.ZodType<
     "step_interval": "stepInterval",
   });
 });
-
-/** @internal */
-export type ChromecastVolume$Outbound = {
-  control_type?: string | undefined;
-  level?: number | undefined;
-  muted?: boolean | undefined;
-  step_interval?: FloatValue$Outbound | undefined;
-};
-
-/** @internal */
-export const ChromecastVolume$outboundSchema: z.ZodType<
-  ChromecastVolume$Outbound,
-  z.ZodTypeDef,
-  ChromecastVolume
-> = z.object({
-  controlType: z.string().optional(),
-  level: z.number().optional(),
-  muted: z.boolean().optional(),
-  stepInterval: FloatValue$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    controlType: "control_type",
-    stepInterval: "step_interval",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ChromecastVolume$ {
-  /** @deprecated use `ChromecastVolume$inboundSchema` instead. */
-  export const inboundSchema = ChromecastVolume$inboundSchema;
-  /** @deprecated use `ChromecastVolume$outboundSchema` instead. */
-  export const outboundSchema = ChromecastVolume$outboundSchema;
-  /** @deprecated use `ChromecastVolume$Outbound` instead. */
-  export type Outbound = ChromecastVolume$Outbound;
-}
-
-export function chromecastVolumeToJSON(
-  chromecastVolume: ChromecastVolume,
-): string {
-  return JSON.stringify(
-    ChromecastVolume$outboundSchema.parse(chromecastVolume),
-  );
-}
 
 export function chromecastVolumeFromJSON(
   jsonString: string,

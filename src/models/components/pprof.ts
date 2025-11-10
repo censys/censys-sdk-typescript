@@ -33,53 +33,6 @@ export const Pprof$inboundSchema: z.ZodType<Pprof, z.ZodTypeDef, unknown> = z
     trace: z.number().int().optional(),
   });
 
-/** @internal */
-export type Pprof$Outbound = {
-  allocs?: number | undefined;
-  block?: number | undefined;
-  cmdline?: string | undefined;
-  goroutine?: number | undefined;
-  heap?: number | undefined;
-  mutex?: number | undefined;
-  profile?: number | undefined;
-  threadcreate?: number | undefined;
-  trace?: number | undefined;
-};
-
-/** @internal */
-export const Pprof$outboundSchema: z.ZodType<
-  Pprof$Outbound,
-  z.ZodTypeDef,
-  Pprof
-> = z.object({
-  allocs: z.number().int().optional(),
-  block: z.number().int().optional(),
-  cmdline: z.string().optional(),
-  goroutine: z.number().int().optional(),
-  heap: z.number().int().optional(),
-  mutex: z.number().int().optional(),
-  profile: z.number().int().optional(),
-  threadcreate: z.number().int().optional(),
-  trace: z.number().int().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Pprof$ {
-  /** @deprecated use `Pprof$inboundSchema` instead. */
-  export const inboundSchema = Pprof$inboundSchema;
-  /** @deprecated use `Pprof$outboundSchema` instead. */
-  export const outboundSchema = Pprof$outboundSchema;
-  /** @deprecated use `Pprof$Outbound` instead. */
-  export type Outbound = Pprof$Outbound;
-}
-
-export function pprofToJSON(pprof: Pprof): string {
-  return JSON.stringify(Pprof$outboundSchema.parse(pprof));
-}
-
 export function pprofFromJSON(
   jsonString: string,
 ): SafeParseResult<Pprof, SDKValidationError> {

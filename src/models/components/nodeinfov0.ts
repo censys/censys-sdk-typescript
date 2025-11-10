@@ -41,57 +41,6 @@ export const NodeInfoV0$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type NodeInfoV0$Outbound = {
-  features?: Array<string> | null | undefined;
-  is_healthy?: boolean | undefined;
-  latest_milestone?: number | undefined;
-  latest_uncommitted_milestone?: number | undefined;
-  name?: string | undefined;
-  neighbors?: number | undefined;
-  tips?: number | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const NodeInfoV0$outboundSchema: z.ZodType<
-  NodeInfoV0$Outbound,
-  z.ZodTypeDef,
-  NodeInfoV0
-> = z.object({
-  features: z.nullable(z.array(z.string())).optional(),
-  isHealthy: z.boolean().optional(),
-  latestMilestone: z.number().int().optional(),
-  latestUncommittedMilestone: z.number().int().optional(),
-  name: z.string().optional(),
-  neighbors: z.number().int().optional(),
-  tips: z.number().int().optional(),
-  version: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    isHealthy: "is_healthy",
-    latestMilestone: "latest_milestone",
-    latestUncommittedMilestone: "latest_uncommitted_milestone",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NodeInfoV0$ {
-  /** @deprecated use `NodeInfoV0$inboundSchema` instead. */
-  export const inboundSchema = NodeInfoV0$inboundSchema;
-  /** @deprecated use `NodeInfoV0$outboundSchema` instead. */
-  export const outboundSchema = NodeInfoV0$outboundSchema;
-  /** @deprecated use `NodeInfoV0$Outbound` instead. */
-  export type Outbound = NodeInfoV0$Outbound;
-}
-
-export function nodeInfoV0ToJSON(nodeInfoV0: NodeInfoV0): string {
-  return JSON.stringify(NodeInfoV0$outboundSchema.parse(nodeInfoV0));
-}
-
 export function nodeInfoV0FromJSON(
   jsonString: string,
 ): SafeParseResult<NodeInfoV0, SDKValidationError> {

@@ -9,20 +9,11 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   HttpRepeatedHeaders,
   HttpRepeatedHeaders$inboundSchema,
-  HttpRepeatedHeaders$Outbound,
-  HttpRepeatedHeaders$outboundSchema,
 } from "./httprepeatedheaders.js";
-import {
-  UpnpDevice,
-  UpnpDevice$inboundSchema,
-  UpnpDevice$Outbound,
-  UpnpDevice$outboundSchema,
-} from "./upnpdevice.js";
+import { UpnpDevice, UpnpDevice$inboundSchema } from "./upnpdevice.js";
 import {
   UpnpSpecVersion,
   UpnpSpecVersion$inboundSchema,
-  UpnpSpecVersion$Outbound,
-  UpnpSpecVersion$outboundSchema,
 } from "./upnpspecversion.js";
 
 export type Upnp = {
@@ -40,40 +31,6 @@ export const Upnp$inboundSchema: z.ZodType<Upnp, z.ZodTypeDef, unknown> = z
     headers: z.record(HttpRepeatedHeaders$inboundSchema).optional(),
     spec: UpnpSpecVersion$inboundSchema.optional(),
   });
-
-/** @internal */
-export type Upnp$Outbound = {
-  devices?: Array<UpnpDevice$Outbound> | null | undefined;
-  endpoint?: string | undefined;
-  headers?: { [k: string]: HttpRepeatedHeaders$Outbound } | undefined;
-  spec?: UpnpSpecVersion$Outbound | undefined;
-};
-
-/** @internal */
-export const Upnp$outboundSchema: z.ZodType<Upnp$Outbound, z.ZodTypeDef, Upnp> =
-  z.object({
-    devices: z.nullable(z.array(UpnpDevice$outboundSchema)).optional(),
-    endpoint: z.string().optional(),
-    headers: z.record(HttpRepeatedHeaders$outboundSchema).optional(),
-    spec: UpnpSpecVersion$outboundSchema.optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Upnp$ {
-  /** @deprecated use `Upnp$inboundSchema` instead. */
-  export const inboundSchema = Upnp$inboundSchema;
-  /** @deprecated use `Upnp$outboundSchema` instead. */
-  export const outboundSchema = Upnp$outboundSchema;
-  /** @deprecated use `Upnp$Outbound` instead. */
-  export type Outbound = Upnp$Outbound;
-}
-
-export function upnpToJSON(upnp: Upnp): string {
-  return JSON.stringify(Upnp$outboundSchema.parse(upnp));
-}
 
 export function upnpFromJSON(
   jsonString: string,

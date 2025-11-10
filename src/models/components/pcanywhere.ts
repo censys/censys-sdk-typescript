@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PcAnywhereStatus,
   PcAnywhereStatus$inboundSchema,
-  PcAnywhereStatus$Outbound,
-  PcAnywhereStatus$outboundSchema,
 } from "./pcanywherestatus.js";
 
 export type PcAnywhere = {
@@ -35,41 +33,6 @@ export const PcAnywhere$inboundSchema: z.ZodType<
   nr: z.string().optional(),
   status: PcAnywhereStatus$inboundSchema.optional(),
 });
-
-/** @internal */
-export type PcAnywhere$Outbound = {
-  name?: string | undefined;
-  nr?: string | undefined;
-  status?: PcAnywhereStatus$Outbound | undefined;
-};
-
-/** @internal */
-export const PcAnywhere$outboundSchema: z.ZodType<
-  PcAnywhere$Outbound,
-  z.ZodTypeDef,
-  PcAnywhere
-> = z.object({
-  name: z.string().optional(),
-  nr: z.string().optional(),
-  status: PcAnywhereStatus$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PcAnywhere$ {
-  /** @deprecated use `PcAnywhere$inboundSchema` instead. */
-  export const inboundSchema = PcAnywhere$inboundSchema;
-  /** @deprecated use `PcAnywhere$outboundSchema` instead. */
-  export const outboundSchema = PcAnywhere$outboundSchema;
-  /** @deprecated use `PcAnywhere$Outbound` instead. */
-  export type Outbound = PcAnywhere$Outbound;
-}
-
-export function pcAnywhereToJSON(pcAnywhere: PcAnywhere): string {
-  return JSON.stringify(PcAnywhere$outboundSchema.parse(pcAnywhere));
-}
 
 export function pcAnywhereFromJSON(
   jsonString: string,

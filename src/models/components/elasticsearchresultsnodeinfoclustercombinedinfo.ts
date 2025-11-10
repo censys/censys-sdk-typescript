@@ -9,14 +9,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ElasticSearchResultsNodeInfoClusterCombinedInfoFilesystem,
   ElasticSearchResultsNodeInfoClusterCombinedInfoFilesystem$inboundSchema,
-  ElasticSearchResultsNodeInfoClusterCombinedInfoFilesystem$Outbound,
-  ElasticSearchResultsNodeInfoClusterCombinedInfoFilesystem$outboundSchema,
 } from "./elasticsearchresultsnodeinfoclustercombinedinfofilesystem.js";
 import {
   ElasticSearchResultsNodeInfoClusterCombinedInfoIndices,
   ElasticSearchResultsNodeInfoClusterCombinedInfoIndices$inboundSchema,
-  ElasticSearchResultsNodeInfoClusterCombinedInfoIndices$Outbound,
-  ElasticSearchResultsNodeInfoClusterCombinedInfoIndices$outboundSchema,
 } from "./elasticsearchresultsnodeinfoclustercombinedinfoindices.js";
 
 export type ElasticSearchResultsNodeInfoClusterCombinedInfo = {
@@ -48,66 +44,6 @@ export const ElasticSearchResultsNodeInfoClusterCombinedInfo$inboundSchema:
     timestamp: z.number().int().optional(),
     uuid: z.string().optional(),
   });
-
-/** @internal */
-export type ElasticSearchResultsNodeInfoClusterCombinedInfo$Outbound = {
-  filesystem?:
-    | ElasticSearchResultsNodeInfoClusterCombinedInfoFilesystem$Outbound
-    | undefined;
-  indices?:
-    | ElasticSearchResultsNodeInfoClusterCombinedInfoIndices$Outbound
-    | undefined;
-  name?: string | undefined;
-  status?: string | undefined;
-  timestamp?: number | undefined;
-  uuid?: string | undefined;
-};
-
-/** @internal */
-export const ElasticSearchResultsNodeInfoClusterCombinedInfo$outboundSchema:
-  z.ZodType<
-    ElasticSearchResultsNodeInfoClusterCombinedInfo$Outbound,
-    z.ZodTypeDef,
-    ElasticSearchResultsNodeInfoClusterCombinedInfo
-  > = z.object({
-    filesystem:
-      ElasticSearchResultsNodeInfoClusterCombinedInfoFilesystem$outboundSchema
-        .optional(),
-    indices:
-      ElasticSearchResultsNodeInfoClusterCombinedInfoIndices$outboundSchema
-        .optional(),
-    name: z.string().optional(),
-    status: z.string().optional(),
-    timestamp: z.number().int().optional(),
-    uuid: z.string().optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ElasticSearchResultsNodeInfoClusterCombinedInfo$ {
-  /** @deprecated use `ElasticSearchResultsNodeInfoClusterCombinedInfo$inboundSchema` instead. */
-  export const inboundSchema =
-    ElasticSearchResultsNodeInfoClusterCombinedInfo$inboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfoClusterCombinedInfo$outboundSchema` instead. */
-  export const outboundSchema =
-    ElasticSearchResultsNodeInfoClusterCombinedInfo$outboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfoClusterCombinedInfo$Outbound` instead. */
-  export type Outbound =
-    ElasticSearchResultsNodeInfoClusterCombinedInfo$Outbound;
-}
-
-export function elasticSearchResultsNodeInfoClusterCombinedInfoToJSON(
-  elasticSearchResultsNodeInfoClusterCombinedInfo:
-    ElasticSearchResultsNodeInfoClusterCombinedInfo,
-): string {
-  return JSON.stringify(
-    ElasticSearchResultsNodeInfoClusterCombinedInfo$outboundSchema.parse(
-      elasticSearchResultsNodeInfoClusterCombinedInfo,
-    ),
-  );
-}
 
 export function elasticSearchResultsNodeInfoClusterCombinedInfoFromJSON(
   jsonString: string,

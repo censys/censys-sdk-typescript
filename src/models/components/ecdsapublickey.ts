@@ -38,55 +38,6 @@ export const EcdsaPublicKey$inboundSchema: z.ZodType<
   y: z.string().optional(),
 });
 
-/** @internal */
-export type EcdsaPublicKey$Outbound = {
-  b?: string | undefined;
-  curve?: string | undefined;
-  gx?: string | undefined;
-  gy?: string | undefined;
-  length?: number | undefined;
-  n?: string | undefined;
-  p?: string | undefined;
-  pub?: string | undefined;
-  x?: string | undefined;
-  y?: string | undefined;
-};
-
-/** @internal */
-export const EcdsaPublicKey$outboundSchema: z.ZodType<
-  EcdsaPublicKey$Outbound,
-  z.ZodTypeDef,
-  EcdsaPublicKey
-> = z.object({
-  b: z.string().optional(),
-  curve: z.string().optional(),
-  gx: z.string().optional(),
-  gy: z.string().optional(),
-  length: z.number().int().optional(),
-  n: z.string().optional(),
-  p: z.string().optional(),
-  pub: z.string().optional(),
-  x: z.string().optional(),
-  y: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EcdsaPublicKey$ {
-  /** @deprecated use `EcdsaPublicKey$inboundSchema` instead. */
-  export const inboundSchema = EcdsaPublicKey$inboundSchema;
-  /** @deprecated use `EcdsaPublicKey$outboundSchema` instead. */
-  export const outboundSchema = EcdsaPublicKey$outboundSchema;
-  /** @deprecated use `EcdsaPublicKey$Outbound` instead. */
-  export type Outbound = EcdsaPublicKey$Outbound;
-}
-
-export function ecdsaPublicKeyToJSON(ecdsaPublicKey: EcdsaPublicKey): string {
-  return JSON.stringify(EcdsaPublicKey$outboundSchema.parse(ecdsaPublicKey));
-}
-
 export function ecdsaPublicKeyFromJSON(
   jsonString: string,
 ): SafeParseResult<EcdsaPublicKey, SDKValidationError> {

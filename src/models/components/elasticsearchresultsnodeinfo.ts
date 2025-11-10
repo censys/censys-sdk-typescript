@@ -10,14 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ElasticSearchResultsNodeInfoClusterCombinedInfo,
   ElasticSearchResultsNodeInfoClusterCombinedInfo$inboundSchema,
-  ElasticSearchResultsNodeInfoClusterCombinedInfo$Outbound,
-  ElasticSearchResultsNodeInfoClusterCombinedInfo$outboundSchema,
 } from "./elasticsearchresultsnodeinfoclustercombinedinfo.js";
 import {
   ElasticSearchResultsNodeInfoNodes,
   ElasticSearchResultsNodeInfoNodes$inboundSchema,
-  ElasticSearchResultsNodeInfoNodes$Outbound,
-  ElasticSearchResultsNodeInfoNodes$outboundSchema,
 } from "./elasticsearchresultsnodeinfonodes.js";
 
 export type ElasticSearchResultsNodeInfo = {
@@ -44,58 +40,6 @@ export const ElasticSearchResultsNodeInfo$inboundSchema: z.ZodType<
     "node_info": "nodeInfo",
   });
 });
-
-/** @internal */
-export type ElasticSearchResultsNodeInfo$Outbound = {
-  cluster_combined_info?:
-    | ElasticSearchResultsNodeInfoClusterCombinedInfo$Outbound
-    | undefined;
-  node_info?:
-    | Array<ElasticSearchResultsNodeInfoNodes$Outbound>
-    | null
-    | undefined;
-};
-
-/** @internal */
-export const ElasticSearchResultsNodeInfo$outboundSchema: z.ZodType<
-  ElasticSearchResultsNodeInfo$Outbound,
-  z.ZodTypeDef,
-  ElasticSearchResultsNodeInfo
-> = z.object({
-  clusterCombinedInfo:
-    ElasticSearchResultsNodeInfoClusterCombinedInfo$outboundSchema.optional(),
-  nodeInfo: z.nullable(
-    z.array(ElasticSearchResultsNodeInfoNodes$outboundSchema),
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    clusterCombinedInfo: "cluster_combined_info",
-    nodeInfo: "node_info",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ElasticSearchResultsNodeInfo$ {
-  /** @deprecated use `ElasticSearchResultsNodeInfo$inboundSchema` instead. */
-  export const inboundSchema = ElasticSearchResultsNodeInfo$inboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfo$outboundSchema` instead. */
-  export const outboundSchema = ElasticSearchResultsNodeInfo$outboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfo$Outbound` instead. */
-  export type Outbound = ElasticSearchResultsNodeInfo$Outbound;
-}
-
-export function elasticSearchResultsNodeInfoToJSON(
-  elasticSearchResultsNodeInfo: ElasticSearchResultsNodeInfo,
-): string {
-  return JSON.stringify(
-    ElasticSearchResultsNodeInfo$outboundSchema.parse(
-      elasticSearchResultsNodeInfo,
-    ),
-  );
-}
 
 export function elasticSearchResultsNodeInfoFromJSON(
   jsonString: string,

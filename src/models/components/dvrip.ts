@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DvrIpPartitionCapability,
   DvrIpPartitionCapability$inboundSchema,
-  DvrIpPartitionCapability$Outbound,
-  DvrIpPartitionCapability$outboundSchema,
 } from "./dvrippartitioncapability.js";
 
 export type DvrIp = {
@@ -58,72 +56,6 @@ export const DvrIp$inboundSchema: z.ZodType<DvrIp, z.ZodTypeDef, unknown> = z
       "wireless_alarm_capability": "wirelessAlarmCapability",
     });
   });
-
-/** @internal */
-export type DvrIp$Outbound = {
-  access_url?: string | undefined;
-  function_capability?: string | undefined;
-  function_list?: string | undefined;
-  hard_drive?: string | undefined;
-  language_support?: string | undefined;
-  network_status?: string | undefined;
-  oem_info?: string | undefined;
-  partition_capability?: DvrIpPartitionCapability$Outbound | undefined;
-  serial?: string | undefined;
-  split_screen_capability?: string | undefined;
-  version?: string | undefined;
-  wireless_alarm_capability?: string | undefined;
-};
-
-/** @internal */
-export const DvrIp$outboundSchema: z.ZodType<
-  DvrIp$Outbound,
-  z.ZodTypeDef,
-  DvrIp
-> = z.object({
-  accessUrl: z.string().optional(),
-  functionCapability: z.string().optional(),
-  functionList: z.string().optional(),
-  hardDrive: z.string().optional(),
-  languageSupport: z.string().optional(),
-  networkStatus: z.string().optional(),
-  oemInfo: z.string().optional(),
-  partitionCapability: DvrIpPartitionCapability$outboundSchema.optional(),
-  serial: z.string().optional(),
-  splitScreenCapability: z.string().optional(),
-  version: z.string().optional(),
-  wirelessAlarmCapability: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    accessUrl: "access_url",
-    functionCapability: "function_capability",
-    functionList: "function_list",
-    hardDrive: "hard_drive",
-    languageSupport: "language_support",
-    networkStatus: "network_status",
-    oemInfo: "oem_info",
-    partitionCapability: "partition_capability",
-    splitScreenCapability: "split_screen_capability",
-    wirelessAlarmCapability: "wireless_alarm_capability",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DvrIp$ {
-  /** @deprecated use `DvrIp$inboundSchema` instead. */
-  export const inboundSchema = DvrIp$inboundSchema;
-  /** @deprecated use `DvrIp$outboundSchema` instead. */
-  export const outboundSchema = DvrIp$outboundSchema;
-  /** @deprecated use `DvrIp$Outbound` instead. */
-  export type Outbound = DvrIp$Outbound;
-}
-
-export function dvrIpToJSON(dvrIp: DvrIp): string {
-  return JSON.stringify(DvrIp$outboundSchema.parse(dvrIp));
-}
 
 export function dvrIpFromJSON(
   jsonString: string,

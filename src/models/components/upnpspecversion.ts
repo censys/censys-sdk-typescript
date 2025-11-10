@@ -22,41 +22,6 @@ export const UpnpSpecVersion$inboundSchema: z.ZodType<
   minor: z.string().optional(),
 });
 
-/** @internal */
-export type UpnpSpecVersion$Outbound = {
-  major?: string | undefined;
-  minor?: string | undefined;
-};
-
-/** @internal */
-export const UpnpSpecVersion$outboundSchema: z.ZodType<
-  UpnpSpecVersion$Outbound,
-  z.ZodTypeDef,
-  UpnpSpecVersion
-> = z.object({
-  major: z.string().optional(),
-  minor: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpnpSpecVersion$ {
-  /** @deprecated use `UpnpSpecVersion$inboundSchema` instead. */
-  export const inboundSchema = UpnpSpecVersion$inboundSchema;
-  /** @deprecated use `UpnpSpecVersion$outboundSchema` instead. */
-  export const outboundSchema = UpnpSpecVersion$outboundSchema;
-  /** @deprecated use `UpnpSpecVersion$Outbound` instead. */
-  export type Outbound = UpnpSpecVersion$Outbound;
-}
-
-export function upnpSpecVersionToJSON(
-  upnpSpecVersion: UpnpSpecVersion,
-): string {
-  return JSON.stringify(UpnpSpecVersion$outboundSchema.parse(upnpSpecVersion));
-}
-
 export function upnpSpecVersionFromJSON(
   jsonString: string,
 ): SafeParseResult<UpnpSpecVersion, SDKValidationError> {

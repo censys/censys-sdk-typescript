@@ -50,66 +50,6 @@ export const UnitronicsPcom$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type UnitronicsPcom$Outbound = {
-  buffer_size?: string | undefined;
-  hardware_version?: string | undefined;
-  model?: string | undefined;
-  model_executor?: string | undefined;
-  model_op_executor?: string | undefined;
-  name?: string | undefined;
-  os_build?: string | undefined;
-  os_version?: string | undefined;
-  unique_id?: number | undefined;
-  unit_id?: string | undefined;
-};
-
-/** @internal */
-export const UnitronicsPcom$outboundSchema: z.ZodType<
-  UnitronicsPcom$Outbound,
-  z.ZodTypeDef,
-  UnitronicsPcom
-> = z.object({
-  bufferSize: z.string().optional(),
-  hardwareVersion: z.string().optional(),
-  model: z.string().optional(),
-  modelExecutor: z.string().optional(),
-  modelOpExecutor: z.string().optional(),
-  name: z.string().optional(),
-  osBuild: z.string().optional(),
-  osVersion: z.string().optional(),
-  uniqueId: z.number().int().optional(),
-  unitId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    bufferSize: "buffer_size",
-    hardwareVersion: "hardware_version",
-    modelExecutor: "model_executor",
-    modelOpExecutor: "model_op_executor",
-    osBuild: "os_build",
-    osVersion: "os_version",
-    uniqueId: "unique_id",
-    unitId: "unit_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UnitronicsPcom$ {
-  /** @deprecated use `UnitronicsPcom$inboundSchema` instead. */
-  export const inboundSchema = UnitronicsPcom$inboundSchema;
-  /** @deprecated use `UnitronicsPcom$outboundSchema` instead. */
-  export const outboundSchema = UnitronicsPcom$outboundSchema;
-  /** @deprecated use `UnitronicsPcom$Outbound` instead. */
-  export type Outbound = UnitronicsPcom$Outbound;
-}
-
-export function unitronicsPcomToJSON(unitronicsPcom: UnitronicsPcom): string {
-  return JSON.stringify(UnitronicsPcom$outboundSchema.parse(unitronicsPcom));
-}
-
 export function unitronicsPcomFromJSON(
   jsonString: string,
 ): SafeParseResult<UnitronicsPcom, SDKValidationError> {

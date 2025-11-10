@@ -7,12 +7,7 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Evidence,
-  Evidence$inboundSchema,
-  Evidence$Outbound,
-  Evidence$outboundSchema,
-} from "./evidence.js";
+import { Evidence, Evidence$inboundSchema } from "./evidence.js";
 
 export const LabelSource = {
   Unknown: "",
@@ -35,21 +30,6 @@ export const LabelSource$inboundSchema: z.ZodNativeEnum<typeof LabelSource> = z
   .nativeEnum(LabelSource);
 
 /** @internal */
-export const LabelSource$outboundSchema: z.ZodNativeEnum<typeof LabelSource> =
-  LabelSource$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LabelSource$ {
-  /** @deprecated use `LabelSource$inboundSchema` instead. */
-  export const inboundSchema = LabelSource$inboundSchema;
-  /** @deprecated use `LabelSource$outboundSchema` instead. */
-  export const outboundSchema = LabelSource$outboundSchema;
-}
-
-/** @internal */
 export const Label$inboundSchema: z.ZodType<Label, z.ZodTypeDef, unknown> = z
   .object({
     confidence: z.number().optional(),
@@ -57,43 +37,6 @@ export const Label$inboundSchema: z.ZodType<Label, z.ZodTypeDef, unknown> = z
     source: LabelSource$inboundSchema.optional(),
     value: z.string().optional(),
   });
-
-/** @internal */
-export type Label$Outbound = {
-  confidence?: number | undefined;
-  evidence?: Array<Evidence$Outbound> | null | undefined;
-  source?: string | undefined;
-  value?: string | undefined;
-};
-
-/** @internal */
-export const Label$outboundSchema: z.ZodType<
-  Label$Outbound,
-  z.ZodTypeDef,
-  Label
-> = z.object({
-  confidence: z.number().optional(),
-  evidence: z.nullable(z.array(Evidence$outboundSchema)).optional(),
-  source: LabelSource$outboundSchema.optional(),
-  value: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Label$ {
-  /** @deprecated use `Label$inboundSchema` instead. */
-  export const inboundSchema = Label$inboundSchema;
-  /** @deprecated use `Label$outboundSchema` instead. */
-  export const outboundSchema = Label$outboundSchema;
-  /** @deprecated use `Label$Outbound` instead. */
-  export type Outbound = Label$Outbound;
-}
-
-export function labelToJSON(label: Label): string {
-  return JSON.stringify(Label$outboundSchema.parse(label));
-}
 
 export function labelFromJSON(
   jsonString: string,

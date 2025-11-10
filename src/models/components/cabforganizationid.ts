@@ -26,47 +26,6 @@ export const CabfOrganizationId$inboundSchema: z.ZodType<
   state: z.string().optional(),
 });
 
-/** @internal */
-export type CabfOrganizationId$Outbound = {
-  country?: string | undefined;
-  reference?: string | undefined;
-  scheme?: string | undefined;
-  state?: string | undefined;
-};
-
-/** @internal */
-export const CabfOrganizationId$outboundSchema: z.ZodType<
-  CabfOrganizationId$Outbound,
-  z.ZodTypeDef,
-  CabfOrganizationId
-> = z.object({
-  country: z.string().optional(),
-  reference: z.string().optional(),
-  scheme: z.string().optional(),
-  state: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CabfOrganizationId$ {
-  /** @deprecated use `CabfOrganizationId$inboundSchema` instead. */
-  export const inboundSchema = CabfOrganizationId$inboundSchema;
-  /** @deprecated use `CabfOrganizationId$outboundSchema` instead. */
-  export const outboundSchema = CabfOrganizationId$outboundSchema;
-  /** @deprecated use `CabfOrganizationId$Outbound` instead. */
-  export type Outbound = CabfOrganizationId$Outbound;
-}
-
-export function cabfOrganizationIdToJSON(
-  cabfOrganizationId: CabfOrganizationId,
-): string {
-  return JSON.stringify(
-    CabfOrganizationId$outboundSchema.parse(cabfOrganizationId),
-  );
-}
-
 export function cabfOrganizationIdFromJSON(
   jsonString: string,
 ): SafeParseResult<CabfOrganizationId, SDKValidationError> {

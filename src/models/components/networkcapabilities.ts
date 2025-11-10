@@ -47,67 +47,6 @@ export const NetworkCapabilities$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type NetworkCapabilities$Outbound = {
-  dhcp_v6?: boolean | undefined;
-  dot11_configuration?: boolean | undefined;
-  dot1x_configurations?: number | undefined;
-  dynamic_dns?: boolean | undefined;
-  hostname_from_dhcp?: boolean | undefined;
-  ip_filter?: boolean | undefined;
-  ipv6?: boolean | undefined;
-  ntp?: number | undefined;
-  zero_configuration?: boolean | undefined;
-};
-
-/** @internal */
-export const NetworkCapabilities$outboundSchema: z.ZodType<
-  NetworkCapabilities$Outbound,
-  z.ZodTypeDef,
-  NetworkCapabilities
-> = z.object({
-  dhcpV6: z.boolean().optional(),
-  dot11Configuration: z.boolean().optional(),
-  dot1xConfigurations: z.number().int().optional(),
-  dynamicDns: z.boolean().optional(),
-  hostnameFromDhcp: z.boolean().optional(),
-  ipFilter: z.boolean().optional(),
-  ipv6: z.boolean().optional(),
-  ntp: z.number().int().optional(),
-  zeroConfiguration: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    dhcpV6: "dhcp_v6",
-    dot11Configuration: "dot11_configuration",
-    dot1xConfigurations: "dot1x_configurations",
-    dynamicDns: "dynamic_dns",
-    hostnameFromDhcp: "hostname_from_dhcp",
-    ipFilter: "ip_filter",
-    zeroConfiguration: "zero_configuration",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NetworkCapabilities$ {
-  /** @deprecated use `NetworkCapabilities$inboundSchema` instead. */
-  export const inboundSchema = NetworkCapabilities$inboundSchema;
-  /** @deprecated use `NetworkCapabilities$outboundSchema` instead. */
-  export const outboundSchema = NetworkCapabilities$outboundSchema;
-  /** @deprecated use `NetworkCapabilities$Outbound` instead. */
-  export type Outbound = NetworkCapabilities$Outbound;
-}
-
-export function networkCapabilitiesToJSON(
-  networkCapabilities: NetworkCapabilities,
-): string {
-  return JSON.stringify(
-    NetworkCapabilities$outboundSchema.parse(networkCapabilities),
-  );
-}
-
 export function networkCapabilitiesFromJSON(
   jsonString: string,
 ): SafeParseResult<NetworkCapabilities, SDKValidationError> {

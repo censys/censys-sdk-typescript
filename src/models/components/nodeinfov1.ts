@@ -40,56 +40,6 @@ export const NodeInfoV1$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type NodeInfoV1$Outbound = {
-  confirmed_milestone_index?: number | undefined;
-  features?: Array<string> | null | undefined;
-  is_healthy?: boolean | undefined;
-  latest_milestone_index?: number | undefined;
-  name?: string | undefined;
-  network_id?: string | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const NodeInfoV1$outboundSchema: z.ZodType<
-  NodeInfoV1$Outbound,
-  z.ZodTypeDef,
-  NodeInfoV1
-> = z.object({
-  confirmedMilestoneIndex: z.number().int().optional(),
-  features: z.nullable(z.array(z.string())).optional(),
-  isHealthy: z.boolean().optional(),
-  latestMilestoneIndex: z.number().int().optional(),
-  name: z.string().optional(),
-  networkId: z.string().optional(),
-  version: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    confirmedMilestoneIndex: "confirmed_milestone_index",
-    isHealthy: "is_healthy",
-    latestMilestoneIndex: "latest_milestone_index",
-    networkId: "network_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NodeInfoV1$ {
-  /** @deprecated use `NodeInfoV1$inboundSchema` instead. */
-  export const inboundSchema = NodeInfoV1$inboundSchema;
-  /** @deprecated use `NodeInfoV1$outboundSchema` instead. */
-  export const outboundSchema = NodeInfoV1$outboundSchema;
-  /** @deprecated use `NodeInfoV1$Outbound` instead. */
-  export type Outbound = NodeInfoV1$Outbound;
-}
-
-export function nodeInfoV1ToJSON(nodeInfoV1: NodeInfoV1): string {
-  return JSON.stringify(NodeInfoV1$outboundSchema.parse(nodeInfoV1));
-}
-
 export function nodeInfoV1FromJSON(
   jsonString: string,
 ): SafeParseResult<NodeInfoV1, SDKValidationError> {

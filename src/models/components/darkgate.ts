@@ -6,12 +6,7 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  DarkgateFile,
-  DarkgateFile$inboundSchema,
-  DarkgateFile$Outbound,
-  DarkgateFile$outboundSchema,
-} from "./darkgatefile.js";
+import { DarkgateFile, DarkgateFile$inboundSchema } from "./darkgatefile.js";
 
 export type Darkgate = {
   files?: Array<DarkgateFile> | null | undefined;
@@ -25,37 +20,6 @@ export const Darkgate$inboundSchema: z.ZodType<
 > = z.object({
   files: z.nullable(z.array(DarkgateFile$inboundSchema)).optional(),
 });
-
-/** @internal */
-export type Darkgate$Outbound = {
-  files?: Array<DarkgateFile$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const Darkgate$outboundSchema: z.ZodType<
-  Darkgate$Outbound,
-  z.ZodTypeDef,
-  Darkgate
-> = z.object({
-  files: z.nullable(z.array(DarkgateFile$outboundSchema)).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Darkgate$ {
-  /** @deprecated use `Darkgate$inboundSchema` instead. */
-  export const inboundSchema = Darkgate$inboundSchema;
-  /** @deprecated use `Darkgate$outboundSchema` instead. */
-  export const outboundSchema = Darkgate$outboundSchema;
-  /** @deprecated use `Darkgate$Outbound` instead. */
-  export type Outbound = Darkgate$Outbound;
-}
-
-export function darkgateToJSON(darkgate: Darkgate): string {
-  return JSON.stringify(Darkgate$outboundSchema.parse(darkgate));
-}
 
 export function darkgateFromJSON(
   jsonString: string,

@@ -37,38 +37,8 @@ export const NewStatus$inboundSchema: z.ZodNativeEnum<typeof NewStatus> = z
   .nativeEnum(NewStatus);
 
 /** @internal */
-export const NewStatus$outboundSchema: z.ZodNativeEnum<typeof NewStatus> =
-  NewStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NewStatus$ {
-  /** @deprecated use `NewStatus$inboundSchema` instead. */
-  export const inboundSchema = NewStatus$inboundSchema;
-  /** @deprecated use `NewStatus$outboundSchema` instead. */
-  export const outboundSchema = NewStatus$outboundSchema;
-}
-
-/** @internal */
 export const OldStatus$inboundSchema: z.ZodNativeEnum<typeof OldStatus> = z
   .nativeEnum(OldStatus);
-
-/** @internal */
-export const OldStatus$outboundSchema: z.ZodNativeEnum<typeof OldStatus> =
-  OldStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OldStatus$ {
-  /** @deprecated use `OldStatus$inboundSchema` instead. */
-  export const inboundSchema = OldStatus$inboundSchema;
-  /** @deprecated use `OldStatus$outboundSchema` instead. */
-  export const outboundSchema = OldStatus$outboundSchema;
-}
 
 /** @internal */
 export const EventStatusChange$inboundSchema: z.ZodType<
@@ -87,53 +57,6 @@ export const EventStatusChange$inboundSchema: z.ZodType<
     "old_status": "oldStatus",
   });
 });
-
-/** @internal */
-export type EventStatusChange$Outbound = {
-  event_time: string;
-  new_status: string;
-  old_status?: string | undefined;
-  reason?: string | undefined;
-};
-
-/** @internal */
-export const EventStatusChange$outboundSchema: z.ZodType<
-  EventStatusChange$Outbound,
-  z.ZodTypeDef,
-  EventStatusChange
-> = z.object({
-  eventTime: z.date().transform(v => v.toISOString()),
-  newStatus: NewStatus$outboundSchema,
-  oldStatus: OldStatus$outboundSchema.optional(),
-  reason: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    eventTime: "event_time",
-    newStatus: "new_status",
-    oldStatus: "old_status",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EventStatusChange$ {
-  /** @deprecated use `EventStatusChange$inboundSchema` instead. */
-  export const inboundSchema = EventStatusChange$inboundSchema;
-  /** @deprecated use `EventStatusChange$outboundSchema` instead. */
-  export const outboundSchema = EventStatusChange$outboundSchema;
-  /** @deprecated use `EventStatusChange$Outbound` instead. */
-  export type Outbound = EventStatusChange$Outbound;
-}
-
-export function eventStatusChangeToJSON(
-  eventStatusChange: EventStatusChange,
-): string {
-  return JSON.stringify(
-    EventStatusChange$outboundSchema.parse(eventStatusChange),
-  );
-}
 
 export function eventStatusChangeFromJSON(
   jsonString: string,

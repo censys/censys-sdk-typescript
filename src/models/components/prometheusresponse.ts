@@ -10,20 +10,14 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PrometheusResponseActiveTarget,
   PrometheusResponseActiveTarget$inboundSchema,
-  PrometheusResponseActiveTarget$Outbound,
-  PrometheusResponseActiveTarget$outboundSchema,
 } from "./prometheusresponseactivetarget.js";
 import {
   PrometheusResponseDroppedTarget,
   PrometheusResponseDroppedTarget$inboundSchema,
-  PrometheusResponseDroppedTarget$Outbound,
-  PrometheusResponseDroppedTarget$outboundSchema,
 } from "./prometheusresponsedroppedtarget.js";
 import {
   PrometheusResponsePrometheusVersion,
   PrometheusResponsePrometheusVersion$inboundSchema,
-  PrometheusResponsePrometheusVersion$Outbound,
-  PrometheusResponsePrometheusVersion$outboundSchema,
 } from "./prometheusresponseprometheusversion.js";
 
 export type PrometheusResponse = {
@@ -81,75 +75,6 @@ export const PrometheusResponse$inboundSchema: z.ZodType<
     "prometheus_versions": "prometheusVersions",
   });
 });
-
-/** @internal */
-export type PrometheusResponse$Outbound = {
-  active_targets?:
-    | Array<PrometheusResponseActiveTarget$Outbound>
-    | null
-    | undefined;
-  all_versions?: Array<string> | null | undefined;
-  config_exposed?: boolean | undefined;
-  dropped_targets?:
-    | Array<PrometheusResponseDroppedTarget$Outbound>
-    | null
-    | undefined;
-  go_versions?: Array<string> | null | undefined;
-  prometheus_versions?:
-    | Array<PrometheusResponsePrometheusVersion$Outbound>
-    | null
-    | undefined;
-};
-
-/** @internal */
-export const PrometheusResponse$outboundSchema: z.ZodType<
-  PrometheusResponse$Outbound,
-  z.ZodTypeDef,
-  PrometheusResponse
-> = z.object({
-  activeTargets: z.nullable(
-    z.array(PrometheusResponseActiveTarget$outboundSchema),
-  ).optional(),
-  allVersions: z.nullable(z.array(z.string())).optional(),
-  configExposed: z.boolean().optional(),
-  droppedTargets: z.nullable(
-    z.array(PrometheusResponseDroppedTarget$outboundSchema),
-  ).optional(),
-  goVersions: z.nullable(z.array(z.string())).optional(),
-  prometheusVersions: z.nullable(
-    z.array(PrometheusResponsePrometheusVersion$outboundSchema),
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    activeTargets: "active_targets",
-    allVersions: "all_versions",
-    configExposed: "config_exposed",
-    droppedTargets: "dropped_targets",
-    goVersions: "go_versions",
-    prometheusVersions: "prometheus_versions",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PrometheusResponse$ {
-  /** @deprecated use `PrometheusResponse$inboundSchema` instead. */
-  export const inboundSchema = PrometheusResponse$inboundSchema;
-  /** @deprecated use `PrometheusResponse$outboundSchema` instead. */
-  export const outboundSchema = PrometheusResponse$outboundSchema;
-  /** @deprecated use `PrometheusResponse$Outbound` instead. */
-  export type Outbound = PrometheusResponse$Outbound;
-}
-
-export function prometheusResponseToJSON(
-  prometheusResponse: PrometheusResponse,
-): string {
-  return JSON.stringify(
-    PrometheusResponse$outboundSchema.parse(prometheusResponse),
-  );
-}
 
 export function prometheusResponseFromJSON(
   jsonString: string,

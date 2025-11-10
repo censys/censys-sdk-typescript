@@ -28,45 +28,6 @@ export const PortmapV2Entry$inboundSchema: z.ZodType<
   version: z.number().int().optional(),
 });
 
-/** @internal */
-export type PortmapV2Entry$Outbound = {
-  description?: string | undefined;
-  port?: number | undefined;
-  protocol?: string | undefined;
-  shorthand?: string | undefined;
-  version?: number | undefined;
-};
-
-/** @internal */
-export const PortmapV2Entry$outboundSchema: z.ZodType<
-  PortmapV2Entry$Outbound,
-  z.ZodTypeDef,
-  PortmapV2Entry
-> = z.object({
-  description: z.string().optional(),
-  port: z.number().int().optional(),
-  protocol: z.string().optional(),
-  shorthand: z.string().optional(),
-  version: z.number().int().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PortmapV2Entry$ {
-  /** @deprecated use `PortmapV2Entry$inboundSchema` instead. */
-  export const inboundSchema = PortmapV2Entry$inboundSchema;
-  /** @deprecated use `PortmapV2Entry$outboundSchema` instead. */
-  export const outboundSchema = PortmapV2Entry$outboundSchema;
-  /** @deprecated use `PortmapV2Entry$Outbound` instead. */
-  export type Outbound = PortmapV2Entry$Outbound;
-}
-
-export function portmapV2EntryToJSON(portmapV2Entry: PortmapV2Entry): string {
-  return JSON.stringify(PortmapV2Entry$outboundSchema.parse(portmapV2Entry));
-}
-
 export function portmapV2EntryFromJSON(
   jsonString: string,
 ): SafeParseResult<PortmapV2Entry, SDKValidationError> {

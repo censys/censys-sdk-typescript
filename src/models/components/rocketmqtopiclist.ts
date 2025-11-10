@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   RocketmqResponseHeader,
   RocketmqResponseHeader$inboundSchema,
-  RocketmqResponseHeader$Outbound,
-  RocketmqResponseHeader$outboundSchema,
 } from "./rocketmqresponseheader.js";
 
 export type RocketmqTopicList = {
@@ -32,47 +30,6 @@ export const RocketmqTopicList$inboundSchema: z.ZodType<
     "topic_list": "topicList",
   });
 });
-
-/** @internal */
-export type RocketmqTopicList$Outbound = {
-  header?: RocketmqResponseHeader$Outbound | undefined;
-  topic_list?: Array<string> | null | undefined;
-};
-
-/** @internal */
-export const RocketmqTopicList$outboundSchema: z.ZodType<
-  RocketmqTopicList$Outbound,
-  z.ZodTypeDef,
-  RocketmqTopicList
-> = z.object({
-  header: RocketmqResponseHeader$outboundSchema.optional(),
-  topicList: z.nullable(z.array(z.string())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    topicList: "topic_list",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RocketmqTopicList$ {
-  /** @deprecated use `RocketmqTopicList$inboundSchema` instead. */
-  export const inboundSchema = RocketmqTopicList$inboundSchema;
-  /** @deprecated use `RocketmqTopicList$outboundSchema` instead. */
-  export const outboundSchema = RocketmqTopicList$outboundSchema;
-  /** @deprecated use `RocketmqTopicList$Outbound` instead. */
-  export type Outbound = RocketmqTopicList$Outbound;
-}
-
-export function rocketmqTopicListToJSON(
-  rocketmqTopicList: RocketmqTopicList,
-): string {
-  return JSON.stringify(
-    RocketmqTopicList$outboundSchema.parse(rocketmqTopicList),
-  );
-}
 
 export function rocketmqTopicListFromJSON(
   jsonString: string,

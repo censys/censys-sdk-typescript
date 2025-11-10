@@ -6,18 +6,8 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Connection,
-  Connection$inboundSchema,
-  Connection$Outbound,
-  Connection$outboundSchema,
-} from "./connection.js";
-import {
-  Target,
-  Target$inboundSchema,
-  Target$Outbound,
-  Target$outboundSchema,
-} from "./target.js";
+import { Connection, Connection$inboundSchema } from "./connection.js";
+import { Target, Target$inboundSchema } from "./target.js";
 
 export type Iscsi = {
   connection?: Connection | undefined;
@@ -32,41 +22,6 @@ export const Iscsi$inboundSchema: z.ZodType<Iscsi, z.ZodTypeDef, unknown> = z
     errors: z.nullable(z.array(z.string())).optional(),
     targets: z.nullable(z.array(Target$inboundSchema)).optional(),
   });
-
-/** @internal */
-export type Iscsi$Outbound = {
-  connection?: Connection$Outbound | undefined;
-  errors?: Array<string> | null | undefined;
-  targets?: Array<Target$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const Iscsi$outboundSchema: z.ZodType<
-  Iscsi$Outbound,
-  z.ZodTypeDef,
-  Iscsi
-> = z.object({
-  connection: Connection$outboundSchema.optional(),
-  errors: z.nullable(z.array(z.string())).optional(),
-  targets: z.nullable(z.array(Target$outboundSchema)).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Iscsi$ {
-  /** @deprecated use `Iscsi$inboundSchema` instead. */
-  export const inboundSchema = Iscsi$inboundSchema;
-  /** @deprecated use `Iscsi$outboundSchema` instead. */
-  export const outboundSchema = Iscsi$outboundSchema;
-  /** @deprecated use `Iscsi$Outbound` instead. */
-  export type Outbound = Iscsi$Outbound;
-}
-
-export function iscsiToJSON(iscsi: Iscsi): string {
-  return JSON.stringify(Iscsi$outboundSchema.parse(iscsi));
-}
 
 export function iscsiFromJSON(
   jsonString: string,

@@ -22,43 +22,6 @@ export const QcStatementsPdsLocation$inboundSchema: z.ZodType<
   url: z.string().optional(),
 });
 
-/** @internal */
-export type QcStatementsPdsLocation$Outbound = {
-  language?: string | undefined;
-  url?: string | undefined;
-};
-
-/** @internal */
-export const QcStatementsPdsLocation$outboundSchema: z.ZodType<
-  QcStatementsPdsLocation$Outbound,
-  z.ZodTypeDef,
-  QcStatementsPdsLocation
-> = z.object({
-  language: z.string().optional(),
-  url: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace QcStatementsPdsLocation$ {
-  /** @deprecated use `QcStatementsPdsLocation$inboundSchema` instead. */
-  export const inboundSchema = QcStatementsPdsLocation$inboundSchema;
-  /** @deprecated use `QcStatementsPdsLocation$outboundSchema` instead. */
-  export const outboundSchema = QcStatementsPdsLocation$outboundSchema;
-  /** @deprecated use `QcStatementsPdsLocation$Outbound` instead. */
-  export type Outbound = QcStatementsPdsLocation$Outbound;
-}
-
-export function qcStatementsPdsLocationToJSON(
-  qcStatementsPdsLocation: QcStatementsPdsLocation,
-): string {
-  return JSON.stringify(
-    QcStatementsPdsLocation$outboundSchema.parse(qcStatementsPdsLocation),
-  );
-}
-
 export function qcStatementsPdsLocationFromJSON(
   jsonString: string,
 ): SafeParseResult<QcStatementsPdsLocation, SDKValidationError> {

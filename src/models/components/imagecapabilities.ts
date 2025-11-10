@@ -25,45 +25,6 @@ export const ImageCapabilities$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type ImageCapabilities$Outbound = {
-  image_stabilization?: boolean | undefined;
-};
-
-/** @internal */
-export const ImageCapabilities$outboundSchema: z.ZodType<
-  ImageCapabilities$Outbound,
-  z.ZodTypeDef,
-  ImageCapabilities
-> = z.object({
-  imageStabilization: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    imageStabilization: "image_stabilization",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ImageCapabilities$ {
-  /** @deprecated use `ImageCapabilities$inboundSchema` instead. */
-  export const inboundSchema = ImageCapabilities$inboundSchema;
-  /** @deprecated use `ImageCapabilities$outboundSchema` instead. */
-  export const outboundSchema = ImageCapabilities$outboundSchema;
-  /** @deprecated use `ImageCapabilities$Outbound` instead. */
-  export type Outbound = ImageCapabilities$Outbound;
-}
-
-export function imageCapabilitiesToJSON(
-  imageCapabilities: ImageCapabilities,
-): string {
-  return JSON.stringify(
-    ImageCapabilities$outboundSchema.parse(imageCapabilities),
-  );
-}
-
 export function imageCapabilitiesFromJSON(
   jsonString: string,
 ): SafeParseResult<ImageCapabilities, SDKValidationError> {

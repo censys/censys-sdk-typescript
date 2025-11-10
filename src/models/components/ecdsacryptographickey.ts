@@ -38,59 +38,6 @@ export const ECDSACryptographicKey$inboundSchema: z.ZodType<
   y: z.string().optional(),
 });
 
-/** @internal */
-export type ECDSACryptographicKey$Outbound = {
-  b?: string | undefined;
-  curve?: string | undefined;
-  gx?: string | undefined;
-  gy?: string | undefined;
-  length?: number | undefined;
-  n?: string | undefined;
-  p?: string | undefined;
-  pub?: string | undefined;
-  x?: string | undefined;
-  y?: string | undefined;
-};
-
-/** @internal */
-export const ECDSACryptographicKey$outboundSchema: z.ZodType<
-  ECDSACryptographicKey$Outbound,
-  z.ZodTypeDef,
-  ECDSACryptographicKey
-> = z.object({
-  b: z.string().optional(),
-  curve: z.string().optional(),
-  gx: z.string().optional(),
-  gy: z.string().optional(),
-  length: z.number().int().optional(),
-  n: z.string().optional(),
-  p: z.string().optional(),
-  pub: z.string().optional(),
-  x: z.string().optional(),
-  y: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ECDSACryptographicKey$ {
-  /** @deprecated use `ECDSACryptographicKey$inboundSchema` instead. */
-  export const inboundSchema = ECDSACryptographicKey$inboundSchema;
-  /** @deprecated use `ECDSACryptographicKey$outboundSchema` instead. */
-  export const outboundSchema = ECDSACryptographicKey$outboundSchema;
-  /** @deprecated use `ECDSACryptographicKey$Outbound` instead. */
-  export type Outbound = ECDSACryptographicKey$Outbound;
-}
-
-export function ecdsaCryptographicKeyToJSON(
-  ecdsaCryptographicKey: ECDSACryptographicKey,
-): string {
-  return JSON.stringify(
-    ECDSACryptographicKey$outboundSchema.parse(ecdsaCryptographicKey),
-  );
-}
-
 export function ecdsaCryptographicKeyFromJSON(
   jsonString: string,
 ): SafeParseResult<ECDSACryptographicKey, SDKValidationError> {

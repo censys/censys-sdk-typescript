@@ -36,52 +36,6 @@ export const Minecraft$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type Minecraft$Outbound = {
-  motd?: string | undefined;
-  players_max?: number | undefined;
-  players_online?: number | undefined;
-  protocol_version?: string | undefined;
-  server_version?: string | undefined;
-};
-
-/** @internal */
-export const Minecraft$outboundSchema: z.ZodType<
-  Minecraft$Outbound,
-  z.ZodTypeDef,
-  Minecraft
-> = z.object({
-  motd: z.string().optional(),
-  playersMax: z.number().int().optional(),
-  playersOnline: z.number().int().optional(),
-  protocolVersion: z.string().optional(),
-  serverVersion: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    playersMax: "players_max",
-    playersOnline: "players_online",
-    protocolVersion: "protocol_version",
-    serverVersion: "server_version",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Minecraft$ {
-  /** @deprecated use `Minecraft$inboundSchema` instead. */
-  export const inboundSchema = Minecraft$inboundSchema;
-  /** @deprecated use `Minecraft$outboundSchema` instead. */
-  export const outboundSchema = Minecraft$outboundSchema;
-  /** @deprecated use `Minecraft$Outbound` instead. */
-  export type Outbound = Minecraft$Outbound;
-}
-
-export function minecraftToJSON(minecraft: Minecraft): string {
-  return JSON.stringify(Minecraft$outboundSchema.parse(minecraft));
-}
-
 export function minecraftFromJSON(
   jsonString: string,
 ): SafeParseResult<Minecraft, SDKValidationError> {

@@ -27,47 +27,6 @@ export const RawCertificateResponse$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type RawCertificateResponse$Outbound = {
-  certificate_id: string;
-  pem: string;
-};
-
-/** @internal */
-export const RawCertificateResponse$outboundSchema: z.ZodType<
-  RawCertificateResponse$Outbound,
-  z.ZodTypeDef,
-  RawCertificateResponse
-> = z.object({
-  certificateId: z.string(),
-  pem: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    certificateId: "certificate_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RawCertificateResponse$ {
-  /** @deprecated use `RawCertificateResponse$inboundSchema` instead. */
-  export const inboundSchema = RawCertificateResponse$inboundSchema;
-  /** @deprecated use `RawCertificateResponse$outboundSchema` instead. */
-  export const outboundSchema = RawCertificateResponse$outboundSchema;
-  /** @deprecated use `RawCertificateResponse$Outbound` instead. */
-  export type Outbound = RawCertificateResponse$Outbound;
-}
-
-export function rawCertificateResponseToJSON(
-  rawCertificateResponse: RawCertificateResponse,
-): string {
-  return JSON.stringify(
-    RawCertificateResponse$outboundSchema.parse(rawCertificateResponse),
-  );
-}
-
 export function rawCertificateResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<RawCertificateResponse, SDKValidationError> {

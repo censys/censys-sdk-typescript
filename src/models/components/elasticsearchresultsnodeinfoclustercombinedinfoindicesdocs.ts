@@ -23,50 +23,6 @@ export const ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesDocs$inboundS
     deleted: z.number().int().optional(),
   });
 
-/** @internal */
-export type ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesDocs$Outbound =
-  {
-    count?: number | undefined;
-    deleted?: number | undefined;
-  };
-
-/** @internal */
-export const ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesDocs$outboundSchema:
-  z.ZodType<
-    ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesDocs$Outbound,
-    z.ZodTypeDef,
-    ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesDocs
-  > = z.object({
-    count: z.number().int().optional(),
-    deleted: z.number().int().optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesDocs$ {
-  /** @deprecated use `ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesDocs$inboundSchema` instead. */
-  export const inboundSchema =
-    ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesDocs$inboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesDocs$outboundSchema` instead. */
-  export const outboundSchema =
-    ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesDocs$outboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesDocs$Outbound` instead. */
-  export type Outbound =
-    ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesDocs$Outbound;
-}
-
-export function elasticSearchResultsNodeInfoClusterCombinedInfoIndicesDocsToJSON(
-  elasticSearchResultsNodeInfoClusterCombinedInfoIndicesDocs:
-    ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesDocs,
-): string {
-  return JSON.stringify(
-    ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesDocs$outboundSchema
-      .parse(elasticSearchResultsNodeInfoClusterCombinedInfoIndicesDocs),
-  );
-}
-
 export function elasticSearchResultsNodeInfoClusterCombinedInfoIndicesDocsFromJSON(
   jsonString: string,
 ): SafeParseResult<

@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DhcpdiscoverIpAddress,
   DhcpdiscoverIpAddress$inboundSchema,
-  DhcpdiscoverIpAddress$Outbound,
-  DhcpdiscoverIpAddress$outboundSchema,
 } from "./dhcpdiscoveripaddress.js";
 
 export type DhcpdiscoverDeviceInfo = {
@@ -80,95 +78,6 @@ export const DhcpdiscoverDeviceInfo$inboundSchema: z.ZodType<
     "video_output_channels": "videoOutputChannels",
   });
 });
-
-/** @internal */
-export type DhcpdiscoverDeviceInfo$Outbound = {
-  alarm_input_channels?: number | undefined;
-  alarm_output_channels?: number | undefined;
-  device_class?: string | undefined;
-  device_id?: string | undefined;
-  device_type?: string | undefined;
-  http_port?: number | undefined;
-  ipv4_address?: DhcpdiscoverIpAddress$Outbound | undefined;
-  ipv6_address?: DhcpdiscoverIpAddress$Outbound | undefined;
-  machine_group?: string | undefined;
-  machine_name?: string | undefined;
-  manufacturer?: string | undefined;
-  port?: number | undefined;
-  remote_video_input_channels?: number | undefined;
-  serial_number?: string | undefined;
-  unlogin_func_mask?: number | undefined;
-  vendor?: string | undefined;
-  version?: string | undefined;
-  video_input_channels?: number | undefined;
-  video_output_channels?: number | undefined;
-};
-
-/** @internal */
-export const DhcpdiscoverDeviceInfo$outboundSchema: z.ZodType<
-  DhcpdiscoverDeviceInfo$Outbound,
-  z.ZodTypeDef,
-  DhcpdiscoverDeviceInfo
-> = z.object({
-  alarmInputChannels: z.number().int().optional(),
-  alarmOutputChannels: z.number().int().optional(),
-  deviceClass: z.string().optional(),
-  deviceId: z.string().optional(),
-  deviceType: z.string().optional(),
-  httpPort: z.number().int().optional(),
-  ipv4Address: DhcpdiscoverIpAddress$outboundSchema.optional(),
-  ipv6Address: DhcpdiscoverIpAddress$outboundSchema.optional(),
-  machineGroup: z.string().optional(),
-  machineName: z.string().optional(),
-  manufacturer: z.string().optional(),
-  port: z.number().int().optional(),
-  remoteVideoInputChannels: z.number().int().optional(),
-  serialNumber: z.string().optional(),
-  unloginFuncMask: z.number().int().optional(),
-  vendor: z.string().optional(),
-  version: z.string().optional(),
-  videoInputChannels: z.number().int().optional(),
-  videoOutputChannels: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    alarmInputChannels: "alarm_input_channels",
-    alarmOutputChannels: "alarm_output_channels",
-    deviceClass: "device_class",
-    deviceId: "device_id",
-    deviceType: "device_type",
-    httpPort: "http_port",
-    ipv4Address: "ipv4_address",
-    ipv6Address: "ipv6_address",
-    machineGroup: "machine_group",
-    machineName: "machine_name",
-    remoteVideoInputChannels: "remote_video_input_channels",
-    serialNumber: "serial_number",
-    unloginFuncMask: "unlogin_func_mask",
-    videoInputChannels: "video_input_channels",
-    videoOutputChannels: "video_output_channels",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DhcpdiscoverDeviceInfo$ {
-  /** @deprecated use `DhcpdiscoverDeviceInfo$inboundSchema` instead. */
-  export const inboundSchema = DhcpdiscoverDeviceInfo$inboundSchema;
-  /** @deprecated use `DhcpdiscoverDeviceInfo$outboundSchema` instead. */
-  export const outboundSchema = DhcpdiscoverDeviceInfo$outboundSchema;
-  /** @deprecated use `DhcpdiscoverDeviceInfo$Outbound` instead. */
-  export type Outbound = DhcpdiscoverDeviceInfo$Outbound;
-}
-
-export function dhcpdiscoverDeviceInfoToJSON(
-  dhcpdiscoverDeviceInfo: DhcpdiscoverDeviceInfo,
-): string {
-  return JSON.stringify(
-    DhcpdiscoverDeviceInfo$outboundSchema.parse(dhcpdiscoverDeviceInfo),
-  );
-}
 
 export function dhcpdiscoverDeviceInfoFromJSON(
   jsonString: string,

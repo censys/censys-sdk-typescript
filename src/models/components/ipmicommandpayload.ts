@@ -10,14 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   IpmiCommandPayloadCommandNumber,
   IpmiCommandPayloadCommandNumber$inboundSchema,
-  IpmiCommandPayloadCommandNumber$Outbound,
-  IpmiCommandPayloadCommandNumber$outboundSchema,
 } from "./ipmicommandpayloadcommandnumber.js";
 import {
   IpmiCommandPayloadPackedNetFn,
   IpmiCommandPayloadPackedNetFn$inboundSchema,
-  IpmiCommandPayloadPackedNetFn$Outbound,
-  IpmiCommandPayloadPackedNetFn$outboundSchema,
 } from "./ipmicommandpayloadpackednetfn.js";
 
 export type IpmiCommandPayload = {
@@ -56,56 +52,6 @@ export const IpmiCommandPayload$inboundSchema: z.ZodType<
     "requestor_sequence_number": "requestorSequenceNumber",
   });
 });
-
-/** @internal */
-export type IpmiCommandPayload$Outbound = {
-  checksum_error?: boolean | undefined;
-  data?: string | undefined;
-  ipmi_command_number?: IpmiCommandPayloadCommandNumber$Outbound | undefined;
-  network_function_code?: IpmiCommandPayloadPackedNetFn$Outbound | undefined;
-  requestor_sequence_number?: number | undefined;
-};
-
-/** @internal */
-export const IpmiCommandPayload$outboundSchema: z.ZodType<
-  IpmiCommandPayload$Outbound,
-  z.ZodTypeDef,
-  IpmiCommandPayload
-> = z.object({
-  checksumError: z.boolean().optional(),
-  data: z.string().optional(),
-  ipmiCommandNumber: IpmiCommandPayloadCommandNumber$outboundSchema.optional(),
-  networkFunctionCode: IpmiCommandPayloadPackedNetFn$outboundSchema.optional(),
-  requestorSequenceNumber: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    checksumError: "checksum_error",
-    ipmiCommandNumber: "ipmi_command_number",
-    networkFunctionCode: "network_function_code",
-    requestorSequenceNumber: "requestor_sequence_number",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IpmiCommandPayload$ {
-  /** @deprecated use `IpmiCommandPayload$inboundSchema` instead. */
-  export const inboundSchema = IpmiCommandPayload$inboundSchema;
-  /** @deprecated use `IpmiCommandPayload$outboundSchema` instead. */
-  export const outboundSchema = IpmiCommandPayload$outboundSchema;
-  /** @deprecated use `IpmiCommandPayload$Outbound` instead. */
-  export type Outbound = IpmiCommandPayload$Outbound;
-}
-
-export function ipmiCommandPayloadToJSON(
-  ipmiCommandPayload: IpmiCommandPayload,
-): string {
-  return JSON.stringify(
-    IpmiCommandPayload$outboundSchema.parse(ipmiCommandPayload),
-  );
-}
 
 export function ipmiCommandPayloadFromJSON(
   jsonString: string,

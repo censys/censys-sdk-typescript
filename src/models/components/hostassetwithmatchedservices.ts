@@ -7,17 +7,10 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Host,
-  Host$inboundSchema,
-  Host$Outbound,
-  Host$outboundSchema,
-} from "./host.js";
+import { Host, Host$inboundSchema } from "./host.js";
 import {
   MatchedService,
   MatchedService$inboundSchema,
-  MatchedService$Outbound,
-  MatchedService$outboundSchema,
 } from "./matchedservice.js";
 
 export type HostAssetWithMatchedServices = {
@@ -44,52 +37,6 @@ export const HostAssetWithMatchedServices$inboundSchema: z.ZodType<
     "matched_services": "matchedServices",
   });
 });
-
-/** @internal */
-export type HostAssetWithMatchedServices$Outbound = {
-  extensions: { [k: string]: any };
-  matched_services?: Array<MatchedService$Outbound> | null | undefined;
-  resource: Host$Outbound;
-};
-
-/** @internal */
-export const HostAssetWithMatchedServices$outboundSchema: z.ZodType<
-  HostAssetWithMatchedServices$Outbound,
-  z.ZodTypeDef,
-  HostAssetWithMatchedServices
-> = z.object({
-  extensions: z.record(z.any()),
-  matchedServices: z.nullable(z.array(MatchedService$outboundSchema))
-    .optional(),
-  resource: Host$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    matchedServices: "matched_services",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HostAssetWithMatchedServices$ {
-  /** @deprecated use `HostAssetWithMatchedServices$inboundSchema` instead. */
-  export const inboundSchema = HostAssetWithMatchedServices$inboundSchema;
-  /** @deprecated use `HostAssetWithMatchedServices$outboundSchema` instead. */
-  export const outboundSchema = HostAssetWithMatchedServices$outboundSchema;
-  /** @deprecated use `HostAssetWithMatchedServices$Outbound` instead. */
-  export type Outbound = HostAssetWithMatchedServices$Outbound;
-}
-
-export function hostAssetWithMatchedServicesToJSON(
-  hostAssetWithMatchedServices: HostAssetWithMatchedServices,
-): string {
-  return JSON.stringify(
-    HostAssetWithMatchedServices$outboundSchema.parse(
-      hostAssetWithMatchedServices,
-    ),
-  );
-}
 
 export function hostAssetWithMatchedServicesFromJSON(
   jsonString: string,

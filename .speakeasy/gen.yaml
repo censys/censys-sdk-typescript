@@ -19,18 +19,21 @@ generation:
     hoistGlobalSecurity: true
   schemas:
     allOfMergeStrategy: shallowMerge
+  requestBodyFieldName: ""
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.7.0
+  version: 0.8.0
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
     peerDependencies: {}
   additionalPackageJSON: {}
+  additionalScripts: {}
+  alwaysIncludeInboundAndOutbound: false
   author: Speakeasy
   baseErrorName: SDKBaseError
   clientServerStatusCodesAsErrors: true
@@ -40,6 +43,7 @@ typescript:
   enableMCPServer: false
   enableReactQuery: false
   enumFormat: union
+  exportZodModelNamespace: false
   flattenGlobalSecurity: true
   flatteningOrder: parameters-first
   generateExamples: true

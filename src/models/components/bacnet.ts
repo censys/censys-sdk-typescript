@@ -44,63 +44,6 @@ export const Bacnet$inboundSchema: z.ZodType<Bacnet, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type Bacnet$Outbound = {
-  application_software_revision?: string | undefined;
-  description?: string | undefined;
-  firmware_revision?: string | undefined;
-  instance_number?: number | undefined;
-  location?: string | undefined;
-  model_name?: string | undefined;
-  object_name?: string | undefined;
-  vendor_id?: number | undefined;
-  vendor_name?: string | undefined;
-};
-
-/** @internal */
-export const Bacnet$outboundSchema: z.ZodType<
-  Bacnet$Outbound,
-  z.ZodTypeDef,
-  Bacnet
-> = z.object({
-  applicationSoftwareRevision: z.string().optional(),
-  description: z.string().optional(),
-  firmwareRevision: z.string().optional(),
-  instanceNumber: z.number().int().optional(),
-  location: z.string().optional(),
-  modelName: z.string().optional(),
-  objectName: z.string().optional(),
-  vendorId: z.number().int().optional(),
-  vendorName: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    applicationSoftwareRevision: "application_software_revision",
-    firmwareRevision: "firmware_revision",
-    instanceNumber: "instance_number",
-    modelName: "model_name",
-    objectName: "object_name",
-    vendorId: "vendor_id",
-    vendorName: "vendor_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Bacnet$ {
-  /** @deprecated use `Bacnet$inboundSchema` instead. */
-  export const inboundSchema = Bacnet$inboundSchema;
-  /** @deprecated use `Bacnet$outboundSchema` instead. */
-  export const outboundSchema = Bacnet$outboundSchema;
-  /** @deprecated use `Bacnet$Outbound` instead. */
-  export type Outbound = Bacnet$Outbound;
-}
-
-export function bacnetToJSON(bacnet: Bacnet): string {
-  return JSON.stringify(Bacnet$outboundSchema.parse(bacnet));
-}
-
 export function bacnetFromJSON(
   jsonString: string,
 ): SafeParseResult<Bacnet, SDKValidationError> {

@@ -38,49 +38,6 @@ export const KubernetesRoleRule$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type KubernetesRoleRule$Outbound = {
-  api_groups?: Array<string> | null | undefined;
-  resources?: Array<string> | null | undefined;
-  verbs?: Array<string> | null | undefined;
-};
-
-/** @internal */
-export const KubernetesRoleRule$outboundSchema: z.ZodType<
-  KubernetesRoleRule$Outbound,
-  z.ZodTypeDef,
-  KubernetesRoleRule
-> = z.object({
-  apiGroups: z.nullable(z.array(z.string())).optional(),
-  resources: z.nullable(z.array(z.string())).optional(),
-  verbs: z.nullable(z.array(z.string())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    apiGroups: "api_groups",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace KubernetesRoleRule$ {
-  /** @deprecated use `KubernetesRoleRule$inboundSchema` instead. */
-  export const inboundSchema = KubernetesRoleRule$inboundSchema;
-  /** @deprecated use `KubernetesRoleRule$outboundSchema` instead. */
-  export const outboundSchema = KubernetesRoleRule$outboundSchema;
-  /** @deprecated use `KubernetesRoleRule$Outbound` instead. */
-  export type Outbound = KubernetesRoleRule$Outbound;
-}
-
-export function kubernetesRoleRuleToJSON(
-  kubernetesRoleRule: KubernetesRoleRule,
-): string {
-  return JSON.stringify(
-    KubernetesRoleRule$outboundSchema.parse(kubernetesRoleRule),
-  );
-}
-
 export function kubernetesRoleRuleFromJSON(
   jsonString: string,
 ): SafeParseResult<KubernetesRoleRule, SDKValidationError> {

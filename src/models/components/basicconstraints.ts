@@ -34,48 +34,6 @@ export const BasicConstraints$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type BasicConstraints$Outbound = {
-  is_ca?: boolean | undefined;
-  max_path_len?: number | undefined;
-};
-
-/** @internal */
-export const BasicConstraints$outboundSchema: z.ZodType<
-  BasicConstraints$Outbound,
-  z.ZodTypeDef,
-  BasicConstraints
-> = z.object({
-  isCa: z.boolean().optional(),
-  maxPathLen: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    isCa: "is_ca",
-    maxPathLen: "max_path_len",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace BasicConstraints$ {
-  /** @deprecated use `BasicConstraints$inboundSchema` instead. */
-  export const inboundSchema = BasicConstraints$inboundSchema;
-  /** @deprecated use `BasicConstraints$outboundSchema` instead. */
-  export const outboundSchema = BasicConstraints$outboundSchema;
-  /** @deprecated use `BasicConstraints$Outbound` instead. */
-  export type Outbound = BasicConstraints$Outbound;
-}
-
-export function basicConstraintsToJSON(
-  basicConstraints: BasicConstraints,
-): string {
-  return JSON.stringify(
-    BasicConstraints$outboundSchema.parse(basicConstraints),
-  );
-}
-
 export function basicConstraintsFromJSON(
   jsonString: string,
 ): SafeParseResult<BasicConstraints, SDKValidationError> {

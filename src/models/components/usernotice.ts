@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   NoticeReference,
   NoticeReference$inboundSchema,
-  NoticeReference$Outbound,
-  NoticeReference$outboundSchema,
 } from "./noticereference.js";
 
 export type UserNotice = {
@@ -33,44 +31,6 @@ export const UserNotice$inboundSchema: z.ZodType<
     "notice_reference": "noticeReference",
   });
 });
-
-/** @internal */
-export type UserNotice$Outbound = {
-  explicit_text?: string | undefined;
-  notice_reference?: NoticeReference$Outbound | undefined;
-};
-
-/** @internal */
-export const UserNotice$outboundSchema: z.ZodType<
-  UserNotice$Outbound,
-  z.ZodTypeDef,
-  UserNotice
-> = z.object({
-  explicitText: z.string().optional(),
-  noticeReference: NoticeReference$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    explicitText: "explicit_text",
-    noticeReference: "notice_reference",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UserNotice$ {
-  /** @deprecated use `UserNotice$inboundSchema` instead. */
-  export const inboundSchema = UserNotice$inboundSchema;
-  /** @deprecated use `UserNotice$outboundSchema` instead. */
-  export const outboundSchema = UserNotice$outboundSchema;
-  /** @deprecated use `UserNotice$Outbound` instead. */
-  export type Outbound = UserNotice$Outbound;
-}
-
-export function userNoticeToJSON(userNotice: UserNotice): string {
-  return JSON.stringify(UserNotice$outboundSchema.parse(userNotice));
-}
 
 export function userNoticeFromJSON(
   jsonString: string,

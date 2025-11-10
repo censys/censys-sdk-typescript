@@ -63,58 +63,6 @@ export const SnmpPhysical$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type SnmpPhysical$Outbound = {
-  firmware_rev?: string | undefined;
-  hardware_rev?: string | undefined;
-  mfg_name?: string | undefined;
-  model_name?: string | undefined;
-  name?: string | undefined;
-  serial_num?: string | undefined;
-  software_rev?: string | undefined;
-};
-
-/** @internal */
-export const SnmpPhysical$outboundSchema: z.ZodType<
-  SnmpPhysical$Outbound,
-  z.ZodTypeDef,
-  SnmpPhysical
-> = z.object({
-  firmwareRev: z.string().optional(),
-  hardwareRev: z.string().optional(),
-  mfgName: z.string().optional(),
-  modelName: z.string().optional(),
-  name: z.string().optional(),
-  serialNum: z.string().optional(),
-  softwareRev: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    firmwareRev: "firmware_rev",
-    hardwareRev: "hardware_rev",
-    mfgName: "mfg_name",
-    modelName: "model_name",
-    serialNum: "serial_num",
-    softwareRev: "software_rev",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SnmpPhysical$ {
-  /** @deprecated use `SnmpPhysical$inboundSchema` instead. */
-  export const inboundSchema = SnmpPhysical$inboundSchema;
-  /** @deprecated use `SnmpPhysical$outboundSchema` instead. */
-  export const outboundSchema = SnmpPhysical$outboundSchema;
-  /** @deprecated use `SnmpPhysical$Outbound` instead. */
-  export type Outbound = SnmpPhysical$Outbound;
-}
-
-export function snmpPhysicalToJSON(snmpPhysical: SnmpPhysical): string {
-  return JSON.stringify(SnmpPhysical$outboundSchema.parse(snmpPhysical));
-}
-
 export function snmpPhysicalFromJSON(
   jsonString: string,
 ): SafeParseResult<SnmpPhysical, SDKValidationError> {

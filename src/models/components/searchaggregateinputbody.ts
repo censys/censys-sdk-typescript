@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SearchAggregateInputBody = {
   /**
@@ -30,25 +27,6 @@ export type SearchAggregateInputBody = {
    */
   query: string;
 };
-
-/** @internal */
-export const SearchAggregateInputBody$inboundSchema: z.ZodType<
-  SearchAggregateInputBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  count_by_level: z.string().optional(),
-  field: z.string(),
-  filter_by_query: z.boolean().default(false),
-  number_of_buckets: z.number().int(),
-  query: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "count_by_level": "countByLevel",
-    "filter_by_query": "filterByQuery",
-    "number_of_buckets": "numberOfBuckets",
-  });
-});
 
 /** @internal */
 export type SearchAggregateInputBody$Outbound = {
@@ -78,33 +56,10 @@ export const SearchAggregateInputBody$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SearchAggregateInputBody$ {
-  /** @deprecated use `SearchAggregateInputBody$inboundSchema` instead. */
-  export const inboundSchema = SearchAggregateInputBody$inboundSchema;
-  /** @deprecated use `SearchAggregateInputBody$outboundSchema` instead. */
-  export const outboundSchema = SearchAggregateInputBody$outboundSchema;
-  /** @deprecated use `SearchAggregateInputBody$Outbound` instead. */
-  export type Outbound = SearchAggregateInputBody$Outbound;
-}
-
 export function searchAggregateInputBodyToJSON(
   searchAggregateInputBody: SearchAggregateInputBody,
 ): string {
   return JSON.stringify(
     SearchAggregateInputBody$outboundSchema.parse(searchAggregateInputBody),
-  );
-}
-
-export function searchAggregateInputBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<SearchAggregateInputBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SearchAggregateInputBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SearchAggregateInputBody' from JSON`,
   );
 }

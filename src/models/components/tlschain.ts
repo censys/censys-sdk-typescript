@@ -40,47 +40,6 @@ export const TlsChain$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type TlsChain$Outbound = {
-  fingerprint_sha256?: string | undefined;
-  issuer_dn?: string | undefined;
-  subject_dn?: string | undefined;
-};
-
-/** @internal */
-export const TlsChain$outboundSchema: z.ZodType<
-  TlsChain$Outbound,
-  z.ZodTypeDef,
-  TlsChain
-> = z.object({
-  fingerprintSha256: z.string().optional(),
-  issuerDn: z.string().optional(),
-  subjectDn: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    fingerprintSha256: "fingerprint_sha256",
-    issuerDn: "issuer_dn",
-    subjectDn: "subject_dn",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TlsChain$ {
-  /** @deprecated use `TlsChain$inboundSchema` instead. */
-  export const inboundSchema = TlsChain$inboundSchema;
-  /** @deprecated use `TlsChain$outboundSchema` instead. */
-  export const outboundSchema = TlsChain$outboundSchema;
-  /** @deprecated use `TlsChain$Outbound` instead. */
-  export type Outbound = TlsChain$Outbound;
-}
-
-export function tlsChainToJSON(tlsChain: TlsChain): string {
-  return JSON.stringify(TlsChain$outboundSchema.parse(tlsChain));
-}
-
 export function tlsChainFromJSON(
   jsonString: string,
 ): SafeParseResult<TlsChain, SDKValidationError> {

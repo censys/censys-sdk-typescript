@@ -27,47 +27,6 @@ export const ForwardDnsResolved$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type ForwardDnsResolved$Outbound = {
-  name?: string | undefined;
-  resolve_time?: string | undefined;
-};
-
-/** @internal */
-export const ForwardDnsResolved$outboundSchema: z.ZodType<
-  ForwardDnsResolved$Outbound,
-  z.ZodTypeDef,
-  ForwardDnsResolved
-> = z.object({
-  name: z.string().optional(),
-  resolveTime: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    resolveTime: "resolve_time",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ForwardDnsResolved$ {
-  /** @deprecated use `ForwardDnsResolved$inboundSchema` instead. */
-  export const inboundSchema = ForwardDnsResolved$inboundSchema;
-  /** @deprecated use `ForwardDnsResolved$outboundSchema` instead. */
-  export const outboundSchema = ForwardDnsResolved$outboundSchema;
-  /** @deprecated use `ForwardDnsResolved$Outbound` instead. */
-  export type Outbound = ForwardDnsResolved$Outbound;
-}
-
-export function forwardDnsResolvedToJSON(
-  forwardDnsResolved: ForwardDnsResolved,
-): string {
-  return JSON.stringify(
-    ForwardDnsResolved$outboundSchema.parse(forwardDnsResolved),
-  );
-}
-
 export function forwardDnsResolvedFromJSON(
   jsonString: string,
 ): SafeParseResult<ForwardDnsResolved, SDKValidationError> {

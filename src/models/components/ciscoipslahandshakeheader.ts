@@ -26,47 +26,6 @@ export const CiscoIpslaHandshakeHeader$inboundSchema: z.ZodType<
   version: z.number().int().optional(),
 });
 
-/** @internal */
-export type CiscoIpslaHandshakeHeader$Outbound = {
-  length?: number | undefined;
-  seq?: number | undefined;
-  unknown?: number | undefined;
-  version?: number | undefined;
-};
-
-/** @internal */
-export const CiscoIpslaHandshakeHeader$outboundSchema: z.ZodType<
-  CiscoIpslaHandshakeHeader$Outbound,
-  z.ZodTypeDef,
-  CiscoIpslaHandshakeHeader
-> = z.object({
-  length: z.number().int().optional(),
-  seq: z.number().int().optional(),
-  unknown: z.number().int().optional(),
-  version: z.number().int().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CiscoIpslaHandshakeHeader$ {
-  /** @deprecated use `CiscoIpslaHandshakeHeader$inboundSchema` instead. */
-  export const inboundSchema = CiscoIpslaHandshakeHeader$inboundSchema;
-  /** @deprecated use `CiscoIpslaHandshakeHeader$outboundSchema` instead. */
-  export const outboundSchema = CiscoIpslaHandshakeHeader$outboundSchema;
-  /** @deprecated use `CiscoIpslaHandshakeHeader$Outbound` instead. */
-  export type Outbound = CiscoIpslaHandshakeHeader$Outbound;
-}
-
-export function ciscoIpslaHandshakeHeaderToJSON(
-  ciscoIpslaHandshakeHeader: CiscoIpslaHandshakeHeader,
-): string {
-  return JSON.stringify(
-    CiscoIpslaHandshakeHeader$outboundSchema.parse(ciscoIpslaHandshakeHeader),
-  );
-}
-
 export function ciscoIpslaHandshakeHeaderFromJSON(
   jsonString: string,
 ): SafeParseResult<CiscoIpslaHandshakeHeader, SDKValidationError> {

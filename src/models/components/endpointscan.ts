@@ -11,111 +11,34 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ChromeDevtools,
   ChromeDevtools$inboundSchema,
-  ChromeDevtools$Outbound,
-  ChromeDevtools$outboundSchema,
 } from "./chromedevtools.js";
-import {
-  CobaltStrike,
-  CobaltStrike$inboundSchema,
-  CobaltStrike$Outbound,
-  CobaltStrike$outboundSchema,
-} from "./cobaltstrike.js";
-import {
-  ElasticSearch,
-  ElasticSearch$inboundSchema,
-  ElasticSearch$Outbound,
-  ElasticSearch$outboundSchema,
-} from "./elasticsearch.js";
-import {
-  Fortigate,
-  Fortigate$inboundSchema,
-  Fortigate$Outbound,
-  Fortigate$outboundSchema,
-} from "./fortigate.js";
-import {
-  Graphql,
-  Graphql$inboundSchema,
-  Graphql$Outbound,
-  Graphql$outboundSchema,
-} from "./graphql.js";
-import {
-  Http,
-  Http$inboundSchema,
-  Http$Outbound,
-  Http$outboundSchema,
-} from "./http.js";
+import { CobaltStrike, CobaltStrike$inboundSchema } from "./cobaltstrike.js";
+import { ElasticSearch, ElasticSearch$inboundSchema } from "./elasticsearch.js";
+import { Fortigate, Fortigate$inboundSchema } from "./fortigate.js";
+import { Graphql, Graphql$inboundSchema } from "./graphql.js";
+import { Http, Http$inboundSchema } from "./http.js";
 import {
   IvantiAvalanche,
   IvantiAvalanche$inboundSchema,
-  IvantiAvalanche$Outbound,
-  IvantiAvalanche$outboundSchema,
 } from "./ivantiavalanche.js";
-import {
-  Kubernetes,
-  Kubernetes$inboundSchema,
-  Kubernetes$Outbound,
-  Kubernetes$outboundSchema,
-} from "./kubernetes.js";
-import {
-  Ollama,
-  Ollama$inboundSchema,
-  Ollama$Outbound,
-  Ollama$outboundSchema,
-} from "./ollama.js";
-import {
-  OpenDirectory,
-  OpenDirectory$inboundSchema,
-  OpenDirectory$Outbound,
-  OpenDirectory$outboundSchema,
-} from "./opendirectory.js";
+import { Jenkins, Jenkins$inboundSchema } from "./jenkins.js";
+import { Kubernetes, Kubernetes$inboundSchema } from "./kubernetes.js";
+import { Ollama, Ollama$inboundSchema } from "./ollama.js";
+import { OpenDirectory, OpenDirectory$inboundSchema } from "./opendirectory.js";
 import {
   PlexMediaServer,
   PlexMediaServer$inboundSchema,
-  PlexMediaServer$Outbound,
-  PlexMediaServer$outboundSchema,
 } from "./plexmediaserver.js";
-import {
-  Pprof,
-  Pprof$inboundSchema,
-  Pprof$Outbound,
-  Pprof$outboundSchema,
-} from "./pprof.js";
-import {
-  Prometheus,
-  Prometheus$inboundSchema,
-  Prometheus$Outbound,
-  Prometheus$outboundSchema,
-} from "./prometheus.js";
+import { Pprof, Pprof$inboundSchema } from "./pprof.js";
+import { Prometheus, Prometheus$inboundSchema } from "./prometheus.js";
 import {
   PrometheusTarget,
   PrometheusTarget$inboundSchema,
-  PrometheusTarget$Outbound,
-  PrometheusTarget$outboundSchema,
 } from "./prometheustarget.js";
-import {
-  RedlionWeb,
-  RedlionWeb$inboundSchema,
-  RedlionWeb$Outbound,
-  RedlionWeb$outboundSchema,
-} from "./redlionweb.js";
-import {
-  ScadaView,
-  ScadaView$inboundSchema,
-  ScadaView$Outbound,
-  ScadaView$outboundSchema,
-} from "./scadaview.js";
-import {
-  Screenshot,
-  Screenshot$inboundSchema,
-  Screenshot$Outbound,
-  Screenshot$outboundSchema,
-} from "./screenshot.js";
-import {
-  Tls,
-  Tls$inboundSchema,
-  Tls$Outbound,
-  Tls$outboundSchema,
-} from "./tls.js";
+import { RedlionWeb, RedlionWeb$inboundSchema } from "./redlionweb.js";
+import { ScadaView, ScadaView$inboundSchema } from "./scadaview.js";
+import { Screenshot, Screenshot$inboundSchema } from "./screenshot.js";
+import { Tls, Tls$inboundSchema } from "./tls.js";
 
 export const EndpointScanTransportProtocol = {
   Unknown: "",
@@ -142,6 +65,7 @@ export type EndpointScan = {
   ip?: string | undefined;
   isSuccess?: boolean | undefined;
   ivantiAvalanche?: IvantiAvalanche | undefined;
+  jenkins?: Jenkins | undefined;
   kubernetes?: Kubernetes | undefined;
   ollama?: Ollama | undefined;
   openDirectory?: OpenDirectory | undefined;
@@ -165,22 +89,6 @@ export const EndpointScanTransportProtocol$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(EndpointScanTransportProtocol);
 
 /** @internal */
-export const EndpointScanTransportProtocol$outboundSchema: z.ZodNativeEnum<
-  typeof EndpointScanTransportProtocol
-> = EndpointScanTransportProtocol$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EndpointScanTransportProtocol$ {
-  /** @deprecated use `EndpointScanTransportProtocol$inboundSchema` instead. */
-  export const inboundSchema = EndpointScanTransportProtocol$inboundSchema;
-  /** @deprecated use `EndpointScanTransportProtocol$outboundSchema` instead. */
-  export const outboundSchema = EndpointScanTransportProtocol$outboundSchema;
-}
-
-/** @internal */
 export const EndpointScan$inboundSchema: z.ZodType<
   EndpointScan,
   z.ZodTypeDef,
@@ -199,6 +107,7 @@ export const EndpointScan$inboundSchema: z.ZodType<
   ip: z.string().optional(),
   is_success: z.boolean().optional(),
   ivanti_avalanche: IvantiAvalanche$inboundSchema.optional(),
+  jenkins: Jenkins$inboundSchema.optional(),
   kubernetes: Kubernetes$inboundSchema.optional(),
   ollama: Ollama$inboundSchema.optional(),
   open_directory: OpenDirectory$inboundSchema.optional(),
@@ -231,107 +140,6 @@ export const EndpointScan$inboundSchema: z.ZodType<
     "transport_protocol": "transportProtocol",
   });
 });
-
-/** @internal */
-export type EndpointScan$Outbound = {
-  banner?: string | undefined;
-  banner_hash_sha256?: string | undefined;
-  chrome_devtools?: ChromeDevtools$Outbound | undefined;
-  cobalt_strike?: CobaltStrike$Outbound | undefined;
-  elasticsearch?: ElasticSearch$Outbound | undefined;
-  endpoint_type?: string | undefined;
-  fortigate?: Fortigate$Outbound | undefined;
-  graphql?: Graphql$Outbound | undefined;
-  hostname?: string | undefined;
-  http?: Http$Outbound | undefined;
-  ip?: string | undefined;
-  is_success?: boolean | undefined;
-  ivanti_avalanche?: IvantiAvalanche$Outbound | undefined;
-  kubernetes?: Kubernetes$Outbound | undefined;
-  ollama?: Ollama$Outbound | undefined;
-  open_directory?: OpenDirectory$Outbound | undefined;
-  path?: string | undefined;
-  plex_media_server?: PlexMediaServer$Outbound | undefined;
-  port?: number | undefined;
-  pprof?: Pprof$Outbound | undefined;
-  prometheus?: Prometheus$Outbound | undefined;
-  prometheus_target?: PrometheusTarget$Outbound | undefined;
-  redlion_web?: RedlionWeb$Outbound | undefined;
-  scada_view?: ScadaView$Outbound | undefined;
-  scan_time?: string | undefined;
-  screenshots?: Array<Screenshot$Outbound> | null | undefined;
-  tls?: Tls$Outbound | undefined;
-  transport_protocol?: string | undefined;
-};
-
-/** @internal */
-export const EndpointScan$outboundSchema: z.ZodType<
-  EndpointScan$Outbound,
-  z.ZodTypeDef,
-  EndpointScan
-> = z.object({
-  banner: z.string().optional(),
-  bannerHashSha256: z.string().optional(),
-  chromeDevtools: ChromeDevtools$outboundSchema.optional(),
-  cobaltStrike: CobaltStrike$outboundSchema.optional(),
-  elasticsearch: ElasticSearch$outboundSchema.optional(),
-  endpointType: z.string().optional(),
-  fortigate: Fortigate$outboundSchema.optional(),
-  graphql: Graphql$outboundSchema.optional(),
-  hostname: z.string().optional(),
-  http: Http$outboundSchema.optional(),
-  ip: z.string().optional(),
-  isSuccess: z.boolean().optional(),
-  ivantiAvalanche: IvantiAvalanche$outboundSchema.optional(),
-  kubernetes: Kubernetes$outboundSchema.optional(),
-  ollama: Ollama$outboundSchema.optional(),
-  openDirectory: OpenDirectory$outboundSchema.optional(),
-  path: z.string().optional(),
-  plexMediaServer: PlexMediaServer$outboundSchema.optional(),
-  port: z.number().int().optional(),
-  pprof: Pprof$outboundSchema.optional(),
-  prometheus: Prometheus$outboundSchema.optional(),
-  prometheusTarget: PrometheusTarget$outboundSchema.optional(),
-  redlionWeb: RedlionWeb$outboundSchema.optional(),
-  scadaView: ScadaView$outboundSchema.optional(),
-  scanTime: z.string().optional(),
-  screenshots: z.nullable(z.array(Screenshot$outboundSchema)).optional(),
-  tls: Tls$outboundSchema.optional(),
-  transportProtocol: EndpointScanTransportProtocol$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    bannerHashSha256: "banner_hash_sha256",
-    chromeDevtools: "chrome_devtools",
-    cobaltStrike: "cobalt_strike",
-    endpointType: "endpoint_type",
-    isSuccess: "is_success",
-    ivantiAvalanche: "ivanti_avalanche",
-    openDirectory: "open_directory",
-    plexMediaServer: "plex_media_server",
-    prometheusTarget: "prometheus_target",
-    redlionWeb: "redlion_web",
-    scadaView: "scada_view",
-    scanTime: "scan_time",
-    transportProtocol: "transport_protocol",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EndpointScan$ {
-  /** @deprecated use `EndpointScan$inboundSchema` instead. */
-  export const inboundSchema = EndpointScan$inboundSchema;
-  /** @deprecated use `EndpointScan$outboundSchema` instead. */
-  export const outboundSchema = EndpointScan$outboundSchema;
-  /** @deprecated use `EndpointScan$Outbound` instead. */
-  export type Outbound = EndpointScan$Outbound;
-}
-
-export function endpointScanToJSON(endpointScan: EndpointScan): string {
-  return JSON.stringify(EndpointScan$outboundSchema.parse(endpointScan));
-}
 
 export function endpointScanFromJSON(
   jsonString: string,

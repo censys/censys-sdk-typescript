@@ -36,52 +36,6 @@ export const ThreatActor$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type ThreatActor$Outbound = {
-  all_names?: Array<string> | null | undefined;
-  id?: string | undefined;
-  malpedia_group_id?: string | undefined;
-  mitre_group_id?: string | undefined;
-  primary_name?: string | undefined;
-};
-
-/** @internal */
-export const ThreatActor$outboundSchema: z.ZodType<
-  ThreatActor$Outbound,
-  z.ZodTypeDef,
-  ThreatActor
-> = z.object({
-  allNames: z.nullable(z.array(z.string())).optional(),
-  id: z.string().optional(),
-  malpediaGroupId: z.string().optional(),
-  mitreGroupId: z.string().optional(),
-  primaryName: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    allNames: "all_names",
-    malpediaGroupId: "malpedia_group_id",
-    mitreGroupId: "mitre_group_id",
-    primaryName: "primary_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ThreatActor$ {
-  /** @deprecated use `ThreatActor$inboundSchema` instead. */
-  export const inboundSchema = ThreatActor$inboundSchema;
-  /** @deprecated use `ThreatActor$outboundSchema` instead. */
-  export const outboundSchema = ThreatActor$outboundSchema;
-  /** @deprecated use `ThreatActor$Outbound` instead. */
-  export type Outbound = ThreatActor$Outbound;
-}
-
-export function threatActorToJSON(threatActor: ThreatActor): string {
-  return JSON.stringify(ThreatActor$outboundSchema.parse(threatActor));
-}
-
 export function threatActorFromJSON(
   jsonString: string,
 ): SafeParseResult<ThreatActor, SDKValidationError> {

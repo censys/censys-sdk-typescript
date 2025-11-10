@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  UserNotice,
-  UserNotice$inboundSchema,
-  UserNotice$Outbound,
-  UserNotice$outboundSchema,
-} from "./usernotice.js";
+import { UserNotice, UserNotice$inboundSchema } from "./usernotice.js";
 
 export type CertificatePolicy = {
   cps?: Array<string> | null | undefined;
@@ -34,49 +29,6 @@ export const CertificatePolicy$inboundSchema: z.ZodType<
     "user_notice": "userNotice",
   });
 });
-
-/** @internal */
-export type CertificatePolicy$Outbound = {
-  cps?: Array<string> | null | undefined;
-  id?: string | undefined;
-  user_notice?: Array<UserNotice$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const CertificatePolicy$outboundSchema: z.ZodType<
-  CertificatePolicy$Outbound,
-  z.ZodTypeDef,
-  CertificatePolicy
-> = z.object({
-  cps: z.nullable(z.array(z.string())).optional(),
-  id: z.string().optional(),
-  userNotice: z.nullable(z.array(UserNotice$outboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    userNotice: "user_notice",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CertificatePolicy$ {
-  /** @deprecated use `CertificatePolicy$inboundSchema` instead. */
-  export const inboundSchema = CertificatePolicy$inboundSchema;
-  /** @deprecated use `CertificatePolicy$outboundSchema` instead. */
-  export const outboundSchema = CertificatePolicy$outboundSchema;
-  /** @deprecated use `CertificatePolicy$Outbound` instead. */
-  export type Outbound = CertificatePolicy$Outbound;
-}
-
-export function certificatePolicyToJSON(
-  certificatePolicy: CertificatePolicy,
-): string {
-  return JSON.stringify(
-    CertificatePolicy$outboundSchema.parse(certificatePolicy),
-  );
-}
 
 export function certificatePolicyFromJSON(
   jsonString: string,

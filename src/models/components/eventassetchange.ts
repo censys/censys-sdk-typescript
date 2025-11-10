@@ -26,21 +26,6 @@ export const ChangeType$inboundSchema: z.ZodNativeEnum<typeof ChangeType> = z
   .nativeEnum(ChangeType);
 
 /** @internal */
-export const ChangeType$outboundSchema: z.ZodNativeEnum<typeof ChangeType> =
-  ChangeType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ChangeType$ {
-  /** @deprecated use `ChangeType$inboundSchema` instead. */
-  export const inboundSchema = ChangeType$inboundSchema;
-  /** @deprecated use `ChangeType$outboundSchema` instead. */
-  export const outboundSchema = ChangeType$outboundSchema;
-}
-
-/** @internal */
 export const EventAssetChange$inboundSchema: z.ZodType<
   EventAssetChange,
   z.ZodTypeDef,
@@ -55,50 +40,6 @@ export const EventAssetChange$inboundSchema: z.ZodType<
     "event_time": "eventTime",
   });
 });
-
-/** @internal */
-export type EventAssetChange$Outbound = {
-  change_type: string;
-  event_time: string;
-  reason: string;
-};
-
-/** @internal */
-export const EventAssetChange$outboundSchema: z.ZodType<
-  EventAssetChange$Outbound,
-  z.ZodTypeDef,
-  EventAssetChange
-> = z.object({
-  changeType: ChangeType$outboundSchema,
-  eventTime: z.date().transform(v => v.toISOString()),
-  reason: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    changeType: "change_type",
-    eventTime: "event_time",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EventAssetChange$ {
-  /** @deprecated use `EventAssetChange$inboundSchema` instead. */
-  export const inboundSchema = EventAssetChange$inboundSchema;
-  /** @deprecated use `EventAssetChange$outboundSchema` instead. */
-  export const outboundSchema = EventAssetChange$outboundSchema;
-  /** @deprecated use `EventAssetChange$Outbound` instead. */
-  export type Outbound = EventAssetChange$Outbound;
-}
-
-export function eventAssetChangeToJSON(
-  eventAssetChange: EventAssetChange,
-): string {
-  return JSON.stringify(
-    EventAssetChange$outboundSchema.parse(eventAssetChange),
-  );
-}
 
 export function eventAssetChangeFromJSON(
   jsonString: string,

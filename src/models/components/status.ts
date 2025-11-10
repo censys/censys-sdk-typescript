@@ -28,47 +28,6 @@ export const Status$inboundSchema: z.ZodType<Status, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type Status$Outbound = {
-  available_workers?: number | undefined;
-  function?: string | undefined;
-  running?: number | undefined;
-  total?: number | undefined;
-};
-
-/** @internal */
-export const Status$outboundSchema: z.ZodType<
-  Status$Outbound,
-  z.ZodTypeDef,
-  Status
-> = z.object({
-  availableWorkers: z.number().int().optional(),
-  function: z.string().optional(),
-  running: z.number().int().optional(),
-  total: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    availableWorkers: "available_workers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Status$ {
-  /** @deprecated use `Status$inboundSchema` instead. */
-  export const inboundSchema = Status$inboundSchema;
-  /** @deprecated use `Status$outboundSchema` instead. */
-  export const outboundSchema = Status$outboundSchema;
-  /** @deprecated use `Status$Outbound` instead. */
-  export type Outbound = Status$Outbound;
-}
-
-export function statusToJSON(status: Status): string {
-  return JSON.stringify(Status$outboundSchema.parse(status));
-}
-
 export function statusFromJSON(
   jsonString: string,
 ): SafeParseResult<Status, SDKValidationError> {

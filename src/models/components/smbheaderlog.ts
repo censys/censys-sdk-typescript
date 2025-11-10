@@ -33,49 +33,6 @@ export const SmbHeaderLog$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type SmbHeaderLog$Outbound = {
-  command?: number | undefined;
-  credits?: number | undefined;
-  flags?: number | undefined;
-  protocol_id?: string | undefined;
-  status?: number | undefined;
-};
-
-/** @internal */
-export const SmbHeaderLog$outboundSchema: z.ZodType<
-  SmbHeaderLog$Outbound,
-  z.ZodTypeDef,
-  SmbHeaderLog
-> = z.object({
-  command: z.number().int().optional(),
-  credits: z.number().int().optional(),
-  flags: z.number().int().optional(),
-  protocolId: z.string().optional(),
-  status: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    protocolId: "protocol_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SmbHeaderLog$ {
-  /** @deprecated use `SmbHeaderLog$inboundSchema` instead. */
-  export const inboundSchema = SmbHeaderLog$inboundSchema;
-  /** @deprecated use `SmbHeaderLog$outboundSchema` instead. */
-  export const outboundSchema = SmbHeaderLog$outboundSchema;
-  /** @deprecated use `SmbHeaderLog$Outbound` instead. */
-  export type Outbound = SmbHeaderLog$Outbound;
-}
-
-export function smbHeaderLogToJSON(smbHeaderLog: SmbHeaderLog): string {
-  return JSON.stringify(SmbHeaderLog$outboundSchema.parse(smbHeaderLog));
-}
-
 export function smbHeaderLogFromJSON(
   jsonString: string,
 ): SafeParseResult<SmbHeaderLog, SDKValidationError> {

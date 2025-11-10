@@ -27,43 +27,6 @@ export const OnvifHostname$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type OnvifHostname$Outbound = {
-  from_dhcp?: boolean | undefined;
-  name?: string | undefined;
-};
-
-/** @internal */
-export const OnvifHostname$outboundSchema: z.ZodType<
-  OnvifHostname$Outbound,
-  z.ZodTypeDef,
-  OnvifHostname
-> = z.object({
-  fromDhcp: z.boolean().optional(),
-  name: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    fromDhcp: "from_dhcp",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OnvifHostname$ {
-  /** @deprecated use `OnvifHostname$inboundSchema` instead. */
-  export const inboundSchema = OnvifHostname$inboundSchema;
-  /** @deprecated use `OnvifHostname$outboundSchema` instead. */
-  export const outboundSchema = OnvifHostname$outboundSchema;
-  /** @deprecated use `OnvifHostname$Outbound` instead. */
-  export type Outbound = OnvifHostname$Outbound;
-}
-
-export function onvifHostnameToJSON(onvifHostname: OnvifHostname): string {
-  return JSON.stringify(OnvifHostname$outboundSchema.parse(onvifHostname));
-}
-
 export function onvifHostnameFromJSON(
   jsonString: string,
 ): SafeParseResult<OnvifHostname, SDKValidationError> {

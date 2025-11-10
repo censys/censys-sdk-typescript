@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SshAlgorithmSelectionDirectionAlgorithms,
   SshAlgorithmSelectionDirectionAlgorithms$inboundSchema,
-  SshAlgorithmSelectionDirectionAlgorithms$Outbound,
-  SshAlgorithmSelectionDirectionAlgorithms$outboundSchema,
 } from "./sshalgorithmselectiondirectionalgorithms.js";
 
 export type SshAlgorithmSelection = {
@@ -41,60 +39,6 @@ export const SshAlgorithmSelection$inboundSchema: z.ZodType<
     "server_to_client_alg_group": "serverToClientAlgGroup",
   });
 });
-
-/** @internal */
-export type SshAlgorithmSelection$Outbound = {
-  client_to_server_alg_group?:
-    | SshAlgorithmSelectionDirectionAlgorithms$Outbound
-    | undefined;
-  host_key_algorithm?: string | undefined;
-  kex_algorithm?: string | undefined;
-  server_to_client_alg_group?:
-    | SshAlgorithmSelectionDirectionAlgorithms$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const SshAlgorithmSelection$outboundSchema: z.ZodType<
-  SshAlgorithmSelection$Outbound,
-  z.ZodTypeDef,
-  SshAlgorithmSelection
-> = z.object({
-  clientToServerAlgGroup:
-    SshAlgorithmSelectionDirectionAlgorithms$outboundSchema.optional(),
-  hostKeyAlgorithm: z.string().optional(),
-  kexAlgorithm: z.string().optional(),
-  serverToClientAlgGroup:
-    SshAlgorithmSelectionDirectionAlgorithms$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    clientToServerAlgGroup: "client_to_server_alg_group",
-    hostKeyAlgorithm: "host_key_algorithm",
-    kexAlgorithm: "kex_algorithm",
-    serverToClientAlgGroup: "server_to_client_alg_group",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SshAlgorithmSelection$ {
-  /** @deprecated use `SshAlgorithmSelection$inboundSchema` instead. */
-  export const inboundSchema = SshAlgorithmSelection$inboundSchema;
-  /** @deprecated use `SshAlgorithmSelection$outboundSchema` instead. */
-  export const outboundSchema = SshAlgorithmSelection$outboundSchema;
-  /** @deprecated use `SshAlgorithmSelection$Outbound` instead. */
-  export type Outbound = SshAlgorithmSelection$Outbound;
-}
-
-export function sshAlgorithmSelectionToJSON(
-  sshAlgorithmSelection: SshAlgorithmSelection,
-): string {
-  return JSON.stringify(
-    SshAlgorithmSelection$outboundSchema.parse(sshAlgorithmSelection),
-  );
-}
 
 export function sshAlgorithmSelectionFromJSON(
   jsonString: string,

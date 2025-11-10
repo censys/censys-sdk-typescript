@@ -6,12 +6,7 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  HostAsset,
-  HostAsset$inboundSchema,
-  HostAsset$Outbound,
-  HostAsset$outboundSchema,
-} from "./hostasset.js";
+import { HostAsset, HostAsset$inboundSchema } from "./hostasset.js";
 
 export type ResponseEnvelopeHostAsset = {
   result?: HostAsset | undefined;
@@ -25,41 +20,6 @@ export const ResponseEnvelopeHostAsset$inboundSchema: z.ZodType<
 > = z.object({
   result: HostAsset$inboundSchema.optional(),
 });
-
-/** @internal */
-export type ResponseEnvelopeHostAsset$Outbound = {
-  result?: HostAsset$Outbound | undefined;
-};
-
-/** @internal */
-export const ResponseEnvelopeHostAsset$outboundSchema: z.ZodType<
-  ResponseEnvelopeHostAsset$Outbound,
-  z.ZodTypeDef,
-  ResponseEnvelopeHostAsset
-> = z.object({
-  result: HostAsset$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseEnvelopeHostAsset$ {
-  /** @deprecated use `ResponseEnvelopeHostAsset$inboundSchema` instead. */
-  export const inboundSchema = ResponseEnvelopeHostAsset$inboundSchema;
-  /** @deprecated use `ResponseEnvelopeHostAsset$outboundSchema` instead. */
-  export const outboundSchema = ResponseEnvelopeHostAsset$outboundSchema;
-  /** @deprecated use `ResponseEnvelopeHostAsset$Outbound` instead. */
-  export type Outbound = ResponseEnvelopeHostAsset$Outbound;
-}
-
-export function responseEnvelopeHostAssetToJSON(
-  responseEnvelopeHostAsset: ResponseEnvelopeHostAsset,
-): string {
-  return JSON.stringify(
-    ResponseEnvelopeHostAsset$outboundSchema.parse(responseEnvelopeHostAsset),
-  );
-}
 
 export function responseEnvelopeHostAssetFromJSON(
   jsonString: string,

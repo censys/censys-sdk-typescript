@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   OpenDirectoryFile,
   OpenDirectoryFile$inboundSchema,
-  OpenDirectoryFile$Outbound,
-  OpenDirectoryFile$outboundSchema,
 } from "./opendirectoryfile.js";
 
 export type OpenDirectory = {
@@ -27,39 +25,6 @@ export const OpenDirectory$inboundSchema: z.ZodType<
   files: z.nullable(z.array(OpenDirectoryFile$inboundSchema)).optional(),
   recursive: z.boolean().optional(),
 });
-
-/** @internal */
-export type OpenDirectory$Outbound = {
-  files?: Array<OpenDirectoryFile$Outbound> | null | undefined;
-  recursive?: boolean | undefined;
-};
-
-/** @internal */
-export const OpenDirectory$outboundSchema: z.ZodType<
-  OpenDirectory$Outbound,
-  z.ZodTypeDef,
-  OpenDirectory
-> = z.object({
-  files: z.nullable(z.array(OpenDirectoryFile$outboundSchema)).optional(),
-  recursive: z.boolean().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OpenDirectory$ {
-  /** @deprecated use `OpenDirectory$inboundSchema` instead. */
-  export const inboundSchema = OpenDirectory$inboundSchema;
-  /** @deprecated use `OpenDirectory$outboundSchema` instead. */
-  export const outboundSchema = OpenDirectory$outboundSchema;
-  /** @deprecated use `OpenDirectory$Outbound` instead. */
-  export type Outbound = OpenDirectory$Outbound;
-}
-
-export function openDirectoryToJSON(openDirectory: OpenDirectory): string {
-  return JSON.stringify(OpenDirectory$outboundSchema.parse(openDirectory));
-}
 
 export function openDirectoryFromJSON(
   jsonString: string,

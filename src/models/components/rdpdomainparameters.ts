@@ -46,66 +46,6 @@ export const RdpDomainParameters$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type RdpDomainParameters$Outbound = {
-  domain_protocol_version?: number | undefined;
-  max_channel_ids?: number | undefined;
-  max_mcspdu_size?: number | undefined;
-  max_provider_height?: number | undefined;
-  max_token_ids?: number | undefined;
-  max_user_id_channels?: number | undefined;
-  min_throughput?: number | undefined;
-  num_priorities?: number | undefined;
-};
-
-/** @internal */
-export const RdpDomainParameters$outboundSchema: z.ZodType<
-  RdpDomainParameters$Outbound,
-  z.ZodTypeDef,
-  RdpDomainParameters
-> = z.object({
-  domainProtocolVersion: z.number().int().optional(),
-  maxChannelIds: z.number().int().optional(),
-  maxMcspduSize: z.number().int().optional(),
-  maxProviderHeight: z.number().int().optional(),
-  maxTokenIds: z.number().int().optional(),
-  maxUserIdChannels: z.number().int().optional(),
-  minThroughput: z.number().int().optional(),
-  numPriorities: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    domainProtocolVersion: "domain_protocol_version",
-    maxChannelIds: "max_channel_ids",
-    maxMcspduSize: "max_mcspdu_size",
-    maxProviderHeight: "max_provider_height",
-    maxTokenIds: "max_token_ids",
-    maxUserIdChannels: "max_user_id_channels",
-    minThroughput: "min_throughput",
-    numPriorities: "num_priorities",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RdpDomainParameters$ {
-  /** @deprecated use `RdpDomainParameters$inboundSchema` instead. */
-  export const inboundSchema = RdpDomainParameters$inboundSchema;
-  /** @deprecated use `RdpDomainParameters$outboundSchema` instead. */
-  export const outboundSchema = RdpDomainParameters$outboundSchema;
-  /** @deprecated use `RdpDomainParameters$Outbound` instead. */
-  export type Outbound = RdpDomainParameters$Outbound;
-}
-
-export function rdpDomainParametersToJSON(
-  rdpDomainParameters: RdpDomainParameters,
-): string {
-  return JSON.stringify(
-    RdpDomainParameters$outboundSchema.parse(rdpDomainParameters),
-  );
-}
-
 export function rdpDomainParametersFromJSON(
   jsonString: string,
 ): SafeParseResult<RdpDomainParameters, SDKValidationError> {

@@ -24,45 +24,6 @@ export const OpcUaLocalizedText$inboundSchema: z.ZodType<
   text: z.string().optional(),
 });
 
-/** @internal */
-export type OpcUaLocalizedText$Outbound = {
-  flags?: number | undefined;
-  locale?: string | undefined;
-  text?: string | undefined;
-};
-
-/** @internal */
-export const OpcUaLocalizedText$outboundSchema: z.ZodType<
-  OpcUaLocalizedText$Outbound,
-  z.ZodTypeDef,
-  OpcUaLocalizedText
-> = z.object({
-  flags: z.number().int().optional(),
-  locale: z.string().optional(),
-  text: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OpcUaLocalizedText$ {
-  /** @deprecated use `OpcUaLocalizedText$inboundSchema` instead. */
-  export const inboundSchema = OpcUaLocalizedText$inboundSchema;
-  /** @deprecated use `OpcUaLocalizedText$outboundSchema` instead. */
-  export const outboundSchema = OpcUaLocalizedText$outboundSchema;
-  /** @deprecated use `OpcUaLocalizedText$Outbound` instead. */
-  export type Outbound = OpcUaLocalizedText$Outbound;
-}
-
-export function opcUaLocalizedTextToJSON(
-  opcUaLocalizedText: OpcUaLocalizedText,
-): string {
-  return JSON.stringify(
-    OpcUaLocalizedText$outboundSchema.parse(opcUaLocalizedText),
-  );
-}
-
 export function opcUaLocalizedTextFromJSON(
   jsonString: string,
 ): SafeParseResult<OpcUaLocalizedText, SDKValidationError> {

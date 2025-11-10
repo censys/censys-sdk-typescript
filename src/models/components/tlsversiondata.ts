@@ -33,21 +33,6 @@ export const Version$inboundSchema: z.ZodNativeEnum<typeof Version> = z
   .nativeEnum(Version);
 
 /** @internal */
-export const Version$outboundSchema: z.ZodNativeEnum<typeof Version> =
-  Version$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Version$ {
-  /** @deprecated use `Version$inboundSchema` instead. */
-  export const inboundSchema = Version$inboundSchema;
-  /** @deprecated use `Version$outboundSchema` instead. */
-  export const outboundSchema = Version$outboundSchema;
-}
-
-/** @internal */
 export const TlsVersionData$inboundSchema: z.ZodType<
   TlsVersionData,
   z.ZodTypeDef,
@@ -57,41 +42,6 @@ export const TlsVersionData$inboundSchema: z.ZodType<
   ja4s: z.string().optional(),
   version: Version$inboundSchema.optional(),
 });
-
-/** @internal */
-export type TlsVersionData$Outbound = {
-  ja3s?: string | undefined;
-  ja4s?: string | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const TlsVersionData$outboundSchema: z.ZodType<
-  TlsVersionData$Outbound,
-  z.ZodTypeDef,
-  TlsVersionData
-> = z.object({
-  ja3s: z.string().optional(),
-  ja4s: z.string().optional(),
-  version: Version$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TlsVersionData$ {
-  /** @deprecated use `TlsVersionData$inboundSchema` instead. */
-  export const inboundSchema = TlsVersionData$inboundSchema;
-  /** @deprecated use `TlsVersionData$outboundSchema` instead. */
-  export const outboundSchema = TlsVersionData$outboundSchema;
-  /** @deprecated use `TlsVersionData$Outbound` instead. */
-  export type Outbound = TlsVersionData$Outbound;
-}
-
-export function tlsVersionDataToJSON(tlsVersionData: TlsVersionData): string {
-  return JSON.stringify(TlsVersionData$outboundSchema.parse(tlsVersionData));
-}
 
 export function tlsVersionDataFromJSON(
   jsonString: string,

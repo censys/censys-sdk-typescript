@@ -10,14 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   EventAssetChange,
   EventAssetChange$inboundSchema,
-  EventAssetChange$Outbound,
-  EventAssetChange$outboundSchema,
 } from "./eventassetchange.js";
 import {
   EventStatusChange,
   EventStatusChange$inboundSchema,
-  EventStatusChange$Outbound,
-  EventStatusChange$outboundSchema,
 } from "./eventstatuschange.js";
 
 export type CollectionEvent = {
@@ -39,46 +35,6 @@ export const CollectionEvent$inboundSchema: z.ZodType<
     "status_change": "statusChange",
   });
 });
-
-/** @internal */
-export type CollectionEvent$Outbound = {
-  asset_change?: EventAssetChange$Outbound | undefined;
-  status_change?: EventStatusChange$Outbound | undefined;
-};
-
-/** @internal */
-export const CollectionEvent$outboundSchema: z.ZodType<
-  CollectionEvent$Outbound,
-  z.ZodTypeDef,
-  CollectionEvent
-> = z.object({
-  assetChange: EventAssetChange$outboundSchema.optional(),
-  statusChange: EventStatusChange$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    assetChange: "asset_change",
-    statusChange: "status_change",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CollectionEvent$ {
-  /** @deprecated use `CollectionEvent$inboundSchema` instead. */
-  export const inboundSchema = CollectionEvent$inboundSchema;
-  /** @deprecated use `CollectionEvent$outboundSchema` instead. */
-  export const outboundSchema = CollectionEvent$outboundSchema;
-  /** @deprecated use `CollectionEvent$Outbound` instead. */
-  export type Outbound = CollectionEvent$Outbound;
-}
-
-export function collectionEventToJSON(
-  collectionEvent: CollectionEvent,
-): string {
-  return JSON.stringify(CollectionEvent$outboundSchema.parse(collectionEvent));
-}
 
 export function collectionEventFromJSON(
   jsonString: string,

@@ -24,45 +24,6 @@ export const ElasticSearchErrorMessage$inboundSchema: z.ZodType<
   type: z.string().optional(),
 });
 
-/** @internal */
-export type ElasticSearchErrorMessage$Outbound = {
-  header?: string | undefined;
-  reason?: string | undefined;
-  type?: string | undefined;
-};
-
-/** @internal */
-export const ElasticSearchErrorMessage$outboundSchema: z.ZodType<
-  ElasticSearchErrorMessage$Outbound,
-  z.ZodTypeDef,
-  ElasticSearchErrorMessage
-> = z.object({
-  header: z.string().optional(),
-  reason: z.string().optional(),
-  type: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ElasticSearchErrorMessage$ {
-  /** @deprecated use `ElasticSearchErrorMessage$inboundSchema` instead. */
-  export const inboundSchema = ElasticSearchErrorMessage$inboundSchema;
-  /** @deprecated use `ElasticSearchErrorMessage$outboundSchema` instead. */
-  export const outboundSchema = ElasticSearchErrorMessage$outboundSchema;
-  /** @deprecated use `ElasticSearchErrorMessage$Outbound` instead. */
-  export type Outbound = ElasticSearchErrorMessage$Outbound;
-}
-
-export function elasticSearchErrorMessageToJSON(
-  elasticSearchErrorMessage: ElasticSearchErrorMessage,
-): string {
-  return JSON.stringify(
-    ElasticSearchErrorMessage$outboundSchema.parse(elasticSearchErrorMessage),
-  );
-}
-
 export function elasticSearchErrorMessageFromJSON(
   jsonString: string,
 ): SafeParseResult<ElasticSearchErrorMessage, SDKValidationError> {

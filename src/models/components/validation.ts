@@ -6,12 +6,7 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  RootStore,
-  RootStore$inboundSchema,
-  RootStore$Outbound,
-  RootStore$outboundSchema,
-} from "./rootstore.js";
+import { RootStore, RootStore$inboundSchema } from "./rootstore.js";
 
 export type Validation = {
   apple?: RootStore | undefined;
@@ -31,43 +26,6 @@ export const Validation$inboundSchema: z.ZodType<
   microsoft: RootStore$inboundSchema.optional(),
   nss: RootStore$inboundSchema.optional(),
 });
-
-/** @internal */
-export type Validation$Outbound = {
-  apple?: RootStore$Outbound | undefined;
-  chrome?: RootStore$Outbound | undefined;
-  microsoft?: RootStore$Outbound | undefined;
-  nss?: RootStore$Outbound | undefined;
-};
-
-/** @internal */
-export const Validation$outboundSchema: z.ZodType<
-  Validation$Outbound,
-  z.ZodTypeDef,
-  Validation
-> = z.object({
-  apple: RootStore$outboundSchema.optional(),
-  chrome: RootStore$outboundSchema.optional(),
-  microsoft: RootStore$outboundSchema.optional(),
-  nss: RootStore$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Validation$ {
-  /** @deprecated use `Validation$inboundSchema` instead. */
-  export const inboundSchema = Validation$inboundSchema;
-  /** @deprecated use `Validation$outboundSchema` instead. */
-  export const outboundSchema = Validation$outboundSchema;
-  /** @deprecated use `Validation$Outbound` instead. */
-  export type Outbound = Validation$Outbound;
-}
-
-export function validationToJSON(validation: Validation): string {
-  return JSON.stringify(Validation$outboundSchema.parse(validation));
-}
 
 export function validationFromJSON(
   jsonString: string,

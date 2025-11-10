@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CollectionEvent,
   CollectionEvent$inboundSchema,
-  CollectionEvent$Outbound,
-  CollectionEvent$outboundSchema,
 } from "./collectionevent.js";
 
 export type CollectionEventsResponse = {
@@ -32,47 +30,6 @@ export const CollectionEventsResponse$inboundSchema: z.ZodType<
     "next_page": "nextPage",
   });
 });
-
-/** @internal */
-export type CollectionEventsResponse$Outbound = {
-  events: Array<CollectionEvent$Outbound> | null;
-  next_page: string;
-};
-
-/** @internal */
-export const CollectionEventsResponse$outboundSchema: z.ZodType<
-  CollectionEventsResponse$Outbound,
-  z.ZodTypeDef,
-  CollectionEventsResponse
-> = z.object({
-  events: z.nullable(z.array(CollectionEvent$outboundSchema)),
-  nextPage: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    nextPage: "next_page",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CollectionEventsResponse$ {
-  /** @deprecated use `CollectionEventsResponse$inboundSchema` instead. */
-  export const inboundSchema = CollectionEventsResponse$inboundSchema;
-  /** @deprecated use `CollectionEventsResponse$outboundSchema` instead. */
-  export const outboundSchema = CollectionEventsResponse$outboundSchema;
-  /** @deprecated use `CollectionEventsResponse$Outbound` instead. */
-  export type Outbound = CollectionEventsResponse$Outbound;
-}
-
-export function collectionEventsResponseToJSON(
-  collectionEventsResponse: CollectionEventsResponse,
-): string {
-  return JSON.stringify(
-    CollectionEventsResponse$outboundSchema.parse(collectionEventsResponse),
-  );
-}
 
 export function collectionEventsResponseFromJSON(
   jsonString: string,

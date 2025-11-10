@@ -33,49 +33,6 @@ export const EipService$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type EipService$Outbound = {
-  capabilities?: number | undefined;
-  service_name?: string | undefined;
-  supports_tcp?: boolean | undefined;
-  supports_udp?: boolean | undefined;
-};
-
-/** @internal */
-export const EipService$outboundSchema: z.ZodType<
-  EipService$Outbound,
-  z.ZodTypeDef,
-  EipService
-> = z.object({
-  capabilities: z.number().int().optional(),
-  serviceName: z.string().optional(),
-  supportsTcp: z.boolean().optional(),
-  supportsUdp: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    serviceName: "service_name",
-    supportsTcp: "supports_tcp",
-    supportsUdp: "supports_udp",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EipService$ {
-  /** @deprecated use `EipService$inboundSchema` instead. */
-  export const inboundSchema = EipService$inboundSchema;
-  /** @deprecated use `EipService$outboundSchema` instead. */
-  export const outboundSchema = EipService$outboundSchema;
-  /** @deprecated use `EipService$Outbound` instead. */
-  export type Outbound = EipService$Outbound;
-}
-
-export function eipServiceToJSON(eipService: EipService): string {
-  return JSON.stringify(EipService$outboundSchema.parse(eipService));
-}
-
 export function eipServiceFromJSON(
   jsonString: string,
 ): SafeParseResult<EipService, SDKValidationError> {

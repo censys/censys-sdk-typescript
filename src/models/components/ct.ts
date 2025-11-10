@@ -6,12 +6,7 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  CtRecord,
-  CtRecord$inboundSchema,
-  CtRecord$Outbound,
-  CtRecord$outboundSchema,
-} from "./ctrecord.js";
+import { CtRecord, CtRecord$inboundSchema } from "./ctrecord.js";
 
 export type Ct = {
   entries?: { [k: string]: CtRecord } | undefined;
@@ -21,34 +16,6 @@ export type Ct = {
 export const Ct$inboundSchema: z.ZodType<Ct, z.ZodTypeDef, unknown> = z.object({
   entries: z.record(CtRecord$inboundSchema).optional(),
 });
-
-/** @internal */
-export type Ct$Outbound = {
-  entries?: { [k: string]: CtRecord$Outbound } | undefined;
-};
-
-/** @internal */
-export const Ct$outboundSchema: z.ZodType<Ct$Outbound, z.ZodTypeDef, Ct> = z
-  .object({
-    entries: z.record(CtRecord$outboundSchema).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Ct$ {
-  /** @deprecated use `Ct$inboundSchema` instead. */
-  export const inboundSchema = Ct$inboundSchema;
-  /** @deprecated use `Ct$outboundSchema` instead. */
-  export const outboundSchema = Ct$outboundSchema;
-  /** @deprecated use `Ct$Outbound` instead. */
-  export type Outbound = Ct$Outbound;
-}
-
-export function ctToJSON(ct: Ct): string {
-  return JSON.stringify(Ct$outboundSchema.parse(ct));
-}
 
 export function ctFromJSON(
   jsonString: string,

@@ -21,41 +21,6 @@ export const Contact$inboundSchema: z.ZodType<Contact, z.ZodTypeDef, unknown> =
     name: z.string().optional(),
   });
 
-/** @internal */
-export type Contact$Outbound = {
-  email?: string | undefined;
-  handle?: string | undefined;
-  name?: string | undefined;
-};
-
-/** @internal */
-export const Contact$outboundSchema: z.ZodType<
-  Contact$Outbound,
-  z.ZodTypeDef,
-  Contact
-> = z.object({
-  email: z.string().optional(),
-  handle: z.string().optional(),
-  name: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Contact$ {
-  /** @deprecated use `Contact$inboundSchema` instead. */
-  export const inboundSchema = Contact$inboundSchema;
-  /** @deprecated use `Contact$outboundSchema` instead. */
-  export const outboundSchema = Contact$outboundSchema;
-  /** @deprecated use `Contact$Outbound` instead. */
-  export type Outbound = Contact$Outbound;
-}
-
-export function contactToJSON(contact: Contact): string {
-  return JSON.stringify(Contact$outboundSchema.parse(contact));
-}
-
 export function contactFromJSON(
   jsonString: string,
 ): SafeParseResult<Contact, SDKValidationError> {

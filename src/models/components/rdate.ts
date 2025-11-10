@@ -17,37 +17,6 @@ export const Rdate$inboundSchema: z.ZodType<Rdate, z.ZodTypeDef, unknown> = z
     date: z.string().optional(),
   });
 
-/** @internal */
-export type Rdate$Outbound = {
-  date?: string | undefined;
-};
-
-/** @internal */
-export const Rdate$outboundSchema: z.ZodType<
-  Rdate$Outbound,
-  z.ZodTypeDef,
-  Rdate
-> = z.object({
-  date: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Rdate$ {
-  /** @deprecated use `Rdate$inboundSchema` instead. */
-  export const inboundSchema = Rdate$inboundSchema;
-  /** @deprecated use `Rdate$outboundSchema` instead. */
-  export const outboundSchema = Rdate$outboundSchema;
-  /** @deprecated use `Rdate$Outbound` instead. */
-  export type Outbound = Rdate$Outbound;
-}
-
-export function rdateToJSON(rdate: Rdate): string {
-  return JSON.stringify(Rdate$outboundSchema.parse(rdate));
-}
-
 export function rdateFromJSON(
   jsonString: string,
 ): SafeParseResult<Rdate, SDKValidationError> {

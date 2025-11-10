@@ -31,47 +31,6 @@ export const DcerpcEndpoint$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type DcerpcEndpoint$Outbound = {
-  bindings?: Array<string> | null | undefined;
-  executable?: string | undefined;
-  explained_uuid?: string | undefined;
-  protocol?: string | undefined;
-};
-
-/** @internal */
-export const DcerpcEndpoint$outboundSchema: z.ZodType<
-  DcerpcEndpoint$Outbound,
-  z.ZodTypeDef,
-  DcerpcEndpoint
-> = z.object({
-  bindings: z.nullable(z.array(z.string())).optional(),
-  executable: z.string().optional(),
-  explainedUuid: z.string().optional(),
-  protocol: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    explainedUuid: "explained_uuid",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DcerpcEndpoint$ {
-  /** @deprecated use `DcerpcEndpoint$inboundSchema` instead. */
-  export const inboundSchema = DcerpcEndpoint$inboundSchema;
-  /** @deprecated use `DcerpcEndpoint$outboundSchema` instead. */
-  export const outboundSchema = DcerpcEndpoint$outboundSchema;
-  /** @deprecated use `DcerpcEndpoint$Outbound` instead. */
-  export type Outbound = DcerpcEndpoint$Outbound;
-}
-
-export function dcerpcEndpointToJSON(dcerpcEndpoint: DcerpcEndpoint): string {
-  return JSON.stringify(DcerpcEndpoint$outboundSchema.parse(dcerpcEndpoint));
-}
-
 export function dcerpcEndpointFromJSON(
   jsonString: string,
 ): SafeParseResult<DcerpcEndpoint, SDKValidationError> {

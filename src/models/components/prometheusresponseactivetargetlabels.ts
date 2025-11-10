@@ -28,47 +28,6 @@ export const PrometheusResponseActiveTargetLabels$inboundSchema: z.ZodType<
   job: z.string().optional(),
 });
 
-/** @internal */
-export type PrometheusResponseActiveTargetLabels$Outbound = {
-  instance?: string | undefined;
-  job?: string | undefined;
-};
-
-/** @internal */
-export const PrometheusResponseActiveTargetLabels$outboundSchema: z.ZodType<
-  PrometheusResponseActiveTargetLabels$Outbound,
-  z.ZodTypeDef,
-  PrometheusResponseActiveTargetLabels
-> = z.object({
-  instance: z.string().optional(),
-  job: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PrometheusResponseActiveTargetLabels$ {
-  /** @deprecated use `PrometheusResponseActiveTargetLabels$inboundSchema` instead. */
-  export const inboundSchema =
-    PrometheusResponseActiveTargetLabels$inboundSchema;
-  /** @deprecated use `PrometheusResponseActiveTargetLabels$outboundSchema` instead. */
-  export const outboundSchema =
-    PrometheusResponseActiveTargetLabels$outboundSchema;
-  /** @deprecated use `PrometheusResponseActiveTargetLabels$Outbound` instead. */
-  export type Outbound = PrometheusResponseActiveTargetLabels$Outbound;
-}
-
-export function prometheusResponseActiveTargetLabelsToJSON(
-  prometheusResponseActiveTargetLabels: PrometheusResponseActiveTargetLabels,
-): string {
-  return JSON.stringify(
-    PrometheusResponseActiveTargetLabels$outboundSchema.parse(
-      prometheusResponseActiveTargetLabels,
-    ),
-  );
-}
-
 export function prometheusResponseActiveTargetLabelsFromJSON(
   jsonString: string,
 ): SafeParseResult<PrometheusResponseActiveTargetLabels, SDKValidationError> {

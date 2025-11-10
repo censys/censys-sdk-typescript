@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DhcpdiscoverResponseParams,
   DhcpdiscoverResponseParams$inboundSchema,
-  DhcpdiscoverResponseParams$Outbound,
-  DhcpdiscoverResponseParams$outboundSchema,
 } from "./dhcpdiscoverresponseparams.js";
 
 export type Dhcpdiscover = {
@@ -27,39 +25,6 @@ export const Dhcpdiscover$inboundSchema: z.ZodType<
   method: z.string().optional(),
   params: DhcpdiscoverResponseParams$inboundSchema.optional(),
 });
-
-/** @internal */
-export type Dhcpdiscover$Outbound = {
-  method?: string | undefined;
-  params?: DhcpdiscoverResponseParams$Outbound | undefined;
-};
-
-/** @internal */
-export const Dhcpdiscover$outboundSchema: z.ZodType<
-  Dhcpdiscover$Outbound,
-  z.ZodTypeDef,
-  Dhcpdiscover
-> = z.object({
-  method: z.string().optional(),
-  params: DhcpdiscoverResponseParams$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Dhcpdiscover$ {
-  /** @deprecated use `Dhcpdiscover$inboundSchema` instead. */
-  export const inboundSchema = Dhcpdiscover$inboundSchema;
-  /** @deprecated use `Dhcpdiscover$outboundSchema` instead. */
-  export const outboundSchema = Dhcpdiscover$outboundSchema;
-  /** @deprecated use `Dhcpdiscover$Outbound` instead. */
-  export type Outbound = Dhcpdiscover$Outbound;
-}
-
-export function dhcpdiscoverToJSON(dhcpdiscover: Dhcpdiscover): string {
-  return JSON.stringify(Dhcpdiscover$outboundSchema.parse(dhcpdiscover));
-}
 
 export function dhcpdiscoverFromJSON(
   jsonString: string,

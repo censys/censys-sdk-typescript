@@ -8,30 +8,10 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Cwe,
-  Cwe$inboundSchema,
-  Cwe$Outbound,
-  Cwe$outboundSchema,
-} from "./cwe.js";
-import {
-  Evidence,
-  Evidence$inboundSchema,
-  Evidence$Outbound,
-  Evidence$outboundSchema,
-} from "./evidence.js";
-import {
-  Kev,
-  Kev$inboundSchema,
-  Kev$Outbound,
-  Kev$outboundSchema,
-} from "./kev.js";
-import {
-  Metrics,
-  Metrics$inboundSchema,
-  Metrics$Outbound,
-  Metrics$outboundSchema,
-} from "./metrics.js";
+import { Cwe, Cwe$inboundSchema } from "./cwe.js";
+import { Evidence, Evidence$inboundSchema } from "./evidence.js";
+import { Kev, Kev$inboundSchema } from "./kev.js";
+import { Metrics, Metrics$inboundSchema } from "./metrics.js";
 
 export const VulnRiskSource = {
   Unknown: "",
@@ -78,58 +58,12 @@ export const VulnRiskSource$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(VulnRiskSource);
 
 /** @internal */
-export const VulnRiskSource$outboundSchema: z.ZodNativeEnum<
-  typeof VulnRiskSource
-> = VulnRiskSource$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VulnRiskSource$ {
-  /** @deprecated use `VulnRiskSource$inboundSchema` instead. */
-  export const inboundSchema = VulnRiskSource$inboundSchema;
-  /** @deprecated use `VulnRiskSource$outboundSchema` instead. */
-  export const outboundSchema = VulnRiskSource$outboundSchema;
-}
-
-/** @internal */
 export const VulnSeverity$inboundSchema: z.ZodNativeEnum<typeof VulnSeverity> =
   z.nativeEnum(VulnSeverity);
 
 /** @internal */
-export const VulnSeverity$outboundSchema: z.ZodNativeEnum<typeof VulnSeverity> =
-  VulnSeverity$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VulnSeverity$ {
-  /** @deprecated use `VulnSeverity$inboundSchema` instead. */
-  export const inboundSchema = VulnSeverity$inboundSchema;
-  /** @deprecated use `VulnSeverity$outboundSchema` instead. */
-  export const outboundSchema = VulnSeverity$outboundSchema;
-}
-
-/** @internal */
 export const VulnSource$inboundSchema: z.ZodNativeEnum<typeof VulnSource> = z
   .nativeEnum(VulnSource);
-
-/** @internal */
-export const VulnSource$outboundSchema: z.ZodNativeEnum<typeof VulnSource> =
-  VulnSource$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VulnSource$ {
-  /** @deprecated use `VulnSource$inboundSchema` instead. */
-  export const inboundSchema = VulnSource$inboundSchema;
-  /** @deprecated use `VulnSource$outboundSchema` instead. */
-  export const outboundSchema = VulnSource$outboundSchema;
-}
 
 /** @internal */
 export const Vuln$inboundSchema: z.ZodType<Vuln, z.ZodTypeDef, unknown> = z
@@ -150,58 +84,6 @@ export const Vuln$inboundSchema: z.ZodType<Vuln, z.ZodTypeDef, unknown> = z
       "risk_source": "riskSource",
     });
   });
-
-/** @internal */
-export type Vuln$Outbound = {
-  confidence?: number | undefined;
-  cwes?: Array<Cwe$Outbound> | null | undefined;
-  evidence?: Array<Evidence$Outbound> | null | undefined;
-  id?: string | undefined;
-  kev?: Array<Kev$Outbound> | null | undefined;
-  metrics?: Metrics$Outbound | undefined;
-  name?: string | undefined;
-  risk_source?: string | undefined;
-  severity?: string | undefined;
-  source?: string | undefined;
-  year?: number | undefined;
-};
-
-/** @internal */
-export const Vuln$outboundSchema: z.ZodType<Vuln$Outbound, z.ZodTypeDef, Vuln> =
-  z.object({
-    confidence: z.number().optional(),
-    cwes: z.nullable(z.array(Cwe$outboundSchema)).optional(),
-    evidence: z.nullable(z.array(Evidence$outboundSchema)).optional(),
-    id: z.string().optional(),
-    kev: z.nullable(z.array(Kev$outboundSchema)).optional(),
-    metrics: Metrics$outboundSchema.optional(),
-    name: z.string().optional(),
-    riskSource: VulnRiskSource$outboundSchema.optional(),
-    severity: VulnSeverity$outboundSchema.optional(),
-    source: VulnSource$outboundSchema.optional(),
-    year: z.number().int().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      riskSource: "risk_source",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Vuln$ {
-  /** @deprecated use `Vuln$inboundSchema` instead. */
-  export const inboundSchema = Vuln$inboundSchema;
-  /** @deprecated use `Vuln$outboundSchema` instead. */
-  export const outboundSchema = Vuln$outboundSchema;
-  /** @deprecated use `Vuln$Outbound` instead. */
-  export type Outbound = Vuln$Outbound;
-}
-
-export function vulnToJSON(vuln: Vuln): string {
-  return JSON.stringify(Vuln$outboundSchema.parse(vuln));
-}
 
 export function vulnFromJSON(
   jsonString: string,

@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SearchQueryInputBody = {
   /**
@@ -26,23 +23,6 @@ export type SearchQueryInputBody = {
    */
   query: string;
 };
-
-/** @internal */
-export const SearchQueryInputBody$inboundSchema: z.ZodType<
-  SearchQueryInputBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  fields: z.nullable(z.array(z.string())).optional(),
-  page_size: z.nullable(z.number().int()).optional(),
-  page_token: z.string().optional(),
-  query: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "page_size": "pageSize",
-    "page_token": "pageToken",
-  });
-});
 
 /** @internal */
 export type SearchQueryInputBody$Outbound = {
@@ -69,33 +49,10 @@ export const SearchQueryInputBody$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SearchQueryInputBody$ {
-  /** @deprecated use `SearchQueryInputBody$inboundSchema` instead. */
-  export const inboundSchema = SearchQueryInputBody$inboundSchema;
-  /** @deprecated use `SearchQueryInputBody$outboundSchema` instead. */
-  export const outboundSchema = SearchQueryInputBody$outboundSchema;
-  /** @deprecated use `SearchQueryInputBody$Outbound` instead. */
-  export type Outbound = SearchQueryInputBody$Outbound;
-}
-
 export function searchQueryInputBodyToJSON(
   searchQueryInputBody: SearchQueryInputBody,
 ): string {
   return JSON.stringify(
     SearchQueryInputBody$outboundSchema.parse(searchQueryInputBody),
-  );
-}
-
-export function searchQueryInputBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<SearchQueryInputBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SearchQueryInputBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SearchQueryInputBody' from JSON`,
   );
 }

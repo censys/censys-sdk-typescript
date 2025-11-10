@@ -22,43 +22,6 @@ export const CobaltStrikePostEx$inboundSchema: z.ZodType<
   x86: z.string().optional(),
 });
 
-/** @internal */
-export type CobaltStrikePostEx$Outbound = {
-  x64?: string | undefined;
-  x86?: string | undefined;
-};
-
-/** @internal */
-export const CobaltStrikePostEx$outboundSchema: z.ZodType<
-  CobaltStrikePostEx$Outbound,
-  z.ZodTypeDef,
-  CobaltStrikePostEx
-> = z.object({
-  x64: z.string().optional(),
-  x86: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CobaltStrikePostEx$ {
-  /** @deprecated use `CobaltStrikePostEx$inboundSchema` instead. */
-  export const inboundSchema = CobaltStrikePostEx$inboundSchema;
-  /** @deprecated use `CobaltStrikePostEx$outboundSchema` instead. */
-  export const outboundSchema = CobaltStrikePostEx$outboundSchema;
-  /** @deprecated use `CobaltStrikePostEx$Outbound` instead. */
-  export type Outbound = CobaltStrikePostEx$Outbound;
-}
-
-export function cobaltStrikePostExToJSON(
-  cobaltStrikePostEx: CobaltStrikePostEx,
-): string {
-  return JSON.stringify(
-    CobaltStrikePostEx$outboundSchema.parse(cobaltStrikePostEx),
-  );
-}
-
 export function cobaltStrikePostExFromJSON(
   jsonString: string,
 ): SafeParseResult<CobaltStrikePostEx, SDKValidationError> {

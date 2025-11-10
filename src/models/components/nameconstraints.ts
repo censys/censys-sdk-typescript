@@ -10,20 +10,11 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DistinguishedName,
   DistinguishedName$inboundSchema,
-  DistinguishedName$Outbound,
-  DistinguishedName$outboundSchema,
 } from "./distinguishedname.js";
-import {
-  EdiPartyName,
-  EdiPartyName$inboundSchema,
-  EdiPartyName$Outbound,
-  EdiPartyName$outboundSchema,
-} from "./edipartyname.js";
+import { EdiPartyName, EdiPartyName$inboundSchema } from "./edipartyname.js";
 import {
   GeneralSubtreeIp,
   GeneralSubtreeIp$inboundSchema,
-  GeneralSubtreeIp$Outbound,
-  GeneralSubtreeIp$outboundSchema,
 } from "./generalsubtreeip.js";
 
 export type NameConstraints = {
@@ -132,96 +123,6 @@ export const NameConstraints$inboundSchema: z.ZodType<
     "permitted_uris": "permittedUris",
   });
 });
-
-/** @internal */
-export type NameConstraints$Outbound = {
-  critical?: boolean | undefined;
-  excluded_directory_names?:
-    | Array<DistinguishedName$Outbound>
-    | null
-    | undefined;
-  excluded_edi_party_names?: Array<EdiPartyName$Outbound> | null | undefined;
-  excluded_email_addresses?: Array<string> | null | undefined;
-  excluded_ip_addresses?: Array<GeneralSubtreeIp$Outbound> | null | undefined;
-  excluded_names?: Array<string> | null | undefined;
-  excluded_registered_ids?: Array<string> | null | undefined;
-  excluded_uris?: Array<string> | null | undefined;
-  permitted_directory_names?:
-    | Array<DistinguishedName$Outbound>
-    | null
-    | undefined;
-  permitted_edi_party_names?: Array<EdiPartyName$Outbound> | null | undefined;
-  permitted_email_addresses?: Array<string> | null | undefined;
-  permitted_ip_addresses?: Array<GeneralSubtreeIp$Outbound> | null | undefined;
-  permitted_names?: Array<string> | null | undefined;
-  permitted_registered_ids?: Array<string> | null | undefined;
-  permitted_uris?: Array<string> | null | undefined;
-};
-
-/** @internal */
-export const NameConstraints$outboundSchema: z.ZodType<
-  NameConstraints$Outbound,
-  z.ZodTypeDef,
-  NameConstraints
-> = z.object({
-  critical: z.boolean().optional(),
-  excludedDirectoryNames: z.nullable(z.array(DistinguishedName$outboundSchema))
-    .optional(),
-  excludedEdiPartyNames: z.nullable(z.array(EdiPartyName$outboundSchema))
-    .optional(),
-  excludedEmailAddresses: z.nullable(z.array(z.string())).optional(),
-  excludedIpAddresses: z.nullable(z.array(GeneralSubtreeIp$outboundSchema))
-    .optional(),
-  excludedNames: z.nullable(z.array(z.string())).optional(),
-  excludedRegisteredIds: z.nullable(z.array(z.string())).optional(),
-  excludedUris: z.nullable(z.array(z.string())).optional(),
-  permittedDirectoryNames: z.nullable(z.array(DistinguishedName$outboundSchema))
-    .optional(),
-  permittedEdiPartyNames: z.nullable(z.array(EdiPartyName$outboundSchema))
-    .optional(),
-  permittedEmailAddresses: z.nullable(z.array(z.string())).optional(),
-  permittedIpAddresses: z.nullable(z.array(GeneralSubtreeIp$outboundSchema))
-    .optional(),
-  permittedNames: z.nullable(z.array(z.string())).optional(),
-  permittedRegisteredIds: z.nullable(z.array(z.string())).optional(),
-  permittedUris: z.nullable(z.array(z.string())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    excludedDirectoryNames: "excluded_directory_names",
-    excludedEdiPartyNames: "excluded_edi_party_names",
-    excludedEmailAddresses: "excluded_email_addresses",
-    excludedIpAddresses: "excluded_ip_addresses",
-    excludedNames: "excluded_names",
-    excludedRegisteredIds: "excluded_registered_ids",
-    excludedUris: "excluded_uris",
-    permittedDirectoryNames: "permitted_directory_names",
-    permittedEdiPartyNames: "permitted_edi_party_names",
-    permittedEmailAddresses: "permitted_email_addresses",
-    permittedIpAddresses: "permitted_ip_addresses",
-    permittedNames: "permitted_names",
-    permittedRegisteredIds: "permitted_registered_ids",
-    permittedUris: "permitted_uris",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NameConstraints$ {
-  /** @deprecated use `NameConstraints$inboundSchema` instead. */
-  export const inboundSchema = NameConstraints$inboundSchema;
-  /** @deprecated use `NameConstraints$outboundSchema` instead. */
-  export const outboundSchema = NameConstraints$outboundSchema;
-  /** @deprecated use `NameConstraints$Outbound` instead. */
-  export type Outbound = NameConstraints$Outbound;
-}
-
-export function nameConstraintsToJSON(
-  nameConstraints: NameConstraints,
-): string {
-  return JSON.stringify(NameConstraints$outboundSchema.parse(nameConstraints));
-}
 
 export function nameConstraintsFromJSON(
   jsonString: string,

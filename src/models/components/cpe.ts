@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  CPELifeCycle,
-  CPELifeCycle$inboundSchema,
-  CPELifeCycle$Outbound,
-  CPELifeCycle$outboundSchema,
-} from "./cpelifecycle.js";
+import { CPELifeCycle, CPELifeCycle$inboundSchema } from "./cpelifecycle.js";
 
 export type Cpe = {
   cpe?: string | undefined;
@@ -41,52 +36,6 @@ export const Cpe$inboundSchema: z.ZodType<Cpe, z.ZodTypeDef, unknown> = z
       "life_cycle": "lifeCycle",
     });
   });
-
-/** @internal */
-export type Cpe$Outbound = {
-  cpe?: string | undefined;
-  edition?: string | undefined;
-  life_cycle?: CPELifeCycle$Outbound | undefined;
-  part?: string | undefined;
-  product?: string | undefined;
-  update?: string | undefined;
-  vendor?: string | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const Cpe$outboundSchema: z.ZodType<Cpe$Outbound, z.ZodTypeDef, Cpe> = z
-  .object({
-    cpe: z.string().optional(),
-    edition: z.string().optional(),
-    lifeCycle: CPELifeCycle$outboundSchema.optional(),
-    part: z.string().optional(),
-    product: z.string().optional(),
-    update: z.string().optional(),
-    vendor: z.string().optional(),
-    version: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      lifeCycle: "life_cycle",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Cpe$ {
-  /** @deprecated use `Cpe$inboundSchema` instead. */
-  export const inboundSchema = Cpe$inboundSchema;
-  /** @deprecated use `Cpe$outboundSchema` instead. */
-  export const outboundSchema = Cpe$outboundSchema;
-  /** @deprecated use `Cpe$Outbound` instead. */
-  export type Outbound = Cpe$Outbound;
-}
-
-export function cpeToJSON(cpe: Cpe): string {
-  return JSON.stringify(Cpe$outboundSchema.parse(cpe));
-}
 
 export function cpeFromJSON(
   jsonString: string,

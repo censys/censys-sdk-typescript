@@ -38,92 +38,6 @@ export type V3GlobaldataAssetHostTimelineResponse = {
 };
 
 /** @internal */
-export const V3GlobaldataAssetHostTimelineGlobals$inboundSchema: z.ZodType<
-  V3GlobaldataAssetHostTimelineGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  organization_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "organization_id": "organizationId",
-  });
-});
-
-/** @internal */
-export type V3GlobaldataAssetHostTimelineGlobals$Outbound = {
-  organization_id?: string | undefined;
-};
-
-/** @internal */
-export const V3GlobaldataAssetHostTimelineGlobals$outboundSchema: z.ZodType<
-  V3GlobaldataAssetHostTimelineGlobals$Outbound,
-  z.ZodTypeDef,
-  V3GlobaldataAssetHostTimelineGlobals
-> = z.object({
-  organizationId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    organizationId: "organization_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3GlobaldataAssetHostTimelineGlobals$ {
-  /** @deprecated use `V3GlobaldataAssetHostTimelineGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    V3GlobaldataAssetHostTimelineGlobals$inboundSchema;
-  /** @deprecated use `V3GlobaldataAssetHostTimelineGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    V3GlobaldataAssetHostTimelineGlobals$outboundSchema;
-  /** @deprecated use `V3GlobaldataAssetHostTimelineGlobals$Outbound` instead. */
-  export type Outbound = V3GlobaldataAssetHostTimelineGlobals$Outbound;
-}
-
-export function v3GlobaldataAssetHostTimelineGlobalsToJSON(
-  v3GlobaldataAssetHostTimelineGlobals: V3GlobaldataAssetHostTimelineGlobals,
-): string {
-  return JSON.stringify(
-    V3GlobaldataAssetHostTimelineGlobals$outboundSchema.parse(
-      v3GlobaldataAssetHostTimelineGlobals,
-    ),
-  );
-}
-
-export function v3GlobaldataAssetHostTimelineGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<V3GlobaldataAssetHostTimelineGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      V3GlobaldataAssetHostTimelineGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3GlobaldataAssetHostTimelineGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const V3GlobaldataAssetHostTimelineRequest$inboundSchema: z.ZodType<
-  V3GlobaldataAssetHostTimelineRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  organization_id: z.string().optional(),
-  host_id: z.string(),
-  start_time: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  end_time: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-}).transform((v) => {
-  return remap$(v, {
-    "organization_id": "organizationId",
-    "host_id": "hostId",
-    "start_time": "startTime",
-    "end_time": "endTime",
-  });
-});
-
-/** @internal */
 export type V3GlobaldataAssetHostTimelineRequest$Outbound = {
   organization_id?: string | undefined;
   host_id: string;
@@ -150,21 +64,6 @@ export const V3GlobaldataAssetHostTimelineRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3GlobaldataAssetHostTimelineRequest$ {
-  /** @deprecated use `V3GlobaldataAssetHostTimelineRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    V3GlobaldataAssetHostTimelineRequest$inboundSchema;
-  /** @deprecated use `V3GlobaldataAssetHostTimelineRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    V3GlobaldataAssetHostTimelineRequest$outboundSchema;
-  /** @deprecated use `V3GlobaldataAssetHostTimelineRequest$Outbound` instead. */
-  export type Outbound = V3GlobaldataAssetHostTimelineRequest$Outbound;
-}
-
 export function v3GlobaldataAssetHostTimelineRequestToJSON(
   v3GlobaldataAssetHostTimelineRequest: V3GlobaldataAssetHostTimelineRequest,
 ): string {
@@ -172,17 +71,6 @@ export function v3GlobaldataAssetHostTimelineRequestToJSON(
     V3GlobaldataAssetHostTimelineRequest$outboundSchema.parse(
       v3GlobaldataAssetHostTimelineRequest,
     ),
-  );
-}
-
-export function v3GlobaldataAssetHostTimelineRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<V3GlobaldataAssetHostTimelineRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      V3GlobaldataAssetHostTimelineRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3GlobaldataAssetHostTimelineRequest' from JSON`,
   );
 }
 
@@ -200,52 +88,6 @@ export const V3GlobaldataAssetHostTimelineResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
-/** @internal */
-export type V3GlobaldataAssetHostTimelineResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-  Result: components.ResponseEnvelopeHostTimeline$Outbound;
-};
-
-/** @internal */
-export const V3GlobaldataAssetHostTimelineResponse$outboundSchema: z.ZodType<
-  V3GlobaldataAssetHostTimelineResponse$Outbound,
-  z.ZodTypeDef,
-  V3GlobaldataAssetHostTimelineResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-  result: components.ResponseEnvelopeHostTimeline$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-    result: "Result",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3GlobaldataAssetHostTimelineResponse$ {
-  /** @deprecated use `V3GlobaldataAssetHostTimelineResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    V3GlobaldataAssetHostTimelineResponse$inboundSchema;
-  /** @deprecated use `V3GlobaldataAssetHostTimelineResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    V3GlobaldataAssetHostTimelineResponse$outboundSchema;
-  /** @deprecated use `V3GlobaldataAssetHostTimelineResponse$Outbound` instead. */
-  export type Outbound = V3GlobaldataAssetHostTimelineResponse$Outbound;
-}
-
-export function v3GlobaldataAssetHostTimelineResponseToJSON(
-  v3GlobaldataAssetHostTimelineResponse: V3GlobaldataAssetHostTimelineResponse,
-): string {
-  return JSON.stringify(
-    V3GlobaldataAssetHostTimelineResponse$outboundSchema.parse(
-      v3GlobaldataAssetHostTimelineResponse,
-    ),
-  );
-}
 
 export function v3GlobaldataAssetHostTimelineResponseFromJSON(
   jsonString: string,

@@ -27,87 +27,6 @@ export type V3GlobaldataSearchAggregateResponse = {
 };
 
 /** @internal */
-export const V3GlobaldataSearchAggregateGlobals$inboundSchema: z.ZodType<
-  V3GlobaldataSearchAggregateGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  organization_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "organization_id": "organizationId",
-  });
-});
-
-/** @internal */
-export type V3GlobaldataSearchAggregateGlobals$Outbound = {
-  organization_id?: string | undefined;
-};
-
-/** @internal */
-export const V3GlobaldataSearchAggregateGlobals$outboundSchema: z.ZodType<
-  V3GlobaldataSearchAggregateGlobals$Outbound,
-  z.ZodTypeDef,
-  V3GlobaldataSearchAggregateGlobals
-> = z.object({
-  organizationId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    organizationId: "organization_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3GlobaldataSearchAggregateGlobals$ {
-  /** @deprecated use `V3GlobaldataSearchAggregateGlobals$inboundSchema` instead. */
-  export const inboundSchema = V3GlobaldataSearchAggregateGlobals$inboundSchema;
-  /** @deprecated use `V3GlobaldataSearchAggregateGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    V3GlobaldataSearchAggregateGlobals$outboundSchema;
-  /** @deprecated use `V3GlobaldataSearchAggregateGlobals$Outbound` instead. */
-  export type Outbound = V3GlobaldataSearchAggregateGlobals$Outbound;
-}
-
-export function v3GlobaldataSearchAggregateGlobalsToJSON(
-  v3GlobaldataSearchAggregateGlobals: V3GlobaldataSearchAggregateGlobals,
-): string {
-  return JSON.stringify(
-    V3GlobaldataSearchAggregateGlobals$outboundSchema.parse(
-      v3GlobaldataSearchAggregateGlobals,
-    ),
-  );
-}
-
-export function v3GlobaldataSearchAggregateGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<V3GlobaldataSearchAggregateGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      V3GlobaldataSearchAggregateGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3GlobaldataSearchAggregateGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const V3GlobaldataSearchAggregateRequest$inboundSchema: z.ZodType<
-  V3GlobaldataSearchAggregateRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  organization_id: z.string().optional(),
-  SearchAggregateInputBody: components.SearchAggregateInputBody$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "organization_id": "organizationId",
-    "SearchAggregateInputBody": "searchAggregateInputBody",
-  });
-});
-
-/** @internal */
 export type V3GlobaldataSearchAggregateRequest$Outbound = {
   organization_id?: string | undefined;
   SearchAggregateInputBody: components.SearchAggregateInputBody$Outbound;
@@ -128,20 +47,6 @@ export const V3GlobaldataSearchAggregateRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3GlobaldataSearchAggregateRequest$ {
-  /** @deprecated use `V3GlobaldataSearchAggregateRequest$inboundSchema` instead. */
-  export const inboundSchema = V3GlobaldataSearchAggregateRequest$inboundSchema;
-  /** @deprecated use `V3GlobaldataSearchAggregateRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    V3GlobaldataSearchAggregateRequest$outboundSchema;
-  /** @deprecated use `V3GlobaldataSearchAggregateRequest$Outbound` instead. */
-  export type Outbound = V3GlobaldataSearchAggregateRequest$Outbound;
-}
-
 export function v3GlobaldataSearchAggregateRequestToJSON(
   v3GlobaldataSearchAggregateRequest: V3GlobaldataSearchAggregateRequest,
 ): string {
@@ -149,17 +54,6 @@ export function v3GlobaldataSearchAggregateRequestToJSON(
     V3GlobaldataSearchAggregateRequest$outboundSchema.parse(
       v3GlobaldataSearchAggregateRequest,
     ),
-  );
-}
-
-export function v3GlobaldataSearchAggregateRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<V3GlobaldataSearchAggregateRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      V3GlobaldataSearchAggregateRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3GlobaldataSearchAggregateRequest' from JSON`,
   );
 }
 
@@ -177,52 +71,6 @@ export const V3GlobaldataSearchAggregateResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
-/** @internal */
-export type V3GlobaldataSearchAggregateResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-  Result: components.ResponseEnvelopeSearchAggregateResponse$Outbound;
-};
-
-/** @internal */
-export const V3GlobaldataSearchAggregateResponse$outboundSchema: z.ZodType<
-  V3GlobaldataSearchAggregateResponse$Outbound,
-  z.ZodTypeDef,
-  V3GlobaldataSearchAggregateResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-  result: components.ResponseEnvelopeSearchAggregateResponse$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-    result: "Result",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3GlobaldataSearchAggregateResponse$ {
-  /** @deprecated use `V3GlobaldataSearchAggregateResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    V3GlobaldataSearchAggregateResponse$inboundSchema;
-  /** @deprecated use `V3GlobaldataSearchAggregateResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    V3GlobaldataSearchAggregateResponse$outboundSchema;
-  /** @deprecated use `V3GlobaldataSearchAggregateResponse$Outbound` instead. */
-  export type Outbound = V3GlobaldataSearchAggregateResponse$Outbound;
-}
-
-export function v3GlobaldataSearchAggregateResponseToJSON(
-  v3GlobaldataSearchAggregateResponse: V3GlobaldataSearchAggregateResponse,
-): string {
-  return JSON.stringify(
-    V3GlobaldataSearchAggregateResponse$outboundSchema.parse(
-      v3GlobaldataSearchAggregateResponse,
-    ),
-  );
-}
 
 export function v3GlobaldataSearchAggregateResponseFromJSON(
   jsonString: string,

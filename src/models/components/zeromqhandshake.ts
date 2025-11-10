@@ -29,47 +29,6 @@ export const ZeromqHandshake$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type ZeromqHandshake$Outbound = {
-  raw?: string | undefined;
-  ready?: boolean | undefined;
-  socket_type?: string | undefined;
-};
-
-/** @internal */
-export const ZeromqHandshake$outboundSchema: z.ZodType<
-  ZeromqHandshake$Outbound,
-  z.ZodTypeDef,
-  ZeromqHandshake
-> = z.object({
-  raw: z.string().optional(),
-  ready: z.boolean().optional(),
-  socketType: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    socketType: "socket_type",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ZeromqHandshake$ {
-  /** @deprecated use `ZeromqHandshake$inboundSchema` instead. */
-  export const inboundSchema = ZeromqHandshake$inboundSchema;
-  /** @deprecated use `ZeromqHandshake$outboundSchema` instead. */
-  export const outboundSchema = ZeromqHandshake$outboundSchema;
-  /** @deprecated use `ZeromqHandshake$Outbound` instead. */
-  export type Outbound = ZeromqHandshake$Outbound;
-}
-
-export function zeromqHandshakeToJSON(
-  zeromqHandshake: ZeromqHandshake,
-): string {
-  return JSON.stringify(ZeromqHandshake$outboundSchema.parse(zeromqHandshake));
-}
-
 export function zeromqHandshakeFromJSON(
   jsonString: string,
 ): SafeParseResult<ZeromqHandshake, SDKValidationError> {

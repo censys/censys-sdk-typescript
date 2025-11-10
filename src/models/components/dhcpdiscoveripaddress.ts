@@ -36,56 +36,6 @@ export const DhcpdiscoverIpAddress$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type DhcpdiscoverIpAddress$Outbound = {
-  default_gateway?: string | undefined;
-  dhcp_enable?: boolean | undefined;
-  ip_address?: string | undefined;
-  link_local_address?: string | undefined;
-  subnetmask?: string | undefined;
-};
-
-/** @internal */
-export const DhcpdiscoverIpAddress$outboundSchema: z.ZodType<
-  DhcpdiscoverIpAddress$Outbound,
-  z.ZodTypeDef,
-  DhcpdiscoverIpAddress
-> = z.object({
-  defaultGateway: z.string().optional(),
-  dhcpEnable: z.boolean().optional(),
-  ipAddress: z.string().optional(),
-  linkLocalAddress: z.string().optional(),
-  subnetmask: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    defaultGateway: "default_gateway",
-    dhcpEnable: "dhcp_enable",
-    ipAddress: "ip_address",
-    linkLocalAddress: "link_local_address",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DhcpdiscoverIpAddress$ {
-  /** @deprecated use `DhcpdiscoverIpAddress$inboundSchema` instead. */
-  export const inboundSchema = DhcpdiscoverIpAddress$inboundSchema;
-  /** @deprecated use `DhcpdiscoverIpAddress$outboundSchema` instead. */
-  export const outboundSchema = DhcpdiscoverIpAddress$outboundSchema;
-  /** @deprecated use `DhcpdiscoverIpAddress$Outbound` instead. */
-  export type Outbound = DhcpdiscoverIpAddress$Outbound;
-}
-
-export function dhcpdiscoverIpAddressToJSON(
-  dhcpdiscoverIpAddress: DhcpdiscoverIpAddress,
-): string {
-  return JSON.stringify(
-    DhcpdiscoverIpAddress$outboundSchema.parse(dhcpdiscoverIpAddress),
-  );
-}
-
 export function dhcpdiscoverIpAddressFromJSON(
   jsonString: string,
 ): SafeParseResult<DhcpdiscoverIpAddress, SDKValidationError> {

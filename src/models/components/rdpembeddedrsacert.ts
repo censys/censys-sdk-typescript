@@ -40,60 +40,6 @@ export const RdpEmbeddedRSACert$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type RdpEmbeddedRSACert$Outbound = {
-  key_length?: number | undefined;
-  magic?: number | undefined;
-  max_bytes_datalen?: number | undefined;
-  modulus?: string | undefined;
-  modulus_bitlen?: number | undefined;
-  public_exponent?: number | undefined;
-  signature?: string | undefined;
-};
-
-/** @internal */
-export const RdpEmbeddedRSACert$outboundSchema: z.ZodType<
-  RdpEmbeddedRSACert$Outbound,
-  z.ZodTypeDef,
-  RdpEmbeddedRSACert
-> = z.object({
-  keyLength: z.number().int().optional(),
-  magic: z.number().int().optional(),
-  maxBytesDatalen: z.number().int().optional(),
-  modulus: z.string().optional(),
-  modulusBitlen: z.number().int().optional(),
-  publicExponent: z.number().int().optional(),
-  signature: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    keyLength: "key_length",
-    maxBytesDatalen: "max_bytes_datalen",
-    modulusBitlen: "modulus_bitlen",
-    publicExponent: "public_exponent",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RdpEmbeddedRSACert$ {
-  /** @deprecated use `RdpEmbeddedRSACert$inboundSchema` instead. */
-  export const inboundSchema = RdpEmbeddedRSACert$inboundSchema;
-  /** @deprecated use `RdpEmbeddedRSACert$outboundSchema` instead. */
-  export const outboundSchema = RdpEmbeddedRSACert$outboundSchema;
-  /** @deprecated use `RdpEmbeddedRSACert$Outbound` instead. */
-  export type Outbound = RdpEmbeddedRSACert$Outbound;
-}
-
-export function rdpEmbeddedRSACertToJSON(
-  rdpEmbeddedRSACert: RdpEmbeddedRSACert,
-): string {
-  return JSON.stringify(
-    RdpEmbeddedRSACert$outboundSchema.parse(rdpEmbeddedRSACert),
-  );
-}
-
 export function rdpEmbeddedRSACertFromJSON(
   jsonString: string,
 ): SafeParseResult<RdpEmbeddedRSACert, SDKValidationError> {

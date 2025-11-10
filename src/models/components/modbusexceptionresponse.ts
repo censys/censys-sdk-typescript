@@ -28,48 +28,6 @@ export const ModbusExceptionResponse$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type ModbusExceptionResponse$Outbound = {
-  exception_function?: number | undefined;
-  exception_type?: number | undefined;
-};
-
-/** @internal */
-export const ModbusExceptionResponse$outboundSchema: z.ZodType<
-  ModbusExceptionResponse$Outbound,
-  z.ZodTypeDef,
-  ModbusExceptionResponse
-> = z.object({
-  exceptionFunction: z.number().int().optional(),
-  exceptionType: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    exceptionFunction: "exception_function",
-    exceptionType: "exception_type",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ModbusExceptionResponse$ {
-  /** @deprecated use `ModbusExceptionResponse$inboundSchema` instead. */
-  export const inboundSchema = ModbusExceptionResponse$inboundSchema;
-  /** @deprecated use `ModbusExceptionResponse$outboundSchema` instead. */
-  export const outboundSchema = ModbusExceptionResponse$outboundSchema;
-  /** @deprecated use `ModbusExceptionResponse$Outbound` instead. */
-  export type Outbound = ModbusExceptionResponse$Outbound;
-}
-
-export function modbusExceptionResponseToJSON(
-  modbusExceptionResponse: ModbusExceptionResponse,
-): string {
-  return JSON.stringify(
-    ModbusExceptionResponse$outboundSchema.parse(modbusExceptionResponse),
-  );
-}
-
 export function modbusExceptionResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<ModbusExceptionResponse, SDKValidationError> {

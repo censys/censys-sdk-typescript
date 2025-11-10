@@ -24,41 +24,6 @@ export const Extension$inboundSchema: z.ZodType<
   value: z.string().optional(),
 });
 
-/** @internal */
-export type Extension$Outbound = {
-  critical?: boolean | undefined;
-  id?: string | undefined;
-  value?: string | undefined;
-};
-
-/** @internal */
-export const Extension$outboundSchema: z.ZodType<
-  Extension$Outbound,
-  z.ZodTypeDef,
-  Extension
-> = z.object({
-  critical: z.boolean().optional(),
-  id: z.string().optional(),
-  value: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Extension$ {
-  /** @deprecated use `Extension$inboundSchema` instead. */
-  export const inboundSchema = Extension$inboundSchema;
-  /** @deprecated use `Extension$outboundSchema` instead. */
-  export const outboundSchema = Extension$outboundSchema;
-  /** @deprecated use `Extension$Outbound` instead. */
-  export type Outbound = Extension$Outbound;
-}
-
-export function extensionToJSON(extension: Extension): string {
-  return JSON.stringify(Extension$outboundSchema.parse(extension));
-}
-
 export function extensionFromJSON(
   jsonString: string,
 ): SafeParseResult<Extension, SDKValidationError> {

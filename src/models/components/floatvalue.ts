@@ -20,37 +20,6 @@ export const FloatValue$inboundSchema: z.ZodType<
   value: z.number().optional(),
 });
 
-/** @internal */
-export type FloatValue$Outbound = {
-  value?: number | undefined;
-};
-
-/** @internal */
-export const FloatValue$outboundSchema: z.ZodType<
-  FloatValue$Outbound,
-  z.ZodTypeDef,
-  FloatValue
-> = z.object({
-  value: z.number().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FloatValue$ {
-  /** @deprecated use `FloatValue$inboundSchema` instead. */
-  export const inboundSchema = FloatValue$inboundSchema;
-  /** @deprecated use `FloatValue$outboundSchema` instead. */
-  export const outboundSchema = FloatValue$outboundSchema;
-  /** @deprecated use `FloatValue$Outbound` instead. */
-  export type Outbound = FloatValue$Outbound;
-}
-
-export function floatValueToJSON(floatValue: FloatValue): string {
-  return JSON.stringify(FloatValue$outboundSchema.parse(floatValue));
-}
-
 export function floatValueFromJSON(
   jsonString: string,
 ): SafeParseResult<FloatValue, SDKValidationError> {

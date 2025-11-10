@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AssetWebpropertyListInputBody = {
   /**
@@ -18,22 +15,6 @@ export type AssetWebpropertyListInputBody = {
    */
   webpropertyIds: Array<string> | null;
 };
-
-/** @internal */
-export const AssetWebpropertyListInputBody$inboundSchema: z.ZodType<
-  AssetWebpropertyListInputBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  at_time: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-  webproperty_ids: z.nullable(z.array(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    "at_time": "atTime",
-    "webproperty_ids": "webpropertyIds",
-  });
-});
 
 /** @internal */
 export type AssetWebpropertyListInputBody$Outbound = {
@@ -56,19 +37,6 @@ export const AssetWebpropertyListInputBody$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AssetWebpropertyListInputBody$ {
-  /** @deprecated use `AssetWebpropertyListInputBody$inboundSchema` instead. */
-  export const inboundSchema = AssetWebpropertyListInputBody$inboundSchema;
-  /** @deprecated use `AssetWebpropertyListInputBody$outboundSchema` instead. */
-  export const outboundSchema = AssetWebpropertyListInputBody$outboundSchema;
-  /** @deprecated use `AssetWebpropertyListInputBody$Outbound` instead. */
-  export type Outbound = AssetWebpropertyListInputBody$Outbound;
-}
-
 export function assetWebpropertyListInputBodyToJSON(
   assetWebpropertyListInputBody: AssetWebpropertyListInputBody,
 ): string {
@@ -76,15 +44,5 @@ export function assetWebpropertyListInputBodyToJSON(
     AssetWebpropertyListInputBody$outboundSchema.parse(
       assetWebpropertyListInputBody,
     ),
-  );
-}
-
-export function assetWebpropertyListInputBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<AssetWebpropertyListInputBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AssetWebpropertyListInputBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AssetWebpropertyListInputBody' from JSON`,
   );
 }

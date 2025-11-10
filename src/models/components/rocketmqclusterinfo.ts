@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   RocketmqResponseHeader,
   RocketmqResponseHeader$inboundSchema,
-  RocketmqResponseHeader$Outbound,
-  RocketmqResponseHeader$outboundSchema,
 } from "./rocketmqresponseheader.js";
 
 export type RocketmqClusterInfo = {
@@ -27,43 +25,6 @@ export const RocketmqClusterInfo$inboundSchema: z.ZodType<
   header: RocketmqResponseHeader$inboundSchema.optional(),
   payload: z.string().optional(),
 });
-
-/** @internal */
-export type RocketmqClusterInfo$Outbound = {
-  header?: RocketmqResponseHeader$Outbound | undefined;
-  payload?: string | undefined;
-};
-
-/** @internal */
-export const RocketmqClusterInfo$outboundSchema: z.ZodType<
-  RocketmqClusterInfo$Outbound,
-  z.ZodTypeDef,
-  RocketmqClusterInfo
-> = z.object({
-  header: RocketmqResponseHeader$outboundSchema.optional(),
-  payload: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RocketmqClusterInfo$ {
-  /** @deprecated use `RocketmqClusterInfo$inboundSchema` instead. */
-  export const inboundSchema = RocketmqClusterInfo$inboundSchema;
-  /** @deprecated use `RocketmqClusterInfo$outboundSchema` instead. */
-  export const outboundSchema = RocketmqClusterInfo$outboundSchema;
-  /** @deprecated use `RocketmqClusterInfo$Outbound` instead. */
-  export type Outbound = RocketmqClusterInfo$Outbound;
-}
-
-export function rocketmqClusterInfoToJSON(
-  rocketmqClusterInfo: RocketmqClusterInfo,
-): string {
-  return JSON.stringify(
-    RocketmqClusterInfo$outboundSchema.parse(rocketmqClusterInfo),
-  );
-}
 
 export function rocketmqClusterInfoFromJSON(
   jsonString: string,

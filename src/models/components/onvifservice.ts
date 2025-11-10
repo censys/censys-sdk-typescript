@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Capabilities,
-  Capabilities$inboundSchema,
-  Capabilities$Outbound,
-  Capabilities$outboundSchema,
-} from "./capabilities.js";
+import { Capabilities, Capabilities$inboundSchema } from "./capabilities.js";
 
 export type OnvifService = {
   capabilities?: Capabilities | undefined;
@@ -39,50 +34,6 @@ export const OnvifService$inboundSchema: z.ZodType<
     "service_version_minor": "serviceVersionMinor",
   });
 });
-
-/** @internal */
-export type OnvifService$Outbound = {
-  capabilities?: Capabilities$Outbound | undefined;
-  namespace?: string | undefined;
-  service_version_major?: number | undefined;
-  service_version_minor?: number | undefined;
-  xaddr?: string | undefined;
-};
-
-/** @internal */
-export const OnvifService$outboundSchema: z.ZodType<
-  OnvifService$Outbound,
-  z.ZodTypeDef,
-  OnvifService
-> = z.object({
-  capabilities: Capabilities$outboundSchema.optional(),
-  namespace: z.string().optional(),
-  serviceVersionMajor: z.number().int().optional(),
-  serviceVersionMinor: z.number().int().optional(),
-  xaddr: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    serviceVersionMajor: "service_version_major",
-    serviceVersionMinor: "service_version_minor",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OnvifService$ {
-  /** @deprecated use `OnvifService$inboundSchema` instead. */
-  export const inboundSchema = OnvifService$inboundSchema;
-  /** @deprecated use `OnvifService$outboundSchema` instead. */
-  export const outboundSchema = OnvifService$outboundSchema;
-  /** @deprecated use `OnvifService$Outbound` instead. */
-  export type Outbound = OnvifService$Outbound;
-}
-
-export function onvifServiceToJSON(onvifService: OnvifService): string {
-  return JSON.stringify(OnvifService$outboundSchema.parse(onvifService));
-}
 
 export function onvifServiceFromJSON(
   jsonString: string,

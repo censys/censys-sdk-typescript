@@ -58,60 +58,6 @@ export const IpmiCapabilitiesAuthStatus$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type IpmiCapabilitiesAuthStatus$Outbound = {
-  anonymous_login_enabled?: boolean | undefined;
-  auth_each_message?: boolean | undefined;
-  has_anonymous_users?: boolean | undefined;
-  has_named_users?: boolean | undefined;
-  two_key_login_required?: boolean | undefined;
-  user_auth_disabled?: boolean | undefined;
-};
-
-/** @internal */
-export const IpmiCapabilitiesAuthStatus$outboundSchema: z.ZodType<
-  IpmiCapabilitiesAuthStatus$Outbound,
-  z.ZodTypeDef,
-  IpmiCapabilitiesAuthStatus
-> = z.object({
-  anonymousLoginEnabled: z.boolean().optional(),
-  authEachMessage: z.boolean().optional(),
-  hasAnonymousUsers: z.boolean().optional(),
-  hasNamedUsers: z.boolean().optional(),
-  twoKeyLoginRequired: z.boolean().optional(),
-  userAuthDisabled: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    anonymousLoginEnabled: "anonymous_login_enabled",
-    authEachMessage: "auth_each_message",
-    hasAnonymousUsers: "has_anonymous_users",
-    hasNamedUsers: "has_named_users",
-    twoKeyLoginRequired: "two_key_login_required",
-    userAuthDisabled: "user_auth_disabled",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IpmiCapabilitiesAuthStatus$ {
-  /** @deprecated use `IpmiCapabilitiesAuthStatus$inboundSchema` instead. */
-  export const inboundSchema = IpmiCapabilitiesAuthStatus$inboundSchema;
-  /** @deprecated use `IpmiCapabilitiesAuthStatus$outboundSchema` instead. */
-  export const outboundSchema = IpmiCapabilitiesAuthStatus$outboundSchema;
-  /** @deprecated use `IpmiCapabilitiesAuthStatus$Outbound` instead. */
-  export type Outbound = IpmiCapabilitiesAuthStatus$Outbound;
-}
-
-export function ipmiCapabilitiesAuthStatusToJSON(
-  ipmiCapabilitiesAuthStatus: IpmiCapabilitiesAuthStatus,
-): string {
-  return JSON.stringify(
-    IpmiCapabilitiesAuthStatus$outboundSchema.parse(ipmiCapabilitiesAuthStatus),
-  );
-}
-
 export function ipmiCapabilitiesAuthStatusFromJSON(
   jsonString: string,
 ): SafeParseResult<IpmiCapabilitiesAuthStatus, SDKValidationError> {

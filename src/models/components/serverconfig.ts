@@ -43,59 +43,6 @@ export const ServerConfig$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type ServerConfig$Outbound = {
-  allow_html?: boolean | undefined;
-  image_message_length?: number | undefined;
-  max_bandwidth?: number | undefined;
-  max_users?: number | undefined;
-  message_length?: number | undefined;
-  recording_allowed?: boolean | undefined;
-  welcome_text?: string | undefined;
-};
-
-/** @internal */
-export const ServerConfig$outboundSchema: z.ZodType<
-  ServerConfig$Outbound,
-  z.ZodTypeDef,
-  ServerConfig
-> = z.object({
-  allowHtml: z.boolean().optional(),
-  imageMessageLength: z.number().int().optional(),
-  maxBandwidth: z.number().int().optional(),
-  maxUsers: z.number().int().optional(),
-  messageLength: z.number().int().optional(),
-  recordingAllowed: z.boolean().optional(),
-  welcomeText: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    allowHtml: "allow_html",
-    imageMessageLength: "image_message_length",
-    maxBandwidth: "max_bandwidth",
-    maxUsers: "max_users",
-    messageLength: "message_length",
-    recordingAllowed: "recording_allowed",
-    welcomeText: "welcome_text",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ServerConfig$ {
-  /** @deprecated use `ServerConfig$inboundSchema` instead. */
-  export const inboundSchema = ServerConfig$inboundSchema;
-  /** @deprecated use `ServerConfig$outboundSchema` instead. */
-  export const outboundSchema = ServerConfig$outboundSchema;
-  /** @deprecated use `ServerConfig$Outbound` instead. */
-  export type Outbound = ServerConfig$Outbound;
-}
-
-export function serverConfigToJSON(serverConfig: ServerConfig): string {
-  return JSON.stringify(ServerConfig$outboundSchema.parse(serverConfig));
-}
-
 export function serverConfigFromJSON(
   jsonString: string,
 ): SafeParseResult<ServerConfig, SDKValidationError> {

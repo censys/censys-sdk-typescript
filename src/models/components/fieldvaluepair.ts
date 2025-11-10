@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type FieldValuePair = {
   /**
@@ -17,16 +14,6 @@ export type FieldValuePair = {
    */
   value: string;
 };
-
-/** @internal */
-export const FieldValuePair$inboundSchema: z.ZodType<
-  FieldValuePair,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  field: z.string(),
-  value: z.string(),
-});
 
 /** @internal */
 export type FieldValuePair$Outbound = {
@@ -44,29 +31,6 @@ export const FieldValuePair$outboundSchema: z.ZodType<
   value: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FieldValuePair$ {
-  /** @deprecated use `FieldValuePair$inboundSchema` instead. */
-  export const inboundSchema = FieldValuePair$inboundSchema;
-  /** @deprecated use `FieldValuePair$outboundSchema` instead. */
-  export const outboundSchema = FieldValuePair$outboundSchema;
-  /** @deprecated use `FieldValuePair$Outbound` instead. */
-  export type Outbound = FieldValuePair$Outbound;
-}
-
 export function fieldValuePairToJSON(fieldValuePair: FieldValuePair): string {
   return JSON.stringify(FieldValuePair$outboundSchema.parse(fieldValuePair));
-}
-
-export function fieldValuePairFromJSON(
-  jsonString: string,
-): SafeParseResult<FieldValuePair, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => FieldValuePair$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'FieldValuePair' from JSON`,
-  );
 }

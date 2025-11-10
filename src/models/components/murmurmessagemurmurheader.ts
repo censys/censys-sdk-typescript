@@ -22,43 +22,6 @@ export const MurmurMessageMurmurHeader$inboundSchema: z.ZodType<
   type: z.string().optional(),
 });
 
-/** @internal */
-export type MurmurMessageMurmurHeader$Outbound = {
-  length?: number | undefined;
-  type?: string | undefined;
-};
-
-/** @internal */
-export const MurmurMessageMurmurHeader$outboundSchema: z.ZodType<
-  MurmurMessageMurmurHeader$Outbound,
-  z.ZodTypeDef,
-  MurmurMessageMurmurHeader
-> = z.object({
-  length: z.number().int().optional(),
-  type: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MurmurMessageMurmurHeader$ {
-  /** @deprecated use `MurmurMessageMurmurHeader$inboundSchema` instead. */
-  export const inboundSchema = MurmurMessageMurmurHeader$inboundSchema;
-  /** @deprecated use `MurmurMessageMurmurHeader$outboundSchema` instead. */
-  export const outboundSchema = MurmurMessageMurmurHeader$outboundSchema;
-  /** @deprecated use `MurmurMessageMurmurHeader$Outbound` instead. */
-  export type Outbound = MurmurMessageMurmurHeader$Outbound;
-}
-
-export function murmurMessageMurmurHeaderToJSON(
-  murmurMessageMurmurHeader: MurmurMessageMurmurHeader,
-): string {
-  return JSON.stringify(
-    MurmurMessageMurmurHeader$outboundSchema.parse(murmurMessageMurmurHeader),
-  );
-}
-
 export function murmurMessageMurmurHeaderFromJSON(
   jsonString: string,
 ): SafeParseResult<MurmurMessageMurmurHeader, SDKValidationError> {

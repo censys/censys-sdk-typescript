@@ -28,47 +28,6 @@ export const Worker$inboundSchema: z.ZodType<Worker, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type Worker$Outbound = {
-  client_id?: string | undefined;
-  fd?: string | undefined;
-  functions?: string | undefined;
-  ip?: string | undefined;
-};
-
-/** @internal */
-export const Worker$outboundSchema: z.ZodType<
-  Worker$Outbound,
-  z.ZodTypeDef,
-  Worker
-> = z.object({
-  clientId: z.string().optional(),
-  fd: z.string().optional(),
-  functions: z.string().optional(),
-  ip: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    clientId: "client_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Worker$ {
-  /** @deprecated use `Worker$inboundSchema` instead. */
-  export const inboundSchema = Worker$inboundSchema;
-  /** @deprecated use `Worker$outboundSchema` instead. */
-  export const outboundSchema = Worker$outboundSchema;
-  /** @deprecated use `Worker$Outbound` instead. */
-  export type Outbound = Worker$Outbound;
-}
-
-export function workerToJSON(worker: Worker): string {
-  return JSON.stringify(Worker$outboundSchema.parse(worker));
-}
-
 export function workerFromJSON(
   jsonString: string,
 ): SafeParseResult<Worker, SDKValidationError> {

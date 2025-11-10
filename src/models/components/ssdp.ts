@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   HttpRepeatedHeaders,
   HttpRepeatedHeaders$inboundSchema,
-  HttpRepeatedHeaders$Outbound,
-  HttpRepeatedHeaders$outboundSchema,
 } from "./httprepeatedheaders.js";
 
 export type Ssdp = {
@@ -29,40 +27,6 @@ export const Ssdp$inboundSchema: z.ZodType<Ssdp, z.ZodTypeDef, unknown> = z
       "upnp_url": "upnpUrl",
     });
   });
-
-/** @internal */
-export type Ssdp$Outbound = {
-  headers?: { [k: string]: HttpRepeatedHeaders$Outbound } | undefined;
-  upnp_url?: string | undefined;
-};
-
-/** @internal */
-export const Ssdp$outboundSchema: z.ZodType<Ssdp$Outbound, z.ZodTypeDef, Ssdp> =
-  z.object({
-    headers: z.record(HttpRepeatedHeaders$outboundSchema).optional(),
-    upnpUrl: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      upnpUrl: "upnp_url",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Ssdp$ {
-  /** @deprecated use `Ssdp$inboundSchema` instead. */
-  export const inboundSchema = Ssdp$inboundSchema;
-  /** @deprecated use `Ssdp$outboundSchema` instead. */
-  export const outboundSchema = Ssdp$outboundSchema;
-  /** @deprecated use `Ssdp$Outbound` instead. */
-  export type Outbound = Ssdp$Outbound;
-}
-
-export function ssdpToJSON(ssdp: Ssdp): string {
-  return JSON.stringify(Ssdp$outboundSchema.parse(ssdp));
-}
 
 export function ssdpFromJSON(
   jsonString: string,

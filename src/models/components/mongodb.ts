@@ -10,14 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   MongodbBuildInfo,
   MongodbBuildInfo$inboundSchema,
-  MongodbBuildInfo$Outbound,
-  MongodbBuildInfo$outboundSchema,
 } from "./mongodbbuildinfo.js";
 import {
   MongodbIsMaster,
   MongodbIsMaster$inboundSchema,
-  MongodbIsMaster$Outbound,
-  MongodbIsMaster$outboundSchema,
 } from "./mongodbismaster.js";
 
 export type Mongodb = {
@@ -36,44 +32,6 @@ export const Mongodb$inboundSchema: z.ZodType<Mongodb, z.ZodTypeDef, unknown> =
       "is_master": "isMaster",
     });
   });
-
-/** @internal */
-export type Mongodb$Outbound = {
-  build_info?: MongodbBuildInfo$Outbound | undefined;
-  is_master?: MongodbIsMaster$Outbound | undefined;
-};
-
-/** @internal */
-export const Mongodb$outboundSchema: z.ZodType<
-  Mongodb$Outbound,
-  z.ZodTypeDef,
-  Mongodb
-> = z.object({
-  buildInfo: MongodbBuildInfo$outboundSchema.optional(),
-  isMaster: MongodbIsMaster$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    buildInfo: "build_info",
-    isMaster: "is_master",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Mongodb$ {
-  /** @deprecated use `Mongodb$inboundSchema` instead. */
-  export const inboundSchema = Mongodb$inboundSchema;
-  /** @deprecated use `Mongodb$outboundSchema` instead. */
-  export const outboundSchema = Mongodb$outboundSchema;
-  /** @deprecated use `Mongodb$Outbound` instead. */
-  export type Outbound = Mongodb$Outbound;
-}
-
-export function mongodbToJSON(mongodb: Mongodb): string {
-  return JSON.stringify(Mongodb$outboundSchema.parse(mongodb));
-}
 
 export function mongodbFromJSON(
   jsonString: string,

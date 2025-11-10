@@ -9,14 +9,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesDocs,
   ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesDocs$inboundSchema,
-  ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesDocs$Outbound,
-  ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesDocs$outboundSchema,
 } from "./elasticsearchresultsnodeinfoclustercombinedinfoindicesdocs.js";
 import {
   ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesStore,
   ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesStore$inboundSchema,
-  ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesStore$Outbound,
-  ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesStore$outboundSchema,
 } from "./elasticsearchresultsnodeinfoclustercombinedinfoindicesstore.js";
 
 export type ElasticSearchResultsNodeInfoClusterCombinedInfoIndices = {
@@ -42,60 +38,6 @@ export const ElasticSearchResultsNodeInfoClusterCombinedInfoIndices$inboundSchem
       ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesStore$inboundSchema
         .optional(),
   });
-
-/** @internal */
-export type ElasticSearchResultsNodeInfoClusterCombinedInfoIndices$Outbound = {
-  count?: number | undefined;
-  docs?:
-    | ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesDocs$Outbound
-    | undefined;
-  store?:
-    | ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesStore$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const ElasticSearchResultsNodeInfoClusterCombinedInfoIndices$outboundSchema:
-  z.ZodType<
-    ElasticSearchResultsNodeInfoClusterCombinedInfoIndices$Outbound,
-    z.ZodTypeDef,
-    ElasticSearchResultsNodeInfoClusterCombinedInfoIndices
-  > = z.object({
-    count: z.number().int().optional(),
-    docs:
-      ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesDocs$outboundSchema
-        .optional(),
-    store:
-      ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesStore$outboundSchema
-        .optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ElasticSearchResultsNodeInfoClusterCombinedInfoIndices$ {
-  /** @deprecated use `ElasticSearchResultsNodeInfoClusterCombinedInfoIndices$inboundSchema` instead. */
-  export const inboundSchema =
-    ElasticSearchResultsNodeInfoClusterCombinedInfoIndices$inboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfoClusterCombinedInfoIndices$outboundSchema` instead. */
-  export const outboundSchema =
-    ElasticSearchResultsNodeInfoClusterCombinedInfoIndices$outboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfoClusterCombinedInfoIndices$Outbound` instead. */
-  export type Outbound =
-    ElasticSearchResultsNodeInfoClusterCombinedInfoIndices$Outbound;
-}
-
-export function elasticSearchResultsNodeInfoClusterCombinedInfoIndicesToJSON(
-  elasticSearchResultsNodeInfoClusterCombinedInfoIndices:
-    ElasticSearchResultsNodeInfoClusterCombinedInfoIndices,
-): string {
-  return JSON.stringify(
-    ElasticSearchResultsNodeInfoClusterCombinedInfoIndices$outboundSchema.parse(
-      elasticSearchResultsNodeInfoClusterCombinedInfoIndices,
-    ),
-  );
-}
 
 export function elasticSearchResultsNodeInfoClusterCombinedInfoIndicesFromJSON(
   jsonString: string,

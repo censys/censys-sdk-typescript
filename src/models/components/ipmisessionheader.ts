@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   IpmiSessionHeaderAuthType,
   IpmiSessionHeaderAuthType$inboundSchema,
-  IpmiSessionHeaderAuthType$Outbound,
-  IpmiSessionHeaderAuthType$outboundSchema,
 } from "./ipmisessionheaderauthtype.js";
 
 export type IpmiSessionHeader = {
@@ -48,54 +46,6 @@ export const IpmiSessionHeader$inboundSchema: z.ZodType<
     "session_sequence_number": "sessionSequenceNumber",
   });
 });
-
-/** @internal */
-export type IpmiSessionHeader$Outbound = {
-  auth_code?: string | undefined;
-  auth_type?: IpmiSessionHeaderAuthType$Outbound | undefined;
-  session_id?: number | undefined;
-  session_sequence_number?: number | undefined;
-};
-
-/** @internal */
-export const IpmiSessionHeader$outboundSchema: z.ZodType<
-  IpmiSessionHeader$Outbound,
-  z.ZodTypeDef,
-  IpmiSessionHeader
-> = z.object({
-  authCode: z.string().optional(),
-  authType: IpmiSessionHeaderAuthType$outboundSchema.optional(),
-  sessionId: z.number().int().optional(),
-  sessionSequenceNumber: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    authCode: "auth_code",
-    authType: "auth_type",
-    sessionId: "session_id",
-    sessionSequenceNumber: "session_sequence_number",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IpmiSessionHeader$ {
-  /** @deprecated use `IpmiSessionHeader$inboundSchema` instead. */
-  export const inboundSchema = IpmiSessionHeader$inboundSchema;
-  /** @deprecated use `IpmiSessionHeader$outboundSchema` instead. */
-  export const outboundSchema = IpmiSessionHeader$outboundSchema;
-  /** @deprecated use `IpmiSessionHeader$Outbound` instead. */
-  export type Outbound = IpmiSessionHeader$Outbound;
-}
-
-export function ipmiSessionHeaderToJSON(
-  ipmiSessionHeader: IpmiSessionHeader,
-): string {
-  return JSON.stringify(
-    IpmiSessionHeader$outboundSchema.parse(ipmiSessionHeader),
-  );
-}
 
 export function ipmiSessionHeaderFromJSON(
   jsonString: string,

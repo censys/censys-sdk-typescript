@@ -25,38 +25,6 @@ export const Pop3$inboundSchema: z.ZodType<Pop3, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type Pop3$Outbound = {
-  start_tls?: string | undefined;
-};
-
-/** @internal */
-export const Pop3$outboundSchema: z.ZodType<Pop3$Outbound, z.ZodTypeDef, Pop3> =
-  z.object({
-    startTls: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      startTls: "start_tls",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Pop3$ {
-  /** @deprecated use `Pop3$inboundSchema` instead. */
-  export const inboundSchema = Pop3$inboundSchema;
-  /** @deprecated use `Pop3$outboundSchema` instead. */
-  export const outboundSchema = Pop3$outboundSchema;
-  /** @deprecated use `Pop3$Outbound` instead. */
-  export type Outbound = Pop3$Outbound;
-}
-
-export function pop3ToJSON(pop3: Pop3): string {
-  return JSON.stringify(Pop3$outboundSchema.parse(pop3));
-}
-
 export function pop3FromJSON(
   jsonString: string,
 ): SafeParseResult<Pop3, SDKValidationError> {

@@ -36,52 +36,6 @@ export const OpenvpnMgmt$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type OpenvpnMgmt$Outbound = {
-  build_date?: string | undefined;
-  features?: Array<string> | null | undefined;
-  management_version?: string | undefined;
-  open_vpn_version?: string | undefined;
-  target_triple?: string | undefined;
-};
-
-/** @internal */
-export const OpenvpnMgmt$outboundSchema: z.ZodType<
-  OpenvpnMgmt$Outbound,
-  z.ZodTypeDef,
-  OpenvpnMgmt
-> = z.object({
-  buildDate: z.string().optional(),
-  features: z.nullable(z.array(z.string())).optional(),
-  managementVersion: z.string().optional(),
-  openVpnVersion: z.string().optional(),
-  targetTriple: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    buildDate: "build_date",
-    managementVersion: "management_version",
-    openVpnVersion: "open_vpn_version",
-    targetTriple: "target_triple",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OpenvpnMgmt$ {
-  /** @deprecated use `OpenvpnMgmt$inboundSchema` instead. */
-  export const inboundSchema = OpenvpnMgmt$inboundSchema;
-  /** @deprecated use `OpenvpnMgmt$outboundSchema` instead. */
-  export const outboundSchema = OpenvpnMgmt$outboundSchema;
-  /** @deprecated use `OpenvpnMgmt$Outbound` instead. */
-  export type Outbound = OpenvpnMgmt$Outbound;
-}
-
-export function openvpnMgmtToJSON(openvpnMgmt: OpenvpnMgmt): string {
-  return JSON.stringify(OpenvpnMgmt$outboundSchema.parse(openvpnMgmt));
-}
-
 export function openvpnMgmtFromJSON(
   jsonString: string,
 ): SafeParseResult<OpenvpnMgmt, SDKValidationError> {

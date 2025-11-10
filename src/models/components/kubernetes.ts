@@ -10,26 +10,18 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   KubernetesEndpoint,
   KubernetesEndpoint$inboundSchema,
-  KubernetesEndpoint$Outbound,
-  KubernetesEndpoint$outboundSchema,
 } from "./kubernetesendpoint.js";
 import {
   KubernetesNode,
   KubernetesNode$inboundSchema,
-  KubernetesNode$Outbound,
-  KubernetesNode$outboundSchema,
 } from "./kubernetesnode.js";
 import {
   KubernetesRole,
   KubernetesRole$inboundSchema,
-  KubernetesRole$Outbound,
-  KubernetesRole$outboundSchema,
 } from "./kubernetesrole.js";
 import {
   KubernetesVersionInfo,
   KubernetesVersionInfo$inboundSchema,
-  KubernetesVersionInfo$Outbound,
-  KubernetesVersionInfo$outboundSchema,
 } from "./kubernetesversioninfo.js";
 
 export type Kubernetes = {
@@ -63,53 +55,6 @@ export const Kubernetes$inboundSchema: z.ZodType<
     "version_info": "versionInfo",
   });
 });
-
-/** @internal */
-export type Kubernetes$Outbound = {
-  endpoints?: Array<KubernetesEndpoint$Outbound> | null | undefined;
-  kubernetes_dashboard_found?: boolean | undefined;
-  nodes?: Array<KubernetesNode$Outbound> | null | undefined;
-  pod_names?: Array<string> | null | undefined;
-  roles?: Array<KubernetesRole$Outbound> | null | undefined;
-  version_info?: KubernetesVersionInfo$Outbound | undefined;
-};
-
-/** @internal */
-export const Kubernetes$outboundSchema: z.ZodType<
-  Kubernetes$Outbound,
-  z.ZodTypeDef,
-  Kubernetes
-> = z.object({
-  endpoints: z.nullable(z.array(KubernetesEndpoint$outboundSchema)).optional(),
-  kubernetesDashboardFound: z.boolean().optional(),
-  nodes: z.nullable(z.array(KubernetesNode$outboundSchema)).optional(),
-  podNames: z.nullable(z.array(z.string())).optional(),
-  roles: z.nullable(z.array(KubernetesRole$outboundSchema)).optional(),
-  versionInfo: KubernetesVersionInfo$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    kubernetesDashboardFound: "kubernetes_dashboard_found",
-    podNames: "pod_names",
-    versionInfo: "version_info",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Kubernetes$ {
-  /** @deprecated use `Kubernetes$inboundSchema` instead. */
-  export const inboundSchema = Kubernetes$inboundSchema;
-  /** @deprecated use `Kubernetes$outboundSchema` instead. */
-  export const outboundSchema = Kubernetes$outboundSchema;
-  /** @deprecated use `Kubernetes$Outbound` instead. */
-  export type Outbound = Kubernetes$Outbound;
-}
-
-export function kubernetesToJSON(kubernetes: Kubernetes): string {
-  return JSON.stringify(Kubernetes$outboundSchema.parse(kubernetes));
-}
 
 export function kubernetesFromJSON(
   jsonString: string,

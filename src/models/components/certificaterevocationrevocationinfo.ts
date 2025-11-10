@@ -51,21 +51,6 @@ export const Reason$inboundSchema: z.ZodNativeEnum<typeof Reason> = z
   .nativeEnum(Reason);
 
 /** @internal */
-export const Reason$outboundSchema: z.ZodNativeEnum<typeof Reason> =
-  Reason$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Reason$ {
-  /** @deprecated use `Reason$inboundSchema` instead. */
-  export const inboundSchema = Reason$inboundSchema;
-  /** @deprecated use `Reason$outboundSchema` instead. */
-  export const outboundSchema = Reason$outboundSchema;
-}
-
-/** @internal */
 export const CertificateRevocationRevocationInfo$inboundSchema: z.ZodType<
   CertificateRevocationRevocationInfo,
   z.ZodTypeDef,
@@ -81,56 +66,6 @@ export const CertificateRevocationRevocationInfo$inboundSchema: z.ZodType<
     "revocation_time": "revocationTime",
   });
 });
-
-/** @internal */
-export type CertificateRevocationRevocationInfo$Outbound = {
-  next_update?: string | undefined;
-  reason?: string | undefined;
-  revocation_time?: string | undefined;
-  revoked?: boolean | undefined;
-};
-
-/** @internal */
-export const CertificateRevocationRevocationInfo$outboundSchema: z.ZodType<
-  CertificateRevocationRevocationInfo$Outbound,
-  z.ZodTypeDef,
-  CertificateRevocationRevocationInfo
-> = z.object({
-  nextUpdate: z.string().optional(),
-  reason: Reason$outboundSchema.optional(),
-  revocationTime: z.string().optional(),
-  revoked: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    nextUpdate: "next_update",
-    revocationTime: "revocation_time",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CertificateRevocationRevocationInfo$ {
-  /** @deprecated use `CertificateRevocationRevocationInfo$inboundSchema` instead. */
-  export const inboundSchema =
-    CertificateRevocationRevocationInfo$inboundSchema;
-  /** @deprecated use `CertificateRevocationRevocationInfo$outboundSchema` instead. */
-  export const outboundSchema =
-    CertificateRevocationRevocationInfo$outboundSchema;
-  /** @deprecated use `CertificateRevocationRevocationInfo$Outbound` instead. */
-  export type Outbound = CertificateRevocationRevocationInfo$Outbound;
-}
-
-export function certificateRevocationRevocationInfoToJSON(
-  certificateRevocationRevocationInfo: CertificateRevocationRevocationInfo,
-): string {
-  return JSON.stringify(
-    CertificateRevocationRevocationInfo$outboundSchema.parse(
-      certificateRevocationRevocationInfo,
-    ),
-  );
-}
 
 export function certificateRevocationRevocationInfoFromJSON(
   jsonString: string,

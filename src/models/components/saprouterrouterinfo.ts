@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SapRouterClientInfo,
   SapRouterClientInfo$inboundSchema,
-  SapRouterClientInfo$Outbound,
-  SapRouterClientInfo$outboundSchema,
 } from "./saprouterclientinfo.js";
 
 export type SapRouterRouterInfo = {
@@ -53,71 +51,6 @@ export const SapRouterRouterInfo$inboundSchema: z.ZodType<
     "started_on": "startedOn",
   });
 });
-
-/** @internal */
-export type SapRouterRouterInfo$Outbound = {
-  connected_client_info?:
-    | Array<SapRouterClientInfo$Outbound>
-    | null
-    | undefined;
-  num_clients?: number | undefined;
-  parent_pid?: number | undefined;
-  parent_port?: number | undefined;
-  pid?: number | undefined;
-  port?: number | undefined;
-  routtab_relative_directory?: string | undefined;
-  sap_router_absolute_directory?: string | undefined;
-  started_on?: string | undefined;
-};
-
-/** @internal */
-export const SapRouterRouterInfo$outboundSchema: z.ZodType<
-  SapRouterRouterInfo$Outbound,
-  z.ZodTypeDef,
-  SapRouterRouterInfo
-> = z.object({
-  connectedClientInfo: z.nullable(z.array(SapRouterClientInfo$outboundSchema))
-    .optional(),
-  numClients: z.number().int().optional(),
-  parentPid: z.number().int().optional(),
-  parentPort: z.number().int().optional(),
-  pid: z.number().int().optional(),
-  port: z.number().int().optional(),
-  routtabRelativeDirectory: z.string().optional(),
-  sapRouterAbsoluteDirectory: z.string().optional(),
-  startedOn: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    connectedClientInfo: "connected_client_info",
-    numClients: "num_clients",
-    parentPid: "parent_pid",
-    parentPort: "parent_port",
-    routtabRelativeDirectory: "routtab_relative_directory",
-    sapRouterAbsoluteDirectory: "sap_router_absolute_directory",
-    startedOn: "started_on",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SapRouterRouterInfo$ {
-  /** @deprecated use `SapRouterRouterInfo$inboundSchema` instead. */
-  export const inboundSchema = SapRouterRouterInfo$inboundSchema;
-  /** @deprecated use `SapRouterRouterInfo$outboundSchema` instead. */
-  export const outboundSchema = SapRouterRouterInfo$outboundSchema;
-  /** @deprecated use `SapRouterRouterInfo$Outbound` instead. */
-  export type Outbound = SapRouterRouterInfo$Outbound;
-}
-
-export function sapRouterRouterInfoToJSON(
-  sapRouterRouterInfo: SapRouterRouterInfo,
-): string {
-  return JSON.stringify(
-    SapRouterRouterInfo$outboundSchema.parse(sapRouterRouterInfo),
-  );
-}
 
 export function sapRouterRouterInfoFromJSON(
   jsonString: string,

@@ -24,45 +24,6 @@ export const RSACryptographicKey$inboundSchema: z.ZodType<
   modulus: z.string().optional(),
 });
 
-/** @internal */
-export type RSACryptographicKey$Outbound = {
-  exponent?: string | undefined;
-  length?: number | undefined;
-  modulus?: string | undefined;
-};
-
-/** @internal */
-export const RSACryptographicKey$outboundSchema: z.ZodType<
-  RSACryptographicKey$Outbound,
-  z.ZodTypeDef,
-  RSACryptographicKey
-> = z.object({
-  exponent: z.string().optional(),
-  length: z.number().int().optional(),
-  modulus: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RSACryptographicKey$ {
-  /** @deprecated use `RSACryptographicKey$inboundSchema` instead. */
-  export const inboundSchema = RSACryptographicKey$inboundSchema;
-  /** @deprecated use `RSACryptographicKey$outboundSchema` instead. */
-  export const outboundSchema = RSACryptographicKey$outboundSchema;
-  /** @deprecated use `RSACryptographicKey$Outbound` instead. */
-  export type Outbound = RSACryptographicKey$Outbound;
-}
-
-export function rsaCryptographicKeyToJSON(
-  rsaCryptographicKey: RSACryptographicKey,
-): string {
-  return JSON.stringify(
-    RSACryptographicKey$outboundSchema.parse(rsaCryptographicKey),
-  );
-}
-
 export function rsaCryptographicKeyFromJSON(
   jsonString: string,
 ): SafeParseResult<RSACryptographicKey, SDKValidationError> {

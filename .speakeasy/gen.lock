@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 50d8a8aa-8772-4a95-9f7b-f8e1bd905c4e
 management:
-  docChecksum: 67a9f5069f046c1aed6b8d00da11b24c
-  docVersion: 1.0.46
-  speakeasyVersion: 1.642.2
-  generationVersion: 2.731.6
-  releaseVersion: 0.7.0
-  configChecksum: 4a6fd17440f422d032db9e5819d53dc1
+  docChecksum: 51293df5670a844828d8d598f0a5aed4
+  docVersion: 1.0.48
+  speakeasyVersion: 1.653.0
+  generationVersion: 2.748.0
+  releaseVersion: 0.8.0
+  configChecksum: 03699315dfb15a4bbbf6241c1d2797cc
   repoURL: https://github.com/censys/censys-sdk-typescript.git
   installationURL: https://github.com/censys/censys-sdk-typescript
   published: true
@@ -15,7 +15,7 @@ features:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.24.1
+    core: 3.26.4
     defaultEnabledRetries: 0.1.0
     downloadStreams: 0.1.1
     enumUnions: 0.1.0
@@ -24,7 +24,7 @@ features:
     globalSecurity: 2.82.14
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
-    globalServerURLs: 2.82.5
+    globalServerURLs: 2.83.0
     globals: 2.82.2
     ignores: 2.81.1
     nameOverrides: 2.81.2
@@ -60,9 +60,11 @@ generatedFiles:
   - docs/models/components/authorityinfoaccess.md
   - docs/models/components/automatable.md
   - docs/models/components/autonomoussystem.md
+  - docs/models/components/autoreplenishconfig.md
   - docs/models/components/availability.md
   - docs/models/components/bacnet.md
   - docs/models/components/basicconstraints.md
+  - docs/models/components/byrole.md
   - docs/models/components/cabforganizationid.md
   - docs/models/components/capabilities.md
   - docs/models/components/certificate.md
@@ -103,6 +105,8 @@ generatedFiles:
   - docs/models/components/countcondition.md
   - docs/models/components/cpe.md
   - docs/models/components/cpelifecycle.md
+  - docs/models/components/creditexpiration.md
+  - docs/models/components/creditusagereport.md
   - docs/models/components/crestroncp3.md
   - docs/models/components/crestrondinap2.md
   - docs/models/components/crudcreateinputbody.md
@@ -235,6 +239,7 @@ generatedFiles:
   - docs/models/components/imagecapabilities.md
   - docs/models/components/imap.md
   - docs/models/components/integrity.md
+  - docs/models/components/invitememberinputbody.md
   - docs/models/components/iota.md
   - docs/models/components/ipmi.md
   - docs/models/components/ipmicapabilities.md
@@ -259,6 +264,10 @@ generatedFiles:
   - docs/models/components/jarmscan.md
   - docs/models/components/jarmscanned.md
   - docs/models/components/jarmscantransportprotocol.md
+  - docs/models/components/jenkins.md
+  - docs/models/components/jenkinsbuild.md
+  - docs/models/components/jenkinsjob.md
+  - docs/models/components/jenkinslabel.md
   - docs/models/components/kev.md
   - docs/models/components/kevsource.md
   - docs/models/components/keyalgorithm.md
@@ -293,6 +302,7 @@ generatedFiles:
   - docs/models/components/mediacapabilities.md
   - docs/models/components/mediaprofile.md
   - docs/models/components/mediastreaming.md
+  - docs/models/components/membercounts.md
   - docs/models/components/members.md
   - docs/models/components/memcached.md
   - docs/models/components/metrics.md
@@ -339,6 +349,7 @@ generatedFiles:
   - docs/models/components/ntp.md
   - docs/models/components/ntpntpheader.md
   - docs/models/components/ntrip.md
+  - docs/models/components/ntripdatastream.md
   - docs/models/components/oldstatus.md
   - docs/models/components/ollama.md
   - docs/models/components/ollamamodel.md
@@ -359,7 +370,13 @@ generatedFiles:
   - docs/models/components/oracle.md
   - docs/models/components/oracledescriptor.md
   - docs/models/components/organization.md
+  - docs/models/components/organizationcredits.md
+  - docs/models/components/organizationdetails.md
+  - docs/models/components/organizationmember.md
+  - docs/models/components/organizationmemberslist.md
+  - docs/models/components/organizationpreferences.md
   - docs/models/components/othername.md
+  - docs/models/components/paginationinfo.md
   - docs/models/components/pantiltzoomcapabilities.md
   - docs/models/components/parsestatus.md
   - docs/models/components/pcanywhere.md
@@ -426,6 +443,7 @@ generatedFiles:
   - docs/models/components/responseenvelopecertificateasset.md
   - docs/models/components/responseenvelopecollection.md
   - docs/models/components/responseenvelopecollectioneventsresponse.md
+  - docs/models/components/responseenvelopecreditusagereport.md
   - docs/models/components/responseenvelopehostasset.md
   - docs/models/components/responseenvelopehostobservationresponse.md
   - docs/models/components/responseenvelopehosttimeline.md
@@ -435,6 +453,9 @@ generatedFiles:
   - docs/models/components/responseenvelopelistrawcertificateresponse.md
   - docs/models/components/responseenvelopelistsearchconvertqueryresponse.md
   - docs/models/components/responseenvelopelistwebpropertyasset.md
+  - docs/models/components/responseenvelopeorganizationcredits.md
+  - docs/models/components/responseenvelopeorganizationdetails.md
+  - docs/models/components/responseenvelopeorganizationmemberslist.md
   - docs/models/components/responseenvelopesearchaggregateresponse.md
   - docs/models/components/responseenvelopesearchqueryresponse.md
   - docs/models/components/responseenvelopetrackedscan.md
@@ -454,6 +475,7 @@ generatedFiles:
   - docs/models/components/rocketmqclusterinfo.md
   - docs/models/components/rocketmqresponseheader.md
   - docs/models/components/rocketmqtopiclist.md
+  - docs/models/components/roles.md
   - docs/models/components/rootstore.md
   - docs/models/components/rootstorechain.md
   - docs/models/components/routeupdated.md
@@ -522,6 +544,7 @@ generatedFiles:
   - docs/models/components/snmpsystemservices.md
   - docs/models/components/socks.md
   - docs/models/components/source.md
+  - docs/models/components/sourceusagebreakdown.md
   - docs/models/components/spice.md
   - docs/models/components/ssdp.md
   - docs/models/components/ssh.md
@@ -568,6 +591,7 @@ generatedFiles:
   - docs/models/components/type.md
   - docs/models/components/unitronicspcom.md
   - docs/models/components/unrecognizedpublickey.md
+  - docs/models/components/updatememberroleinputbody.md
   - docs/models/components/upnp.md
   - docs/models/components/upnpdevice.md
   - docs/models/components/upnpservice.md
@@ -611,6 +635,22 @@ generatedFiles:
   - docs/models/operations/assetchangetypes.md
   - docs/models/operations/changetypes.md
   - docs/models/operations/statuschangetypes.md
+  - docs/models/operations/v3accountmanagementinviteusertoorgrequest.md
+  - docs/models/operations/v3accountmanagementinviteusertoorgresponse.md
+  - docs/models/operations/v3accountmanagementlistorgmembersrequest.md
+  - docs/models/operations/v3accountmanagementlistorgmembersresponse.md
+  - docs/models/operations/v3accountmanagementmembercreditsusagerequest.md
+  - docs/models/operations/v3accountmanagementmembercreditsusageresponse.md
+  - docs/models/operations/v3accountmanagementorgcreditsrequest.md
+  - docs/models/operations/v3accountmanagementorgcreditsresponse.md
+  - docs/models/operations/v3accountmanagementorgcreditsusagerequest.md
+  - docs/models/operations/v3accountmanagementorgcreditsusageresponse.md
+  - docs/models/operations/v3accountmanagementorgdetailsrequest.md
+  - docs/models/operations/v3accountmanagementorgdetailsresponse.md
+  - docs/models/operations/v3accountmanagementremoveorgmemberrequest.md
+  - docs/models/operations/v3accountmanagementremoveorgmemberresponse.md
+  - docs/models/operations/v3accountmanagementupdateorgmemberrequest.md
+  - docs/models/operations/v3accountmanagementupdateorgmemberresponse.md
   - docs/models/operations/v3collectionscrudcreateglobals.md
   - docs/models/operations/v3collectionscrudcreaterequest.md
   - docs/models/operations/v3collectionscrudcreateresponse.md
@@ -689,6 +729,7 @@ generatedFiles:
   - docs/models/operations/v3threathuntingvaluecountsglobals.md
   - docs/models/operations/v3threathuntingvaluecountsrequest.md
   - docs/models/operations/v3threathuntingvaluecountsresponse.md
+  - docs/sdks/accountmanagement/README.md
   - docs/sdks/collections/README.md
   - docs/sdks/globaldata/README.md
   - docs/sdks/threathunting/README.md
@@ -700,6 +741,14 @@ generatedFiles:
   - jsr.json
   - package.json
   - src/core.ts
+  - src/funcs/accountManagementGetMemberCreditUsage.ts
+  - src/funcs/accountManagementGetOrganizationCreditUsage.ts
+  - src/funcs/accountManagementGetOrganizationCredits.ts
+  - src/funcs/accountManagementGetOrganizationDetails.ts
+  - src/funcs/accountManagementInviteUserToOrganization.ts
+  - src/funcs/accountManagementListOrganizationMembers.ts
+  - src/funcs/accountManagementRemoveOrganizationMember.ts
+  - src/funcs/accountManagementUpdateOrganizationMember.ts
   - src/funcs/collectionsAggregate.ts
   - src/funcs/collectionsCreate.ts
   - src/funcs/collectionsDelete.ts
@@ -761,6 +810,7 @@ generatedFiles:
   - src/models/components/authenticationerrordetail.ts
   - src/models/components/authorityinfoaccess.ts
   - src/models/components/autonomoussystem.ts
+  - src/models/components/autoreplenishconfig.ts
   - src/models/components/bacnet.ts
   - src/models/components/basicconstraints.ts
   - src/models/components/cabforganizationid.ts
@@ -800,6 +850,8 @@ generatedFiles:
   - src/models/components/countcondition.ts
   - src/models/components/cpe.ts
   - src/models/components/cpelifecycle.ts
+  - src/models/components/creditexpiration.ts
+  - src/models/components/creditusagereport.ts
   - src/models/components/crestroncp3.ts
   - src/models/components/crestrondinap2.ts
   - src/models/components/crudcreateinputbody.ts
@@ -920,6 +972,7 @@ generatedFiles:
   - src/models/components/imagecapabilities.ts
   - src/models/components/imap.ts
   - src/models/components/index.ts
+  - src/models/components/invitememberinputbody.ts
   - src/models/components/iota.ts
   - src/models/components/ipmi.ts
   - src/models/components/ipmicapabilities.ts
@@ -943,6 +996,10 @@ generatedFiles:
   - src/models/components/ja4tscanscan.ts
   - src/models/components/jarmscan.ts
   - src/models/components/jarmscanned.ts
+  - src/models/components/jenkins.ts
+  - src/models/components/jenkinsbuild.ts
+  - src/models/components/jenkinsjob.ts
+  - src/models/components/jenkinslabel.ts
   - src/models/components/kev.ts
   - src/models/components/keyalgorithm.ts
   - src/models/components/keyusage.ts
@@ -975,6 +1032,7 @@ generatedFiles:
   - src/models/components/mediacapabilities.ts
   - src/models/components/mediaprofile.ts
   - src/models/components/mediastreaming.ts
+  - src/models/components/membercounts.ts
   - src/models/components/members.ts
   - src/models/components/memcached.ts
   - src/models/components/metrics.ts
@@ -1020,6 +1078,7 @@ generatedFiles:
   - src/models/components/ntp.ts
   - src/models/components/ntpntpheader.ts
   - src/models/components/ntrip.ts
+  - src/models/components/ntripdatastream.ts
   - src/models/components/ollama.ts
   - src/models/components/ollamamodel.ts
   - src/models/components/onc.ts
@@ -1038,7 +1097,13 @@ generatedFiles:
   - src/models/components/oracle.ts
   - src/models/components/oracledescriptor.ts
   - src/models/components/organization.ts
+  - src/models/components/organizationcredits.ts
+  - src/models/components/organizationdetails.ts
+  - src/models/components/organizationmember.ts
+  - src/models/components/organizationmemberslist.ts
+  - src/models/components/organizationpreferences.ts
   - src/models/components/othername.ts
+  - src/models/components/paginationinfo.ts
   - src/models/components/pantiltzoomcapabilities.ts
   - src/models/components/pcanywhere.ts
   - src/models/components/pcanywherestatus.ts
@@ -1096,6 +1161,7 @@ generatedFiles:
   - src/models/components/responseenvelopecertificateasset.ts
   - src/models/components/responseenvelopecollection.ts
   - src/models/components/responseenvelopecollectioneventsresponse.ts
+  - src/models/components/responseenvelopecreditusagereport.ts
   - src/models/components/responseenvelopehostasset.ts
   - src/models/components/responseenvelopehostobservationresponse.ts
   - src/models/components/responseenvelopehosttimeline.ts
@@ -1105,6 +1171,9 @@ generatedFiles:
   - src/models/components/responseenvelopelistrawcertificateresponse.ts
   - src/models/components/responseenvelopelistsearchconvertqueryresponse.ts
   - src/models/components/responseenvelopelistwebpropertyasset.ts
+  - src/models/components/responseenvelopeorganizationcredits.ts
+  - src/models/components/responseenvelopeorganizationdetails.ts
+  - src/models/components/responseenvelopeorganizationmemberslist.ts
   - src/models/components/responseenvelopesearchaggregateresponse.ts
   - src/models/components/responseenvelopesearchqueryresponse.ts
   - src/models/components/responseenvelopetrackedscan.ts
@@ -1179,6 +1248,7 @@ generatedFiles:
   - src/models/components/snmpsystem.ts
   - src/models/components/snmpsystemservices.ts
   - src/models/components/socks.ts
+  - src/models/components/sourceusagebreakdown.ts
   - src/models/components/spice.ts
   - src/models/components/ssdp.ts
   - src/models/components/ssh.ts
@@ -1213,6 +1283,7 @@ generatedFiles:
   - src/models/components/trackedscantask.ts
   - src/models/components/unitronicspcom.ts
   - src/models/components/unrecognizedpublickey.ts
+  - src/models/components/updatememberroleinputbody.ts
   - src/models/components/upnp.ts
   - src/models/components/upnpdevice.ts
   - src/models/components/upnpservice.ts
@@ -1251,6 +1322,14 @@ generatedFiles:
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
   - src/models/operations/index.ts
+  - src/models/operations/v3accountmanagementinviteusertoorg.ts
+  - src/models/operations/v3accountmanagementlistorgmembers.ts
+  - src/models/operations/v3accountmanagementmembercreditsusage.ts
+  - src/models/operations/v3accountmanagementorgcredits.ts
+  - src/models/operations/v3accountmanagementorgcreditsusage.ts
+  - src/models/operations/v3accountmanagementorgdetails.ts
+  - src/models/operations/v3accountmanagementremoveorgmember.ts
+  - src/models/operations/v3accountmanagementupdateorgmember.ts
   - src/models/operations/v3collectionscrudcreate.ts
   - src/models/operations/v3collectionscruddelete.ts
   - src/models/operations/v3collectionscrudget.ts
@@ -1277,6 +1356,7 @@ generatedFiles:
   - src/models/operations/v3threathuntingscansdiscovery.ts
   - src/models/operations/v3threathuntingscansget.ts
   - src/models/operations/v3threathuntingvaluecounts.ts
+  - src/sdk/accountmanagement.ts
   - src/sdk/collections.ts
   - src/sdk/globaldata.ts
   - src/sdk/index.ts
@@ -1751,6 +1831,111 @@ examples:
         "500":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
         "403":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-accountmanagement-org-details:
+    speakeasy-default-v3-accountmanagement-org-details:
+      parameters:
+        path:
+          organization_id: "11111111-2222-3333-4444-555555555555"
+        query:
+          include_member_counts: false
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-accountmanagement-org-credits:
+    speakeasy-default-v3-accountmanagement-org-credits:
+      parameters:
+        path:
+          organization_id: "11111111-2222-3333-4444-555555555555"
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-accountmanagement-org-credits-usage:
+    speakeasy-default-v3-accountmanagement-org-credits-usage:
+      parameters:
+        path:
+          organization_id: "11111111-2222-3333-4444-555555555555"
+        query:
+          date: "2025-11-01"
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "400":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-accountmanagement-invite-user-to-org:
+    speakeasy-default-v3-accountmanagement-invite-user-to-org:
+      parameters:
+        path:
+          organization_id: "11111111-2222-3333-4444-555555555555"
+      requestBody:
+        application/json: {"email": "user@example.com"}
+      responses:
+        "401":
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-accountmanagement-list-org-members:
+    speakeasy-default-v3-accountmanagement-list-org-members:
+      parameters:
+        path:
+          organization_id: "11111111-2222-3333-4444-555555555555"
+        query:
+          page_size: 10
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-accountmanagement-remove-org-member:
+    speakeasy-default-v3-accountmanagement-remove-org-member:
+      parameters:
+        path:
+          organization_id: "11111111-2222-3333-4444-555555555555"
+          user_id: "11111111-2222-3333-4444-555555555555"
+      responses:
+        "401":
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "403":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-accountmanagement-update-org-member:
+    speakeasy-default-v3-accountmanagement-update-org-member:
+      parameters:
+        path:
+          organization_id: "11111111-2222-3333-4444-555555555555"
+          user_id: "11111111-2222-3333-4444-555555555555"
+      requestBody:
+        application/json: {"roles": null}
+      responses:
+        "401":
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "400":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-accountmanagement-member-credits-usage:
+    speakeasy-default-v3-accountmanagement-member-credits-usage:
+      parameters:
+        path:
+          organization_id: "11111111-2222-3333-4444-555555555555"
+          user_id: "11111111-2222-3333-4444-555555555555"
+        query:
+          date: "2025-11-01"
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "400":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
 examplesVersion: 1.0.2
 generatedTests: {}

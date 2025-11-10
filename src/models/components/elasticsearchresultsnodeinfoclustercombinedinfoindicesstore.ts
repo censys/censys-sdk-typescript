@@ -29,55 +29,6 @@ export const ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesStore$inbound
     });
   });
 
-/** @internal */
-export type ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesStore$Outbound =
-  {
-    reserved_in_bytes?: number | undefined;
-    size_in_bytes?: number | undefined;
-  };
-
-/** @internal */
-export const ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesStore$outboundSchema:
-  z.ZodType<
-    ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesStore$Outbound,
-    z.ZodTypeDef,
-    ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesStore
-  > = z.object({
-    reservedInBytes: z.number().int().optional(),
-    sizeInBytes: z.number().int().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      reservedInBytes: "reserved_in_bytes",
-      sizeInBytes: "size_in_bytes",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesStore$ {
-  /** @deprecated use `ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesStore$inboundSchema` instead. */
-  export const inboundSchema =
-    ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesStore$inboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesStore$outboundSchema` instead. */
-  export const outboundSchema =
-    ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesStore$outboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesStore$Outbound` instead. */
-  export type Outbound =
-    ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesStore$Outbound;
-}
-
-export function elasticSearchResultsNodeInfoClusterCombinedInfoIndicesStoreToJSON(
-  elasticSearchResultsNodeInfoClusterCombinedInfoIndicesStore:
-    ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesStore,
-): string {
-  return JSON.stringify(
-    ElasticSearchResultsNodeInfoClusterCombinedInfoIndicesStore$outboundSchema
-      .parse(elasticSearchResultsNodeInfoClusterCombinedInfoIndicesStore),
-  );
-}
-
 export function elasticSearchResultsNodeInfoClusterCombinedInfoIndicesStoreFromJSON(
   jsonString: string,
 ): SafeParseResult<

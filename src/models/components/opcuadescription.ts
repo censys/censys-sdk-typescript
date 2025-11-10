@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   OpcUaLocalizedText,
   OpcUaLocalizedText$inboundSchema,
-  OpcUaLocalizedText$Outbound,
-  OpcUaLocalizedText$outboundSchema,
 } from "./opcualocalizedtext.js";
 
 export type OpcUaDescription = {
@@ -48,63 +46,6 @@ export const OpcUaDescription$inboundSchema: z.ZodType<
     "product_uri": "productUri",
   });
 });
-
-/** @internal */
-export type OpcUaDescription$Outbound = {
-  application_name?: OpcUaLocalizedText$Outbound | undefined;
-  application_type?: number | undefined;
-  application_uri?: string | undefined;
-  discovery_profile_uri?: string | undefined;
-  discovery_urls?: Array<string> | null | undefined;
-  gateway_server_uri?: string | undefined;
-  product_uri?: string | undefined;
-};
-
-/** @internal */
-export const OpcUaDescription$outboundSchema: z.ZodType<
-  OpcUaDescription$Outbound,
-  z.ZodTypeDef,
-  OpcUaDescription
-> = z.object({
-  applicationName: OpcUaLocalizedText$outboundSchema.optional(),
-  applicationType: z.number().int().optional(),
-  applicationUri: z.string().optional(),
-  discoveryProfileUri: z.string().optional(),
-  discoveryUrls: z.nullable(z.array(z.string())).optional(),
-  gatewayServerUri: z.string().optional(),
-  productUri: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    applicationName: "application_name",
-    applicationType: "application_type",
-    applicationUri: "application_uri",
-    discoveryProfileUri: "discovery_profile_uri",
-    discoveryUrls: "discovery_urls",
-    gatewayServerUri: "gateway_server_uri",
-    productUri: "product_uri",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OpcUaDescription$ {
-  /** @deprecated use `OpcUaDescription$inboundSchema` instead. */
-  export const inboundSchema = OpcUaDescription$inboundSchema;
-  /** @deprecated use `OpcUaDescription$outboundSchema` instead. */
-  export const outboundSchema = OpcUaDescription$outboundSchema;
-  /** @deprecated use `OpcUaDescription$Outbound` instead. */
-  export type Outbound = OpcUaDescription$Outbound;
-}
-
-export function opcUaDescriptionToJSON(
-  opcUaDescription: OpcUaDescription,
-): string {
-  return JSON.stringify(
-    OpcUaDescription$outboundSchema.parse(opcUaDescription),
-  );
-}
 
 export function opcUaDescriptionFromJSON(
   jsonString: string,

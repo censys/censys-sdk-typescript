@@ -43,53 +43,6 @@ export const PrometheusResponseDroppedTarget$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type PrometheusResponseDroppedTarget$Outbound = {
-  address?: string | undefined;
-  job?: string | undefined;
-  metrics_path?: string | undefined;
-  scheme?: string | undefined;
-};
-
-/** @internal */
-export const PrometheusResponseDroppedTarget$outboundSchema: z.ZodType<
-  PrometheusResponseDroppedTarget$Outbound,
-  z.ZodTypeDef,
-  PrometheusResponseDroppedTarget
-> = z.object({
-  address: z.string().optional(),
-  job: z.string().optional(),
-  metricsPath: z.string().optional(),
-  scheme: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    metricsPath: "metrics_path",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PrometheusResponseDroppedTarget$ {
-  /** @deprecated use `PrometheusResponseDroppedTarget$inboundSchema` instead. */
-  export const inboundSchema = PrometheusResponseDroppedTarget$inboundSchema;
-  /** @deprecated use `PrometheusResponseDroppedTarget$outboundSchema` instead. */
-  export const outboundSchema = PrometheusResponseDroppedTarget$outboundSchema;
-  /** @deprecated use `PrometheusResponseDroppedTarget$Outbound` instead. */
-  export type Outbound = PrometheusResponseDroppedTarget$Outbound;
-}
-
-export function prometheusResponseDroppedTargetToJSON(
-  prometheusResponseDroppedTarget: PrometheusResponseDroppedTarget,
-): string {
-  return JSON.stringify(
-    PrometheusResponseDroppedTarget$outboundSchema.parse(
-      prometheusResponseDroppedTarget,
-    ),
-  );
-}
-
 export function prometheusResponseDroppedTargetFromJSON(
   jsonString: string,
 ): SafeParseResult<PrometheusResponseDroppedTarget, SDKValidationError> {

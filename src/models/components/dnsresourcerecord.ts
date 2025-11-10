@@ -43,22 +43,6 @@ export const DnsResourceRecordType$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(DnsResourceRecordType);
 
 /** @internal */
-export const DnsResourceRecordType$outboundSchema: z.ZodNativeEnum<
-  typeof DnsResourceRecordType
-> = DnsResourceRecordType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DnsResourceRecordType$ {
-  /** @deprecated use `DnsResourceRecordType$inboundSchema` instead. */
-  export const inboundSchema = DnsResourceRecordType$inboundSchema;
-  /** @deprecated use `DnsResourceRecordType$outboundSchema` instead. */
-  export const outboundSchema = DnsResourceRecordType$outboundSchema;
-}
-
-/** @internal */
 export const DnsResourceRecord$inboundSchema: z.ZodType<
   DnsResourceRecord,
   z.ZodTypeDef,
@@ -68,45 +52,6 @@ export const DnsResourceRecord$inboundSchema: z.ZodType<
   response: z.string().optional(),
   type: DnsResourceRecordType$inboundSchema.optional(),
 });
-
-/** @internal */
-export type DnsResourceRecord$Outbound = {
-  name?: string | undefined;
-  response?: string | undefined;
-  type?: string | undefined;
-};
-
-/** @internal */
-export const DnsResourceRecord$outboundSchema: z.ZodType<
-  DnsResourceRecord$Outbound,
-  z.ZodTypeDef,
-  DnsResourceRecord
-> = z.object({
-  name: z.string().optional(),
-  response: z.string().optional(),
-  type: DnsResourceRecordType$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DnsResourceRecord$ {
-  /** @deprecated use `DnsResourceRecord$inboundSchema` instead. */
-  export const inboundSchema = DnsResourceRecord$inboundSchema;
-  /** @deprecated use `DnsResourceRecord$outboundSchema` instead. */
-  export const outboundSchema = DnsResourceRecord$outboundSchema;
-  /** @deprecated use `DnsResourceRecord$Outbound` instead. */
-  export type Outbound = DnsResourceRecord$Outbound;
-}
-
-export function dnsResourceRecordToJSON(
-  dnsResourceRecord: DnsResourceRecord,
-): string {
-  return JSON.stringify(
-    DnsResourceRecord$outboundSchema.parse(dnsResourceRecord),
-  );
-}
 
 export function dnsResourceRecordFromJSON(
   jsonString: string,

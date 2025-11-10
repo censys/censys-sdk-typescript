@@ -10,21 +10,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DistinguishedName,
   DistinguishedName$inboundSchema,
-  DistinguishedName$Outbound,
-  DistinguishedName$outboundSchema,
 } from "./distinguishedname.js";
-import {
-  EdiPartyName,
-  EdiPartyName$inboundSchema,
-  EdiPartyName$Outbound,
-  EdiPartyName$outboundSchema,
-} from "./edipartyname.js";
-import {
-  OtherName,
-  OtherName$inboundSchema,
-  OtherName$Outbound,
-  OtherName$outboundSchema,
-} from "./othername.js";
+import { EdiPartyName, EdiPartyName$inboundSchema } from "./edipartyname.js";
+import { OtherName, OtherName$inboundSchema } from "./othername.js";
 
 export type GeneralNames = {
   /**
@@ -88,63 +76,6 @@ export const GeneralNames$inboundSchema: z.ZodType<
     "uniform_resource_identifiers": "uniformResourceIdentifiers",
   });
 });
-
-/** @internal */
-export type GeneralNames$Outbound = {
-  directory_names?: Array<DistinguishedName$Outbound> | null | undefined;
-  dns_names?: Array<string> | null | undefined;
-  edi_party_names?: Array<EdiPartyName$Outbound> | null | undefined;
-  email_addresses?: Array<string> | null | undefined;
-  ip_addresses?: Array<string> | null | undefined;
-  other_names?: Array<OtherName$Outbound> | null | undefined;
-  registered_ids?: Array<string> | null | undefined;
-  uniform_resource_identifiers?: Array<string> | null | undefined;
-};
-
-/** @internal */
-export const GeneralNames$outboundSchema: z.ZodType<
-  GeneralNames$Outbound,
-  z.ZodTypeDef,
-  GeneralNames
-> = z.object({
-  directoryNames: z.nullable(z.array(DistinguishedName$outboundSchema))
-    .optional(),
-  dnsNames: z.nullable(z.array(z.string())).optional(),
-  ediPartyNames: z.nullable(z.array(EdiPartyName$outboundSchema)).optional(),
-  emailAddresses: z.nullable(z.array(z.string())).optional(),
-  ipAddresses: z.nullable(z.array(z.string())).optional(),
-  otherNames: z.nullable(z.array(OtherName$outboundSchema)).optional(),
-  registeredIds: z.nullable(z.array(z.string())).optional(),
-  uniformResourceIdentifiers: z.nullable(z.array(z.string())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    directoryNames: "directory_names",
-    dnsNames: "dns_names",
-    ediPartyNames: "edi_party_names",
-    emailAddresses: "email_addresses",
-    ipAddresses: "ip_addresses",
-    otherNames: "other_names",
-    registeredIds: "registered_ids",
-    uniformResourceIdentifiers: "uniform_resource_identifiers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GeneralNames$ {
-  /** @deprecated use `GeneralNames$inboundSchema` instead. */
-  export const inboundSchema = GeneralNames$inboundSchema;
-  /** @deprecated use `GeneralNames$outboundSchema` instead. */
-  export const outboundSchema = GeneralNames$outboundSchema;
-  /** @deprecated use `GeneralNames$Outbound` instead. */
-  export type Outbound = GeneralNames$Outbound;
-}
-
-export function generalNamesToJSON(generalNames: GeneralNames): string {
-  return JSON.stringify(GeneralNames$outboundSchema.parse(generalNames));
-}
 
 export function generalNamesFromJSON(
   jsonString: string,

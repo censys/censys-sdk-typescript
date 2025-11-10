@@ -25,44 +25,6 @@ export const Openvpn$inboundSchema: z.ZodType<Openvpn, z.ZodTypeDef, unknown> =
     });
   });
 
-/** @internal */
-export type Openvpn$Outbound = {
-  accepts_v1?: boolean | undefined;
-  accepts_v2?: boolean | undefined;
-};
-
-/** @internal */
-export const Openvpn$outboundSchema: z.ZodType<
-  Openvpn$Outbound,
-  z.ZodTypeDef,
-  Openvpn
-> = z.object({
-  acceptsV1: z.boolean().optional(),
-  acceptsV2: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    acceptsV1: "accepts_v1",
-    acceptsV2: "accepts_v2",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Openvpn$ {
-  /** @deprecated use `Openvpn$inboundSchema` instead. */
-  export const inboundSchema = Openvpn$inboundSchema;
-  /** @deprecated use `Openvpn$outboundSchema` instead. */
-  export const outboundSchema = Openvpn$outboundSchema;
-  /** @deprecated use `Openvpn$Outbound` instead. */
-  export type Outbound = Openvpn$Outbound;
-}
-
-export function openvpnToJSON(openvpn: Openvpn): string {
-  return JSON.stringify(Openvpn$outboundSchema.parse(openvpn));
-}
-
 export function openvpnFromJSON(
   jsonString: string,
 ): SafeParseResult<Openvpn, SDKValidationError> {

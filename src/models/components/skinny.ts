@@ -17,37 +17,6 @@ export const Skinny$inboundSchema: z.ZodType<Skinny, z.ZodTypeDef, unknown> = z
     response: z.string().optional(),
   });
 
-/** @internal */
-export type Skinny$Outbound = {
-  response?: string | undefined;
-};
-
-/** @internal */
-export const Skinny$outboundSchema: z.ZodType<
-  Skinny$Outbound,
-  z.ZodTypeDef,
-  Skinny
-> = z.object({
-  response: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Skinny$ {
-  /** @deprecated use `Skinny$inboundSchema` instead. */
-  export const inboundSchema = Skinny$inboundSchema;
-  /** @deprecated use `Skinny$outboundSchema` instead. */
-  export const outboundSchema = Skinny$outboundSchema;
-  /** @deprecated use `Skinny$Outbound` instead. */
-  export type Outbound = Skinny$Outbound;
-}
-
-export function skinnyToJSON(skinny: Skinny): string {
-  return JSON.stringify(Skinny$outboundSchema.parse(skinny));
-}
-
 export function skinnyFromJSON(
   jsonString: string,
 ): SafeParseResult<Skinny, SDKValidationError> {

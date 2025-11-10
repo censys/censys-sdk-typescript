@@ -29,52 +29,6 @@ export const MssqlPreloginOptionsServerVersion$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type MssqlPreloginOptionsServerVersion$Outbound = {
-  build_number?: number | undefined;
-  major?: number | undefined;
-  minor?: number | undefined;
-};
-
-/** @internal */
-export const MssqlPreloginOptionsServerVersion$outboundSchema: z.ZodType<
-  MssqlPreloginOptionsServerVersion$Outbound,
-  z.ZodTypeDef,
-  MssqlPreloginOptionsServerVersion
-> = z.object({
-  buildNumber: z.number().int().optional(),
-  major: z.number().int().optional(),
-  minor: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    buildNumber: "build_number",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MssqlPreloginOptionsServerVersion$ {
-  /** @deprecated use `MssqlPreloginOptionsServerVersion$inboundSchema` instead. */
-  export const inboundSchema = MssqlPreloginOptionsServerVersion$inboundSchema;
-  /** @deprecated use `MssqlPreloginOptionsServerVersion$outboundSchema` instead. */
-  export const outboundSchema =
-    MssqlPreloginOptionsServerVersion$outboundSchema;
-  /** @deprecated use `MssqlPreloginOptionsServerVersion$Outbound` instead. */
-  export type Outbound = MssqlPreloginOptionsServerVersion$Outbound;
-}
-
-export function mssqlPreloginOptionsServerVersionToJSON(
-  mssqlPreloginOptionsServerVersion: MssqlPreloginOptionsServerVersion,
-): string {
-  return JSON.stringify(
-    MssqlPreloginOptionsServerVersion$outboundSchema.parse(
-      mssqlPreloginOptionsServerVersion,
-    ),
-  );
-}
-
 export function mssqlPreloginOptionsServerVersionFromJSON(
   jsonString: string,
 ): SafeParseResult<MssqlPreloginOptionsServerVersion, SDKValidationError> {

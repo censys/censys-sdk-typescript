@@ -29,49 +29,6 @@ export const HostDnsReverseResolution$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type HostDnsReverseResolution$Outbound = {
-  names?: Array<string> | null | undefined;
-  resolve_time?: string | undefined;
-  server?: string | undefined;
-};
-
-/** @internal */
-export const HostDnsReverseResolution$outboundSchema: z.ZodType<
-  HostDnsReverseResolution$Outbound,
-  z.ZodTypeDef,
-  HostDnsReverseResolution
-> = z.object({
-  names: z.nullable(z.array(z.string())).optional(),
-  resolveTime: z.string().optional(),
-  server: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    resolveTime: "resolve_time",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HostDnsReverseResolution$ {
-  /** @deprecated use `HostDnsReverseResolution$inboundSchema` instead. */
-  export const inboundSchema = HostDnsReverseResolution$inboundSchema;
-  /** @deprecated use `HostDnsReverseResolution$outboundSchema` instead. */
-  export const outboundSchema = HostDnsReverseResolution$outboundSchema;
-  /** @deprecated use `HostDnsReverseResolution$Outbound` instead. */
-  export type Outbound = HostDnsReverseResolution$Outbound;
-}
-
-export function hostDnsReverseResolutionToJSON(
-  hostDnsReverseResolution: HostDnsReverseResolution,
-): string {
-  return JSON.stringify(
-    HostDnsReverseResolution$outboundSchema.parse(hostDnsReverseResolution),
-  );
-}
-
 export function hostDnsReverseResolutionFromJSON(
   jsonString: string,
 ): SafeParseResult<HostDnsReverseResolution, SDKValidationError> {

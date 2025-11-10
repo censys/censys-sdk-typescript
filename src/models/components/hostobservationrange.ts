@@ -37,57 +37,6 @@ export const HostObservationRange$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type HostObservationRange$Outbound = {
-  end_time: string;
-  ip: string;
-  port: number;
-  protocols: Array<string> | null;
-  start_time: string;
-  transport_protocol: string;
-};
-
-/** @internal */
-export const HostObservationRange$outboundSchema: z.ZodType<
-  HostObservationRange$Outbound,
-  z.ZodTypeDef,
-  HostObservationRange
-> = z.object({
-  endTime: z.date().transform(v => v.toISOString()),
-  ip: z.string(),
-  port: z.number().int(),
-  protocols: z.nullable(z.array(z.string())),
-  startTime: z.date().transform(v => v.toISOString()),
-  transportProtocol: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    endTime: "end_time",
-    startTime: "start_time",
-    transportProtocol: "transport_protocol",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HostObservationRange$ {
-  /** @deprecated use `HostObservationRange$inboundSchema` instead. */
-  export const inboundSchema = HostObservationRange$inboundSchema;
-  /** @deprecated use `HostObservationRange$outboundSchema` instead. */
-  export const outboundSchema = HostObservationRange$outboundSchema;
-  /** @deprecated use `HostObservationRange$Outbound` instead. */
-  export type Outbound = HostObservationRange$Outbound;
-}
-
-export function hostObservationRangeToJSON(
-  hostObservationRange: HostObservationRange,
-): string {
-  return JSON.stringify(
-    HostObservationRange$outboundSchema.parse(hostObservationRange),
-  );
-}
-
 export function hostObservationRangeFromJSON(
   jsonString: string,
 ): SafeParseResult<HostObservationRange, SDKValidationError> {

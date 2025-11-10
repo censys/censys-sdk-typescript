@@ -35,51 +35,6 @@ export const ZeromqGreeting$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type ZeromqGreeting$Outbound = {
-  as_server?: boolean | undefined;
-  mechanism?: string | undefined;
-  signature?: string | undefined;
-  version_major?: number | undefined;
-  version_minor?: number | undefined;
-};
-
-/** @internal */
-export const ZeromqGreeting$outboundSchema: z.ZodType<
-  ZeromqGreeting$Outbound,
-  z.ZodTypeDef,
-  ZeromqGreeting
-> = z.object({
-  asServer: z.boolean().optional(),
-  mechanism: z.string().optional(),
-  signature: z.string().optional(),
-  versionMajor: z.number().int().optional(),
-  versionMinor: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    asServer: "as_server",
-    versionMajor: "version_major",
-    versionMinor: "version_minor",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ZeromqGreeting$ {
-  /** @deprecated use `ZeromqGreeting$inboundSchema` instead. */
-  export const inboundSchema = ZeromqGreeting$inboundSchema;
-  /** @deprecated use `ZeromqGreeting$outboundSchema` instead. */
-  export const outboundSchema = ZeromqGreeting$outboundSchema;
-  /** @deprecated use `ZeromqGreeting$Outbound` instead. */
-  export type Outbound = ZeromqGreeting$Outbound;
-}
-
-export function zeromqGreetingToJSON(zeromqGreeting: ZeromqGreeting): string {
-  return JSON.stringify(ZeromqGreeting$outboundSchema.parse(zeromqGreeting));
-}
-
 export function zeromqGreetingFromJSON(
   jsonString: string,
 ): SafeParseResult<ZeromqGreeting, SDKValidationError> {

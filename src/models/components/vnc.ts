@@ -7,18 +7,8 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  DesktopInfo,
-  DesktopInfo$inboundSchema,
-  DesktopInfo$Outbound,
-  DesktopInfo$outboundSchema,
-} from "./desktopinfo.js";
-import {
-  VncKeyValue,
-  VncKeyValue$inboundSchema,
-  VncKeyValue$Outbound,
-  VncKeyValue$outboundSchema,
-} from "./vnckeyvalue.js";
+import { DesktopInfo, DesktopInfo$inboundSchema } from "./desktopinfo.js";
+import { VncKeyValue, VncKeyValue$inboundSchema } from "./vnckeyvalue.js";
 
 export type Vnc = {
   /**
@@ -56,52 +46,6 @@ export const Vnc$inboundSchema: z.ZodType<Vnc, z.ZodTypeDef, unknown> = z
       "security_types": "securityTypes",
     });
   });
-
-/** @internal */
-export type Vnc$Outbound = {
-  connection_failed_reason?: string | undefined;
-  desktop_name?: string | undefined;
-  pixel_encoding?: VncKeyValue$Outbound | undefined;
-  screen_info?: DesktopInfo$Outbound | undefined;
-  security_types?: Array<VncKeyValue$Outbound> | null | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const Vnc$outboundSchema: z.ZodType<Vnc$Outbound, z.ZodTypeDef, Vnc> = z
-  .object({
-    connectionFailedReason: z.string().optional(),
-    desktopName: z.string().optional(),
-    pixelEncoding: VncKeyValue$outboundSchema.optional(),
-    screenInfo: DesktopInfo$outboundSchema.optional(),
-    securityTypes: z.nullable(z.array(VncKeyValue$outboundSchema)).optional(),
-    version: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      connectionFailedReason: "connection_failed_reason",
-      desktopName: "desktop_name",
-      pixelEncoding: "pixel_encoding",
-      screenInfo: "screen_info",
-      securityTypes: "security_types",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Vnc$ {
-  /** @deprecated use `Vnc$inboundSchema` instead. */
-  export const inboundSchema = Vnc$inboundSchema;
-  /** @deprecated use `Vnc$outboundSchema` instead. */
-  export const outboundSchema = Vnc$outboundSchema;
-  /** @deprecated use `Vnc$Outbound` instead. */
-  export type Outbound = Vnc$Outbound;
-}
-
-export function vncToJSON(vnc: Vnc): string {
-  return JSON.stringify(Vnc$outboundSchema.parse(vnc));
-}
 
 export function vncFromJSON(
   jsonString: string,

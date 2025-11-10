@@ -24,45 +24,6 @@ export const ChromeDevtoolsTarget$inboundSchema: z.ZodType<
   url: z.string().optional(),
 });
 
-/** @internal */
-export type ChromeDevtoolsTarget$Outbound = {
-  title?: string | undefined;
-  type?: string | undefined;
-  url?: string | undefined;
-};
-
-/** @internal */
-export const ChromeDevtoolsTarget$outboundSchema: z.ZodType<
-  ChromeDevtoolsTarget$Outbound,
-  z.ZodTypeDef,
-  ChromeDevtoolsTarget
-> = z.object({
-  title: z.string().optional(),
-  type: z.string().optional(),
-  url: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ChromeDevtoolsTarget$ {
-  /** @deprecated use `ChromeDevtoolsTarget$inboundSchema` instead. */
-  export const inboundSchema = ChromeDevtoolsTarget$inboundSchema;
-  /** @deprecated use `ChromeDevtoolsTarget$outboundSchema` instead. */
-  export const outboundSchema = ChromeDevtoolsTarget$outboundSchema;
-  /** @deprecated use `ChromeDevtoolsTarget$Outbound` instead. */
-  export type Outbound = ChromeDevtoolsTarget$Outbound;
-}
-
-export function chromeDevtoolsTargetToJSON(
-  chromeDevtoolsTarget: ChromeDevtoolsTarget,
-): string {
-  return JSON.stringify(
-    ChromeDevtoolsTarget$outboundSchema.parse(chromeDevtoolsTarget),
-  );
-}
-
 export function chromeDevtoolsTargetFromJSON(
   jsonString: string,
 ): SafeParseResult<ChromeDevtoolsTarget, SDKValidationError> {

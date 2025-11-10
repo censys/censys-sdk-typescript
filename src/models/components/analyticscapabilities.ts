@@ -35,55 +35,6 @@ export const AnalyticsCapabilities$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type AnalyticsCapabilities$Outbound = {
-  analytics_module_support?: boolean | undefined;
-  cell_based_scene_description_supported?: boolean | undefined;
-  rule_options_supported?: boolean | undefined;
-  rule_support?: boolean | undefined;
-};
-
-/** @internal */
-export const AnalyticsCapabilities$outboundSchema: z.ZodType<
-  AnalyticsCapabilities$Outbound,
-  z.ZodTypeDef,
-  AnalyticsCapabilities
-> = z.object({
-  analyticsModuleSupport: z.boolean().optional(),
-  cellBasedSceneDescriptionSupported: z.boolean().optional(),
-  ruleOptionsSupported: z.boolean().optional(),
-  ruleSupport: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    analyticsModuleSupport: "analytics_module_support",
-    cellBasedSceneDescriptionSupported:
-      "cell_based_scene_description_supported",
-    ruleOptionsSupported: "rule_options_supported",
-    ruleSupport: "rule_support",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AnalyticsCapabilities$ {
-  /** @deprecated use `AnalyticsCapabilities$inboundSchema` instead. */
-  export const inboundSchema = AnalyticsCapabilities$inboundSchema;
-  /** @deprecated use `AnalyticsCapabilities$outboundSchema` instead. */
-  export const outboundSchema = AnalyticsCapabilities$outboundSchema;
-  /** @deprecated use `AnalyticsCapabilities$Outbound` instead. */
-  export type Outbound = AnalyticsCapabilities$Outbound;
-}
-
-export function analyticsCapabilitiesToJSON(
-  analyticsCapabilities: AnalyticsCapabilities,
-): string {
-  return JSON.stringify(
-    AnalyticsCapabilities$outboundSchema.parse(analyticsCapabilities),
-  );
-}
-
 export function analyticsCapabilitiesFromJSON(
   jsonString: string,
 ): SafeParseResult<AnalyticsCapabilities, SDKValidationError> {

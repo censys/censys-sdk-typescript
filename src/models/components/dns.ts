@@ -8,17 +8,10 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  DnsEDns,
-  DnsEDns$inboundSchema,
-  DnsEDns$Outbound,
-  DnsEDns$outboundSchema,
-} from "./dnsedns.js";
+import { DnsEDns, DnsEDns$inboundSchema } from "./dnsedns.js";
 import {
   DnsResourceRecord,
   DnsResourceRecord$inboundSchema,
-  DnsResourceRecord$Outbound,
-  DnsResourceRecord$outboundSchema,
 } from "./dnsresourcerecord.js";
 
 /**
@@ -105,38 +98,8 @@ export const RCode$inboundSchema: z.ZodNativeEnum<typeof RCode> = z.nativeEnum(
 );
 
 /** @internal */
-export const RCode$outboundSchema: z.ZodNativeEnum<typeof RCode> =
-  RCode$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RCode$ {
-  /** @deprecated use `RCode$inboundSchema` instead. */
-  export const inboundSchema = RCode$inboundSchema;
-  /** @deprecated use `RCode$outboundSchema` instead. */
-  export const outboundSchema = RCode$outboundSchema;
-}
-
-/** @internal */
 export const ServerType$inboundSchema: z.ZodNativeEnum<typeof ServerType> = z
   .nativeEnum(ServerType);
-
-/** @internal */
-export const ServerType$outboundSchema: z.ZodNativeEnum<typeof ServerType> =
-  ServerType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ServerType$ {
-  /** @deprecated use `ServerType$inboundSchema` instead. */
-  export const inboundSchema = ServerType$inboundSchema;
-  /** @deprecated use `ServerType$outboundSchema` instead. */
-  export const outboundSchema = ServerType$outboundSchema;
-}
 
 /** @internal */
 export const Dns$inboundSchema: z.ZodType<Dns, z.ZodTypeDef, unknown> = z
@@ -159,58 +122,6 @@ export const Dns$inboundSchema: z.ZodType<Dns, z.ZodTypeDef, unknown> = z
       "server_type": "serverType",
     });
   });
-
-/** @internal */
-export type Dns$Outbound = {
-  additionals?: Array<DnsResourceRecord$Outbound> | null | undefined;
-  answers?: Array<DnsResourceRecord$Outbound> | null | undefined;
-  authorities?: Array<DnsResourceRecord$Outbound> | null | undefined;
-  edns?: DnsEDns$Outbound | undefined;
-  questions?: Array<DnsResourceRecord$Outbound> | null | undefined;
-  r_code?: string | undefined;
-  resolves_correctly?: boolean | undefined;
-  server_type?: string | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const Dns$outboundSchema: z.ZodType<Dns$Outbound, z.ZodTypeDef, Dns> = z
-  .object({
-    additionals: z.nullable(z.array(DnsResourceRecord$outboundSchema))
-      .optional(),
-    answers: z.nullable(z.array(DnsResourceRecord$outboundSchema)).optional(),
-    authorities: z.nullable(z.array(DnsResourceRecord$outboundSchema))
-      .optional(),
-    edns: DnsEDns$outboundSchema.optional(),
-    questions: z.nullable(z.array(DnsResourceRecord$outboundSchema)).optional(),
-    rCode: RCode$outboundSchema.optional(),
-    resolvesCorrectly: z.boolean().optional(),
-    serverType: ServerType$outboundSchema.optional(),
-    version: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      rCode: "r_code",
-      resolvesCorrectly: "resolves_correctly",
-      serverType: "server_type",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Dns$ {
-  /** @deprecated use `Dns$inboundSchema` instead. */
-  export const inboundSchema = Dns$inboundSchema;
-  /** @deprecated use `Dns$outboundSchema` instead. */
-  export const outboundSchema = Dns$outboundSchema;
-  /** @deprecated use `Dns$Outbound` instead. */
-  export type Outbound = Dns$Outbound;
-}
-
-export function dnsToJSON(dns: Dns): string {
-  return JSON.stringify(Dns$outboundSchema.parse(dns));
-}
 
 export function dnsFromJSON(
   jsonString: string,

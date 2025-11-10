@@ -7,30 +7,13 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  SnmpEngine,
-  SnmpEngine$inboundSchema,
-  SnmpEngine$Outbound,
-  SnmpEngine$outboundSchema,
-} from "./snmpengine.js";
+import { SnmpEngine, SnmpEngine$inboundSchema } from "./snmpengine.js";
 import {
   SnmpInterfaces,
   SnmpInterfaces$inboundSchema,
-  SnmpInterfaces$Outbound,
-  SnmpInterfaces$outboundSchema,
 } from "./snmpinterfaces.js";
-import {
-  SnmpPhysical,
-  SnmpPhysical$inboundSchema,
-  SnmpPhysical$Outbound,
-  SnmpPhysical$outboundSchema,
-} from "./snmpphysical.js";
-import {
-  SnmpSystem,
-  SnmpSystem$inboundSchema,
-  SnmpSystem$Outbound,
-  SnmpSystem$outboundSchema,
-} from "./snmpsystem.js";
+import { SnmpPhysical, SnmpPhysical$inboundSchema } from "./snmpphysical.js";
+import { SnmpSystem, SnmpSystem$inboundSchema } from "./snmpsystem.js";
 
 export type Snmp = {
   engine?: SnmpEngine | undefined;
@@ -55,48 +38,6 @@ export const Snmp$inboundSchema: z.ZodType<Snmp, z.ZodTypeDef, unknown> = z
       "oid_system": "oidSystem",
     });
   });
-
-/** @internal */
-export type Snmp$Outbound = {
-  engine?: SnmpEngine$Outbound | undefined;
-  oid_interfaces?: SnmpInterfaces$Outbound | undefined;
-  oid_physical?: SnmpPhysical$Outbound | undefined;
-  oid_system?: SnmpSystem$Outbound | undefined;
-  versions?: Array<string> | null | undefined;
-};
-
-/** @internal */
-export const Snmp$outboundSchema: z.ZodType<Snmp$Outbound, z.ZodTypeDef, Snmp> =
-  z.object({
-    engine: SnmpEngine$outboundSchema.optional(),
-    oidInterfaces: SnmpInterfaces$outboundSchema.optional(),
-    oidPhysical: SnmpPhysical$outboundSchema.optional(),
-    oidSystem: SnmpSystem$outboundSchema.optional(),
-    versions: z.nullable(z.array(z.string())).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      oidInterfaces: "oid_interfaces",
-      oidPhysical: "oid_physical",
-      oidSystem: "oid_system",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Snmp$ {
-  /** @deprecated use `Snmp$inboundSchema` instead. */
-  export const inboundSchema = Snmp$inboundSchema;
-  /** @deprecated use `Snmp$outboundSchema` instead. */
-  export const outboundSchema = Snmp$outboundSchema;
-  /** @deprecated use `Snmp$Outbound` instead. */
-  export type Outbound = Snmp$Outbound;
-}
-
-export function snmpToJSON(snmp: Snmp): string {
-  return JSON.stringify(Snmp$outboundSchema.parse(snmp));
-}
 
 export function snmpFromJSON(
   jsonString: string,

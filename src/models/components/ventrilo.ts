@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   VentriloMessage,
   VentriloMessage$inboundSchema,
-  VentriloMessage$Outbound,
-  VentriloMessage$outboundSchema,
 } from "./ventrilomessage.js";
 
 export type Ventrilo = {
@@ -27,39 +25,6 @@ export const Ventrilo$inboundSchema: z.ZodType<
   attributes: z.nullable(z.array(z.string())).optional(),
   messages: z.nullable(z.array(VentriloMessage$inboundSchema)).optional(),
 });
-
-/** @internal */
-export type Ventrilo$Outbound = {
-  attributes?: Array<string> | null | undefined;
-  messages?: Array<VentriloMessage$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const Ventrilo$outboundSchema: z.ZodType<
-  Ventrilo$Outbound,
-  z.ZodTypeDef,
-  Ventrilo
-> = z.object({
-  attributes: z.nullable(z.array(z.string())).optional(),
-  messages: z.nullable(z.array(VentriloMessage$outboundSchema)).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Ventrilo$ {
-  /** @deprecated use `Ventrilo$inboundSchema` instead. */
-  export const inboundSchema = Ventrilo$inboundSchema;
-  /** @deprecated use `Ventrilo$outboundSchema` instead. */
-  export const outboundSchema = Ventrilo$outboundSchema;
-  /** @deprecated use `Ventrilo$Outbound` instead. */
-  export type Outbound = Ventrilo$Outbound;
-}
-
-export function ventriloToJSON(ventrilo: Ventrilo): string {
-  return JSON.stringify(Ventrilo$outboundSchema.parse(ventrilo));
-}
 
 export function ventriloFromJSON(
   jsonString: string,

@@ -10,14 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ModbusExceptionResponse,
   ModbusExceptionResponse$inboundSchema,
-  ModbusExceptionResponse$Outbound,
-  ModbusExceptionResponse$outboundSchema,
 } from "./modbusexceptionresponse.js";
 import {
   ModbusMEIResponse,
   ModbusMEIResponse$inboundSchema,
-  ModbusMEIResponse$Outbound,
-  ModbusMEIResponse$outboundSchema,
 } from "./modbusmeiresponse.js";
 
 export type Modbus = {
@@ -41,49 +37,6 @@ export const Modbus$inboundSchema: z.ZodType<Modbus, z.ZodTypeDef, unknown> = z
       "unit_id": "unitId",
     });
   });
-
-/** @internal */
-export type Modbus$Outbound = {
-  exception_response?: ModbusExceptionResponse$Outbound | undefined;
-  function?: number | undefined;
-  mei_response?: ModbusMEIResponse$Outbound | undefined;
-  unit_id?: number | undefined;
-};
-
-/** @internal */
-export const Modbus$outboundSchema: z.ZodType<
-  Modbus$Outbound,
-  z.ZodTypeDef,
-  Modbus
-> = z.object({
-  exceptionResponse: ModbusExceptionResponse$outboundSchema.optional(),
-  function: z.number().int().optional(),
-  meiResponse: ModbusMEIResponse$outboundSchema.optional(),
-  unitId: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    exceptionResponse: "exception_response",
-    meiResponse: "mei_response",
-    unitId: "unit_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Modbus$ {
-  /** @deprecated use `Modbus$inboundSchema` instead. */
-  export const inboundSchema = Modbus$inboundSchema;
-  /** @deprecated use `Modbus$outboundSchema` instead. */
-  export const outboundSchema = Modbus$outboundSchema;
-  /** @deprecated use `Modbus$Outbound` instead. */
-  export type Outbound = Modbus$Outbound;
-}
-
-export function modbusToJSON(modbus: Modbus): string {
-  return JSON.stringify(Modbus$outboundSchema.parse(modbus));
-}
 
 export function modbusFromJSON(
   jsonString: string,

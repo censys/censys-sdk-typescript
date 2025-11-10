@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SignedCertificateTimestampSignature,
   SignedCertificateTimestampSignature$inboundSchema,
-  SignedCertificateTimestampSignature$Outbound,
-  SignedCertificateTimestampSignature$outboundSchema,
 } from "./signedcertificatetimestampsignature.js";
 
 export type SignedCertificateTimestamp = {
@@ -36,51 +34,6 @@ export const SignedCertificateTimestamp$inboundSchema: z.ZodType<
     "log_id": "logId",
   });
 });
-
-/** @internal */
-export type SignedCertificateTimestamp$Outbound = {
-  log_id?: string | undefined;
-  signature?: SignedCertificateTimestampSignature$Outbound | undefined;
-  timestamp?: string | undefined;
-  version?: number | undefined;
-};
-
-/** @internal */
-export const SignedCertificateTimestamp$outboundSchema: z.ZodType<
-  SignedCertificateTimestamp$Outbound,
-  z.ZodTypeDef,
-  SignedCertificateTimestamp
-> = z.object({
-  logId: z.string().optional(),
-  signature: SignedCertificateTimestampSignature$outboundSchema.optional(),
-  timestamp: z.string().optional(),
-  version: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    logId: "log_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SignedCertificateTimestamp$ {
-  /** @deprecated use `SignedCertificateTimestamp$inboundSchema` instead. */
-  export const inboundSchema = SignedCertificateTimestamp$inboundSchema;
-  /** @deprecated use `SignedCertificateTimestamp$outboundSchema` instead. */
-  export const outboundSchema = SignedCertificateTimestamp$outboundSchema;
-  /** @deprecated use `SignedCertificateTimestamp$Outbound` instead. */
-  export type Outbound = SignedCertificateTimestamp$Outbound;
-}
-
-export function signedCertificateTimestampToJSON(
-  signedCertificateTimestamp: SignedCertificateTimestamp,
-): string {
-  return JSON.stringify(
-    SignedCertificateTimestamp$outboundSchema.parse(signedCertificateTimestamp),
-  );
-}
 
 export function signedCertificateTimestampFromJSON(
   jsonString: string,

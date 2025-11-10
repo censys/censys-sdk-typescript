@@ -29,54 +29,6 @@ export const KubernetesEndpointSubsetEndpointAddress$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type KubernetesEndpointSubsetEndpointAddress$Outbound = {
-  hostname?: string | undefined;
-  ip?: string | undefined;
-  node_name?: string | undefined;
-};
-
-/** @internal */
-export const KubernetesEndpointSubsetEndpointAddress$outboundSchema: z.ZodType<
-  KubernetesEndpointSubsetEndpointAddress$Outbound,
-  z.ZodTypeDef,
-  KubernetesEndpointSubsetEndpointAddress
-> = z.object({
-  hostname: z.string().optional(),
-  ip: z.string().optional(),
-  nodeName: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    nodeName: "node_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace KubernetesEndpointSubsetEndpointAddress$ {
-  /** @deprecated use `KubernetesEndpointSubsetEndpointAddress$inboundSchema` instead. */
-  export const inboundSchema =
-    KubernetesEndpointSubsetEndpointAddress$inboundSchema;
-  /** @deprecated use `KubernetesEndpointSubsetEndpointAddress$outboundSchema` instead. */
-  export const outboundSchema =
-    KubernetesEndpointSubsetEndpointAddress$outboundSchema;
-  /** @deprecated use `KubernetesEndpointSubsetEndpointAddress$Outbound` instead. */
-  export type Outbound = KubernetesEndpointSubsetEndpointAddress$Outbound;
-}
-
-export function kubernetesEndpointSubsetEndpointAddressToJSON(
-  kubernetesEndpointSubsetEndpointAddress:
-    KubernetesEndpointSubsetEndpointAddress,
-): string {
-  return JSON.stringify(
-    KubernetesEndpointSubsetEndpointAddress$outboundSchema.parse(
-      kubernetesEndpointSubsetEndpointAddress,
-    ),
-  );
-}
-
 export function kubernetesEndpointSubsetEndpointAddressFromJSON(
   jsonString: string,
 ): SafeParseResult<

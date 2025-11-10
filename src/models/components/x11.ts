@@ -29,45 +29,6 @@ export const X11$inboundSchema: z.ZodType<X11, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type X11$Outbound = {
-  refusal_reason?: string | undefined;
-  requires_authentication?: boolean | undefined;
-  vendor?: string | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const X11$outboundSchema: z.ZodType<X11$Outbound, z.ZodTypeDef, X11> = z
-  .object({
-    refusalReason: z.string().optional(),
-    requiresAuthentication: z.boolean().optional(),
-    vendor: z.string().optional(),
-    version: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      refusalReason: "refusal_reason",
-      requiresAuthentication: "requires_authentication",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace X11$ {
-  /** @deprecated use `X11$inboundSchema` instead. */
-  export const inboundSchema = X11$inboundSchema;
-  /** @deprecated use `X11$outboundSchema` instead. */
-  export const outboundSchema = X11$outboundSchema;
-  /** @deprecated use `X11$Outbound` instead. */
-  export type Outbound = X11$Outbound;
-}
-
-export function x11ToJSON(x11: X11): string {
-  return JSON.stringify(X11$outboundSchema.parse(x11));
-}
-
 export function x11FromJSON(
   jsonString: string,
 ): SafeParseResult<X11, SDKValidationError> {

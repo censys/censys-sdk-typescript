@@ -111,6 +111,17 @@ run();
 <details open>
 <summary>Available methods</summary>
 
+### [accountManagement](docs/sdks/accountmanagement/README.md)
+
+* [getOrganizationDetails](docs/sdks/accountmanagement/README.md#getorganizationdetails) - Get organization details
+* [getOrganizationCredits](docs/sdks/accountmanagement/README.md#getorganizationcredits) - Get organization credit statistics
+* [getOrganizationCreditUsage](docs/sdks/accountmanagement/README.md#getorganizationcreditusage) - Get organization credit usage
+* [inviteUserToOrganization](docs/sdks/accountmanagement/README.md#inviteusertoorganization) - Invite user to organization
+* [listOrganizationMembers](docs/sdks/accountmanagement/README.md#listorganizationmembers) - List organization members
+* [removeOrganizationMember](docs/sdks/accountmanagement/README.md#removeorganizationmember) - Remove member from organization
+* [updateOrganizationMember](docs/sdks/accountmanagement/README.md#updateorganizationmember) - Update a member's roles in an organization
+* [getMemberCreditUsage](docs/sdks/accountmanagement/README.md#getmembercreditusage) - Get member credit usage
+
 ### [collections](docs/sdks/collections/README.md)
 
 * [list](docs/sdks/collections/README.md#list) - List collections
@@ -164,6 +175,14 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
+- [`accountManagementGetMemberCreditUsage`](docs/sdks/accountmanagement/README.md#getmembercreditusage) - Get member credit usage
+- [`accountManagementGetOrganizationCredits`](docs/sdks/accountmanagement/README.md#getorganizationcredits) - Get organization credit statistics
+- [`accountManagementGetOrganizationCreditUsage`](docs/sdks/accountmanagement/README.md#getorganizationcreditusage) - Get organization credit usage
+- [`accountManagementGetOrganizationDetails`](docs/sdks/accountmanagement/README.md#getorganizationdetails) - Get organization details
+- [`accountManagementInviteUserToOrganization`](docs/sdks/accountmanagement/README.md#inviteusertoorganization) - Invite user to organization
+- [`accountManagementListOrganizationMembers`](docs/sdks/accountmanagement/README.md#listorganizationmembers) - List organization members
+- [`accountManagementRemoveOrganizationMember`](docs/sdks/accountmanagement/README.md#removeorganizationmember) - Remove member from organization
+- [`accountManagementUpdateOrganizationMember`](docs/sdks/accountmanagement/README.md#updateorganizationmember) - Update a member's roles in an organization
 - [`collectionsAggregate`](docs/sdks/collections/README.md#aggregate) - Aggregate results for a search query within a collection
 - [`collectionsCreate`](docs/sdks/collections/README.md#create) - Create a collection
 - [`collectionsDelete`](docs/sdks/collections/README.md#delete) - Delete a collection
@@ -199,7 +218,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 A parameter is configured globally. This parameter may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
 
-For example, you can set `organization_id` to `` at SDK initialization and then you do not have to pass the same value on calls to operations like `list`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+For example, you can set `organization_id` to `` at SDK initialization and then you do not have to pass the same value on calls to operations like `getOrganizationDetails`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
 
 
 ### Available Globals
@@ -221,9 +240,8 @@ const sdk = new SDK({
 });
 
 async function run() {
-  const result = await sdk.collections.list({
-    pageToken: "<next_page_token>",
-    pageSize: 1,
+  const result = await sdk.accountManagement.getOrganizationDetails({
+    organizationId: "11111111-2222-3333-4444-555555555555",
   });
 
   console.log(result);
@@ -244,14 +262,12 @@ To change the default retry strategy for a single API call, simply provide a ret
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await sdk.collections.list({
-    pageToken: "<next_page_token>",
-    pageSize: 1,
+  const result = await sdk.accountManagement.getOrganizationDetails({
+    organizationId: "11111111-2222-3333-4444-555555555555",
   }, {
     retries: {
       strategy: "backoff",
@@ -287,14 +303,12 @@ const sdk = new SDK({
     },
     retryConnectionErrors: false,
   },
-  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await sdk.collections.list({
-    pageToken: "<next_page_token>",
-    pageSize: 1,
+  const result = await sdk.accountManagement.getOrganizationDetails({
+    organizationId: "11111111-2222-3333-4444-555555555555",
   });
 
   console.log(result);
@@ -325,15 +339,13 @@ import { SDK } from "@censys/platform-sdk";
 import * as errors from "@censys/platform-sdk/models/errors";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   try {
-    const result = await sdk.collections.list({
-      pageToken: "<next_page_token>",
-      pageSize: 1,
+    const result = await sdk.accountManagement.getOrganizationDetails({
+      organizationId: "11111111-2222-3333-4444-555555555555",
     });
 
     console.log(result);
@@ -360,8 +372,8 @@ run();
 ### Error Classes
 **Primary errors:**
 * [`SDKBaseError`](./src/models/errors/sdkbaseerror.ts): The base class for HTTP error responses.
+  * [`ErrorModel`](./src/models/errors/errormodel.ts): Generic error.
   * [`AuthenticationError`](./src/models/errors/authenticationerror.ts): Request does not contain a valid Authorization token. Status code `401`.
-  * [`ErrorModel`](./src/models/errors/errormodel.ts): User does not have permission to access this data.
 
 <details><summary>Less common errors (6)</summary>
 
@@ -392,14 +404,12 @@ import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   serverURL: "https://api.platform.censys.io",
-  organizationId: "11111111-2222-3333-4444-555555555555",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await sdk.collections.list({
-    pageToken: "<next_page_token>",
-    pageSize: 1,
+  const result = await sdk.accountManagement.getOrganizationDetails({
+    organizationId: "11111111-2222-3333-4444-555555555555",
   });
 
   console.log(result);
@@ -476,13 +486,11 @@ import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
-  organizationId: "11111111-2222-3333-4444-555555555555",
 });
 
 async function run() {
-  const result = await sdk.collections.list({
-    pageToken: "<next_page_token>",
-    pageSize: 1,
+  const result = await sdk.accountManagement.getOrganizationDetails({
+    organizationId: "11111111-2222-3333-4444-555555555555",
   });
 
   console.log(result);

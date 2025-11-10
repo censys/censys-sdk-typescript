@@ -10,20 +10,14 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ElasticSearchErrorMessage,
   ElasticSearchErrorMessage$inboundSchema,
-  ElasticSearchErrorMessage$Outbound,
-  ElasticSearchErrorMessage$outboundSchema,
 } from "./elasticsearcherrormessage.js";
 import {
   ElasticSearchResultsNodeInfo,
   ElasticSearchResultsNodeInfo$inboundSchema,
-  ElasticSearchResultsNodeInfo$Outbound,
-  ElasticSearchResultsNodeInfo$outboundSchema,
 } from "./elasticsearchresultsnodeinfo.js";
 import {
   ElasticSearchSystemInfo,
   ElasticSearchSystemInfo$inboundSchema,
-  ElasticSearchSystemInfo$Outbound,
-  ElasticSearchSystemInfo$outboundSchema,
 } from "./elasticsearchsysteminfo.js";
 
 export type ElasticSearch = {
@@ -48,47 +42,6 @@ export const ElasticSearch$inboundSchema: z.ZodType<
     "system_info": "systemInfo",
   });
 });
-
-/** @internal */
-export type ElasticSearch$Outbound = {
-  error_message?: ElasticSearchErrorMessage$Outbound | undefined;
-  results_node_info?: ElasticSearchResultsNodeInfo$Outbound | undefined;
-  system_info?: ElasticSearchSystemInfo$Outbound | undefined;
-};
-
-/** @internal */
-export const ElasticSearch$outboundSchema: z.ZodType<
-  ElasticSearch$Outbound,
-  z.ZodTypeDef,
-  ElasticSearch
-> = z.object({
-  errorMessage: ElasticSearchErrorMessage$outboundSchema.optional(),
-  resultsNodeInfo: ElasticSearchResultsNodeInfo$outboundSchema.optional(),
-  systemInfo: ElasticSearchSystemInfo$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    errorMessage: "error_message",
-    resultsNodeInfo: "results_node_info",
-    systemInfo: "system_info",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ElasticSearch$ {
-  /** @deprecated use `ElasticSearch$inboundSchema` instead. */
-  export const inboundSchema = ElasticSearch$inboundSchema;
-  /** @deprecated use `ElasticSearch$outboundSchema` instead. */
-  export const outboundSchema = ElasticSearch$outboundSchema;
-  /** @deprecated use `ElasticSearch$Outbound` instead. */
-  export type Outbound = ElasticSearch$Outbound;
-}
-
-export function elasticSearchToJSON(elasticSearch: ElasticSearch): string {
-  return JSON.stringify(ElasticSearch$outboundSchema.parse(elasticSearch));
-}
 
 export function elasticSearchFromJSON(
   jsonString: string,

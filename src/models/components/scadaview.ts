@@ -22,39 +22,6 @@ export const ScadaView$inboundSchema: z.ZodType<
   title: z.string().optional(),
 });
 
-/** @internal */
-export type ScadaView$Outbound = {
-  description?: string | undefined;
-  title?: string | undefined;
-};
-
-/** @internal */
-export const ScadaView$outboundSchema: z.ZodType<
-  ScadaView$Outbound,
-  z.ZodTypeDef,
-  ScadaView
-> = z.object({
-  description: z.string().optional(),
-  title: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ScadaView$ {
-  /** @deprecated use `ScadaView$inboundSchema` instead. */
-  export const inboundSchema = ScadaView$inboundSchema;
-  /** @deprecated use `ScadaView$outboundSchema` instead. */
-  export const outboundSchema = ScadaView$outboundSchema;
-  /** @deprecated use `ScadaView$Outbound` instead. */
-  export type Outbound = ScadaView$Outbound;
-}
-
-export function scadaViewToJSON(scadaView: ScadaView): string {
-  return JSON.stringify(ScadaView$outboundSchema.parse(scadaView));
-}
-
 export function scadaViewFromJSON(
   jsonString: string,
 ): SafeParseResult<ScadaView, SDKValidationError> {

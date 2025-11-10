@@ -31,51 +31,6 @@ export const ReplayCapabilities$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type ReplayCapabilities$Outbound = {
-  reverse_playback?: boolean | undefined;
-  rtp_rtsp_tcp?: boolean | undefined;
-  session_timeout_range?: string | undefined;
-};
-
-/** @internal */
-export const ReplayCapabilities$outboundSchema: z.ZodType<
-  ReplayCapabilities$Outbound,
-  z.ZodTypeDef,
-  ReplayCapabilities
-> = z.object({
-  reversePlayback: z.boolean().optional(),
-  rtpRtspTcp: z.boolean().optional(),
-  sessionTimeoutRange: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    reversePlayback: "reverse_playback",
-    rtpRtspTcp: "rtp_rtsp_tcp",
-    sessionTimeoutRange: "session_timeout_range",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ReplayCapabilities$ {
-  /** @deprecated use `ReplayCapabilities$inboundSchema` instead. */
-  export const inboundSchema = ReplayCapabilities$inboundSchema;
-  /** @deprecated use `ReplayCapabilities$outboundSchema` instead. */
-  export const outboundSchema = ReplayCapabilities$outboundSchema;
-  /** @deprecated use `ReplayCapabilities$Outbound` instead. */
-  export type Outbound = ReplayCapabilities$Outbound;
-}
-
-export function replayCapabilitiesToJSON(
-  replayCapabilities: ReplayCapabilities,
-): string {
-  return JSON.stringify(
-    ReplayCapabilities$outboundSchema.parse(replayCapabilities),
-  );
-}
-
 export function replayCapabilitiesFromJSON(
   jsonString: string,
 ): SafeParseResult<ReplayCapabilities, SDKValidationError> {

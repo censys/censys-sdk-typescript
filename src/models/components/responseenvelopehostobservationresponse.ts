@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   HostObservationResponse,
   HostObservationResponse$inboundSchema,
-  HostObservationResponse$Outbound,
-  HostObservationResponse$outboundSchema,
 } from "./hostobservationresponse.js";
 
 export type ResponseEnvelopeHostObservationResponse = {
@@ -25,46 +23,6 @@ export const ResponseEnvelopeHostObservationResponse$inboundSchema: z.ZodType<
 > = z.object({
   result: HostObservationResponse$inboundSchema.optional(),
 });
-
-/** @internal */
-export type ResponseEnvelopeHostObservationResponse$Outbound = {
-  result?: HostObservationResponse$Outbound | undefined;
-};
-
-/** @internal */
-export const ResponseEnvelopeHostObservationResponse$outboundSchema: z.ZodType<
-  ResponseEnvelopeHostObservationResponse$Outbound,
-  z.ZodTypeDef,
-  ResponseEnvelopeHostObservationResponse
-> = z.object({
-  result: HostObservationResponse$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseEnvelopeHostObservationResponse$ {
-  /** @deprecated use `ResponseEnvelopeHostObservationResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    ResponseEnvelopeHostObservationResponse$inboundSchema;
-  /** @deprecated use `ResponseEnvelopeHostObservationResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    ResponseEnvelopeHostObservationResponse$outboundSchema;
-  /** @deprecated use `ResponseEnvelopeHostObservationResponse$Outbound` instead. */
-  export type Outbound = ResponseEnvelopeHostObservationResponse$Outbound;
-}
-
-export function responseEnvelopeHostObservationResponseToJSON(
-  responseEnvelopeHostObservationResponse:
-    ResponseEnvelopeHostObservationResponse,
-): string {
-  return JSON.stringify(
-    ResponseEnvelopeHostObservationResponse$outboundSchema.parse(
-      responseEnvelopeHostObservationResponse,
-    ),
-  );
-}
 
 export function responseEnvelopeHostObservationResponseFromJSON(
   jsonString: string,

@@ -10,26 +10,18 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   IpmiCapabilitiesAuthStatus,
   IpmiCapabilitiesAuthStatus$inboundSchema,
-  IpmiCapabilitiesAuthStatus$Outbound,
-  IpmiCapabilitiesAuthStatus$outboundSchema,
 } from "./ipmicapabilitiesauthstatus.js";
 import {
   IpmiCapabilitiesCompletionCode,
   IpmiCapabilitiesCompletionCode$inboundSchema,
-  IpmiCapabilitiesCompletionCode$Outbound,
-  IpmiCapabilitiesCompletionCode$outboundSchema,
 } from "./ipmicapabilitiescompletioncode.js";
 import {
   IpmiCapabilitiesExtendedCapabilities,
   IpmiCapabilitiesExtendedCapabilities$inboundSchema,
-  IpmiCapabilitiesExtendedCapabilities$Outbound,
-  IpmiCapabilitiesExtendedCapabilities$outboundSchema,
 } from "./ipmicapabilitiesextendedcapabilities.js";
 import {
   IpmiCapabilitiesSupportedAuthTypes,
   IpmiCapabilitiesSupportedAuthTypes$inboundSchema,
-  IpmiCapabilitiesSupportedAuthTypes$Outbound,
-  IpmiCapabilitiesSupportedAuthTypes$outboundSchema,
 } from "./ipmicapabilitiessupportedauthtypes.js";
 
 export type IpmiCapabilities = {
@@ -77,69 +69,6 @@ export const IpmiCapabilities$inboundSchema: z.ZodType<
     "supported_auth_types": "supportedAuthTypes",
   });
 });
-
-/** @internal */
-export type IpmiCapabilities$Outbound = {
-  auth_status?: IpmiCapabilitiesAuthStatus$Outbound | undefined;
-  channel_number?: number | undefined;
-  completion_code?: IpmiCapabilitiesCompletionCode$Outbound | undefined;
-  extended_capabilities?:
-    | IpmiCapabilitiesExtendedCapabilities$Outbound
-    | undefined;
-  oem_data?: number | undefined;
-  oem_id?: string | undefined;
-  supported_auth_types?:
-    | IpmiCapabilitiesSupportedAuthTypes$Outbound
-    | undefined;
-};
-
-/** @internal */
-export const IpmiCapabilities$outboundSchema: z.ZodType<
-  IpmiCapabilities$Outbound,
-  z.ZodTypeDef,
-  IpmiCapabilities
-> = z.object({
-  authStatus: IpmiCapabilitiesAuthStatus$outboundSchema.optional(),
-  channelNumber: z.number().int().optional(),
-  completionCode: IpmiCapabilitiesCompletionCode$outboundSchema.optional(),
-  extendedCapabilities: IpmiCapabilitiesExtendedCapabilities$outboundSchema
-    .optional(),
-  oemData: z.number().int().optional(),
-  oemId: z.string().optional(),
-  supportedAuthTypes: IpmiCapabilitiesSupportedAuthTypes$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    authStatus: "auth_status",
-    channelNumber: "channel_number",
-    completionCode: "completion_code",
-    extendedCapabilities: "extended_capabilities",
-    oemData: "oem_data",
-    oemId: "oem_id",
-    supportedAuthTypes: "supported_auth_types",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IpmiCapabilities$ {
-  /** @deprecated use `IpmiCapabilities$inboundSchema` instead. */
-  export const inboundSchema = IpmiCapabilities$inboundSchema;
-  /** @deprecated use `IpmiCapabilities$outboundSchema` instead. */
-  export const outboundSchema = IpmiCapabilities$outboundSchema;
-  /** @deprecated use `IpmiCapabilities$Outbound` instead. */
-  export type Outbound = IpmiCapabilities$Outbound;
-}
-
-export function ipmiCapabilitiesToJSON(
-  ipmiCapabilities: IpmiCapabilities,
-): string {
-  return JSON.stringify(
-    IpmiCapabilities$outboundSchema.parse(ipmiCapabilities),
-  );
-}
 
 export function ipmiCapabilitiesFromJSON(
   jsonString: string,

@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   KubernetesEndpointSubset,
   KubernetesEndpointSubset$inboundSchema,
-  KubernetesEndpointSubset$Outbound,
-  KubernetesEndpointSubset$outboundSchema,
 } from "./kubernetesendpointsubset.js";
 
 export type KubernetesEndpoint = {
@@ -35,50 +33,6 @@ export const KubernetesEndpoint$inboundSchema: z.ZodType<
     "self_link": "selfLink",
   });
 });
-
-/** @internal */
-export type KubernetesEndpoint$Outbound = {
-  name?: string | undefined;
-  self_link?: string | undefined;
-  subsets?: Array<KubernetesEndpointSubset$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const KubernetesEndpoint$outboundSchema: z.ZodType<
-  KubernetesEndpoint$Outbound,
-  z.ZodTypeDef,
-  KubernetesEndpoint
-> = z.object({
-  name: z.string().optional(),
-  selfLink: z.string().optional(),
-  subsets: z.nullable(z.array(KubernetesEndpointSubset$outboundSchema))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    selfLink: "self_link",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace KubernetesEndpoint$ {
-  /** @deprecated use `KubernetesEndpoint$inboundSchema` instead. */
-  export const inboundSchema = KubernetesEndpoint$inboundSchema;
-  /** @deprecated use `KubernetesEndpoint$outboundSchema` instead. */
-  export const outboundSchema = KubernetesEndpoint$outboundSchema;
-  /** @deprecated use `KubernetesEndpoint$Outbound` instead. */
-  export type Outbound = KubernetesEndpoint$Outbound;
-}
-
-export function kubernetesEndpointToJSON(
-  kubernetesEndpoint: KubernetesEndpoint,
-): string {
-  return JSON.stringify(
-    KubernetesEndpoint$outboundSchema.parse(kubernetesEndpoint),
-  );
-}
 
 export function kubernetesEndpointFromJSON(
   jsonString: string,

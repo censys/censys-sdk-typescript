@@ -28,85 +28,6 @@ export type V3CollectionsCrudDeleteResponse = {
 };
 
 /** @internal */
-export const V3CollectionsCrudDeleteGlobals$inboundSchema: z.ZodType<
-  V3CollectionsCrudDeleteGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  organization_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "organization_id": "organizationId",
-  });
-});
-
-/** @internal */
-export type V3CollectionsCrudDeleteGlobals$Outbound = {
-  organization_id?: string | undefined;
-};
-
-/** @internal */
-export const V3CollectionsCrudDeleteGlobals$outboundSchema: z.ZodType<
-  V3CollectionsCrudDeleteGlobals$Outbound,
-  z.ZodTypeDef,
-  V3CollectionsCrudDeleteGlobals
-> = z.object({
-  organizationId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    organizationId: "organization_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3CollectionsCrudDeleteGlobals$ {
-  /** @deprecated use `V3CollectionsCrudDeleteGlobals$inboundSchema` instead. */
-  export const inboundSchema = V3CollectionsCrudDeleteGlobals$inboundSchema;
-  /** @deprecated use `V3CollectionsCrudDeleteGlobals$outboundSchema` instead. */
-  export const outboundSchema = V3CollectionsCrudDeleteGlobals$outboundSchema;
-  /** @deprecated use `V3CollectionsCrudDeleteGlobals$Outbound` instead. */
-  export type Outbound = V3CollectionsCrudDeleteGlobals$Outbound;
-}
-
-export function v3CollectionsCrudDeleteGlobalsToJSON(
-  v3CollectionsCrudDeleteGlobals: V3CollectionsCrudDeleteGlobals,
-): string {
-  return JSON.stringify(
-    V3CollectionsCrudDeleteGlobals$outboundSchema.parse(
-      v3CollectionsCrudDeleteGlobals,
-    ),
-  );
-}
-
-export function v3CollectionsCrudDeleteGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<V3CollectionsCrudDeleteGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V3CollectionsCrudDeleteGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3CollectionsCrudDeleteGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const V3CollectionsCrudDeleteRequest$inboundSchema: z.ZodType<
-  V3CollectionsCrudDeleteRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  organization_id: z.string().optional(),
-  collection_uid: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "organization_id": "organizationId",
-    "collection_uid": "collectionUid",
-  });
-});
-
-/** @internal */
 export type V3CollectionsCrudDeleteRequest$Outbound = {
   organization_id?: string | undefined;
   collection_uid: string;
@@ -127,19 +48,6 @@ export const V3CollectionsCrudDeleteRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3CollectionsCrudDeleteRequest$ {
-  /** @deprecated use `V3CollectionsCrudDeleteRequest$inboundSchema` instead. */
-  export const inboundSchema = V3CollectionsCrudDeleteRequest$inboundSchema;
-  /** @deprecated use `V3CollectionsCrudDeleteRequest$outboundSchema` instead. */
-  export const outboundSchema = V3CollectionsCrudDeleteRequest$outboundSchema;
-  /** @deprecated use `V3CollectionsCrudDeleteRequest$Outbound` instead. */
-  export type Outbound = V3CollectionsCrudDeleteRequest$Outbound;
-}
-
 export function v3CollectionsCrudDeleteRequestToJSON(
   v3CollectionsCrudDeleteRequest: V3CollectionsCrudDeleteRequest,
 ): string {
@@ -147,16 +55,6 @@ export function v3CollectionsCrudDeleteRequestToJSON(
     V3CollectionsCrudDeleteRequest$outboundSchema.parse(
       v3CollectionsCrudDeleteRequest,
     ),
-  );
-}
-
-export function v3CollectionsCrudDeleteRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<V3CollectionsCrudDeleteRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V3CollectionsCrudDeleteRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3CollectionsCrudDeleteRequest' from JSON`,
   );
 }
 
@@ -172,47 +70,6 @@ export const V3CollectionsCrudDeleteResponse$inboundSchema: z.ZodType<
     "Headers": "headers",
   });
 });
-
-/** @internal */
-export type V3CollectionsCrudDeleteResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-};
-
-/** @internal */
-export const V3CollectionsCrudDeleteResponse$outboundSchema: z.ZodType<
-  V3CollectionsCrudDeleteResponse$Outbound,
-  z.ZodTypeDef,
-  V3CollectionsCrudDeleteResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3CollectionsCrudDeleteResponse$ {
-  /** @deprecated use `V3CollectionsCrudDeleteResponse$inboundSchema` instead. */
-  export const inboundSchema = V3CollectionsCrudDeleteResponse$inboundSchema;
-  /** @deprecated use `V3CollectionsCrudDeleteResponse$outboundSchema` instead. */
-  export const outboundSchema = V3CollectionsCrudDeleteResponse$outboundSchema;
-  /** @deprecated use `V3CollectionsCrudDeleteResponse$Outbound` instead. */
-  export type Outbound = V3CollectionsCrudDeleteResponse$Outbound;
-}
-
-export function v3CollectionsCrudDeleteResponseToJSON(
-  v3CollectionsCrudDeleteResponse: V3CollectionsCrudDeleteResponse,
-): string {
-  return JSON.stringify(
-    V3CollectionsCrudDeleteResponse$outboundSchema.parse(
-      v3CollectionsCrudDeleteResponse,
-    ),
-  );
-}
 
 export function v3CollectionsCrudDeleteResponseFromJSON(
   jsonString: string,

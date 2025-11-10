@@ -22,39 +22,6 @@ export const DarkgateFile$inboundSchema: z.ZodType<
   name: z.string().optional(),
 });
 
-/** @internal */
-export type DarkgateFile$Outbound = {
-  length?: number | undefined;
-  name?: string | undefined;
-};
-
-/** @internal */
-export const DarkgateFile$outboundSchema: z.ZodType<
-  DarkgateFile$Outbound,
-  z.ZodTypeDef,
-  DarkgateFile
-> = z.object({
-  length: z.number().int().optional(),
-  name: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DarkgateFile$ {
-  /** @deprecated use `DarkgateFile$inboundSchema` instead. */
-  export const inboundSchema = DarkgateFile$inboundSchema;
-  /** @deprecated use `DarkgateFile$outboundSchema` instead. */
-  export const outboundSchema = DarkgateFile$outboundSchema;
-  /** @deprecated use `DarkgateFile$Outbound` instead. */
-  export type Outbound = DarkgateFile$Outbound;
-}
-
-export function darkgateFileToJSON(darkgateFile: DarkgateFile): string {
-  return JSON.stringify(DarkgateFile$outboundSchema.parse(darkgateFile));
-}
-
 export function darkgateFileFromJSON(
   jsonString: string,
 ): SafeParseResult<DarkgateFile, SDKValidationError> {

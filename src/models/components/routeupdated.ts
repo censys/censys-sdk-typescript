@@ -9,15 +9,8 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AutonomousSystem,
   AutonomousSystem$inboundSchema,
-  AutonomousSystem$Outbound,
-  AutonomousSystem$outboundSchema,
 } from "./autonomoussystem.js";
-import {
-  FieldDiff,
-  FieldDiff$inboundSchema,
-  FieldDiff$Outbound,
-  FieldDiff$outboundSchema,
-} from "./fielddiff.js";
+import { FieldDiff, FieldDiff$inboundSchema } from "./fielddiff.js";
 
 export type RouteUpdated = {
   diff?: { [k: string]: FieldDiff } | undefined;
@@ -33,39 +26,6 @@ export const RouteUpdated$inboundSchema: z.ZodType<
   diff: z.record(FieldDiff$inboundSchema).optional(),
   route: AutonomousSystem$inboundSchema.optional(),
 });
-
-/** @internal */
-export type RouteUpdated$Outbound = {
-  diff?: { [k: string]: FieldDiff$Outbound } | undefined;
-  route?: AutonomousSystem$Outbound | undefined;
-};
-
-/** @internal */
-export const RouteUpdated$outboundSchema: z.ZodType<
-  RouteUpdated$Outbound,
-  z.ZodTypeDef,
-  RouteUpdated
-> = z.object({
-  diff: z.record(FieldDiff$outboundSchema).optional(),
-  route: AutonomousSystem$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RouteUpdated$ {
-  /** @deprecated use `RouteUpdated$inboundSchema` instead. */
-  export const inboundSchema = RouteUpdated$inboundSchema;
-  /** @deprecated use `RouteUpdated$outboundSchema` instead. */
-  export const outboundSchema = RouteUpdated$outboundSchema;
-  /** @deprecated use `RouteUpdated$Outbound` instead. */
-  export type Outbound = RouteUpdated$Outbound;
-}
-
-export function routeUpdatedToJSON(routeUpdated: RouteUpdated): string {
-  return JSON.stringify(RouteUpdated$outboundSchema.parse(routeUpdated));
-}
 
 export function routeUpdatedFromJSON(
   jsonString: string,

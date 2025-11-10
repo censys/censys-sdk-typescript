@@ -32,22 +32,6 @@ export const RepresentativeInfoReason$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(RepresentativeInfoReason);
 
 /** @internal */
-export const RepresentativeInfoReason$outboundSchema: z.ZodNativeEnum<
-  typeof RepresentativeInfoReason
-> = RepresentativeInfoReason$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RepresentativeInfoReason$ {
-  /** @deprecated use `RepresentativeInfoReason$inboundSchema` instead. */
-  export const inboundSchema = RepresentativeInfoReason$inboundSchema;
-  /** @deprecated use `RepresentativeInfoReason$outboundSchema` instead. */
-  export const outboundSchema = RepresentativeInfoReason$outboundSchema;
-}
-
-/** @internal */
 export const RepresentativeInfo$inboundSchema: z.ZodType<
   RepresentativeInfo,
   z.ZodTypeDef,
@@ -64,53 +48,6 @@ export const RepresentativeInfo$inboundSchema: z.ZodType<
     "sampled_port": "sampledPort",
   });
 });
-
-/** @internal */
-export type RepresentativeInfo$Outbound = {
-  excluded_ports?: Array<number> | null | undefined;
-  reason?: string | undefined;
-  represented_ports?: Array<number> | null | undefined;
-  sampled_port?: number | undefined;
-};
-
-/** @internal */
-export const RepresentativeInfo$outboundSchema: z.ZodType<
-  RepresentativeInfo$Outbound,
-  z.ZodTypeDef,
-  RepresentativeInfo
-> = z.object({
-  excludedPorts: z.nullable(z.array(z.number().int())).optional(),
-  reason: RepresentativeInfoReason$outboundSchema.optional(),
-  representedPorts: z.nullable(z.array(z.number().int())).optional(),
-  sampledPort: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    excludedPorts: "excluded_ports",
-    representedPorts: "represented_ports",
-    sampledPort: "sampled_port",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RepresentativeInfo$ {
-  /** @deprecated use `RepresentativeInfo$inboundSchema` instead. */
-  export const inboundSchema = RepresentativeInfo$inboundSchema;
-  /** @deprecated use `RepresentativeInfo$outboundSchema` instead. */
-  export const outboundSchema = RepresentativeInfo$outboundSchema;
-  /** @deprecated use `RepresentativeInfo$Outbound` instead. */
-  export type Outbound = RepresentativeInfo$Outbound;
-}
-
-export function representativeInfoToJSON(
-  representativeInfo: RepresentativeInfo,
-): string {
-  return JSON.stringify(
-    RepresentativeInfo$outboundSchema.parse(representativeInfo),
-  );
-}
 
 export function representativeInfoFromJSON(
   jsonString: string,

@@ -10,15 +10,8 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PptpResponseInfo,
   PptpResponseInfo$inboundSchema,
-  PptpResponseInfo$Outbound,
-  PptpResponseInfo$outboundSchema,
 } from "./pptpresponseinfo.js";
-import {
-  PptpVersion,
-  PptpVersion$inboundSchema,
-  PptpVersion$Outbound,
-  PptpVersion$outboundSchema,
-} from "./pptpversion.js";
+import { PptpVersion, PptpVersion$inboundSchema } from "./pptpversion.js";
 
 export type Pptp = {
   bearerMessage?: PptpResponseInfo | undefined;
@@ -53,58 +46,6 @@ export const Pptp$inboundSchema: z.ZodType<Pptp, z.ZodTypeDef, unknown> = z
       "result_message": "resultMessage",
     });
   });
-
-/** @internal */
-export type Pptp$Outbound = {
-  bearer_message?: PptpResponseInfo$Outbound | undefined;
-  error_message?: PptpResponseInfo$Outbound | undefined;
-  firmware?: PptpVersion$Outbound | undefined;
-  framing_message?: PptpResponseInfo$Outbound | undefined;
-  hostname?: string | undefined;
-  maximum_channels?: number | undefined;
-  protocol?: PptpVersion$Outbound | undefined;
-  result_message?: PptpResponseInfo$Outbound | undefined;
-  vendor?: string | undefined;
-};
-
-/** @internal */
-export const Pptp$outboundSchema: z.ZodType<Pptp$Outbound, z.ZodTypeDef, Pptp> =
-  z.object({
-    bearerMessage: PptpResponseInfo$outboundSchema.optional(),
-    errorMessage: PptpResponseInfo$outboundSchema.optional(),
-    firmware: PptpVersion$outboundSchema.optional(),
-    framingMessage: PptpResponseInfo$outboundSchema.optional(),
-    hostname: z.string().optional(),
-    maximumChannels: z.number().int().optional(),
-    protocol: PptpVersion$outboundSchema.optional(),
-    resultMessage: PptpResponseInfo$outboundSchema.optional(),
-    vendor: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      bearerMessage: "bearer_message",
-      errorMessage: "error_message",
-      framingMessage: "framing_message",
-      maximumChannels: "maximum_channels",
-      resultMessage: "result_message",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Pptp$ {
-  /** @deprecated use `Pptp$inboundSchema` instead. */
-  export const inboundSchema = Pptp$inboundSchema;
-  /** @deprecated use `Pptp$outboundSchema` instead. */
-  export const outboundSchema = Pptp$outboundSchema;
-  /** @deprecated use `Pptp$Outbound` instead. */
-  export type Outbound = Pptp$Outbound;
-}
-
-export function pptpToJSON(pptp: Pptp): string {
-  return JSON.stringify(Pptp$outboundSchema.parse(pptp));
-}
 
 export function pptpFromJSON(
   jsonString: string,

@@ -47,63 +47,6 @@ export const Connection$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type Connection$Outbound = {
-  ahs_length?: number | undefined;
-  cmd_seq?: number | undefined;
-  isid?: number | undefined;
-  keyval_pairs?: Array<string> | null | undefined;
-  max_new_cmds?: number | undefined;
-  status_seq?: number | undefined;
-  tsih?: number | undefined;
-  version_active?: number | undefined;
-  version_max?: number | undefined;
-};
-
-/** @internal */
-export const Connection$outboundSchema: z.ZodType<
-  Connection$Outbound,
-  z.ZodTypeDef,
-  Connection
-> = z.object({
-  ahsLength: z.number().int().optional(),
-  cmdSeq: z.number().int().optional(),
-  isid: z.number().int().optional(),
-  keyvalPairs: z.nullable(z.array(z.string())).optional(),
-  maxNewCmds: z.number().int().optional(),
-  statusSeq: z.number().int().optional(),
-  tsih: z.number().int().optional(),
-  versionActive: z.number().int().optional(),
-  versionMax: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    ahsLength: "ahs_length",
-    cmdSeq: "cmd_seq",
-    keyvalPairs: "keyval_pairs",
-    maxNewCmds: "max_new_cmds",
-    statusSeq: "status_seq",
-    versionActive: "version_active",
-    versionMax: "version_max",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Connection$ {
-  /** @deprecated use `Connection$inboundSchema` instead. */
-  export const inboundSchema = Connection$inboundSchema;
-  /** @deprecated use `Connection$outboundSchema` instead. */
-  export const outboundSchema = Connection$outboundSchema;
-  /** @deprecated use `Connection$Outbound` instead. */
-  export type Outbound = Connection$Outbound;
-}
-
-export function connectionToJSON(connection: Connection): string {
-  return JSON.stringify(Connection$outboundSchema.parse(connection));
-}
-
 export function connectionFromJSON(
   jsonString: string,
 ): SafeParseResult<Connection, SDKValidationError> {

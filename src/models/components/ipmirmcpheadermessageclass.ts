@@ -43,51 +43,6 @@ export const IpmiRMCPHeaderMessageClass$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type IpmiRMCPHeaderMessageClass$Outbound = {
-  class?: number | undefined;
-  is_ack?: boolean | undefined;
-  name?: string | undefined;
-  raw?: number | undefined;
-};
-
-/** @internal */
-export const IpmiRMCPHeaderMessageClass$outboundSchema: z.ZodType<
-  IpmiRMCPHeaderMessageClass$Outbound,
-  z.ZodTypeDef,
-  IpmiRMCPHeaderMessageClass
-> = z.object({
-  class: z.number().int().optional(),
-  isAck: z.boolean().optional(),
-  name: z.string().optional(),
-  raw: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    isAck: "is_ack",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IpmiRMCPHeaderMessageClass$ {
-  /** @deprecated use `IpmiRMCPHeaderMessageClass$inboundSchema` instead. */
-  export const inboundSchema = IpmiRMCPHeaderMessageClass$inboundSchema;
-  /** @deprecated use `IpmiRMCPHeaderMessageClass$outboundSchema` instead. */
-  export const outboundSchema = IpmiRMCPHeaderMessageClass$outboundSchema;
-  /** @deprecated use `IpmiRMCPHeaderMessageClass$Outbound` instead. */
-  export type Outbound = IpmiRMCPHeaderMessageClass$Outbound;
-}
-
-export function ipmiRMCPHeaderMessageClassToJSON(
-  ipmiRMCPHeaderMessageClass: IpmiRMCPHeaderMessageClass,
-): string {
-  return JSON.stringify(
-    IpmiRMCPHeaderMessageClass$outboundSchema.parse(ipmiRMCPHeaderMessageClass),
-  );
-}
-
 export function ipmiRMCPHeaderMessageClassFromJSON(
   jsonString: string,
 ): SafeParseResult<IpmiRMCPHeaderMessageClass, SDKValidationError> {

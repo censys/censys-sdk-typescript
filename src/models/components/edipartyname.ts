@@ -28,44 +28,6 @@ export const EdiPartyName$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type EdiPartyName$Outbound = {
-  name_assigner?: string | undefined;
-  party_name?: string | undefined;
-};
-
-/** @internal */
-export const EdiPartyName$outboundSchema: z.ZodType<
-  EdiPartyName$Outbound,
-  z.ZodTypeDef,
-  EdiPartyName
-> = z.object({
-  nameAssigner: z.string().optional(),
-  partyName: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    nameAssigner: "name_assigner",
-    partyName: "party_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EdiPartyName$ {
-  /** @deprecated use `EdiPartyName$inboundSchema` instead. */
-  export const inboundSchema = EdiPartyName$inboundSchema;
-  /** @deprecated use `EdiPartyName$outboundSchema` instead. */
-  export const outboundSchema = EdiPartyName$outboundSchema;
-  /** @deprecated use `EdiPartyName$Outbound` instead. */
-  export type Outbound = EdiPartyName$Outbound;
-}
-
-export function ediPartyNameToJSON(ediPartyName: EdiPartyName): string {
-  return JSON.stringify(EdiPartyName$outboundSchema.parse(ediPartyName));
-}
-
 export function ediPartyNameFromJSON(
   jsonString: string,
 ): SafeParseResult<EdiPartyName, SDKValidationError> {

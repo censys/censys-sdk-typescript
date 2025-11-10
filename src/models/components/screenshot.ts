@@ -29,45 +29,6 @@ export const Screenshot$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type Screenshot$Outbound = {
-  extracted_text?: string | undefined;
-  handle?: string | undefined;
-  phash?: string | undefined;
-};
-
-/** @internal */
-export const Screenshot$outboundSchema: z.ZodType<
-  Screenshot$Outbound,
-  z.ZodTypeDef,
-  Screenshot
-> = z.object({
-  extractedText: z.string().optional(),
-  handle: z.string().optional(),
-  phash: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    extractedText: "extracted_text",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Screenshot$ {
-  /** @deprecated use `Screenshot$inboundSchema` instead. */
-  export const inboundSchema = Screenshot$inboundSchema;
-  /** @deprecated use `Screenshot$outboundSchema` instead. */
-  export const outboundSchema = Screenshot$outboundSchema;
-  /** @deprecated use `Screenshot$Outbound` instead. */
-  export type Outbound = Screenshot$Outbound;
-}
-
-export function screenshotToJSON(screenshot: Screenshot): string {
-  return JSON.stringify(Screenshot$outboundSchema.parse(screenshot));
-}
-
 export function screenshotFromJSON(
   jsonString: string,
 ): SafeParseResult<Screenshot, SDKValidationError> {

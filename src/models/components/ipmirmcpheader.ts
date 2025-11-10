@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   IpmiRMCPHeaderMessageClass,
   IpmiRMCPHeaderMessageClass$inboundSchema,
-  IpmiRMCPHeaderMessageClass$Outbound,
-  IpmiRMCPHeaderMessageClass$outboundSchema,
 } from "./ipmirmcpheadermessageclass.js";
 
 export type IpmiRMCPHeader = {
@@ -41,46 +39,6 @@ export const IpmiRMCPHeader$inboundSchema: z.ZodType<
     "sequence_number": "sequenceNumber",
   });
 });
-
-/** @internal */
-export type IpmiRMCPHeader$Outbound = {
-  message_class?: IpmiRMCPHeaderMessageClass$Outbound | undefined;
-  sequence_number?: number | undefined;
-  version?: number | undefined;
-};
-
-/** @internal */
-export const IpmiRMCPHeader$outboundSchema: z.ZodType<
-  IpmiRMCPHeader$Outbound,
-  z.ZodTypeDef,
-  IpmiRMCPHeader
-> = z.object({
-  messageClass: IpmiRMCPHeaderMessageClass$outboundSchema.optional(),
-  sequenceNumber: z.number().int().optional(),
-  version: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    messageClass: "message_class",
-    sequenceNumber: "sequence_number",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IpmiRMCPHeader$ {
-  /** @deprecated use `IpmiRMCPHeader$inboundSchema` instead. */
-  export const inboundSchema = IpmiRMCPHeader$inboundSchema;
-  /** @deprecated use `IpmiRMCPHeader$outboundSchema` instead. */
-  export const outboundSchema = IpmiRMCPHeader$outboundSchema;
-  /** @deprecated use `IpmiRMCPHeader$Outbound` instead. */
-  export type Outbound = IpmiRMCPHeader$Outbound;
-}
-
-export function ipmiRMCPHeaderToJSON(ipmiRMCPHeader: IpmiRMCPHeader): string {
-  return JSON.stringify(IpmiRMCPHeader$outboundSchema.parse(ipmiRMCPHeader));
-}
 
 export function ipmiRMCPHeaderFromJSON(
   jsonString: string,

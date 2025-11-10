@@ -33,49 +33,6 @@ export const ThreatDetails$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type ThreatDetails$Outbound = {
-  campaign_id?: string | undefined;
-  campaign_theme?: string | undefined;
-  control_servers?: Array<string> | null | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const ThreatDetails$outboundSchema: z.ZodType<
-  ThreatDetails$Outbound,
-  z.ZodTypeDef,
-  ThreatDetails
-> = z.object({
-  campaignId: z.string().optional(),
-  campaignTheme: z.string().optional(),
-  controlServers: z.nullable(z.array(z.string())).optional(),
-  version: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    campaignId: "campaign_id",
-    campaignTheme: "campaign_theme",
-    controlServers: "control_servers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ThreatDetails$ {
-  /** @deprecated use `ThreatDetails$inboundSchema` instead. */
-  export const inboundSchema = ThreatDetails$inboundSchema;
-  /** @deprecated use `ThreatDetails$outboundSchema` instead. */
-  export const outboundSchema = ThreatDetails$outboundSchema;
-  /** @deprecated use `ThreatDetails$Outbound` instead. */
-  export type Outbound = ThreatDetails$Outbound;
-}
-
-export function threatDetailsToJSON(threatDetails: ThreatDetails): string {
-  return JSON.stringify(ThreatDetails$outboundSchema.parse(threatDetails));
-}
-
 export function threatDetailsFromJSON(
   jsonString: string,
 ): SafeParseResult<ThreatDetails, SDKValidationError> {

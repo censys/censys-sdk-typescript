@@ -27,41 +27,6 @@ export const RdpVersion$inboundSchema: z.ZodType<
   raw: z.string().optional(),
 });
 
-/** @internal */
-export type RdpVersion$Outbound = {
-  major?: number | undefined;
-  minor?: number | undefined;
-  raw?: string | undefined;
-};
-
-/** @internal */
-export const RdpVersion$outboundSchema: z.ZodType<
-  RdpVersion$Outbound,
-  z.ZodTypeDef,
-  RdpVersion
-> = z.object({
-  major: z.number().int().optional(),
-  minor: z.number().int().optional(),
-  raw: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RdpVersion$ {
-  /** @deprecated use `RdpVersion$inboundSchema` instead. */
-  export const inboundSchema = RdpVersion$inboundSchema;
-  /** @deprecated use `RdpVersion$outboundSchema` instead. */
-  export const outboundSchema = RdpVersion$outboundSchema;
-  /** @deprecated use `RdpVersion$Outbound` instead. */
-  export type Outbound = RdpVersion$Outbound;
-}
-
-export function rdpVersionToJSON(rdpVersion: RdpVersion): string {
-  return JSON.stringify(RdpVersion$outboundSchema.parse(rdpVersion));
-}
-
 export function rdpVersionFromJSON(
   jsonString: string,
 ): SafeParseResult<RdpVersion, SDKValidationError> {

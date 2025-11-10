@@ -24,47 +24,6 @@ export const KubernetesEndpointSubsetPort$inboundSchema: z.ZodType<
   protocol: z.string().optional(),
 });
 
-/** @internal */
-export type KubernetesEndpointSubsetPort$Outbound = {
-  name?: string | undefined;
-  port?: number | undefined;
-  protocol?: string | undefined;
-};
-
-/** @internal */
-export const KubernetesEndpointSubsetPort$outboundSchema: z.ZodType<
-  KubernetesEndpointSubsetPort$Outbound,
-  z.ZodTypeDef,
-  KubernetesEndpointSubsetPort
-> = z.object({
-  name: z.string().optional(),
-  port: z.number().int().optional(),
-  protocol: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace KubernetesEndpointSubsetPort$ {
-  /** @deprecated use `KubernetesEndpointSubsetPort$inboundSchema` instead. */
-  export const inboundSchema = KubernetesEndpointSubsetPort$inboundSchema;
-  /** @deprecated use `KubernetesEndpointSubsetPort$outboundSchema` instead. */
-  export const outboundSchema = KubernetesEndpointSubsetPort$outboundSchema;
-  /** @deprecated use `KubernetesEndpointSubsetPort$Outbound` instead. */
-  export type Outbound = KubernetesEndpointSubsetPort$Outbound;
-}
-
-export function kubernetesEndpointSubsetPortToJSON(
-  kubernetesEndpointSubsetPort: KubernetesEndpointSubsetPort,
-): string {
-  return JSON.stringify(
-    KubernetesEndpointSubsetPort$outboundSchema.parse(
-      kubernetesEndpointSubsetPort,
-    ),
-  );
-}
-
 export function kubernetesEndpointSubsetPortFromJSON(
   jsonString: string,
 ): SafeParseResult<KubernetesEndpointSubsetPort, SDKValidationError> {

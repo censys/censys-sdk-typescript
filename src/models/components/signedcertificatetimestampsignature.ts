@@ -30,54 +30,6 @@ export const SignedCertificateTimestampSignature$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type SignedCertificateTimestampSignature$Outbound = {
-  hash_algorithm?: string | undefined;
-  signature?: string | undefined;
-  signature_algorithm?: string | undefined;
-};
-
-/** @internal */
-export const SignedCertificateTimestampSignature$outboundSchema: z.ZodType<
-  SignedCertificateTimestampSignature$Outbound,
-  z.ZodTypeDef,
-  SignedCertificateTimestampSignature
-> = z.object({
-  hashAlgorithm: z.string().optional(),
-  signature: z.string().optional(),
-  signatureAlgorithm: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    hashAlgorithm: "hash_algorithm",
-    signatureAlgorithm: "signature_algorithm",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SignedCertificateTimestampSignature$ {
-  /** @deprecated use `SignedCertificateTimestampSignature$inboundSchema` instead. */
-  export const inboundSchema =
-    SignedCertificateTimestampSignature$inboundSchema;
-  /** @deprecated use `SignedCertificateTimestampSignature$outboundSchema` instead. */
-  export const outboundSchema =
-    SignedCertificateTimestampSignature$outboundSchema;
-  /** @deprecated use `SignedCertificateTimestampSignature$Outbound` instead. */
-  export type Outbound = SignedCertificateTimestampSignature$Outbound;
-}
-
-export function signedCertificateTimestampSignatureToJSON(
-  signedCertificateTimestampSignature: SignedCertificateTimestampSignature,
-): string {
-  return JSON.stringify(
-    SignedCertificateTimestampSignature$outboundSchema.parse(
-      signedCertificateTimestampSignature,
-    ),
-  );
-}
-
 export function signedCertificateTimestampSignatureFromJSON(
   jsonString: string,
 ): SafeParseResult<SignedCertificateTimestampSignature, SDKValidationError> {

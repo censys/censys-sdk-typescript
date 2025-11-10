@@ -46,64 +46,6 @@ export const MongodbIsMaster$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type MongodbIsMaster$Outbound = {
-  is_master?: boolean | undefined;
-  logical_session_timeout_minutes?: number | undefined;
-  max_bson_object_size?: number | undefined;
-  max_message_size_bytes?: number | undefined;
-  max_wire_version?: number | undefined;
-  max_write_batch_size?: number | undefined;
-  min_wire_version?: number | undefined;
-  read_only?: boolean | undefined;
-};
-
-/** @internal */
-export const MongodbIsMaster$outboundSchema: z.ZodType<
-  MongodbIsMaster$Outbound,
-  z.ZodTypeDef,
-  MongodbIsMaster
-> = z.object({
-  isMaster: z.boolean().optional(),
-  logicalSessionTimeoutMinutes: z.number().int().optional(),
-  maxBsonObjectSize: z.number().int().optional(),
-  maxMessageSizeBytes: z.number().int().optional(),
-  maxWireVersion: z.number().int().optional(),
-  maxWriteBatchSize: z.number().int().optional(),
-  minWireVersion: z.number().int().optional(),
-  readOnly: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    isMaster: "is_master",
-    logicalSessionTimeoutMinutes: "logical_session_timeout_minutes",
-    maxBsonObjectSize: "max_bson_object_size",
-    maxMessageSizeBytes: "max_message_size_bytes",
-    maxWireVersion: "max_wire_version",
-    maxWriteBatchSize: "max_write_batch_size",
-    minWireVersion: "min_wire_version",
-    readOnly: "read_only",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MongodbIsMaster$ {
-  /** @deprecated use `MongodbIsMaster$inboundSchema` instead. */
-  export const inboundSchema = MongodbIsMaster$inboundSchema;
-  /** @deprecated use `MongodbIsMaster$outboundSchema` instead. */
-  export const outboundSchema = MongodbIsMaster$outboundSchema;
-  /** @deprecated use `MongodbIsMaster$Outbound` instead. */
-  export type Outbound = MongodbIsMaster$Outbound;
-}
-
-export function mongodbIsMasterToJSON(
-  mongodbIsMaster: MongodbIsMaster,
-): string {
-  return JSON.stringify(MongodbIsMaster$outboundSchema.parse(mongodbIsMaster));
-}
-
 export function mongodbIsMasterFromJSON(
   jsonString: string,
 ): SafeParseResult<MongodbIsMaster, SDKValidationError> {

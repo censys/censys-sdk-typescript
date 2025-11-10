@@ -8,751 +8,158 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Activemq,
-  Activemq$inboundSchema,
-  Activemq$Outbound,
-  Activemq$outboundSchema,
-} from "./activemq.js";
-import {
-  Amqp,
-  Amqp$inboundSchema,
-  Amqp$Outbound,
-  Amqp$outboundSchema,
-} from "./amqp.js";
-import {
-  AnyConnect,
-  AnyConnect$inboundSchema,
-  AnyConnect$Outbound,
-  AnyConnect$outboundSchema,
-} from "./anyconnect.js";
+import { Activemq, Activemq$inboundSchema } from "./activemq.js";
+import { Amqp, Amqp$inboundSchema } from "./amqp.js";
+import { AnyConnect, AnyConnect$inboundSchema } from "./anyconnect.js";
 import {
   AsteriskManagerInterface,
   AsteriskManagerInterface$inboundSchema,
-  AsteriskManagerInterface$Outbound,
-  AsteriskManagerInterface$outboundSchema,
 } from "./asteriskmanagerinterface.js";
-import {
-  Attribute,
-  Attribute$inboundSchema,
-  Attribute$Outbound,
-  Attribute$outboundSchema,
-} from "./attribute.js";
-import {
-  Bacnet,
-  Bacnet$inboundSchema,
-  Bacnet$Outbound,
-  Bacnet$outboundSchema,
-} from "./bacnet.js";
-import {
-  Certificate,
-  Certificate$inboundSchema,
-  Certificate$Outbound,
-  Certificate$outboundSchema,
-} from "./certificate.js";
+import { Attribute, Attribute$inboundSchema } from "./attribute.js";
+import { Bacnet, Bacnet$inboundSchema } from "./bacnet.js";
+import { Certificate, Certificate$inboundSchema } from "./certificate.js";
 import {
   CheckpointTopology,
   CheckpointTopology$inboundSchema,
-  CheckpointTopology$Outbound,
-  CheckpointTopology$outboundSchema,
 } from "./checkpointtopology.js";
-import {
-  Chromecast,
-  Chromecast$inboundSchema,
-  Chromecast$Outbound,
-  Chromecast$outboundSchema,
-} from "./chromecast.js";
-import {
-  CiscoIpsla,
-  CiscoIpsla$inboundSchema,
-  CiscoIpsla$Outbound,
-  CiscoIpsla$outboundSchema,
-} from "./ciscoipsla.js";
-import {
-  Cmore,
-  Cmore$inboundSchema,
-  Cmore$Outbound,
-  Cmore$outboundSchema,
-} from "./cmore.js";
-import {
-  Coap,
-  Coap$inboundSchema,
-  Coap$Outbound,
-  Coap$outboundSchema,
-} from "./coap.js";
-import {
-  CrestronCp3,
-  CrestronCp3$inboundSchema,
-  CrestronCp3$Outbound,
-  CrestronCp3$outboundSchema,
-} from "./crestroncp3.js";
+import { Chromecast, Chromecast$inboundSchema } from "./chromecast.js";
+import { CiscoIpsla, CiscoIpsla$inboundSchema } from "./ciscoipsla.js";
+import { Cmore, Cmore$inboundSchema } from "./cmore.js";
+import { Coap, Coap$inboundSchema } from "./coap.js";
+import { CrestronCp3, CrestronCp3$inboundSchema } from "./crestroncp3.js";
 import {
   CrestronDinAp2,
   CrestronDinAp2$inboundSchema,
-  CrestronDinAp2$Outbound,
-  CrestronDinAp2$outboundSchema,
 } from "./crestrondinap2.js";
-import {
-  Cwmp,
-  Cwmp$inboundSchema,
-  Cwmp$Outbound,
-  Cwmp$outboundSchema,
-} from "./cwmp.js";
-import {
-  Darkcomet,
-  Darkcomet$inboundSchema,
-  Darkcomet$Outbound,
-  Darkcomet$outboundSchema,
-} from "./darkcomet.js";
-import {
-  Darkgate,
-  Darkgate$inboundSchema,
-  Darkgate$Outbound,
-  Darkgate$outboundSchema,
-} from "./darkgate.js";
-import {
-  Dcerpc,
-  Dcerpc$inboundSchema,
-  Dcerpc$Outbound,
-  Dcerpc$outboundSchema,
-} from "./dcerpc.js";
-import {
-  Dhcpdiscover,
-  Dhcpdiscover$inboundSchema,
-  Dhcpdiscover$Outbound,
-  Dhcpdiscover$outboundSchema,
-} from "./dhcpdiscover.js";
-import {
-  Dnp3,
-  Dnp3$inboundSchema,
-  Dnp3$Outbound,
-  Dnp3$outboundSchema,
-} from "./dnp3.js";
-import {
-  Dns,
-  Dns$inboundSchema,
-  Dns$Outbound,
-  Dns$outboundSchema,
-} from "./dns.js";
-import {
-  Dtls,
-  Dtls$inboundSchema,
-  Dtls$Outbound,
-  Dtls$outboundSchema,
-} from "./dtls.js";
-import {
-  DvrIp,
-  DvrIp$inboundSchema,
-  DvrIp$Outbound,
-  DvrIp$outboundSchema,
-} from "./dvrip.js";
-import {
-  Eip,
-  Eip$inboundSchema,
-  Eip$Outbound,
-  Eip$outboundSchema,
-} from "./eip.js";
-import {
-  ElfFile,
-  ElfFile$inboundSchema,
-  ElfFile$Outbound,
-  ElfFile$outboundSchema,
-} from "./elffile.js";
+import { Cwmp, Cwmp$inboundSchema } from "./cwmp.js";
+import { Darkcomet, Darkcomet$inboundSchema } from "./darkcomet.js";
+import { Darkgate, Darkgate$inboundSchema } from "./darkgate.js";
+import { Dcerpc, Dcerpc$inboundSchema } from "./dcerpc.js";
+import { Dhcpdiscover, Dhcpdiscover$inboundSchema } from "./dhcpdiscover.js";
+import { Dnp3, Dnp3$inboundSchema } from "./dnp3.js";
+import { Dns, Dns$inboundSchema } from "./dns.js";
+import { Dtls, Dtls$inboundSchema } from "./dtls.js";
+import { DvrIp, DvrIp$inboundSchema } from "./dvrip.js";
+import { Eip, Eip$inboundSchema } from "./eip.js";
+import { ElfFile, ElfFile$inboundSchema } from "./elffile.js";
 import {
   EndpointScanState,
   EndpointScanState$inboundSchema,
-  EndpointScanState$Outbound,
-  EndpointScanState$outboundSchema,
 } from "./endpointscanstate.js";
-import {
-  Epmd,
-  Epmd$inboundSchema,
-  Epmd$Outbound,
-  Epmd$outboundSchema,
-} from "./epmd.js";
-import {
-  Etcd,
-  Etcd$inboundSchema,
-  Etcd$Outbound,
-  Etcd$outboundSchema,
-} from "./etcd.js";
-import {
-  Ethereum,
-  Ethereum$inboundSchema,
-  Ethereum$Outbound,
-  Ethereum$outboundSchema,
-} from "./ethereum.js";
-import {
-  Fox,
-  Fox$inboundSchema,
-  Fox$Outbound,
-  Fox$outboundSchema,
-} from "./fox.js";
-import {
-  Ftp,
-  Ftp$inboundSchema,
-  Ftp$Outbound,
-  Ftp$outboundSchema,
-} from "./ftp.js";
-import {
-  Gearman,
-  Gearman$inboundSchema,
-  Gearman$Outbound,
-  Gearman$outboundSchema,
-} from "./gearman.js";
-import {
-  HidVertx,
-  HidVertx$inboundSchema,
-  HidVertx$Outbound,
-  HidVertx$outboundSchema,
-} from "./hidvertx.js";
-import {
-  Hikvision,
-  Hikvision$inboundSchema,
-  Hikvision$Outbound,
-  Hikvision$outboundSchema,
-} from "./hikvision.js";
-import {
-  Ibmnje,
-  Ibmnje$inboundSchema,
-  Ibmnje$Outbound,
-  Ibmnje$outboundSchema,
-} from "./ibmnje.js";
-import {
-  Ike,
-  Ike$inboundSchema,
-  Ike$Outbound,
-  Ike$outboundSchema,
-} from "./ike.js";
-import {
-  Imap,
-  Imap$inboundSchema,
-  Imap$Outbound,
-  Imap$outboundSchema,
-} from "./imap.js";
-import {
-  Iota,
-  Iota$inboundSchema,
-  Iota$Outbound,
-  Iota$outboundSchema,
-} from "./iota.js";
-import {
-  Ipmi,
-  Ipmi$inboundSchema,
-  Ipmi$Outbound,
-  Ipmi$outboundSchema,
-} from "./ipmi.js";
-import {
-  Ipp,
-  Ipp$inboundSchema,
-  Ipp$Outbound,
-  Ipp$outboundSchema,
-} from "./ipp.js";
-import {
-  Iscsi,
-  Iscsi$inboundSchema,
-  Iscsi$Outbound,
-  Iscsi$outboundSchema,
-} from "./iscsi.js";
-import {
-  Ja4TScanScan,
-  Ja4TScanScan$inboundSchema,
-  Ja4TScanScan$Outbound,
-  Ja4TScanScan$outboundSchema,
-} from "./ja4tscanscan.js";
-import {
-  JarmScan,
-  JarmScan$inboundSchema,
-  JarmScan$Outbound,
-  JarmScan$outboundSchema,
-} from "./jarmscan.js";
-import {
-  Krpc,
-  Krpc$inboundSchema,
-  Krpc$Outbound,
-  Krpc$outboundSchema,
-} from "./krpc.js";
-import {
-  L2Tp,
-  L2Tp$inboundSchema,
-  L2Tp$Outbound,
-  L2Tp$outboundSchema,
-} from "./l2tp.js";
-import {
-  Label,
-  Label$inboundSchema,
-  Label$Outbound,
-  Label$outboundSchema,
-} from "./label.js";
-import {
-  Ldap,
-  Ldap$inboundSchema,
-  Ldap$Outbound,
-  Ldap$outboundSchema,
-} from "./ldap.js";
-import {
-  Lpd,
-  Lpd$inboundSchema,
-  Lpd$Outbound,
-  Lpd$outboundSchema,
-} from "./lpd.js";
-import {
-  Mdns,
-  Mdns$inboundSchema,
-  Mdns$Outbound,
-  Mdns$outboundSchema,
-} from "./mdns.js";
-import {
-  Memcached,
-  Memcached$inboundSchema,
-  Memcached$Outbound,
-  Memcached$outboundSchema,
-} from "./memcached.js";
+import { Epmd, Epmd$inboundSchema } from "./epmd.js";
+import { Etcd, Etcd$inboundSchema } from "./etcd.js";
+import { Ethereum, Ethereum$inboundSchema } from "./ethereum.js";
+import { Fox, Fox$inboundSchema } from "./fox.js";
+import { Ftp, Ftp$inboundSchema } from "./ftp.js";
+import { Gearman, Gearman$inboundSchema } from "./gearman.js";
+import { HidVertx, HidVertx$inboundSchema } from "./hidvertx.js";
+import { Hikvision, Hikvision$inboundSchema } from "./hikvision.js";
+import { Ibmnje, Ibmnje$inboundSchema } from "./ibmnje.js";
+import { Ike, Ike$inboundSchema } from "./ike.js";
+import { Imap, Imap$inboundSchema } from "./imap.js";
+import { Iota, Iota$inboundSchema } from "./iota.js";
+import { Ipmi, Ipmi$inboundSchema } from "./ipmi.js";
+import { Ipp, Ipp$inboundSchema } from "./ipp.js";
+import { Iscsi, Iscsi$inboundSchema } from "./iscsi.js";
+import { Ja4TScanScan, Ja4TScanScan$inboundSchema } from "./ja4tscanscan.js";
+import { JarmScan, JarmScan$inboundSchema } from "./jarmscan.js";
+import { Krpc, Krpc$inboundSchema } from "./krpc.js";
+import { L2Tp, L2Tp$inboundSchema } from "./l2tp.js";
+import { Label, Label$inboundSchema } from "./label.js";
+import { Ldap, Ldap$inboundSchema } from "./ldap.js";
+import { Lpd, Lpd$inboundSchema } from "./lpd.js";
+import { Mdns, Mdns$inboundSchema } from "./mdns.js";
+import { Memcached, Memcached$inboundSchema } from "./memcached.js";
 import {
   MikrotikWinbox,
   MikrotikWinbox$inboundSchema,
-  MikrotikWinbox$Outbound,
-  MikrotikWinbox$outboundSchema,
 } from "./mikrotikwinbox.js";
-import {
-  Minecraft,
-  Minecraft$inboundSchema,
-  Minecraft$Outbound,
-  Minecraft$outboundSchema,
-} from "./minecraft.js";
-import {
-  Mms,
-  Mms$inboundSchema,
-  Mms$Outbound,
-  Mms$outboundSchema,
-} from "./mms.js";
-import {
-  Modbus,
-  Modbus$inboundSchema,
-  Modbus$Outbound,
-  Modbus$outboundSchema,
-} from "./modbus.js";
-import {
-  MoneroP2P,
-  MoneroP2P$inboundSchema,
-  MoneroP2P$Outbound,
-  MoneroP2P$outboundSchema,
-} from "./monerop2p.js";
-import {
-  Mongodb,
-  Mongodb$inboundSchema,
-  Mongodb$Outbound,
-  Mongodb$outboundSchema,
-} from "./mongodb.js";
-import {
-  Mqtt,
-  Mqtt$inboundSchema,
-  Mqtt$Outbound,
-  Mqtt$outboundSchema,
-} from "./mqtt.js";
-import {
-  Mssql,
-  Mssql$inboundSchema,
-  Mssql$Outbound,
-  Mssql$outboundSchema,
-} from "./mssql.js";
-import {
-  Murmur,
-  Murmur$inboundSchema,
-  Murmur$Outbound,
-  Murmur$outboundSchema,
-} from "./murmur.js";
-import {
-  Mysql,
-  Mysql$inboundSchema,
-  Mysql$Outbound,
-  Mysql$outboundSchema,
-} from "./mysql.js";
-import {
-  NatsIo,
-  NatsIo$inboundSchema,
-  NatsIo$Outbound,
-  NatsIo$outboundSchema,
-} from "./natsio.js";
-import {
-  Nbd,
-  Nbd$inboundSchema,
-  Nbd$Outbound,
-  Nbd$outboundSchema,
-} from "./nbd.js";
-import {
-  NfsMountd,
-  NfsMountd$inboundSchema,
-  NfsMountd$Outbound,
-  NfsMountd$outboundSchema,
-} from "./nfsmountd.js";
-import {
-  Nmea,
-  Nmea$inboundSchema,
-  Nmea$Outbound,
-  Nmea$outboundSchema,
-} from "./nmea.js";
-import {
-  Ntp,
-  Ntp$inboundSchema,
-  Ntp$Outbound,
-  Ntp$outboundSchema,
-} from "./ntp.js";
-import {
-  Ntrip,
-  Ntrip$inboundSchema,
-  Ntrip$Outbound,
-  Ntrip$outboundSchema,
-} from "./ntrip.js";
-import {
-  Onc,
-  Onc$inboundSchema,
-  Onc$Outbound,
-  Onc$outboundSchema,
-} from "./onc.js";
-import {
-  Onvif,
-  Onvif$inboundSchema,
-  Onvif$Outbound,
-  Onvif$outboundSchema,
-} from "./onvif.js";
-import {
-  OpcUa,
-  OpcUa$inboundSchema,
-  OpcUa$Outbound,
-  OpcUa$outboundSchema,
-} from "./opcua.js";
-import {
-  Openvpn,
-  Openvpn$inboundSchema,
-  Openvpn$Outbound,
-  Openvpn$outboundSchema,
-} from "./openvpn.js";
-import {
-  OpenvpnMgmt,
-  OpenvpnMgmt$inboundSchema,
-  OpenvpnMgmt$Outbound,
-  OpenvpnMgmt$outboundSchema,
-} from "./openvpnmgmt.js";
-import {
-  Oracle,
-  Oracle$inboundSchema,
-  Oracle$Outbound,
-  Oracle$outboundSchema,
-} from "./oracle.js";
-import {
-  PcAnywhere,
-  PcAnywhere$inboundSchema,
-  PcAnywhere$Outbound,
-  PcAnywhere$outboundSchema,
-} from "./pcanywhere.js";
-import {
-  Pgbouncer,
-  Pgbouncer$inboundSchema,
-  Pgbouncer$Outbound,
-  Pgbouncer$outboundSchema,
-} from "./pgbouncer.js";
-import {
-  Pop3,
-  Pop3$inboundSchema,
-  Pop3$Outbound,
-  Pop3$outboundSchema,
-} from "./pop3.js";
-import {
-  Portmap,
-  Portmap$inboundSchema,
-  Portmap$Outbound,
-  Portmap$outboundSchema,
-} from "./portmap.js";
-import {
-  Postgres,
-  Postgres$inboundSchema,
-  Postgres$Outbound,
-  Postgres$outboundSchema,
-} from "./postgres.js";
-import {
-  Pptp,
-  Pptp$inboundSchema,
-  Pptp$Outbound,
-  Pptp$outboundSchema,
-} from "./pptp.js";
-import {
-  ProfinetCm,
-  ProfinetCm$inboundSchema,
-  ProfinetCm$Outbound,
-  ProfinetCm$outboundSchema,
-} from "./profinetcm.js";
-import {
-  Rdate,
-  Rdate$inboundSchema,
-  Rdate$Outbound,
-  Rdate$outboundSchema,
-} from "./rdate.js";
-import {
-  Rdp,
-  Rdp$inboundSchema,
-  Rdp$Outbound,
-  Rdp$outboundSchema,
-} from "./rdp.js";
-import {
-  Realport,
-  Realport$inboundSchema,
-  Realport$Outbound,
-  Realport$outboundSchema,
-} from "./realport.js";
-import {
-  Redis,
-  Redis$inboundSchema,
-  Redis$Outbound,
-  Redis$outboundSchema,
-} from "./redis.js";
-import {
-  Redline,
-  Redline$inboundSchema,
-  Redline$Outbound,
-  Redline$outboundSchema,
-} from "./redline.js";
+import { Minecraft, Minecraft$inboundSchema } from "./minecraft.js";
+import { Mms, Mms$inboundSchema } from "./mms.js";
+import { Modbus, Modbus$inboundSchema } from "./modbus.js";
+import { MoneroP2P, MoneroP2P$inboundSchema } from "./monerop2p.js";
+import { Mongodb, Mongodb$inboundSchema } from "./mongodb.js";
+import { Mqtt, Mqtt$inboundSchema } from "./mqtt.js";
+import { Mssql, Mssql$inboundSchema } from "./mssql.js";
+import { Murmur, Murmur$inboundSchema } from "./murmur.js";
+import { Mysql, Mysql$inboundSchema } from "./mysql.js";
+import { NatsIo, NatsIo$inboundSchema } from "./natsio.js";
+import { Nbd, Nbd$inboundSchema } from "./nbd.js";
+import { NfsMountd, NfsMountd$inboundSchema } from "./nfsmountd.js";
+import { Nmea, Nmea$inboundSchema } from "./nmea.js";
+import { Ntp, Ntp$inboundSchema } from "./ntp.js";
+import { Ntrip, Ntrip$inboundSchema } from "./ntrip.js";
+import { Onc, Onc$inboundSchema } from "./onc.js";
+import { Onvif, Onvif$inboundSchema } from "./onvif.js";
+import { OpcUa, OpcUa$inboundSchema } from "./opcua.js";
+import { Openvpn, Openvpn$inboundSchema } from "./openvpn.js";
+import { OpenvpnMgmt, OpenvpnMgmt$inboundSchema } from "./openvpnmgmt.js";
+import { Oracle, Oracle$inboundSchema } from "./oracle.js";
+import { PcAnywhere, PcAnywhere$inboundSchema } from "./pcanywhere.js";
+import { Pgbouncer, Pgbouncer$inboundSchema } from "./pgbouncer.js";
+import { Pop3, Pop3$inboundSchema } from "./pop3.js";
+import { Portmap, Portmap$inboundSchema } from "./portmap.js";
+import { Postgres, Postgres$inboundSchema } from "./postgres.js";
+import { Pptp, Pptp$inboundSchema } from "./pptp.js";
+import { ProfinetCm, ProfinetCm$inboundSchema } from "./profinetcm.js";
+import { Rdate, Rdate$inboundSchema } from "./rdate.js";
+import { Rdp, Rdp$inboundSchema } from "./rdp.js";
+import { Realport, Realport$inboundSchema } from "./realport.js";
+import { Redis, Redis$inboundSchema } from "./redis.js";
+import { Redline, Redline$inboundSchema } from "./redline.js";
 import {
   RedlionCrimson,
   RedlionCrimson$inboundSchema,
-  RedlionCrimson$Outbound,
-  RedlionCrimson$outboundSchema,
 } from "./redlioncrimson.js";
 import {
   RepresentativeInfo,
   RepresentativeInfo$inboundSchema,
-  RepresentativeInfo$Outbound,
-  RepresentativeInfo$outboundSchema,
 } from "./representativeinfo.js";
-import {
-  Rifatron,
-  Rifatron$inboundSchema,
-  Rifatron$Outbound,
-  Rifatron$outboundSchema,
-} from "./rifatron.js";
-import {
-  Ripple,
-  Ripple$inboundSchema,
-  Ripple$Outbound,
-  Ripple$outboundSchema,
-} from "./ripple.js";
-import {
-  Risk,
-  Risk$inboundSchema,
-  Risk$Outbound,
-  Risk$outboundSchema,
-} from "./risk.js";
-import {
-  Rlogin,
-  Rlogin$inboundSchema,
-  Rlogin$Outbound,
-  Rlogin$outboundSchema,
-} from "./rlogin.js";
-import {
-  Rocketmq,
-  Rocketmq$inboundSchema,
-  Rocketmq$Outbound,
-  Rocketmq$outboundSchema,
-} from "./rocketmq.js";
-import {
-  Rtsp,
-  Rtsp$inboundSchema,
-  Rtsp$Outbound,
-  Rtsp$outboundSchema,
-} from "./rtsp.js";
-import { S7, S7$inboundSchema, S7$Outbound, S7$outboundSchema } from "./s7.js";
-import {
-  SapRouter,
-  SapRouter$inboundSchema,
-  SapRouter$Outbound,
-  SapRouter$outboundSchema,
-} from "./saprouter.js";
-import {
-  Scpi,
-  Scpi$inboundSchema,
-  Scpi$Outbound,
-  Scpi$outboundSchema,
-} from "./scpi.js";
-import {
-  Screenshot,
-  Screenshot$inboundSchema,
-  Screenshot$Outbound,
-  Screenshot$outboundSchema,
-} from "./screenshot.js";
-import {
-  Ser2Net,
-  Ser2Net$inboundSchema,
-  Ser2Net$Outbound,
-  Ser2Net$outboundSchema,
-} from "./ser2net.js";
+import { Rifatron, Rifatron$inboundSchema } from "./rifatron.js";
+import { Ripple, Ripple$inboundSchema } from "./ripple.js";
+import { Risk, Risk$inboundSchema } from "./risk.js";
+import { Rlogin, Rlogin$inboundSchema } from "./rlogin.js";
+import { Rocketmq, Rocketmq$inboundSchema } from "./rocketmq.js";
+import { Rtsp, Rtsp$inboundSchema } from "./rtsp.js";
+import { S7, S7$inboundSchema } from "./s7.js";
+import { SapRouter, SapRouter$inboundSchema } from "./saprouter.js";
+import { Scpi, Scpi$inboundSchema } from "./scpi.js";
+import { Screenshot, Screenshot$inboundSchema } from "./screenshot.js";
+import { Ser2Net, Ser2Net$inboundSchema } from "./ser2net.js";
 import {
   SevenDaysToDie,
   SevenDaysToDie$inboundSchema,
-  SevenDaysToDie$Outbound,
-  SevenDaysToDie$outboundSchema,
 } from "./sevendaystodie.js";
-import {
-  Sip,
-  Sip$inboundSchema,
-  Sip$Outbound,
-  Sip$outboundSchema,
-} from "./sip.js";
-import {
-  Skinny,
-  Skinny$inboundSchema,
-  Skinny$Outbound,
-  Skinny$outboundSchema,
-} from "./skinny.js";
-import {
-  Smb,
-  Smb$inboundSchema,
-  Smb$Outbound,
-  Smb$outboundSchema,
-} from "./smb.js";
-import {
-  Smtp,
-  Smtp$inboundSchema,
-  Smtp$Outbound,
-  Smtp$outboundSchema,
-} from "./smtp.js";
-import {
-  Snmp,
-  Snmp$inboundSchema,
-  Snmp$Outbound,
-  Snmp$outboundSchema,
-} from "./snmp.js";
-import {
-  Socks,
-  Socks$inboundSchema,
-  Socks$Outbound,
-  Socks$outboundSchema,
-} from "./socks.js";
-import {
-  Spice,
-  Spice$inboundSchema,
-  Spice$Outbound,
-  Spice$outboundSchema,
-} from "./spice.js";
-import {
-  Ssdp,
-  Ssdp$inboundSchema,
-  Ssdp$Outbound,
-  Ssdp$outboundSchema,
-} from "./ssdp.js";
-import {
-  Ssh,
-  Ssh$inboundSchema,
-  Ssh$Outbound,
-  Ssh$outboundSchema,
-} from "./ssh.js";
-import {
-  Steam,
-  Steam$inboundSchema,
-  Steam$Outbound,
-  Steam$outboundSchema,
-} from "./steam.js";
-import {
-  TacacsPlus,
-  TacacsPlus$inboundSchema,
-  TacacsPlus$Outbound,
-  TacacsPlus$outboundSchema,
-} from "./tacacsplus.js";
-import {
-  TeamViewer,
-  TeamViewer$inboundSchema,
-  TeamViewer$Outbound,
-  TeamViewer$outboundSchema,
-} from "./teamviewer.js";
-import {
-  Telnet,
-  Telnet$inboundSchema,
-  Telnet$Outbound,
-  Telnet$outboundSchema,
-} from "./telnet.js";
-import {
-  Threat,
-  Threat$inboundSchema,
-  Threat$Outbound,
-  Threat$outboundSchema,
-} from "./threat.js";
-import {
-  Tibia,
-  Tibia$inboundSchema,
-  Tibia$Outbound,
-  Tibia$outboundSchema,
-} from "./tibia.js";
-import {
-  Tls,
-  Tls$inboundSchema,
-  Tls$Outbound,
-  Tls$outboundSchema,
-} from "./tls.js";
-import {
-  TplinkKasa,
-  TplinkKasa$inboundSchema,
-  TplinkKasa$Outbound,
-  TplinkKasa$outboundSchema,
-} from "./tplinkkasa.js";
+import { Sip, Sip$inboundSchema } from "./sip.js";
+import { Skinny, Skinny$inboundSchema } from "./skinny.js";
+import { Smb, Smb$inboundSchema } from "./smb.js";
+import { Smtp, Smtp$inboundSchema } from "./smtp.js";
+import { Snmp, Snmp$inboundSchema } from "./snmp.js";
+import { Socks, Socks$inboundSchema } from "./socks.js";
+import { Spice, Spice$inboundSchema } from "./spice.js";
+import { Ssdp, Ssdp$inboundSchema } from "./ssdp.js";
+import { Ssh, Ssh$inboundSchema } from "./ssh.js";
+import { Steam, Steam$inboundSchema } from "./steam.js";
+import { TacacsPlus, TacacsPlus$inboundSchema } from "./tacacsplus.js";
+import { TeamViewer, TeamViewer$inboundSchema } from "./teamviewer.js";
+import { Telnet, Telnet$inboundSchema } from "./telnet.js";
+import { Threat, Threat$inboundSchema } from "./threat.js";
+import { Tibia, Tibia$inboundSchema } from "./tibia.js";
+import { Tls, Tls$inboundSchema } from "./tls.js";
+import { TplinkKasa, TplinkKasa$inboundSchema } from "./tplinkkasa.js";
 import {
   UnitronicsPcom,
   UnitronicsPcom$inboundSchema,
-  UnitronicsPcom$Outbound,
-  UnitronicsPcom$outboundSchema,
 } from "./unitronicspcom.js";
-import {
-  Upnp,
-  Upnp$inboundSchema,
-  Upnp$Outbound,
-  Upnp$outboundSchema,
-} from "./upnp.js";
-import {
-  Ventrilo,
-  Ventrilo$inboundSchema,
-  Ventrilo$Outbound,
-  Ventrilo$outboundSchema,
-} from "./ventrilo.js";
-import {
-  Vnc,
-  Vnc$inboundSchema,
-  Vnc$Outbound,
-  Vnc$outboundSchema,
-} from "./vnc.js";
-import {
-  Vuln,
-  Vuln$inboundSchema,
-  Vuln$Outbound,
-  Vuln$outboundSchema,
-} from "./vuln.js";
-import {
-  WeblogicT3,
-  WeblogicT3$inboundSchema,
-  WeblogicT3$Outbound,
-  WeblogicT3$outboundSchema,
-} from "./weblogict3.js";
-import {
-  Winrm,
-  Winrm$inboundSchema,
-  Winrm$Outbound,
-  Winrm$outboundSchema,
-} from "./winrm.js";
-import {
-  WsDiscovery,
-  WsDiscovery$inboundSchema,
-  WsDiscovery$Outbound,
-  WsDiscovery$outboundSchema,
-} from "./wsdiscovery.js";
-import {
-  X11,
-  X11$inboundSchema,
-  X11$Outbound,
-  X11$outboundSchema,
-} from "./x11.js";
-import {
-  Zeromq,
-  Zeromq$inboundSchema,
-  Zeromq$Outbound,
-  Zeromq$outboundSchema,
-} from "./zeromq.js";
+import { Upnp, Upnp$inboundSchema } from "./upnp.js";
+import { Ventrilo, Ventrilo$inboundSchema } from "./ventrilo.js";
+import { Vnc, Vnc$inboundSchema } from "./vnc.js";
+import { Vuln, Vuln$inboundSchema } from "./vuln.js";
+import { WeblogicT3, WeblogicT3$inboundSchema } from "./weblogict3.js";
+import { Winrm, Winrm$inboundSchema } from "./winrm.js";
+import { WsDiscovery, WsDiscovery$inboundSchema } from "./wsdiscovery.js";
+import { X11, X11$inboundSchema } from "./x11.js";
+import { Zeromq, Zeromq$inboundSchema } from "./zeromq.js";
 
 export const ServiceTransportProtocol = {
   Unknown: "",
@@ -908,22 +315,6 @@ export type Service = {
 export const ServiceTransportProtocol$inboundSchema: z.ZodNativeEnum<
   typeof ServiceTransportProtocol
 > = z.nativeEnum(ServiceTransportProtocol);
-
-/** @internal */
-export const ServiceTransportProtocol$outboundSchema: z.ZodNativeEnum<
-  typeof ServiceTransportProtocol
-> = ServiceTransportProtocol$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ServiceTransportProtocol$ {
-  /** @deprecated use `ServiceTransportProtocol$inboundSchema` instead. */
-  export const inboundSchema = ServiceTransportProtocol$inboundSchema;
-  /** @deprecated use `ServiceTransportProtocol$outboundSchema` instead. */
-  export const outboundSchema = ServiceTransportProtocol$outboundSchema;
-}
 
 /** @internal */
 export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
@@ -1101,342 +492,6 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
       "ws_discovery": "wsDiscovery",
     });
   });
-
-/** @internal */
-export type Service$Outbound = {
-  activemq?: Activemq$Outbound | undefined;
-  amqp?: Amqp$Outbound | undefined;
-  any_connect?: AnyConnect$Outbound | undefined;
-  asterisk_manager_interface?: AsteriskManagerInterface$Outbound | undefined;
-  bacnet?: Bacnet$Outbound | undefined;
-  banner?: string | undefined;
-  banner_hash_sha256?: string | undefined;
-  banner_hex?: string | undefined;
-  cert?: Certificate$Outbound | undefined;
-  checkpoint_topology?: CheckpointTopology$Outbound | undefined;
-  chromecast?: Chromecast$Outbound | undefined;
-  cisco_ipsla?: CiscoIpsla$Outbound | undefined;
-  cmore?: Cmore$Outbound | undefined;
-  coap?: Coap$Outbound | undefined;
-  crestron_cp3?: CrestronCp3$Outbound | undefined;
-  crestron_din_ap2?: CrestronDinAp2$Outbound | undefined;
-  cwmp?: Cwmp$Outbound | undefined;
-  darkcomet?: Darkcomet$Outbound | undefined;
-  darkgate?: Darkgate$Outbound | undefined;
-  dcerpc?: Dcerpc$Outbound | undefined;
-  dhcpdiscover?: Dhcpdiscover$Outbound | undefined;
-  dnp3?: Dnp3$Outbound | undefined;
-  dns?: Dns$Outbound | undefined;
-  dtls?: Dtls$Outbound | undefined;
-  dvr_ip?: DvrIp$Outbound | undefined;
-  eip?: Eip$Outbound | undefined;
-  elf_file?: ElfFile$Outbound | undefined;
-  endpoints?: Array<EndpointScanState$Outbound> | null | undefined;
-  epmd?: Epmd$Outbound | undefined;
-  etcd?: Etcd$Outbound | undefined;
-  ethereum?: Ethereum$Outbound | undefined;
-  exposures?: Array<Risk$Outbound> | null | undefined;
-  fox?: Fox$Outbound | undefined;
-  ftp?: Ftp$Outbound | undefined;
-  gearman?: Gearman$Outbound | undefined;
-  hardware?: Array<Attribute$Outbound> | null | undefined;
-  hid_vertx?: HidVertx$Outbound | undefined;
-  hikvision?: Hikvision$Outbound | undefined;
-  ibmnje?: Ibmnje$Outbound | undefined;
-  ike?: Ike$Outbound | undefined;
-  imap?: Imap$Outbound | undefined;
-  iota?: Iota$Outbound | undefined;
-  ip?: string | undefined;
-  ipmi?: Ipmi$Outbound | undefined;
-  ipp?: Ipp$Outbound | undefined;
-  iscsi?: Iscsi$Outbound | undefined;
-  ja4tscan?: Ja4TScanScan$Outbound | undefined;
-  jarm?: JarmScan$Outbound | undefined;
-  krpc?: Krpc$Outbound | undefined;
-  l2tp?: L2Tp$Outbound | undefined;
-  labels?: Array<Label$Outbound> | null | undefined;
-  ldap?: Ldap$Outbound | undefined;
-  lpd?: Lpd$Outbound | undefined;
-  mdns?: Mdns$Outbound | undefined;
-  memcached?: Memcached$Outbound | undefined;
-  mikrotik_winbox?: MikrotikWinbox$Outbound | undefined;
-  minecraft?: Minecraft$Outbound | undefined;
-  misconfigs?: Array<Risk$Outbound> | null | undefined;
-  mms?: Mms$Outbound | undefined;
-  modbus?: Modbus$Outbound | undefined;
-  monero_p2p?: MoneroP2P$Outbound | undefined;
-  mongodb?: Mongodb$Outbound | undefined;
-  mqtt?: Mqtt$Outbound | undefined;
-  mssql?: Mssql$Outbound | undefined;
-  murmur?: Murmur$Outbound | undefined;
-  mysql?: Mysql$Outbound | undefined;
-  nats_io?: NatsIo$Outbound | undefined;
-  nbd?: Nbd$Outbound | undefined;
-  nfs_mountd?: NfsMountd$Outbound | undefined;
-  nmea?: Nmea$Outbound | undefined;
-  ntp?: Ntp$Outbound | undefined;
-  ntrip?: Ntrip$Outbound | undefined;
-  onc?: Onc$Outbound | undefined;
-  onvif?: Onvif$Outbound | undefined;
-  opc_ua?: OpcUa$Outbound | undefined;
-  openvpn?: Openvpn$Outbound | undefined;
-  openvpn_mgmt?: OpenvpnMgmt$Outbound | undefined;
-  operating_systems?: Array<Attribute$Outbound> | null | undefined;
-  oracle?: Oracle$Outbound | undefined;
-  pc_anywhere?: PcAnywhere$Outbound | undefined;
-  pgbouncer?: Pgbouncer$Outbound | undefined;
-  pop3?: Pop3$Outbound | undefined;
-  port?: number | undefined;
-  portmap?: Portmap$Outbound | undefined;
-  postgres?: Postgres$Outbound | undefined;
-  pptp?: Pptp$Outbound | undefined;
-  profinet_cm?: ProfinetCm$Outbound | undefined;
-  protocol?: string | undefined;
-  rdate?: Rdate$Outbound | undefined;
-  rdp?: Rdp$Outbound | undefined;
-  realport?: Realport$Outbound | undefined;
-  redis?: Redis$Outbound | undefined;
-  redline?: Redline$Outbound | undefined;
-  redlion_crimson?: RedlionCrimson$Outbound | undefined;
-  representative_info?: RepresentativeInfo$Outbound | undefined;
-  rifatron?: Rifatron$Outbound | undefined;
-  ripple?: Ripple$Outbound | undefined;
-  rlogin?: Rlogin$Outbound | undefined;
-  rocketmq?: Rocketmq$Outbound | undefined;
-  rtsp?: Rtsp$Outbound | undefined;
-  s7?: S7$Outbound | undefined;
-  sap_router?: SapRouter$Outbound | undefined;
-  scan_time?: string | undefined;
-  scpi?: Scpi$Outbound | undefined;
-  screenshots?: Array<Screenshot$Outbound> | null | undefined;
-  ser2net?: Ser2Net$Outbound | undefined;
-  seven_days_to_die?: SevenDaysToDie$Outbound | undefined;
-  sip?: Sip$Outbound | undefined;
-  skinny?: Skinny$Outbound | undefined;
-  smb?: Smb$Outbound | undefined;
-  smtp?: Smtp$Outbound | undefined;
-  snmp?: Snmp$Outbound | undefined;
-  socks?: Socks$Outbound | undefined;
-  software?: Array<Attribute$Outbound> | null | undefined;
-  spice?: Spice$Outbound | undefined;
-  ssdp?: Ssdp$Outbound | undefined;
-  ssh?: Ssh$Outbound | undefined;
-  steam?: Steam$Outbound | undefined;
-  tacacs_plus?: TacacsPlus$Outbound | undefined;
-  team_viewer?: TeamViewer$Outbound | undefined;
-  telnet?: Telnet$Outbound | undefined;
-  threats?: Array<Threat$Outbound> | null | undefined;
-  tibia?: Tibia$Outbound | undefined;
-  tls?: Tls$Outbound | undefined;
-  tplink_kasa?: TplinkKasa$Outbound | undefined;
-  transport_protocol?: string | undefined;
-  unitronics_pcom?: UnitronicsPcom$Outbound | undefined;
-  upnp?: Upnp$Outbound | undefined;
-  ventrilo?: Ventrilo$Outbound | undefined;
-  vnc?: Vnc$Outbound | undefined;
-  vulns?: Array<Vuln$Outbound> | null | undefined;
-  weblogic_t3?: WeblogicT3$Outbound | undefined;
-  winrm?: Winrm$Outbound | undefined;
-  ws_discovery?: WsDiscovery$Outbound | undefined;
-  x11?: X11$Outbound | undefined;
-  zeromq?: Zeromq$Outbound | undefined;
-};
-
-/** @internal */
-export const Service$outboundSchema: z.ZodType<
-  Service$Outbound,
-  z.ZodTypeDef,
-  Service
-> = z.object({
-  activemq: Activemq$outboundSchema.optional(),
-  amqp: Amqp$outboundSchema.optional(),
-  anyConnect: AnyConnect$outboundSchema.optional(),
-  asteriskManagerInterface: AsteriskManagerInterface$outboundSchema.optional(),
-  bacnet: Bacnet$outboundSchema.optional(),
-  banner: z.string().optional(),
-  bannerHashSha256: z.string().optional(),
-  bannerHex: z.string().optional(),
-  cert: Certificate$outboundSchema.optional(),
-  checkpointTopology: CheckpointTopology$outboundSchema.optional(),
-  chromecast: Chromecast$outboundSchema.optional(),
-  ciscoIpsla: CiscoIpsla$outboundSchema.optional(),
-  cmore: Cmore$outboundSchema.optional(),
-  coap: Coap$outboundSchema.optional(),
-  crestronCp3: CrestronCp3$outboundSchema.optional(),
-  crestronDinAp2: CrestronDinAp2$outboundSchema.optional(),
-  cwmp: Cwmp$outboundSchema.optional(),
-  darkcomet: Darkcomet$outboundSchema.optional(),
-  darkgate: Darkgate$outboundSchema.optional(),
-  dcerpc: Dcerpc$outboundSchema.optional(),
-  dhcpdiscover: Dhcpdiscover$outboundSchema.optional(),
-  dnp3: Dnp3$outboundSchema.optional(),
-  dns: Dns$outboundSchema.optional(),
-  dtls: Dtls$outboundSchema.optional(),
-  dvrIp: DvrIp$outboundSchema.optional(),
-  eip: Eip$outboundSchema.optional(),
-  elfFile: ElfFile$outboundSchema.optional(),
-  endpoints: z.nullable(z.array(EndpointScanState$outboundSchema)).optional(),
-  epmd: Epmd$outboundSchema.optional(),
-  etcd: Etcd$outboundSchema.optional(),
-  ethereum: Ethereum$outboundSchema.optional(),
-  exposures: z.nullable(z.array(Risk$outboundSchema)).optional(),
-  fox: Fox$outboundSchema.optional(),
-  ftp: Ftp$outboundSchema.optional(),
-  gearman: Gearman$outboundSchema.optional(),
-  hardware: z.nullable(z.array(Attribute$outboundSchema)).optional(),
-  hidVertx: HidVertx$outboundSchema.optional(),
-  hikvision: Hikvision$outboundSchema.optional(),
-  ibmnje: Ibmnje$outboundSchema.optional(),
-  ike: Ike$outboundSchema.optional(),
-  imap: Imap$outboundSchema.optional(),
-  iota: Iota$outboundSchema.optional(),
-  ip: z.string().optional(),
-  ipmi: Ipmi$outboundSchema.optional(),
-  ipp: Ipp$outboundSchema.optional(),
-  iscsi: Iscsi$outboundSchema.optional(),
-  ja4tscan: Ja4TScanScan$outboundSchema.optional(),
-  jarm: JarmScan$outboundSchema.optional(),
-  krpc: Krpc$outboundSchema.optional(),
-  l2tp: L2Tp$outboundSchema.optional(),
-  labels: z.nullable(z.array(Label$outboundSchema)).optional(),
-  ldap: Ldap$outboundSchema.optional(),
-  lpd: Lpd$outboundSchema.optional(),
-  mdns: Mdns$outboundSchema.optional(),
-  memcached: Memcached$outboundSchema.optional(),
-  mikrotikWinbox: MikrotikWinbox$outboundSchema.optional(),
-  minecraft: Minecraft$outboundSchema.optional(),
-  misconfigs: z.nullable(z.array(Risk$outboundSchema)).optional(),
-  mms: Mms$outboundSchema.optional(),
-  modbus: Modbus$outboundSchema.optional(),
-  moneroP2p: MoneroP2P$outboundSchema.optional(),
-  mongodb: Mongodb$outboundSchema.optional(),
-  mqtt: Mqtt$outboundSchema.optional(),
-  mssql: Mssql$outboundSchema.optional(),
-  murmur: Murmur$outboundSchema.optional(),
-  mysql: Mysql$outboundSchema.optional(),
-  natsIo: NatsIo$outboundSchema.optional(),
-  nbd: Nbd$outboundSchema.optional(),
-  nfsMountd: NfsMountd$outboundSchema.optional(),
-  nmea: Nmea$outboundSchema.optional(),
-  ntp: Ntp$outboundSchema.optional(),
-  ntrip: Ntrip$outboundSchema.optional(),
-  onc: Onc$outboundSchema.optional(),
-  onvif: Onvif$outboundSchema.optional(),
-  opcUa: OpcUa$outboundSchema.optional(),
-  openvpn: Openvpn$outboundSchema.optional(),
-  openvpnMgmt: OpenvpnMgmt$outboundSchema.optional(),
-  operatingSystems: z.nullable(z.array(Attribute$outboundSchema)).optional(),
-  oracle: Oracle$outboundSchema.optional(),
-  pcAnywhere: PcAnywhere$outboundSchema.optional(),
-  pgbouncer: Pgbouncer$outboundSchema.optional(),
-  pop3: Pop3$outboundSchema.optional(),
-  port: z.number().int().optional(),
-  portmap: Portmap$outboundSchema.optional(),
-  postgres: Postgres$outboundSchema.optional(),
-  pptp: Pptp$outboundSchema.optional(),
-  profinetCm: ProfinetCm$outboundSchema.optional(),
-  protocol: z.string().optional(),
-  rdate: Rdate$outboundSchema.optional(),
-  rdp: Rdp$outboundSchema.optional(),
-  realport: Realport$outboundSchema.optional(),
-  redis: Redis$outboundSchema.optional(),
-  redline: Redline$outboundSchema.optional(),
-  redlionCrimson: RedlionCrimson$outboundSchema.optional(),
-  representativeInfo: RepresentativeInfo$outboundSchema.optional(),
-  rifatron: Rifatron$outboundSchema.optional(),
-  ripple: Ripple$outboundSchema.optional(),
-  rlogin: Rlogin$outboundSchema.optional(),
-  rocketmq: Rocketmq$outboundSchema.optional(),
-  rtsp: Rtsp$outboundSchema.optional(),
-  s7: S7$outboundSchema.optional(),
-  sapRouter: SapRouter$outboundSchema.optional(),
-  scanTime: z.string().optional(),
-  scpi: Scpi$outboundSchema.optional(),
-  screenshots: z.nullable(z.array(Screenshot$outboundSchema)).optional(),
-  ser2net: Ser2Net$outboundSchema.optional(),
-  sevenDaysToDie: SevenDaysToDie$outboundSchema.optional(),
-  sip: Sip$outboundSchema.optional(),
-  skinny: Skinny$outboundSchema.optional(),
-  smb: Smb$outboundSchema.optional(),
-  smtp: Smtp$outboundSchema.optional(),
-  snmp: Snmp$outboundSchema.optional(),
-  socks: Socks$outboundSchema.optional(),
-  software: z.nullable(z.array(Attribute$outboundSchema)).optional(),
-  spice: Spice$outboundSchema.optional(),
-  ssdp: Ssdp$outboundSchema.optional(),
-  ssh: Ssh$outboundSchema.optional(),
-  steam: Steam$outboundSchema.optional(),
-  tacacsPlus: TacacsPlus$outboundSchema.optional(),
-  teamViewer: TeamViewer$outboundSchema.optional(),
-  telnet: Telnet$outboundSchema.optional(),
-  threats: z.nullable(z.array(Threat$outboundSchema)).optional(),
-  tibia: Tibia$outboundSchema.optional(),
-  tls: Tls$outboundSchema.optional(),
-  tplinkKasa: TplinkKasa$outboundSchema.optional(),
-  transportProtocol: ServiceTransportProtocol$outboundSchema.optional(),
-  unitronicsPcom: UnitronicsPcom$outboundSchema.optional(),
-  upnp: Upnp$outboundSchema.optional(),
-  ventrilo: Ventrilo$outboundSchema.optional(),
-  vnc: Vnc$outboundSchema.optional(),
-  vulns: z.nullable(z.array(Vuln$outboundSchema)).optional(),
-  weblogicT3: WeblogicT3$outboundSchema.optional(),
-  winrm: Winrm$outboundSchema.optional(),
-  wsDiscovery: WsDiscovery$outboundSchema.optional(),
-  x11: X11$outboundSchema.optional(),
-  zeromq: Zeromq$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    anyConnect: "any_connect",
-    asteriskManagerInterface: "asterisk_manager_interface",
-    bannerHashSha256: "banner_hash_sha256",
-    bannerHex: "banner_hex",
-    checkpointTopology: "checkpoint_topology",
-    ciscoIpsla: "cisco_ipsla",
-    crestronCp3: "crestron_cp3",
-    crestronDinAp2: "crestron_din_ap2",
-    dvrIp: "dvr_ip",
-    elfFile: "elf_file",
-    hidVertx: "hid_vertx",
-    mikrotikWinbox: "mikrotik_winbox",
-    moneroP2p: "monero_p2p",
-    natsIo: "nats_io",
-    nfsMountd: "nfs_mountd",
-    opcUa: "opc_ua",
-    openvpnMgmt: "openvpn_mgmt",
-    operatingSystems: "operating_systems",
-    pcAnywhere: "pc_anywhere",
-    profinetCm: "profinet_cm",
-    redlionCrimson: "redlion_crimson",
-    representativeInfo: "representative_info",
-    sapRouter: "sap_router",
-    scanTime: "scan_time",
-    sevenDaysToDie: "seven_days_to_die",
-    tacacsPlus: "tacacs_plus",
-    teamViewer: "team_viewer",
-    tplinkKasa: "tplink_kasa",
-    transportProtocol: "transport_protocol",
-    unitronicsPcom: "unitronics_pcom",
-    weblogicT3: "weblogic_t3",
-    wsDiscovery: "ws_discovery",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Service$ {
-  /** @deprecated use `Service$inboundSchema` instead. */
-  export const inboundSchema = Service$inboundSchema;
-  /** @deprecated use `Service$outboundSchema` instead. */
-  export const outboundSchema = Service$outboundSchema;
-  /** @deprecated use `Service$Outbound` instead. */
-  export type Outbound = Service$Outbound;
-}
-
-export function serviceToJSON(service: Service): string {
-  return JSON.stringify(Service$outboundSchema.parse(service));
-}
 
 export function serviceFromJSON(
   jsonString: string,

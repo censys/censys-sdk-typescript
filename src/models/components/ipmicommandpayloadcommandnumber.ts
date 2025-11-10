@@ -28,45 +28,6 @@ export const IpmiCommandPayloadCommandNumber$inboundSchema: z.ZodType<
   raw: z.number().int().optional(),
 });
 
-/** @internal */
-export type IpmiCommandPayloadCommandNumber$Outbound = {
-  name?: string | undefined;
-  raw?: number | undefined;
-};
-
-/** @internal */
-export const IpmiCommandPayloadCommandNumber$outboundSchema: z.ZodType<
-  IpmiCommandPayloadCommandNumber$Outbound,
-  z.ZodTypeDef,
-  IpmiCommandPayloadCommandNumber
-> = z.object({
-  name: z.string().optional(),
-  raw: z.number().int().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IpmiCommandPayloadCommandNumber$ {
-  /** @deprecated use `IpmiCommandPayloadCommandNumber$inboundSchema` instead. */
-  export const inboundSchema = IpmiCommandPayloadCommandNumber$inboundSchema;
-  /** @deprecated use `IpmiCommandPayloadCommandNumber$outboundSchema` instead. */
-  export const outboundSchema = IpmiCommandPayloadCommandNumber$outboundSchema;
-  /** @deprecated use `IpmiCommandPayloadCommandNumber$Outbound` instead. */
-  export type Outbound = IpmiCommandPayloadCommandNumber$Outbound;
-}
-
-export function ipmiCommandPayloadCommandNumberToJSON(
-  ipmiCommandPayloadCommandNumber: IpmiCommandPayloadCommandNumber,
-): string {
-  return JSON.stringify(
-    IpmiCommandPayloadCommandNumber$outboundSchema.parse(
-      ipmiCommandPayloadCommandNumber,
-    ),
-  );
-}
-
 export function ipmiCommandPayloadCommandNumberFromJSON(
   jsonString: string,
 ): SafeParseResult<IpmiCommandPayloadCommandNumber, SDKValidationError> {

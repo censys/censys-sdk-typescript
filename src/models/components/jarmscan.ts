@@ -50,22 +50,6 @@ export const JarmScanTransportProtocol$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(JarmScanTransportProtocol);
 
 /** @internal */
-export const JarmScanTransportProtocol$outboundSchema: z.ZodNativeEnum<
-  typeof JarmScanTransportProtocol
-> = JarmScanTransportProtocol$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace JarmScanTransportProtocol$ {
-  /** @deprecated use `JarmScanTransportProtocol$inboundSchema` instead. */
-  export const inboundSchema = JarmScanTransportProtocol$inboundSchema;
-  /** @deprecated use `JarmScanTransportProtocol$outboundSchema` instead. */
-  export const outboundSchema = JarmScanTransportProtocol$outboundSchema;
-}
-
-/** @internal */
 export const JarmScan$inboundSchema: z.ZodType<
   JarmScan,
   z.ZodTypeDef,
@@ -89,61 +73,6 @@ export const JarmScan$inboundSchema: z.ZodType<
     "transport_protocol": "transportProtocol",
   });
 });
-
-/** @internal */
-export type JarmScan$Outbound = {
-  cipher_and_version_fingerprint?: string | undefined;
-  fingerprint?: string | undefined;
-  hostname?: string | undefined;
-  ip?: string | undefined;
-  is_success?: boolean | undefined;
-  port?: number | undefined;
-  scan_time?: string | undefined;
-  tls_extensions_sha256?: string | undefined;
-  transport_protocol?: string | undefined;
-};
-
-/** @internal */
-export const JarmScan$outboundSchema: z.ZodType<
-  JarmScan$Outbound,
-  z.ZodTypeDef,
-  JarmScan
-> = z.object({
-  cipherAndVersionFingerprint: z.string().optional(),
-  fingerprint: z.string().optional(),
-  hostname: z.string().optional(),
-  ip: z.string().optional(),
-  isSuccess: z.boolean().optional(),
-  port: z.number().int().optional(),
-  scanTime: z.string().optional(),
-  tlsExtensionsSha256: z.string().optional(),
-  transportProtocol: JarmScanTransportProtocol$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    cipherAndVersionFingerprint: "cipher_and_version_fingerprint",
-    isSuccess: "is_success",
-    scanTime: "scan_time",
-    tlsExtensionsSha256: "tls_extensions_sha256",
-    transportProtocol: "transport_protocol",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace JarmScan$ {
-  /** @deprecated use `JarmScan$inboundSchema` instead. */
-  export const inboundSchema = JarmScan$inboundSchema;
-  /** @deprecated use `JarmScan$outboundSchema` instead. */
-  export const outboundSchema = JarmScan$outboundSchema;
-  /** @deprecated use `JarmScan$Outbound` instead. */
-  export type Outbound = JarmScan$Outbound;
-}
-
-export function jarmScanToJSON(jarmScan: JarmScan): string {
-  return JSON.stringify(JarmScan$outboundSchema.parse(jarmScan));
-}
 
 export function jarmScanFromJSON(
   jsonString: string,

@@ -48,39 +48,8 @@ export const CollectionStatus$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(CollectionStatus);
 
 /** @internal */
-export const CollectionStatus$outboundSchema: z.ZodNativeEnum<
-  typeof CollectionStatus
-> = CollectionStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CollectionStatus$ {
-  /** @deprecated use `CollectionStatus$inboundSchema` instead. */
-  export const inboundSchema = CollectionStatus$inboundSchema;
-  /** @deprecated use `CollectionStatus$outboundSchema` instead. */
-  export const outboundSchema = CollectionStatus$outboundSchema;
-}
-
-/** @internal */
 export const StatusReason$inboundSchema: z.ZodNativeEnum<typeof StatusReason> =
   z.nativeEnum(StatusReason);
-
-/** @internal */
-export const StatusReason$outboundSchema: z.ZodNativeEnum<typeof StatusReason> =
-  StatusReason$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace StatusReason$ {
-  /** @deprecated use `StatusReason$inboundSchema` instead. */
-  export const inboundSchema = StatusReason$inboundSchema;
-  /** @deprecated use `StatusReason$outboundSchema` instead. */
-  export const outboundSchema = StatusReason$outboundSchema;
-}
 
 /** @internal */
 export const Collection$inboundSchema: z.ZodType<
@@ -109,63 +78,6 @@ export const Collection$inboundSchema: z.ZodType<
     "total_assets": "totalAssets",
   });
 });
-
-/** @internal */
-export type Collection$Outbound = {
-  added_assets_24_hours: number;
-  create_time: string;
-  description: string;
-  id: string;
-  name: string;
-  query: string;
-  removed_assets_24_hours: number;
-  status: string;
-  status_reason: string | null;
-  total_assets: number;
-};
-
-/** @internal */
-export const Collection$outboundSchema: z.ZodType<
-  Collection$Outbound,
-  z.ZodTypeDef,
-  Collection
-> = z.object({
-  addedAssets24Hours: z.number().int(),
-  createTime: z.date().transform(v => v.toISOString()),
-  description: z.string(),
-  id: z.string(),
-  name: z.string(),
-  query: z.string(),
-  removedAssets24Hours: z.number().int(),
-  status: CollectionStatus$outboundSchema,
-  statusReason: z.nullable(StatusReason$outboundSchema),
-  totalAssets: z.number().int(),
-}).transform((v) => {
-  return remap$(v, {
-    addedAssets24Hours: "added_assets_24_hours",
-    createTime: "create_time",
-    removedAssets24Hours: "removed_assets_24_hours",
-    statusReason: "status_reason",
-    totalAssets: "total_assets",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Collection$ {
-  /** @deprecated use `Collection$inboundSchema` instead. */
-  export const inboundSchema = Collection$inboundSchema;
-  /** @deprecated use `Collection$outboundSchema` instead. */
-  export const outboundSchema = Collection$outboundSchema;
-  /** @deprecated use `Collection$Outbound` instead. */
-  export type Outbound = Collection$Outbound;
-}
-
-export function collectionToJSON(collection: Collection): string {
-  return JSON.stringify(Collection$outboundSchema.parse(collection));
-}
 
 export function collectionFromJSON(
   jsonString: string,

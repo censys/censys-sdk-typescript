@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   MoneroP2PPingResponse,
   MoneroP2PPingResponse$inboundSchema,
-  MoneroP2PPingResponse$Outbound,
-  MoneroP2PPingResponse$outboundSchema,
 } from "./monerop2ppingresponse.js";
 
 export type MoneroP2P = {
@@ -30,41 +28,6 @@ export const MoneroP2P$inboundSchema: z.ZodType<
     "ping_response": "pingResponse",
   });
 });
-
-/** @internal */
-export type MoneroP2P$Outbound = {
-  ping_response?: MoneroP2PPingResponse$Outbound | undefined;
-};
-
-/** @internal */
-export const MoneroP2P$outboundSchema: z.ZodType<
-  MoneroP2P$Outbound,
-  z.ZodTypeDef,
-  MoneroP2P
-> = z.object({
-  pingResponse: MoneroP2PPingResponse$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    pingResponse: "ping_response",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MoneroP2P$ {
-  /** @deprecated use `MoneroP2P$inboundSchema` instead. */
-  export const inboundSchema = MoneroP2P$inboundSchema;
-  /** @deprecated use `MoneroP2P$outboundSchema` instead. */
-  export const outboundSchema = MoneroP2P$outboundSchema;
-  /** @deprecated use `MoneroP2P$Outbound` instead. */
-  export type Outbound = MoneroP2P$Outbound;
-}
-
-export function moneroP2PToJSON(moneroP2P: MoneroP2P): string {
-  return JSON.stringify(MoneroP2P$outboundSchema.parse(moneroP2P));
-}
 
 export function moneroP2PFromJSON(
   jsonString: string,

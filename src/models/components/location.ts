@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Coordinates,
-  Coordinates$inboundSchema,
-  Coordinates$Outbound,
-  Coordinates$outboundSchema,
-} from "./coordinates.js";
+import { Coordinates, Coordinates$inboundSchema } from "./coordinates.js";
 
 export type Location = {
   /**
@@ -78,62 +73,6 @@ export const Location$inboundSchema: z.ZodType<
     "registered_country_code": "registeredCountryCode",
   });
 });
-
-/** @internal */
-export type Location$Outbound = {
-  city?: string | undefined;
-  continent?: string | undefined;
-  coordinates?: Coordinates$Outbound | undefined;
-  country?: string | undefined;
-  country_code?: string | undefined;
-  postal_code?: string | undefined;
-  province?: string | undefined;
-  registered_country?: string | undefined;
-  registered_country_code?: string | undefined;
-  timezone?: string | undefined;
-};
-
-/** @internal */
-export const Location$outboundSchema: z.ZodType<
-  Location$Outbound,
-  z.ZodTypeDef,
-  Location
-> = z.object({
-  city: z.string().optional(),
-  continent: z.string().optional(),
-  coordinates: Coordinates$outboundSchema.optional(),
-  country: z.string().optional(),
-  countryCode: z.string().optional(),
-  postalCode: z.string().optional(),
-  province: z.string().optional(),
-  registeredCountry: z.string().optional(),
-  registeredCountryCode: z.string().optional(),
-  timezone: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    countryCode: "country_code",
-    postalCode: "postal_code",
-    registeredCountry: "registered_country",
-    registeredCountryCode: "registered_country_code",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Location$ {
-  /** @deprecated use `Location$inboundSchema` instead. */
-  export const inboundSchema = Location$inboundSchema;
-  /** @deprecated use `Location$outboundSchema` instead. */
-  export const outboundSchema = Location$outboundSchema;
-  /** @deprecated use `Location$Outbound` instead. */
-  export type Outbound = Location$Outbound;
-}
-
-export function locationToJSON(location: Location): string {
-  return JSON.stringify(Location$outboundSchema.parse(location));
-}
 
 export function locationFromJSON(
   jsonString: string,

@@ -64,63 +64,6 @@ export const SnmpSystemServices$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type SnmpSystemServices$Outbound = {
-  layer_1?: boolean | undefined;
-  layer_2?: boolean | undefined;
-  layer_3?: boolean | undefined;
-  layer_4?: boolean | undefined;
-  layer_5?: boolean | undefined;
-  layer_6?: boolean | undefined;
-  layer_7?: boolean | undefined;
-};
-
-/** @internal */
-export const SnmpSystemServices$outboundSchema: z.ZodType<
-  SnmpSystemServices$Outbound,
-  z.ZodTypeDef,
-  SnmpSystemServices
-> = z.object({
-  layer1: z.boolean().optional(),
-  layer2: z.boolean().optional(),
-  layer3: z.boolean().optional(),
-  layer4: z.boolean().optional(),
-  layer5: z.boolean().optional(),
-  layer6: z.boolean().optional(),
-  layer7: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    layer1: "layer_1",
-    layer2: "layer_2",
-    layer3: "layer_3",
-    layer4: "layer_4",
-    layer5: "layer_5",
-    layer6: "layer_6",
-    layer7: "layer_7",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SnmpSystemServices$ {
-  /** @deprecated use `SnmpSystemServices$inboundSchema` instead. */
-  export const inboundSchema = SnmpSystemServices$inboundSchema;
-  /** @deprecated use `SnmpSystemServices$outboundSchema` instead. */
-  export const outboundSchema = SnmpSystemServices$outboundSchema;
-  /** @deprecated use `SnmpSystemServices$Outbound` instead. */
-  export type Outbound = SnmpSystemServices$Outbound;
-}
-
-export function snmpSystemServicesToJSON(
-  snmpSystemServices: SnmpSystemServices,
-): string {
-  return JSON.stringify(
-    SnmpSystemServices$outboundSchema.parse(snmpSystemServices),
-  );
-}
-
 export function snmpSystemServicesFromJSON(
   jsonString: string,
 ): SafeParseResult<SnmpSystemServices, SDKValidationError> {

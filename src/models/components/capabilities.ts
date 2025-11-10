@@ -10,62 +10,42 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AnalyticsCapabilities,
   AnalyticsCapabilities$inboundSchema,
-  AnalyticsCapabilities$Outbound,
-  AnalyticsCapabilities$outboundSchema,
 } from "./analyticscapabilities.js";
 import {
   DeviceCapabilities,
   DeviceCapabilities$inboundSchema,
-  DeviceCapabilities$Outbound,
-  DeviceCapabilities$outboundSchema,
 } from "./devicecapabilities.js";
 import {
   DeviceIOCapabilities,
   DeviceIOCapabilities$inboundSchema,
-  DeviceIOCapabilities$Outbound,
-  DeviceIOCapabilities$outboundSchema,
 } from "./deviceiocapabilities.js";
 import {
   EventsCapabilities,
   EventsCapabilities$inboundSchema,
-  EventsCapabilities$Outbound,
-  EventsCapabilities$outboundSchema,
 } from "./eventscapabilities.js";
 import {
   ImageCapabilities,
   ImageCapabilities$inboundSchema,
-  ImageCapabilities$Outbound,
-  ImageCapabilities$outboundSchema,
 } from "./imagecapabilities.js";
 import {
   MediaCapabilities,
   MediaCapabilities$inboundSchema,
-  MediaCapabilities$Outbound,
-  MediaCapabilities$outboundSchema,
 } from "./mediacapabilities.js";
 import {
   PanTiltZoomCapabilities,
   PanTiltZoomCapabilities$inboundSchema,
-  PanTiltZoomCapabilities$Outbound,
-  PanTiltZoomCapabilities$outboundSchema,
 } from "./pantiltzoomcapabilities.js";
 import {
   RecordingCapabilities,
   RecordingCapabilities$inboundSchema,
-  RecordingCapabilities$Outbound,
-  RecordingCapabilities$outboundSchema,
 } from "./recordingcapabilities.js";
 import {
   ReplayCapabilities,
   ReplayCapabilities$inboundSchema,
-  ReplayCapabilities$Outbound,
-  ReplayCapabilities$outboundSchema,
 } from "./replaycapabilities.js";
 import {
   SearchCapabilities,
   SearchCapabilities$inboundSchema,
-  SearchCapabilities$Outbound,
-  SearchCapabilities$outboundSchema,
 } from "./searchcapabilities.js";
 
 export type Capabilities = {
@@ -103,60 +83,6 @@ export const Capabilities$inboundSchema: z.ZodType<
     "pan_tilt_zoom": "panTiltZoom",
   });
 });
-
-/** @internal */
-export type Capabilities$Outbound = {
-  analytics?: AnalyticsCapabilities$Outbound | undefined;
-  device?: DeviceCapabilities$Outbound | undefined;
-  device_io?: DeviceIOCapabilities$Outbound | undefined;
-  events?: EventsCapabilities$Outbound | undefined;
-  image?: ImageCapabilities$Outbound | undefined;
-  media?: MediaCapabilities$Outbound | undefined;
-  pan_tilt_zoom?: PanTiltZoomCapabilities$Outbound | undefined;
-  recording?: RecordingCapabilities$Outbound | undefined;
-  replay?: ReplayCapabilities$Outbound | undefined;
-  search?: SearchCapabilities$Outbound | undefined;
-};
-
-/** @internal */
-export const Capabilities$outboundSchema: z.ZodType<
-  Capabilities$Outbound,
-  z.ZodTypeDef,
-  Capabilities
-> = z.object({
-  analytics: AnalyticsCapabilities$outboundSchema.optional(),
-  device: DeviceCapabilities$outboundSchema.optional(),
-  deviceIo: DeviceIOCapabilities$outboundSchema.optional(),
-  events: EventsCapabilities$outboundSchema.optional(),
-  image: ImageCapabilities$outboundSchema.optional(),
-  media: MediaCapabilities$outboundSchema.optional(),
-  panTiltZoom: PanTiltZoomCapabilities$outboundSchema.optional(),
-  recording: RecordingCapabilities$outboundSchema.optional(),
-  replay: ReplayCapabilities$outboundSchema.optional(),
-  search: SearchCapabilities$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    deviceIo: "device_io",
-    panTiltZoom: "pan_tilt_zoom",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Capabilities$ {
-  /** @deprecated use `Capabilities$inboundSchema` instead. */
-  export const inboundSchema = Capabilities$inboundSchema;
-  /** @deprecated use `Capabilities$outboundSchema` instead. */
-  export const outboundSchema = Capabilities$outboundSchema;
-  /** @deprecated use `Capabilities$Outbound` instead. */
-  export type Outbound = Capabilities$Outbound;
-}
-
-export function capabilitiesToJSON(capabilities: Capabilities): string {
-  return JSON.stringify(Capabilities$outboundSchema.parse(capabilities));
-}
 
 export function capabilitiesFromJSON(
   jsonString: string,

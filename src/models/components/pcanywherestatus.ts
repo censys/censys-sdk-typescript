@@ -33,47 +33,6 @@ export const PcAnywhereStatus$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type PcAnywhereStatus$Outbound = {
-  in_use?: boolean | undefined;
-  raw?: string | undefined;
-};
-
-/** @internal */
-export const PcAnywhereStatus$outboundSchema: z.ZodType<
-  PcAnywhereStatus$Outbound,
-  z.ZodTypeDef,
-  PcAnywhereStatus
-> = z.object({
-  inUse: z.boolean().optional(),
-  raw: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    inUse: "in_use",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PcAnywhereStatus$ {
-  /** @deprecated use `PcAnywhereStatus$inboundSchema` instead. */
-  export const inboundSchema = PcAnywhereStatus$inboundSchema;
-  /** @deprecated use `PcAnywhereStatus$outboundSchema` instead. */
-  export const outboundSchema = PcAnywhereStatus$outboundSchema;
-  /** @deprecated use `PcAnywhereStatus$Outbound` instead. */
-  export type Outbound = PcAnywhereStatus$Outbound;
-}
-
-export function pcAnywhereStatusToJSON(
-  pcAnywhereStatus: PcAnywhereStatus,
-): string {
-  return JSON.stringify(
-    PcAnywhereStatus$outboundSchema.parse(pcAnywhereStatus),
-  );
-}
-
 export function pcAnywhereStatusFromJSON(
   jsonString: string,
 ): SafeParseResult<PcAnywhereStatus, SDKValidationError> {

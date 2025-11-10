@@ -10,20 +10,14 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CertificateAsset,
   CertificateAsset$inboundSchema,
-  CertificateAsset$Outbound,
-  CertificateAsset$outboundSchema,
 } from "./certificateasset.js";
 import {
   HostAssetWithMatchedServices,
   HostAssetWithMatchedServices$inboundSchema,
-  HostAssetWithMatchedServices$Outbound,
-  HostAssetWithMatchedServices$outboundSchema,
 } from "./hostassetwithmatchedservices.js";
 import {
   WebpropertyAsset,
   WebpropertyAsset$inboundSchema,
-  WebpropertyAsset$Outbound,
-  WebpropertyAsset$outboundSchema,
 } from "./webpropertyasset.js";
 
 export type SearchQueryHit = {
@@ -48,47 +42,6 @@ export const SearchQueryHit$inboundSchema: z.ZodType<
     "webproperty_v1": "webpropertyV1",
   });
 });
-
-/** @internal */
-export type SearchQueryHit$Outbound = {
-  certificate_v1?: CertificateAsset$Outbound | undefined;
-  host_v1?: HostAssetWithMatchedServices$Outbound | undefined;
-  webproperty_v1?: WebpropertyAsset$Outbound | undefined;
-};
-
-/** @internal */
-export const SearchQueryHit$outboundSchema: z.ZodType<
-  SearchQueryHit$Outbound,
-  z.ZodTypeDef,
-  SearchQueryHit
-> = z.object({
-  certificateV1: CertificateAsset$outboundSchema.optional(),
-  hostV1: HostAssetWithMatchedServices$outboundSchema.optional(),
-  webpropertyV1: WebpropertyAsset$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    certificateV1: "certificate_v1",
-    hostV1: "host_v1",
-    webpropertyV1: "webproperty_v1",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SearchQueryHit$ {
-  /** @deprecated use `SearchQueryHit$inboundSchema` instead. */
-  export const inboundSchema = SearchQueryHit$inboundSchema;
-  /** @deprecated use `SearchQueryHit$outboundSchema` instead. */
-  export const outboundSchema = SearchQueryHit$outboundSchema;
-  /** @deprecated use `SearchQueryHit$Outbound` instead. */
-  export type Outbound = SearchQueryHit$Outbound;
-}
-
-export function searchQueryHitToJSON(searchQueryHit: SearchQueryHit): string {
-  return JSON.stringify(SearchQueryHit$outboundSchema.parse(searchQueryHit));
-}
 
 export function searchQueryHitFromJSON(
   jsonString: string,

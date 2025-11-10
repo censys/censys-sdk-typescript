@@ -36,52 +36,6 @@ export const PortmapV3Entry$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type PortmapV3Entry$Outbound = {
-  description?: string | undefined;
-  network_id?: string | undefined;
-  owner?: string | undefined;
-  shorthand?: string | undefined;
-  universal_address?: string | undefined;
-  version?: number | undefined;
-};
-
-/** @internal */
-export const PortmapV3Entry$outboundSchema: z.ZodType<
-  PortmapV3Entry$Outbound,
-  z.ZodTypeDef,
-  PortmapV3Entry
-> = z.object({
-  description: z.string().optional(),
-  networkId: z.string().optional(),
-  owner: z.string().optional(),
-  shorthand: z.string().optional(),
-  universalAddress: z.string().optional(),
-  version: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    networkId: "network_id",
-    universalAddress: "universal_address",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PortmapV3Entry$ {
-  /** @deprecated use `PortmapV3Entry$inboundSchema` instead. */
-  export const inboundSchema = PortmapV3Entry$inboundSchema;
-  /** @deprecated use `PortmapV3Entry$outboundSchema` instead. */
-  export const outboundSchema = PortmapV3Entry$outboundSchema;
-  /** @deprecated use `PortmapV3Entry$Outbound` instead. */
-  export type Outbound = PortmapV3Entry$Outbound;
-}
-
-export function portmapV3EntryToJSON(portmapV3Entry: PortmapV3Entry): string {
-  return JSON.stringify(PortmapV3Entry$outboundSchema.parse(portmapV3Entry));
-}
-
 export function portmapV3EntryFromJSON(
   jsonString: string,
 ): SafeParseResult<PortmapV3Entry, SDKValidationError> {

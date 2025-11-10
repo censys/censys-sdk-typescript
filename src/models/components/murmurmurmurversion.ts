@@ -36,56 +36,6 @@ export const MurmurMurmurVersion$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type MurmurMurmurVersion$Outbound = {
-  build?: number | undefined;
-  major?: number | undefined;
-  minor?: number | undefined;
-  os?: string | undefined;
-  os_version?: string | undefined;
-  version_string?: string | undefined;
-};
-
-/** @internal */
-export const MurmurMurmurVersion$outboundSchema: z.ZodType<
-  MurmurMurmurVersion$Outbound,
-  z.ZodTypeDef,
-  MurmurMurmurVersion
-> = z.object({
-  build: z.number().int().optional(),
-  major: z.number().int().optional(),
-  minor: z.number().int().optional(),
-  os: z.string().optional(),
-  osVersion: z.string().optional(),
-  versionString: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    osVersion: "os_version",
-    versionString: "version_string",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MurmurMurmurVersion$ {
-  /** @deprecated use `MurmurMurmurVersion$inboundSchema` instead. */
-  export const inboundSchema = MurmurMurmurVersion$inboundSchema;
-  /** @deprecated use `MurmurMurmurVersion$outboundSchema` instead. */
-  export const outboundSchema = MurmurMurmurVersion$outboundSchema;
-  /** @deprecated use `MurmurMurmurVersion$Outbound` instead. */
-  export type Outbound = MurmurMurmurVersion$Outbound;
-}
-
-export function murmurMurmurVersionToJSON(
-  murmurMurmurVersion: MurmurMurmurVersion,
-): string {
-  return JSON.stringify(
-    MurmurMurmurVersion$outboundSchema.parse(murmurMurmurVersion),
-  );
-}
-
 export function murmurMurmurVersionFromJSON(
   jsonString: string,
 ): SafeParseResult<MurmurMurmurVersion, SDKValidationError> {

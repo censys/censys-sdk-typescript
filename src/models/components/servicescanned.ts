@@ -6,18 +6,8 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  FieldDiff,
-  FieldDiff$inboundSchema,
-  FieldDiff$Outbound,
-  FieldDiff$outboundSchema,
-} from "./fielddiff.js";
-import {
-  ServiceScan,
-  ServiceScan$inboundSchema,
-  ServiceScan$Outbound,
-  ServiceScan$outboundSchema,
-} from "./servicescan.js";
+import { FieldDiff, FieldDiff$inboundSchema } from "./fielddiff.js";
+import { ServiceScan, ServiceScan$inboundSchema } from "./servicescan.js";
 
 export type ServiceScanned = {
   diff?: { [k: string]: FieldDiff } | undefined;
@@ -33,39 +23,6 @@ export const ServiceScanned$inboundSchema: z.ZodType<
   diff: z.record(FieldDiff$inboundSchema).optional(),
   scan: ServiceScan$inboundSchema.optional(),
 });
-
-/** @internal */
-export type ServiceScanned$Outbound = {
-  diff?: { [k: string]: FieldDiff$Outbound } | undefined;
-  scan?: ServiceScan$Outbound | undefined;
-};
-
-/** @internal */
-export const ServiceScanned$outboundSchema: z.ZodType<
-  ServiceScanned$Outbound,
-  z.ZodTypeDef,
-  ServiceScanned
-> = z.object({
-  diff: z.record(FieldDiff$outboundSchema).optional(),
-  scan: ServiceScan$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ServiceScanned$ {
-  /** @deprecated use `ServiceScanned$inboundSchema` instead. */
-  export const inboundSchema = ServiceScanned$inboundSchema;
-  /** @deprecated use `ServiceScanned$outboundSchema` instead. */
-  export const outboundSchema = ServiceScanned$outboundSchema;
-  /** @deprecated use `ServiceScanned$Outbound` instead. */
-  export type Outbound = ServiceScanned$Outbound;
-}
-
-export function serviceScannedToJSON(serviceScanned: ServiceScanned): string {
-  return JSON.stringify(ServiceScanned$outboundSchema.parse(serviceScanned));
-}
 
 export function serviceScannedFromJSON(
   jsonString: string,

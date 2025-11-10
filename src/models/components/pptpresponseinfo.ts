@@ -22,43 +22,6 @@ export const PptpResponseInfo$inboundSchema: z.ZodType<
   meaning: z.string().optional(),
 });
 
-/** @internal */
-export type PptpResponseInfo$Outbound = {
-  code?: number | undefined;
-  meaning?: string | undefined;
-};
-
-/** @internal */
-export const PptpResponseInfo$outboundSchema: z.ZodType<
-  PptpResponseInfo$Outbound,
-  z.ZodTypeDef,
-  PptpResponseInfo
-> = z.object({
-  code: z.number().int().optional(),
-  meaning: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PptpResponseInfo$ {
-  /** @deprecated use `PptpResponseInfo$inboundSchema` instead. */
-  export const inboundSchema = PptpResponseInfo$inboundSchema;
-  /** @deprecated use `PptpResponseInfo$outboundSchema` instead. */
-  export const outboundSchema = PptpResponseInfo$outboundSchema;
-  /** @deprecated use `PptpResponseInfo$Outbound` instead. */
-  export type Outbound = PptpResponseInfo$Outbound;
-}
-
-export function pptpResponseInfoToJSON(
-  pptpResponseInfo: PptpResponseInfo,
-): string {
-  return JSON.stringify(
-    PptpResponseInfo$outboundSchema.parse(pptpResponseInfo),
-  );
-}
-
 export function pptpResponseInfoFromJSON(
   jsonString: string,
 ): SafeParseResult<PptpResponseInfo, SDKValidationError> {

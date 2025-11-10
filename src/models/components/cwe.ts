@@ -20,34 +20,6 @@ export const Cwe$inboundSchema: z.ZodType<Cwe, z.ZodTypeDef, unknown> = z
     entry: z.string().optional(),
   });
 
-/** @internal */
-export type Cwe$Outbound = {
-  entry?: string | undefined;
-};
-
-/** @internal */
-export const Cwe$outboundSchema: z.ZodType<Cwe$Outbound, z.ZodTypeDef, Cwe> = z
-  .object({
-    entry: z.string().optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Cwe$ {
-  /** @deprecated use `Cwe$inboundSchema` instead. */
-  export const inboundSchema = Cwe$inboundSchema;
-  /** @deprecated use `Cwe$outboundSchema` instead. */
-  export const outboundSchema = Cwe$outboundSchema;
-  /** @deprecated use `Cwe$Outbound` instead. */
-  export type Outbound = Cwe$Outbound;
-}
-
-export function cweToJSON(cwe: Cwe): string {
-  return JSON.stringify(Cwe$outboundSchema.parse(cwe));
-}
-
 export function cweFromJSON(
   jsonString: string,
 ): SafeParseResult<Cwe, SDKValidationError> {

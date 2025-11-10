@@ -20,41 +20,6 @@ export const UnrecognizedPublicKey$inboundSchema: z.ZodType<
   raw: z.string().optional(),
 });
 
-/** @internal */
-export type UnrecognizedPublicKey$Outbound = {
-  raw?: string | undefined;
-};
-
-/** @internal */
-export const UnrecognizedPublicKey$outboundSchema: z.ZodType<
-  UnrecognizedPublicKey$Outbound,
-  z.ZodTypeDef,
-  UnrecognizedPublicKey
-> = z.object({
-  raw: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UnrecognizedPublicKey$ {
-  /** @deprecated use `UnrecognizedPublicKey$inboundSchema` instead. */
-  export const inboundSchema = UnrecognizedPublicKey$inboundSchema;
-  /** @deprecated use `UnrecognizedPublicKey$outboundSchema` instead. */
-  export const outboundSchema = UnrecognizedPublicKey$outboundSchema;
-  /** @deprecated use `UnrecognizedPublicKey$Outbound` instead. */
-  export type Outbound = UnrecognizedPublicKey$Outbound;
-}
-
-export function unrecognizedPublicKeyToJSON(
-  unrecognizedPublicKey: UnrecognizedPublicKey,
-): string {
-  return JSON.stringify(
-    UnrecognizedPublicKey$outboundSchema.parse(unrecognizedPublicKey),
-  );
-}
-
 export function unrecognizedPublicKeyFromJSON(
   jsonString: string,
 ): SafeParseResult<UnrecognizedPublicKey, SDKValidationError> {

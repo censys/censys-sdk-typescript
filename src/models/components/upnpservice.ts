@@ -37,53 +37,6 @@ export const UpnpService$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type UpnpService$Outbound = {
-  control_url?: string | undefined;
-  event_sub_url?: string | undefined;
-  scpd_url?: string | undefined;
-  service_id?: string | undefined;
-  service_type?: string | undefined;
-};
-
-/** @internal */
-export const UpnpService$outboundSchema: z.ZodType<
-  UpnpService$Outbound,
-  z.ZodTypeDef,
-  UpnpService
-> = z.object({
-  controlUrl: z.string().optional(),
-  eventSubUrl: z.string().optional(),
-  scpdUrl: z.string().optional(),
-  serviceId: z.string().optional(),
-  serviceType: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    controlUrl: "control_url",
-    eventSubUrl: "event_sub_url",
-    scpdUrl: "scpd_url",
-    serviceId: "service_id",
-    serviceType: "service_type",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpnpService$ {
-  /** @deprecated use `UpnpService$inboundSchema` instead. */
-  export const inboundSchema = UpnpService$inboundSchema;
-  /** @deprecated use `UpnpService$outboundSchema` instead. */
-  export const outboundSchema = UpnpService$outboundSchema;
-  /** @deprecated use `UpnpService$Outbound` instead. */
-  export type Outbound = UpnpService$Outbound;
-}
-
-export function upnpServiceToJSON(upnpService: UpnpService): string {
-  return JSON.stringify(UpnpService$outboundSchema.parse(upnpService));
-}
-
 export function upnpServiceFromJSON(
   jsonString: string,
 ): SafeParseResult<UpnpService, SDKValidationError> {

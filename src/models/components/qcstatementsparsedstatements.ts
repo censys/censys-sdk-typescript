@@ -10,26 +10,18 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   QcStatementsMonetaryValue,
   QcStatementsMonetaryValue$inboundSchema,
-  QcStatementsMonetaryValue$Outbound,
-  QcStatementsMonetaryValue$outboundSchema,
 } from "./qcstatementsmonetaryvalue.js";
 import {
   QcStatementsPdsLocation,
   QcStatementsPdsLocation$inboundSchema,
-  QcStatementsPdsLocation$Outbound,
-  QcStatementsPdsLocation$outboundSchema,
 } from "./qcstatementspdslocation.js";
 import {
   QCStatementsQCLegislation,
   QCStatementsQCLegislation$inboundSchema,
-  QCStatementsQCLegislation$Outbound,
-  QCStatementsQCLegislation$outboundSchema,
 } from "./qcstatementsqclegislation.js";
 import {
   QcStatementsQcType,
   QcStatementsQcType$inboundSchema,
-  QcStatementsQcType$Outbound,
-  QcStatementsQcType$outboundSchema,
 } from "./qcstatementsqctype.js";
 
 export type QcStatementsParsedStatements = {
@@ -65,64 +57,6 @@ export const QcStatementsParsedStatements$inboundSchema: z.ZodType<
     "retention_period": "retentionPeriod",
   });
 });
-
-/** @internal */
-export type QcStatementsParsedStatements$Outbound = {
-  etsi_compliance?: Array<boolean> | null | undefined;
-  legislation?: Array<QCStatementsQCLegislation$Outbound> | null | undefined;
-  limit?: Array<QcStatementsMonetaryValue$Outbound> | null | undefined;
-  pds_locations?: Array<QcStatementsPdsLocation$Outbound> | null | undefined;
-  retention_period?: Array<number> | null | undefined;
-  sscd?: Array<boolean> | null | undefined;
-  types?: Array<QcStatementsQcType$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const QcStatementsParsedStatements$outboundSchema: z.ZodType<
-  QcStatementsParsedStatements$Outbound,
-  z.ZodTypeDef,
-  QcStatementsParsedStatements
-> = z.object({
-  etsiCompliance: z.nullable(z.array(z.boolean())).optional(),
-  legislation: z.nullable(z.array(QCStatementsQCLegislation$outboundSchema))
-    .optional(),
-  limit: z.nullable(z.array(QcStatementsMonetaryValue$outboundSchema))
-    .optional(),
-  pdsLocations: z.nullable(z.array(QcStatementsPdsLocation$outboundSchema))
-    .optional(),
-  retentionPeriod: z.nullable(z.array(z.number().int())).optional(),
-  sscd: z.nullable(z.array(z.boolean())).optional(),
-  types: z.nullable(z.array(QcStatementsQcType$outboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    etsiCompliance: "etsi_compliance",
-    pdsLocations: "pds_locations",
-    retentionPeriod: "retention_period",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace QcStatementsParsedStatements$ {
-  /** @deprecated use `QcStatementsParsedStatements$inboundSchema` instead. */
-  export const inboundSchema = QcStatementsParsedStatements$inboundSchema;
-  /** @deprecated use `QcStatementsParsedStatements$outboundSchema` instead. */
-  export const outboundSchema = QcStatementsParsedStatements$outboundSchema;
-  /** @deprecated use `QcStatementsParsedStatements$Outbound` instead. */
-  export type Outbound = QcStatementsParsedStatements$Outbound;
-}
-
-export function qcStatementsParsedStatementsToJSON(
-  qcStatementsParsedStatements: QcStatementsParsedStatements,
-): string {
-  return JSON.stringify(
-    QcStatementsParsedStatements$outboundSchema.parse(
-      qcStatementsParsedStatements,
-    ),
-  );
-}
 
 export function qcStatementsParsedStatementsFromJSON(
   jsonString: string,

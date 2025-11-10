@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SearchAggregateResponse,
   SearchAggregateResponse$inboundSchema,
-  SearchAggregateResponse$Outbound,
-  SearchAggregateResponse$outboundSchema,
 } from "./searchaggregateresponse.js";
 
 export type ResponseEnvelopeSearchAggregateResponse = {
@@ -25,46 +23,6 @@ export const ResponseEnvelopeSearchAggregateResponse$inboundSchema: z.ZodType<
 > = z.object({
   result: SearchAggregateResponse$inboundSchema.optional(),
 });
-
-/** @internal */
-export type ResponseEnvelopeSearchAggregateResponse$Outbound = {
-  result?: SearchAggregateResponse$Outbound | undefined;
-};
-
-/** @internal */
-export const ResponseEnvelopeSearchAggregateResponse$outboundSchema: z.ZodType<
-  ResponseEnvelopeSearchAggregateResponse$Outbound,
-  z.ZodTypeDef,
-  ResponseEnvelopeSearchAggregateResponse
-> = z.object({
-  result: SearchAggregateResponse$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseEnvelopeSearchAggregateResponse$ {
-  /** @deprecated use `ResponseEnvelopeSearchAggregateResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    ResponseEnvelopeSearchAggregateResponse$inboundSchema;
-  /** @deprecated use `ResponseEnvelopeSearchAggregateResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    ResponseEnvelopeSearchAggregateResponse$outboundSchema;
-  /** @deprecated use `ResponseEnvelopeSearchAggregateResponse$Outbound` instead. */
-  export type Outbound = ResponseEnvelopeSearchAggregateResponse$Outbound;
-}
-
-export function responseEnvelopeSearchAggregateResponseToJSON(
-  responseEnvelopeSearchAggregateResponse:
-    ResponseEnvelopeSearchAggregateResponse,
-): string {
-  return JSON.stringify(
-    ResponseEnvelopeSearchAggregateResponse$outboundSchema.parse(
-      responseEnvelopeSearchAggregateResponse,
-    ),
-  );
-}
 
 export function responseEnvelopeSearchAggregateResponseFromJSON(
   jsonString: string,

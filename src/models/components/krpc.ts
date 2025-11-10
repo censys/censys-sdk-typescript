@@ -22,38 +22,6 @@ export const Krpc$inboundSchema: z.ZodType<Krpc, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type Krpc$Outbound = {
-  ping_response_id?: string | undefined;
-};
-
-/** @internal */
-export const Krpc$outboundSchema: z.ZodType<Krpc$Outbound, z.ZodTypeDef, Krpc> =
-  z.object({
-    pingResponseId: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      pingResponseId: "ping_response_id",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Krpc$ {
-  /** @deprecated use `Krpc$inboundSchema` instead. */
-  export const inboundSchema = Krpc$inboundSchema;
-  /** @deprecated use `Krpc$outboundSchema` instead. */
-  export const outboundSchema = Krpc$outboundSchema;
-  /** @deprecated use `Krpc$Outbound` instead. */
-  export type Outbound = Krpc$Outbound;
-}
-
-export function krpcToJSON(krpc: Krpc): string {
-  return JSON.stringify(Krpc$outboundSchema.parse(krpc));
-}
-
 export function krpcFromJSON(
   jsonString: string,
 ): SafeParseResult<Krpc, SDKValidationError> {

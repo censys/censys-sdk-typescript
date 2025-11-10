@@ -34,50 +34,6 @@ export const Ftp$inboundSchema: z.ZodType<Ftp, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type Ftp$Outbound = {
-  auth_ssl_response?: string | undefined;
-  auth_tls_response?: string | undefined;
-  implicit_tls?: boolean | undefined;
-  status_code?: number | undefined;
-  status_meaning?: string | undefined;
-};
-
-/** @internal */
-export const Ftp$outboundSchema: z.ZodType<Ftp$Outbound, z.ZodTypeDef, Ftp> = z
-  .object({
-    authSslResponse: z.string().optional(),
-    authTlsResponse: z.string().optional(),
-    implicitTls: z.boolean().optional(),
-    statusCode: z.number().int().optional(),
-    statusMeaning: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      authSslResponse: "auth_ssl_response",
-      authTlsResponse: "auth_tls_response",
-      implicitTls: "implicit_tls",
-      statusCode: "status_code",
-      statusMeaning: "status_meaning",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Ftp$ {
-  /** @deprecated use `Ftp$inboundSchema` instead. */
-  export const inboundSchema = Ftp$inboundSchema;
-  /** @deprecated use `Ftp$outboundSchema` instead. */
-  export const outboundSchema = Ftp$outboundSchema;
-  /** @deprecated use `Ftp$Outbound` instead. */
-  export type Outbound = Ftp$Outbound;
-}
-
-export function ftpToJSON(ftp: Ftp): string {
-  return JSON.stringify(Ftp$outboundSchema.parse(ftp));
-}
-
 export function ftpFromJSON(
   jsonString: string,
 ): SafeParseResult<Ftp, SDKValidationError> {

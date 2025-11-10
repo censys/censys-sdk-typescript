@@ -29,48 +29,6 @@ export const Rlogin$inboundSchema: z.ZodType<Rlogin, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type Rlogin$Outbound = {
-  error?: string | undefined;
-  operating_system?: string | undefined;
-  software?: string | undefined;
-  software_version?: string | undefined;
-};
-
-/** @internal */
-export const Rlogin$outboundSchema: z.ZodType<
-  Rlogin$Outbound,
-  z.ZodTypeDef,
-  Rlogin
-> = z.object({
-  error: z.string().optional(),
-  operatingSystem: z.string().optional(),
-  software: z.string().optional(),
-  softwareVersion: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    operatingSystem: "operating_system",
-    softwareVersion: "software_version",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Rlogin$ {
-  /** @deprecated use `Rlogin$inboundSchema` instead. */
-  export const inboundSchema = Rlogin$inboundSchema;
-  /** @deprecated use `Rlogin$outboundSchema` instead. */
-  export const outboundSchema = Rlogin$outboundSchema;
-  /** @deprecated use `Rlogin$Outbound` instead. */
-  export type Outbound = Rlogin$Outbound;
-}
-
-export function rloginToJSON(rlogin: Rlogin): string {
-  return JSON.stringify(Rlogin$outboundSchema.parse(rlogin));
-}
-
 export function rloginFromJSON(
   jsonString: string,
 ): SafeParseResult<Rlogin, SDKValidationError> {

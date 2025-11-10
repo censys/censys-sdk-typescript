@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ElasticSearchResultsNodeInfoNodesNodeData,
   ElasticSearchResultsNodeInfoNodesNodeData$inboundSchema,
-  ElasticSearchResultsNodeInfoNodesNodeData$Outbound,
-  ElasticSearchResultsNodeInfoNodesNodeData$outboundSchema,
 } from "./elasticsearchresultsnodeinfonodesnodedata.js";
 
 export type ElasticSearchResultsNodeInfoNodes = {
@@ -33,51 +31,6 @@ export const ElasticSearchResultsNodeInfoNodes$inboundSchema: z.ZodType<
     "node_name": "nodeName",
   });
 });
-
-/** @internal */
-export type ElasticSearchResultsNodeInfoNodes$Outbound = {
-  node_data?: ElasticSearchResultsNodeInfoNodesNodeData$Outbound | undefined;
-  node_name?: string | undefined;
-};
-
-/** @internal */
-export const ElasticSearchResultsNodeInfoNodes$outboundSchema: z.ZodType<
-  ElasticSearchResultsNodeInfoNodes$Outbound,
-  z.ZodTypeDef,
-  ElasticSearchResultsNodeInfoNodes
-> = z.object({
-  nodeData: ElasticSearchResultsNodeInfoNodesNodeData$outboundSchema.optional(),
-  nodeName: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    nodeData: "node_data",
-    nodeName: "node_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ElasticSearchResultsNodeInfoNodes$ {
-  /** @deprecated use `ElasticSearchResultsNodeInfoNodes$inboundSchema` instead. */
-  export const inboundSchema = ElasticSearchResultsNodeInfoNodes$inboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfoNodes$outboundSchema` instead. */
-  export const outboundSchema =
-    ElasticSearchResultsNodeInfoNodes$outboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfoNodes$Outbound` instead. */
-  export type Outbound = ElasticSearchResultsNodeInfoNodes$Outbound;
-}
-
-export function elasticSearchResultsNodeInfoNodesToJSON(
-  elasticSearchResultsNodeInfoNodes: ElasticSearchResultsNodeInfoNodes,
-): string {
-  return JSON.stringify(
-    ElasticSearchResultsNodeInfoNodes$outboundSchema.parse(
-      elasticSearchResultsNodeInfoNodes,
-    ),
-  );
-}
 
 export function elasticSearchResultsNodeInfoNodesFromJSON(
   jsonString: string,

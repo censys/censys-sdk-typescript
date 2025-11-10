@@ -34,50 +34,6 @@ export const MediaStreaming$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type MediaStreaming$Outbound = {
-  non_aggregate_control?: boolean | undefined;
-  rtp_multicast?: boolean | undefined;
-  rtp_rtsp_tcp?: boolean | undefined;
-  rtp_tcp?: boolean | undefined;
-};
-
-/** @internal */
-export const MediaStreaming$outboundSchema: z.ZodType<
-  MediaStreaming$Outbound,
-  z.ZodTypeDef,
-  MediaStreaming
-> = z.object({
-  nonAggregateControl: z.boolean().optional(),
-  rtpMulticast: z.boolean().optional(),
-  rtpRtspTcp: z.boolean().optional(),
-  rtpTcp: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    nonAggregateControl: "non_aggregate_control",
-    rtpMulticast: "rtp_multicast",
-    rtpRtspTcp: "rtp_rtsp_tcp",
-    rtpTcp: "rtp_tcp",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MediaStreaming$ {
-  /** @deprecated use `MediaStreaming$inboundSchema` instead. */
-  export const inboundSchema = MediaStreaming$inboundSchema;
-  /** @deprecated use `MediaStreaming$outboundSchema` instead. */
-  export const outboundSchema = MediaStreaming$outboundSchema;
-  /** @deprecated use `MediaStreaming$Outbound` instead. */
-  export type Outbound = MediaStreaming$Outbound;
-}
-
-export function mediaStreamingToJSON(mediaStreaming: MediaStreaming): string {
-  return JSON.stringify(MediaStreaming$outboundSchema.parse(mediaStreaming));
-}
-
 export function mediaStreamingFromJSON(
   jsonString: string,
 ): SafeParseResult<MediaStreaming, SDKValidationError> {

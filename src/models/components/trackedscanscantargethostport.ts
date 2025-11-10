@@ -22,45 +22,6 @@ export const TrackedScanScanTargetHostPort$inboundSchema: z.ZodType<
   port: z.number().int().optional(),
 });
 
-/** @internal */
-export type TrackedScanScanTargetHostPort$Outbound = {
-  ip?: string | undefined;
-  port?: number | undefined;
-};
-
-/** @internal */
-export const TrackedScanScanTargetHostPort$outboundSchema: z.ZodType<
-  TrackedScanScanTargetHostPort$Outbound,
-  z.ZodTypeDef,
-  TrackedScanScanTargetHostPort
-> = z.object({
-  ip: z.string().optional(),
-  port: z.number().int().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TrackedScanScanTargetHostPort$ {
-  /** @deprecated use `TrackedScanScanTargetHostPort$inboundSchema` instead. */
-  export const inboundSchema = TrackedScanScanTargetHostPort$inboundSchema;
-  /** @deprecated use `TrackedScanScanTargetHostPort$outboundSchema` instead. */
-  export const outboundSchema = TrackedScanScanTargetHostPort$outboundSchema;
-  /** @deprecated use `TrackedScanScanTargetHostPort$Outbound` instead. */
-  export type Outbound = TrackedScanScanTargetHostPort$Outbound;
-}
-
-export function trackedScanScanTargetHostPortToJSON(
-  trackedScanScanTargetHostPort: TrackedScanScanTargetHostPort,
-): string {
-  return JSON.stringify(
-    TrackedScanScanTargetHostPort$outboundSchema.parse(
-      trackedScanScanTargetHostPort,
-    ),
-  );
-}
-
 export function trackedScanScanTargetHostPortFromJSON(
   jsonString: string,
 ): SafeParseResult<TrackedScanScanTargetHostPort, SDKValidationError> {
