@@ -3,11 +3,17 @@
  */
 
 import { ClientSDK } from "../lib/sdks.js";
+import { AccountManagement } from "./accountmanagement.js";
 import { Collections } from "./collections.js";
 import { GlobalData } from "./globaldata.js";
 import { ThreatHunting } from "./threathunting.js";
 
 export class SDK extends ClientSDK {
+  private _accountManagement?: AccountManagement;
+  get accountManagement(): AccountManagement {
+    return (this._accountManagement ??= new AccountManagement(this._options));
+  }
+
   private _collections?: Collections;
   get collections(): Collections {
     return (this._collections ??= new Collections(this._options));

@@ -17,34 +17,6 @@ export const Epmd$inboundSchema: z.ZodType<Epmd, z.ZodTypeDef, unknown> = z
     names: z.nullable(z.array(z.string())).optional(),
   });
 
-/** @internal */
-export type Epmd$Outbound = {
-  names?: Array<string> | null | undefined;
-};
-
-/** @internal */
-export const Epmd$outboundSchema: z.ZodType<Epmd$Outbound, z.ZodTypeDef, Epmd> =
-  z.object({
-    names: z.nullable(z.array(z.string())).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Epmd$ {
-  /** @deprecated use `Epmd$inboundSchema` instead. */
-  export const inboundSchema = Epmd$inboundSchema;
-  /** @deprecated use `Epmd$outboundSchema` instead. */
-  export const outboundSchema = Epmd$outboundSchema;
-  /** @deprecated use `Epmd$Outbound` instead. */
-  export type Outbound = Epmd$Outbound;
-}
-
-export function epmdToJSON(epmd: Epmd): string {
-  return JSON.stringify(Epmd$outboundSchema.parse(epmd));
-}
-
 export function epmdFromJSON(
   jsonString: string,
 ): SafeParseResult<Epmd, SDKValidationError> {

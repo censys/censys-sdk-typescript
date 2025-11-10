@@ -8,24 +8,9 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Cvss,
-  Cvss$inboundSchema,
-  Cvss$Outbound,
-  Cvss$outboundSchema,
-} from "./cvss.js";
-import {
-  Evidence,
-  Evidence$inboundSchema,
-  Evidence$Outbound,
-  Evidence$outboundSchema,
-} from "./evidence.js";
-import {
-  Metrics,
-  Metrics$inboundSchema,
-  Metrics$Outbound,
-  Metrics$outboundSchema,
-} from "./metrics.js";
+import { Cvss, Cvss$inboundSchema } from "./cvss.js";
+import { Evidence, Evidence$inboundSchema } from "./evidence.js";
+import { Metrics, Metrics$inboundSchema } from "./metrics.js";
 
 export const RiskSource = {
   Unknown: "",
@@ -70,57 +55,12 @@ export const RiskSource$inboundSchema: z.ZodNativeEnum<typeof RiskSource> = z
   .nativeEnum(RiskSource);
 
 /** @internal */
-export const RiskSource$outboundSchema: z.ZodNativeEnum<typeof RiskSource> =
-  RiskSource$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RiskSource$ {
-  /** @deprecated use `RiskSource$inboundSchema` instead. */
-  export const inboundSchema = RiskSource$inboundSchema;
-  /** @deprecated use `RiskSource$outboundSchema` instead. */
-  export const outboundSchema = RiskSource$outboundSchema;
-}
-
-/** @internal */
 export const Severity$inboundSchema: z.ZodNativeEnum<typeof Severity> = z
   .nativeEnum(Severity);
 
 /** @internal */
-export const Severity$outboundSchema: z.ZodNativeEnum<typeof Severity> =
-  Severity$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Severity$ {
-  /** @deprecated use `Severity$inboundSchema` instead. */
-  export const inboundSchema = Severity$inboundSchema;
-  /** @deprecated use `Severity$outboundSchema` instead. */
-  export const outboundSchema = Severity$outboundSchema;
-}
-
-/** @internal */
 export const RiskSource1$inboundSchema: z.ZodNativeEnum<typeof RiskSource1> = z
   .nativeEnum(RiskSource1);
-
-/** @internal */
-export const RiskSource1$outboundSchema: z.ZodNativeEnum<typeof RiskSource1> =
-  RiskSource1$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RiskSource1$ {
-  /** @deprecated use `RiskSource1$inboundSchema` instead. */
-  export const inboundSchema = RiskSource1$inboundSchema;
-  /** @deprecated use `RiskSource1$outboundSchema` instead. */
-  export const outboundSchema = RiskSource1$outboundSchema;
-}
 
 /** @internal */
 export const Risk$inboundSchema: z.ZodType<Risk, z.ZodTypeDef, unknown> = z
@@ -140,56 +80,6 @@ export const Risk$inboundSchema: z.ZodType<Risk, z.ZodTypeDef, unknown> = z
       "risk_source": "riskSource",
     });
   });
-
-/** @internal */
-export type Risk$Outbound = {
-  confidence?: number | undefined;
-  cvss?: Cvss$Outbound | undefined;
-  evidence?: Array<Evidence$Outbound> | null | undefined;
-  id?: string | undefined;
-  metrics?: Metrics$Outbound | undefined;
-  name?: string | undefined;
-  risk_source?: string | undefined;
-  severity?: string | undefined;
-  source?: string | undefined;
-  year?: number | undefined;
-};
-
-/** @internal */
-export const Risk$outboundSchema: z.ZodType<Risk$Outbound, z.ZodTypeDef, Risk> =
-  z.object({
-    confidence: z.number().optional(),
-    cvss: Cvss$outboundSchema.optional(),
-    evidence: z.nullable(z.array(Evidence$outboundSchema)).optional(),
-    id: z.string().optional(),
-    metrics: Metrics$outboundSchema.optional(),
-    name: z.string().optional(),
-    riskSource: RiskSource$outboundSchema.optional(),
-    severity: Severity$outboundSchema.optional(),
-    source: RiskSource1$outboundSchema.optional(),
-    year: z.number().int().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      riskSource: "risk_source",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Risk$ {
-  /** @deprecated use `Risk$inboundSchema` instead. */
-  export const inboundSchema = Risk$inboundSchema;
-  /** @deprecated use `Risk$outboundSchema` instead. */
-  export const outboundSchema = Risk$outboundSchema;
-  /** @deprecated use `Risk$Outbound` instead. */
-  export type Outbound = Risk$Outbound;
-}
-
-export function riskToJSON(risk: Risk): string {
-  return JSON.stringify(Risk$outboundSchema.parse(risk));
-}
 
 export function riskFromJSON(
   jsonString: string,

@@ -9,14 +9,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CiscoIpslaHandshakeHeader,
   CiscoIpslaHandshakeHeader$inboundSchema,
-  CiscoIpslaHandshakeHeader$Outbound,
-  CiscoIpslaHandshakeHeader$outboundSchema,
 } from "./ciscoipslahandshakeheader.js";
 import {
   CiscoIpslaHandshakeMessage,
   CiscoIpslaHandshakeMessage$inboundSchema,
-  CiscoIpslaHandshakeMessage$Outbound,
-  CiscoIpslaHandshakeMessage$outboundSchema,
 } from "./ciscoipslahandshakemessage.js";
 
 export type CiscoIpslaHandshake = {
@@ -33,43 +29,6 @@ export const CiscoIpslaHandshake$inboundSchema: z.ZodType<
   header: CiscoIpslaHandshakeHeader$inboundSchema.optional(),
   message: CiscoIpslaHandshakeMessage$inboundSchema.optional(),
 });
-
-/** @internal */
-export type CiscoIpslaHandshake$Outbound = {
-  header?: CiscoIpslaHandshakeHeader$Outbound | undefined;
-  message?: CiscoIpslaHandshakeMessage$Outbound | undefined;
-};
-
-/** @internal */
-export const CiscoIpslaHandshake$outboundSchema: z.ZodType<
-  CiscoIpslaHandshake$Outbound,
-  z.ZodTypeDef,
-  CiscoIpslaHandshake
-> = z.object({
-  header: CiscoIpslaHandshakeHeader$outboundSchema.optional(),
-  message: CiscoIpslaHandshakeMessage$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CiscoIpslaHandshake$ {
-  /** @deprecated use `CiscoIpslaHandshake$inboundSchema` instead. */
-  export const inboundSchema = CiscoIpslaHandshake$inboundSchema;
-  /** @deprecated use `CiscoIpslaHandshake$outboundSchema` instead. */
-  export const outboundSchema = CiscoIpslaHandshake$outboundSchema;
-  /** @deprecated use `CiscoIpslaHandshake$Outbound` instead. */
-  export type Outbound = CiscoIpslaHandshake$Outbound;
-}
-
-export function ciscoIpslaHandshakeToJSON(
-  ciscoIpslaHandshake: CiscoIpslaHandshake,
-): string {
-  return JSON.stringify(
-    CiscoIpslaHandshake$outboundSchema.parse(ciscoIpslaHandshake),
-  );
-}
 
 export function ciscoIpslaHandshakeFromJSON(
   jsonString: string,

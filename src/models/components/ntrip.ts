@@ -3,42 +3,32 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  NtripDataStream,
+  NtripDataStream$inboundSchema,
+} from "./ntripdatastream.js";
 
-export type Ntrip = {};
+export type Ntrip = {
+  dataStreams?: Array<NtripDataStream> | null | undefined;
+  server?: string | undefined;
+  version?: string | undefined;
+};
 
 /** @internal */
 export const Ntrip$inboundSchema: z.ZodType<Ntrip, z.ZodTypeDef, unknown> = z
-  .object({});
-
-/** @internal */
-export type Ntrip$Outbound = {};
-
-/** @internal */
-export const Ntrip$outboundSchema: z.ZodType<
-  Ntrip$Outbound,
-  z.ZodTypeDef,
-  Ntrip
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Ntrip$ {
-  /** @deprecated use `Ntrip$inboundSchema` instead. */
-  export const inboundSchema = Ntrip$inboundSchema;
-  /** @deprecated use `Ntrip$outboundSchema` instead. */
-  export const outboundSchema = Ntrip$outboundSchema;
-  /** @deprecated use `Ntrip$Outbound` instead. */
-  export type Outbound = Ntrip$Outbound;
-}
-
-export function ntripToJSON(ntrip: Ntrip): string {
-  return JSON.stringify(Ntrip$outboundSchema.parse(ntrip));
-}
+  .object({
+    data_streams: z.nullable(z.array(NtripDataStream$inboundSchema)).optional(),
+    server: z.string().optional(),
+    version: z.string().optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "data_streams": "dataStreams",
+    });
+  });
 
 export function ntripFromJSON(
   jsonString: string,

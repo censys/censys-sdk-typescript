@@ -24,43 +24,6 @@ export const Graphql$inboundSchema: z.ZodType<Graphql, z.ZodTypeDef, unknown> =
     });
   });
 
-/** @internal */
-export type Graphql$Outbound = {
-  response?: string | undefined;
-  supports_introspection?: boolean | undefined;
-};
-
-/** @internal */
-export const Graphql$outboundSchema: z.ZodType<
-  Graphql$Outbound,
-  z.ZodTypeDef,
-  Graphql
-> = z.object({
-  response: z.string().optional(),
-  supportsIntrospection: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    supportsIntrospection: "supports_introspection",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Graphql$ {
-  /** @deprecated use `Graphql$inboundSchema` instead. */
-  export const inboundSchema = Graphql$inboundSchema;
-  /** @deprecated use `Graphql$outboundSchema` instead. */
-  export const outboundSchema = Graphql$outboundSchema;
-  /** @deprecated use `Graphql$Outbound` instead. */
-  export type Outbound = Graphql$Outbound;
-}
-
-export function graphqlToJSON(graphql: Graphql): string {
-  return JSON.stringify(Graphql$outboundSchema.parse(graphql));
-}
-
 export function graphqlFromJSON(
   jsonString: string,
 ): SafeParseResult<Graphql, SDKValidationError> {

@@ -35,55 +35,6 @@ export const PanTiltZoomCapabilities$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type PanTiltZoomCapabilities$Outbound = {
-  eflip?: boolean | undefined;
-  get_compatible_configurations?: boolean | undefined;
-  move_status?: boolean | undefined;
-  reverse?: boolean | undefined;
-  status_position?: boolean | undefined;
-};
-
-/** @internal */
-export const PanTiltZoomCapabilities$outboundSchema: z.ZodType<
-  PanTiltZoomCapabilities$Outbound,
-  z.ZodTypeDef,
-  PanTiltZoomCapabilities
-> = z.object({
-  eflip: z.boolean().optional(),
-  getCompatibleConfigurations: z.boolean().optional(),
-  moveStatus: z.boolean().optional(),
-  reverse: z.boolean().optional(),
-  statusPosition: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    getCompatibleConfigurations: "get_compatible_configurations",
-    moveStatus: "move_status",
-    statusPosition: "status_position",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PanTiltZoomCapabilities$ {
-  /** @deprecated use `PanTiltZoomCapabilities$inboundSchema` instead. */
-  export const inboundSchema = PanTiltZoomCapabilities$inboundSchema;
-  /** @deprecated use `PanTiltZoomCapabilities$outboundSchema` instead. */
-  export const outboundSchema = PanTiltZoomCapabilities$outboundSchema;
-  /** @deprecated use `PanTiltZoomCapabilities$Outbound` instead. */
-  export type Outbound = PanTiltZoomCapabilities$Outbound;
-}
-
-export function panTiltZoomCapabilitiesToJSON(
-  panTiltZoomCapabilities: PanTiltZoomCapabilities,
-): string {
-  return JSON.stringify(
-    PanTiltZoomCapabilities$outboundSchema.parse(panTiltZoomCapabilities),
-  );
-}
-
 export function panTiltZoomCapabilitiesFromJSON(
   jsonString: string,
 ): SafeParseResult<PanTiltZoomCapabilities, SDKValidationError> {

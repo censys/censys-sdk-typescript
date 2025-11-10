@@ -22,39 +22,6 @@ export const MoneroP2PEntry$inboundSchema: z.ZodType<
   name: z.string().optional(),
 });
 
-/** @internal */
-export type MoneroP2PEntry$Outbound = {
-  data?: string | undefined;
-  name?: string | undefined;
-};
-
-/** @internal */
-export const MoneroP2PEntry$outboundSchema: z.ZodType<
-  MoneroP2PEntry$Outbound,
-  z.ZodTypeDef,
-  MoneroP2PEntry
-> = z.object({
-  data: z.string().optional(),
-  name: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MoneroP2PEntry$ {
-  /** @deprecated use `MoneroP2PEntry$inboundSchema` instead. */
-  export const inboundSchema = MoneroP2PEntry$inboundSchema;
-  /** @deprecated use `MoneroP2PEntry$outboundSchema` instead. */
-  export const outboundSchema = MoneroP2PEntry$outboundSchema;
-  /** @deprecated use `MoneroP2PEntry$Outbound` instead. */
-  export type Outbound = MoneroP2PEntry$Outbound;
-}
-
-export function moneroP2PEntryToJSON(moneroP2PEntry: MoneroP2PEntry): string {
-  return JSON.stringify(MoneroP2PEntry$outboundSchema.parse(moneroP2PEntry));
-}
-
 export function moneroP2PEntryFromJSON(
   jsonString: string,
 ): SafeParseResult<MoneroP2PEntry, SDKValidationError> {

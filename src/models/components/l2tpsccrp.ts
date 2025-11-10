@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   L2TpAttributeValues,
   L2TpAttributeValues$inboundSchema,
-  L2TpAttributeValues$Outbound,
-  L2TpAttributeValues$outboundSchema,
 } from "./l2tpattributevalues.js";
 
 export type L2TpSccrp = {
@@ -30,41 +28,6 @@ export const L2TpSccrp$inboundSchema: z.ZodType<
     "attribute_values": "attributeValues",
   });
 });
-
-/** @internal */
-export type L2TpSccrp$Outbound = {
-  attribute_values?: L2TpAttributeValues$Outbound | undefined;
-};
-
-/** @internal */
-export const L2TpSccrp$outboundSchema: z.ZodType<
-  L2TpSccrp$Outbound,
-  z.ZodTypeDef,
-  L2TpSccrp
-> = z.object({
-  attributeValues: L2TpAttributeValues$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    attributeValues: "attribute_values",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace L2TpSccrp$ {
-  /** @deprecated use `L2TpSccrp$inboundSchema` instead. */
-  export const inboundSchema = L2TpSccrp$inboundSchema;
-  /** @deprecated use `L2TpSccrp$outboundSchema` instead. */
-  export const outboundSchema = L2TpSccrp$outboundSchema;
-  /** @deprecated use `L2TpSccrp$Outbound` instead. */
-  export type Outbound = L2TpSccrp$Outbound;
-}
-
-export function l2TpSccrpToJSON(l2TpSccrp: L2TpSccrp): string {
-  return JSON.stringify(L2TpSccrp$outboundSchema.parse(l2TpSccrp));
-}
 
 export function l2TpSccrpFromJSON(
   jsonString: string,

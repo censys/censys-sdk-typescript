@@ -6,24 +6,9 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  EtcdV2,
-  EtcdV2$inboundSchema,
-  EtcdV2$Outbound,
-  EtcdV2$outboundSchema,
-} from "./etcdv2.js";
-import {
-  EtcdV3,
-  EtcdV3$inboundSchema,
-  EtcdV3$Outbound,
-  EtcdV3$outboundSchema,
-} from "./etcdv3.js";
-import {
-  EtcdVersion,
-  EtcdVersion$inboundSchema,
-  EtcdVersion$Outbound,
-  EtcdVersion$outboundSchema,
-} from "./etcdversion.js";
+import { EtcdV2, EtcdV2$inboundSchema } from "./etcdv2.js";
+import { EtcdV3, EtcdV3$inboundSchema } from "./etcdv3.js";
+import { EtcdVersion, EtcdVersion$inboundSchema } from "./etcdversion.js";
 
 export type Etcd = {
   v2?: EtcdV2 | undefined;
@@ -38,38 +23,6 @@ export const Etcd$inboundSchema: z.ZodType<Etcd, z.ZodTypeDef, unknown> = z
     v3: EtcdV3$inboundSchema.optional(),
     version: EtcdVersion$inboundSchema.optional(),
   });
-
-/** @internal */
-export type Etcd$Outbound = {
-  v2?: EtcdV2$Outbound | undefined;
-  v3?: EtcdV3$Outbound | undefined;
-  version?: EtcdVersion$Outbound | undefined;
-};
-
-/** @internal */
-export const Etcd$outboundSchema: z.ZodType<Etcd$Outbound, z.ZodTypeDef, Etcd> =
-  z.object({
-    v2: EtcdV2$outboundSchema.optional(),
-    v3: EtcdV3$outboundSchema.optional(),
-    version: EtcdVersion$outboundSchema.optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Etcd$ {
-  /** @deprecated use `Etcd$inboundSchema` instead. */
-  export const inboundSchema = Etcd$inboundSchema;
-  /** @deprecated use `Etcd$outboundSchema` instead. */
-  export const outboundSchema = Etcd$outboundSchema;
-  /** @deprecated use `Etcd$Outbound` instead. */
-  export type Outbound = Etcd$Outbound;
-}
-
-export function etcdToJSON(etcd: Etcd): string {
-  return JSON.stringify(Etcd$outboundSchema.parse(etcd));
-}
 
 export function etcdFromJSON(
   jsonString: string,

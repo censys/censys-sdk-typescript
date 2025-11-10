@@ -6,18 +6,8 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  FieldDiff,
-  FieldDiff$inboundSchema,
-  FieldDiff$Outbound,
-  FieldDiff$outboundSchema,
-} from "./fielddiff.js";
-import {
-  JarmScan,
-  JarmScan$inboundSchema,
-  JarmScan$Outbound,
-  JarmScan$outboundSchema,
-} from "./jarmscan.js";
+import { FieldDiff, FieldDiff$inboundSchema } from "./fielddiff.js";
+import { JarmScan, JarmScan$inboundSchema } from "./jarmscan.js";
 
 export type JarmScanned = {
   diff?: { [k: string]: FieldDiff } | undefined;
@@ -33,39 +23,6 @@ export const JarmScanned$inboundSchema: z.ZodType<
   diff: z.record(FieldDiff$inboundSchema).optional(),
   scan: JarmScan$inboundSchema.optional(),
 });
-
-/** @internal */
-export type JarmScanned$Outbound = {
-  diff?: { [k: string]: FieldDiff$Outbound } | undefined;
-  scan?: JarmScan$Outbound | undefined;
-};
-
-/** @internal */
-export const JarmScanned$outboundSchema: z.ZodType<
-  JarmScanned$Outbound,
-  z.ZodTypeDef,
-  JarmScanned
-> = z.object({
-  diff: z.record(FieldDiff$outboundSchema).optional(),
-  scan: JarmScan$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace JarmScanned$ {
-  /** @deprecated use `JarmScanned$inboundSchema` instead. */
-  export const inboundSchema = JarmScanned$inboundSchema;
-  /** @deprecated use `JarmScanned$outboundSchema` instead. */
-  export const outboundSchema = JarmScanned$outboundSchema;
-  /** @deprecated use `JarmScanned$Outbound` instead. */
-  export type Outbound = JarmScanned$Outbound;
-}
-
-export function jarmScannedToJSON(jarmScanned: JarmScanned): string {
-  return JSON.stringify(JarmScanned$outboundSchema.parse(jarmScanned));
-}
 
 export function jarmScannedFromJSON(
   jsonString: string,

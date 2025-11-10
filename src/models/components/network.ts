@@ -35,51 +35,6 @@ export const Network$inboundSchema: z.ZodType<Network, z.ZodTypeDef, unknown> =
     });
   });
 
-/** @internal */
-export type Network$Outbound = {
-  allocation_type?: string | undefined;
-  cidrs?: Array<string> | null | undefined;
-  created?: string | undefined;
-  handle?: string | undefined;
-  name?: string | undefined;
-  updated?: string | undefined;
-};
-
-/** @internal */
-export const Network$outboundSchema: z.ZodType<
-  Network$Outbound,
-  z.ZodTypeDef,
-  Network
-> = z.object({
-  allocationType: z.string().optional(),
-  cidrs: z.nullable(z.array(z.string())).optional(),
-  created: z.string().optional(),
-  handle: z.string().optional(),
-  name: z.string().optional(),
-  updated: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    allocationType: "allocation_type",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Network$ {
-  /** @deprecated use `Network$inboundSchema` instead. */
-  export const inboundSchema = Network$inboundSchema;
-  /** @deprecated use `Network$outboundSchema` instead. */
-  export const outboundSchema = Network$outboundSchema;
-  /** @deprecated use `Network$Outbound` instead. */
-  export type Outbound = Network$Outbound;
-}
-
-export function networkToJSON(network: Network): string {
-  return JSON.stringify(Network$outboundSchema.parse(network));
-}
-
 export function networkFromJSON(
   jsonString: string,
 ): SafeParseResult<Network, SDKValidationError> {

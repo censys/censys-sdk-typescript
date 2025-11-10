@@ -20,41 +20,6 @@ export const ChromecastNamespace$inboundSchema: z.ZodType<
   name: z.string().optional(),
 });
 
-/** @internal */
-export type ChromecastNamespace$Outbound = {
-  name?: string | undefined;
-};
-
-/** @internal */
-export const ChromecastNamespace$outboundSchema: z.ZodType<
-  ChromecastNamespace$Outbound,
-  z.ZodTypeDef,
-  ChromecastNamespace
-> = z.object({
-  name: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ChromecastNamespace$ {
-  /** @deprecated use `ChromecastNamespace$inboundSchema` instead. */
-  export const inboundSchema = ChromecastNamespace$inboundSchema;
-  /** @deprecated use `ChromecastNamespace$outboundSchema` instead. */
-  export const outboundSchema = ChromecastNamespace$outboundSchema;
-  /** @deprecated use `ChromecastNamespace$Outbound` instead. */
-  export type Outbound = ChromecastNamespace$Outbound;
-}
-
-export function chromecastNamespaceToJSON(
-  chromecastNamespace: ChromecastNamespace,
-): string {
-  return JSON.stringify(
-    ChromecastNamespace$outboundSchema.parse(chromecastNamespace),
-  );
-}
-
 export function chromecastNamespaceFromJSON(
   jsonString: string,
 ): SafeParseResult<ChromecastNamespace, SDKValidationError> {

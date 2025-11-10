@@ -13,30 +13,6 @@ export type Onc = {};
 export const Onc$inboundSchema: z.ZodType<Onc, z.ZodTypeDef, unknown> = z
   .object({});
 
-/** @internal */
-export type Onc$Outbound = {};
-
-/** @internal */
-export const Onc$outboundSchema: z.ZodType<Onc$Outbound, z.ZodTypeDef, Onc> = z
-  .object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Onc$ {
-  /** @deprecated use `Onc$inboundSchema` instead. */
-  export const inboundSchema = Onc$inboundSchema;
-  /** @deprecated use `Onc$outboundSchema` instead. */
-  export const outboundSchema = Onc$outboundSchema;
-  /** @deprecated use `Onc$Outbound` instead. */
-  export type Outbound = Onc$Outbound;
-}
-
-export function oncToJSON(onc: Onc): string {
-  return JSON.stringify(Onc$outboundSchema.parse(onc));
-}
-
 export function oncFromJSON(
   jsonString: string,
 ): SafeParseResult<Onc, SDKValidationError> {

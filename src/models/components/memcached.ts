@@ -50,51 +50,6 @@ export const Memcached$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type Memcached$Outbound = {
-  ascii_binding_protocol_enabled?: boolean | undefined;
-  binary_binding_protocol_enabled?: boolean | undefined;
-  responds_to_udp?: boolean | undefined;
-  stats?: { [k: string]: string } | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const Memcached$outboundSchema: z.ZodType<
-  Memcached$Outbound,
-  z.ZodTypeDef,
-  Memcached
-> = z.object({
-  asciiBindingProtocolEnabled: z.boolean().optional(),
-  binaryBindingProtocolEnabled: z.boolean().optional(),
-  respondsToUdp: z.boolean().optional(),
-  stats: z.record(z.string()).optional(),
-  version: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    asciiBindingProtocolEnabled: "ascii_binding_protocol_enabled",
-    binaryBindingProtocolEnabled: "binary_binding_protocol_enabled",
-    respondsToUdp: "responds_to_udp",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Memcached$ {
-  /** @deprecated use `Memcached$inboundSchema` instead. */
-  export const inboundSchema = Memcached$inboundSchema;
-  /** @deprecated use `Memcached$outboundSchema` instead. */
-  export const outboundSchema = Memcached$outboundSchema;
-  /** @deprecated use `Memcached$Outbound` instead. */
-  export type Outbound = Memcached$Outbound;
-}
-
-export function memcachedToJSON(memcached: Memcached): string {
-  return JSON.stringify(Memcached$outboundSchema.parse(memcached));
-}
-
 export function memcachedFromJSON(
   jsonString: string,
 ): SafeParseResult<Memcached, SDKValidationError> {

@@ -6,12 +6,7 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  TrackedScan,
-  TrackedScan$inboundSchema,
-  TrackedScan$Outbound,
-  TrackedScan$outboundSchema,
-} from "./trackedscan.js";
+import { TrackedScan, TrackedScan$inboundSchema } from "./trackedscan.js";
 
 export type ResponseEnvelopeTrackedScan = {
   result?: TrackedScan | undefined;
@@ -25,43 +20,6 @@ export const ResponseEnvelopeTrackedScan$inboundSchema: z.ZodType<
 > = z.object({
   result: TrackedScan$inboundSchema.optional(),
 });
-
-/** @internal */
-export type ResponseEnvelopeTrackedScan$Outbound = {
-  result?: TrackedScan$Outbound | undefined;
-};
-
-/** @internal */
-export const ResponseEnvelopeTrackedScan$outboundSchema: z.ZodType<
-  ResponseEnvelopeTrackedScan$Outbound,
-  z.ZodTypeDef,
-  ResponseEnvelopeTrackedScan
-> = z.object({
-  result: TrackedScan$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseEnvelopeTrackedScan$ {
-  /** @deprecated use `ResponseEnvelopeTrackedScan$inboundSchema` instead. */
-  export const inboundSchema = ResponseEnvelopeTrackedScan$inboundSchema;
-  /** @deprecated use `ResponseEnvelopeTrackedScan$outboundSchema` instead. */
-  export const outboundSchema = ResponseEnvelopeTrackedScan$outboundSchema;
-  /** @deprecated use `ResponseEnvelopeTrackedScan$Outbound` instead. */
-  export type Outbound = ResponseEnvelopeTrackedScan$Outbound;
-}
-
-export function responseEnvelopeTrackedScanToJSON(
-  responseEnvelopeTrackedScan: ResponseEnvelopeTrackedScan,
-): string {
-  return JSON.stringify(
-    ResponseEnvelopeTrackedScan$outboundSchema.parse(
-      responseEnvelopeTrackedScan,
-    ),
-  );
-}
 
 export function responseEnvelopeTrackedScanFromJSON(
   jsonString: string,

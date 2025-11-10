@@ -10,14 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PrometheusResponseActiveTargetDiscoveredLabels,
   PrometheusResponseActiveTargetDiscoveredLabels$inboundSchema,
-  PrometheusResponseActiveTargetDiscoveredLabels$Outbound,
-  PrometheusResponseActiveTargetDiscoveredLabels$outboundSchema,
 } from "./prometheusresponseactivetargetdiscoveredlabels.js";
 import {
   PrometheusResponseActiveTargetLabels,
   PrometheusResponseActiveTargetLabels$inboundSchema,
-  PrometheusResponseActiveTargetLabels$Outbound,
-  PrometheusResponseActiveTargetLabels$outboundSchema,
 } from "./prometheusresponseactivetargetlabels.js";
 
 export type PrometheusResponseActiveTarget = {
@@ -62,63 +58,6 @@ export const PrometheusResponseActiveTarget$inboundSchema: z.ZodType<
     "scrape_url": "scrapeUrl",
   });
 });
-
-/** @internal */
-export type PrometheusResponseActiveTarget$Outbound = {
-  discovered_labels?:
-    | PrometheusResponseActiveTargetDiscoveredLabels$Outbound
-    | undefined;
-  health?: string | undefined;
-  labels?: PrometheusResponseActiveTargetLabels$Outbound | undefined;
-  last_error?: string | undefined;
-  last_scrape?: string | undefined;
-  scrape_url?: string | undefined;
-};
-
-/** @internal */
-export const PrometheusResponseActiveTarget$outboundSchema: z.ZodType<
-  PrometheusResponseActiveTarget$Outbound,
-  z.ZodTypeDef,
-  PrometheusResponseActiveTarget
-> = z.object({
-  discoveredLabels:
-    PrometheusResponseActiveTargetDiscoveredLabels$outboundSchema.optional(),
-  health: z.string().optional(),
-  labels: PrometheusResponseActiveTargetLabels$outboundSchema.optional(),
-  lastError: z.string().optional(),
-  lastScrape: z.string().optional(),
-  scrapeUrl: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    discoveredLabels: "discovered_labels",
-    lastError: "last_error",
-    lastScrape: "last_scrape",
-    scrapeUrl: "scrape_url",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PrometheusResponseActiveTarget$ {
-  /** @deprecated use `PrometheusResponseActiveTarget$inboundSchema` instead. */
-  export const inboundSchema = PrometheusResponseActiveTarget$inboundSchema;
-  /** @deprecated use `PrometheusResponseActiveTarget$outboundSchema` instead. */
-  export const outboundSchema = PrometheusResponseActiveTarget$outboundSchema;
-  /** @deprecated use `PrometheusResponseActiveTarget$Outbound` instead. */
-  export type Outbound = PrometheusResponseActiveTarget$Outbound;
-}
-
-export function prometheusResponseActiveTargetToJSON(
-  prometheusResponseActiveTarget: PrometheusResponseActiveTarget,
-): string {
-  return JSON.stringify(
-    PrometheusResponseActiveTarget$outboundSchema.parse(
-      prometheusResponseActiveTarget,
-    ),
-  );
-}
 
 export function prometheusResponseActiveTargetFromJSON(
   jsonString: string,

@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SearchConvertQueryResponse,
   SearchConvertQueryResponse$inboundSchema,
-  SearchConvertQueryResponse$Outbound,
-  SearchConvertQueryResponse$outboundSchema,
 } from "./searchconvertqueryresponse.js";
 
 export type ResponseEnvelopeListSearchConvertQueryResponse = {
@@ -27,49 +25,6 @@ export const ResponseEnvelopeListSearchConvertQueryResponse$inboundSchema:
     result: z.nullable(z.array(SearchConvertQueryResponse$inboundSchema))
       .optional(),
   });
-
-/** @internal */
-export type ResponseEnvelopeListSearchConvertQueryResponse$Outbound = {
-  result?: Array<SearchConvertQueryResponse$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const ResponseEnvelopeListSearchConvertQueryResponse$outboundSchema:
-  z.ZodType<
-    ResponseEnvelopeListSearchConvertQueryResponse$Outbound,
-    z.ZodTypeDef,
-    ResponseEnvelopeListSearchConvertQueryResponse
-  > = z.object({
-    result: z.nullable(z.array(SearchConvertQueryResponse$outboundSchema))
-      .optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseEnvelopeListSearchConvertQueryResponse$ {
-  /** @deprecated use `ResponseEnvelopeListSearchConvertQueryResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    ResponseEnvelopeListSearchConvertQueryResponse$inboundSchema;
-  /** @deprecated use `ResponseEnvelopeListSearchConvertQueryResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    ResponseEnvelopeListSearchConvertQueryResponse$outboundSchema;
-  /** @deprecated use `ResponseEnvelopeListSearchConvertQueryResponse$Outbound` instead. */
-  export type Outbound =
-    ResponseEnvelopeListSearchConvertQueryResponse$Outbound;
-}
-
-export function responseEnvelopeListSearchConvertQueryResponseToJSON(
-  responseEnvelopeListSearchConvertQueryResponse:
-    ResponseEnvelopeListSearchConvertQueryResponse,
-): string {
-  return JSON.stringify(
-    ResponseEnvelopeListSearchConvertQueryResponse$outboundSchema.parse(
-      responseEnvelopeListSearchConvertQueryResponse,
-    ),
-  );
-}
 
 export function responseEnvelopeListSearchConvertQueryResponseFromJSON(
   jsonString: string,

@@ -29,40 +29,6 @@ export const Sip$inboundSchema: z.ZodType<Sip, z.ZodTypeDef, unknown> = z
     version: z.string().optional(),
   });
 
-/** @internal */
-export type Sip$Outbound = {
-  code?: number | undefined;
-  server?: string | undefined;
-  status?: string | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const Sip$outboundSchema: z.ZodType<Sip$Outbound, z.ZodTypeDef, Sip> = z
-  .object({
-    code: z.number().int().optional(),
-    server: z.string().optional(),
-    status: z.string().optional(),
-    version: z.string().optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Sip$ {
-  /** @deprecated use `Sip$inboundSchema` instead. */
-  export const inboundSchema = Sip$inboundSchema;
-  /** @deprecated use `Sip$outboundSchema` instead. */
-  export const outboundSchema = Sip$outboundSchema;
-  /** @deprecated use `Sip$Outbound` instead. */
-  export type Outbound = Sip$Outbound;
-}
-
-export function sipToJSON(sip: Sip): string {
-  return JSON.stringify(Sip$outboundSchema.parse(sip));
-}
-
 export function sipFromJSON(
   jsonString: string,
 ): SafeParseResult<Sip, SDKValidationError> {

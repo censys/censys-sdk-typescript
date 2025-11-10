@@ -39,46 +39,6 @@ export const CtRecord$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type CtRecord$Outbound = {
-  added_to_ct_at?: string | undefined;
-  ct_to_censys_at?: string | undefined;
-  index?: number | undefined;
-};
-
-/** @internal */
-export const CtRecord$outboundSchema: z.ZodType<
-  CtRecord$Outbound,
-  z.ZodTypeDef,
-  CtRecord
-> = z.object({
-  addedToCtAt: z.string().optional(),
-  ctToCensysAt: z.string().optional(),
-  index: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    addedToCtAt: "added_to_ct_at",
-    ctToCensysAt: "ct_to_censys_at",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CtRecord$ {
-  /** @deprecated use `CtRecord$inboundSchema` instead. */
-  export const inboundSchema = CtRecord$inboundSchema;
-  /** @deprecated use `CtRecord$outboundSchema` instead. */
-  export const outboundSchema = CtRecord$outboundSchema;
-  /** @deprecated use `CtRecord$Outbound` instead. */
-  export type Outbound = CtRecord$Outbound;
-}
-
-export function ctRecordToJSON(ctRecord: CtRecord): string {
-  return JSON.stringify(CtRecord$outboundSchema.parse(ctRecord));
-}
-
 export function ctRecordFromJSON(
   jsonString: string,
 ): SafeParseResult<CtRecord, SDKValidationError> {

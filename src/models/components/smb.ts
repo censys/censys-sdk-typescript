@@ -10,26 +10,18 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SmbNegotiationLog,
   SmbNegotiationLog$inboundSchema,
-  SmbNegotiationLog$Outbound,
-  SmbNegotiationLog$outboundSchema,
 } from "./smbnegotiationlog.js";
 import {
   SmbSessionSetupLog,
   SmbSessionSetupLog$inboundSchema,
-  SmbSessionSetupLog$Outbound,
-  SmbSessionSetupLog$outboundSchema,
 } from "./smbsessionsetuplog.js";
 import {
   SmbSmbCapabilities,
   SmbSmbCapabilities$inboundSchema,
-  SmbSmbCapabilities$Outbound,
-  SmbSmbCapabilities$outboundSchema,
 } from "./smbsmbcapabilities.js";
 import {
   SmbSmbVersions,
   SmbSmbVersions$inboundSchema,
-  SmbSmbVersions$Outbound,
-  SmbSmbVersions$outboundSchema,
 } from "./smbsmbversions.js";
 
 export type Smb = {
@@ -80,61 +72,6 @@ export const Smb$inboundSchema: z.ZodType<Smb, z.ZodTypeDef, unknown> = z
       "smbv1_support": "smbv1Support",
     });
   });
-
-/** @internal */
-export type Smb$Outbound = {
-  group_name?: string | undefined;
-  has_ntlm?: boolean | undefined;
-  native_os?: string | undefined;
-  negotiation_log?: SmbNegotiationLog$Outbound | undefined;
-  ntlm?: string | undefined;
-  session_setup_log?: SmbSessionSetupLog$Outbound | undefined;
-  smb_capabilities?: SmbSmbCapabilities$Outbound | undefined;
-  smb_version?: SmbSmbVersions$Outbound | undefined;
-  smbv1_support?: boolean | undefined;
-};
-
-/** @internal */
-export const Smb$outboundSchema: z.ZodType<Smb$Outbound, z.ZodTypeDef, Smb> = z
-  .object({
-    groupName: z.string().optional(),
-    hasNtlm: z.boolean().optional(),
-    nativeOs: z.string().optional(),
-    negotiationLog: SmbNegotiationLog$outboundSchema.optional(),
-    ntlm: z.string().optional(),
-    sessionSetupLog: SmbSessionSetupLog$outboundSchema.optional(),
-    smbCapabilities: SmbSmbCapabilities$outboundSchema.optional(),
-    smbVersion: SmbSmbVersions$outboundSchema.optional(),
-    smbv1Support: z.boolean().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      groupName: "group_name",
-      hasNtlm: "has_ntlm",
-      nativeOs: "native_os",
-      negotiationLog: "negotiation_log",
-      sessionSetupLog: "session_setup_log",
-      smbCapabilities: "smb_capabilities",
-      smbVersion: "smb_version",
-      smbv1Support: "smbv1_support",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Smb$ {
-  /** @deprecated use `Smb$inboundSchema` instead. */
-  export const inboundSchema = Smb$inboundSchema;
-  /** @deprecated use `Smb$outboundSchema` instead. */
-  export const outboundSchema = Smb$outboundSchema;
-  /** @deprecated use `Smb$Outbound` instead. */
-  export type Outbound = Smb$Outbound;
-}
-
-export function smbToJSON(smb: Smb): string {
-  return JSON.stringify(Smb$outboundSchema.parse(smb));
-}
 
 export function smbFromJSON(
   jsonString: string,

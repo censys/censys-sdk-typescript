@@ -25,41 +25,6 @@ export const CrestronCp3$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type CrestronCp3$Outbound = {
-  version_string?: string | undefined;
-};
-
-/** @internal */
-export const CrestronCp3$outboundSchema: z.ZodType<
-  CrestronCp3$Outbound,
-  z.ZodTypeDef,
-  CrestronCp3
-> = z.object({
-  versionString: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    versionString: "version_string",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrestronCp3$ {
-  /** @deprecated use `CrestronCp3$inboundSchema` instead. */
-  export const inboundSchema = CrestronCp3$inboundSchema;
-  /** @deprecated use `CrestronCp3$outboundSchema` instead. */
-  export const outboundSchema = CrestronCp3$outboundSchema;
-  /** @deprecated use `CrestronCp3$Outbound` instead. */
-  export type Outbound = CrestronCp3$Outbound;
-}
-
-export function crestronCp3ToJSON(crestronCp3: CrestronCp3): string {
-  return JSON.stringify(CrestronCp3$outboundSchema.parse(crestronCp3));
-}
-
 export function crestronCp3FromJSON(
   jsonString: string,
 ): SafeParseResult<CrestronCp3, SDKValidationError> {

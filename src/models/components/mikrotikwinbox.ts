@@ -22,39 +22,6 @@ export const MikrotikWinbox$inboundSchema: z.ZodType<
   version: z.string().optional(),
 });
 
-/** @internal */
-export type MikrotikWinbox$Outbound = {
-  components?: Array<string> | null | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const MikrotikWinbox$outboundSchema: z.ZodType<
-  MikrotikWinbox$Outbound,
-  z.ZodTypeDef,
-  MikrotikWinbox
-> = z.object({
-  components: z.nullable(z.array(z.string())).optional(),
-  version: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MikrotikWinbox$ {
-  /** @deprecated use `MikrotikWinbox$inboundSchema` instead. */
-  export const inboundSchema = MikrotikWinbox$inboundSchema;
-  /** @deprecated use `MikrotikWinbox$outboundSchema` instead. */
-  export const outboundSchema = MikrotikWinbox$outboundSchema;
-  /** @deprecated use `MikrotikWinbox$Outbound` instead. */
-  export type Outbound = MikrotikWinbox$Outbound;
-}
-
-export function mikrotikWinboxToJSON(mikrotikWinbox: MikrotikWinbox): string {
-  return JSON.stringify(MikrotikWinbox$outboundSchema.parse(mikrotikWinbox));
-}
-
 export function mikrotikWinboxFromJSON(
   jsonString: string,
 ): SafeParseResult<MikrotikWinbox, SDKValidationError> {

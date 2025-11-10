@@ -28,39 +28,6 @@ export const LdapAttribute$inboundSchema: z.ZodType<
   values: z.nullable(z.array(z.string())).optional(),
 });
 
-/** @internal */
-export type LdapAttribute$Outbound = {
-  name?: string | undefined;
-  values?: Array<string> | null | undefined;
-};
-
-/** @internal */
-export const LdapAttribute$outboundSchema: z.ZodType<
-  LdapAttribute$Outbound,
-  z.ZodTypeDef,
-  LdapAttribute
-> = z.object({
-  name: z.string().optional(),
-  values: z.nullable(z.array(z.string())).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LdapAttribute$ {
-  /** @deprecated use `LdapAttribute$inboundSchema` instead. */
-  export const inboundSchema = LdapAttribute$inboundSchema;
-  /** @deprecated use `LdapAttribute$outboundSchema` instead. */
-  export const outboundSchema = LdapAttribute$outboundSchema;
-  /** @deprecated use `LdapAttribute$Outbound` instead. */
-  export type Outbound = LdapAttribute$Outbound;
-}
-
-export function ldapAttributeToJSON(ldapAttribute: LdapAttribute): string {
-  return JSON.stringify(LdapAttribute$outboundSchema.parse(ldapAttribute));
-}
-
 export function ldapAttributeFromJSON(
   jsonString: string,
 ): SafeParseResult<LdapAttribute, SDKValidationError> {

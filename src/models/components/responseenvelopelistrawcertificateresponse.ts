@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   RawCertificateResponse,
   RawCertificateResponse$inboundSchema,
-  RawCertificateResponse$Outbound,
-  RawCertificateResponse$outboundSchema,
 } from "./rawcertificateresponse.js";
 
 export type ResponseEnvelopeListRawCertificateResponse = {
@@ -24,48 +22,6 @@ export const ResponseEnvelopeListRawCertificateResponse$inboundSchema:
       result: z.nullable(z.array(RawCertificateResponse$inboundSchema))
         .optional(),
     });
-
-/** @internal */
-export type ResponseEnvelopeListRawCertificateResponse$Outbound = {
-  result?: Array<RawCertificateResponse$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const ResponseEnvelopeListRawCertificateResponse$outboundSchema:
-  z.ZodType<
-    ResponseEnvelopeListRawCertificateResponse$Outbound,
-    z.ZodTypeDef,
-    ResponseEnvelopeListRawCertificateResponse
-  > = z.object({
-    result: z.nullable(z.array(RawCertificateResponse$outboundSchema))
-      .optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseEnvelopeListRawCertificateResponse$ {
-  /** @deprecated use `ResponseEnvelopeListRawCertificateResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    ResponseEnvelopeListRawCertificateResponse$inboundSchema;
-  /** @deprecated use `ResponseEnvelopeListRawCertificateResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    ResponseEnvelopeListRawCertificateResponse$outboundSchema;
-  /** @deprecated use `ResponseEnvelopeListRawCertificateResponse$Outbound` instead. */
-  export type Outbound = ResponseEnvelopeListRawCertificateResponse$Outbound;
-}
-
-export function responseEnvelopeListRawCertificateResponseToJSON(
-  responseEnvelopeListRawCertificateResponse:
-    ResponseEnvelopeListRawCertificateResponse,
-): string {
-  return JSON.stringify(
-    ResponseEnvelopeListRawCertificateResponse$outboundSchema.parse(
-      responseEnvelopeListRawCertificateResponse,
-    ),
-  );
-}
 
 export function responseEnvelopeListRawCertificateResponseFromJSON(
   jsonString: string,

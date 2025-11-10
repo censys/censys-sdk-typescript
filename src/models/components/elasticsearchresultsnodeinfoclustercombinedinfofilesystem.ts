@@ -38,64 +38,6 @@ export const ElasticSearchResultsNodeInfoClusterCombinedInfoFilesystem$inboundSc
     });
   });
 
-/** @internal */
-export type ElasticSearchResultsNodeInfoClusterCombinedInfoFilesystem$Outbound =
-  {
-    available?: string | undefined;
-    available_in_bytes?: number | undefined;
-    free?: string | undefined;
-    free_in_bytes?: number | undefined;
-    total?: string | undefined;
-    total_in_bytes?: number | undefined;
-  };
-
-/** @internal */
-export const ElasticSearchResultsNodeInfoClusterCombinedInfoFilesystem$outboundSchema:
-  z.ZodType<
-    ElasticSearchResultsNodeInfoClusterCombinedInfoFilesystem$Outbound,
-    z.ZodTypeDef,
-    ElasticSearchResultsNodeInfoClusterCombinedInfoFilesystem
-  > = z.object({
-    available: z.string().optional(),
-    availableInBytes: z.number().int().optional(),
-    free: z.string().optional(),
-    freeInBytes: z.number().int().optional(),
-    total: z.string().optional(),
-    totalInBytes: z.number().int().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      availableInBytes: "available_in_bytes",
-      freeInBytes: "free_in_bytes",
-      totalInBytes: "total_in_bytes",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ElasticSearchResultsNodeInfoClusterCombinedInfoFilesystem$ {
-  /** @deprecated use `ElasticSearchResultsNodeInfoClusterCombinedInfoFilesystem$inboundSchema` instead. */
-  export const inboundSchema =
-    ElasticSearchResultsNodeInfoClusterCombinedInfoFilesystem$inboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfoClusterCombinedInfoFilesystem$outboundSchema` instead. */
-  export const outboundSchema =
-    ElasticSearchResultsNodeInfoClusterCombinedInfoFilesystem$outboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfoClusterCombinedInfoFilesystem$Outbound` instead. */
-  export type Outbound =
-    ElasticSearchResultsNodeInfoClusterCombinedInfoFilesystem$Outbound;
-}
-
-export function elasticSearchResultsNodeInfoClusterCombinedInfoFilesystemToJSON(
-  elasticSearchResultsNodeInfoClusterCombinedInfoFilesystem:
-    ElasticSearchResultsNodeInfoClusterCombinedInfoFilesystem,
-): string {
-  return JSON.stringify(
-    ElasticSearchResultsNodeInfoClusterCombinedInfoFilesystem$outboundSchema
-      .parse(elasticSearchResultsNodeInfoClusterCombinedInfoFilesystem),
-  );
-}
-
 export function elasticSearchResultsNodeInfoClusterCombinedInfoFilesystemFromJSON(
   jsonString: string,
 ): SafeParseResult<

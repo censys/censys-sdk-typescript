@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  NtlmInfo,
-  NtlmInfo$inboundSchema,
-  NtlmInfo$Outbound,
-  NtlmInfo$outboundSchema,
-} from "./ntlminfo.js";
+import { NtlmInfo, NtlmInfo$inboundSchema } from "./ntlminfo.js";
 
 export type Winrm = {
   authTypes?: Array<string> | null | undefined;
@@ -30,44 +25,6 @@ export const Winrm$inboundSchema: z.ZodType<Winrm, z.ZodTypeDef, unknown> = z
       "ntlm_info": "ntlmInfo",
     });
   });
-
-/** @internal */
-export type Winrm$Outbound = {
-  auth_types?: Array<string> | null | undefined;
-  ntlm_info?: NtlmInfo$Outbound | undefined;
-};
-
-/** @internal */
-export const Winrm$outboundSchema: z.ZodType<
-  Winrm$Outbound,
-  z.ZodTypeDef,
-  Winrm
-> = z.object({
-  authTypes: z.nullable(z.array(z.string())).optional(),
-  ntlmInfo: NtlmInfo$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    authTypes: "auth_types",
-    ntlmInfo: "ntlm_info",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Winrm$ {
-  /** @deprecated use `Winrm$inboundSchema` instead. */
-  export const inboundSchema = Winrm$inboundSchema;
-  /** @deprecated use `Winrm$outboundSchema` instead. */
-  export const outboundSchema = Winrm$outboundSchema;
-  /** @deprecated use `Winrm$Outbound` instead. */
-  export type Outbound = Winrm$Outbound;
-}
-
-export function winrmToJSON(winrm: Winrm): string {
-  return JSON.stringify(Winrm$outboundSchema.parse(winrm));
-}
 
 export function winrmFromJSON(
   jsonString: string,

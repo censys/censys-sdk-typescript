@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrML,
   ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrML$inboundSchema,
-  ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrML$Outbound,
-  ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrML$outboundSchema,
 } from "./elasticsearchresultsnodeinfonodesnodedatanodesettingsnodeattrml.js";
 
 export type ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr = {
@@ -37,58 +35,6 @@ export const ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr$inbou
       "xpack_installed": "xpackInstalled",
     });
   });
-
-/** @internal */
-export type ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr$Outbound =
-  {
-    ml?:
-      | ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrML$Outbound
-      | undefined;
-    xpack_installed?: string | undefined;
-  };
-
-/** @internal */
-export const ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr$outboundSchema:
-  z.ZodType<
-    ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr$Outbound,
-    z.ZodTypeDef,
-    ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr
-  > = z.object({
-    ml:
-      ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrML$outboundSchema
-        .optional(),
-    xpackInstalled: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      xpackInstalled: "xpack_installed",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr$ {
-  /** @deprecated use `ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr$inboundSchema` instead. */
-  export const inboundSchema =
-    ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr$inboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr$outboundSchema` instead. */
-  export const outboundSchema =
-    ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr$outboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr$Outbound` instead. */
-  export type Outbound =
-    ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr$Outbound;
-}
-
-export function elasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrToJSON(
-  elasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr:
-    ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr,
-): string {
-  return JSON.stringify(
-    ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr$outboundSchema
-      .parse(elasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr),
-  );
-}
 
 export function elasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrFromJSON(
   jsonString: string,

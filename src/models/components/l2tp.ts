@@ -7,18 +7,8 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  L2TpSccrp,
-  L2TpSccrp$inboundSchema,
-  L2TpSccrp$Outbound,
-  L2TpSccrp$outboundSchema,
-} from "./l2tpsccrp.js";
-import {
-  L2TpStopCcn,
-  L2TpStopCcn$inboundSchema,
-  L2TpStopCcn$Outbound,
-  L2TpStopCcn$outboundSchema,
-} from "./l2tpstopccn.js";
+import { L2TpSccrp, L2TpSccrp$inboundSchema } from "./l2tpsccrp.js";
+import { L2TpStopCcn, L2TpStopCcn$inboundSchema } from "./l2tpstopccn.js";
 
 export type L2Tp = {
   helloReceived?: boolean | undefined;
@@ -56,61 +46,6 @@ export const L2Tp$inboundSchema: z.ZodType<L2Tp, z.ZodTypeDef, unknown> = z
       "zlb_received": "zlbReceived",
     });
   });
-
-/** @internal */
-export type L2Tp$Outbound = {
-  hello_received?: boolean | undefined;
-  ordered_messages_raw?: Array<string> | null | undefined;
-  sccn_received?: boolean | undefined;
-  sccrp?: L2TpSccrp$Outbound | undefined;
-  sccrp_received?: boolean | undefined;
-  sccrq_received?: boolean | undefined;
-  stop_sccn?: L2TpStopCcn$Outbound | undefined;
-  stop_sccn_received?: boolean | undefined;
-  zlb_received?: boolean | undefined;
-};
-
-/** @internal */
-export const L2Tp$outboundSchema: z.ZodType<L2Tp$Outbound, z.ZodTypeDef, L2Tp> =
-  z.object({
-    helloReceived: z.boolean().optional(),
-    orderedMessagesRaw: z.nullable(z.array(z.string())).optional(),
-    sccnReceived: z.boolean().optional(),
-    sccrp: L2TpSccrp$outboundSchema.optional(),
-    sccrpReceived: z.boolean().optional(),
-    sccrqReceived: z.boolean().optional(),
-    stopSccn: L2TpStopCcn$outboundSchema.optional(),
-    stopSccnReceived: z.boolean().optional(),
-    zlbReceived: z.boolean().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      helloReceived: "hello_received",
-      orderedMessagesRaw: "ordered_messages_raw",
-      sccnReceived: "sccn_received",
-      sccrpReceived: "sccrp_received",
-      sccrqReceived: "sccrq_received",
-      stopSccn: "stop_sccn",
-      stopSccnReceived: "stop_sccn_received",
-      zlbReceived: "zlb_received",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace L2Tp$ {
-  /** @deprecated use `L2Tp$inboundSchema` instead. */
-  export const inboundSchema = L2Tp$inboundSchema;
-  /** @deprecated use `L2Tp$outboundSchema` instead. */
-  export const outboundSchema = L2Tp$outboundSchema;
-  /** @deprecated use `L2Tp$Outbound` instead. */
-  export type Outbound = L2Tp$Outbound;
-}
-
-export function l2TpToJSON(l2Tp: L2Tp): string {
-  return JSON.stringify(L2Tp$outboundSchema.parse(l2Tp));
-}
 
 export function l2TpFromJSON(
   jsonString: string,

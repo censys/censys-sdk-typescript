@@ -35,55 +35,6 @@ export const SapRouterClientInfo$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type SapRouterClientInfo$Outbound = {
-  connected?: boolean | undefined;
-  connected_on?: string | undefined;
-  id?: number | undefined;
-  routed?: boolean | undefined;
-  service?: string | undefined;
-  traced?: boolean | undefined;
-};
-
-/** @internal */
-export const SapRouterClientInfo$outboundSchema: z.ZodType<
-  SapRouterClientInfo$Outbound,
-  z.ZodTypeDef,
-  SapRouterClientInfo
-> = z.object({
-  connected: z.boolean().optional(),
-  connectedOn: z.string().optional(),
-  id: z.number().int().optional(),
-  routed: z.boolean().optional(),
-  service: z.string().optional(),
-  traced: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    connectedOn: "connected_on",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SapRouterClientInfo$ {
-  /** @deprecated use `SapRouterClientInfo$inboundSchema` instead. */
-  export const inboundSchema = SapRouterClientInfo$inboundSchema;
-  /** @deprecated use `SapRouterClientInfo$outboundSchema` instead. */
-  export const outboundSchema = SapRouterClientInfo$outboundSchema;
-  /** @deprecated use `SapRouterClientInfo$Outbound` instead. */
-  export type Outbound = SapRouterClientInfo$Outbound;
-}
-
-export function sapRouterClientInfoToJSON(
-  sapRouterClientInfo: SapRouterClientInfo,
-): string {
-  return JSON.stringify(
-    SapRouterClientInfo$outboundSchema.parse(sapRouterClientInfo),
-  );
-}
-
 export function sapRouterClientInfoFromJSON(
   jsonString: string,
 ): SafeParseResult<SapRouterClientInfo, SDKValidationError> {

@@ -34,50 +34,6 @@ export const TextMessage$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type TextMessage$Outbound = {
-  actor?: number | undefined;
-  channel_id?: Array<number> | null | undefined;
-  message?: string | undefined;
-  session?: Array<number> | null | undefined;
-  tree_id?: Array<number> | null | undefined;
-};
-
-/** @internal */
-export const TextMessage$outboundSchema: z.ZodType<
-  TextMessage$Outbound,
-  z.ZodTypeDef,
-  TextMessage
-> = z.object({
-  actor: z.number().int().optional(),
-  channelId: z.nullable(z.array(z.number().int())).optional(),
-  message: z.string().optional(),
-  session: z.nullable(z.array(z.number().int())).optional(),
-  treeId: z.nullable(z.array(z.number().int())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    channelId: "channel_id",
-    treeId: "tree_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TextMessage$ {
-  /** @deprecated use `TextMessage$inboundSchema` instead. */
-  export const inboundSchema = TextMessage$inboundSchema;
-  /** @deprecated use `TextMessage$outboundSchema` instead. */
-  export const outboundSchema = TextMessage$outboundSchema;
-  /** @deprecated use `TextMessage$Outbound` instead. */
-  export type Outbound = TextMessage$Outbound;
-}
-
-export function textMessageToJSON(textMessage: TextMessage): string {
-  return JSON.stringify(TextMessage$outboundSchema.parse(textMessage));
-}
-
 export function textMessageFromJSON(
   jsonString: string,
 ): SafeParseResult<TextMessage, SDKValidationError> {

@@ -24,41 +24,6 @@ export const AmqpVersion$inboundSchema: z.ZodType<
   revision: z.number().int().optional(),
 });
 
-/** @internal */
-export type AmqpVersion$Outbound = {
-  major?: number | undefined;
-  minor?: number | undefined;
-  revision?: number | undefined;
-};
-
-/** @internal */
-export const AmqpVersion$outboundSchema: z.ZodType<
-  AmqpVersion$Outbound,
-  z.ZodTypeDef,
-  AmqpVersion
-> = z.object({
-  major: z.number().int().optional(),
-  minor: z.number().int().optional(),
-  revision: z.number().int().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AmqpVersion$ {
-  /** @deprecated use `AmqpVersion$inboundSchema` instead. */
-  export const inboundSchema = AmqpVersion$inboundSchema;
-  /** @deprecated use `AmqpVersion$outboundSchema` instead. */
-  export const outboundSchema = AmqpVersion$outboundSchema;
-  /** @deprecated use `AmqpVersion$Outbound` instead. */
-  export type Outbound = AmqpVersion$Outbound;
-}
-
-export function amqpVersionToJSON(amqpVersion: AmqpVersion): string {
-  return JSON.stringify(AmqpVersion$outboundSchema.parse(amqpVersion));
-}
-
 export function amqpVersionFromJSON(
   jsonString: string,
 ): SafeParseResult<AmqpVersion, SDKValidationError> {

@@ -26,47 +26,6 @@ export const DSACryptographicKey$inboundSchema: z.ZodType<
   y: z.string().optional(),
 });
 
-/** @internal */
-export type DSACryptographicKey$Outbound = {
-  g?: string | undefined;
-  p?: string | undefined;
-  q?: string | undefined;
-  y?: string | undefined;
-};
-
-/** @internal */
-export const DSACryptographicKey$outboundSchema: z.ZodType<
-  DSACryptographicKey$Outbound,
-  z.ZodTypeDef,
-  DSACryptographicKey
-> = z.object({
-  g: z.string().optional(),
-  p: z.string().optional(),
-  q: z.string().optional(),
-  y: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DSACryptographicKey$ {
-  /** @deprecated use `DSACryptographicKey$inboundSchema` instead. */
-  export const inboundSchema = DSACryptographicKey$inboundSchema;
-  /** @deprecated use `DSACryptographicKey$outboundSchema` instead. */
-  export const outboundSchema = DSACryptographicKey$outboundSchema;
-  /** @deprecated use `DSACryptographicKey$Outbound` instead. */
-  export type Outbound = DSACryptographicKey$Outbound;
-}
-
-export function dsaCryptographicKeyToJSON(
-  dsaCryptographicKey: DSACryptographicKey,
-): string {
-  return JSON.stringify(
-    DSACryptographicKey$outboundSchema.parse(dsaCryptographicKey),
-  );
-}
-
 export function dsaCryptographicKeyFromJSON(
   jsonString: string,
 ): SafeParseResult<DSACryptographicKey, SDKValidationError> {

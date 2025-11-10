@@ -25,39 +25,6 @@ export const KeyAlgorithm$inboundSchema: z.ZodType<
   oid: z.string().optional(),
 });
 
-/** @internal */
-export type KeyAlgorithm$Outbound = {
-  name?: string | undefined;
-  oid?: string | undefined;
-};
-
-/** @internal */
-export const KeyAlgorithm$outboundSchema: z.ZodType<
-  KeyAlgorithm$Outbound,
-  z.ZodTypeDef,
-  KeyAlgorithm
-> = z.object({
-  name: z.string().optional(),
-  oid: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace KeyAlgorithm$ {
-  /** @deprecated use `KeyAlgorithm$inboundSchema` instead. */
-  export const inboundSchema = KeyAlgorithm$inboundSchema;
-  /** @deprecated use `KeyAlgorithm$outboundSchema` instead. */
-  export const outboundSchema = KeyAlgorithm$outboundSchema;
-  /** @deprecated use `KeyAlgorithm$Outbound` instead. */
-  export type Outbound = KeyAlgorithm$Outbound;
-}
-
-export function keyAlgorithmToJSON(keyAlgorithm: KeyAlgorithm): string {
-  return JSON.stringify(KeyAlgorithm$outboundSchema.parse(keyAlgorithm));
-}
-
 export function keyAlgorithmFromJSON(
   jsonString: string,
 ): SafeParseResult<KeyAlgorithm, SDKValidationError> {

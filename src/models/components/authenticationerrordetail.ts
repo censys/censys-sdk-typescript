@@ -40,49 +40,6 @@ export const AuthenticationErrorDetail$inboundSchema: z.ZodType<
   status: z.string().optional(),
 });
 
-/** @internal */
-export type AuthenticationErrorDetail$Outbound = {
-  code?: number | undefined;
-  message?: string | undefined;
-  reason?: string | undefined;
-  request?: string | undefined;
-  status?: string | undefined;
-};
-
-/** @internal */
-export const AuthenticationErrorDetail$outboundSchema: z.ZodType<
-  AuthenticationErrorDetail$Outbound,
-  z.ZodTypeDef,
-  AuthenticationErrorDetail
-> = z.object({
-  code: z.number().int().optional(),
-  message: z.string().optional(),
-  reason: z.string().optional(),
-  request: z.string().optional(),
-  status: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuthenticationErrorDetail$ {
-  /** @deprecated use `AuthenticationErrorDetail$inboundSchema` instead. */
-  export const inboundSchema = AuthenticationErrorDetail$inboundSchema;
-  /** @deprecated use `AuthenticationErrorDetail$outboundSchema` instead. */
-  export const outboundSchema = AuthenticationErrorDetail$outboundSchema;
-  /** @deprecated use `AuthenticationErrorDetail$Outbound` instead. */
-  export type Outbound = AuthenticationErrorDetail$Outbound;
-}
-
-export function authenticationErrorDetailToJSON(
-  authenticationErrorDetail: AuthenticationErrorDetail,
-): string {
-  return JSON.stringify(
-    AuthenticationErrorDetail$outboundSchema.parse(authenticationErrorDetail),
-  );
-}
-
 export function authenticationErrorDetailFromJSON(
   jsonString: string,
 ): SafeParseResult<AuthenticationErrorDetail, SDKValidationError> {

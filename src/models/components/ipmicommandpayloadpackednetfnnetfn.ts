@@ -49,57 +49,6 @@ export const IpmiCommandPayloadPackedNetFnNetFn$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type IpmiCommandPayloadPackedNetFnNetFn$Outbound = {
-  is_request?: boolean | undefined;
-  is_response?: boolean | undefined;
-  name?: string | undefined;
-  raw?: number | undefined;
-  value?: number | undefined;
-};
-
-/** @internal */
-export const IpmiCommandPayloadPackedNetFnNetFn$outboundSchema: z.ZodType<
-  IpmiCommandPayloadPackedNetFnNetFn$Outbound,
-  z.ZodTypeDef,
-  IpmiCommandPayloadPackedNetFnNetFn
-> = z.object({
-  isRequest: z.boolean().optional(),
-  isResponse: z.boolean().optional(),
-  name: z.string().optional(),
-  raw: z.number().int().optional(),
-  value: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    isRequest: "is_request",
-    isResponse: "is_response",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IpmiCommandPayloadPackedNetFnNetFn$ {
-  /** @deprecated use `IpmiCommandPayloadPackedNetFnNetFn$inboundSchema` instead. */
-  export const inboundSchema = IpmiCommandPayloadPackedNetFnNetFn$inboundSchema;
-  /** @deprecated use `IpmiCommandPayloadPackedNetFnNetFn$outboundSchema` instead. */
-  export const outboundSchema =
-    IpmiCommandPayloadPackedNetFnNetFn$outboundSchema;
-  /** @deprecated use `IpmiCommandPayloadPackedNetFnNetFn$Outbound` instead. */
-  export type Outbound = IpmiCommandPayloadPackedNetFnNetFn$Outbound;
-}
-
-export function ipmiCommandPayloadPackedNetFnNetFnToJSON(
-  ipmiCommandPayloadPackedNetFnNetFn: IpmiCommandPayloadPackedNetFnNetFn,
-): string {
-  return JSON.stringify(
-    IpmiCommandPayloadPackedNetFnNetFn$outboundSchema.parse(
-      ipmiCommandPayloadPackedNetFnNetFn,
-    ),
-  );
-}
-
 export function ipmiCommandPayloadPackedNetFnNetFnFromJSON(
   jsonString: string,
 ): SafeParseResult<IpmiCommandPayloadPackedNetFnNetFn, SDKValidationError> {

@@ -28,39 +28,6 @@ export const OtherName$inboundSchema: z.ZodType<
   value: z.string().optional(),
 });
 
-/** @internal */
-export type OtherName$Outbound = {
-  id?: string | undefined;
-  value?: string | undefined;
-};
-
-/** @internal */
-export const OtherName$outboundSchema: z.ZodType<
-  OtherName$Outbound,
-  z.ZodTypeDef,
-  OtherName
-> = z.object({
-  id: z.string().optional(),
-  value: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OtherName$ {
-  /** @deprecated use `OtherName$inboundSchema` instead. */
-  export const inboundSchema = OtherName$inboundSchema;
-  /** @deprecated use `OtherName$outboundSchema` instead. */
-  export const outboundSchema = OtherName$outboundSchema;
-  /** @deprecated use `OtherName$Outbound` instead. */
-  export type Outbound = OtherName$Outbound;
-}
-
-export function otherNameToJSON(otherName: OtherName): string {
-  return JSON.stringify(OtherName$outboundSchema.parse(otherName));
-}
-
 export function otherNameFromJSON(
   jsonString: string,
 ): SafeParseResult<OtherName, SDKValidationError> {

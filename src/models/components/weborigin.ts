@@ -22,39 +22,6 @@ export const WebOrigin$inboundSchema: z.ZodType<
   port: z.number().int().optional(),
 });
 
-/** @internal */
-export type WebOrigin$Outbound = {
-  hostname?: string | undefined;
-  port?: number | undefined;
-};
-
-/** @internal */
-export const WebOrigin$outboundSchema: z.ZodType<
-  WebOrigin$Outbound,
-  z.ZodTypeDef,
-  WebOrigin
-> = z.object({
-  hostname: z.string().optional(),
-  port: z.number().int().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebOrigin$ {
-  /** @deprecated use `WebOrigin$inboundSchema` instead. */
-  export const inboundSchema = WebOrigin$inboundSchema;
-  /** @deprecated use `WebOrigin$outboundSchema` instead. */
-  export const outboundSchema = WebOrigin$outboundSchema;
-  /** @deprecated use `WebOrigin$Outbound` instead. */
-  export type Outbound = WebOrigin$Outbound;
-}
-
-export function webOriginToJSON(webOrigin: WebOrigin): string {
-  return JSON.stringify(WebOrigin$outboundSchema.parse(webOrigin));
-}
-
 export function webOriginFromJSON(
   jsonString: string,
 ): SafeParseResult<WebOrigin, SDKValidationError> {

@@ -41,57 +41,6 @@ export const SevenDaysToDie$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type SevenDaysToDie$Outbound = {
-  game_name?: string | undefined;
-  game_type?: string | undefined;
-  region?: string | undefined;
-  server_url?: string | undefined;
-  server_version?: string | undefined;
-  steam_id?: string | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const SevenDaysToDie$outboundSchema: z.ZodType<
-  SevenDaysToDie$Outbound,
-  z.ZodTypeDef,
-  SevenDaysToDie
-> = z.object({
-  gameName: z.string().optional(),
-  gameType: z.string().optional(),
-  region: z.string().optional(),
-  serverUrl: z.string().optional(),
-  serverVersion: z.string().optional(),
-  steamId: z.string().optional(),
-  version: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    gameName: "game_name",
-    gameType: "game_type",
-    serverUrl: "server_url",
-    serverVersion: "server_version",
-    steamId: "steam_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SevenDaysToDie$ {
-  /** @deprecated use `SevenDaysToDie$inboundSchema` instead. */
-  export const inboundSchema = SevenDaysToDie$inboundSchema;
-  /** @deprecated use `SevenDaysToDie$outboundSchema` instead. */
-  export const outboundSchema = SevenDaysToDie$outboundSchema;
-  /** @deprecated use `SevenDaysToDie$Outbound` instead. */
-  export type Outbound = SevenDaysToDie$Outbound;
-}
-
-export function sevenDaysToDieToJSON(sevenDaysToDie: SevenDaysToDie): string {
-  return JSON.stringify(SevenDaysToDie$outboundSchema.parse(sevenDaysToDie));
-}
-
 export function sevenDaysToDieFromJSON(
   jsonString: string,
 ): SafeParseResult<SevenDaysToDie, SDKValidationError> {

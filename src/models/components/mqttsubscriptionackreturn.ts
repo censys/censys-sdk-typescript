@@ -33,47 +33,6 @@ export const MqttSubscriptionAckReturn$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type MqttSubscriptionAckReturn$Outbound = {
-  raw?: number | undefined;
-  return_value?: string | undefined;
-};
-
-/** @internal */
-export const MqttSubscriptionAckReturn$outboundSchema: z.ZodType<
-  MqttSubscriptionAckReturn$Outbound,
-  z.ZodTypeDef,
-  MqttSubscriptionAckReturn
-> = z.object({
-  raw: z.number().int().optional(),
-  returnValue: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    returnValue: "return_value",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MqttSubscriptionAckReturn$ {
-  /** @deprecated use `MqttSubscriptionAckReturn$inboundSchema` instead. */
-  export const inboundSchema = MqttSubscriptionAckReturn$inboundSchema;
-  /** @deprecated use `MqttSubscriptionAckReturn$outboundSchema` instead. */
-  export const outboundSchema = MqttSubscriptionAckReturn$outboundSchema;
-  /** @deprecated use `MqttSubscriptionAckReturn$Outbound` instead. */
-  export type Outbound = MqttSubscriptionAckReturn$Outbound;
-}
-
-export function mqttSubscriptionAckReturnToJSON(
-  mqttSubscriptionAckReturn: MqttSubscriptionAckReturn,
-): string {
-  return JSON.stringify(
-    MqttSubscriptionAckReturn$outboundSchema.parse(mqttSubscriptionAckReturn),
-  );
-}
-
 export function mqttSubscriptionAckReturnFromJSON(
   jsonString: string,
 ): SafeParseResult<MqttSubscriptionAckReturn, SDKValidationError> {

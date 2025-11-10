@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  NTPNTPHeader,
-  NTPNTPHeader$inboundSchema,
-  NTPNTPHeader$Outbound,
-  NTPNTPHeader$outboundSchema,
-} from "./ntpntpheader.js";
+import { NTPNTPHeader, NTPNTPHeader$inboundSchema } from "./ntpntpheader.js";
 
 export type Ntp = {
   getTimeHeader?: NTPNTPHeader | undefined;
@@ -27,38 +22,6 @@ export const Ntp$inboundSchema: z.ZodType<Ntp, z.ZodTypeDef, unknown> = z
       "get_time_header": "getTimeHeader",
     });
   });
-
-/** @internal */
-export type Ntp$Outbound = {
-  get_time_header?: NTPNTPHeader$Outbound | undefined;
-};
-
-/** @internal */
-export const Ntp$outboundSchema: z.ZodType<Ntp$Outbound, z.ZodTypeDef, Ntp> = z
-  .object({
-    getTimeHeader: NTPNTPHeader$outboundSchema.optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      getTimeHeader: "get_time_header",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Ntp$ {
-  /** @deprecated use `Ntp$inboundSchema` instead. */
-  export const inboundSchema = Ntp$inboundSchema;
-  /** @deprecated use `Ntp$outboundSchema` instead. */
-  export const outboundSchema = Ntp$outboundSchema;
-  /** @deprecated use `Ntp$Outbound` instead. */
-  export type Outbound = Ntp$Outbound;
-}
-
-export function ntpToJSON(ntp: Ntp): string {
-  return JSON.stringify(Ntp$outboundSchema.parse(ntp));
-}
 
 export function ntpFromJSON(
   jsonString: string,

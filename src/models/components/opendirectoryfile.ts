@@ -38,58 +38,6 @@ export const OpenDirectoryFile$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type OpenDirectoryFile$Outbound = {
-  extension?: string | undefined;
-  last_modified?: string | undefined;
-  name?: string | undefined;
-  path?: string | undefined;
-  size?: number | undefined;
-  suspicious_score?: number | undefined;
-  type?: string | undefined;
-};
-
-/** @internal */
-export const OpenDirectoryFile$outboundSchema: z.ZodType<
-  OpenDirectoryFile$Outbound,
-  z.ZodTypeDef,
-  OpenDirectoryFile
-> = z.object({
-  extension: z.string().optional(),
-  lastModified: z.string().optional(),
-  name: z.string().optional(),
-  path: z.string().optional(),
-  size: z.number().int().optional(),
-  suspiciousScore: z.number().optional(),
-  type: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    lastModified: "last_modified",
-    suspiciousScore: "suspicious_score",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OpenDirectoryFile$ {
-  /** @deprecated use `OpenDirectoryFile$inboundSchema` instead. */
-  export const inboundSchema = OpenDirectoryFile$inboundSchema;
-  /** @deprecated use `OpenDirectoryFile$outboundSchema` instead. */
-  export const outboundSchema = OpenDirectoryFile$outboundSchema;
-  /** @deprecated use `OpenDirectoryFile$Outbound` instead. */
-  export type Outbound = OpenDirectoryFile$Outbound;
-}
-
-export function openDirectoryFileToJSON(
-  openDirectoryFile: OpenDirectoryFile,
-): string {
-  return JSON.stringify(
-    OpenDirectoryFile$outboundSchema.parse(openDirectoryFile),
-  );
-}
-
 export function openDirectoryFileFromJSON(
   jsonString: string,
 ): SafeParseResult<OpenDirectoryFile, SDKValidationError> {

@@ -38,58 +38,6 @@ export const MoneroP2PResponseHeader$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type MoneroP2PResponseHeader$Outbound = {
-  command?: number | undefined;
-  expects_response?: boolean | undefined;
-  flags?: number | undefined;
-  length?: number | undefined;
-  return_code?: number | undefined;
-  signature?: number | undefined;
-  version?: number | undefined;
-};
-
-/** @internal */
-export const MoneroP2PResponseHeader$outboundSchema: z.ZodType<
-  MoneroP2PResponseHeader$Outbound,
-  z.ZodTypeDef,
-  MoneroP2PResponseHeader
-> = z.object({
-  command: z.number().int().optional(),
-  expectsResponse: z.boolean().optional(),
-  flags: z.number().int().optional(),
-  length: z.number().int().optional(),
-  returnCode: z.number().int().optional(),
-  signature: z.number().int().optional(),
-  version: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    expectsResponse: "expects_response",
-    returnCode: "return_code",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MoneroP2PResponseHeader$ {
-  /** @deprecated use `MoneroP2PResponseHeader$inboundSchema` instead. */
-  export const inboundSchema = MoneroP2PResponseHeader$inboundSchema;
-  /** @deprecated use `MoneroP2PResponseHeader$outboundSchema` instead. */
-  export const outboundSchema = MoneroP2PResponseHeader$outboundSchema;
-  /** @deprecated use `MoneroP2PResponseHeader$Outbound` instead. */
-  export type Outbound = MoneroP2PResponseHeader$Outbound;
-}
-
-export function moneroP2PResponseHeaderToJSON(
-  moneroP2PResponseHeader: MoneroP2PResponseHeader,
-): string {
-  return JSON.stringify(
-    MoneroP2PResponseHeader$outboundSchema.parse(moneroP2PResponseHeader),
-  );
-}
-
 export function moneroP2PResponseHeaderFromJSON(
   jsonString: string,
 ): SafeParseResult<MoneroP2PResponseHeader, SDKValidationError> {

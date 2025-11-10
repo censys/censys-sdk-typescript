@@ -37,53 +37,6 @@ export const Fortigate$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type Fortigate$Outbound = {
-  api_version?: string | undefined;
-  build?: number | undefined;
-  serial?: string | undefined;
-  status_code?: number | undefined;
-  status_msg?: string | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const Fortigate$outboundSchema: z.ZodType<
-  Fortigate$Outbound,
-  z.ZodTypeDef,
-  Fortigate
-> = z.object({
-  apiVersion: z.string().optional(),
-  build: z.number().int().optional(),
-  serial: z.string().optional(),
-  statusCode: z.number().int().optional(),
-  statusMsg: z.string().optional(),
-  version: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    apiVersion: "api_version",
-    statusCode: "status_code",
-    statusMsg: "status_msg",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Fortigate$ {
-  /** @deprecated use `Fortigate$inboundSchema` instead. */
-  export const inboundSchema = Fortigate$inboundSchema;
-  /** @deprecated use `Fortigate$outboundSchema` instead. */
-  export const outboundSchema = Fortigate$outboundSchema;
-  /** @deprecated use `Fortigate$Outbound` instead. */
-  export type Outbound = Fortigate$Outbound;
-}
-
-export function fortigateToJSON(fortigate: Fortigate): string {
-  return JSON.stringify(Fortigate$outboundSchema.parse(fortigate));
-}
-
 export function fortigateFromJSON(
   jsonString: string,
 ): SafeParseResult<Fortigate, SDKValidationError> {

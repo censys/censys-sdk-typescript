@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PrometheusResponse,
   PrometheusResponse$inboundSchema,
-  PrometheusResponse$Outbound,
-  PrometheusResponse$outboundSchema,
 } from "./prometheusresponse.js";
 
 export type Prometheus = {
@@ -25,37 +23,6 @@ export const Prometheus$inboundSchema: z.ZodType<
 > = z.object({
   response: PrometheusResponse$inboundSchema.optional(),
 });
-
-/** @internal */
-export type Prometheus$Outbound = {
-  response?: PrometheusResponse$Outbound | undefined;
-};
-
-/** @internal */
-export const Prometheus$outboundSchema: z.ZodType<
-  Prometheus$Outbound,
-  z.ZodTypeDef,
-  Prometheus
-> = z.object({
-  response: PrometheusResponse$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Prometheus$ {
-  /** @deprecated use `Prometheus$inboundSchema` instead. */
-  export const inboundSchema = Prometheus$inboundSchema;
-  /** @deprecated use `Prometheus$outboundSchema` instead. */
-  export const outboundSchema = Prometheus$outboundSchema;
-  /** @deprecated use `Prometheus$Outbound` instead. */
-  export type Outbound = Prometheus$Outbound;
-}
-
-export function prometheusToJSON(prometheus: Prometheus): string {
-  return JSON.stringify(Prometheus$outboundSchema.parse(prometheus));
-}
 
 export function prometheusFromJSON(
   jsonString: string,

@@ -10,14 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ZeromqGreeting,
   ZeromqGreeting$inboundSchema,
-  ZeromqGreeting$Outbound,
-  ZeromqGreeting$outboundSchema,
 } from "./zeromqgreeting.js";
 import {
   ZeromqHandshake,
   ZeromqHandshake$inboundSchema,
-  ZeromqHandshake$Outbound,
-  ZeromqHandshake$outboundSchema,
 } from "./zeromqhandshake.js";
 
 export type Zeromq = {
@@ -40,48 +36,6 @@ export const Zeromq$inboundSchema: z.ZodType<Zeromq, z.ZodTypeDef, unknown> = z
       "subscription_match": "subscriptionMatch",
     });
   });
-
-/** @internal */
-export type Zeromq$Outbound = {
-  greeting?: ZeromqGreeting$Outbound | undefined;
-  handshake?: ZeromqHandshake$Outbound | undefined;
-  subscription_data?: string | undefined;
-  subscription_match?: { [k: string]: boolean } | undefined;
-};
-
-/** @internal */
-export const Zeromq$outboundSchema: z.ZodType<
-  Zeromq$Outbound,
-  z.ZodTypeDef,
-  Zeromq
-> = z.object({
-  greeting: ZeromqGreeting$outboundSchema.optional(),
-  handshake: ZeromqHandshake$outboundSchema.optional(),
-  subscriptionData: z.string().optional(),
-  subscriptionMatch: z.record(z.boolean()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    subscriptionData: "subscription_data",
-    subscriptionMatch: "subscription_match",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Zeromq$ {
-  /** @deprecated use `Zeromq$inboundSchema` instead. */
-  export const inboundSchema = Zeromq$inboundSchema;
-  /** @deprecated use `Zeromq$outboundSchema` instead. */
-  export const outboundSchema = Zeromq$outboundSchema;
-  /** @deprecated use `Zeromq$Outbound` instead. */
-  export type Outbound = Zeromq$Outbound;
-}
-
-export function zeromqToJSON(zeromq: Zeromq): string {
-  return JSON.stringify(Zeromq$outboundSchema.parse(zeromq));
-}
 
 export function zeromqFromJSON(
   jsonString: string,

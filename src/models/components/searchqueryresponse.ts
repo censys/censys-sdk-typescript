@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SearchQueryHit,
   SearchQueryHit$inboundSchema,
-  SearchQueryHit$Outbound,
-  SearchQueryHit$outboundSchema,
 } from "./searchqueryhit.js";
 
 export type SearchQueryResponse = {
@@ -41,56 +39,6 @@ export const SearchQueryResponse$inboundSchema: z.ZodType<
     "total_hits": "totalHits",
   });
 });
-
-/** @internal */
-export type SearchQueryResponse$Outbound = {
-  hits: Array<SearchQueryHit$Outbound> | null;
-  next_page_token: string;
-  previous_page_token: string;
-  query_duration_millis: number;
-  total_hits: number;
-};
-
-/** @internal */
-export const SearchQueryResponse$outboundSchema: z.ZodType<
-  SearchQueryResponse$Outbound,
-  z.ZodTypeDef,
-  SearchQueryResponse
-> = z.object({
-  hits: z.nullable(z.array(SearchQueryHit$outboundSchema)),
-  nextPageToken: z.string(),
-  previousPageToken: z.string(),
-  queryDurationMillis: z.number().int(),
-  totalHits: z.number(),
-}).transform((v) => {
-  return remap$(v, {
-    nextPageToken: "next_page_token",
-    previousPageToken: "previous_page_token",
-    queryDurationMillis: "query_duration_millis",
-    totalHits: "total_hits",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SearchQueryResponse$ {
-  /** @deprecated use `SearchQueryResponse$inboundSchema` instead. */
-  export const inboundSchema = SearchQueryResponse$inboundSchema;
-  /** @deprecated use `SearchQueryResponse$outboundSchema` instead. */
-  export const outboundSchema = SearchQueryResponse$outboundSchema;
-  /** @deprecated use `SearchQueryResponse$Outbound` instead. */
-  export type Outbound = SearchQueryResponse$Outbound;
-}
-
-export function searchQueryResponseToJSON(
-  searchQueryResponse: SearchQueryResponse,
-): string {
-  return JSON.stringify(
-    SearchQueryResponse$outboundSchema.parse(searchQueryResponse),
-  );
-}
 
 export function searchQueryResponseFromJSON(
   jsonString: string,

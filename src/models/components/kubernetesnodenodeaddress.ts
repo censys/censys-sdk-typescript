@@ -33,47 +33,6 @@ export const KubernetesNodeNodeAddress$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type KubernetesNodeNodeAddress$Outbound = {
-  address?: string | undefined;
-  address_type?: string | undefined;
-};
-
-/** @internal */
-export const KubernetesNodeNodeAddress$outboundSchema: z.ZodType<
-  KubernetesNodeNodeAddress$Outbound,
-  z.ZodTypeDef,
-  KubernetesNodeNodeAddress
-> = z.object({
-  address: z.string().optional(),
-  addressType: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    addressType: "address_type",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace KubernetesNodeNodeAddress$ {
-  /** @deprecated use `KubernetesNodeNodeAddress$inboundSchema` instead. */
-  export const inboundSchema = KubernetesNodeNodeAddress$inboundSchema;
-  /** @deprecated use `KubernetesNodeNodeAddress$outboundSchema` instead. */
-  export const outboundSchema = KubernetesNodeNodeAddress$outboundSchema;
-  /** @deprecated use `KubernetesNodeNodeAddress$Outbound` instead. */
-  export type Outbound = KubernetesNodeNodeAddress$Outbound;
-}
-
-export function kubernetesNodeNodeAddressToJSON(
-  kubernetesNodeNodeAddress: KubernetesNodeNodeAddress,
-): string {
-  return JSON.stringify(
-    KubernetesNodeNodeAddress$outboundSchema.parse(kubernetesNodeNodeAddress),
-  );
-}
-
 export function kubernetesNodeNodeAddressFromJSON(
   jsonString: string,
 ): SafeParseResult<KubernetesNodeNodeAddress, SDKValidationError> {

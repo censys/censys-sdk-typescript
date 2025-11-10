@@ -48,68 +48,6 @@ export const ElasticSearchSystemInfoVer$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type ElasticSearchSystemInfoVer$Outbound = {
-  build_date?: string | undefined;
-  build_flavor?: string | undefined;
-  build_hash?: string | undefined;
-  build_snapshot?: boolean | undefined;
-  build_type?: string | undefined;
-  lucene_version?: string | undefined;
-  min_idx_compat_ver?: string | undefined;
-  min_wire_compat_ver?: string | undefined;
-  number?: string | undefined;
-};
-
-/** @internal */
-export const ElasticSearchSystemInfoVer$outboundSchema: z.ZodType<
-  ElasticSearchSystemInfoVer$Outbound,
-  z.ZodTypeDef,
-  ElasticSearchSystemInfoVer
-> = z.object({
-  buildDate: z.string().optional(),
-  buildFlavor: z.string().optional(),
-  buildHash: z.string().optional(),
-  buildSnapshot: z.boolean().optional(),
-  buildType: z.string().optional(),
-  luceneVersion: z.string().optional(),
-  minIdxCompatVer: z.string().optional(),
-  minWireCompatVer: z.string().optional(),
-  number: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    buildDate: "build_date",
-    buildFlavor: "build_flavor",
-    buildHash: "build_hash",
-    buildSnapshot: "build_snapshot",
-    buildType: "build_type",
-    luceneVersion: "lucene_version",
-    minIdxCompatVer: "min_idx_compat_ver",
-    minWireCompatVer: "min_wire_compat_ver",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ElasticSearchSystemInfoVer$ {
-  /** @deprecated use `ElasticSearchSystemInfoVer$inboundSchema` instead. */
-  export const inboundSchema = ElasticSearchSystemInfoVer$inboundSchema;
-  /** @deprecated use `ElasticSearchSystemInfoVer$outboundSchema` instead. */
-  export const outboundSchema = ElasticSearchSystemInfoVer$outboundSchema;
-  /** @deprecated use `ElasticSearchSystemInfoVer$Outbound` instead. */
-  export type Outbound = ElasticSearchSystemInfoVer$Outbound;
-}
-
-export function elasticSearchSystemInfoVerToJSON(
-  elasticSearchSystemInfoVer: ElasticSearchSystemInfoVer,
-): string {
-  return JSON.stringify(
-    ElasticSearchSystemInfoVer$outboundSchema.parse(elasticSearchSystemInfoVer),
-  );
-}
-
 export function elasticSearchSystemInfoVerFromJSON(
   jsonString: string,
 ): SafeParseResult<ElasticSearchSystemInfoVer, SDKValidationError> {

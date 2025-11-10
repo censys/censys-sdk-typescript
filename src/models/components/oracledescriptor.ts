@@ -28,43 +28,6 @@ export const OracleDescriptor$inboundSchema: z.ZodType<
   value: z.string().optional(),
 });
 
-/** @internal */
-export type OracleDescriptor$Outbound = {
-  key?: string | undefined;
-  value?: string | undefined;
-};
-
-/** @internal */
-export const OracleDescriptor$outboundSchema: z.ZodType<
-  OracleDescriptor$Outbound,
-  z.ZodTypeDef,
-  OracleDescriptor
-> = z.object({
-  key: z.string().optional(),
-  value: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OracleDescriptor$ {
-  /** @deprecated use `OracleDescriptor$inboundSchema` instead. */
-  export const inboundSchema = OracleDescriptor$inboundSchema;
-  /** @deprecated use `OracleDescriptor$outboundSchema` instead. */
-  export const outboundSchema = OracleDescriptor$outboundSchema;
-  /** @deprecated use `OracleDescriptor$Outbound` instead. */
-  export type Outbound = OracleDescriptor$Outbound;
-}
-
-export function oracleDescriptorToJSON(
-  oracleDescriptor: OracleDescriptor,
-): string {
-  return JSON.stringify(
-    OracleDescriptor$outboundSchema.parse(oracleDescriptor),
-  );
-}
-
 export function oracleDescriptorFromJSON(
   jsonString: string,
 ): SafeParseResult<OracleDescriptor, SDKValidationError> {

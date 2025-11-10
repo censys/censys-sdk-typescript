@@ -38,53 +38,6 @@ export const PrometheusResponsePrometheusVersion$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type PrometheusResponsePrometheusVersion$Outbound = {
-  go_version?: string | undefined;
-  revision?: string | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const PrometheusResponsePrometheusVersion$outboundSchema: z.ZodType<
-  PrometheusResponsePrometheusVersion$Outbound,
-  z.ZodTypeDef,
-  PrometheusResponsePrometheusVersion
-> = z.object({
-  goVersion: z.string().optional(),
-  revision: z.string().optional(),
-  version: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    goVersion: "go_version",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PrometheusResponsePrometheusVersion$ {
-  /** @deprecated use `PrometheusResponsePrometheusVersion$inboundSchema` instead. */
-  export const inboundSchema =
-    PrometheusResponsePrometheusVersion$inboundSchema;
-  /** @deprecated use `PrometheusResponsePrometheusVersion$outboundSchema` instead. */
-  export const outboundSchema =
-    PrometheusResponsePrometheusVersion$outboundSchema;
-  /** @deprecated use `PrometheusResponsePrometheusVersion$Outbound` instead. */
-  export type Outbound = PrometheusResponsePrometheusVersion$Outbound;
-}
-
-export function prometheusResponsePrometheusVersionToJSON(
-  prometheusResponsePrometheusVersion: PrometheusResponsePrometheusVersion,
-): string {
-  return JSON.stringify(
-    PrometheusResponsePrometheusVersion$outboundSchema.parse(
-      prometheusResponsePrometheusVersion,
-    ),
-  );
-}
-
 export function prometheusResponsePrometheusVersionFromJSON(
   jsonString: string,
 ): SafeParseResult<PrometheusResponsePrometheusVersion, SDKValidationError> {

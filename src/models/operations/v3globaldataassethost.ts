@@ -34,88 +34,6 @@ export type V3GlobaldataAssetHostResponse = {
 };
 
 /** @internal */
-export const V3GlobaldataAssetHostGlobals$inboundSchema: z.ZodType<
-  V3GlobaldataAssetHostGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  organization_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "organization_id": "organizationId",
-  });
-});
-
-/** @internal */
-export type V3GlobaldataAssetHostGlobals$Outbound = {
-  organization_id?: string | undefined;
-};
-
-/** @internal */
-export const V3GlobaldataAssetHostGlobals$outboundSchema: z.ZodType<
-  V3GlobaldataAssetHostGlobals$Outbound,
-  z.ZodTypeDef,
-  V3GlobaldataAssetHostGlobals
-> = z.object({
-  organizationId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    organizationId: "organization_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3GlobaldataAssetHostGlobals$ {
-  /** @deprecated use `V3GlobaldataAssetHostGlobals$inboundSchema` instead. */
-  export const inboundSchema = V3GlobaldataAssetHostGlobals$inboundSchema;
-  /** @deprecated use `V3GlobaldataAssetHostGlobals$outboundSchema` instead. */
-  export const outboundSchema = V3GlobaldataAssetHostGlobals$outboundSchema;
-  /** @deprecated use `V3GlobaldataAssetHostGlobals$Outbound` instead. */
-  export type Outbound = V3GlobaldataAssetHostGlobals$Outbound;
-}
-
-export function v3GlobaldataAssetHostGlobalsToJSON(
-  v3GlobaldataAssetHostGlobals: V3GlobaldataAssetHostGlobals,
-): string {
-  return JSON.stringify(
-    V3GlobaldataAssetHostGlobals$outboundSchema.parse(
-      v3GlobaldataAssetHostGlobals,
-    ),
-  );
-}
-
-export function v3GlobaldataAssetHostGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<V3GlobaldataAssetHostGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V3GlobaldataAssetHostGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3GlobaldataAssetHostGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const V3GlobaldataAssetHostRequest$inboundSchema: z.ZodType<
-  V3GlobaldataAssetHostRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  organization_id: z.string().optional(),
-  host_id: z.string(),
-  at_time: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "organization_id": "organizationId",
-    "host_id": "hostId",
-    "at_time": "atTime",
-  });
-});
-
-/** @internal */
 export type V3GlobaldataAssetHostRequest$Outbound = {
   organization_id?: string | undefined;
   host_id: string;
@@ -139,19 +57,6 @@ export const V3GlobaldataAssetHostRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3GlobaldataAssetHostRequest$ {
-  /** @deprecated use `V3GlobaldataAssetHostRequest$inboundSchema` instead. */
-  export const inboundSchema = V3GlobaldataAssetHostRequest$inboundSchema;
-  /** @deprecated use `V3GlobaldataAssetHostRequest$outboundSchema` instead. */
-  export const outboundSchema = V3GlobaldataAssetHostRequest$outboundSchema;
-  /** @deprecated use `V3GlobaldataAssetHostRequest$Outbound` instead. */
-  export type Outbound = V3GlobaldataAssetHostRequest$Outbound;
-}
-
 export function v3GlobaldataAssetHostRequestToJSON(
   v3GlobaldataAssetHostRequest: V3GlobaldataAssetHostRequest,
 ): string {
@@ -159,16 +64,6 @@ export function v3GlobaldataAssetHostRequestToJSON(
     V3GlobaldataAssetHostRequest$outboundSchema.parse(
       v3GlobaldataAssetHostRequest,
     ),
-  );
-}
-
-export function v3GlobaldataAssetHostRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<V3GlobaldataAssetHostRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V3GlobaldataAssetHostRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3GlobaldataAssetHostRequest' from JSON`,
   );
 }
 
@@ -186,50 +81,6 @@ export const V3GlobaldataAssetHostResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
-/** @internal */
-export type V3GlobaldataAssetHostResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-  Result: components.ResponseEnvelopeHostAsset$Outbound;
-};
-
-/** @internal */
-export const V3GlobaldataAssetHostResponse$outboundSchema: z.ZodType<
-  V3GlobaldataAssetHostResponse$Outbound,
-  z.ZodTypeDef,
-  V3GlobaldataAssetHostResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-  result: components.ResponseEnvelopeHostAsset$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-    result: "Result",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3GlobaldataAssetHostResponse$ {
-  /** @deprecated use `V3GlobaldataAssetHostResponse$inboundSchema` instead. */
-  export const inboundSchema = V3GlobaldataAssetHostResponse$inboundSchema;
-  /** @deprecated use `V3GlobaldataAssetHostResponse$outboundSchema` instead. */
-  export const outboundSchema = V3GlobaldataAssetHostResponse$outboundSchema;
-  /** @deprecated use `V3GlobaldataAssetHostResponse$Outbound` instead. */
-  export type Outbound = V3GlobaldataAssetHostResponse$Outbound;
-}
-
-export function v3GlobaldataAssetHostResponseToJSON(
-  v3GlobaldataAssetHostResponse: V3GlobaldataAssetHostResponse,
-): string {
-  return JSON.stringify(
-    V3GlobaldataAssetHostResponse$outboundSchema.parse(
-      v3GlobaldataAssetHostResponse,
-    ),
-  );
-}
 
 export function v3GlobaldataAssetHostResponseFromJSON(
   jsonString: string,

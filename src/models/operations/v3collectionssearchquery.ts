@@ -31,87 +31,6 @@ export type V3CollectionsSearchQueryResponse = {
 };
 
 /** @internal */
-export const V3CollectionsSearchQueryGlobals$inboundSchema: z.ZodType<
-  V3CollectionsSearchQueryGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  organization_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "organization_id": "organizationId",
-  });
-});
-
-/** @internal */
-export type V3CollectionsSearchQueryGlobals$Outbound = {
-  organization_id?: string | undefined;
-};
-
-/** @internal */
-export const V3CollectionsSearchQueryGlobals$outboundSchema: z.ZodType<
-  V3CollectionsSearchQueryGlobals$Outbound,
-  z.ZodTypeDef,
-  V3CollectionsSearchQueryGlobals
-> = z.object({
-  organizationId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    organizationId: "organization_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3CollectionsSearchQueryGlobals$ {
-  /** @deprecated use `V3CollectionsSearchQueryGlobals$inboundSchema` instead. */
-  export const inboundSchema = V3CollectionsSearchQueryGlobals$inboundSchema;
-  /** @deprecated use `V3CollectionsSearchQueryGlobals$outboundSchema` instead. */
-  export const outboundSchema = V3CollectionsSearchQueryGlobals$outboundSchema;
-  /** @deprecated use `V3CollectionsSearchQueryGlobals$Outbound` instead. */
-  export type Outbound = V3CollectionsSearchQueryGlobals$Outbound;
-}
-
-export function v3CollectionsSearchQueryGlobalsToJSON(
-  v3CollectionsSearchQueryGlobals: V3CollectionsSearchQueryGlobals,
-): string {
-  return JSON.stringify(
-    V3CollectionsSearchQueryGlobals$outboundSchema.parse(
-      v3CollectionsSearchQueryGlobals,
-    ),
-  );
-}
-
-export function v3CollectionsSearchQueryGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<V3CollectionsSearchQueryGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V3CollectionsSearchQueryGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3CollectionsSearchQueryGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const V3CollectionsSearchQueryRequest$inboundSchema: z.ZodType<
-  V3CollectionsSearchQueryRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  organization_id: z.string().optional(),
-  collection_uid: z.string(),
-  SearchQueryInputBody: components.SearchQueryInputBody$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "organization_id": "organizationId",
-    "collection_uid": "collectionUid",
-    "SearchQueryInputBody": "searchQueryInputBody",
-  });
-});
-
-/** @internal */
 export type V3CollectionsSearchQueryRequest$Outbound = {
   organization_id?: string | undefined;
   collection_uid: string;
@@ -135,19 +54,6 @@ export const V3CollectionsSearchQueryRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3CollectionsSearchQueryRequest$ {
-  /** @deprecated use `V3CollectionsSearchQueryRequest$inboundSchema` instead. */
-  export const inboundSchema = V3CollectionsSearchQueryRequest$inboundSchema;
-  /** @deprecated use `V3CollectionsSearchQueryRequest$outboundSchema` instead. */
-  export const outboundSchema = V3CollectionsSearchQueryRequest$outboundSchema;
-  /** @deprecated use `V3CollectionsSearchQueryRequest$Outbound` instead. */
-  export type Outbound = V3CollectionsSearchQueryRequest$Outbound;
-}
-
 export function v3CollectionsSearchQueryRequestToJSON(
   v3CollectionsSearchQueryRequest: V3CollectionsSearchQueryRequest,
 ): string {
@@ -155,16 +61,6 @@ export function v3CollectionsSearchQueryRequestToJSON(
     V3CollectionsSearchQueryRequest$outboundSchema.parse(
       v3CollectionsSearchQueryRequest,
     ),
-  );
-}
-
-export function v3CollectionsSearchQueryRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<V3CollectionsSearchQueryRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V3CollectionsSearchQueryRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3CollectionsSearchQueryRequest' from JSON`,
   );
 }
 
@@ -182,50 +78,6 @@ export const V3CollectionsSearchQueryResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
-/** @internal */
-export type V3CollectionsSearchQueryResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-  Result: components.ResponseEnvelopeSearchQueryResponse$Outbound;
-};
-
-/** @internal */
-export const V3CollectionsSearchQueryResponse$outboundSchema: z.ZodType<
-  V3CollectionsSearchQueryResponse$Outbound,
-  z.ZodTypeDef,
-  V3CollectionsSearchQueryResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-  result: components.ResponseEnvelopeSearchQueryResponse$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-    result: "Result",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3CollectionsSearchQueryResponse$ {
-  /** @deprecated use `V3CollectionsSearchQueryResponse$inboundSchema` instead. */
-  export const inboundSchema = V3CollectionsSearchQueryResponse$inboundSchema;
-  /** @deprecated use `V3CollectionsSearchQueryResponse$outboundSchema` instead. */
-  export const outboundSchema = V3CollectionsSearchQueryResponse$outboundSchema;
-  /** @deprecated use `V3CollectionsSearchQueryResponse$Outbound` instead. */
-  export type Outbound = V3CollectionsSearchQueryResponse$Outbound;
-}
-
-export function v3CollectionsSearchQueryResponseToJSON(
-  v3CollectionsSearchQueryResponse: V3CollectionsSearchQueryResponse,
-): string {
-  return JSON.stringify(
-    V3CollectionsSearchQueryResponse$outboundSchema.parse(
-      v3CollectionsSearchQueryResponse,
-    ),
-  );
-}
 
 export function v3CollectionsSearchQueryResponseFromJSON(
   jsonString: string,

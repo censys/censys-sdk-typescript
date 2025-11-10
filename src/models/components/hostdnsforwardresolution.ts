@@ -28,21 +28,6 @@ export const RecordType$inboundSchema: z.ZodNativeEnum<typeof RecordType> = z
   .nativeEnum(RecordType);
 
 /** @internal */
-export const RecordType$outboundSchema: z.ZodNativeEnum<typeof RecordType> =
-  RecordType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RecordType$ {
-  /** @deprecated use `RecordType$inboundSchema` instead. */
-  export const inboundSchema = RecordType$inboundSchema;
-  /** @deprecated use `RecordType$outboundSchema` instead. */
-  export const outboundSchema = RecordType$outboundSchema;
-}
-
-/** @internal */
 export const HostDnsForwardResolution$inboundSchema: z.ZodType<
   HostDnsForwardResolution,
   z.ZodTypeDef,
@@ -58,52 +43,6 @@ export const HostDnsForwardResolution$inboundSchema: z.ZodType<
     "resolve_time": "resolveTime",
   });
 });
-
-/** @internal */
-export type HostDnsForwardResolution$Outbound = {
-  name?: string | undefined;
-  record_type?: string | undefined;
-  resolve_time?: string | undefined;
-  server?: string | undefined;
-};
-
-/** @internal */
-export const HostDnsForwardResolution$outboundSchema: z.ZodType<
-  HostDnsForwardResolution$Outbound,
-  z.ZodTypeDef,
-  HostDnsForwardResolution
-> = z.object({
-  name: z.string().optional(),
-  recordType: RecordType$outboundSchema.optional(),
-  resolveTime: z.string().optional(),
-  server: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    recordType: "record_type",
-    resolveTime: "resolve_time",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HostDnsForwardResolution$ {
-  /** @deprecated use `HostDnsForwardResolution$inboundSchema` instead. */
-  export const inboundSchema = HostDnsForwardResolution$inboundSchema;
-  /** @deprecated use `HostDnsForwardResolution$outboundSchema` instead. */
-  export const outboundSchema = HostDnsForwardResolution$outboundSchema;
-  /** @deprecated use `HostDnsForwardResolution$Outbound` instead. */
-  export type Outbound = HostDnsForwardResolution$Outbound;
-}
-
-export function hostDnsForwardResolutionToJSON(
-  hostDnsForwardResolution: HostDnsForwardResolution,
-): string {
-  return JSON.stringify(
-    HostDnsForwardResolution$outboundSchema.parse(hostDnsForwardResolution),
-  );
-}
 
 export function hostDnsForwardResolutionFromJSON(
   jsonString: string,

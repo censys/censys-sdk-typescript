@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   RedisRawOutput,
   RedisRawOutput$inboundSchema,
-  RedisRawOutput$Outbound,
-  RedisRawOutput$outboundSchema,
 } from "./redisrawoutput.js";
 
 export type Redis = {
@@ -145,96 +143,6 @@ export const Redis$inboundSchema: z.ZodType<Redis, z.ZodTypeDef, unknown> = z
       "used_memory": "usedMemory",
     });
   });
-
-/** @internal */
-export type Redis$Outbound = {
-  arch_bits?: string | undefined;
-  auth_response?: string | undefined;
-  build_id?: string | undefined;
-  commands?: Array<string> | null | undefined;
-  commands_processed?: number | undefined;
-  connections_received?: number | undefined;
-  gcc_version?: string | undefined;
-  git_sha1?: string | undefined;
-  info_response?: { [k: string]: string } | undefined;
-  major?: number | undefined;
-  mem_allocator?: string | undefined;
-  minor?: number | undefined;
-  mode?: string | undefined;
-  nonexistent_response?: string | undefined;
-  os?: string | undefined;
-  patch_level?: number | undefined;
-  ping_response?: string | undefined;
-  quit_response?: string | undefined;
-  raw_command_output?: Array<RedisRawOutput$Outbound> | null | undefined;
-  uptime?: number | undefined;
-  used_memory?: number | undefined;
-};
-
-/** @internal */
-export const Redis$outboundSchema: z.ZodType<
-  Redis$Outbound,
-  z.ZodTypeDef,
-  Redis
-> = z.object({
-  archBits: z.string().optional(),
-  authResponse: z.string().optional(),
-  buildId: z.string().optional(),
-  commands: z.nullable(z.array(z.string())).optional(),
-  commandsProcessed: z.number().int().optional(),
-  connectionsReceived: z.number().int().optional(),
-  gccVersion: z.string().optional(),
-  gitSha1: z.string().optional(),
-  infoResponse: z.record(z.string()).optional(),
-  major: z.number().int().optional(),
-  memAllocator: z.string().optional(),
-  minor: z.number().int().optional(),
-  mode: z.string().optional(),
-  nonexistentResponse: z.string().optional(),
-  os: z.string().optional(),
-  patchLevel: z.number().int().optional(),
-  pingResponse: z.string().optional(),
-  quitResponse: z.string().optional(),
-  rawCommandOutput: z.nullable(z.array(RedisRawOutput$outboundSchema))
-    .optional(),
-  uptime: z.number().int().optional(),
-  usedMemory: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    archBits: "arch_bits",
-    authResponse: "auth_response",
-    buildId: "build_id",
-    commandsProcessed: "commands_processed",
-    connectionsReceived: "connections_received",
-    gccVersion: "gcc_version",
-    gitSha1: "git_sha1",
-    infoResponse: "info_response",
-    memAllocator: "mem_allocator",
-    nonexistentResponse: "nonexistent_response",
-    patchLevel: "patch_level",
-    pingResponse: "ping_response",
-    quitResponse: "quit_response",
-    rawCommandOutput: "raw_command_output",
-    usedMemory: "used_memory",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Redis$ {
-  /** @deprecated use `Redis$inboundSchema` instead. */
-  export const inboundSchema = Redis$inboundSchema;
-  /** @deprecated use `Redis$outboundSchema` instead. */
-  export const outboundSchema = Redis$outboundSchema;
-  /** @deprecated use `Redis$Outbound` instead. */
-  export type Outbound = Redis$Outbound;
-}
-
-export function redisToJSON(redis: Redis): string {
-  return JSON.stringify(Redis$outboundSchema.parse(redis));
-}
 
 export function redisFromJSON(
   jsonString: string,

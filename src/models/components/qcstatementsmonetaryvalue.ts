@@ -31,51 +31,6 @@ export const QcStatementsMonetaryValue$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type QcStatementsMonetaryValue$Outbound = {
-  amount?: number | undefined;
-  currency?: string | undefined;
-  currency_number?: number | undefined;
-  exponent?: number | undefined;
-};
-
-/** @internal */
-export const QcStatementsMonetaryValue$outboundSchema: z.ZodType<
-  QcStatementsMonetaryValue$Outbound,
-  z.ZodTypeDef,
-  QcStatementsMonetaryValue
-> = z.object({
-  amount: z.number().int().optional(),
-  currency: z.string().optional(),
-  currencyNumber: z.number().int().optional(),
-  exponent: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    currencyNumber: "currency_number",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace QcStatementsMonetaryValue$ {
-  /** @deprecated use `QcStatementsMonetaryValue$inboundSchema` instead. */
-  export const inboundSchema = QcStatementsMonetaryValue$inboundSchema;
-  /** @deprecated use `QcStatementsMonetaryValue$outboundSchema` instead. */
-  export const outboundSchema = QcStatementsMonetaryValue$outboundSchema;
-  /** @deprecated use `QcStatementsMonetaryValue$Outbound` instead. */
-  export type Outbound = QcStatementsMonetaryValue$Outbound;
-}
-
-export function qcStatementsMonetaryValueToJSON(
-  qcStatementsMonetaryValue: QcStatementsMonetaryValue,
-): string {
-  return JSON.stringify(
-    QcStatementsMonetaryValue$outboundSchema.parse(qcStatementsMonetaryValue),
-  );
-}
-
 export function qcStatementsMonetaryValueFromJSON(
   jsonString: string,
 ): SafeParseResult<QcStatementsMonetaryValue, SDKValidationError> {

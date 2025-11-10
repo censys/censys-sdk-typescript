@@ -32,48 +32,6 @@ export const SshEndpointId$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type SshEndpointId$Outbound = {
-  comment?: string | undefined;
-  protocol_version?: string | undefined;
-  raw?: string | undefined;
-  software_version?: string | undefined;
-};
-
-/** @internal */
-export const SshEndpointId$outboundSchema: z.ZodType<
-  SshEndpointId$Outbound,
-  z.ZodTypeDef,
-  SshEndpointId
-> = z.object({
-  comment: z.string().optional(),
-  protocolVersion: z.string().optional(),
-  raw: z.string().optional(),
-  softwareVersion: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    protocolVersion: "protocol_version",
-    softwareVersion: "software_version",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SshEndpointId$ {
-  /** @deprecated use `SshEndpointId$inboundSchema` instead. */
-  export const inboundSchema = SshEndpointId$inboundSchema;
-  /** @deprecated use `SshEndpointId$outboundSchema` instead. */
-  export const outboundSchema = SshEndpointId$outboundSchema;
-  /** @deprecated use `SshEndpointId$Outbound` instead. */
-  export type Outbound = SshEndpointId$Outbound;
-}
-
-export function sshEndpointIdToJSON(sshEndpointId: SshEndpointId): string {
-  return JSON.stringify(SshEndpointId$outboundSchema.parse(sshEndpointId));
-}
-
 export function sshEndpointIdFromJSON(
   jsonString: string,
 ): SafeParseResult<SshEndpointId, SDKValidationError> {

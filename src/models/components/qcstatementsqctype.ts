@@ -20,41 +20,6 @@ export const QcStatementsQcType$inboundSchema: z.ZodType<
   ids: z.nullable(z.array(z.string())).optional(),
 });
 
-/** @internal */
-export type QcStatementsQcType$Outbound = {
-  ids?: Array<string> | null | undefined;
-};
-
-/** @internal */
-export const QcStatementsQcType$outboundSchema: z.ZodType<
-  QcStatementsQcType$Outbound,
-  z.ZodTypeDef,
-  QcStatementsQcType
-> = z.object({
-  ids: z.nullable(z.array(z.string())).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace QcStatementsQcType$ {
-  /** @deprecated use `QcStatementsQcType$inboundSchema` instead. */
-  export const inboundSchema = QcStatementsQcType$inboundSchema;
-  /** @deprecated use `QcStatementsQcType$outboundSchema` instead. */
-  export const outboundSchema = QcStatementsQcType$outboundSchema;
-  /** @deprecated use `QcStatementsQcType$Outbound` instead. */
-  export type Outbound = QcStatementsQcType$Outbound;
-}
-
-export function qcStatementsQcTypeToJSON(
-  qcStatementsQcType: QcStatementsQcType,
-): string {
-  return JSON.stringify(
-    QcStatementsQcType$outboundSchema.parse(qcStatementsQcType),
-  );
-}
-
 export function qcStatementsQcTypeFromJSON(
   jsonString: string,
 ): SafeParseResult<QcStatementsQcType, SDKValidationError> {

@@ -10,14 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   HostDnsForwardResolution,
   HostDnsForwardResolution$inboundSchema,
-  HostDnsForwardResolution$Outbound,
-  HostDnsForwardResolution$outboundSchema,
 } from "./hostdnsforwardresolution.js";
 import {
   HostDnsReverseResolution,
   HostDnsReverseResolution$inboundSchema,
-  HostDnsReverseResolution$Outbound,
-  HostDnsReverseResolution$outboundSchema,
 } from "./hostdnsreverseresolution.js";
 
 export type HostDns = {
@@ -38,46 +34,6 @@ export const HostDns$inboundSchema: z.ZodType<HostDns, z.ZodTypeDef, unknown> =
       "reverse_dns": "reverseDns",
     });
   });
-
-/** @internal */
-export type HostDns$Outbound = {
-  forward_dns?: { [k: string]: HostDnsForwardResolution$Outbound } | undefined;
-  names?: Array<string> | null | undefined;
-  reverse_dns?: HostDnsReverseResolution$Outbound | undefined;
-};
-
-/** @internal */
-export const HostDns$outboundSchema: z.ZodType<
-  HostDns$Outbound,
-  z.ZodTypeDef,
-  HostDns
-> = z.object({
-  forwardDns: z.record(HostDnsForwardResolution$outboundSchema).optional(),
-  names: z.nullable(z.array(z.string())).optional(),
-  reverseDns: HostDnsReverseResolution$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    forwardDns: "forward_dns",
-    reverseDns: "reverse_dns",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HostDns$ {
-  /** @deprecated use `HostDns$inboundSchema` instead. */
-  export const inboundSchema = HostDns$inboundSchema;
-  /** @deprecated use `HostDns$outboundSchema` instead. */
-  export const outboundSchema = HostDns$outboundSchema;
-  /** @deprecated use `HostDns$Outbound` instead. */
-  export type Outbound = HostDns$Outbound;
-}
-
-export function hostDnsToJSON(hostDns: HostDns): string {
-  return JSON.stringify(HostDns$outboundSchema.parse(hostDns));
-}
 
 export function hostDnsFromJSON(
   jsonString: string,

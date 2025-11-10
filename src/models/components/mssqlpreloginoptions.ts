@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   MssqlPreloginOptionsServerVersion,
   MssqlPreloginOptionsServerVersion$inboundSchema,
-  MssqlPreloginOptionsServerVersion$Outbound,
-  MssqlPreloginOptionsServerVersion$outboundSchema,
 } from "./mssqlpreloginoptionsserverversion.js";
 
 export type MssqlPreloginOptions = {
@@ -50,65 +48,6 @@ export const MssqlPreloginOptions$inboundSchema: z.ZodType<
     "trace_id": "traceId",
   });
 });
-
-/** @internal */
-export type MssqlPreloginOptions$Outbound = {
-  encrypt_mode?: string | undefined;
-  fed_auth_required?: boolean | undefined;
-  instance?: string | undefined;
-  mars?: boolean | undefined;
-  nonce?: string | undefined;
-  server_version?: MssqlPreloginOptionsServerVersion$Outbound | undefined;
-  thread_id?: number | undefined;
-  trace_id?: string | undefined;
-  unknown?: { [k: string]: string } | undefined;
-};
-
-/** @internal */
-export const MssqlPreloginOptions$outboundSchema: z.ZodType<
-  MssqlPreloginOptions$Outbound,
-  z.ZodTypeDef,
-  MssqlPreloginOptions
-> = z.object({
-  encryptMode: z.string().optional(),
-  fedAuthRequired: z.boolean().optional(),
-  instance: z.string().optional(),
-  mars: z.boolean().optional(),
-  nonce: z.string().optional(),
-  serverVersion: MssqlPreloginOptionsServerVersion$outboundSchema.optional(),
-  threadId: z.number().int().optional(),
-  traceId: z.string().optional(),
-  unknown: z.record(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    encryptMode: "encrypt_mode",
-    fedAuthRequired: "fed_auth_required",
-    serverVersion: "server_version",
-    threadId: "thread_id",
-    traceId: "trace_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MssqlPreloginOptions$ {
-  /** @deprecated use `MssqlPreloginOptions$inboundSchema` instead. */
-  export const inboundSchema = MssqlPreloginOptions$inboundSchema;
-  /** @deprecated use `MssqlPreloginOptions$outboundSchema` instead. */
-  export const outboundSchema = MssqlPreloginOptions$outboundSchema;
-  /** @deprecated use `MssqlPreloginOptions$Outbound` instead. */
-  export type Outbound = MssqlPreloginOptions$Outbound;
-}
-
-export function mssqlPreloginOptionsToJSON(
-  mssqlPreloginOptions: MssqlPreloginOptions,
-): string {
-  return JSON.stringify(
-    MssqlPreloginOptions$outboundSchema.parse(mssqlPreloginOptions),
-  );
-}
 
 export function mssqlPreloginOptionsFromJSON(
   jsonString: string,

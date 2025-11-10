@@ -24,50 +24,6 @@ export const SshAlgorithmSelectionDirectionAlgorithms$inboundSchema: z.ZodType<
   mac: z.string().optional(),
 });
 
-/** @internal */
-export type SshAlgorithmSelectionDirectionAlgorithms$Outbound = {
-  cipher?: string | undefined;
-  compression?: string | undefined;
-  mac?: string | undefined;
-};
-
-/** @internal */
-export const SshAlgorithmSelectionDirectionAlgorithms$outboundSchema: z.ZodType<
-  SshAlgorithmSelectionDirectionAlgorithms$Outbound,
-  z.ZodTypeDef,
-  SshAlgorithmSelectionDirectionAlgorithms
-> = z.object({
-  cipher: z.string().optional(),
-  compression: z.string().optional(),
-  mac: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SshAlgorithmSelectionDirectionAlgorithms$ {
-  /** @deprecated use `SshAlgorithmSelectionDirectionAlgorithms$inboundSchema` instead. */
-  export const inboundSchema =
-    SshAlgorithmSelectionDirectionAlgorithms$inboundSchema;
-  /** @deprecated use `SshAlgorithmSelectionDirectionAlgorithms$outboundSchema` instead. */
-  export const outboundSchema =
-    SshAlgorithmSelectionDirectionAlgorithms$outboundSchema;
-  /** @deprecated use `SshAlgorithmSelectionDirectionAlgorithms$Outbound` instead. */
-  export type Outbound = SshAlgorithmSelectionDirectionAlgorithms$Outbound;
-}
-
-export function sshAlgorithmSelectionDirectionAlgorithmsToJSON(
-  sshAlgorithmSelectionDirectionAlgorithms:
-    SshAlgorithmSelectionDirectionAlgorithms,
-): string {
-  return JSON.stringify(
-    SshAlgorithmSelectionDirectionAlgorithms$outboundSchema.parse(
-      sshAlgorithmSelectionDirectionAlgorithms,
-    ),
-  );
-}
-
 export function sshAlgorithmSelectionDirectionAlgorithmsFromJSON(
   jsonString: string,
 ): SafeParseResult<

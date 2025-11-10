@@ -30,46 +30,6 @@ export const WeblogicT3$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type WeblogicT3$Outbound = {
-  error?: string | undefined;
-  error_message?: string | undefined;
-  weblogic_version?: string | undefined;
-};
-
-/** @internal */
-export const WeblogicT3$outboundSchema: z.ZodType<
-  WeblogicT3$Outbound,
-  z.ZodTypeDef,
-  WeblogicT3
-> = z.object({
-  error: z.string().optional(),
-  errorMessage: z.string().optional(),
-  weblogicVersion: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    errorMessage: "error_message",
-    weblogicVersion: "weblogic_version",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WeblogicT3$ {
-  /** @deprecated use `WeblogicT3$inboundSchema` instead. */
-  export const inboundSchema = WeblogicT3$inboundSchema;
-  /** @deprecated use `WeblogicT3$outboundSchema` instead. */
-  export const outboundSchema = WeblogicT3$outboundSchema;
-  /** @deprecated use `WeblogicT3$Outbound` instead. */
-  export type Outbound = WeblogicT3$Outbound;
-}
-
-export function weblogicT3ToJSON(weblogicT3: WeblogicT3): string {
-  return JSON.stringify(WeblogicT3$outboundSchema.parse(weblogicT3));
-}
-
 export function weblogicT3FromJSON(
   jsonString: string,
 ): SafeParseResult<WeblogicT3, SDKValidationError> {

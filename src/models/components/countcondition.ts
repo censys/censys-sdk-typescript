@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   FieldValuePair,
-  FieldValuePair$inboundSchema,
   FieldValuePair$Outbound,
   FieldValuePair$outboundSchema,
 } from "./fieldvaluepair.js";
@@ -20,19 +16,6 @@ export type CountCondition = {
    */
   fieldValuePairs: Array<FieldValuePair> | null;
 };
-
-/** @internal */
-export const CountCondition$inboundSchema: z.ZodType<
-  CountCondition,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  field_value_pairs: z.nullable(z.array(FieldValuePair$inboundSchema)),
-}).transform((v) => {
-  return remap$(v, {
-    "field_value_pairs": "fieldValuePairs",
-  });
-});
 
 /** @internal */
 export type CountCondition$Outbound = {
@@ -52,29 +35,6 @@ export const CountCondition$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CountCondition$ {
-  /** @deprecated use `CountCondition$inboundSchema` instead. */
-  export const inboundSchema = CountCondition$inboundSchema;
-  /** @deprecated use `CountCondition$outboundSchema` instead. */
-  export const outboundSchema = CountCondition$outboundSchema;
-  /** @deprecated use `CountCondition$Outbound` instead. */
-  export type Outbound = CountCondition$Outbound;
-}
-
 export function countConditionToJSON(countCondition: CountCondition): string {
   return JSON.stringify(CountCondition$outboundSchema.parse(countCondition));
-}
-
-export function countConditionFromJSON(
-  jsonString: string,
-): SafeParseResult<CountCondition, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CountCondition$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CountCondition' from JSON`,
-  );
 }

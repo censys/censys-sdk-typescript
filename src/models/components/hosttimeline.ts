@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   HostTimelineEventAsset,
   HostTimelineEventAsset$inboundSchema,
-  HostTimelineEventAsset$Outbound,
-  HostTimelineEventAsset$outboundSchema,
 } from "./hosttimelineeventasset.js";
 
 export type HostTimeline = {
@@ -32,43 +30,6 @@ export const HostTimeline$inboundSchema: z.ZodType<
     "scanned_to": "scannedTo",
   });
 });
-
-/** @internal */
-export type HostTimeline$Outbound = {
-  events: Array<HostTimelineEventAsset$Outbound> | null;
-  scanned_to: string;
-};
-
-/** @internal */
-export const HostTimeline$outboundSchema: z.ZodType<
-  HostTimeline$Outbound,
-  z.ZodTypeDef,
-  HostTimeline
-> = z.object({
-  events: z.nullable(z.array(HostTimelineEventAsset$outboundSchema)),
-  scannedTo: z.date().transform(v => v.toISOString()),
-}).transform((v) => {
-  return remap$(v, {
-    scannedTo: "scanned_to",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HostTimeline$ {
-  /** @deprecated use `HostTimeline$inboundSchema` instead. */
-  export const inboundSchema = HostTimeline$inboundSchema;
-  /** @deprecated use `HostTimeline$outboundSchema` instead. */
-  export const outboundSchema = HostTimeline$outboundSchema;
-  /** @deprecated use `HostTimeline$Outbound` instead. */
-  export type Outbound = HostTimeline$Outbound;
-}
-
-export function hostTimelineToJSON(hostTimeline: HostTimeline): string {
-  return JSON.stringify(HostTimeline$outboundSchema.parse(hostTimeline));
-}
 
 export function hostTimelineFromJSON(
   jsonString: string,

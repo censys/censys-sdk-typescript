@@ -7,35 +7,16 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  DsaPublicKey,
-  DsaPublicKey$inboundSchema,
-  DsaPublicKey$Outbound,
-  DsaPublicKey$outboundSchema,
-} from "./dsapublickey.js";
+import { DsaPublicKey, DsaPublicKey$inboundSchema } from "./dsapublickey.js";
 import {
   EcdsaPublicKey,
   EcdsaPublicKey$inboundSchema,
-  EcdsaPublicKey$Outbound,
-  EcdsaPublicKey$outboundSchema,
 } from "./ecdsapublickey.js";
-import {
-  KeyAlgorithm,
-  KeyAlgorithm$inboundSchema,
-  KeyAlgorithm$Outbound,
-  KeyAlgorithm$outboundSchema,
-} from "./keyalgorithm.js";
-import {
-  RsaPublicKey,
-  RsaPublicKey$inboundSchema,
-  RsaPublicKey$Outbound,
-  RsaPublicKey$outboundSchema,
-} from "./rsapublickey.js";
+import { KeyAlgorithm, KeyAlgorithm$inboundSchema } from "./keyalgorithm.js";
+import { RsaPublicKey, RsaPublicKey$inboundSchema } from "./rsapublickey.js";
 import {
   UnrecognizedPublicKey,
   UnrecognizedPublicKey$inboundSchema,
-  UnrecognizedPublicKey$Outbound,
-  UnrecognizedPublicKey$outboundSchema,
 } from "./unrecognizedpublickey.js";
 
 export type SubjectKeyInfo = {
@@ -68,52 +49,6 @@ export const SubjectKeyInfo$inboundSchema: z.ZodType<
     "key_algorithm": "keyAlgorithm",
   });
 });
-
-/** @internal */
-export type SubjectKeyInfo$Outbound = {
-  dsa?: DsaPublicKey$Outbound | undefined;
-  ecdsa?: EcdsaPublicKey$Outbound | undefined;
-  fingerprint_sha256?: string | undefined;
-  key_algorithm?: KeyAlgorithm$Outbound | undefined;
-  rsa?: RsaPublicKey$Outbound | undefined;
-  unrecognized?: UnrecognizedPublicKey$Outbound | undefined;
-};
-
-/** @internal */
-export const SubjectKeyInfo$outboundSchema: z.ZodType<
-  SubjectKeyInfo$Outbound,
-  z.ZodTypeDef,
-  SubjectKeyInfo
-> = z.object({
-  dsa: DsaPublicKey$outboundSchema.optional(),
-  ecdsa: EcdsaPublicKey$outboundSchema.optional(),
-  fingerprintSha256: z.string().optional(),
-  keyAlgorithm: KeyAlgorithm$outboundSchema.optional(),
-  rsa: RsaPublicKey$outboundSchema.optional(),
-  unrecognized: UnrecognizedPublicKey$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    fingerprintSha256: "fingerprint_sha256",
-    keyAlgorithm: "key_algorithm",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SubjectKeyInfo$ {
-  /** @deprecated use `SubjectKeyInfo$inboundSchema` instead. */
-  export const inboundSchema = SubjectKeyInfo$inboundSchema;
-  /** @deprecated use `SubjectKeyInfo$outboundSchema` instead. */
-  export const outboundSchema = SubjectKeyInfo$outboundSchema;
-  /** @deprecated use `SubjectKeyInfo$Outbound` instead. */
-  export type Outbound = SubjectKeyInfo$Outbound;
-}
-
-export function subjectKeyInfoToJSON(subjectKeyInfo: SubjectKeyInfo): string {
-  return JSON.stringify(SubjectKeyInfo$outboundSchema.parse(subjectKeyInfo));
-}
 
 export function subjectKeyInfoFromJSON(
   jsonString: string,

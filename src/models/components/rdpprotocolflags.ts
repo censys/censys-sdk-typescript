@@ -37,57 +37,6 @@ export const RdpProtocolFlags$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type RdpProtocolFlags$Outbound = {
-  dynvc_graphics_pipeline?: boolean | undefined;
-  extended_client_data_supported?: boolean | undefined;
-  neg_resp_reserved?: boolean | undefined;
-  restricted_admin_mode?: boolean | undefined;
-  restricted_auth_mode?: boolean | undefined;
-};
-
-/** @internal */
-export const RdpProtocolFlags$outboundSchema: z.ZodType<
-  RdpProtocolFlags$Outbound,
-  z.ZodTypeDef,
-  RdpProtocolFlags
-> = z.object({
-  dynvcGraphicsPipeline: z.boolean().optional(),
-  extendedClientDataSupported: z.boolean().optional(),
-  negRespReserved: z.boolean().optional(),
-  restrictedAdminMode: z.boolean().optional(),
-  restrictedAuthMode: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    dynvcGraphicsPipeline: "dynvc_graphics_pipeline",
-    extendedClientDataSupported: "extended_client_data_supported",
-    negRespReserved: "neg_resp_reserved",
-    restrictedAdminMode: "restricted_admin_mode",
-    restrictedAuthMode: "restricted_auth_mode",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RdpProtocolFlags$ {
-  /** @deprecated use `RdpProtocolFlags$inboundSchema` instead. */
-  export const inboundSchema = RdpProtocolFlags$inboundSchema;
-  /** @deprecated use `RdpProtocolFlags$outboundSchema` instead. */
-  export const outboundSchema = RdpProtocolFlags$outboundSchema;
-  /** @deprecated use `RdpProtocolFlags$Outbound` instead. */
-  export type Outbound = RdpProtocolFlags$Outbound;
-}
-
-export function rdpProtocolFlagsToJSON(
-  rdpProtocolFlags: RdpProtocolFlags,
-): string {
-  return JSON.stringify(
-    RdpProtocolFlags$outboundSchema.parse(rdpProtocolFlags),
-  );
-}
-
 export function rdpProtocolFlagsFromJSON(
   jsonString: string,
 ): SafeParseResult<RdpProtocolFlags, SDKValidationError> {

@@ -27,47 +27,6 @@ export const DvrIpPartitionCapability$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type DvrIpPartitionCapability$Outbound = {
-  max_partition_number?: number | undefined;
-  supported?: boolean | undefined;
-};
-
-/** @internal */
-export const DvrIpPartitionCapability$outboundSchema: z.ZodType<
-  DvrIpPartitionCapability$Outbound,
-  z.ZodTypeDef,
-  DvrIpPartitionCapability
-> = z.object({
-  maxPartitionNumber: z.number().int().optional(),
-  supported: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    maxPartitionNumber: "max_partition_number",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DvrIpPartitionCapability$ {
-  /** @deprecated use `DvrIpPartitionCapability$inboundSchema` instead. */
-  export const inboundSchema = DvrIpPartitionCapability$inboundSchema;
-  /** @deprecated use `DvrIpPartitionCapability$outboundSchema` instead. */
-  export const outboundSchema = DvrIpPartitionCapability$outboundSchema;
-  /** @deprecated use `DvrIpPartitionCapability$Outbound` instead. */
-  export type Outbound = DvrIpPartitionCapability$Outbound;
-}
-
-export function dvrIpPartitionCapabilityToJSON(
-  dvrIpPartitionCapability: DvrIpPartitionCapability,
-): string {
-  return JSON.stringify(
-    DvrIpPartitionCapability$outboundSchema.parse(dvrIpPartitionCapability),
-  );
-}
-
 export function dvrIpPartitionCapabilityFromJSON(
   jsonString: string,
 ): SafeParseResult<DvrIpPartitionCapability, SDKValidationError> {

@@ -7,60 +7,18 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Attribute,
-  Attribute$inboundSchema,
-  Attribute$Outbound,
-  Attribute$outboundSchema,
-} from "./attribute.js";
-import {
-  Certificate,
-  Certificate$inboundSchema,
-  Certificate$Outbound,
-  Certificate$outboundSchema,
-} from "./certificate.js";
+import { Attribute, Attribute$inboundSchema } from "./attribute.js";
+import { Certificate, Certificate$inboundSchema } from "./certificate.js";
 import {
   EndpointScanState,
   EndpointScanState$inboundSchema,
-  EndpointScanState$Outbound,
-  EndpointScanState$outboundSchema,
 } from "./endpointscanstate.js";
-import {
-  JarmScan,
-  JarmScan$inboundSchema,
-  JarmScan$Outbound,
-  JarmScan$outboundSchema,
-} from "./jarmscan.js";
-import {
-  Label,
-  Label$inboundSchema,
-  Label$Outbound,
-  Label$outboundSchema,
-} from "./label.js";
-import {
-  Risk,
-  Risk$inboundSchema,
-  Risk$Outbound,
-  Risk$outboundSchema,
-} from "./risk.js";
-import {
-  Threat,
-  Threat$inboundSchema,
-  Threat$Outbound,
-  Threat$outboundSchema,
-} from "./threat.js";
-import {
-  Tls,
-  Tls$inboundSchema,
-  Tls$Outbound,
-  Tls$outboundSchema,
-} from "./tls.js";
-import {
-  Vuln,
-  Vuln$inboundSchema,
-  Vuln$Outbound,
-  Vuln$outboundSchema,
-} from "./vuln.js";
+import { JarmScan, JarmScan$inboundSchema } from "./jarmscan.js";
+import { Label, Label$inboundSchema } from "./label.js";
+import { Risk, Risk$inboundSchema } from "./risk.js";
+import { Threat, Threat$inboundSchema } from "./threat.js";
+import { Tls, Tls$inboundSchema } from "./tls.js";
+import { Vuln, Vuln$inboundSchema } from "./vuln.js";
 
 export type Webproperty = {
   cert?: Certificate | undefined;
@@ -107,70 +65,6 @@ export const Webproperty$inboundSchema: z.ZodType<
     "scan_time": "scanTime",
   });
 });
-
-/** @internal */
-export type Webproperty$Outbound = {
-  cert?: Certificate$Outbound | undefined;
-  endpoints?: Array<EndpointScanState$Outbound> | null | undefined;
-  exposures?: Array<Risk$Outbound> | null | undefined;
-  hardware?: Array<Attribute$Outbound> | null | undefined;
-  hostname?: string | undefined;
-  jarm?: JarmScan$Outbound | undefined;
-  labels?: Array<Label$Outbound> | null | undefined;
-  misconfigs?: Array<Risk$Outbound> | null | undefined;
-  operating_systems?: Array<Attribute$Outbound> | null | undefined;
-  port?: number | undefined;
-  scan_time?: string | undefined;
-  software?: Array<Attribute$Outbound> | null | undefined;
-  threats?: Array<Threat$Outbound> | null | undefined;
-  tls?: Tls$Outbound | undefined;
-  vulns?: Array<Vuln$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const Webproperty$outboundSchema: z.ZodType<
-  Webproperty$Outbound,
-  z.ZodTypeDef,
-  Webproperty
-> = z.object({
-  cert: Certificate$outboundSchema.optional(),
-  endpoints: z.nullable(z.array(EndpointScanState$outboundSchema)).optional(),
-  exposures: z.nullable(z.array(Risk$outboundSchema)).optional(),
-  hardware: z.nullable(z.array(Attribute$outboundSchema)).optional(),
-  hostname: z.string().optional(),
-  jarm: JarmScan$outboundSchema.optional(),
-  labels: z.nullable(z.array(Label$outboundSchema)).optional(),
-  misconfigs: z.nullable(z.array(Risk$outboundSchema)).optional(),
-  operatingSystems: z.nullable(z.array(Attribute$outboundSchema)).optional(),
-  port: z.number().int().optional(),
-  scanTime: z.string().optional(),
-  software: z.nullable(z.array(Attribute$outboundSchema)).optional(),
-  threats: z.nullable(z.array(Threat$outboundSchema)).optional(),
-  tls: Tls$outboundSchema.optional(),
-  vulns: z.nullable(z.array(Vuln$outboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    operatingSystems: "operating_systems",
-    scanTime: "scan_time",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Webproperty$ {
-  /** @deprecated use `Webproperty$inboundSchema` instead. */
-  export const inboundSchema = Webproperty$inboundSchema;
-  /** @deprecated use `Webproperty$outboundSchema` instead. */
-  export const outboundSchema = Webproperty$outboundSchema;
-  /** @deprecated use `Webproperty$Outbound` instead. */
-  export type Outbound = Webproperty$Outbound;
-}
-
-export function webpropertyToJSON(webproperty: Webproperty): string {
-  return JSON.stringify(Webproperty$outboundSchema.parse(webproperty));
-}
 
 export function webpropertyFromJSON(
   jsonString: string,

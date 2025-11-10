@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  LpdMessage,
-  LpdMessage$inboundSchema,
-  LpdMessage$Outbound,
-  LpdMessage$outboundSchema,
-} from "./lpdmessage.js";
+import { LpdMessage, LpdMessage$inboundSchema } from "./lpdmessage.js";
 
 export type Lpd = {
   jobs?: LpdMessage | undefined;
@@ -41,52 +36,6 @@ export const Lpd$inboundSchema: z.ZodType<Lpd, z.ZodTypeDef, unknown> = z
       "short_state": "shortState",
     });
   });
-
-/** @internal */
-export type Lpd$Outbound = {
-  jobs?: LpdMessage$Outbound | undefined;
-  long_state?: string | undefined;
-  lpd_message?: LpdMessage$Outbound | undefined;
-  printer?: string | undefined;
-  raw?: string | undefined;
-  short_state?: string | undefined;
-  text?: string | undefined;
-};
-
-/** @internal */
-export const Lpd$outboundSchema: z.ZodType<Lpd$Outbound, z.ZodTypeDef, Lpd> = z
-  .object({
-    jobs: LpdMessage$outboundSchema.optional(),
-    longState: z.string().optional(),
-    lpdMessage: LpdMessage$outboundSchema.optional(),
-    printer: z.string().optional(),
-    raw: z.string().optional(),
-    shortState: z.string().optional(),
-    text: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      longState: "long_state",
-      lpdMessage: "lpd_message",
-      shortState: "short_state",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Lpd$ {
-  /** @deprecated use `Lpd$inboundSchema` instead. */
-  export const inboundSchema = Lpd$inboundSchema;
-  /** @deprecated use `Lpd$outboundSchema` instead. */
-  export const outboundSchema = Lpd$outboundSchema;
-  /** @deprecated use `Lpd$Outbound` instead. */
-  export type Outbound = Lpd$Outbound;
-}
-
-export function lpdToJSON(lpd: Lpd): string {
-  return JSON.stringify(Lpd$outboundSchema.parse(lpd));
-}
 
 export function lpdFromJSON(
   jsonString: string,

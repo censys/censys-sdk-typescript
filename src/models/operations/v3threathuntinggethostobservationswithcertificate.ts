@@ -54,107 +54,6 @@ export type V3ThreathuntingGetHostObservationsWithCertificateResponse = {
 };
 
 /** @internal */
-export const V3ThreathuntingGetHostObservationsWithCertificateGlobals$inboundSchema:
-  z.ZodType<
-    V3ThreathuntingGetHostObservationsWithCertificateGlobals,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    organization_id: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "organization_id": "organizationId",
-    });
-  });
-
-/** @internal */
-export type V3ThreathuntingGetHostObservationsWithCertificateGlobals$Outbound =
-  {
-    organization_id?: string | undefined;
-  };
-
-/** @internal */
-export const V3ThreathuntingGetHostObservationsWithCertificateGlobals$outboundSchema:
-  z.ZodType<
-    V3ThreathuntingGetHostObservationsWithCertificateGlobals$Outbound,
-    z.ZodTypeDef,
-    V3ThreathuntingGetHostObservationsWithCertificateGlobals
-  > = z.object({
-    organizationId: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      organizationId: "organization_id",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3ThreathuntingGetHostObservationsWithCertificateGlobals$ {
-  /** @deprecated use `V3ThreathuntingGetHostObservationsWithCertificateGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    V3ThreathuntingGetHostObservationsWithCertificateGlobals$inboundSchema;
-  /** @deprecated use `V3ThreathuntingGetHostObservationsWithCertificateGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    V3ThreathuntingGetHostObservationsWithCertificateGlobals$outboundSchema;
-  /** @deprecated use `V3ThreathuntingGetHostObservationsWithCertificateGlobals$Outbound` instead. */
-  export type Outbound =
-    V3ThreathuntingGetHostObservationsWithCertificateGlobals$Outbound;
-}
-
-export function v3ThreathuntingGetHostObservationsWithCertificateGlobalsToJSON(
-  v3ThreathuntingGetHostObservationsWithCertificateGlobals:
-    V3ThreathuntingGetHostObservationsWithCertificateGlobals,
-): string {
-  return JSON.stringify(
-    V3ThreathuntingGetHostObservationsWithCertificateGlobals$outboundSchema
-      .parse(v3ThreathuntingGetHostObservationsWithCertificateGlobals),
-  );
-}
-
-export function v3ThreathuntingGetHostObservationsWithCertificateGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  V3ThreathuntingGetHostObservationsWithCertificateGlobals,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      V3ThreathuntingGetHostObservationsWithCertificateGlobals$inboundSchema
-        .parse(JSON.parse(x)),
-    `Failed to parse 'V3ThreathuntingGetHostObservationsWithCertificateGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const V3ThreathuntingGetHostObservationsWithCertificateRequest$inboundSchema:
-  z.ZodType<
-    V3ThreathuntingGetHostObservationsWithCertificateRequest,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    organization_id: z.string().optional(),
-    certificate_id: z.string(),
-    start_time: z.string().optional(),
-    end_time: z.string().optional(),
-    port: z.number().int().optional(),
-    protocol: z.string().optional(),
-    page_token: z.string().optional(),
-    page_size: z.number().int().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "organization_id": "organizationId",
-      "certificate_id": "certificateId",
-      "start_time": "startTime",
-      "end_time": "endTime",
-      "page_token": "pageToken",
-      "page_size": "pageSize",
-    });
-  });
-
-/** @internal */
 export type V3ThreathuntingGetHostObservationsWithCertificateRequest$Outbound =
   {
     organization_id?: string | undefined;
@@ -193,22 +92,6 @@ export const V3ThreathuntingGetHostObservationsWithCertificateRequest$outboundSc
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3ThreathuntingGetHostObservationsWithCertificateRequest$ {
-  /** @deprecated use `V3ThreathuntingGetHostObservationsWithCertificateRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    V3ThreathuntingGetHostObservationsWithCertificateRequest$inboundSchema;
-  /** @deprecated use `V3ThreathuntingGetHostObservationsWithCertificateRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    V3ThreathuntingGetHostObservationsWithCertificateRequest$outboundSchema;
-  /** @deprecated use `V3ThreathuntingGetHostObservationsWithCertificateRequest$Outbound` instead. */
-  export type Outbound =
-    V3ThreathuntingGetHostObservationsWithCertificateRequest$Outbound;
-}
-
 export function v3ThreathuntingGetHostObservationsWithCertificateRequestToJSON(
   v3ThreathuntingGetHostObservationsWithCertificateRequest:
     V3ThreathuntingGetHostObservationsWithCertificateRequest,
@@ -216,21 +99,6 @@ export function v3ThreathuntingGetHostObservationsWithCertificateRequestToJSON(
   return JSON.stringify(
     V3ThreathuntingGetHostObservationsWithCertificateRequest$outboundSchema
       .parse(v3ThreathuntingGetHostObservationsWithCertificateRequest),
-  );
-}
-
-export function v3ThreathuntingGetHostObservationsWithCertificateRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  V3ThreathuntingGetHostObservationsWithCertificateRequest,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      V3ThreathuntingGetHostObservationsWithCertificateRequest$inboundSchema
-        .parse(JSON.parse(x)),
-    `Failed to parse 'V3ThreathuntingGetHostObservationsWithCertificateRequest' from JSON`,
   );
 }
 
@@ -249,55 +117,6 @@ export const V3ThreathuntingGetHostObservationsWithCertificateResponse$inboundSc
       "Result": "result",
     });
   });
-
-/** @internal */
-export type V3ThreathuntingGetHostObservationsWithCertificateResponse$Outbound =
-  {
-    Headers: { [k: string]: Array<string> };
-    Result: components.ResponseEnvelopeHostObservationResponse$Outbound;
-  };
-
-/** @internal */
-export const V3ThreathuntingGetHostObservationsWithCertificateResponse$outboundSchema:
-  z.ZodType<
-    V3ThreathuntingGetHostObservationsWithCertificateResponse$Outbound,
-    z.ZodTypeDef,
-    V3ThreathuntingGetHostObservationsWithCertificateResponse
-  > = z.object({
-    headers: z.record(z.array(z.string())),
-    result: components.ResponseEnvelopeHostObservationResponse$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      headers: "Headers",
-      result: "Result",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3ThreathuntingGetHostObservationsWithCertificateResponse$ {
-  /** @deprecated use `V3ThreathuntingGetHostObservationsWithCertificateResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    V3ThreathuntingGetHostObservationsWithCertificateResponse$inboundSchema;
-  /** @deprecated use `V3ThreathuntingGetHostObservationsWithCertificateResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    V3ThreathuntingGetHostObservationsWithCertificateResponse$outboundSchema;
-  /** @deprecated use `V3ThreathuntingGetHostObservationsWithCertificateResponse$Outbound` instead. */
-  export type Outbound =
-    V3ThreathuntingGetHostObservationsWithCertificateResponse$Outbound;
-}
-
-export function v3ThreathuntingGetHostObservationsWithCertificateResponseToJSON(
-  v3ThreathuntingGetHostObservationsWithCertificateResponse:
-    V3ThreathuntingGetHostObservationsWithCertificateResponse,
-): string {
-  return JSON.stringify(
-    V3ThreathuntingGetHostObservationsWithCertificateResponse$outboundSchema
-      .parse(v3ThreathuntingGetHostObservationsWithCertificateResponse),
-  );
-}
 
 export function v3ThreathuntingGetHostObservationsWithCertificateResponseFromJSON(
   jsonString: string,

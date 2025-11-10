@@ -59,54 +59,6 @@ export const NTPNTPHeader$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type NTPNTPHeader$Outbound = {
-  leap_indicator?: number | undefined;
-  mode?: number | undefined;
-  poll?: number | undefined;
-  precision?: number | undefined;
-  reference_id?: string | undefined;
-  stratum?: number | undefined;
-  version?: number | undefined;
-};
-
-/** @internal */
-export const NTPNTPHeader$outboundSchema: z.ZodType<
-  NTPNTPHeader$Outbound,
-  z.ZodTypeDef,
-  NTPNTPHeader
-> = z.object({
-  leapIndicator: z.number().int().optional(),
-  mode: z.number().int().optional(),
-  poll: z.number().int().optional(),
-  precision: z.number().int().optional(),
-  referenceId: z.string().optional(),
-  stratum: z.number().int().optional(),
-  version: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    leapIndicator: "leap_indicator",
-    referenceId: "reference_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NTPNTPHeader$ {
-  /** @deprecated use `NTPNTPHeader$inboundSchema` instead. */
-  export const inboundSchema = NTPNTPHeader$inboundSchema;
-  /** @deprecated use `NTPNTPHeader$outboundSchema` instead. */
-  export const outboundSchema = NTPNTPHeader$outboundSchema;
-  /** @deprecated use `NTPNTPHeader$Outbound` instead. */
-  export type Outbound = NTPNTPHeader$Outbound;
-}
-
-export function ntpNTPHeaderToJSON(ntpntpHeader: NTPNTPHeader): string {
-  return JSON.stringify(NTPNTPHeader$outboundSchema.parse(ntpntpHeader));
-}
-
 export function ntpNTPHeaderFromJSON(
   jsonString: string,
 ): SafeParseResult<NTPNTPHeader, SDKValidationError> {

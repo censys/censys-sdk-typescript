@@ -47,69 +47,6 @@ export const MongodbBuildInfoBuildEnvironment$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type MongodbBuildInfoBuildEnvironment$Outbound = {
-  cc?: string | undefined;
-  cc_flags?: string | undefined;
-  cxx?: string | undefined;
-  cxx_flags?: string | undefined;
-  dist_arch?: string | undefined;
-  dist_mod?: string | undefined;
-  link_flags?: string | undefined;
-  target_arch?: string | undefined;
-  target_os?: string | undefined;
-};
-
-/** @internal */
-export const MongodbBuildInfoBuildEnvironment$outboundSchema: z.ZodType<
-  MongodbBuildInfoBuildEnvironment$Outbound,
-  z.ZodTypeDef,
-  MongodbBuildInfoBuildEnvironment
-> = z.object({
-  cc: z.string().optional(),
-  ccFlags: z.string().optional(),
-  cxx: z.string().optional(),
-  cxxFlags: z.string().optional(),
-  distArch: z.string().optional(),
-  distMod: z.string().optional(),
-  linkFlags: z.string().optional(),
-  targetArch: z.string().optional(),
-  targetOs: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    ccFlags: "cc_flags",
-    cxxFlags: "cxx_flags",
-    distArch: "dist_arch",
-    distMod: "dist_mod",
-    linkFlags: "link_flags",
-    targetArch: "target_arch",
-    targetOs: "target_os",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MongodbBuildInfoBuildEnvironment$ {
-  /** @deprecated use `MongodbBuildInfoBuildEnvironment$inboundSchema` instead. */
-  export const inboundSchema = MongodbBuildInfoBuildEnvironment$inboundSchema;
-  /** @deprecated use `MongodbBuildInfoBuildEnvironment$outboundSchema` instead. */
-  export const outboundSchema = MongodbBuildInfoBuildEnvironment$outboundSchema;
-  /** @deprecated use `MongodbBuildInfoBuildEnvironment$Outbound` instead. */
-  export type Outbound = MongodbBuildInfoBuildEnvironment$Outbound;
-}
-
-export function mongodbBuildInfoBuildEnvironmentToJSON(
-  mongodbBuildInfoBuildEnvironment: MongodbBuildInfoBuildEnvironment,
-): string {
-  return JSON.stringify(
-    MongodbBuildInfoBuildEnvironment$outboundSchema.parse(
-      mongodbBuildInfoBuildEnvironment,
-    ),
-  );
-}
-
 export function mongodbBuildInfoBuildEnvironmentFromJSON(
   jsonString: string,
 ): SafeParseResult<MongodbBuildInfoBuildEnvironment, SDKValidationError> {

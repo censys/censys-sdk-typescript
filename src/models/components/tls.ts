@@ -8,17 +8,10 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  TlsChain,
-  TlsChain$inboundSchema,
-  TlsChain$Outbound,
-  TlsChain$outboundSchema,
-} from "./tlschain.js";
+import { TlsChain, TlsChain$inboundSchema } from "./tlschain.js";
 import {
   TlsVersionData,
   TlsVersionData$inboundSchema,
-  TlsVersionData$Outbound,
-  TlsVersionData$outboundSchema,
 } from "./tlsversiondata.js";
 
 /**
@@ -72,22 +65,6 @@ export const VersionSelected$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(VersionSelected);
 
 /** @internal */
-export const VersionSelected$outboundSchema: z.ZodNativeEnum<
-  typeof VersionSelected
-> = VersionSelected$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VersionSelected$ {
-  /** @deprecated use `VersionSelected$inboundSchema` instead. */
-  export const inboundSchema = VersionSelected$inboundSchema;
-  /** @deprecated use `VersionSelected$outboundSchema` instead. */
-  export const outboundSchema = VersionSelected$outboundSchema;
-}
-
-/** @internal */
 export const Tls$inboundSchema: z.ZodType<Tls, z.ZodTypeDef, unknown> = z
   .object({
     cipher_selected: z.string().optional(),
@@ -105,53 +82,6 @@ export const Tls$inboundSchema: z.ZodType<Tls, z.ZodTypeDef, unknown> = z
       "version_selected": "versionSelected",
     });
   });
-
-/** @internal */
-export type Tls$Outbound = {
-  cipher_selected?: string | undefined;
-  fingerprint_sha256?: string | undefined;
-  ja3s?: string | undefined;
-  ja4s?: string | undefined;
-  presented_chain?: Array<TlsChain$Outbound> | null | undefined;
-  version_selected?: string | undefined;
-  versions?: Array<TlsVersionData$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const Tls$outboundSchema: z.ZodType<Tls$Outbound, z.ZodTypeDef, Tls> = z
-  .object({
-    cipherSelected: z.string().optional(),
-    fingerprintSha256: z.string().optional(),
-    ja3s: z.string().optional(),
-    ja4s: z.string().optional(),
-    presentedChain: z.nullable(z.array(TlsChain$outboundSchema)).optional(),
-    versionSelected: VersionSelected$outboundSchema.optional(),
-    versions: z.nullable(z.array(TlsVersionData$outboundSchema)).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      cipherSelected: "cipher_selected",
-      fingerprintSha256: "fingerprint_sha256",
-      presentedChain: "presented_chain",
-      versionSelected: "version_selected",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Tls$ {
-  /** @deprecated use `Tls$inboundSchema` instead. */
-  export const inboundSchema = Tls$inboundSchema;
-  /** @deprecated use `Tls$outboundSchema` instead. */
-  export const outboundSchema = Tls$outboundSchema;
-  /** @deprecated use `Tls$Outbound` instead. */
-  export type Outbound = Tls$Outbound;
-}
-
-export function tlsToJSON(tls: Tls): string {
-  return JSON.stringify(Tls$outboundSchema.parse(tls));
-}
 
 export function tlsFromJSON(
   jsonString: string,

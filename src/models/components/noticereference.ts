@@ -27,45 +27,6 @@ export const NoticeReference$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type NoticeReference$Outbound = {
-  notice_numbers?: Array<number> | null | undefined;
-  organization?: string | undefined;
-};
-
-/** @internal */
-export const NoticeReference$outboundSchema: z.ZodType<
-  NoticeReference$Outbound,
-  z.ZodTypeDef,
-  NoticeReference
-> = z.object({
-  noticeNumbers: z.nullable(z.array(z.number().int())).optional(),
-  organization: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    noticeNumbers: "notice_numbers",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NoticeReference$ {
-  /** @deprecated use `NoticeReference$inboundSchema` instead. */
-  export const inboundSchema = NoticeReference$inboundSchema;
-  /** @deprecated use `NoticeReference$outboundSchema` instead. */
-  export const outboundSchema = NoticeReference$outboundSchema;
-  /** @deprecated use `NoticeReference$Outbound` instead. */
-  export type Outbound = NoticeReference$Outbound;
-}
-
-export function noticeReferenceToJSON(
-  noticeReference: NoticeReference,
-): string {
-  return JSON.stringify(NoticeReference$outboundSchema.parse(noticeReference));
-}
-
 export function noticeReferenceFromJSON(
   jsonString: string,
 ): SafeParseResult<NoticeReference, SDKValidationError> {

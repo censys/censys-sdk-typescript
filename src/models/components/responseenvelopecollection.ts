@@ -6,12 +6,7 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Collection,
-  Collection$inboundSchema,
-  Collection$Outbound,
-  Collection$outboundSchema,
-} from "./collection.js";
+import { Collection, Collection$inboundSchema } from "./collection.js";
 
 export type ResponseEnvelopeCollection = {
   result?: Collection | undefined;
@@ -25,41 +20,6 @@ export const ResponseEnvelopeCollection$inboundSchema: z.ZodType<
 > = z.object({
   result: Collection$inboundSchema.optional(),
 });
-
-/** @internal */
-export type ResponseEnvelopeCollection$Outbound = {
-  result?: Collection$Outbound | undefined;
-};
-
-/** @internal */
-export const ResponseEnvelopeCollection$outboundSchema: z.ZodType<
-  ResponseEnvelopeCollection$Outbound,
-  z.ZodTypeDef,
-  ResponseEnvelopeCollection
-> = z.object({
-  result: Collection$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseEnvelopeCollection$ {
-  /** @deprecated use `ResponseEnvelopeCollection$inboundSchema` instead. */
-  export const inboundSchema = ResponseEnvelopeCollection$inboundSchema;
-  /** @deprecated use `ResponseEnvelopeCollection$outboundSchema` instead. */
-  export const outboundSchema = ResponseEnvelopeCollection$outboundSchema;
-  /** @deprecated use `ResponseEnvelopeCollection$Outbound` instead. */
-  export type Outbound = ResponseEnvelopeCollection$Outbound;
-}
-
-export function responseEnvelopeCollectionToJSON(
-  responseEnvelopeCollection: ResponseEnvelopeCollection,
-): string {
-  return JSON.stringify(
-    ResponseEnvelopeCollection$outboundSchema.parse(responseEnvelopeCollection),
-  );
-}
 
 export function responseEnvelopeCollectionFromJSON(
   jsonString: string,

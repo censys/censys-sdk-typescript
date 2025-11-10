@@ -54,56 +54,6 @@ export const AutonomousSystem$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type AutonomousSystem$Outbound = {
-  asn?: number | undefined;
-  bgp_prefix?: string | undefined;
-  country_code?: string | undefined;
-  description?: string | undefined;
-  name?: string | undefined;
-  organization?: string | undefined;
-};
-
-/** @internal */
-export const AutonomousSystem$outboundSchema: z.ZodType<
-  AutonomousSystem$Outbound,
-  z.ZodTypeDef,
-  AutonomousSystem
-> = z.object({
-  asn: z.number().int().optional(),
-  bgpPrefix: z.string().optional(),
-  countryCode: z.string().optional(),
-  description: z.string().optional(),
-  name: z.string().optional(),
-  organization: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    bgpPrefix: "bgp_prefix",
-    countryCode: "country_code",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AutonomousSystem$ {
-  /** @deprecated use `AutonomousSystem$inboundSchema` instead. */
-  export const inboundSchema = AutonomousSystem$inboundSchema;
-  /** @deprecated use `AutonomousSystem$outboundSchema` instead. */
-  export const outboundSchema = AutonomousSystem$outboundSchema;
-  /** @deprecated use `AutonomousSystem$Outbound` instead. */
-  export type Outbound = AutonomousSystem$Outbound;
-}
-
-export function autonomousSystemToJSON(
-  autonomousSystem: AutonomousSystem,
-): string {
-  return JSON.stringify(
-    AutonomousSystem$outboundSchema.parse(autonomousSystem),
-  );
-}
-
 export function autonomousSystemFromJSON(
   jsonString: string,
 ): SafeParseResult<AutonomousSystem, SDKValidationError> {

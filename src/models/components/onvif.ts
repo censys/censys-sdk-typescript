@@ -6,18 +6,8 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  OnvifHostname,
-  OnvifHostname$inboundSchema,
-  OnvifHostname$Outbound,
-  OnvifHostname$outboundSchema,
-} from "./onvifhostname.js";
-import {
-  OnvifService,
-  OnvifService$inboundSchema,
-  OnvifService$Outbound,
-  OnvifService$outboundSchema,
-} from "./onvifservice.js";
+import { OnvifHostname, OnvifHostname$inboundSchema } from "./onvifhostname.js";
+import { OnvifService, OnvifService$inboundSchema } from "./onvifservice.js";
 
 export type Onvif = {
   hostname?: OnvifHostname | undefined;
@@ -30,39 +20,6 @@ export const Onvif$inboundSchema: z.ZodType<Onvif, z.ZodTypeDef, unknown> = z
     hostname: OnvifHostname$inboundSchema.optional(),
     services: z.nullable(z.array(OnvifService$inboundSchema)).optional(),
   });
-
-/** @internal */
-export type Onvif$Outbound = {
-  hostname?: OnvifHostname$Outbound | undefined;
-  services?: Array<OnvifService$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const Onvif$outboundSchema: z.ZodType<
-  Onvif$Outbound,
-  z.ZodTypeDef,
-  Onvif
-> = z.object({
-  hostname: OnvifHostname$outboundSchema.optional(),
-  services: z.nullable(z.array(OnvifService$outboundSchema)).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Onvif$ {
-  /** @deprecated use `Onvif$inboundSchema` instead. */
-  export const inboundSchema = Onvif$inboundSchema;
-  /** @deprecated use `Onvif$outboundSchema` instead. */
-  export const outboundSchema = Onvif$outboundSchema;
-  /** @deprecated use `Onvif$Outbound` instead. */
-  export type Outbound = Onvif$Outbound;
-}
-
-export function onvifToJSON(onvif: Onvif): string {
-  return JSON.stringify(Onvif$outboundSchema.parse(onvif));
-}
 
 export function onvifFromJSON(
   jsonString: string,

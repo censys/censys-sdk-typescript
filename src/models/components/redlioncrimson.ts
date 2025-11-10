@@ -38,54 +38,6 @@ export const RedlionCrimson$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type RedlionCrimson$Outbound = {
-  configs_exposed?: boolean | undefined;
-  control_engine_status?: string | undefined;
-  current_software_level?: string | undefined;
-  execution_status?: string | undefined;
-  manufacturer?: string | undefined;
-  model?: string | undefined;
-};
-
-/** @internal */
-export const RedlionCrimson$outboundSchema: z.ZodType<
-  RedlionCrimson$Outbound,
-  z.ZodTypeDef,
-  RedlionCrimson
-> = z.object({
-  configsExposed: z.boolean().optional(),
-  controlEngineStatus: z.string().optional(),
-  currentSoftwareLevel: z.string().optional(),
-  executionStatus: z.string().optional(),
-  manufacturer: z.string().optional(),
-  model: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    configsExposed: "configs_exposed",
-    controlEngineStatus: "control_engine_status",
-    currentSoftwareLevel: "current_software_level",
-    executionStatus: "execution_status",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RedlionCrimson$ {
-  /** @deprecated use `RedlionCrimson$inboundSchema` instead. */
-  export const inboundSchema = RedlionCrimson$inboundSchema;
-  /** @deprecated use `RedlionCrimson$outboundSchema` instead. */
-  export const outboundSchema = RedlionCrimson$outboundSchema;
-  /** @deprecated use `RedlionCrimson$Outbound` instead. */
-  export type Outbound = RedlionCrimson$Outbound;
-}
-
-export function redlionCrimsonToJSON(redlionCrimson: RedlionCrimson): string {
-  return JSON.stringify(RedlionCrimson$outboundSchema.parse(redlionCrimson));
-}
-
 export function redlionCrimsonFromJSON(
   jsonString: string,
 ): SafeParseResult<RedlionCrimson, SDKValidationError> {

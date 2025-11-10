@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   RdpDomainParameters,
   RdpDomainParameters$inboundSchema,
-  RdpDomainParameters$Outbound,
-  RdpDomainParameters$outboundSchema,
 } from "./rdpdomainparameters.js";
 
 export type RdpConnectResponse = {
@@ -33,48 +31,6 @@ export const RdpConnectResponse$inboundSchema: z.ZodType<
     "domain_parameters": "domainParameters",
   });
 });
-
-/** @internal */
-export type RdpConnectResponse$Outbound = {
-  connect_id?: number | undefined;
-  domain_parameters?: RdpDomainParameters$Outbound | undefined;
-};
-
-/** @internal */
-export const RdpConnectResponse$outboundSchema: z.ZodType<
-  RdpConnectResponse$Outbound,
-  z.ZodTypeDef,
-  RdpConnectResponse
-> = z.object({
-  connectId: z.number().int().optional(),
-  domainParameters: RdpDomainParameters$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    connectId: "connect_id",
-    domainParameters: "domain_parameters",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RdpConnectResponse$ {
-  /** @deprecated use `RdpConnectResponse$inboundSchema` instead. */
-  export const inboundSchema = RdpConnectResponse$inboundSchema;
-  /** @deprecated use `RdpConnectResponse$outboundSchema` instead. */
-  export const outboundSchema = RdpConnectResponse$outboundSchema;
-  /** @deprecated use `RdpConnectResponse$Outbound` instead. */
-  export type Outbound = RdpConnectResponse$Outbound;
-}
-
-export function rdpConnectResponseToJSON(
-  rdpConnectResponse: RdpConnectResponse,
-): string {
-  return JSON.stringify(
-    RdpConnectResponse$outboundSchema.parse(rdpConnectResponse),
-  );
-}
 
 export function rdpConnectResponseFromJSON(
   jsonString: string,

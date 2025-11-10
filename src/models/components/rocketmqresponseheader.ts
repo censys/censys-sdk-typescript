@@ -33,53 +33,6 @@ export const RocketmqResponseHeader$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type RocketmqResponseHeader$Outbound = {
-  code?: number | undefined;
-  flag?: number | undefined;
-  language?: string | undefined;
-  opaque?: number | undefined;
-  serialize_type_current_rpc?: string | undefined;
-};
-
-/** @internal */
-export const RocketmqResponseHeader$outboundSchema: z.ZodType<
-  RocketmqResponseHeader$Outbound,
-  z.ZodTypeDef,
-  RocketmqResponseHeader
-> = z.object({
-  code: z.number().int().optional(),
-  flag: z.number().int().optional(),
-  language: z.string().optional(),
-  opaque: z.number().int().optional(),
-  serializeTypeCurrentRpc: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    serializeTypeCurrentRpc: "serialize_type_current_rpc",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RocketmqResponseHeader$ {
-  /** @deprecated use `RocketmqResponseHeader$inboundSchema` instead. */
-  export const inboundSchema = RocketmqResponseHeader$inboundSchema;
-  /** @deprecated use `RocketmqResponseHeader$outboundSchema` instead. */
-  export const outboundSchema = RocketmqResponseHeader$outboundSchema;
-  /** @deprecated use `RocketmqResponseHeader$Outbound` instead. */
-  export type Outbound = RocketmqResponseHeader$Outbound;
-}
-
-export function rocketmqResponseHeaderToJSON(
-  rocketmqResponseHeader: RocketmqResponseHeader,
-): string {
-  return JSON.stringify(
-    RocketmqResponseHeader$outboundSchema.parse(rocketmqResponseHeader),
-  );
-}
-
 export function rocketmqResponseHeaderFromJSON(
   jsonString: string,
 ): SafeParseResult<RocketmqResponseHeader, SDKValidationError> {

@@ -10,26 +10,18 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   IpmiCapabilities,
   IpmiCapabilities$inboundSchema,
-  IpmiCapabilities$Outbound,
-  IpmiCapabilities$outboundSchema,
 } from "./ipmicapabilities.js";
 import {
   IpmiCommandPayload,
   IpmiCommandPayload$inboundSchema,
-  IpmiCommandPayload$Outbound,
-  IpmiCommandPayload$outboundSchema,
 } from "./ipmicommandpayload.js";
 import {
   IpmiRMCPHeader,
   IpmiRMCPHeader$inboundSchema,
-  IpmiRMCPHeader$Outbound,
-  IpmiRMCPHeader$outboundSchema,
 } from "./ipmirmcpheader.js";
 import {
   IpmiSessionHeader,
   IpmiSessionHeader$inboundSchema,
-  IpmiSessionHeader$Outbound,
-  IpmiSessionHeader$outboundSchema,
 } from "./ipmisessionheader.js";
 
 export type Ipmi = {
@@ -58,48 +50,6 @@ export const Ipmi$inboundSchema: z.ZodType<Ipmi, z.ZodTypeDef, unknown> = z
       "session_header": "sessionHeader",
     });
   });
-
-/** @internal */
-export type Ipmi$Outbound = {
-  capabilities?: IpmiCapabilities$Outbound | undefined;
-  command_payload?: IpmiCommandPayload$Outbound | undefined;
-  raw?: string | undefined;
-  rmcp_header?: IpmiRMCPHeader$Outbound | undefined;
-  session_header?: IpmiSessionHeader$Outbound | undefined;
-};
-
-/** @internal */
-export const Ipmi$outboundSchema: z.ZodType<Ipmi$Outbound, z.ZodTypeDef, Ipmi> =
-  z.object({
-    capabilities: IpmiCapabilities$outboundSchema.optional(),
-    commandPayload: IpmiCommandPayload$outboundSchema.optional(),
-    raw: z.string().optional(),
-    rmcpHeader: IpmiRMCPHeader$outboundSchema.optional(),
-    sessionHeader: IpmiSessionHeader$outboundSchema.optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      commandPayload: "command_payload",
-      rmcpHeader: "rmcp_header",
-      sessionHeader: "session_header",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Ipmi$ {
-  /** @deprecated use `Ipmi$inboundSchema` instead. */
-  export const inboundSchema = Ipmi$inboundSchema;
-  /** @deprecated use `Ipmi$outboundSchema` instead. */
-  export const outboundSchema = Ipmi$outboundSchema;
-  /** @deprecated use `Ipmi$Outbound` instead. */
-  export type Outbound = Ipmi$Outbound;
-}
-
-export function ipmiToJSON(ipmi: Ipmi): string {
-  return JSON.stringify(Ipmi$outboundSchema.parse(ipmi));
-}
 
 export function ipmiFromJSON(
   jsonString: string,

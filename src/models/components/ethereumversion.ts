@@ -28,47 +28,6 @@ export const EthereumVersion$inboundSchema: z.ZodType<
   version: z.string().optional(),
 });
 
-/** @internal */
-export type EthereumVersion$Outbound = {
-  client?: string | undefined;
-  compiler?: string | undefined;
-  platform?: string | undefined;
-  trailing?: string | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const EthereumVersion$outboundSchema: z.ZodType<
-  EthereumVersion$Outbound,
-  z.ZodTypeDef,
-  EthereumVersion
-> = z.object({
-  client: z.string().optional(),
-  compiler: z.string().optional(),
-  platform: z.string().optional(),
-  trailing: z.string().optional(),
-  version: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EthereumVersion$ {
-  /** @deprecated use `EthereumVersion$inboundSchema` instead. */
-  export const inboundSchema = EthereumVersion$inboundSchema;
-  /** @deprecated use `EthereumVersion$outboundSchema` instead. */
-  export const outboundSchema = EthereumVersion$outboundSchema;
-  /** @deprecated use `EthereumVersion$Outbound` instead. */
-  export type Outbound = EthereumVersion$Outbound;
-}
-
-export function ethereumVersionToJSON(
-  ethereumVersion: EthereumVersion,
-): string {
-  return JSON.stringify(EthereumVersion$outboundSchema.parse(ethereumVersion));
-}
-
 export function ethereumVersionFromJSON(
   jsonString: string,
 ): SafeParseResult<EthereumVersion, SDKValidationError> {

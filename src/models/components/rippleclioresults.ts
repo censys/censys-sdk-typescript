@@ -33,53 +33,6 @@ export const RippleClioResults$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type RippleClioResults$Outbound = {
-  clio_version?: string | undefined;
-  rippled_version?: string | undefined;
-  validated?: boolean | undefined;
-  validation_quorum?: number | undefined;
-};
-
-/** @internal */
-export const RippleClioResults$outboundSchema: z.ZodType<
-  RippleClioResults$Outbound,
-  z.ZodTypeDef,
-  RippleClioResults
-> = z.object({
-  clioVersion: z.string().optional(),
-  rippledVersion: z.string().optional(),
-  validated: z.boolean().optional(),
-  validationQuorum: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    clioVersion: "clio_version",
-    rippledVersion: "rippled_version",
-    validationQuorum: "validation_quorum",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RippleClioResults$ {
-  /** @deprecated use `RippleClioResults$inboundSchema` instead. */
-  export const inboundSchema = RippleClioResults$inboundSchema;
-  /** @deprecated use `RippleClioResults$outboundSchema` instead. */
-  export const outboundSchema = RippleClioResults$outboundSchema;
-  /** @deprecated use `RippleClioResults$Outbound` instead. */
-  export type Outbound = RippleClioResults$Outbound;
-}
-
-export function rippleClioResultsToJSON(
-  rippleClioResults: RippleClioResults,
-): string {
-  return JSON.stringify(
-    RippleClioResults$outboundSchema.parse(rippleClioResults),
-  );
-}
-
 export function rippleClioResultsFromJSON(
   jsonString: string,
 ): SafeParseResult<RippleClioResults, SDKValidationError> {

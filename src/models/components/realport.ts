@@ -42,58 +42,6 @@ export const Realport$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type Realport$Outbound = {
-  hardware_id?: number | undefined;
-  hardware_version?: number | undefined;
-  num_ports?: number | undefined;
-  product_name?: string | undefined;
-  software_version?: number | undefined;
-  unpatched_etherlite?: boolean | undefined;
-  vpd?: { [k: string]: string } | undefined;
-};
-
-/** @internal */
-export const Realport$outboundSchema: z.ZodType<
-  Realport$Outbound,
-  z.ZodTypeDef,
-  Realport
-> = z.object({
-  hardwareId: z.number().int().optional(),
-  hardwareVersion: z.number().int().optional(),
-  numPorts: z.number().int().optional(),
-  productName: z.string().optional(),
-  softwareVersion: z.number().int().optional(),
-  unpatchedEtherlite: z.boolean().optional(),
-  vpd: z.record(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    hardwareId: "hardware_id",
-    hardwareVersion: "hardware_version",
-    numPorts: "num_ports",
-    productName: "product_name",
-    softwareVersion: "software_version",
-    unpatchedEtherlite: "unpatched_etherlite",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Realport$ {
-  /** @deprecated use `Realport$inboundSchema` instead. */
-  export const inboundSchema = Realport$inboundSchema;
-  /** @deprecated use `Realport$outboundSchema` instead. */
-  export const outboundSchema = Realport$outboundSchema;
-  /** @deprecated use `Realport$Outbound` instead. */
-  export type Outbound = Realport$Outbound;
-}
-
-export function realportToJSON(realport: Realport): string {
-  return JSON.stringify(Realport$outboundSchema.parse(realport));
-}
-
 export function realportFromJSON(
   jsonString: string,
 ): SafeParseResult<Realport, SDKValidationError> {

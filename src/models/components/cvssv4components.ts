@@ -219,41 +219,9 @@ export const CVSSv4ComponentsAttackComplexity$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(CVSSv4ComponentsAttackComplexity);
 
 /** @internal */
-export const CVSSv4ComponentsAttackComplexity$outboundSchema: z.ZodNativeEnum<
-  typeof CVSSv4ComponentsAttackComplexity
-> = CVSSv4ComponentsAttackComplexity$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CVSSv4ComponentsAttackComplexity$ {
-  /** @deprecated use `CVSSv4ComponentsAttackComplexity$inboundSchema` instead. */
-  export const inboundSchema = CVSSv4ComponentsAttackComplexity$inboundSchema;
-  /** @deprecated use `CVSSv4ComponentsAttackComplexity$outboundSchema` instead. */
-  export const outboundSchema = CVSSv4ComponentsAttackComplexity$outboundSchema;
-}
-
-/** @internal */
 export const AttackRequirements$inboundSchema: z.ZodNativeEnum<
   typeof AttackRequirements
 > = z.nativeEnum(AttackRequirements);
-
-/** @internal */
-export const AttackRequirements$outboundSchema: z.ZodNativeEnum<
-  typeof AttackRequirements
-> = AttackRequirements$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AttackRequirements$ {
-  /** @deprecated use `AttackRequirements$inboundSchema` instead. */
-  export const inboundSchema = AttackRequirements$inboundSchema;
-  /** @deprecated use `AttackRequirements$outboundSchema` instead. */
-  export const outboundSchema = AttackRequirements$outboundSchema;
-}
 
 /** @internal */
 export const CVSSv4ComponentsAttackVector$inboundSchema: z.ZodNativeEnum<
@@ -261,39 +229,8 @@ export const CVSSv4ComponentsAttackVector$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(CVSSv4ComponentsAttackVector);
 
 /** @internal */
-export const CVSSv4ComponentsAttackVector$outboundSchema: z.ZodNativeEnum<
-  typeof CVSSv4ComponentsAttackVector
-> = CVSSv4ComponentsAttackVector$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CVSSv4ComponentsAttackVector$ {
-  /** @deprecated use `CVSSv4ComponentsAttackVector$inboundSchema` instead. */
-  export const inboundSchema = CVSSv4ComponentsAttackVector$inboundSchema;
-  /** @deprecated use `CVSSv4ComponentsAttackVector$outboundSchema` instead. */
-  export const outboundSchema = CVSSv4ComponentsAttackVector$outboundSchema;
-}
-
-/** @internal */
 export const Automatable$inboundSchema: z.ZodNativeEnum<typeof Automatable> = z
   .nativeEnum(Automatable);
-
-/** @internal */
-export const Automatable$outboundSchema: z.ZodNativeEnum<typeof Automatable> =
-  Automatable$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Automatable$ {
-  /** @deprecated use `Automatable$inboundSchema` instead. */
-  export const inboundSchema = Automatable$inboundSchema;
-  /** @deprecated use `Automatable$outboundSchema` instead. */
-  export const outboundSchema = Automatable$outboundSchema;
-}
 
 /** @internal */
 export const CVSSv4ComponentsAvailability$inboundSchema: z.ZodNativeEnum<
@@ -301,41 +238,9 @@ export const CVSSv4ComponentsAvailability$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(CVSSv4ComponentsAvailability);
 
 /** @internal */
-export const CVSSv4ComponentsAvailability$outboundSchema: z.ZodNativeEnum<
-  typeof CVSSv4ComponentsAvailability
-> = CVSSv4ComponentsAvailability$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CVSSv4ComponentsAvailability$ {
-  /** @deprecated use `CVSSv4ComponentsAvailability$inboundSchema` instead. */
-  export const inboundSchema = CVSSv4ComponentsAvailability$inboundSchema;
-  /** @deprecated use `CVSSv4ComponentsAvailability$outboundSchema` instead. */
-  export const outboundSchema = CVSSv4ComponentsAvailability$outboundSchema;
-}
-
-/** @internal */
 export const CVSSv4ComponentsConfidentiality$inboundSchema: z.ZodNativeEnum<
   typeof CVSSv4ComponentsConfidentiality
 > = z.nativeEnum(CVSSv4ComponentsConfidentiality);
-
-/** @internal */
-export const CVSSv4ComponentsConfidentiality$outboundSchema: z.ZodNativeEnum<
-  typeof CVSSv4ComponentsConfidentiality
-> = CVSSv4ComponentsConfidentiality$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CVSSv4ComponentsConfidentiality$ {
-  /** @deprecated use `CVSSv4ComponentsConfidentiality$inboundSchema` instead. */
-  export const inboundSchema = CVSSv4ComponentsConfidentiality$inboundSchema;
-  /** @deprecated use `CVSSv4ComponentsConfidentiality$outboundSchema` instead. */
-  export const outboundSchema = CVSSv4ComponentsConfidentiality$outboundSchema;
-}
 
 /** @internal */
 export const CVSSv4ComponentsIntegrity$inboundSchema: z.ZodNativeEnum<
@@ -343,42 +248,9 @@ export const CVSSv4ComponentsIntegrity$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(CVSSv4ComponentsIntegrity);
 
 /** @internal */
-export const CVSSv4ComponentsIntegrity$outboundSchema: z.ZodNativeEnum<
-  typeof CVSSv4ComponentsIntegrity
-> = CVSSv4ComponentsIntegrity$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CVSSv4ComponentsIntegrity$ {
-  /** @deprecated use `CVSSv4ComponentsIntegrity$inboundSchema` instead. */
-  export const inboundSchema = CVSSv4ComponentsIntegrity$inboundSchema;
-  /** @deprecated use `CVSSv4ComponentsIntegrity$outboundSchema` instead. */
-  export const outboundSchema = CVSSv4ComponentsIntegrity$outboundSchema;
-}
-
-/** @internal */
 export const CVSSv4ComponentsPrivilegesRequired$inboundSchema: z.ZodNativeEnum<
   typeof CVSSv4ComponentsPrivilegesRequired
 > = z.nativeEnum(CVSSv4ComponentsPrivilegesRequired);
-
-/** @internal */
-export const CVSSv4ComponentsPrivilegesRequired$outboundSchema: z.ZodNativeEnum<
-  typeof CVSSv4ComponentsPrivilegesRequired
-> = CVSSv4ComponentsPrivilegesRequired$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CVSSv4ComponentsPrivilegesRequired$ {
-  /** @deprecated use `CVSSv4ComponentsPrivilegesRequired$inboundSchema` instead. */
-  export const inboundSchema = CVSSv4ComponentsPrivilegesRequired$inboundSchema;
-  /** @deprecated use `CVSSv4ComponentsPrivilegesRequired$outboundSchema` instead. */
-  export const outboundSchema =
-    CVSSv4ComponentsPrivilegesRequired$outboundSchema;
-}
 
 /** @internal */
 export const ProviderUrgency$inboundSchema: z.ZodNativeEnum<
@@ -386,58 +258,12 @@ export const ProviderUrgency$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(ProviderUrgency);
 
 /** @internal */
-export const ProviderUrgency$outboundSchema: z.ZodNativeEnum<
-  typeof ProviderUrgency
-> = ProviderUrgency$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ProviderUrgency$ {
-  /** @deprecated use `ProviderUrgency$inboundSchema` instead. */
-  export const inboundSchema = ProviderUrgency$inboundSchema;
-  /** @deprecated use `ProviderUrgency$outboundSchema` instead. */
-  export const outboundSchema = ProviderUrgency$outboundSchema;
-}
-
-/** @internal */
 export const Recovery$inboundSchema: z.ZodNativeEnum<typeof Recovery> = z
   .nativeEnum(Recovery);
 
 /** @internal */
-export const Recovery$outboundSchema: z.ZodNativeEnum<typeof Recovery> =
-  Recovery$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Recovery$ {
-  /** @deprecated use `Recovery$inboundSchema` instead. */
-  export const inboundSchema = Recovery$inboundSchema;
-  /** @deprecated use `Recovery$outboundSchema` instead. */
-  export const outboundSchema = Recovery$outboundSchema;
-}
-
-/** @internal */
 export const Safety$inboundSchema: z.ZodNativeEnum<typeof Safety> = z
   .nativeEnum(Safety);
-
-/** @internal */
-export const Safety$outboundSchema: z.ZodNativeEnum<typeof Safety> =
-  Safety$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Safety$ {
-  /** @deprecated use `Safety$inboundSchema` instead. */
-  export const inboundSchema = Safety$inboundSchema;
-  /** @deprecated use `Safety$outboundSchema` instead. */
-  export const outboundSchema = Safety$outboundSchema;
-}
 
 /** @internal */
 export const CVSSv4ComponentsUserInteraction$inboundSchema: z.ZodNativeEnum<
@@ -445,60 +271,13 @@ export const CVSSv4ComponentsUserInteraction$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(CVSSv4ComponentsUserInteraction);
 
 /** @internal */
-export const CVSSv4ComponentsUserInteraction$outboundSchema: z.ZodNativeEnum<
-  typeof CVSSv4ComponentsUserInteraction
-> = CVSSv4ComponentsUserInteraction$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CVSSv4ComponentsUserInteraction$ {
-  /** @deprecated use `CVSSv4ComponentsUserInteraction$inboundSchema` instead. */
-  export const inboundSchema = CVSSv4ComponentsUserInteraction$inboundSchema;
-  /** @deprecated use `CVSSv4ComponentsUserInteraction$outboundSchema` instead. */
-  export const outboundSchema = CVSSv4ComponentsUserInteraction$outboundSchema;
-}
-
-/** @internal */
 export const ValueDensity$inboundSchema: z.ZodNativeEnum<typeof ValueDensity> =
   z.nativeEnum(ValueDensity);
-
-/** @internal */
-export const ValueDensity$outboundSchema: z.ZodNativeEnum<typeof ValueDensity> =
-  ValueDensity$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ValueDensity$ {
-  /** @deprecated use `ValueDensity$inboundSchema` instead. */
-  export const inboundSchema = ValueDensity$inboundSchema;
-  /** @deprecated use `ValueDensity$outboundSchema` instead. */
-  export const outboundSchema = ValueDensity$outboundSchema;
-}
 
 /** @internal */
 export const VulnerabilityResponseEffort$inboundSchema: z.ZodNativeEnum<
   typeof VulnerabilityResponseEffort
 > = z.nativeEnum(VulnerabilityResponseEffort);
-
-/** @internal */
-export const VulnerabilityResponseEffort$outboundSchema: z.ZodNativeEnum<
-  typeof VulnerabilityResponseEffort
-> = VulnerabilityResponseEffort$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VulnerabilityResponseEffort$ {
-  /** @deprecated use `VulnerabilityResponseEffort$inboundSchema` instead. */
-  export const inboundSchema = VulnerabilityResponseEffort$inboundSchema;
-  /** @deprecated use `VulnerabilityResponseEffort$outboundSchema` instead. */
-  export const outboundSchema = VulnerabilityResponseEffort$outboundSchema;
-}
 
 /** @internal */
 export const CVSSv4Components$inboundSchema: z.ZodType<
@@ -534,80 +313,6 @@ export const CVSSv4Components$inboundSchema: z.ZodType<
     "vulnerability_response_effort": "vulnerabilityResponseEffort",
   });
 });
-
-/** @internal */
-export type CVSSv4Components$Outbound = {
-  attack_complexity?: string | undefined;
-  attack_requirements?: string | undefined;
-  attack_vector?: string | undefined;
-  automatable?: string | undefined;
-  availability?: string | undefined;
-  confidentiality?: string | undefined;
-  integrity?: string | undefined;
-  privileges_required?: string | undefined;
-  provider_urgency?: string | undefined;
-  recovery?: string | undefined;
-  safety?: string | undefined;
-  user_interaction?: string | undefined;
-  value_density?: string | undefined;
-  vulnerability_response_effort?: string | undefined;
-};
-
-/** @internal */
-export const CVSSv4Components$outboundSchema: z.ZodType<
-  CVSSv4Components$Outbound,
-  z.ZodTypeDef,
-  CVSSv4Components
-> = z.object({
-  attackComplexity: CVSSv4ComponentsAttackComplexity$outboundSchema.optional(),
-  attackRequirements: AttackRequirements$outboundSchema.optional(),
-  attackVector: CVSSv4ComponentsAttackVector$outboundSchema.optional(),
-  automatable: Automatable$outboundSchema.optional(),
-  availability: CVSSv4ComponentsAvailability$outboundSchema.optional(),
-  confidentiality: CVSSv4ComponentsConfidentiality$outboundSchema.optional(),
-  integrity: CVSSv4ComponentsIntegrity$outboundSchema.optional(),
-  privilegesRequired: CVSSv4ComponentsPrivilegesRequired$outboundSchema
-    .optional(),
-  providerUrgency: ProviderUrgency$outboundSchema.optional(),
-  recovery: Recovery$outboundSchema.optional(),
-  safety: Safety$outboundSchema.optional(),
-  userInteraction: CVSSv4ComponentsUserInteraction$outboundSchema.optional(),
-  valueDensity: ValueDensity$outboundSchema.optional(),
-  vulnerabilityResponseEffort: VulnerabilityResponseEffort$outboundSchema
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    attackComplexity: "attack_complexity",
-    attackRequirements: "attack_requirements",
-    attackVector: "attack_vector",
-    privilegesRequired: "privileges_required",
-    providerUrgency: "provider_urgency",
-    userInteraction: "user_interaction",
-    valueDensity: "value_density",
-    vulnerabilityResponseEffort: "vulnerability_response_effort",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CVSSv4Components$ {
-  /** @deprecated use `CVSSv4Components$inboundSchema` instead. */
-  export const inboundSchema = CVSSv4Components$inboundSchema;
-  /** @deprecated use `CVSSv4Components$outboundSchema` instead. */
-  export const outboundSchema = CVSSv4Components$outboundSchema;
-  /** @deprecated use `CVSSv4Components$Outbound` instead. */
-  export type Outbound = CVSSv4Components$Outbound;
-}
-
-export function cvsSv4ComponentsToJSON(
-  cvsSv4Components: CVSSv4Components,
-): string {
-  return JSON.stringify(
-    CVSSv4Components$outboundSchema.parse(cvsSv4Components),
-  );
-}
 
 export function cvsSv4ComponentsFromJSON(
   jsonString: string,

@@ -24,40 +24,6 @@ export const User$inboundSchema: z.ZodType<User, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type User$Outbound = {
-  auth_key_id?: string | undefined;
-  steamid?: string | undefined;
-};
-
-/** @internal */
-export const User$outboundSchema: z.ZodType<User$Outbound, z.ZodTypeDef, User> =
-  z.object({
-    authKeyId: z.string().optional(),
-    steamid: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      authKeyId: "auth_key_id",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace User$ {
-  /** @deprecated use `User$inboundSchema` instead. */
-  export const inboundSchema = User$inboundSchema;
-  /** @deprecated use `User$outboundSchema` instead. */
-  export const outboundSchema = User$outboundSchema;
-  /** @deprecated use `User$Outbound` instead. */
-  export type Outbound = User$Outbound;
-}
-
-export function userToJSON(user: User): string {
-  return JSON.stringify(User$outboundSchema.parse(user));
-}
-
 export function userFromJSON(
   jsonString: string,
 ): SafeParseResult<User, SDKValidationError> {

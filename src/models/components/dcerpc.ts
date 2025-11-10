@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   DcerpcEndpoint,
   DcerpcEndpoint$inboundSchema,
-  DcerpcEndpoint$Outbound,
-  DcerpcEndpoint$outboundSchema,
 } from "./dcerpcendpoint.js";
 
 export type Dcerpc = {
@@ -32,46 +30,6 @@ export const Dcerpc$inboundSchema: z.ZodType<Dcerpc, z.ZodTypeDef, unknown> = z
       "could_query_epm": "couldQueryEpm",
     });
   });
-
-/** @internal */
-export type Dcerpc$Outbound = {
-  could_bind?: boolean | undefined;
-  could_query_epm?: boolean | undefined;
-  endpoints?: Array<DcerpcEndpoint$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const Dcerpc$outboundSchema: z.ZodType<
-  Dcerpc$Outbound,
-  z.ZodTypeDef,
-  Dcerpc
-> = z.object({
-  couldBind: z.boolean().optional(),
-  couldQueryEpm: z.boolean().optional(),
-  endpoints: z.nullable(z.array(DcerpcEndpoint$outboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    couldBind: "could_bind",
-    couldQueryEpm: "could_query_epm",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Dcerpc$ {
-  /** @deprecated use `Dcerpc$inboundSchema` instead. */
-  export const inboundSchema = Dcerpc$inboundSchema;
-  /** @deprecated use `Dcerpc$outboundSchema` instead. */
-  export const outboundSchema = Dcerpc$outboundSchema;
-  /** @deprecated use `Dcerpc$Outbound` instead. */
-  export type Outbound = Dcerpc$Outbound;
-}
-
-export function dcerpcToJSON(dcerpc: Dcerpc): string {
-  return JSON.stringify(Dcerpc$outboundSchema.parse(dcerpc));
-}
 
 export function dcerpcFromJSON(
   jsonString: string,

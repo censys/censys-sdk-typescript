@@ -33,41 +33,6 @@ export const ErrorDetail$inboundSchema: z.ZodType<
   value: z.any().optional(),
 });
 
-/** @internal */
-export type ErrorDetail$Outbound = {
-  location?: string | undefined;
-  message?: string | undefined;
-  value?: any | undefined;
-};
-
-/** @internal */
-export const ErrorDetail$outboundSchema: z.ZodType<
-  ErrorDetail$Outbound,
-  z.ZodTypeDef,
-  ErrorDetail
-> = z.object({
-  location: z.string().optional(),
-  message: z.string().optional(),
-  value: z.any().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ErrorDetail$ {
-  /** @deprecated use `ErrorDetail$inboundSchema` instead. */
-  export const inboundSchema = ErrorDetail$inboundSchema;
-  /** @deprecated use `ErrorDetail$outboundSchema` instead. */
-  export const outboundSchema = ErrorDetail$outboundSchema;
-  /** @deprecated use `ErrorDetail$Outbound` instead. */
-  export type Outbound = ErrorDetail$Outbound;
-}
-
-export function errorDetailToJSON(errorDetail: ErrorDetail): string {
-  return JSON.stringify(ErrorDetail$outboundSchema.parse(errorDetail));
-}
-
 export function errorDetailFromJSON(
   jsonString: string,
 ): SafeParseResult<ErrorDetail, SDKValidationError> {

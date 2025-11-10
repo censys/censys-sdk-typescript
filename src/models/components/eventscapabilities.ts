@@ -38,58 +38,6 @@ export const EventsCapabilities$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type EventsCapabilities$Outbound = {
-  max_notification_producers?: number | undefined;
-  max_pull_points?: number | undefined;
-  ws_pausable_subscription_manager_interface_support?: boolean | undefined;
-  ws_pull_point_support?: boolean | undefined;
-  ws_subscription_policy_support?: boolean | undefined;
-};
-
-/** @internal */
-export const EventsCapabilities$outboundSchema: z.ZodType<
-  EventsCapabilities$Outbound,
-  z.ZodTypeDef,
-  EventsCapabilities
-> = z.object({
-  maxNotificationProducers: z.number().int().optional(),
-  maxPullPoints: z.number().int().optional(),
-  wsPausableSubscriptionManagerInterfaceSupport: z.boolean().optional(),
-  wsPullPointSupport: z.boolean().optional(),
-  wsSubscriptionPolicySupport: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    maxNotificationProducers: "max_notification_producers",
-    maxPullPoints: "max_pull_points",
-    wsPausableSubscriptionManagerInterfaceSupport:
-      "ws_pausable_subscription_manager_interface_support",
-    wsPullPointSupport: "ws_pull_point_support",
-    wsSubscriptionPolicySupport: "ws_subscription_policy_support",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EventsCapabilities$ {
-  /** @deprecated use `EventsCapabilities$inboundSchema` instead. */
-  export const inboundSchema = EventsCapabilities$inboundSchema;
-  /** @deprecated use `EventsCapabilities$outboundSchema` instead. */
-  export const outboundSchema = EventsCapabilities$outboundSchema;
-  /** @deprecated use `EventsCapabilities$Outbound` instead. */
-  export type Outbound = EventsCapabilities$Outbound;
-}
-
-export function eventsCapabilitiesToJSON(
-  eventsCapabilities: EventsCapabilities,
-): string {
-  return JSON.stringify(
-    EventsCapabilities$outboundSchema.parse(eventsCapabilities),
-  );
-}
-
 export function eventsCapabilitiesFromJSON(
   jsonString: string,
 ): SafeParseResult<EventsCapabilities, SDKValidationError> {

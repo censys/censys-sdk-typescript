@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ChromeDevtoolsTarget,
   ChromeDevtoolsTarget$inboundSchema,
-  ChromeDevtoolsTarget$Outbound,
-  ChromeDevtoolsTarget$outboundSchema,
 } from "./chromedevtoolstarget.js";
 
 export type ChromeDevtools = {
@@ -43,54 +41,6 @@ export const ChromeDevtools$inboundSchema: z.ZodType<
     "webkit_version": "webkitVersion",
   });
 });
-
-/** @internal */
-export type ChromeDevtools$Outbound = {
-  browser?: string | undefined;
-  protocol_version?: string | undefined;
-  targets?: Array<ChromeDevtoolsTarget$Outbound> | null | undefined;
-  user_agent?: string | undefined;
-  v8_version?: string | undefined;
-  webkit_version?: string | undefined;
-};
-
-/** @internal */
-export const ChromeDevtools$outboundSchema: z.ZodType<
-  ChromeDevtools$Outbound,
-  z.ZodTypeDef,
-  ChromeDevtools
-> = z.object({
-  browser: z.string().optional(),
-  protocolVersion: z.string().optional(),
-  targets: z.nullable(z.array(ChromeDevtoolsTarget$outboundSchema)).optional(),
-  userAgent: z.string().optional(),
-  v8Version: z.string().optional(),
-  webkitVersion: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    protocolVersion: "protocol_version",
-    userAgent: "user_agent",
-    v8Version: "v8_version",
-    webkitVersion: "webkit_version",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ChromeDevtools$ {
-  /** @deprecated use `ChromeDevtools$inboundSchema` instead. */
-  export const inboundSchema = ChromeDevtools$inboundSchema;
-  /** @deprecated use `ChromeDevtools$outboundSchema` instead. */
-  export const outboundSchema = ChromeDevtools$outboundSchema;
-  /** @deprecated use `ChromeDevtools$Outbound` instead. */
-  export type Outbound = ChromeDevtools$Outbound;
-}
-
-export function chromeDevtoolsToJSON(chromeDevtools: ChromeDevtools): string {
-  return JSON.stringify(ChromeDevtools$outboundSchema.parse(chromeDevtools));
-}
 
 export function chromeDevtoolsFromJSON(
   jsonString: string,

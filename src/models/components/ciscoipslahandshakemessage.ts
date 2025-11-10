@@ -26,47 +26,6 @@ export const CiscoIpslaHandshakeMessage$inboundSchema: z.ZodType<
   type: z.number().int().optional(),
 });
 
-/** @internal */
-export type CiscoIpslaHandshakeMessage$Outbound = {
-  ip?: string | undefined;
-  length?: number | undefined;
-  port?: number | undefined;
-  type?: number | undefined;
-};
-
-/** @internal */
-export const CiscoIpslaHandshakeMessage$outboundSchema: z.ZodType<
-  CiscoIpslaHandshakeMessage$Outbound,
-  z.ZodTypeDef,
-  CiscoIpslaHandshakeMessage
-> = z.object({
-  ip: z.string().optional(),
-  length: z.number().int().optional(),
-  port: z.number().int().optional(),
-  type: z.number().int().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CiscoIpslaHandshakeMessage$ {
-  /** @deprecated use `CiscoIpslaHandshakeMessage$inboundSchema` instead. */
-  export const inboundSchema = CiscoIpslaHandshakeMessage$inboundSchema;
-  /** @deprecated use `CiscoIpslaHandshakeMessage$outboundSchema` instead. */
-  export const outboundSchema = CiscoIpslaHandshakeMessage$outboundSchema;
-  /** @deprecated use `CiscoIpslaHandshakeMessage$Outbound` instead. */
-  export type Outbound = CiscoIpslaHandshakeMessage$Outbound;
-}
-
-export function ciscoIpslaHandshakeMessageToJSON(
-  ciscoIpslaHandshakeMessage: CiscoIpslaHandshakeMessage,
-): string {
-  return JSON.stringify(
-    CiscoIpslaHandshakeMessage$outboundSchema.parse(ciscoIpslaHandshakeMessage),
-  );
-}
-
 export function ciscoIpslaHandshakeMessageFromJSON(
   jsonString: string,
 ): SafeParseResult<CiscoIpslaHandshakeMessage, SDKValidationError> {

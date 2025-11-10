@@ -13,30 +13,6 @@ export type Dtls = {};
 export const Dtls$inboundSchema: z.ZodType<Dtls, z.ZodTypeDef, unknown> = z
   .object({});
 
-/** @internal */
-export type Dtls$Outbound = {};
-
-/** @internal */
-export const Dtls$outboundSchema: z.ZodType<Dtls$Outbound, z.ZodTypeDef, Dtls> =
-  z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Dtls$ {
-  /** @deprecated use `Dtls$inboundSchema` instead. */
-  export const inboundSchema = Dtls$inboundSchema;
-  /** @deprecated use `Dtls$outboundSchema` instead. */
-  export const outboundSchema = Dtls$outboundSchema;
-  /** @deprecated use `Dtls$Outbound` instead. */
-  export type Outbound = Dtls$Outbound;
-}
-
-export function dtlsToJSON(dtls: Dtls): string {
-  return JSON.stringify(Dtls$outboundSchema.parse(dtls));
-}
-
 export function dtlsFromJSON(
   jsonString: string,
 ): SafeParseResult<Dtls, SDKValidationError> {

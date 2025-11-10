@@ -7,48 +7,13 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Attribute,
-  Attribute$inboundSchema,
-  Attribute$Outbound,
-  Attribute$outboundSchema,
-} from "./attribute.js";
-import {
-  HostDns,
-  HostDns$inboundSchema,
-  HostDns$Outbound,
-  HostDns$outboundSchema,
-} from "./hostdns.js";
-import {
-  Label,
-  Label$inboundSchema,
-  Label$Outbound,
-  Label$outboundSchema,
-} from "./label.js";
-import {
-  Location,
-  Location$inboundSchema,
-  Location$Outbound,
-  Location$outboundSchema,
-} from "./location.js";
-import {
-  Routing,
-  Routing$inboundSchema,
-  Routing$Outbound,
-  Routing$outboundSchema,
-} from "./routing.js";
-import {
-  Service,
-  Service$inboundSchema,
-  Service$Outbound,
-  Service$outboundSchema,
-} from "./service.js";
-import {
-  Whois,
-  Whois$inboundSchema,
-  Whois$Outbound,
-  Whois$outboundSchema,
-} from "./whois.js";
+import { Attribute, Attribute$inboundSchema } from "./attribute.js";
+import { HostDns, HostDns$inboundSchema } from "./hostdns.js";
+import { Label, Label$inboundSchema } from "./label.js";
+import { Location, Location$inboundSchema } from "./location.js";
+import { Routing, Routing$inboundSchema } from "./routing.js";
+import { Service, Service$inboundSchema } from "./service.js";
+import { Whois, Whois$inboundSchema } from "./whois.js";
 
 export type Host = {
   autonomousSystem?: Routing | undefined;
@@ -83,58 +48,6 @@ export const Host$inboundSchema: z.ZodType<Host, z.ZodTypeDef, unknown> = z
       "service_count": "serviceCount",
     });
   });
-
-/** @internal */
-export type Host$Outbound = {
-  autonomous_system?: Routing$Outbound | undefined;
-  dns?: HostDns$Outbound | undefined;
-  hardware?: Attribute$Outbound | undefined;
-  ip?: string | undefined;
-  labels?: Array<Label$Outbound> | null | undefined;
-  location?: Location$Outbound | undefined;
-  operating_system?: Attribute$Outbound | undefined;
-  service_count?: number | undefined;
-  services?: Array<Service$Outbound> | null | undefined;
-  whois?: Whois$Outbound | undefined;
-};
-
-/** @internal */
-export const Host$outboundSchema: z.ZodType<Host$Outbound, z.ZodTypeDef, Host> =
-  z.object({
-    autonomousSystem: Routing$outboundSchema.optional(),
-    dns: HostDns$outboundSchema.optional(),
-    hardware: Attribute$outboundSchema.optional(),
-    ip: z.string().optional(),
-    labels: z.nullable(z.array(Label$outboundSchema)).optional(),
-    location: Location$outboundSchema.optional(),
-    operatingSystem: Attribute$outboundSchema.optional(),
-    serviceCount: z.number().int().optional(),
-    services: z.nullable(z.array(Service$outboundSchema)).optional(),
-    whois: Whois$outboundSchema.optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      autonomousSystem: "autonomous_system",
-      operatingSystem: "operating_system",
-      serviceCount: "service_count",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Host$ {
-  /** @deprecated use `Host$inboundSchema` instead. */
-  export const inboundSchema = Host$inboundSchema;
-  /** @deprecated use `Host$outboundSchema` instead. */
-  export const outboundSchema = Host$outboundSchema;
-  /** @deprecated use `Host$Outbound` instead. */
-  export type Outbound = Host$Outbound;
-}
-
-export function hostToJSON(host: Host): string {
-  return JSON.stringify(Host$outboundSchema.parse(host));
-}
 
 export function hostFromJSON(
   jsonString: string,

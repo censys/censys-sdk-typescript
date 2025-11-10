@@ -22,39 +22,6 @@ export const VncKeyValue$inboundSchema: z.ZodType<
   value: z.number().int().optional(),
 });
 
-/** @internal */
-export type VncKeyValue$Outbound = {
-  name?: string | undefined;
-  value?: number | undefined;
-};
-
-/** @internal */
-export const VncKeyValue$outboundSchema: z.ZodType<
-  VncKeyValue$Outbound,
-  z.ZodTypeDef,
-  VncKeyValue
-> = z.object({
-  name: z.string().optional(),
-  value: z.number().int().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VncKeyValue$ {
-  /** @deprecated use `VncKeyValue$inboundSchema` instead. */
-  export const inboundSchema = VncKeyValue$inboundSchema;
-  /** @deprecated use `VncKeyValue$outboundSchema` instead. */
-  export const outboundSchema = VncKeyValue$outboundSchema;
-  /** @deprecated use `VncKeyValue$Outbound` instead. */
-  export type Outbound = VncKeyValue$Outbound;
-}
-
-export function vncKeyValueToJSON(vncKeyValue: VncKeyValue): string {
-  return JSON.stringify(VncKeyValue$outboundSchema.parse(vncKeyValue));
-}
-
 export function vncKeyValueFromJSON(
   jsonString: string,
 ): SafeParseResult<VncKeyValue, SDKValidationError> {

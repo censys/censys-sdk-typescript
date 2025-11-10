@@ -10,14 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CobaltStrikeHttpConfig,
   CobaltStrikeHttpConfig$inboundSchema,
-  CobaltStrikeHttpConfig$Outbound,
-  CobaltStrikeHttpConfig$outboundSchema,
 } from "./cobaltstrikehttpconfig.js";
 import {
   CobaltStrikePostEx,
   CobaltStrikePostEx$inboundSchema,
-  CobaltStrikePostEx$Outbound,
-  CobaltStrikePostEx$outboundSchema,
 } from "./cobaltstrikepostex.js";
 
 export type CobaltStrikeConfig = {
@@ -73,82 +69,6 @@ export const CobaltStrikeConfig$inboundSchema: z.ZodType<
     "user_agent": "userAgent",
   });
 });
-
-/** @internal */
-export type CobaltStrikeConfig$Outbound = {
-  cookie_beacon?: number | undefined;
-  crypto_scheme?: number | undefined;
-  dns?: boolean | undefined;
-  http_get?: CobaltStrikeHttpConfig$Outbound | undefined;
-  http_post?: CobaltStrikeHttpConfig$Outbound | undefined;
-  jitter?: number | undefined;
-  killdate?: number | undefined;
-  post_ex?: CobaltStrikePostEx$Outbound | undefined;
-  public_key?: string | undefined;
-  sleep_time?: number | undefined;
-  ssl?: boolean | undefined;
-  unknown_bytes?: { [k: string]: string | null } | undefined;
-  unknown_int?: { [k: string]: number } | undefined;
-  user_agent?: string | undefined;
-  watermark?: number | undefined;
-};
-
-/** @internal */
-export const CobaltStrikeConfig$outboundSchema: z.ZodType<
-  CobaltStrikeConfig$Outbound,
-  z.ZodTypeDef,
-  CobaltStrikeConfig
-> = z.object({
-  cookieBeacon: z.number().int().optional(),
-  cryptoScheme: z.number().int().optional(),
-  dns: z.boolean().optional(),
-  httpGet: CobaltStrikeHttpConfig$outboundSchema.optional(),
-  httpPost: CobaltStrikeHttpConfig$outboundSchema.optional(),
-  jitter: z.number().int().optional(),
-  killdate: z.number().int().optional(),
-  postEx: CobaltStrikePostEx$outboundSchema.optional(),
-  publicKey: z.string().optional(),
-  sleepTime: z.number().int().optional(),
-  ssl: z.boolean().optional(),
-  unknownBytes: z.record(z.nullable(z.string())).optional(),
-  unknownInt: z.record(z.number().int()).optional(),
-  userAgent: z.string().optional(),
-  watermark: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    cookieBeacon: "cookie_beacon",
-    cryptoScheme: "crypto_scheme",
-    httpGet: "http_get",
-    httpPost: "http_post",
-    postEx: "post_ex",
-    publicKey: "public_key",
-    sleepTime: "sleep_time",
-    unknownBytes: "unknown_bytes",
-    unknownInt: "unknown_int",
-    userAgent: "user_agent",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CobaltStrikeConfig$ {
-  /** @deprecated use `CobaltStrikeConfig$inboundSchema` instead. */
-  export const inboundSchema = CobaltStrikeConfig$inboundSchema;
-  /** @deprecated use `CobaltStrikeConfig$outboundSchema` instead. */
-  export const outboundSchema = CobaltStrikeConfig$outboundSchema;
-  /** @deprecated use `CobaltStrikeConfig$Outbound` instead. */
-  export type Outbound = CobaltStrikeConfig$Outbound;
-}
-
-export function cobaltStrikeConfigToJSON(
-  cobaltStrikeConfig: CobaltStrikeConfig,
-): string {
-  return JSON.stringify(
-    CobaltStrikeConfig$outboundSchema.parse(cobaltStrikeConfig),
-  );
-}
 
 export function cobaltStrikeConfigFromJSON(
   jsonString: string,

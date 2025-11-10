@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  IppAttribute,
-  IppAttribute$inboundSchema,
-  IppAttribute$Outbound,
-  IppAttribute$outboundSchema,
-} from "./ippattribute.js";
+import { IppAttribute, IppAttribute$inboundSchema } from "./ippattribute.js";
 
 export type Ipp = {
   /**
@@ -71,58 +66,6 @@ export const Ipp$inboundSchema: z.ZodType<Ipp, z.ZodTypeDef, unknown> = z
       "version_string": "versionString",
     });
   });
-
-/** @internal */
-export type Ipp$Outbound = {
-  attribute_cups_version?: string | undefined;
-  attribute_ipp_versions?: Array<string> | null | undefined;
-  attribute_printer_uris?: Array<string> | null | undefined;
-  attributes?: Array<IppAttribute$Outbound> | null | undefined;
-  cups_version?: string | undefined;
-  major_version?: number | undefined;
-  minor_version?: number | undefined;
-  version_string?: string | undefined;
-};
-
-/** @internal */
-export const Ipp$outboundSchema: z.ZodType<Ipp$Outbound, z.ZodTypeDef, Ipp> = z
-  .object({
-    attributeCupsVersion: z.string().optional(),
-    attributeIppVersions: z.nullable(z.array(z.string())).optional(),
-    attributePrinterUris: z.nullable(z.array(z.string())).optional(),
-    attributes: z.nullable(z.array(IppAttribute$outboundSchema)).optional(),
-    cupsVersion: z.string().optional(),
-    majorVersion: z.number().int().optional(),
-    minorVersion: z.number().int().optional(),
-    versionString: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      attributeCupsVersion: "attribute_cups_version",
-      attributeIppVersions: "attribute_ipp_versions",
-      attributePrinterUris: "attribute_printer_uris",
-      cupsVersion: "cups_version",
-      majorVersion: "major_version",
-      minorVersion: "minor_version",
-      versionString: "version_string",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Ipp$ {
-  /** @deprecated use `Ipp$inboundSchema` instead. */
-  export const inboundSchema = Ipp$inboundSchema;
-  /** @deprecated use `Ipp$outboundSchema` instead. */
-  export const outboundSchema = Ipp$outboundSchema;
-  /** @deprecated use `Ipp$Outbound` instead. */
-  export type Outbound = Ipp$Outbound;
-}
-
-export function ippToJSON(ipp: Ipp): string {
-  return JSON.stringify(Ipp$outboundSchema.parse(ipp));
-}
 
 export function ippFromJSON(
   jsonString: string,

@@ -10,26 +10,15 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SshAlgorithmSelection,
   SshAlgorithmSelection$inboundSchema,
-  SshAlgorithmSelection$Outbound,
-  SshAlgorithmSelection$outboundSchema,
 } from "./sshalgorithmselection.js";
-import {
-  SshEndpointId,
-  SshEndpointId$inboundSchema,
-  SshEndpointId$Outbound,
-  SshEndpointId$outboundSchema,
-} from "./sshendpointid.js";
+import { SshEndpointId, SshEndpointId$inboundSchema } from "./sshendpointid.js";
 import {
   SshKexInitMessage,
   SshKexInitMessage$inboundSchema,
-  SshKexInitMessage$Outbound,
-  SshKexInitMessage$outboundSchema,
 } from "./sshkexinitmessage.js";
 import {
   SshServerHostKey,
   SshServerHostKey$inboundSchema,
-  SshServerHostKey$Outbound,
-  SshServerHostKey$outboundSchema,
 } from "./sshserverhostkey.js";
 
 export type Ssh = {
@@ -57,50 +46,6 @@ export const Ssh$inboundSchema: z.ZodType<Ssh, z.ZodTypeDef, unknown> = z
       "server_host_key": "serverHostKey",
     });
   });
-
-/** @internal */
-export type Ssh$Outbound = {
-  algorithm_selection?: SshAlgorithmSelection$Outbound | undefined;
-  endpoint_id?: SshEndpointId$Outbound | undefined;
-  hassh_fingerprint?: string | undefined;
-  kex_init_message?: SshKexInitMessage$Outbound | undefined;
-  server_host_key?: SshServerHostKey$Outbound | undefined;
-};
-
-/** @internal */
-export const Ssh$outboundSchema: z.ZodType<Ssh$Outbound, z.ZodTypeDef, Ssh> = z
-  .object({
-    algorithmSelection: SshAlgorithmSelection$outboundSchema.optional(),
-    endpointId: SshEndpointId$outboundSchema.optional(),
-    hasshFingerprint: z.string().optional(),
-    kexInitMessage: SshKexInitMessage$outboundSchema.optional(),
-    serverHostKey: SshServerHostKey$outboundSchema.optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      algorithmSelection: "algorithm_selection",
-      endpointId: "endpoint_id",
-      hasshFingerprint: "hassh_fingerprint",
-      kexInitMessage: "kex_init_message",
-      serverHostKey: "server_host_key",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Ssh$ {
-  /** @deprecated use `Ssh$inboundSchema` instead. */
-  export const inboundSchema = Ssh$inboundSchema;
-  /** @deprecated use `Ssh$outboundSchema` instead. */
-  export const outboundSchema = Ssh$outboundSchema;
-  /** @deprecated use `Ssh$Outbound` instead. */
-  export type Outbound = Ssh$Outbound;
-}
-
-export function sshToJSON(ssh: Ssh): string {
-  return JSON.stringify(Ssh$outboundSchema.parse(ssh));
-}
 
 export function sshFromJSON(
   jsonString: string,

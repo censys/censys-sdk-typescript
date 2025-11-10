@@ -1,0 +1,21 @@
+# V3AccountmanagementInviteUserToOrgRequest
+
+## Example Usage
+
+```typescript
+import { V3AccountmanagementInviteUserToOrgRequest } from "@censys/platform-sdk/models/operations";
+
+let value: V3AccountmanagementInviteUserToOrgRequest = {
+  organizationId: "11111111-2222-3333-4444-555555555555",
+  inviteMemberInputBody: {
+    email: "user@example.com",
+  },
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                                                  | Type                                                                                                                                                                                   | Required                                                                                                                                                                               | Description                                                                                                                                                                            | Example                                                                                                                                                                                |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `organizationId`                                                                                                                                                                       | *string*                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                     | The ID of a Censys organization. See the [Getting Started docs](https://docs.censys.com/reference/get-started#step-3-find-and-use-your-organization-id-optional) for more information. | 11111111-2222-3333-4444-555555555555                                                                                                                                                   |
+| `inviteMemberInputBody`                                                                                                                                                                | [components.InviteMemberInputBody](../../models/components/invitememberinputbody.md)                                                                                                   | :heavy_check_mark:                                                                                                                                                                     | N/A                                                                                                                                                                                    |                                                                                                                                                                                        |

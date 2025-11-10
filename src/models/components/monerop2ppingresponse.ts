@@ -10,14 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   MoneroP2PPayload,
   MoneroP2PPayload$inboundSchema,
-  MoneroP2PPayload$Outbound,
-  MoneroP2PPayload$outboundSchema,
 } from "./monerop2ppayload.js";
 import {
   MoneroP2PResponseHeader,
   MoneroP2PResponseHeader$inboundSchema,
-  MoneroP2PResponseHeader$Outbound,
-  MoneroP2PResponseHeader$outboundSchema,
 } from "./monerop2presponseheader.js";
 
 export type MoneroP2PPingResponse = {
@@ -38,47 +34,6 @@ export const MoneroP2PPingResponse$inboundSchema: z.ZodType<
     "response_header": "responseHeader",
   });
 });
-
-/** @internal */
-export type MoneroP2PPingResponse$Outbound = {
-  payload?: MoneroP2PPayload$Outbound | undefined;
-  response_header?: MoneroP2PResponseHeader$Outbound | undefined;
-};
-
-/** @internal */
-export const MoneroP2PPingResponse$outboundSchema: z.ZodType<
-  MoneroP2PPingResponse$Outbound,
-  z.ZodTypeDef,
-  MoneroP2PPingResponse
-> = z.object({
-  payload: MoneroP2PPayload$outboundSchema.optional(),
-  responseHeader: MoneroP2PResponseHeader$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    responseHeader: "response_header",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MoneroP2PPingResponse$ {
-  /** @deprecated use `MoneroP2PPingResponse$inboundSchema` instead. */
-  export const inboundSchema = MoneroP2PPingResponse$inboundSchema;
-  /** @deprecated use `MoneroP2PPingResponse$outboundSchema` instead. */
-  export const outboundSchema = MoneroP2PPingResponse$outboundSchema;
-  /** @deprecated use `MoneroP2PPingResponse$Outbound` instead. */
-  export type Outbound = MoneroP2PPingResponse$Outbound;
-}
-
-export function moneroP2PPingResponseToJSON(
-  moneroP2PPingResponse: MoneroP2PPingResponse,
-): string {
-  return JSON.stringify(
-    MoneroP2PPingResponse$outboundSchema.parse(moneroP2PPingResponse),
-  );
-}
 
 export function moneroP2PPingResponseFromJSON(
   jsonString: string,

@@ -37,47 +37,6 @@ export const Postgres$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type Postgres$Outbound = {
-  protocol_error?: { [k: string]: string } | undefined;
-  startup_error?: { [k: string]: string } | undefined;
-  supported_versions?: string | undefined;
-};
-
-/** @internal */
-export const Postgres$outboundSchema: z.ZodType<
-  Postgres$Outbound,
-  z.ZodTypeDef,
-  Postgres
-> = z.object({
-  protocolError: z.record(z.string()).optional(),
-  startupError: z.record(z.string()).optional(),
-  supportedVersions: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    protocolError: "protocol_error",
-    startupError: "startup_error",
-    supportedVersions: "supported_versions",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Postgres$ {
-  /** @deprecated use `Postgres$inboundSchema` instead. */
-  export const inboundSchema = Postgres$inboundSchema;
-  /** @deprecated use `Postgres$outboundSchema` instead. */
-  export const outboundSchema = Postgres$outboundSchema;
-  /** @deprecated use `Postgres$Outbound` instead. */
-  export type Outbound = Postgres$Outbound;
-}
-
-export function postgresToJSON(postgres: Postgres): string {
-  return JSON.stringify(Postgres$outboundSchema.parse(postgres));
-}
-
 export function postgresFromJSON(
   jsonString: string,
 ): SafeParseResult<Postgres, SDKValidationError> {

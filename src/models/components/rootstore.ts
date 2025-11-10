@@ -11,8 +11,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   RootStoreChain,
   RootStoreChain$inboundSchema,
-  RootStoreChain$Outbound,
-  RootStoreChain$outboundSchema,
 } from "./rootstorechain.js";
 
 /**
@@ -70,21 +68,6 @@ export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
 );
 
 /** @internal */
-export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
-  Type$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Type$ {
-  /** @deprecated use `Type$inboundSchema` instead. */
-  export const inboundSchema = Type$inboundSchema;
-  /** @deprecated use `Type$outboundSchema` instead. */
-  export const outboundSchema = Type$outboundSchema;
-}
-
-/** @internal */
 export const RootStore$inboundSchema: z.ZodType<
   RootStore,
   z.ZodTypeDef,
@@ -107,59 +90,6 @@ export const RootStore$inboundSchema: z.ZodType<
     "is_valid": "isValid",
   });
 });
-
-/** @internal */
-export type RootStore$Outbound = {
-  chains?: Array<RootStoreChain$Outbound> | null | undefined;
-  ever_valid?: boolean | undefined;
-  had_trusted_path?: boolean | undefined;
-  has_trusted_path?: boolean | undefined;
-  in_revocation_set?: boolean | undefined;
-  is_valid?: boolean | undefined;
-  parents?: Array<string> | null | undefined;
-  type?: string | undefined;
-};
-
-/** @internal */
-export const RootStore$outboundSchema: z.ZodType<
-  RootStore$Outbound,
-  z.ZodTypeDef,
-  RootStore
-> = z.object({
-  chains: z.nullable(z.array(RootStoreChain$outboundSchema)).optional(),
-  everValid: z.boolean().optional(),
-  hadTrustedPath: z.boolean().optional(),
-  hasTrustedPath: z.boolean().optional(),
-  inRevocationSet: z.boolean().optional(),
-  isValid: z.boolean().optional(),
-  parents: z.nullable(z.array(z.string())).optional(),
-  type: Type$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    everValid: "ever_valid",
-    hadTrustedPath: "had_trusted_path",
-    hasTrustedPath: "has_trusted_path",
-    inRevocationSet: "in_revocation_set",
-    isValid: "is_valid",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RootStore$ {
-  /** @deprecated use `RootStore$inboundSchema` instead. */
-  export const inboundSchema = RootStore$inboundSchema;
-  /** @deprecated use `RootStore$outboundSchema` instead. */
-  export const outboundSchema = RootStore$outboundSchema;
-  /** @deprecated use `RootStore$Outbound` instead. */
-  export type Outbound = RootStore$Outbound;
-}
-
-export function rootStoreToJSON(rootStore: RootStore): string {
-  return JSON.stringify(RootStore$outboundSchema.parse(rootStore));
-}
 
 export function rootStoreFromJSON(
   jsonString: string,

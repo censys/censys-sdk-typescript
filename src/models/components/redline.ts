@@ -27,46 +27,6 @@ export const Redline$inboundSchema: z.ZodType<Redline, z.ZodTypeDef, unknown> =
     });
   });
 
-/** @internal */
-export type Redline$Outbound = {
-  action_response?: string | undefined;
-  settings_response?: string | undefined;
-  transport?: string | undefined;
-};
-
-/** @internal */
-export const Redline$outboundSchema: z.ZodType<
-  Redline$Outbound,
-  z.ZodTypeDef,
-  Redline
-> = z.object({
-  actionResponse: z.string().optional(),
-  settingsResponse: z.string().optional(),
-  transport: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    actionResponse: "action_response",
-    settingsResponse: "settings_response",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Redline$ {
-  /** @deprecated use `Redline$inboundSchema` instead. */
-  export const inboundSchema = Redline$inboundSchema;
-  /** @deprecated use `Redline$outboundSchema` instead. */
-  export const outboundSchema = Redline$outboundSchema;
-  /** @deprecated use `Redline$Outbound` instead. */
-  export type Outbound = Redline$Outbound;
-}
-
-export function redlineToJSON(redline: Redline): string {
-  return JSON.stringify(Redline$outboundSchema.parse(redline));
-}
-
 export function redlineFromJSON(
   jsonString: string,
 ): SafeParseResult<Redline, SDKValidationError> {

@@ -10,20 +10,14 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   RippleClioResults,
   RippleClioResults$inboundSchema,
-  RippleClioResults$Outbound,
-  RippleClioResults$outboundSchema,
 } from "./rippleclioresults.js";
 import {
   RippledPublicResults,
   RippledPublicResults$inboundSchema,
-  RippledPublicResults$Outbound,
-  RippledPublicResults$outboundSchema,
 } from "./rippledpublicresults.js";
 import {
   RipplePeerResults,
   RipplePeerResults$inboundSchema,
-  RipplePeerResults$Outbound,
-  RipplePeerResults$outboundSchema,
 } from "./ripplepeerresults.js";
 
 export type Ripple = {
@@ -45,47 +39,6 @@ export const Ripple$inboundSchema: z.ZodType<Ripple, z.ZodTypeDef, unknown> = z
       "rippled_public": "rippledPublic",
     });
   });
-
-/** @internal */
-export type Ripple$Outbound = {
-  ripple_clio?: RippleClioResults$Outbound | undefined;
-  rippled_peer?: RipplePeerResults$Outbound | undefined;
-  rippled_public?: RippledPublicResults$Outbound | undefined;
-};
-
-/** @internal */
-export const Ripple$outboundSchema: z.ZodType<
-  Ripple$Outbound,
-  z.ZodTypeDef,
-  Ripple
-> = z.object({
-  rippleClio: RippleClioResults$outboundSchema.optional(),
-  rippledPeer: RipplePeerResults$outboundSchema.optional(),
-  rippledPublic: RippledPublicResults$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    rippleClio: "ripple_clio",
-    rippledPeer: "rippled_peer",
-    rippledPublic: "rippled_public",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Ripple$ {
-  /** @deprecated use `Ripple$inboundSchema` instead. */
-  export const inboundSchema = Ripple$inboundSchema;
-  /** @deprecated use `Ripple$outboundSchema` instead. */
-  export const outboundSchema = Ripple$outboundSchema;
-  /** @deprecated use `Ripple$Outbound` instead. */
-  export type Outbound = Ripple$Outbound;
-}
-
-export function rippleToJSON(ripple: Ripple): string {
-  return JSON.stringify(Ripple$outboundSchema.parse(ripple));
-}
 
 export function rippleFromJSON(
   jsonString: string,

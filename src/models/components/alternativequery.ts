@@ -32,21 +32,6 @@ export const Targets$inboundSchema: z.ZodNativeEnum<typeof Targets> = z
   .nativeEnum(Targets);
 
 /** @internal */
-export const Targets$outboundSchema: z.ZodNativeEnum<typeof Targets> =
-  Targets$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Targets$ {
-  /** @deprecated use `Targets$inboundSchema` instead. */
-  export const inboundSchema = Targets$inboundSchema;
-  /** @deprecated use `Targets$outboundSchema` instead. */
-  export const outboundSchema = Targets$outboundSchema;
-}
-
-/** @internal */
 export const AlternativeQuery$inboundSchema: z.ZodType<
   AlternativeQuery,
   z.ZodTypeDef,
@@ -55,43 +40,6 @@ export const AlternativeQuery$inboundSchema: z.ZodType<
   query: z.string(),
   targets: z.nullable(z.array(Targets$inboundSchema)),
 });
-
-/** @internal */
-export type AlternativeQuery$Outbound = {
-  query: string;
-  targets: Array<string> | null;
-};
-
-/** @internal */
-export const AlternativeQuery$outboundSchema: z.ZodType<
-  AlternativeQuery$Outbound,
-  z.ZodTypeDef,
-  AlternativeQuery
-> = z.object({
-  query: z.string(),
-  targets: z.nullable(z.array(Targets$outboundSchema)),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AlternativeQuery$ {
-  /** @deprecated use `AlternativeQuery$inboundSchema` instead. */
-  export const inboundSchema = AlternativeQuery$inboundSchema;
-  /** @deprecated use `AlternativeQuery$outboundSchema` instead. */
-  export const outboundSchema = AlternativeQuery$outboundSchema;
-  /** @deprecated use `AlternativeQuery$Outbound` instead. */
-  export type Outbound = AlternativeQuery$Outbound;
-}
-
-export function alternativeQueryToJSON(
-  alternativeQuery: AlternativeQuery,
-): string {
-  return JSON.stringify(
-    AlternativeQuery$outboundSchema.parse(alternativeQuery),
-  );
-}
 
 export function alternativeQueryFromJSON(
   jsonString: string,

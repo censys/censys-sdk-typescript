@@ -7,17 +7,10 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  HttpFavicon,
-  HttpFavicon$inboundSchema,
-  HttpFavicon$Outbound,
-  HttpFavicon$outboundSchema,
-} from "./httpfavicon.js";
+import { HttpFavicon, HttpFavicon$inboundSchema } from "./httpfavicon.js";
 import {
   HttpRepeatedHeaders,
   HttpRepeatedHeaders$inboundSchema,
-  HttpRepeatedHeaders$Outbound,
-  HttpRepeatedHeaders$outboundSchema,
 } from "./httprepeatedheaders.js";
 
 export type Http = {
@@ -94,72 +87,6 @@ export const Http$inboundSchema: z.ZodType<Http, z.ZodTypeDef, unknown> = z
       "supported_versions": "supportedVersions",
     });
   });
-
-/** @internal */
-export type Http$Outbound = {
-  body?: string | undefined;
-  body_hash_sha1?: string | undefined;
-  body_hash_sha256?: string | undefined;
-  body_hash_tlsh?: string | undefined;
-  body_size?: number | undefined;
-  favicons?: Array<HttpFavicon$Outbound> | null | undefined;
-  headers?: { [k: string]: HttpRepeatedHeaders$Outbound } | undefined;
-  html_tags?: Array<string> | null | undefined;
-  html_title?: string | undefined;
-  protocol?: string | undefined;
-  status_code?: number | undefined;
-  status_reason?: string | undefined;
-  supported_versions?: Array<string> | null | undefined;
-  uri?: string | undefined;
-};
-
-/** @internal */
-export const Http$outboundSchema: z.ZodType<Http$Outbound, z.ZodTypeDef, Http> =
-  z.object({
-    body: z.string().optional(),
-    bodyHashSha1: z.string().optional(),
-    bodyHashSha256: z.string().optional(),
-    bodyHashTlsh: z.string().optional(),
-    bodySize: z.number().int().optional(),
-    favicons: z.nullable(z.array(HttpFavicon$outboundSchema)).optional(),
-    headers: z.record(HttpRepeatedHeaders$outboundSchema).optional(),
-    htmlTags: z.nullable(z.array(z.string())).optional(),
-    htmlTitle: z.string().optional(),
-    protocol: z.string().optional(),
-    statusCode: z.number().int().optional(),
-    statusReason: z.string().optional(),
-    supportedVersions: z.nullable(z.array(z.string())).optional(),
-    uri: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      bodyHashSha1: "body_hash_sha1",
-      bodyHashSha256: "body_hash_sha256",
-      bodyHashTlsh: "body_hash_tlsh",
-      bodySize: "body_size",
-      htmlTags: "html_tags",
-      htmlTitle: "html_title",
-      statusCode: "status_code",
-      statusReason: "status_reason",
-      supportedVersions: "supported_versions",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Http$ {
-  /** @deprecated use `Http$inboundSchema` instead. */
-  export const inboundSchema = Http$inboundSchema;
-  /** @deprecated use `Http$outboundSchema` instead. */
-  export const outboundSchema = Http$outboundSchema;
-  /** @deprecated use `Http$Outbound` instead. */
-  export type Outbound = Http$Outbound;
-}
-
-export function httpToJSON(http: Http): string {
-  return JSON.stringify(Http$outboundSchema.parse(http));
-}
 
 export function httpFromJSON(
   jsonString: string,

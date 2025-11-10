@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Contact,
-  Contact$inboundSchema,
-  Contact$Outbound,
-  Contact$outboundSchema,
-} from "./contact.js";
+import { Contact, Contact$inboundSchema } from "./contact.js";
 
 export type Organization = {
   abuseContacts?: Array<Contact> | null | undefined;
@@ -53,64 +48,6 @@ export const Organization$inboundSchema: z.ZodType<
     "tech_contacts": "techContacts",
   });
 });
-
-/** @internal */
-export type Organization$Outbound = {
-  abuse_contacts?: Array<Contact$Outbound> | null | undefined;
-  address?: string | undefined;
-  admin_contacts?: Array<Contact$Outbound> | null | undefined;
-  city?: string | undefined;
-  country?: string | undefined;
-  handle?: string | undefined;
-  name?: string | undefined;
-  postal_code?: string | undefined;
-  state?: string | undefined;
-  street?: string | undefined;
-  tech_contacts?: Array<Contact$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const Organization$outboundSchema: z.ZodType<
-  Organization$Outbound,
-  z.ZodTypeDef,
-  Organization
-> = z.object({
-  abuseContacts: z.nullable(z.array(Contact$outboundSchema)).optional(),
-  address: z.string().optional(),
-  adminContacts: z.nullable(z.array(Contact$outboundSchema)).optional(),
-  city: z.string().optional(),
-  country: z.string().optional(),
-  handle: z.string().optional(),
-  name: z.string().optional(),
-  postalCode: z.string().optional(),
-  state: z.string().optional(),
-  street: z.string().optional(),
-  techContacts: z.nullable(z.array(Contact$outboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    abuseContacts: "abuse_contacts",
-    adminContacts: "admin_contacts",
-    postalCode: "postal_code",
-    techContacts: "tech_contacts",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Organization$ {
-  /** @deprecated use `Organization$inboundSchema` instead. */
-  export const inboundSchema = Organization$inboundSchema;
-  /** @deprecated use `Organization$outboundSchema` instead. */
-  export const outboundSchema = Organization$outboundSchema;
-  /** @deprecated use `Organization$Outbound` instead. */
-  export type Outbound = Organization$Outbound;
-}
-
-export function organizationToJSON(organization: Organization): string {
-  return JSON.stringify(Organization$outboundSchema.parse(organization));
-}
 
 export function organizationFromJSON(
   jsonString: string,

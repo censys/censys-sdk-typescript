@@ -22,43 +22,6 @@ export const PrometheusMetricFamily$inboundSchema: z.ZodType<
   name: z.string().optional(),
 });
 
-/** @internal */
-export type PrometheusMetricFamily$Outbound = {
-  help?: string | undefined;
-  name?: string | undefined;
-};
-
-/** @internal */
-export const PrometheusMetricFamily$outboundSchema: z.ZodType<
-  PrometheusMetricFamily$Outbound,
-  z.ZodTypeDef,
-  PrometheusMetricFamily
-> = z.object({
-  help: z.string().optional(),
-  name: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PrometheusMetricFamily$ {
-  /** @deprecated use `PrometheusMetricFamily$inboundSchema` instead. */
-  export const inboundSchema = PrometheusMetricFamily$inboundSchema;
-  /** @deprecated use `PrometheusMetricFamily$outboundSchema` instead. */
-  export const outboundSchema = PrometheusMetricFamily$outboundSchema;
-  /** @deprecated use `PrometheusMetricFamily$Outbound` instead. */
-  export type Outbound = PrometheusMetricFamily$Outbound;
-}
-
-export function prometheusMetricFamilyToJSON(
-  prometheusMetricFamily: PrometheusMetricFamily,
-): string {
-  return JSON.stringify(
-    PrometheusMetricFamily$outboundSchema.parse(prometheusMetricFamily),
-  );
-}
-
 export function prometheusMetricFamilyFromJSON(
   jsonString: string,
 ): SafeParseResult<PrometheusMetricFamily, SDKValidationError> {

@@ -25,45 +25,6 @@ export const Ed25519CryptographicKey$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type Ed25519CryptographicKey$Outbound = {
-  public_bytes?: string | undefined;
-};
-
-/** @internal */
-export const Ed25519CryptographicKey$outboundSchema: z.ZodType<
-  Ed25519CryptographicKey$Outbound,
-  z.ZodTypeDef,
-  Ed25519CryptographicKey
-> = z.object({
-  publicBytes: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    publicBytes: "public_bytes",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Ed25519CryptographicKey$ {
-  /** @deprecated use `Ed25519CryptographicKey$inboundSchema` instead. */
-  export const inboundSchema = Ed25519CryptographicKey$inboundSchema;
-  /** @deprecated use `Ed25519CryptographicKey$outboundSchema` instead. */
-  export const outboundSchema = Ed25519CryptographicKey$outboundSchema;
-  /** @deprecated use `Ed25519CryptographicKey$Outbound` instead. */
-  export type Outbound = Ed25519CryptographicKey$Outbound;
-}
-
-export function ed25519CryptographicKeyToJSON(
-  ed25519CryptographicKey: Ed25519CryptographicKey,
-): string {
-  return JSON.stringify(
-    Ed25519CryptographicKey$outboundSchema.parse(ed25519CryptographicKey),
-  );
-}
-
 export function ed25519CryptographicKeyFromJSON(
   jsonString: string,
 ): SafeParseResult<Ed25519CryptographicKey, SDKValidationError> {

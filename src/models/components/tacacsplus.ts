@@ -39,55 +39,6 @@ export const TacacsPlus$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type TacacsPlus$Outbound = {
-  data_length?: number | undefined;
-  flags?: number | undefined;
-  obfuscated?: string | undefined;
-  seq_num?: number | undefined;
-  session_id?: number | undefined;
-  type?: number | undefined;
-  version?: number | undefined;
-};
-
-/** @internal */
-export const TacacsPlus$outboundSchema: z.ZodType<
-  TacacsPlus$Outbound,
-  z.ZodTypeDef,
-  TacacsPlus
-> = z.object({
-  dataLength: z.number().int().optional(),
-  flags: z.number().int().optional(),
-  obfuscated: z.string().optional(),
-  seqNum: z.number().int().optional(),
-  sessionId: z.number().int().optional(),
-  type: z.number().int().optional(),
-  version: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    dataLength: "data_length",
-    seqNum: "seq_num",
-    sessionId: "session_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TacacsPlus$ {
-  /** @deprecated use `TacacsPlus$inboundSchema` instead. */
-  export const inboundSchema = TacacsPlus$inboundSchema;
-  /** @deprecated use `TacacsPlus$outboundSchema` instead. */
-  export const outboundSchema = TacacsPlus$outboundSchema;
-  /** @deprecated use `TacacsPlus$Outbound` instead. */
-  export type Outbound = TacacsPlus$Outbound;
-}
-
-export function tacacsPlusToJSON(tacacsPlus: TacacsPlus): string {
-  return JSON.stringify(TacacsPlus$outboundSchema.parse(tacacsPlus));
-}
-
 export function tacacsPlusFromJSON(
   jsonString: string,
 ): SafeParseResult<TacacsPlus, SDKValidationError> {

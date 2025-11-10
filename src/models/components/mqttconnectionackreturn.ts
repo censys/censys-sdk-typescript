@@ -33,47 +33,6 @@ export const MqttConnectionAckReturn$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type MqttConnectionAckReturn$Outbound = {
-  raw?: number | undefined;
-  return_value?: string | undefined;
-};
-
-/** @internal */
-export const MqttConnectionAckReturn$outboundSchema: z.ZodType<
-  MqttConnectionAckReturn$Outbound,
-  z.ZodTypeDef,
-  MqttConnectionAckReturn
-> = z.object({
-  raw: z.number().int().optional(),
-  returnValue: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    returnValue: "return_value",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MqttConnectionAckReturn$ {
-  /** @deprecated use `MqttConnectionAckReturn$inboundSchema` instead. */
-  export const inboundSchema = MqttConnectionAckReturn$inboundSchema;
-  /** @deprecated use `MqttConnectionAckReturn$outboundSchema` instead. */
-  export const outboundSchema = MqttConnectionAckReturn$outboundSchema;
-  /** @deprecated use `MqttConnectionAckReturn$Outbound` instead. */
-  export type Outbound = MqttConnectionAckReturn$Outbound;
-}
-
-export function mqttConnectionAckReturnToJSON(
-  mqttConnectionAckReturn: MqttConnectionAckReturn,
-): string {
-  return JSON.stringify(
-    MqttConnectionAckReturn$outboundSchema.parse(mqttConnectionAckReturn),
-  );
-}
-
 export function mqttConnectionAckReturnFromJSON(
   jsonString: string,
 ): SafeParseResult<MqttConnectionAckReturn, SDKValidationError> {

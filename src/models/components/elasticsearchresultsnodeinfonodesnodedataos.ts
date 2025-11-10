@@ -41,66 +41,6 @@ export const ElasticSearchResultsNodeInfoNodesNodeDataOS$inboundSchema:
     });
   });
 
-/** @internal */
-export type ElasticSearchResultsNodeInfoNodesNodeDataOS$Outbound = {
-  allocated_proc?: number | undefined;
-  arch?: string | undefined;
-  available_proc?: number | undefined;
-  name?: string | undefined;
-  pretty_name?: string | undefined;
-  refresh_interval_ms?: number | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const ElasticSearchResultsNodeInfoNodesNodeDataOS$outboundSchema:
-  z.ZodType<
-    ElasticSearchResultsNodeInfoNodesNodeDataOS$Outbound,
-    z.ZodTypeDef,
-    ElasticSearchResultsNodeInfoNodesNodeDataOS
-  > = z.object({
-    allocatedProc: z.number().int().optional(),
-    arch: z.string().optional(),
-    availableProc: z.number().int().optional(),
-    name: z.string().optional(),
-    prettyName: z.string().optional(),
-    refreshIntervalMs: z.number().int().optional(),
-    version: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      allocatedProc: "allocated_proc",
-      availableProc: "available_proc",
-      prettyName: "pretty_name",
-      refreshIntervalMs: "refresh_interval_ms",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ElasticSearchResultsNodeInfoNodesNodeDataOS$ {
-  /** @deprecated use `ElasticSearchResultsNodeInfoNodesNodeDataOS$inboundSchema` instead. */
-  export const inboundSchema =
-    ElasticSearchResultsNodeInfoNodesNodeDataOS$inboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfoNodesNodeDataOS$outboundSchema` instead. */
-  export const outboundSchema =
-    ElasticSearchResultsNodeInfoNodesNodeDataOS$outboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfoNodesNodeDataOS$Outbound` instead. */
-  export type Outbound = ElasticSearchResultsNodeInfoNodesNodeDataOS$Outbound;
-}
-
-export function elasticSearchResultsNodeInfoNodesNodeDataOSToJSON(
-  elasticSearchResultsNodeInfoNodesNodeDataOS:
-    ElasticSearchResultsNodeInfoNodesNodeDataOS,
-): string {
-  return JSON.stringify(
-    ElasticSearchResultsNodeInfoNodesNodeDataOS$outboundSchema.parse(
-      elasticSearchResultsNodeInfoNodesNodeDataOS,
-    ),
-  );
-}
-
 export function elasticSearchResultsNodeInfoNodesNodeDataOSFromJSON(
   jsonString: string,
 ): SafeParseResult<

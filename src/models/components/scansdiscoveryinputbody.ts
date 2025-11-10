@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type HostnamePort = {
   /**
@@ -51,16 +48,6 @@ export type ScansDiscoveryInputBody = {
 };
 
 /** @internal */
-export const HostnamePort$inboundSchema: z.ZodType<
-  HostnamePort,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  hostname: z.string(),
-  port: z.number().int(),
-});
-
-/** @internal */
 export type HostnamePort$Outbound = {
   hostname: string;
   port: number;
@@ -76,42 +63,9 @@ export const HostnamePort$outboundSchema: z.ZodType<
   port: z.number().int(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HostnamePort$ {
-  /** @deprecated use `HostnamePort$inboundSchema` instead. */
-  export const inboundSchema = HostnamePort$inboundSchema;
-  /** @deprecated use `HostnamePort$outboundSchema` instead. */
-  export const outboundSchema = HostnamePort$outboundSchema;
-  /** @deprecated use `HostnamePort$Outbound` instead. */
-  export type Outbound = HostnamePort$Outbound;
-}
-
 export function hostnamePortToJSON(hostnamePort: HostnamePort): string {
   return JSON.stringify(HostnamePort$outboundSchema.parse(hostnamePort));
 }
-
-export function hostnamePortFromJSON(
-  jsonString: string,
-): SafeParseResult<HostnamePort, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => HostnamePort$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'HostnamePort' from JSON`,
-  );
-}
-
-/** @internal */
-export const Target2$inboundSchema: z.ZodType<Target2, z.ZodTypeDef, unknown> =
-  z.object({
-    hostname_port: z.lazy(() => HostnamePort$inboundSchema),
-  }).transform((v) => {
-    return remap$(v, {
-      "hostname_port": "hostnamePort",
-    });
-  });
 
 /** @internal */
 export type Target2$Outbound = {
@@ -131,42 +85,9 @@ export const Target2$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Target2$ {
-  /** @deprecated use `Target2$inboundSchema` instead. */
-  export const inboundSchema = Target2$inboundSchema;
-  /** @deprecated use `Target2$outboundSchema` instead. */
-  export const outboundSchema = Target2$outboundSchema;
-  /** @deprecated use `Target2$Outbound` instead. */
-  export type Outbound = Target2$Outbound;
-}
-
 export function target2ToJSON(target2: Target2): string {
   return JSON.stringify(Target2$outboundSchema.parse(target2));
 }
-
-export function target2FromJSON(
-  jsonString: string,
-): SafeParseResult<Target2, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Target2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Target2' from JSON`,
-  );
-}
-
-/** @internal */
-export const HostPort$inboundSchema: z.ZodType<
-  HostPort,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  ip: z.string(),
-  port: z.number().int(),
-});
 
 /** @internal */
 export type HostPort$Outbound = {
@@ -184,42 +105,9 @@ export const HostPort$outboundSchema: z.ZodType<
   port: z.number().int(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HostPort$ {
-  /** @deprecated use `HostPort$inboundSchema` instead. */
-  export const inboundSchema = HostPort$inboundSchema;
-  /** @deprecated use `HostPort$outboundSchema` instead. */
-  export const outboundSchema = HostPort$outboundSchema;
-  /** @deprecated use `HostPort$Outbound` instead. */
-  export type Outbound = HostPort$Outbound;
-}
-
 export function hostPortToJSON(hostPort: HostPort): string {
   return JSON.stringify(HostPort$outboundSchema.parse(hostPort));
 }
-
-export function hostPortFromJSON(
-  jsonString: string,
-): SafeParseResult<HostPort, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => HostPort$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'HostPort' from JSON`,
-  );
-}
-
-/** @internal */
-export const Target1$inboundSchema: z.ZodType<Target1, z.ZodTypeDef, unknown> =
-  z.object({
-    host_port: z.lazy(() => HostPort$inboundSchema),
-  }).transform((v) => {
-    return remap$(v, {
-      "host_port": "hostPort",
-    });
-  });
 
 /** @internal */
 export type Target1$Outbound = {
@@ -239,42 +127,9 @@ export const Target1$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Target1$ {
-  /** @deprecated use `Target1$inboundSchema` instead. */
-  export const inboundSchema = Target1$inboundSchema;
-  /** @deprecated use `Target1$outboundSchema` instead. */
-  export const outboundSchema = Target1$outboundSchema;
-  /** @deprecated use `Target1$Outbound` instead. */
-  export type Outbound = Target1$Outbound;
-}
-
 export function target1ToJSON(target1: Target1): string {
   return JSON.stringify(Target1$outboundSchema.parse(target1));
 }
-
-export function target1FromJSON(
-  jsonString: string,
-): SafeParseResult<Target1, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Target1$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Target1' from JSON`,
-  );
-}
-
-/** @internal */
-export const ScansDiscoveryInputBodyTarget$inboundSchema: z.ZodType<
-  ScansDiscoveryInputBodyTarget,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  z.lazy(() => Target1$inboundSchema),
-  z.lazy(() => Target2$inboundSchema),
-]);
 
 /** @internal */
 export type ScansDiscoveryInputBodyTarget$Outbound =
@@ -291,19 +146,6 @@ export const ScansDiscoveryInputBodyTarget$outboundSchema: z.ZodType<
   z.lazy(() => Target2$outboundSchema),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ScansDiscoveryInputBodyTarget$ {
-  /** @deprecated use `ScansDiscoveryInputBodyTarget$inboundSchema` instead. */
-  export const inboundSchema = ScansDiscoveryInputBodyTarget$inboundSchema;
-  /** @deprecated use `ScansDiscoveryInputBodyTarget$outboundSchema` instead. */
-  export const outboundSchema = ScansDiscoveryInputBodyTarget$outboundSchema;
-  /** @deprecated use `ScansDiscoveryInputBodyTarget$Outbound` instead. */
-  export type Outbound = ScansDiscoveryInputBodyTarget$Outbound;
-}
-
 export function scansDiscoveryInputBodyTargetToJSON(
   scansDiscoveryInputBodyTarget: ScansDiscoveryInputBodyTarget,
 ): string {
@@ -313,28 +155,6 @@ export function scansDiscoveryInputBodyTargetToJSON(
     ),
   );
 }
-
-export function scansDiscoveryInputBodyTargetFromJSON(
-  jsonString: string,
-): SafeParseResult<ScansDiscoveryInputBodyTarget, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ScansDiscoveryInputBodyTarget$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ScansDiscoveryInputBodyTarget' from JSON`,
-  );
-}
-
-/** @internal */
-export const ScansDiscoveryInputBody$inboundSchema: z.ZodType<
-  ScansDiscoveryInputBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  target: z.union([
-    z.lazy(() => Target1$inboundSchema),
-    z.lazy(() => Target2$inboundSchema),
-  ]),
-});
 
 /** @internal */
 export type ScansDiscoveryInputBody$Outbound = {
@@ -353,33 +173,10 @@ export const ScansDiscoveryInputBody$outboundSchema: z.ZodType<
   ]),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ScansDiscoveryInputBody$ {
-  /** @deprecated use `ScansDiscoveryInputBody$inboundSchema` instead. */
-  export const inboundSchema = ScansDiscoveryInputBody$inboundSchema;
-  /** @deprecated use `ScansDiscoveryInputBody$outboundSchema` instead. */
-  export const outboundSchema = ScansDiscoveryInputBody$outboundSchema;
-  /** @deprecated use `ScansDiscoveryInputBody$Outbound` instead. */
-  export type Outbound = ScansDiscoveryInputBody$Outbound;
-}
-
 export function scansDiscoveryInputBodyToJSON(
   scansDiscoveryInputBody: ScansDiscoveryInputBody,
 ): string {
   return JSON.stringify(
     ScansDiscoveryInputBody$outboundSchema.parse(scansDiscoveryInputBody),
-  );
-}
-
-export function scansDiscoveryInputBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<ScansDiscoveryInputBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ScansDiscoveryInputBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ScansDiscoveryInputBody' from JSON`,
   );
 }

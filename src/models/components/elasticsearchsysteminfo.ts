@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ElasticSearchSystemInfoVer,
   ElasticSearchSystemInfoVer$inboundSchema,
-  ElasticSearchSystemInfoVer$Outbound,
-  ElasticSearchSystemInfoVer$outboundSchema,
 } from "./elasticsearchsysteminfover.js";
 
 export type ElasticSearchSystemInfo = {
@@ -36,51 +34,6 @@ export const ElasticSearchSystemInfo$inboundSchema: z.ZodType<
     "cluster_uuid": "clusterUuid",
   });
 });
-
-/** @internal */
-export type ElasticSearchSystemInfo$Outbound = {
-  cluster_uuid?: string | undefined;
-  name?: string | undefined;
-  tagline?: string | undefined;
-  version?: ElasticSearchSystemInfoVer$Outbound | undefined;
-};
-
-/** @internal */
-export const ElasticSearchSystemInfo$outboundSchema: z.ZodType<
-  ElasticSearchSystemInfo$Outbound,
-  z.ZodTypeDef,
-  ElasticSearchSystemInfo
-> = z.object({
-  clusterUuid: z.string().optional(),
-  name: z.string().optional(),
-  tagline: z.string().optional(),
-  version: ElasticSearchSystemInfoVer$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    clusterUuid: "cluster_uuid",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ElasticSearchSystemInfo$ {
-  /** @deprecated use `ElasticSearchSystemInfo$inboundSchema` instead. */
-  export const inboundSchema = ElasticSearchSystemInfo$inboundSchema;
-  /** @deprecated use `ElasticSearchSystemInfo$outboundSchema` instead. */
-  export const outboundSchema = ElasticSearchSystemInfo$outboundSchema;
-  /** @deprecated use `ElasticSearchSystemInfo$Outbound` instead. */
-  export type Outbound = ElasticSearchSystemInfo$Outbound;
-}
-
-export function elasticSearchSystemInfoToJSON(
-  elasticSearchSystemInfo: ElasticSearchSystemInfo,
-): string {
-  return JSON.stringify(
-    ElasticSearchSystemInfo$outboundSchema.parse(elasticSearchSystemInfo),
-  );
-}
 
 export function elasticSearchSystemInfoFromJSON(
   jsonString: string,

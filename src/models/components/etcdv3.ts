@@ -7,18 +7,8 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Auth,
-  Auth$inboundSchema,
-  Auth$Outbound,
-  Auth$outboundSchema,
-} from "./auth.js";
-import {
-  Members,
-  Members$inboundSchema,
-  Members$Outbound,
-  Members$outboundSchema,
-} from "./members.js";
+import { Auth, Auth$inboundSchema } from "./auth.js";
+import { Members, Members$inboundSchema } from "./members.js";
 
 export type EtcdV3 = {
   auth?: Auth | undefined;
@@ -37,45 +27,6 @@ export const EtcdV3$inboundSchema: z.ZodType<EtcdV3, z.ZodTypeDef, unknown> = z
       "total_keys": "totalKeys",
     });
   });
-
-/** @internal */
-export type EtcdV3$Outbound = {
-  auth?: Auth$Outbound | undefined;
-  members?: Array<Members$Outbound> | null | undefined;
-  total_keys?: number | undefined;
-};
-
-/** @internal */
-export const EtcdV3$outboundSchema: z.ZodType<
-  EtcdV3$Outbound,
-  z.ZodTypeDef,
-  EtcdV3
-> = z.object({
-  auth: Auth$outboundSchema.optional(),
-  members: z.nullable(z.array(Members$outboundSchema)).optional(),
-  totalKeys: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    totalKeys: "total_keys",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EtcdV3$ {
-  /** @deprecated use `EtcdV3$inboundSchema` instead. */
-  export const inboundSchema = EtcdV3$inboundSchema;
-  /** @deprecated use `EtcdV3$outboundSchema` instead. */
-  export const outboundSchema = EtcdV3$outboundSchema;
-  /** @deprecated use `EtcdV3$Outbound` instead. */
-  export type Outbound = EtcdV3$Outbound;
-}
-
-export function etcdV3ToJSON(etcdV3: EtcdV3): string {
-  return JSON.stringify(EtcdV3$outboundSchema.parse(etcdV3));
-}
 
 export function etcdV3FromJSON(
   jsonString: string,

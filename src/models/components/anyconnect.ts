@@ -50,51 +50,6 @@ export const AnyConnect$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type AnyConnect$Outbound = {
-  aggregate_auth_version?: number | undefined;
-  auth_methods?: Array<string> | null | undefined;
-  groups?: Array<string> | null | undefined;
-  raw?: string | undefined;
-  response_type?: string | undefined;
-};
-
-/** @internal */
-export const AnyConnect$outboundSchema: z.ZodType<
-  AnyConnect$Outbound,
-  z.ZodTypeDef,
-  AnyConnect
-> = z.object({
-  aggregateAuthVersion: z.number().int().optional(),
-  authMethods: z.nullable(z.array(z.string())).optional(),
-  groups: z.nullable(z.array(z.string())).optional(),
-  raw: z.string().optional(),
-  responseType: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    aggregateAuthVersion: "aggregate_auth_version",
-    authMethods: "auth_methods",
-    responseType: "response_type",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AnyConnect$ {
-  /** @deprecated use `AnyConnect$inboundSchema` instead. */
-  export const inboundSchema = AnyConnect$inboundSchema;
-  /** @deprecated use `AnyConnect$outboundSchema` instead. */
-  export const outboundSchema = AnyConnect$outboundSchema;
-  /** @deprecated use `AnyConnect$Outbound` instead. */
-  export type Outbound = AnyConnect$Outbound;
-}
-
-export function anyConnectToJSON(anyConnect: AnyConnect): string {
-  return JSON.stringify(AnyConnect$outboundSchema.parse(anyConnect));
-}
-
 export function anyConnectFromJSON(
   jsonString: string,
 ): SafeParseResult<AnyConnect, SDKValidationError> {

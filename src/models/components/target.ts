@@ -36,55 +36,6 @@ export const Target$inboundSchema: z.ZodType<Target, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type Target$Outbound = {
-  alias?: string | undefined;
-  auths?: Array<string> | null | undefined;
-  dns_portals?: Array<string> | null | undefined;
-  errors?: Array<string> | null | undefined;
-  name?: string | undefined;
-  private_portals?: Array<string> | null | undefined;
-  public_portals?: Array<string> | null | undefined;
-};
-
-/** @internal */
-export const Target$outboundSchema: z.ZodType<
-  Target$Outbound,
-  z.ZodTypeDef,
-  Target
-> = z.object({
-  alias: z.string().optional(),
-  auths: z.nullable(z.array(z.string())).optional(),
-  dnsPortals: z.nullable(z.array(z.string())).optional(),
-  errors: z.nullable(z.array(z.string())).optional(),
-  name: z.string().optional(),
-  privatePortals: z.nullable(z.array(z.string())).optional(),
-  publicPortals: z.nullable(z.array(z.string())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    dnsPortals: "dns_portals",
-    privatePortals: "private_portals",
-    publicPortals: "public_portals",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Target$ {
-  /** @deprecated use `Target$inboundSchema` instead. */
-  export const inboundSchema = Target$inboundSchema;
-  /** @deprecated use `Target$outboundSchema` instead. */
-  export const outboundSchema = Target$outboundSchema;
-  /** @deprecated use `Target$Outbound` instead. */
-  export type Outbound = Target$Outbound;
-}
-
-export function targetToJSON(target: Target): string {
-  return JSON.stringify(Target$outboundSchema.parse(target));
-}
-
 export function targetFromJSON(
   jsonString: string,
 ): SafeParseResult<Target, SDKValidationError> {

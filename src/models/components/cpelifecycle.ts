@@ -31,47 +31,6 @@ export const CPELifeCycle$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type CPELifeCycle$Outbound = {
-  end_of_life?: boolean | undefined;
-  end_of_life_date?: string | undefined;
-  release_date?: string | undefined;
-};
-
-/** @internal */
-export const CPELifeCycle$outboundSchema: z.ZodType<
-  CPELifeCycle$Outbound,
-  z.ZodTypeDef,
-  CPELifeCycle
-> = z.object({
-  endOfLife: z.boolean().optional(),
-  endOfLifeDate: z.string().optional(),
-  releaseDate: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    endOfLife: "end_of_life",
-    endOfLifeDate: "end_of_life_date",
-    releaseDate: "release_date",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CPELifeCycle$ {
-  /** @deprecated use `CPELifeCycle$inboundSchema` instead. */
-  export const inboundSchema = CPELifeCycle$inboundSchema;
-  /** @deprecated use `CPELifeCycle$outboundSchema` instead. */
-  export const outboundSchema = CPELifeCycle$outboundSchema;
-  /** @deprecated use `CPELifeCycle$Outbound` instead. */
-  export type Outbound = CPELifeCycle$Outbound;
-}
-
-export function cpeLifeCycleToJSON(cpeLifeCycle: CPELifeCycle): string {
-  return JSON.stringify(CPELifeCycle$outboundSchema.parse(cpeLifeCycle));
-}
-
 export function cpeLifeCycleFromJSON(
   jsonString: string,
 ): SafeParseResult<CPELifeCycle, SDKValidationError> {

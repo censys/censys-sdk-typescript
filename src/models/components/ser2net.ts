@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Ser2NetSerialParameters,
   Ser2NetSerialParameters$inboundSchema,
-  Ser2NetSerialParameters$Outbound,
-  Ser2NetSerialParameters$outboundSchema,
 } from "./ser2netserialparameters.js";
 
 export type Ser2Net = {
@@ -36,50 +34,6 @@ export const Ser2Net$inboundSchema: z.ZodType<Ser2Net, z.ZodTypeDef, unknown> =
       "software_version": "softwareVersion",
     });
   });
-
-/** @internal */
-export type Ser2Net$Outbound = {
-  device?: string | undefined;
-  os?: string | undefined;
-  serial_parameters?: Ser2NetSerialParameters$Outbound | undefined;
-  software?: string | undefined;
-  software_version?: string | undefined;
-};
-
-/** @internal */
-export const Ser2Net$outboundSchema: z.ZodType<
-  Ser2Net$Outbound,
-  z.ZodTypeDef,
-  Ser2Net
-> = z.object({
-  device: z.string().optional(),
-  os: z.string().optional(),
-  serialParameters: Ser2NetSerialParameters$outboundSchema.optional(),
-  software: z.string().optional(),
-  softwareVersion: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    serialParameters: "serial_parameters",
-    softwareVersion: "software_version",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Ser2Net$ {
-  /** @deprecated use `Ser2Net$inboundSchema` instead. */
-  export const inboundSchema = Ser2Net$inboundSchema;
-  /** @deprecated use `Ser2Net$outboundSchema` instead. */
-  export const outboundSchema = Ser2Net$outboundSchema;
-  /** @deprecated use `Ser2Net$Outbound` instead. */
-  export type Outbound = Ser2Net$Outbound;
-}
-
-export function ser2NetToJSON(ser2Net: Ser2Net): string {
-  return JSON.stringify(Ser2Net$outboundSchema.parse(ser2Net));
-}
 
 export function ser2NetFromJSON(
   jsonString: string,

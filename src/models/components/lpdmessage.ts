@@ -22,39 +22,6 @@ export const LpdMessage$inboundSchema: z.ZodType<
   status: z.number().int().optional(),
 });
 
-/** @internal */
-export type LpdMessage$Outbound = {
-  body?: string | undefined;
-  status?: number | undefined;
-};
-
-/** @internal */
-export const LpdMessage$outboundSchema: z.ZodType<
-  LpdMessage$Outbound,
-  z.ZodTypeDef,
-  LpdMessage
-> = z.object({
-  body: z.string().optional(),
-  status: z.number().int().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace LpdMessage$ {
-  /** @deprecated use `LpdMessage$inboundSchema` instead. */
-  export const inboundSchema = LpdMessage$inboundSchema;
-  /** @deprecated use `LpdMessage$outboundSchema` instead. */
-  export const outboundSchema = LpdMessage$outboundSchema;
-  /** @deprecated use `LpdMessage$Outbound` instead. */
-  export type Outbound = LpdMessage$Outbound;
-}
-
-export function lpdMessageToJSON(lpdMessage: LpdMessage): string {
-  return JSON.stringify(LpdMessage$outboundSchema.parse(lpdMessage));
-}
-
 export function lpdMessageFromJSON(
   jsonString: string,
 ): SafeParseResult<LpdMessage, SDKValidationError> {

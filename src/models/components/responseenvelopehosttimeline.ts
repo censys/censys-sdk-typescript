@@ -6,12 +6,7 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  HostTimeline,
-  HostTimeline$inboundSchema,
-  HostTimeline$Outbound,
-  HostTimeline$outboundSchema,
-} from "./hosttimeline.js";
+import { HostTimeline, HostTimeline$inboundSchema } from "./hosttimeline.js";
 
 export type ResponseEnvelopeHostTimeline = {
   result?: HostTimeline | undefined;
@@ -25,43 +20,6 @@ export const ResponseEnvelopeHostTimeline$inboundSchema: z.ZodType<
 > = z.object({
   result: HostTimeline$inboundSchema.optional(),
 });
-
-/** @internal */
-export type ResponseEnvelopeHostTimeline$Outbound = {
-  result?: HostTimeline$Outbound | undefined;
-};
-
-/** @internal */
-export const ResponseEnvelopeHostTimeline$outboundSchema: z.ZodType<
-  ResponseEnvelopeHostTimeline$Outbound,
-  z.ZodTypeDef,
-  ResponseEnvelopeHostTimeline
-> = z.object({
-  result: HostTimeline$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseEnvelopeHostTimeline$ {
-  /** @deprecated use `ResponseEnvelopeHostTimeline$inboundSchema` instead. */
-  export const inboundSchema = ResponseEnvelopeHostTimeline$inboundSchema;
-  /** @deprecated use `ResponseEnvelopeHostTimeline$outboundSchema` instead. */
-  export const outboundSchema = ResponseEnvelopeHostTimeline$outboundSchema;
-  /** @deprecated use `ResponseEnvelopeHostTimeline$Outbound` instead. */
-  export type Outbound = ResponseEnvelopeHostTimeline$Outbound;
-}
-
-export function responseEnvelopeHostTimelineToJSON(
-  responseEnvelopeHostTimeline: ResponseEnvelopeHostTimeline,
-): string {
-  return JSON.stringify(
-    ResponseEnvelopeHostTimeline$outboundSchema.parse(
-      responseEnvelopeHostTimeline,
-    ),
-  );
-}
 
 export function responseEnvelopeHostTimelineFromJSON(
   jsonString: string,

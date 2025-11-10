@@ -39,55 +39,6 @@ export const HidVertx$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type HidVertx$Outbound = {
-  firmware_date?: string | undefined;
-  id?: string | undefined;
-  ip?: string | undefined;
-  mac_address?: string | undefined;
-  make_model?: string | undefined;
-  model?: string | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const HidVertx$outboundSchema: z.ZodType<
-  HidVertx$Outbound,
-  z.ZodTypeDef,
-  HidVertx
-> = z.object({
-  firmwareDate: z.string().optional(),
-  id: z.string().optional(),
-  ip: z.string().optional(),
-  macAddress: z.string().optional(),
-  makeModel: z.string().optional(),
-  model: z.string().optional(),
-  version: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    firmwareDate: "firmware_date",
-    macAddress: "mac_address",
-    makeModel: "make_model",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HidVertx$ {
-  /** @deprecated use `HidVertx$inboundSchema` instead. */
-  export const inboundSchema = HidVertx$inboundSchema;
-  /** @deprecated use `HidVertx$outboundSchema` instead. */
-  export const outboundSchema = HidVertx$outboundSchema;
-  /** @deprecated use `HidVertx$Outbound` instead. */
-  export type Outbound = HidVertx$Outbound;
-}
-
-export function hidVertxToJSON(hidVertx: HidVertx): string {
-  return JSON.stringify(HidVertx$outboundSchema.parse(hidVertx));
-}
-
 export function hidVertxFromJSON(
   jsonString: string,
 ): SafeParseResult<HidVertx, SDKValidationError> {

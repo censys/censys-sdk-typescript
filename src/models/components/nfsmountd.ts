@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  ExportList,
-  ExportList$inboundSchema,
-  ExportList$Outbound,
-  ExportList$outboundSchema,
-} from "./exportlist.js";
+import { ExportList, ExportList$inboundSchema } from "./exportlist.js";
 
 export type NfsMountd = {
   exportLists?: Array<ExportList> | null | undefined;
@@ -30,41 +25,6 @@ export const NfsMountd$inboundSchema: z.ZodType<
     "export_lists": "exportLists",
   });
 });
-
-/** @internal */
-export type NfsMountd$Outbound = {
-  export_lists?: Array<ExportList$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const NfsMountd$outboundSchema: z.ZodType<
-  NfsMountd$Outbound,
-  z.ZodTypeDef,
-  NfsMountd
-> = z.object({
-  exportLists: z.nullable(z.array(ExportList$outboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    exportLists: "export_lists",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace NfsMountd$ {
-  /** @deprecated use `NfsMountd$inboundSchema` instead. */
-  export const inboundSchema = NfsMountd$inboundSchema;
-  /** @deprecated use `NfsMountd$outboundSchema` instead. */
-  export const outboundSchema = NfsMountd$outboundSchema;
-  /** @deprecated use `NfsMountd$Outbound` instead. */
-  export type Outbound = NfsMountd$Outbound;
-}
-
-export function nfsMountdToJSON(nfsMountd: NfsMountd): string {
-  return JSON.stringify(NfsMountd$outboundSchema.parse(nfsMountd));
-}
 
 export function nfsMountdFromJSON(
   jsonString: string,

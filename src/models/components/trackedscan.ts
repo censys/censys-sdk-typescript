@@ -10,14 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   TrackedScanScanTarget,
   TrackedScanScanTarget$inboundSchema,
-  TrackedScanScanTarget$Outbound,
-  TrackedScanScanTarget$outboundSchema,
 } from "./trackedscanscantarget.js";
 import {
   TrackedScanTask,
   TrackedScanTask$inboundSchema,
-  TrackedScanTask$Outbound,
-  TrackedScanTask$outboundSchema,
 } from "./trackedscantask.js";
 
 export type TrackedScan = {
@@ -45,50 +41,6 @@ export const TrackedScan$inboundSchema: z.ZodType<
     "tracked_scan_id": "trackedScanId",
   });
 });
-
-/** @internal */
-export type TrackedScan$Outbound = {
-  completed?: boolean | undefined;
-  create_time?: string | undefined;
-  target?: TrackedScanScanTarget$Outbound | undefined;
-  tasks?: Array<TrackedScanTask$Outbound> | null | undefined;
-  tracked_scan_id?: string | undefined;
-};
-
-/** @internal */
-export const TrackedScan$outboundSchema: z.ZodType<
-  TrackedScan$Outbound,
-  z.ZodTypeDef,
-  TrackedScan
-> = z.object({
-  completed: z.boolean().optional(),
-  createTime: z.string().optional(),
-  target: TrackedScanScanTarget$outboundSchema.optional(),
-  tasks: z.nullable(z.array(TrackedScanTask$outboundSchema)).optional(),
-  trackedScanId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    createTime: "create_time",
-    trackedScanId: "tracked_scan_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TrackedScan$ {
-  /** @deprecated use `TrackedScan$inboundSchema` instead. */
-  export const inboundSchema = TrackedScan$inboundSchema;
-  /** @deprecated use `TrackedScan$outboundSchema` instead. */
-  export const outboundSchema = TrackedScan$outboundSchema;
-  /** @deprecated use `TrackedScan$Outbound` instead. */
-  export type Outbound = TrackedScan$Outbound;
-}
-
-export function trackedScanToJSON(trackedScan: TrackedScan): string {
-  return JSON.stringify(TrackedScan$outboundSchema.parse(trackedScan));
-}
 
 export function trackedScanFromJSON(
   jsonString: string,

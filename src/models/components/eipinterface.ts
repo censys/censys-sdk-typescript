@@ -22,39 +22,6 @@ export const EipInterface$inboundSchema: z.ZodType<
   name: z.string().optional(),
 });
 
-/** @internal */
-export type EipInterface$Outbound = {
-  index?: number | undefined;
-  name?: string | undefined;
-};
-
-/** @internal */
-export const EipInterface$outboundSchema: z.ZodType<
-  EipInterface$Outbound,
-  z.ZodTypeDef,
-  EipInterface
-> = z.object({
-  index: z.number().int().optional(),
-  name: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EipInterface$ {
-  /** @deprecated use `EipInterface$inboundSchema` instead. */
-  export const inboundSchema = EipInterface$inboundSchema;
-  /** @deprecated use `EipInterface$outboundSchema` instead. */
-  export const outboundSchema = EipInterface$outboundSchema;
-  /** @deprecated use `EipInterface$Outbound` instead. */
-  export type Outbound = EipInterface$Outbound;
-}
-
-export function eipInterfaceToJSON(eipInterface: EipInterface): string {
-  return JSON.stringify(EipInterface$outboundSchema.parse(eipInterface));
-}
-
 export function eipInterfaceFromJSON(
   jsonString: string,
 ): SafeParseResult<EipInterface, SDKValidationError> {

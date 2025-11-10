@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SnmpSystemServices,
   SnmpSystemServices$inboundSchema,
-  SnmpSystemServices$Outbound,
-  SnmpSystemServices$outboundSchema,
 } from "./snmpsystemservices.js";
 
 export type SnmpSystem = {
@@ -61,54 +59,6 @@ export const SnmpSystem$inboundSchema: z.ZodType<
     "object_id": "objectId",
   });
 });
-
-/** @internal */
-export type SnmpSystem$Outbound = {
-  contact?: string | undefined;
-  desc?: string | undefined;
-  init_time?: number | undefined;
-  location?: string | undefined;
-  name?: string | undefined;
-  object_id?: string | undefined;
-  services?: SnmpSystemServices$Outbound | undefined;
-};
-
-/** @internal */
-export const SnmpSystem$outboundSchema: z.ZodType<
-  SnmpSystem$Outbound,
-  z.ZodTypeDef,
-  SnmpSystem
-> = z.object({
-  contact: z.string().optional(),
-  desc: z.string().optional(),
-  initTime: z.number().int().optional(),
-  location: z.string().optional(),
-  name: z.string().optional(),
-  objectId: z.string().optional(),
-  services: SnmpSystemServices$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    initTime: "init_time",
-    objectId: "object_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SnmpSystem$ {
-  /** @deprecated use `SnmpSystem$inboundSchema` instead. */
-  export const inboundSchema = SnmpSystem$inboundSchema;
-  /** @deprecated use `SnmpSystem$outboundSchema` instead. */
-  export const outboundSchema = SnmpSystem$outboundSchema;
-  /** @deprecated use `SnmpSystem$Outbound` instead. */
-  export type Outbound = SnmpSystem$Outbound;
-}
-
-export function snmpSystemToJSON(snmpSystem: SnmpSystem): string {
-  return JSON.stringify(SnmpSystem$outboundSchema.parse(snmpSystem));
-}
 
 export function snmpSystemFromJSON(
   jsonString: string,

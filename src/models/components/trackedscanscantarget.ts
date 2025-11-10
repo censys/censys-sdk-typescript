@@ -7,30 +7,16 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  ServiceId,
-  ServiceId$inboundSchema,
-  ServiceId$Outbound,
-  ServiceId$outboundSchema,
-} from "./serviceid.js";
+import { ServiceId, ServiceId$inboundSchema } from "./serviceid.js";
 import {
   TrackedScanScanTargetHostnamePort,
   TrackedScanScanTargetHostnamePort$inboundSchema,
-  TrackedScanScanTargetHostnamePort$Outbound,
-  TrackedScanScanTargetHostnamePort$outboundSchema,
 } from "./trackedscanscantargethostnameport.js";
 import {
   TrackedScanScanTargetHostPort,
   TrackedScanScanTargetHostPort$inboundSchema,
-  TrackedScanScanTargetHostPort$Outbound,
-  TrackedScanScanTargetHostPort$outboundSchema,
 } from "./trackedscanscantargethostport.js";
-import {
-  WebOrigin,
-  WebOrigin$inboundSchema,
-  WebOrigin$Outbound,
-  WebOrigin$outboundSchema,
-} from "./weborigin.js";
+import { WebOrigin, WebOrigin$inboundSchema } from "./weborigin.js";
 
 export type TrackedScanScanTarget = {
   hostPort?: TrackedScanScanTargetHostPort | undefined;
@@ -57,54 +43,6 @@ export const TrackedScanScanTarget$inboundSchema: z.ZodType<
     "web_origin": "webOrigin",
   });
 });
-
-/** @internal */
-export type TrackedScanScanTarget$Outbound = {
-  host_port?: TrackedScanScanTargetHostPort$Outbound | undefined;
-  hostname_port?: TrackedScanScanTargetHostnamePort$Outbound | undefined;
-  service_id?: ServiceId$Outbound | undefined;
-  web_origin?: WebOrigin$Outbound | undefined;
-};
-
-/** @internal */
-export const TrackedScanScanTarget$outboundSchema: z.ZodType<
-  TrackedScanScanTarget$Outbound,
-  z.ZodTypeDef,
-  TrackedScanScanTarget
-> = z.object({
-  hostPort: TrackedScanScanTargetHostPort$outboundSchema.optional(),
-  hostnamePort: TrackedScanScanTargetHostnamePort$outboundSchema.optional(),
-  serviceId: ServiceId$outboundSchema.optional(),
-  webOrigin: WebOrigin$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    hostPort: "host_port",
-    hostnamePort: "hostname_port",
-    serviceId: "service_id",
-    webOrigin: "web_origin",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TrackedScanScanTarget$ {
-  /** @deprecated use `TrackedScanScanTarget$inboundSchema` instead. */
-  export const inboundSchema = TrackedScanScanTarget$inboundSchema;
-  /** @deprecated use `TrackedScanScanTarget$outboundSchema` instead. */
-  export const outboundSchema = TrackedScanScanTarget$outboundSchema;
-  /** @deprecated use `TrackedScanScanTarget$Outbound` instead. */
-  export type Outbound = TrackedScanScanTarget$Outbound;
-}
-
-export function trackedScanScanTargetToJSON(
-  trackedScanScanTarget: TrackedScanScanTarget,
-): string {
-  return JSON.stringify(
-    TrackedScanScanTarget$outboundSchema.parse(trackedScanScanTarget),
-  );
-}
 
 export function trackedScanScanTargetFromJSON(
   jsonString: string,

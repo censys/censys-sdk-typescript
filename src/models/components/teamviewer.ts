@@ -20,37 +20,6 @@ export const TeamViewer$inboundSchema: z.ZodType<
   response: z.string().optional(),
 });
 
-/** @internal */
-export type TeamViewer$Outbound = {
-  response?: string | undefined;
-};
-
-/** @internal */
-export const TeamViewer$outboundSchema: z.ZodType<
-  TeamViewer$Outbound,
-  z.ZodTypeDef,
-  TeamViewer
-> = z.object({
-  response: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TeamViewer$ {
-  /** @deprecated use `TeamViewer$inboundSchema` instead. */
-  export const inboundSchema = TeamViewer$inboundSchema;
-  /** @deprecated use `TeamViewer$outboundSchema` instead. */
-  export const outboundSchema = TeamViewer$outboundSchema;
-  /** @deprecated use `TeamViewer$Outbound` instead. */
-  export type Outbound = TeamViewer$Outbound;
-}
-
-export function teamViewerToJSON(teamViewer: TeamViewer): string {
-  return JSON.stringify(TeamViewer$outboundSchema.parse(teamViewer));
-}
-
 export function teamViewerFromJSON(
   jsonString: string,
 ): SafeParseResult<TeamViewer, SDKValidationError> {

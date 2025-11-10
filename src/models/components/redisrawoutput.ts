@@ -20,37 +20,6 @@ export const RedisRawOutput$inboundSchema: z.ZodType<
   output: z.string().optional(),
 });
 
-/** @internal */
-export type RedisRawOutput$Outbound = {
-  output?: string | undefined;
-};
-
-/** @internal */
-export const RedisRawOutput$outboundSchema: z.ZodType<
-  RedisRawOutput$Outbound,
-  z.ZodTypeDef,
-  RedisRawOutput
-> = z.object({
-  output: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RedisRawOutput$ {
-  /** @deprecated use `RedisRawOutput$inboundSchema` instead. */
-  export const inboundSchema = RedisRawOutput$inboundSchema;
-  /** @deprecated use `RedisRawOutput$outboundSchema` instead. */
-  export const outboundSchema = RedisRawOutput$outboundSchema;
-  /** @deprecated use `RedisRawOutput$Outbound` instead. */
-  export type Outbound = RedisRawOutput$Outbound;
-}
-
-export function redisRawOutputToJSON(redisRawOutput: RedisRawOutput): string {
-  return JSON.stringify(RedisRawOutput$outboundSchema.parse(redisRawOutput));
-}
-
 export function redisRawOutputFromJSON(
   jsonString: string,
 ): SafeParseResult<RedisRawOutput, SDKValidationError> {

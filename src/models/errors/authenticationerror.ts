@@ -48,32 +48,3 @@ export const AuthenticationError$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type AuthenticationError$Outbound = {
-  error?: components.AuthenticationErrorDetail$Outbound | undefined;
-};
-
-/** @internal */
-export const AuthenticationError$outboundSchema: z.ZodType<
-  AuthenticationError$Outbound,
-  z.ZodTypeDef,
-  AuthenticationError
-> = z.instanceof(AuthenticationError)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    error: components.AuthenticationErrorDetail$outboundSchema.optional(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuthenticationError$ {
-  /** @deprecated use `AuthenticationError$inboundSchema` instead. */
-  export const inboundSchema = AuthenticationError$inboundSchema;
-  /** @deprecated use `AuthenticationError$outboundSchema` instead. */
-  export const outboundSchema = AuthenticationError$outboundSchema;
-  /** @deprecated use `AuthenticationError$Outbound` instead. */
-  export type Outbound = AuthenticationError$Outbound;
-}

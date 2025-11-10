@@ -25,38 +25,6 @@ export const Imap$inboundSchema: z.ZodType<Imap, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type Imap$Outbound = {
-  start_tls?: string | undefined;
-};
-
-/** @internal */
-export const Imap$outboundSchema: z.ZodType<Imap$Outbound, z.ZodTypeDef, Imap> =
-  z.object({
-    startTls: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      startTls: "start_tls",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Imap$ {
-  /** @deprecated use `Imap$inboundSchema` instead. */
-  export const inboundSchema = Imap$inboundSchema;
-  /** @deprecated use `Imap$outboundSchema` instead. */
-  export const outboundSchema = Imap$outboundSchema;
-  /** @deprecated use `Imap$Outbound` instead. */
-  export type Outbound = Imap$Outbound;
-}
-
-export function imapToJSON(imap: Imap): string {
-  return JSON.stringify(Imap$outboundSchema.parse(imap));
-}
-
 export function imapFromJSON(
   jsonString: string,
 ): SafeParseResult<Imap, SDKValidationError> {

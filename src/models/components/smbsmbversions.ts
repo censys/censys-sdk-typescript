@@ -43,47 +43,6 @@ export const SmbSmbVersions$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type SmbSmbVersions$Outbound = {
-  major?: number | undefined;
-  minor?: number | undefined;
-  revision?: number | undefined;
-  version_string?: string | undefined;
-};
-
-/** @internal */
-export const SmbSmbVersions$outboundSchema: z.ZodType<
-  SmbSmbVersions$Outbound,
-  z.ZodTypeDef,
-  SmbSmbVersions
-> = z.object({
-  major: z.number().int().optional(),
-  minor: z.number().int().optional(),
-  revision: z.number().int().optional(),
-  versionString: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    versionString: "version_string",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SmbSmbVersions$ {
-  /** @deprecated use `SmbSmbVersions$inboundSchema` instead. */
-  export const inboundSchema = SmbSmbVersions$inboundSchema;
-  /** @deprecated use `SmbSmbVersions$outboundSchema` instead. */
-  export const outboundSchema = SmbSmbVersions$outboundSchema;
-  /** @deprecated use `SmbSmbVersions$Outbound` instead. */
-  export type Outbound = SmbSmbVersions$Outbound;
-}
-
-export function smbSmbVersionsToJSON(smbSmbVersions: SmbSmbVersions): string {
-  return JSON.stringify(SmbSmbVersions$outboundSchema.parse(smbSmbVersions));
-}
-
 export function smbSmbVersionsFromJSON(
   jsonString: string,
 ): SafeParseResult<SmbSmbVersions, SDKValidationError> {

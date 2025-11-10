@@ -9,14 +9,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   KubernetesEndpointSubsetEndpointAddress,
   KubernetesEndpointSubsetEndpointAddress$inboundSchema,
-  KubernetesEndpointSubsetEndpointAddress$Outbound,
-  KubernetesEndpointSubsetEndpointAddress$outboundSchema,
 } from "./kubernetesendpointsubsetendpointaddress.js";
 import {
   KubernetesEndpointSubsetPort,
   KubernetesEndpointSubsetPort$inboundSchema,
-  KubernetesEndpointSubsetPort$Outbound,
-  KubernetesEndpointSubsetPort$outboundSchema,
 } from "./kubernetesendpointsubsetport.js";
 
 export type KubernetesEndpointSubset = {
@@ -36,49 +32,6 @@ export const KubernetesEndpointSubset$inboundSchema: z.ZodType<
   ports: z.nullable(z.array(KubernetesEndpointSubsetPort$inboundSchema))
     .optional(),
 });
-
-/** @internal */
-export type KubernetesEndpointSubset$Outbound = {
-  addresses?:
-    | Array<KubernetesEndpointSubsetEndpointAddress$Outbound>
-    | null
-    | undefined;
-  ports?: Array<KubernetesEndpointSubsetPort$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const KubernetesEndpointSubset$outboundSchema: z.ZodType<
-  KubernetesEndpointSubset$Outbound,
-  z.ZodTypeDef,
-  KubernetesEndpointSubset
-> = z.object({
-  addresses: z.nullable(
-    z.array(KubernetesEndpointSubsetEndpointAddress$outboundSchema),
-  ).optional(),
-  ports: z.nullable(z.array(KubernetesEndpointSubsetPort$outboundSchema))
-    .optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace KubernetesEndpointSubset$ {
-  /** @deprecated use `KubernetesEndpointSubset$inboundSchema` instead. */
-  export const inboundSchema = KubernetesEndpointSubset$inboundSchema;
-  /** @deprecated use `KubernetesEndpointSubset$outboundSchema` instead. */
-  export const outboundSchema = KubernetesEndpointSubset$outboundSchema;
-  /** @deprecated use `KubernetesEndpointSubset$Outbound` instead. */
-  export type Outbound = KubernetesEndpointSubset$Outbound;
-}
-
-export function kubernetesEndpointSubsetToJSON(
-  kubernetesEndpointSubset: KubernetesEndpointSubset,
-): string {
-  return JSON.stringify(
-    KubernetesEndpointSubset$outboundSchema.parse(kubernetesEndpointSubset),
-  );
-}
 
 export function kubernetesEndpointSubsetFromJSON(
   jsonString: string,

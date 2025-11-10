@@ -31,50 +31,6 @@ export const Spice$inboundSchema: z.ZodType<Spice, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type Spice$Outbound = {
-  major_version?: number | undefined;
-  minor_version?: number | undefined;
-  tls_only?: boolean | undefined;
-  x509_public_key?: string | undefined;
-};
-
-/** @internal */
-export const Spice$outboundSchema: z.ZodType<
-  Spice$Outbound,
-  z.ZodTypeDef,
-  Spice
-> = z.object({
-  majorVersion: z.number().int().optional(),
-  minorVersion: z.number().int().optional(),
-  tlsOnly: z.boolean().optional(),
-  x509PublicKey: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    majorVersion: "major_version",
-    minorVersion: "minor_version",
-    tlsOnly: "tls_only",
-    x509PublicKey: "x509_public_key",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Spice$ {
-  /** @deprecated use `Spice$inboundSchema` instead. */
-  export const inboundSchema = Spice$inboundSchema;
-  /** @deprecated use `Spice$outboundSchema` instead. */
-  export const outboundSchema = Spice$outboundSchema;
-  /** @deprecated use `Spice$Outbound` instead. */
-  export type Outbound = Spice$Outbound;
-}
-
-export function spiceToJSON(spice: Spice): string {
-  return JSON.stringify(Spice$outboundSchema.parse(spice));
-}
-
 export function spiceFromJSON(
   jsonString: string,
 ): SafeParseResult<Spice, SDKValidationError> {

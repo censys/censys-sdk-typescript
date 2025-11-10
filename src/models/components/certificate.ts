@@ -11,28 +11,14 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CertificateParsed,
   CertificateParsed$inboundSchema,
-  CertificateParsed$Outbound,
-  CertificateParsed$outboundSchema,
 } from "./certificateparsed.js";
 import {
   CertificateRevocation,
   CertificateRevocation$inboundSchema,
-  CertificateRevocation$Outbound,
-  CertificateRevocation$outboundSchema,
 } from "./certificaterevocation.js";
-import { Ct, Ct$inboundSchema, Ct$Outbound, Ct$outboundSchema } from "./ct.js";
-import {
-  Validation,
-  Validation$inboundSchema,
-  Validation$Outbound,
-  Validation$outboundSchema,
-} from "./validation.js";
-import {
-  ZLint,
-  ZLint$inboundSchema,
-  ZLint$Outbound,
-  ZLint$outboundSchema,
-} from "./zlint.js";
+import { Ct, Ct$inboundSchema } from "./ct.js";
+import { Validation, Validation$inboundSchema } from "./validation.js";
+import { ZLint, ZLint$inboundSchema } from "./zlint.js";
 
 export const ParseStatus = {
   Unknown: "",
@@ -138,40 +124,9 @@ export const ParseStatus$inboundSchema: z.ZodNativeEnum<typeof ParseStatus> = z
   .nativeEnum(ParseStatus);
 
 /** @internal */
-export const ParseStatus$outboundSchema: z.ZodNativeEnum<typeof ParseStatus> =
-  ParseStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ParseStatus$ {
-  /** @deprecated use `ParseStatus$inboundSchema` instead. */
-  export const inboundSchema = ParseStatus$inboundSchema;
-  /** @deprecated use `ParseStatus$outboundSchema` instead. */
-  export const outboundSchema = ParseStatus$outboundSchema;
-}
-
-/** @internal */
 export const ValidationLevel$inboundSchema: z.ZodNativeEnum<
   typeof ValidationLevel
 > = z.nativeEnum(ValidationLevel);
-
-/** @internal */
-export const ValidationLevel$outboundSchema: z.ZodNativeEnum<
-  typeof ValidationLevel
-> = ValidationLevel$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ValidationLevel$ {
-  /** @deprecated use `ValidationLevel$inboundSchema` instead. */
-  export const inboundSchema = ValidationLevel$inboundSchema;
-  /** @deprecated use `ValidationLevel$outboundSchema` instead. */
-  export const outboundSchema = ValidationLevel$outboundSchema;
-}
 
 /** @internal */
 export const Certificate$inboundSchema: z.ZodType<
@@ -222,100 +177,6 @@ export const Certificate$inboundSchema: z.ZodType<
     "validation_level": "validationLevel",
   });
 });
-
-/** @internal */
-export type Certificate$Outbound = {
-  added_at?: string | undefined;
-  ct?: Ct$Outbound | undefined;
-  ever_seen_in_scan?: boolean | undefined;
-  fingerprint_md5?: string | undefined;
-  fingerprint_sha1?: string | undefined;
-  fingerprint_sha256?: string | undefined;
-  modified_at?: string | undefined;
-  names?: Array<string> | null | undefined;
-  parent_spki_fingerprint_sha256?: string | undefined;
-  parent_spki_subject_fingerprint_sha256?: string | undefined;
-  parse_status?: string | undefined;
-  parsed?: CertificateParsed$Outbound | undefined;
-  precert?: boolean | undefined;
-  revocation?: CertificateRevocation$Outbound | undefined;
-  revoked?: boolean | undefined;
-  spki_fingerprint_sha256?: string | undefined;
-  spki_subject_fingerprint_sha256?: string | undefined;
-  tbs_fingerprint_sha256?: string | undefined;
-  tbs_no_ct_fingerprint_sha256?: string | undefined;
-  validated_at?: string | undefined;
-  validation?: Validation$Outbound | undefined;
-  validation_level?: string | undefined;
-  zlint?: ZLint$Outbound | undefined;
-};
-
-/** @internal */
-export const Certificate$outboundSchema: z.ZodType<
-  Certificate$Outbound,
-  z.ZodTypeDef,
-  Certificate
-> = z.object({
-  addedAt: z.string().optional(),
-  ct: Ct$outboundSchema.optional(),
-  everSeenInScan: z.boolean().optional(),
-  fingerprintMd5: z.string().optional(),
-  fingerprintSha1: z.string().optional(),
-  fingerprintSha256: z.string().optional(),
-  modifiedAt: z.string().optional(),
-  names: z.nullable(z.array(z.string())).optional(),
-  parentSpkiFingerprintSha256: z.string().optional(),
-  parentSpkiSubjectFingerprintSha256: z.string().optional(),
-  parseStatus: ParseStatus$outboundSchema.optional(),
-  parsed: CertificateParsed$outboundSchema.optional(),
-  precert: z.boolean().optional(),
-  revocation: CertificateRevocation$outboundSchema.optional(),
-  revoked: z.boolean().optional(),
-  spkiFingerprintSha256: z.string().optional(),
-  spkiSubjectFingerprintSha256: z.string().optional(),
-  tbsFingerprintSha256: z.string().optional(),
-  tbsNoCtFingerprintSha256: z.string().optional(),
-  validatedAt: z.string().optional(),
-  validation: Validation$outboundSchema.optional(),
-  validationLevel: ValidationLevel$outboundSchema.optional(),
-  zlint: ZLint$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    addedAt: "added_at",
-    everSeenInScan: "ever_seen_in_scan",
-    fingerprintMd5: "fingerprint_md5",
-    fingerprintSha1: "fingerprint_sha1",
-    fingerprintSha256: "fingerprint_sha256",
-    modifiedAt: "modified_at",
-    parentSpkiFingerprintSha256: "parent_spki_fingerprint_sha256",
-    parentSpkiSubjectFingerprintSha256:
-      "parent_spki_subject_fingerprint_sha256",
-    parseStatus: "parse_status",
-    spkiFingerprintSha256: "spki_fingerprint_sha256",
-    spkiSubjectFingerprintSha256: "spki_subject_fingerprint_sha256",
-    tbsFingerprintSha256: "tbs_fingerprint_sha256",
-    tbsNoCtFingerprintSha256: "tbs_no_ct_fingerprint_sha256",
-    validatedAt: "validated_at",
-    validationLevel: "validation_level",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Certificate$ {
-  /** @deprecated use `Certificate$inboundSchema` instead. */
-  export const inboundSchema = Certificate$inboundSchema;
-  /** @deprecated use `Certificate$outboundSchema` instead. */
-  export const outboundSchema = Certificate$outboundSchema;
-  /** @deprecated use `Certificate$Outbound` instead. */
-  export type Outbound = Certificate$Outbound;
-}
-
-export function certificateToJSON(certificate: Certificate): string {
-  return JSON.stringify(Certificate$outboundSchema.parse(certificate));
-}
 
 export function certificateFromJSON(
   jsonString: string,

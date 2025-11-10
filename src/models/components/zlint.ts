@@ -59,57 +59,6 @@ export const ZLint$inboundSchema: z.ZodType<ZLint, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type ZLint$Outbound = {
-  errors_present?: boolean | undefined;
-  failed_lints?: Array<string> | null | undefined;
-  fatals_present?: boolean | undefined;
-  notices_present?: boolean | undefined;
-  timestamp?: string | undefined;
-  version?: number | undefined;
-  warnings_present?: boolean | undefined;
-};
-
-/** @internal */
-export const ZLint$outboundSchema: z.ZodType<
-  ZLint$Outbound,
-  z.ZodTypeDef,
-  ZLint
-> = z.object({
-  errorsPresent: z.boolean().optional(),
-  failedLints: z.nullable(z.array(z.string())).optional(),
-  fatalsPresent: z.boolean().optional(),
-  noticesPresent: z.boolean().optional(),
-  timestamp: z.string().optional(),
-  version: z.number().int().optional(),
-  warningsPresent: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    errorsPresent: "errors_present",
-    failedLints: "failed_lints",
-    fatalsPresent: "fatals_present",
-    noticesPresent: "notices_present",
-    warningsPresent: "warnings_present",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ZLint$ {
-  /** @deprecated use `ZLint$inboundSchema` instead. */
-  export const inboundSchema = ZLint$inboundSchema;
-  /** @deprecated use `ZLint$outboundSchema` instead. */
-  export const outboundSchema = ZLint$outboundSchema;
-  /** @deprecated use `ZLint$Outbound` instead. */
-  export type Outbound = ZLint$Outbound;
-}
-
-export function zLintToJSON(zLint: ZLint): string {
-  return JSON.stringify(ZLint$outboundSchema.parse(zLint));
-}
-
 export function zLintFromJSON(
   jsonString: string,
 ): SafeParseResult<ZLint, SDKValidationError> {

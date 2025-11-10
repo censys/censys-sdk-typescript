@@ -38,47 +38,6 @@ export const GeneralSubtreeIp$inboundSchema: z.ZodType<
   mask: z.string().optional(),
 });
 
-/** @internal */
-export type GeneralSubtreeIp$Outbound = {
-  begin?: string | undefined;
-  cidr?: string | undefined;
-  end?: string | undefined;
-  mask?: string | undefined;
-};
-
-/** @internal */
-export const GeneralSubtreeIp$outboundSchema: z.ZodType<
-  GeneralSubtreeIp$Outbound,
-  z.ZodTypeDef,
-  GeneralSubtreeIp
-> = z.object({
-  begin: z.string().optional(),
-  cidr: z.string().optional(),
-  end: z.string().optional(),
-  mask: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GeneralSubtreeIp$ {
-  /** @deprecated use `GeneralSubtreeIp$inboundSchema` instead. */
-  export const inboundSchema = GeneralSubtreeIp$inboundSchema;
-  /** @deprecated use `GeneralSubtreeIp$outboundSchema` instead. */
-  export const outboundSchema = GeneralSubtreeIp$outboundSchema;
-  /** @deprecated use `GeneralSubtreeIp$Outbound` instead. */
-  export type Outbound = GeneralSubtreeIp$Outbound;
-}
-
-export function generalSubtreeIpToJSON(
-  generalSubtreeIp: GeneralSubtreeIp,
-): string {
-  return JSON.stringify(
-    GeneralSubtreeIp$outboundSchema.parse(generalSubtreeIp),
-  );
-}
-
 export function generalSubtreeIpFromJSON(
   jsonString: string,
 ): SafeParseResult<GeneralSubtreeIp, SDKValidationError> {

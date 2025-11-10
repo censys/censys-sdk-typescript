@@ -22,39 +22,6 @@ export const AmqpProtocol$inboundSchema: z.ZodType<
   name: z.string().optional(),
 });
 
-/** @internal */
-export type AmqpProtocol$Outbound = {
-  id?: number | undefined;
-  name?: string | undefined;
-};
-
-/** @internal */
-export const AmqpProtocol$outboundSchema: z.ZodType<
-  AmqpProtocol$Outbound,
-  z.ZodTypeDef,
-  AmqpProtocol
-> = z.object({
-  id: z.number().int().optional(),
-  name: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AmqpProtocol$ {
-  /** @deprecated use `AmqpProtocol$inboundSchema` instead. */
-  export const inboundSchema = AmqpProtocol$inboundSchema;
-  /** @deprecated use `AmqpProtocol$outboundSchema` instead. */
-  export const outboundSchema = AmqpProtocol$outboundSchema;
-  /** @deprecated use `AmqpProtocol$Outbound` instead. */
-  export type Outbound = AmqpProtocol$Outbound;
-}
-
-export function amqpProtocolToJSON(amqpProtocol: AmqpProtocol): string {
-  return JSON.stringify(AmqpProtocol$outboundSchema.parse(amqpProtocol));
-}
-
 export function amqpProtocolFromJSON(
   jsonString: string,
 ): SafeParseResult<AmqpProtocol, SDKValidationError> {

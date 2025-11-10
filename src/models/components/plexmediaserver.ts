@@ -20,39 +20,6 @@ export const PlexMediaServer$inboundSchema: z.ZodType<
   version: z.string().optional(),
 });
 
-/** @internal */
-export type PlexMediaServer$Outbound = {
-  version?: string | undefined;
-};
-
-/** @internal */
-export const PlexMediaServer$outboundSchema: z.ZodType<
-  PlexMediaServer$Outbound,
-  z.ZodTypeDef,
-  PlexMediaServer
-> = z.object({
-  version: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PlexMediaServer$ {
-  /** @deprecated use `PlexMediaServer$inboundSchema` instead. */
-  export const inboundSchema = PlexMediaServer$inboundSchema;
-  /** @deprecated use `PlexMediaServer$outboundSchema` instead. */
-  export const outboundSchema = PlexMediaServer$outboundSchema;
-  /** @deprecated use `PlexMediaServer$Outbound` instead. */
-  export type Outbound = PlexMediaServer$Outbound;
-}
-
-export function plexMediaServerToJSON(
-  plexMediaServer: PlexMediaServer,
-): string {
-  return JSON.stringify(PlexMediaServer$outboundSchema.parse(plexMediaServer));
-}
-
 export function plexMediaServerFromJSON(
   jsonString: string,
 ): SafeParseResult<PlexMediaServer, SDKValidationError> {

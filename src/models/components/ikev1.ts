@@ -37,47 +37,6 @@ export const IkeV1$inboundSchema: z.ZodType<IkeV1, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type IkeV1$Outbound = {
-  accepted_proposal?: boolean | undefined;
-  notify_message_types?: Array<number> | null | undefined;
-  vendor_ids?: Array<string> | null | undefined;
-};
-
-/** @internal */
-export const IkeV1$outboundSchema: z.ZodType<
-  IkeV1$Outbound,
-  z.ZodTypeDef,
-  IkeV1
-> = z.object({
-  acceptedProposal: z.boolean().optional(),
-  notifyMessageTypes: z.nullable(z.array(z.number().int())).optional(),
-  vendorIds: z.nullable(z.array(z.string())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    acceptedProposal: "accepted_proposal",
-    notifyMessageTypes: "notify_message_types",
-    vendorIds: "vendor_ids",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IkeV1$ {
-  /** @deprecated use `IkeV1$inboundSchema` instead. */
-  export const inboundSchema = IkeV1$inboundSchema;
-  /** @deprecated use `IkeV1$outboundSchema` instead. */
-  export const outboundSchema = IkeV1$outboundSchema;
-  /** @deprecated use `IkeV1$Outbound` instead. */
-  export type Outbound = IkeV1$Outbound;
-}
-
-export function ikeV1ToJSON(ikeV1: IkeV1): string {
-  return JSON.stringify(IkeV1$outboundSchema.parse(ikeV1));
-}
-
 export function ikeV1FromJSON(
   jsonString: string,
 ): SafeParseResult<IkeV1, SDKValidationError> {

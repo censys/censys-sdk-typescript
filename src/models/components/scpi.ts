@@ -23,40 +23,6 @@ export const Scpi$inboundSchema: z.ZodType<Scpi, z.ZodTypeDef, unknown> = z
     serial: z.string().optional(),
   });
 
-/** @internal */
-export type Scpi$Outbound = {
-  firmware?: string | undefined;
-  manufacturer?: string | undefined;
-  model?: string | undefined;
-  serial?: string | undefined;
-};
-
-/** @internal */
-export const Scpi$outboundSchema: z.ZodType<Scpi$Outbound, z.ZodTypeDef, Scpi> =
-  z.object({
-    firmware: z.string().optional(),
-    manufacturer: z.string().optional(),
-    model: z.string().optional(),
-    serial: z.string().optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Scpi$ {
-  /** @deprecated use `Scpi$inboundSchema` instead. */
-  export const inboundSchema = Scpi$inboundSchema;
-  /** @deprecated use `Scpi$outboundSchema` instead. */
-  export const outboundSchema = Scpi$outboundSchema;
-  /** @deprecated use `Scpi$Outbound` instead. */
-  export type Outbound = Scpi$Outbound;
-}
-
-export function scpiToJSON(scpi: Scpi): string {
-  return JSON.stringify(Scpi$outboundSchema.parse(scpi));
-}
-
 export function scpiFromJSON(
   jsonString: string,
 ): SafeParseResult<Scpi, SDKValidationError> {

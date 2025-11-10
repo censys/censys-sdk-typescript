@@ -11,14 +11,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AlternativeQuery,
   AlternativeQuery$inboundSchema,
-  AlternativeQuery$Outbound,
-  AlternativeQuery$outboundSchema,
 } from "./alternativequery.js";
 import {
   ConvertQueryError,
   ConvertQueryError$inboundSchema,
-  ConvertQueryError$Outbound,
-  ConvertQueryError$outboundSchema,
 } from "./convertqueryerror.js";
 
 export const SearchConvertQueryResponseTargets = {
@@ -64,23 +60,6 @@ export const SearchConvertQueryResponseTargets$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(SearchConvertQueryResponseTargets);
 
 /** @internal */
-export const SearchConvertQueryResponseTargets$outboundSchema: z.ZodNativeEnum<
-  typeof SearchConvertQueryResponseTargets
-> = SearchConvertQueryResponseTargets$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SearchConvertQueryResponseTargets$ {
-  /** @deprecated use `SearchConvertQueryResponseTargets$inboundSchema` instead. */
-  export const inboundSchema = SearchConvertQueryResponseTargets$inboundSchema;
-  /** @deprecated use `SearchConvertQueryResponseTargets$outboundSchema` instead. */
-  export const outboundSchema =
-    SearchConvertQueryResponseTargets$outboundSchema;
-}
-
-/** @internal */
 export const SearchConvertQueryResponse$inboundSchema: z.ZodType<
   SearchConvertQueryResponse,
   z.ZodTypeDef,
@@ -100,60 +79,6 @@ export const SearchConvertQueryResponse$inboundSchema: z.ZodType<
     "original_query": "originalQuery",
   });
 });
-
-/** @internal */
-export type SearchConvertQueryResponse$Outbound = {
-  alternative_queries?: Array<AlternativeQuery$Outbound> | null | undefined;
-  comments?: Array<string> | null | undefined;
-  converted_query?: string | undefined;
-  errors: Array<ConvertQueryError$Outbound> | null;
-  original_query: string;
-  targets: Array<string> | null;
-};
-
-/** @internal */
-export const SearchConvertQueryResponse$outboundSchema: z.ZodType<
-  SearchConvertQueryResponse$Outbound,
-  z.ZodTypeDef,
-  SearchConvertQueryResponse
-> = z.object({
-  alternativeQueries: z.nullable(z.array(AlternativeQuery$outboundSchema))
-    .optional(),
-  comments: z.nullable(z.array(z.string())).optional(),
-  convertedQuery: z.string().optional(),
-  errors: z.nullable(z.array(ConvertQueryError$outboundSchema)),
-  originalQuery: z.string(),
-  targets: z.nullable(
-    z.array(SearchConvertQueryResponseTargets$outboundSchema),
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    alternativeQueries: "alternative_queries",
-    convertedQuery: "converted_query",
-    originalQuery: "original_query",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SearchConvertQueryResponse$ {
-  /** @deprecated use `SearchConvertQueryResponse$inboundSchema` instead. */
-  export const inboundSchema = SearchConvertQueryResponse$inboundSchema;
-  /** @deprecated use `SearchConvertQueryResponse$outboundSchema` instead. */
-  export const outboundSchema = SearchConvertQueryResponse$outboundSchema;
-  /** @deprecated use `SearchConvertQueryResponse$Outbound` instead. */
-  export type Outbound = SearchConvertQueryResponse$Outbound;
-}
-
-export function searchConvertQueryResponseToJSON(
-  searchConvertQueryResponse: SearchConvertQueryResponse,
-): string {
-  return JSON.stringify(
-    SearchConvertQueryResponse$outboundSchema.parse(searchConvertQueryResponse),
-  );
-}
 
 export function searchConvertQueryResponseFromJSON(
   jsonString: string,

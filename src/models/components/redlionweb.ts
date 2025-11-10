@@ -30,46 +30,6 @@ export const RedlionWeb$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type RedlionWeb$Outbound = {
-  enhanced_web_server?: boolean | undefined;
-  log_names?: Array<string> | null | undefined;
-  title?: string | undefined;
-};
-
-/** @internal */
-export const RedlionWeb$outboundSchema: z.ZodType<
-  RedlionWeb$Outbound,
-  z.ZodTypeDef,
-  RedlionWeb
-> = z.object({
-  enhancedWebServer: z.boolean().optional(),
-  logNames: z.nullable(z.array(z.string())).optional(),
-  title: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    enhancedWebServer: "enhanced_web_server",
-    logNames: "log_names",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RedlionWeb$ {
-  /** @deprecated use `RedlionWeb$inboundSchema` instead. */
-  export const inboundSchema = RedlionWeb$inboundSchema;
-  /** @deprecated use `RedlionWeb$outboundSchema` instead. */
-  export const outboundSchema = RedlionWeb$outboundSchema;
-  /** @deprecated use `RedlionWeb$Outbound` instead. */
-  export type Outbound = RedlionWeb$Outbound;
-}
-
-export function redlionWebToJSON(redlionWeb: RedlionWeb): string {
-  return JSON.stringify(RedlionWeb$outboundSchema.parse(redlionWeb));
-}
-
 export function redlionWebFromJSON(
   jsonString: string,
 ): SafeParseResult<RedlionWeb, SDKValidationError> {

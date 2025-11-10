@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   HikvisionPlatform,
   HikvisionPlatform$inboundSchema,
-  HikvisionPlatform$Outbound,
-  HikvisionPlatform$outboundSchema,
 } from "./hikvisionplatform.js";
 
 export type Hikvision = {
@@ -38,49 +36,6 @@ export const Hikvision$inboundSchema: z.ZodType<
     "web_version": "webVersion",
   });
 });
-
-/** @internal */
-export type Hikvision$Outbound = {
-  custom_version?: string | undefined;
-  platforms?: Array<HikvisionPlatform$Outbound> | null | undefined;
-  plugin_version?: string | undefined;
-  web_version?: string | undefined;
-};
-
-/** @internal */
-export const Hikvision$outboundSchema: z.ZodType<
-  Hikvision$Outbound,
-  z.ZodTypeDef,
-  Hikvision
-> = z.object({
-  customVersion: z.string().optional(),
-  platforms: z.nullable(z.array(HikvisionPlatform$outboundSchema)).optional(),
-  pluginVersion: z.string().optional(),
-  webVersion: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    customVersion: "custom_version",
-    pluginVersion: "plugin_version",
-    webVersion: "web_version",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Hikvision$ {
-  /** @deprecated use `Hikvision$inboundSchema` instead. */
-  export const inboundSchema = Hikvision$inboundSchema;
-  /** @deprecated use `Hikvision$outboundSchema` instead. */
-  export const outboundSchema = Hikvision$outboundSchema;
-  /** @deprecated use `Hikvision$Outbound` instead. */
-  export type Outbound = Hikvision$Outbound;
-}
-
-export function hikvisionToJSON(hikvision: Hikvision): string {
-  return JSON.stringify(Hikvision$outboundSchema.parse(hikvision));
-}
 
 export function hikvisionFromJSON(
   jsonString: string,

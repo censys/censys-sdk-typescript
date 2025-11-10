@@ -58,60 +58,6 @@ export const IpmiCapabilitiesSupportedAuthTypes$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type IpmiCapabilitiesSupportedAuthTypes$Outbound = {
-  extended?: boolean | undefined;
-  md2?: boolean | undefined;
-  md5?: boolean | undefined;
-  none?: boolean | undefined;
-  oem_proprietary?: boolean | undefined;
-  password?: boolean | undefined;
-  raw?: number | undefined;
-};
-
-/** @internal */
-export const IpmiCapabilitiesSupportedAuthTypes$outboundSchema: z.ZodType<
-  IpmiCapabilitiesSupportedAuthTypes$Outbound,
-  z.ZodTypeDef,
-  IpmiCapabilitiesSupportedAuthTypes
-> = z.object({
-  extended: z.boolean().optional(),
-  md2: z.boolean().optional(),
-  md5: z.boolean().optional(),
-  none: z.boolean().optional(),
-  oemProprietary: z.boolean().optional(),
-  password: z.boolean().optional(),
-  raw: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    oemProprietary: "oem_proprietary",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IpmiCapabilitiesSupportedAuthTypes$ {
-  /** @deprecated use `IpmiCapabilitiesSupportedAuthTypes$inboundSchema` instead. */
-  export const inboundSchema = IpmiCapabilitiesSupportedAuthTypes$inboundSchema;
-  /** @deprecated use `IpmiCapabilitiesSupportedAuthTypes$outboundSchema` instead. */
-  export const outboundSchema =
-    IpmiCapabilitiesSupportedAuthTypes$outboundSchema;
-  /** @deprecated use `IpmiCapabilitiesSupportedAuthTypes$Outbound` instead. */
-  export type Outbound = IpmiCapabilitiesSupportedAuthTypes$Outbound;
-}
-
-export function ipmiCapabilitiesSupportedAuthTypesToJSON(
-  ipmiCapabilitiesSupportedAuthTypes: IpmiCapabilitiesSupportedAuthTypes,
-): string {
-  return JSON.stringify(
-    IpmiCapabilitiesSupportedAuthTypes$outboundSchema.parse(
-      ipmiCapabilitiesSupportedAuthTypes,
-    ),
-  );
-}
-
 export function ipmiCapabilitiesSupportedAuthTypesFromJSON(
   jsonString: string,
 ): SafeParseResult<IpmiCapabilitiesSupportedAuthTypes, SDKValidationError> {

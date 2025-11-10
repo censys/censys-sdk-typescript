@@ -10,33 +10,20 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   RdpCertificateInfo,
   RdpCertificateInfo$inboundSchema,
-  RdpCertificateInfo$Outbound,
-  RdpCertificateInfo$outboundSchema,
 } from "./rdpcertificateinfo.js";
 import {
   RdpConnectResponse,
   RdpConnectResponse$inboundSchema,
-  RdpConnectResponse$Outbound,
-  RdpConnectResponse$outboundSchema,
 } from "./rdpconnectresponse.js";
 import {
   RdpProtocolFlags,
   RdpProtocolFlags$inboundSchema,
-  RdpProtocolFlags$Outbound,
-  RdpProtocolFlags$outboundSchema,
 } from "./rdpprotocolflags.js";
 import {
   RdpSecurityProtocol,
   RdpSecurityProtocol$inboundSchema,
-  RdpSecurityProtocol$Outbound,
-  RdpSecurityProtocol$outboundSchema,
 } from "./rdpsecurityprotocol.js";
-import {
-  RdpVersion,
-  RdpVersion$inboundSchema,
-  RdpVersion$Outbound,
-  RdpVersion$outboundSchema,
-} from "./rdpversion.js";
+import { RdpVersion, RdpVersion$inboundSchema } from "./rdpversion.js";
 
 export type Rdp = {
   certificateInfo?: RdpCertificateInfo | undefined;
@@ -68,55 +55,6 @@ export const Rdp$inboundSchema: z.ZodType<Rdp, z.ZodTypeDef, unknown> = z
       "x224_cc_pdu_srcref": "x224CcPduSrcref",
     });
   });
-
-/** @internal */
-export type Rdp$Outbound = {
-  certificate_info?: RdpCertificateInfo$Outbound | undefined;
-  connect_response?: RdpConnectResponse$Outbound | undefined;
-  protocol_flags?: RdpProtocolFlags$Outbound | undefined;
-  selected_security_protocol?: RdpSecurityProtocol$Outbound | undefined;
-  version?: RdpVersion$Outbound | undefined;
-  x224_cc_pdu_dstref?: number | undefined;
-  x224_cc_pdu_srcref?: number | undefined;
-};
-
-/** @internal */
-export const Rdp$outboundSchema: z.ZodType<Rdp$Outbound, z.ZodTypeDef, Rdp> = z
-  .object({
-    certificateInfo: RdpCertificateInfo$outboundSchema.optional(),
-    connectResponse: RdpConnectResponse$outboundSchema.optional(),
-    protocolFlags: RdpProtocolFlags$outboundSchema.optional(),
-    selectedSecurityProtocol: RdpSecurityProtocol$outboundSchema.optional(),
-    version: RdpVersion$outboundSchema.optional(),
-    x224CcPduDstref: z.number().int().optional(),
-    x224CcPduSrcref: z.number().int().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      certificateInfo: "certificate_info",
-      connectResponse: "connect_response",
-      protocolFlags: "protocol_flags",
-      selectedSecurityProtocol: "selected_security_protocol",
-      x224CcPduDstref: "x224_cc_pdu_dstref",
-      x224CcPduSrcref: "x224_cc_pdu_srcref",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Rdp$ {
-  /** @deprecated use `Rdp$inboundSchema` instead. */
-  export const inboundSchema = Rdp$inboundSchema;
-  /** @deprecated use `Rdp$outboundSchema` instead. */
-  export const outboundSchema = Rdp$outboundSchema;
-  /** @deprecated use `Rdp$Outbound` instead. */
-  export type Outbound = Rdp$Outbound;
-}
-
-export function rdpToJSON(rdp: Rdp): string {
-  return JSON.stringify(Rdp$outboundSchema.parse(rdp));
-}
 
 export function rdpFromJSON(
   jsonString: string,

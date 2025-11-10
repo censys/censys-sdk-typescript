@@ -10,51 +10,26 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   EndpointScanned,
   EndpointScanned$inboundSchema,
-  EndpointScanned$Outbound,
-  EndpointScanned$outboundSchema,
 } from "./endpointscanned.js";
 import {
   ForwardDnsResolved,
   ForwardDnsResolved$inboundSchema,
-  ForwardDnsResolved$Outbound,
-  ForwardDnsResolved$outboundSchema,
 } from "./forwarddnsresolved.js";
-import {
-  JarmScanned,
-  JarmScanned$inboundSchema,
-  JarmScanned$Outbound,
-  JarmScanned$outboundSchema,
-} from "./jarmscanned.js";
+import { JarmScanned, JarmScanned$inboundSchema } from "./jarmscanned.js";
 import {
   LocationUpdated,
   LocationUpdated$inboundSchema,
-  LocationUpdated$Outbound,
-  LocationUpdated$outboundSchema,
 } from "./locationupdated.js";
 import {
   ReverseDnsResolved,
   ReverseDnsResolved$inboundSchema,
-  ReverseDnsResolved$Outbound,
-  ReverseDnsResolved$outboundSchema,
 } from "./reversednsresolved.js";
-import {
-  RouteUpdated,
-  RouteUpdated$inboundSchema,
-  RouteUpdated$Outbound,
-  RouteUpdated$outboundSchema,
-} from "./routeupdated.js";
+import { RouteUpdated, RouteUpdated$inboundSchema } from "./routeupdated.js";
 import {
   ServiceScanned,
   ServiceScanned$inboundSchema,
-  ServiceScanned$Outbound,
-  ServiceScanned$outboundSchema,
 } from "./servicescanned.js";
-import {
-  WhoisUpdated,
-  WhoisUpdated$inboundSchema,
-  WhoisUpdated$Outbound,
-  WhoisUpdated$outboundSchema,
-} from "./whoisupdated.js";
+import { WhoisUpdated, WhoisUpdated$inboundSchema } from "./whoisupdated.js";
 
 export type HostTimelineEvent = {
   endpointScanned?: EndpointScanned | undefined;
@@ -96,69 +71,6 @@ export const HostTimelineEvent$inboundSchema: z.ZodType<
     "whois_updated": "whoisUpdated",
   });
 });
-
-/** @internal */
-export type HostTimelineEvent$Outbound = {
-  endpoint_scanned?: EndpointScanned$Outbound | undefined;
-  event_time?: string | undefined;
-  forward_dns_resolved?: ForwardDnsResolved$Outbound | undefined;
-  jarm_scanned?: JarmScanned$Outbound | undefined;
-  location_updated?: LocationUpdated$Outbound | undefined;
-  reverse_dns_resolved?: ReverseDnsResolved$Outbound | undefined;
-  route_updated?: RouteUpdated$Outbound | undefined;
-  service_scanned?: ServiceScanned$Outbound | undefined;
-  whois_updated?: WhoisUpdated$Outbound | undefined;
-};
-
-/** @internal */
-export const HostTimelineEvent$outboundSchema: z.ZodType<
-  HostTimelineEvent$Outbound,
-  z.ZodTypeDef,
-  HostTimelineEvent
-> = z.object({
-  endpointScanned: EndpointScanned$outboundSchema.optional(),
-  eventTime: z.string().optional(),
-  forwardDnsResolved: ForwardDnsResolved$outboundSchema.optional(),
-  jarmScanned: JarmScanned$outboundSchema.optional(),
-  locationUpdated: LocationUpdated$outboundSchema.optional(),
-  reverseDnsResolved: ReverseDnsResolved$outboundSchema.optional(),
-  routeUpdated: RouteUpdated$outboundSchema.optional(),
-  serviceScanned: ServiceScanned$outboundSchema.optional(),
-  whoisUpdated: WhoisUpdated$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    endpointScanned: "endpoint_scanned",
-    eventTime: "event_time",
-    forwardDnsResolved: "forward_dns_resolved",
-    jarmScanned: "jarm_scanned",
-    locationUpdated: "location_updated",
-    reverseDnsResolved: "reverse_dns_resolved",
-    routeUpdated: "route_updated",
-    serviceScanned: "service_scanned",
-    whoisUpdated: "whois_updated",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HostTimelineEvent$ {
-  /** @deprecated use `HostTimelineEvent$inboundSchema` instead. */
-  export const inboundSchema = HostTimelineEvent$inboundSchema;
-  /** @deprecated use `HostTimelineEvent$outboundSchema` instead. */
-  export const outboundSchema = HostTimelineEvent$outboundSchema;
-  /** @deprecated use `HostTimelineEvent$Outbound` instead. */
-  export type Outbound = HostTimelineEvent$Outbound;
-}
-
-export function hostTimelineEventToJSON(
-  hostTimelineEvent: HostTimelineEvent,
-): string {
-  return JSON.stringify(
-    HostTimelineEvent$outboundSchema.parse(hostTimelineEvent),
-  );
-}
 
 export function hostTimelineEventFromJSON(
   jsonString: string,

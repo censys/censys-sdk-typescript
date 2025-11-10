@@ -6,24 +6,9 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  EipIdentity,
-  EipIdentity$inboundSchema,
-  EipIdentity$Outbound,
-  EipIdentity$outboundSchema,
-} from "./eipidentity.js";
-import {
-  EipInterface,
-  EipInterface$inboundSchema,
-  EipInterface$Outbound,
-  EipInterface$outboundSchema,
-} from "./eipinterface.js";
-import {
-  EipService,
-  EipService$inboundSchema,
-  EipService$Outbound,
-  EipService$outboundSchema,
-} from "./eipservice.js";
+import { EipIdentity, EipIdentity$inboundSchema } from "./eipidentity.js";
+import { EipInterface, EipInterface$inboundSchema } from "./eipinterface.js";
+import { EipService, EipService$inboundSchema } from "./eipservice.js";
 
 export type Eip = {
   identity?: EipIdentity | undefined;
@@ -38,38 +23,6 @@ export const Eip$inboundSchema: z.ZodType<Eip, z.ZodTypeDef, unknown> = z
     interfaces: z.nullable(z.array(EipInterface$inboundSchema)).optional(),
     services: z.nullable(z.array(EipService$inboundSchema)).optional(),
   });
-
-/** @internal */
-export type Eip$Outbound = {
-  identity?: EipIdentity$Outbound | undefined;
-  interfaces?: Array<EipInterface$Outbound> | null | undefined;
-  services?: Array<EipService$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const Eip$outboundSchema: z.ZodType<Eip$Outbound, z.ZodTypeDef, Eip> = z
-  .object({
-    identity: EipIdentity$outboundSchema.optional(),
-    interfaces: z.nullable(z.array(EipInterface$outboundSchema)).optional(),
-    services: z.nullable(z.array(EipService$outboundSchema)).optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Eip$ {
-  /** @deprecated use `Eip$inboundSchema` instead. */
-  export const inboundSchema = Eip$inboundSchema;
-  /** @deprecated use `Eip$outboundSchema` instead. */
-  export const outboundSchema = Eip$outboundSchema;
-  /** @deprecated use `Eip$Outbound` instead. */
-  export type Outbound = Eip$Outbound;
-}
-
-export function eipToJSON(eip: Eip): string {
-  return JSON.stringify(Eip$outboundSchema.parse(eip));
-}
 
 export function eipFromJSON(
   jsonString: string,

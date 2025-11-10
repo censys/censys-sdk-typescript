@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CrudCreateInputBody = {
   /**
@@ -21,17 +18,6 @@ export type CrudCreateInputBody = {
    */
   query: string;
 };
-
-/** @internal */
-export const CrudCreateInputBody$inboundSchema: z.ZodType<
-  CrudCreateInputBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  description: z.string().optional(),
-  name: z.string(),
-  query: z.string(),
-});
 
 /** @internal */
 export type CrudCreateInputBody$Outbound = {
@@ -51,33 +37,10 @@ export const CrudCreateInputBody$outboundSchema: z.ZodType<
   query: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CrudCreateInputBody$ {
-  /** @deprecated use `CrudCreateInputBody$inboundSchema` instead. */
-  export const inboundSchema = CrudCreateInputBody$inboundSchema;
-  /** @deprecated use `CrudCreateInputBody$outboundSchema` instead. */
-  export const outboundSchema = CrudCreateInputBody$outboundSchema;
-  /** @deprecated use `CrudCreateInputBody$Outbound` instead. */
-  export type Outbound = CrudCreateInputBody$Outbound;
-}
-
 export function crudCreateInputBodyToJSON(
   crudCreateInputBody: CrudCreateInputBody,
 ): string {
   return JSON.stringify(
     CrudCreateInputBody$outboundSchema.parse(crudCreateInputBody),
-  );
-}
-
-export function crudCreateInputBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<CrudCreateInputBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CrudCreateInputBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CrudCreateInputBody' from JSON`,
   );
 }

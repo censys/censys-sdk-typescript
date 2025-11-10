@@ -27,47 +27,6 @@ export const CheckpointTopology$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type CheckpointTopology$Outbound = {
-  common_name?: string | undefined;
-  organization?: string | undefined;
-};
-
-/** @internal */
-export const CheckpointTopology$outboundSchema: z.ZodType<
-  CheckpointTopology$Outbound,
-  z.ZodTypeDef,
-  CheckpointTopology
-> = z.object({
-  commonName: z.string().optional(),
-  organization: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    commonName: "common_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CheckpointTopology$ {
-  /** @deprecated use `CheckpointTopology$inboundSchema` instead. */
-  export const inboundSchema = CheckpointTopology$inboundSchema;
-  /** @deprecated use `CheckpointTopology$outboundSchema` instead. */
-  export const outboundSchema = CheckpointTopology$outboundSchema;
-  /** @deprecated use `CheckpointTopology$Outbound` instead. */
-  export type Outbound = CheckpointTopology$Outbound;
-}
-
-export function checkpointTopologyToJSON(
-  checkpointTopology: CheckpointTopology,
-): string {
-  return JSON.stringify(
-    CheckpointTopology$outboundSchema.parse(checkpointTopology),
-  );
-}
-
 export function checkpointTopologyFromJSON(
   jsonString: string,
 ): SafeParseResult<CheckpointTopology, SDKValidationError> {

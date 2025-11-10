@@ -29,47 +29,6 @@ export const IvantiAvalanche$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type IvantiAvalanche$Outbound = {
-  body?: string | undefined;
-  status_code?: number | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const IvantiAvalanche$outboundSchema: z.ZodType<
-  IvantiAvalanche$Outbound,
-  z.ZodTypeDef,
-  IvantiAvalanche
-> = z.object({
-  body: z.string().optional(),
-  statusCode: z.number().int().optional(),
-  version: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    statusCode: "status_code",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IvantiAvalanche$ {
-  /** @deprecated use `IvantiAvalanche$inboundSchema` instead. */
-  export const inboundSchema = IvantiAvalanche$inboundSchema;
-  /** @deprecated use `IvantiAvalanche$outboundSchema` instead. */
-  export const outboundSchema = IvantiAvalanche$outboundSchema;
-  /** @deprecated use `IvantiAvalanche$Outbound` instead. */
-  export type Outbound = IvantiAvalanche$Outbound;
-}
-
-export function ivantiAvalancheToJSON(
-  ivantiAvalanche: IvantiAvalanche,
-): string {
-  return JSON.stringify(IvantiAvalanche$outboundSchema.parse(ivantiAvalanche));
-}
-
 export function ivantiAvalancheFromJSON(
   jsonString: string,
 ): SafeParseResult<IvantiAvalanche, SDKValidationError> {

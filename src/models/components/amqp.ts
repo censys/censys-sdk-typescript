@@ -7,18 +7,8 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  AmqpProtocol,
-  AmqpProtocol$inboundSchema,
-  AmqpProtocol$Outbound,
-  AmqpProtocol$outboundSchema,
-} from "./amqpprotocol.js";
-import {
-  AmqpVersion,
-  AmqpVersion$inboundSchema,
-  AmqpVersion$Outbound,
-  AmqpVersion$outboundSchema,
-} from "./amqpversion.js";
+import { AmqpProtocol, AmqpProtocol$inboundSchema } from "./amqpprotocol.js";
+import { AmqpVersion, AmqpVersion$inboundSchema } from "./amqpversion.js";
 
 export type Amqp = {
   /**
@@ -47,46 +37,6 @@ export const Amqp$inboundSchema: z.ZodType<Amqp, z.ZodTypeDef, unknown> = z
       "protocol_id": "protocolId",
     });
   });
-
-/** @internal */
-export type Amqp$Outbound = {
-  explicit_tls?: boolean | undefined;
-  implicit_tls?: boolean | undefined;
-  protocol_id?: AmqpProtocol$Outbound | undefined;
-  version?: AmqpVersion$Outbound | undefined;
-};
-
-/** @internal */
-export const Amqp$outboundSchema: z.ZodType<Amqp$Outbound, z.ZodTypeDef, Amqp> =
-  z.object({
-    explicitTls: z.boolean().optional(),
-    implicitTls: z.boolean().optional(),
-    protocolId: AmqpProtocol$outboundSchema.optional(),
-    version: AmqpVersion$outboundSchema.optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      explicitTls: "explicit_tls",
-      implicitTls: "implicit_tls",
-      protocolId: "protocol_id",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Amqp$ {
-  /** @deprecated use `Amqp$inboundSchema` instead. */
-  export const inboundSchema = Amqp$inboundSchema;
-  /** @deprecated use `Amqp$outboundSchema` instead. */
-  export const outboundSchema = Amqp$outboundSchema;
-  /** @deprecated use `Amqp$Outbound` instead. */
-  export type Outbound = Amqp$Outbound;
-}
-
-export function amqpToJSON(amqp: Amqp): string {
-  return JSON.stringify(Amqp$outboundSchema.parse(amqp));
-}
 
 export function amqpFromJSON(
   jsonString: string,

@@ -30,50 +30,6 @@ export const ModbusMEIResponse$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type ModbusMEIResponse$Outbound = {
-  conformity_level?: number | undefined;
-  more_follows?: boolean | undefined;
-  objects?: { [k: string]: string } | undefined;
-};
-
-/** @internal */
-export const ModbusMEIResponse$outboundSchema: z.ZodType<
-  ModbusMEIResponse$Outbound,
-  z.ZodTypeDef,
-  ModbusMEIResponse
-> = z.object({
-  conformityLevel: z.number().int().optional(),
-  moreFollows: z.boolean().optional(),
-  objects: z.record(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    conformityLevel: "conformity_level",
-    moreFollows: "more_follows",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ModbusMEIResponse$ {
-  /** @deprecated use `ModbusMEIResponse$inboundSchema` instead. */
-  export const inboundSchema = ModbusMEIResponse$inboundSchema;
-  /** @deprecated use `ModbusMEIResponse$outboundSchema` instead. */
-  export const outboundSchema = ModbusMEIResponse$outboundSchema;
-  /** @deprecated use `ModbusMEIResponse$Outbound` instead. */
-  export type Outbound = ModbusMEIResponse$Outbound;
-}
-
-export function modbusMEIResponseToJSON(
-  modbusMEIResponse: ModbusMEIResponse,
-): string {
-  return JSON.stringify(
-    ModbusMEIResponse$outboundSchema.parse(modbusMEIResponse),
-  );
-}
-
 export function modbusMEIResponseFromJSON(
   jsonString: string,
 ): SafeParseResult<ModbusMEIResponse, SDKValidationError> {

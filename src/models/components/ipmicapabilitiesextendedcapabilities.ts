@@ -34,52 +34,6 @@ export const IpmiCapabilitiesExtendedCapabilities$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type IpmiCapabilitiesExtendedCapabilities$Outbound = {
-  supports_ipmi_v1_5?: boolean | undefined;
-  supports_ipmi_v2_0?: boolean | undefined;
-};
-
-/** @internal */
-export const IpmiCapabilitiesExtendedCapabilities$outboundSchema: z.ZodType<
-  IpmiCapabilitiesExtendedCapabilities$Outbound,
-  z.ZodTypeDef,
-  IpmiCapabilitiesExtendedCapabilities
-> = z.object({
-  supportsIpmiV15: z.boolean().optional(),
-  supportsIpmiV20: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    supportsIpmiV15: "supports_ipmi_v1_5",
-    supportsIpmiV20: "supports_ipmi_v2_0",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IpmiCapabilitiesExtendedCapabilities$ {
-  /** @deprecated use `IpmiCapabilitiesExtendedCapabilities$inboundSchema` instead. */
-  export const inboundSchema =
-    IpmiCapabilitiesExtendedCapabilities$inboundSchema;
-  /** @deprecated use `IpmiCapabilitiesExtendedCapabilities$outboundSchema` instead. */
-  export const outboundSchema =
-    IpmiCapabilitiesExtendedCapabilities$outboundSchema;
-  /** @deprecated use `IpmiCapabilitiesExtendedCapabilities$Outbound` instead. */
-  export type Outbound = IpmiCapabilitiesExtendedCapabilities$Outbound;
-}
-
-export function ipmiCapabilitiesExtendedCapabilitiesToJSON(
-  ipmiCapabilitiesExtendedCapabilities: IpmiCapabilitiesExtendedCapabilities,
-): string {
-  return JSON.stringify(
-    IpmiCapabilitiesExtendedCapabilities$outboundSchema.parse(
-      ipmiCapabilitiesExtendedCapabilities,
-    ),
-  );
-}
-
 export function ipmiCapabilitiesExtendedCapabilitiesFromJSON(
   jsonString: string,
 ): SafeParseResult<IpmiCapabilitiesExtendedCapabilities, SDKValidationError> {

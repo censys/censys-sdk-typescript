@@ -30,46 +30,6 @@ export const CryptSetup$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type CryptSetup$Outbound = {
-  client_nonce?: string | undefined;
-  key?: string | undefined;
-  server_nonce?: string | undefined;
-};
-
-/** @internal */
-export const CryptSetup$outboundSchema: z.ZodType<
-  CryptSetup$Outbound,
-  z.ZodTypeDef,
-  CryptSetup
-> = z.object({
-  clientNonce: z.string().optional(),
-  key: z.string().optional(),
-  serverNonce: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    clientNonce: "client_nonce",
-    serverNonce: "server_nonce",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CryptSetup$ {
-  /** @deprecated use `CryptSetup$inboundSchema` instead. */
-  export const inboundSchema = CryptSetup$inboundSchema;
-  /** @deprecated use `CryptSetup$outboundSchema` instead. */
-  export const outboundSchema = CryptSetup$outboundSchema;
-  /** @deprecated use `CryptSetup$Outbound` instead. */
-  export type Outbound = CryptSetup$Outbound;
-}
-
-export function cryptSetupToJSON(cryptSetup: CryptSetup): string {
-  return JSON.stringify(CryptSetup$outboundSchema.parse(cryptSetup));
-}
-
 export function cryptSetupFromJSON(
   jsonString: string,
 ): SafeParseResult<CryptSetup, SDKValidationError> {

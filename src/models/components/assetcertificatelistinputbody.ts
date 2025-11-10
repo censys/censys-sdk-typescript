@@ -4,9 +4,6 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AssetCertificateListInputBody = {
   /**
@@ -14,19 +11,6 @@ export type AssetCertificateListInputBody = {
    */
   certificateIds: Array<string> | null;
 };
-
-/** @internal */
-export const AssetCertificateListInputBody$inboundSchema: z.ZodType<
-  AssetCertificateListInputBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  certificate_ids: z.nullable(z.array(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    "certificate_ids": "certificateIds",
-  });
-});
 
 /** @internal */
 export type AssetCertificateListInputBody$Outbound = {
@@ -46,19 +30,6 @@ export const AssetCertificateListInputBody$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AssetCertificateListInputBody$ {
-  /** @deprecated use `AssetCertificateListInputBody$inboundSchema` instead. */
-  export const inboundSchema = AssetCertificateListInputBody$inboundSchema;
-  /** @deprecated use `AssetCertificateListInputBody$outboundSchema` instead. */
-  export const outboundSchema = AssetCertificateListInputBody$outboundSchema;
-  /** @deprecated use `AssetCertificateListInputBody$Outbound` instead. */
-  export type Outbound = AssetCertificateListInputBody$Outbound;
-}
-
 export function assetCertificateListInputBodyToJSON(
   assetCertificateListInputBody: AssetCertificateListInputBody,
 ): string {
@@ -66,15 +37,5 @@ export function assetCertificateListInputBodyToJSON(
     AssetCertificateListInputBody$outboundSchema.parse(
       assetCertificateListInputBody,
     ),
-  );
-}
-
-export function assetCertificateListInputBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<AssetCertificateListInputBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AssetCertificateListInputBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AssetCertificateListInputBody' from JSON`,
   );
 }

@@ -28,44 +28,6 @@ export const Rtsp$inboundSchema: z.ZodType<Rtsp, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type Rtsp$Outbound = {
-  auth?: string | undefined;
-  commands?: Array<string> | null | undefined;
-  server?: string | undefined;
-  www_auth?: string | undefined;
-};
-
-/** @internal */
-export const Rtsp$outboundSchema: z.ZodType<Rtsp$Outbound, z.ZodTypeDef, Rtsp> =
-  z.object({
-    auth: z.string().optional(),
-    commands: z.nullable(z.array(z.string())).optional(),
-    server: z.string().optional(),
-    wwwAuth: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      wwwAuth: "www_auth",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Rtsp$ {
-  /** @deprecated use `Rtsp$inboundSchema` instead. */
-  export const inboundSchema = Rtsp$inboundSchema;
-  /** @deprecated use `Rtsp$outboundSchema` instead. */
-  export const outboundSchema = Rtsp$outboundSchema;
-  /** @deprecated use `Rtsp$Outbound` instead. */
-  export type Outbound = Rtsp$Outbound;
-}
-
-export function rtspToJSON(rtsp: Rtsp): string {
-  return JSON.stringify(Rtsp$outboundSchema.parse(rtsp));
-}
-
 export function rtspFromJSON(
   jsonString: string,
 ): SafeParseResult<Rtsp, SDKValidationError> {

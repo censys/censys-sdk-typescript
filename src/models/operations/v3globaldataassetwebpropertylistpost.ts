@@ -27,98 +27,6 @@ export type V3GlobaldataAssetWebpropertyListPostResponse = {
 };
 
 /** @internal */
-export const V3GlobaldataAssetWebpropertyListPostGlobals$inboundSchema:
-  z.ZodType<
-    V3GlobaldataAssetWebpropertyListPostGlobals,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    organization_id: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "organization_id": "organizationId",
-    });
-  });
-
-/** @internal */
-export type V3GlobaldataAssetWebpropertyListPostGlobals$Outbound = {
-  organization_id?: string | undefined;
-};
-
-/** @internal */
-export const V3GlobaldataAssetWebpropertyListPostGlobals$outboundSchema:
-  z.ZodType<
-    V3GlobaldataAssetWebpropertyListPostGlobals$Outbound,
-    z.ZodTypeDef,
-    V3GlobaldataAssetWebpropertyListPostGlobals
-  > = z.object({
-    organizationId: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      organizationId: "organization_id",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3GlobaldataAssetWebpropertyListPostGlobals$ {
-  /** @deprecated use `V3GlobaldataAssetWebpropertyListPostGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    V3GlobaldataAssetWebpropertyListPostGlobals$inboundSchema;
-  /** @deprecated use `V3GlobaldataAssetWebpropertyListPostGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    V3GlobaldataAssetWebpropertyListPostGlobals$outboundSchema;
-  /** @deprecated use `V3GlobaldataAssetWebpropertyListPostGlobals$Outbound` instead. */
-  export type Outbound = V3GlobaldataAssetWebpropertyListPostGlobals$Outbound;
-}
-
-export function v3GlobaldataAssetWebpropertyListPostGlobalsToJSON(
-  v3GlobaldataAssetWebpropertyListPostGlobals:
-    V3GlobaldataAssetWebpropertyListPostGlobals,
-): string {
-  return JSON.stringify(
-    V3GlobaldataAssetWebpropertyListPostGlobals$outboundSchema.parse(
-      v3GlobaldataAssetWebpropertyListPostGlobals,
-    ),
-  );
-}
-
-export function v3GlobaldataAssetWebpropertyListPostGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  V3GlobaldataAssetWebpropertyListPostGlobals,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      V3GlobaldataAssetWebpropertyListPostGlobals$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'V3GlobaldataAssetWebpropertyListPostGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const V3GlobaldataAssetWebpropertyListPostRequest$inboundSchema:
-  z.ZodType<
-    V3GlobaldataAssetWebpropertyListPostRequest,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    organization_id: z.string().optional(),
-    AssetWebpropertyListInputBody:
-      components.AssetWebpropertyListInputBody$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "organization_id": "organizationId",
-      "AssetWebpropertyListInputBody": "assetWebpropertyListInputBody",
-    });
-  });
-
-/** @internal */
 export type V3GlobaldataAssetWebpropertyListPostRequest$Outbound = {
   organization_id?: string | undefined;
   AssetWebpropertyListInputBody:
@@ -142,21 +50,6 @@ export const V3GlobaldataAssetWebpropertyListPostRequest$outboundSchema:
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3GlobaldataAssetWebpropertyListPostRequest$ {
-  /** @deprecated use `V3GlobaldataAssetWebpropertyListPostRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    V3GlobaldataAssetWebpropertyListPostRequest$inboundSchema;
-  /** @deprecated use `V3GlobaldataAssetWebpropertyListPostRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    V3GlobaldataAssetWebpropertyListPostRequest$outboundSchema;
-  /** @deprecated use `V3GlobaldataAssetWebpropertyListPostRequest$Outbound` instead. */
-  export type Outbound = V3GlobaldataAssetWebpropertyListPostRequest$Outbound;
-}
-
 export function v3GlobaldataAssetWebpropertyListPostRequestToJSON(
   v3GlobaldataAssetWebpropertyListPostRequest:
     V3GlobaldataAssetWebpropertyListPostRequest,
@@ -165,22 +58,6 @@ export function v3GlobaldataAssetWebpropertyListPostRequestToJSON(
     V3GlobaldataAssetWebpropertyListPostRequest$outboundSchema.parse(
       v3GlobaldataAssetWebpropertyListPostRequest,
     ),
-  );
-}
-
-export function v3GlobaldataAssetWebpropertyListPostRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  V3GlobaldataAssetWebpropertyListPostRequest,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      V3GlobaldataAssetWebpropertyListPostRequest$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'V3GlobaldataAssetWebpropertyListPostRequest' from JSON`,
   );
 }
 
@@ -199,54 +76,6 @@ export const V3GlobaldataAssetWebpropertyListPostResponse$inboundSchema:
       "Result": "result",
     });
   });
-
-/** @internal */
-export type V3GlobaldataAssetWebpropertyListPostResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-  Result: components.ResponseEnvelopeListWebpropertyAsset$Outbound;
-};
-
-/** @internal */
-export const V3GlobaldataAssetWebpropertyListPostResponse$outboundSchema:
-  z.ZodType<
-    V3GlobaldataAssetWebpropertyListPostResponse$Outbound,
-    z.ZodTypeDef,
-    V3GlobaldataAssetWebpropertyListPostResponse
-  > = z.object({
-    headers: z.record(z.array(z.string())),
-    result: components.ResponseEnvelopeListWebpropertyAsset$outboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      headers: "Headers",
-      result: "Result",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3GlobaldataAssetWebpropertyListPostResponse$ {
-  /** @deprecated use `V3GlobaldataAssetWebpropertyListPostResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    V3GlobaldataAssetWebpropertyListPostResponse$inboundSchema;
-  /** @deprecated use `V3GlobaldataAssetWebpropertyListPostResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    V3GlobaldataAssetWebpropertyListPostResponse$outboundSchema;
-  /** @deprecated use `V3GlobaldataAssetWebpropertyListPostResponse$Outbound` instead. */
-  export type Outbound = V3GlobaldataAssetWebpropertyListPostResponse$Outbound;
-}
-
-export function v3GlobaldataAssetWebpropertyListPostResponseToJSON(
-  v3GlobaldataAssetWebpropertyListPostResponse:
-    V3GlobaldataAssetWebpropertyListPostResponse,
-): string {
-  return JSON.stringify(
-    V3GlobaldataAssetWebpropertyListPostResponse$outboundSchema.parse(
-      v3GlobaldataAssetWebpropertyListPostResponse,
-    ),
-  );
-}
 
 export function v3GlobaldataAssetWebpropertyListPostResponseFromJSON(
   jsonString: string,

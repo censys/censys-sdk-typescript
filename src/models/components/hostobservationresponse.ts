@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   HostObservationRange,
   HostObservationRange$inboundSchema,
-  HostObservationRange$Outbound,
-  HostObservationRange$outboundSchema,
 } from "./hostobservationrange.js";
 
 export type HostObservationResponse = {
@@ -35,50 +33,6 @@ export const HostObservationResponse$inboundSchema: z.ZodType<
     "total_results": "totalResults",
   });
 });
-
-/** @internal */
-export type HostObservationResponse$Outbound = {
-  next_page_token?: string | undefined;
-  ranges: Array<HostObservationRange$Outbound> | null;
-  total_results: number;
-};
-
-/** @internal */
-export const HostObservationResponse$outboundSchema: z.ZodType<
-  HostObservationResponse$Outbound,
-  z.ZodTypeDef,
-  HostObservationResponse
-> = z.object({
-  nextPageToken: z.string().optional(),
-  ranges: z.nullable(z.array(HostObservationRange$outboundSchema)),
-  totalResults: z.number().int(),
-}).transform((v) => {
-  return remap$(v, {
-    nextPageToken: "next_page_token",
-    totalResults: "total_results",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HostObservationResponse$ {
-  /** @deprecated use `HostObservationResponse$inboundSchema` instead. */
-  export const inboundSchema = HostObservationResponse$inboundSchema;
-  /** @deprecated use `HostObservationResponse$outboundSchema` instead. */
-  export const outboundSchema = HostObservationResponse$outboundSchema;
-  /** @deprecated use `HostObservationResponse$Outbound` instead. */
-  export type Outbound = HostObservationResponse$Outbound;
-}
-
-export function hostObservationResponseToJSON(
-  hostObservationResponse: HostObservationResponse,
-): string {
-  return JSON.stringify(
-    HostObservationResponse$outboundSchema.parse(hostObservationResponse),
-  );
-}
 
 export function hostObservationResponseFromJSON(
   jsonString: string,

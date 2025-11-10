@@ -35,51 +35,6 @@ export const VentriloHeader$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type VentriloHeader$Outbound = {
-  cmd?: number | undefined;
-  data_key?: number | undefined;
-  header_key?: number | undefined;
-  id?: number | undefined;
-  total_length?: number | undefined;
-};
-
-/** @internal */
-export const VentriloHeader$outboundSchema: z.ZodType<
-  VentriloHeader$Outbound,
-  z.ZodTypeDef,
-  VentriloHeader
-> = z.object({
-  cmd: z.number().int().optional(),
-  dataKey: z.number().int().optional(),
-  headerKey: z.number().int().optional(),
-  id: z.number().int().optional(),
-  totalLength: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    dataKey: "data_key",
-    headerKey: "header_key",
-    totalLength: "total_length",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace VentriloHeader$ {
-  /** @deprecated use `VentriloHeader$inboundSchema` instead. */
-  export const inboundSchema = VentriloHeader$inboundSchema;
-  /** @deprecated use `VentriloHeader$outboundSchema` instead. */
-  export const outboundSchema = VentriloHeader$outboundSchema;
-  /** @deprecated use `VentriloHeader$Outbound` instead. */
-  export type Outbound = VentriloHeader$Outbound;
-}
-
-export function ventriloHeaderToJSON(ventriloHeader: VentriloHeader): string {
-  return JSON.stringify(VentriloHeader$outboundSchema.parse(ventriloHeader));
-}
-
 export function ventriloHeaderFromJSON(
   jsonString: string,
 ): SafeParseResult<VentriloHeader, SDKValidationError> {

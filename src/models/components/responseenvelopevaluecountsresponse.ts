@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ValueCountsResponse,
   ValueCountsResponse$inboundSchema,
-  ValueCountsResponse$Outbound,
-  ValueCountsResponse$outboundSchema,
 } from "./valuecountsresponse.js";
 
 export type ResponseEnvelopeValueCountsResponse = {
@@ -25,45 +23,6 @@ export const ResponseEnvelopeValueCountsResponse$inboundSchema: z.ZodType<
 > = z.object({
   result: ValueCountsResponse$inboundSchema.optional(),
 });
-
-/** @internal */
-export type ResponseEnvelopeValueCountsResponse$Outbound = {
-  result?: ValueCountsResponse$Outbound | undefined;
-};
-
-/** @internal */
-export const ResponseEnvelopeValueCountsResponse$outboundSchema: z.ZodType<
-  ResponseEnvelopeValueCountsResponse$Outbound,
-  z.ZodTypeDef,
-  ResponseEnvelopeValueCountsResponse
-> = z.object({
-  result: ValueCountsResponse$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseEnvelopeValueCountsResponse$ {
-  /** @deprecated use `ResponseEnvelopeValueCountsResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    ResponseEnvelopeValueCountsResponse$inboundSchema;
-  /** @deprecated use `ResponseEnvelopeValueCountsResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    ResponseEnvelopeValueCountsResponse$outboundSchema;
-  /** @deprecated use `ResponseEnvelopeValueCountsResponse$Outbound` instead. */
-  export type Outbound = ResponseEnvelopeValueCountsResponse$Outbound;
-}
-
-export function responseEnvelopeValueCountsResponseToJSON(
-  responseEnvelopeValueCountsResponse: ResponseEnvelopeValueCountsResponse,
-): string {
-  return JSON.stringify(
-    ResponseEnvelopeValueCountsResponse$outboundSchema.parse(
-      responseEnvelopeValueCountsResponse,
-    ),
-  );
-}
 
 export function responseEnvelopeValueCountsResponseFromJSON(
   jsonString: string,

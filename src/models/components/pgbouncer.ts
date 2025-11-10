@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PgbouncerStartupCapabilities,
   PgbouncerStartupCapabilities$inboundSchema,
-  PgbouncerStartupCapabilities$Outbound,
-  PgbouncerStartupCapabilities$outboundSchema,
 } from "./pgbouncerstartupcapabilities.js";
 
 export type Pgbouncer = {
@@ -30,41 +28,6 @@ export const Pgbouncer$inboundSchema: z.ZodType<
     "startup_capabilities": "startupCapabilities",
   });
 });
-
-/** @internal */
-export type Pgbouncer$Outbound = {
-  startup_capabilities?: PgbouncerStartupCapabilities$Outbound | undefined;
-};
-
-/** @internal */
-export const Pgbouncer$outboundSchema: z.ZodType<
-  Pgbouncer$Outbound,
-  z.ZodTypeDef,
-  Pgbouncer
-> = z.object({
-  startupCapabilities: PgbouncerStartupCapabilities$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    startupCapabilities: "startup_capabilities",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Pgbouncer$ {
-  /** @deprecated use `Pgbouncer$inboundSchema` instead. */
-  export const inboundSchema = Pgbouncer$inboundSchema;
-  /** @deprecated use `Pgbouncer$outboundSchema` instead. */
-  export const outboundSchema = Pgbouncer$outboundSchema;
-  /** @deprecated use `Pgbouncer$Outbound` instead. */
-  export type Outbound = Pgbouncer$Outbound;
-}
-
-export function pgbouncerToJSON(pgbouncer: Pgbouncer): string {
-  return JSON.stringify(Pgbouncer$outboundSchema.parse(pgbouncer));
-}
 
 export function pgbouncerFromJSON(
   jsonString: string,

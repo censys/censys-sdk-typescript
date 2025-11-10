@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Export,
-  Export$inboundSchema,
-  Export$Outbound,
-  Export$outboundSchema,
-} from "./export.js";
+import { Export, Export$inboundSchema } from "./export.js";
 
 export type Nbd = {
   exports?: Array<Export> | null | undefined;
@@ -31,42 +26,6 @@ export const Nbd$inboundSchema: z.ZodType<Nbd, z.ZodTypeDef, unknown> = z
       "handshake_style": "handshakeStyle",
     });
   });
-
-/** @internal */
-export type Nbd$Outbound = {
-  exports?: Array<Export$Outbound> | null | undefined;
-  handshake_style?: string | undefined;
-  policies?: Array<string> | null | undefined;
-};
-
-/** @internal */
-export const Nbd$outboundSchema: z.ZodType<Nbd$Outbound, z.ZodTypeDef, Nbd> = z
-  .object({
-    exports: z.nullable(z.array(Export$outboundSchema)).optional(),
-    handshakeStyle: z.string().optional(),
-    policies: z.nullable(z.array(z.string())).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      handshakeStyle: "handshake_style",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Nbd$ {
-  /** @deprecated use `Nbd$inboundSchema` instead. */
-  export const inboundSchema = Nbd$inboundSchema;
-  /** @deprecated use `Nbd$outboundSchema` instead. */
-  export const outboundSchema = Nbd$outboundSchema;
-  /** @deprecated use `Nbd$Outbound` instead. */
-  export type Outbound = Nbd$Outbound;
-}
-
-export function nbdToJSON(nbd: Nbd): string {
-  return JSON.stringify(Nbd$outboundSchema.parse(nbd));
-}
 
 export function nbdFromJSON(
   jsonString: string,

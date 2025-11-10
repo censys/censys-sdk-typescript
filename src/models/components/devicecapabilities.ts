@@ -9,20 +9,14 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   NetworkCapabilities,
   NetworkCapabilities$inboundSchema,
-  NetworkCapabilities$Outbound,
-  NetworkCapabilities$outboundSchema,
 } from "./networkcapabilities.js";
 import {
   SecurityCapabilities,
   SecurityCapabilities$inboundSchema,
-  SecurityCapabilities$Outbound,
-  SecurityCapabilities$outboundSchema,
 } from "./securitycapabilities.js";
 import {
   SystemCapabilities,
   SystemCapabilities$inboundSchema,
-  SystemCapabilities$Outbound,
-  SystemCapabilities$outboundSchema,
 } from "./systemcapabilities.js";
 
 export type DeviceCapabilities = {
@@ -41,45 +35,6 @@ export const DeviceCapabilities$inboundSchema: z.ZodType<
   security: SecurityCapabilities$inboundSchema.optional(),
   system: SystemCapabilities$inboundSchema.optional(),
 });
-
-/** @internal */
-export type DeviceCapabilities$Outbound = {
-  network?: NetworkCapabilities$Outbound | undefined;
-  security?: SecurityCapabilities$Outbound | undefined;
-  system?: SystemCapabilities$Outbound | undefined;
-};
-
-/** @internal */
-export const DeviceCapabilities$outboundSchema: z.ZodType<
-  DeviceCapabilities$Outbound,
-  z.ZodTypeDef,
-  DeviceCapabilities
-> = z.object({
-  network: NetworkCapabilities$outboundSchema.optional(),
-  security: SecurityCapabilities$outboundSchema.optional(),
-  system: SystemCapabilities$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeviceCapabilities$ {
-  /** @deprecated use `DeviceCapabilities$inboundSchema` instead. */
-  export const inboundSchema = DeviceCapabilities$inboundSchema;
-  /** @deprecated use `DeviceCapabilities$outboundSchema` instead. */
-  export const outboundSchema = DeviceCapabilities$outboundSchema;
-  /** @deprecated use `DeviceCapabilities$Outbound` instead. */
-  export type Outbound = DeviceCapabilities$Outbound;
-}
-
-export function deviceCapabilitiesToJSON(
-  deviceCapabilities: DeviceCapabilities,
-): string {
-  return JSON.stringify(
-    DeviceCapabilities$outboundSchema.parse(deviceCapabilities),
-  );
-}
 
 export function deviceCapabilitiesFromJSON(
   jsonString: string,

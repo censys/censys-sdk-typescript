@@ -44,60 +44,6 @@ export const SnmpEngine$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type SnmpEngine$Outbound = {
-  description?: string | undefined;
-  engine_boots?: number | undefined;
-  engine_time?: number | undefined;
-  format?: string | undefined;
-  format_data?: string | undefined;
-  organization?: string | undefined;
-  pen?: number | undefined;
-  raw_id?: string | undefined;
-  rfc3411?: boolean | undefined;
-};
-
-/** @internal */
-export const SnmpEngine$outboundSchema: z.ZodType<
-  SnmpEngine$Outbound,
-  z.ZodTypeDef,
-  SnmpEngine
-> = z.object({
-  description: z.string().optional(),
-  engineBoots: z.number().int().optional(),
-  engineTime: z.number().int().optional(),
-  format: z.string().optional(),
-  formatData: z.string().optional(),
-  organization: z.string().optional(),
-  pen: z.number().int().optional(),
-  rawId: z.string().optional(),
-  rfc3411: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    engineBoots: "engine_boots",
-    engineTime: "engine_time",
-    formatData: "format_data",
-    rawId: "raw_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SnmpEngine$ {
-  /** @deprecated use `SnmpEngine$inboundSchema` instead. */
-  export const inboundSchema = SnmpEngine$inboundSchema;
-  /** @deprecated use `SnmpEngine$outboundSchema` instead. */
-  export const outboundSchema = SnmpEngine$outboundSchema;
-  /** @deprecated use `SnmpEngine$Outbound` instead. */
-  export type Outbound = SnmpEngine$Outbound;
-}
-
-export function snmpEngineToJSON(snmpEngine: SnmpEngine): string {
-  return JSON.stringify(SnmpEngine$outboundSchema.parse(snmpEngine));
-}
-
 export function snmpEngineFromJSON(
   jsonString: string,
 ): SafeParseResult<SnmpEngine, SDKValidationError> {

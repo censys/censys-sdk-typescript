@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   L2TpAttributeValues,
   L2TpAttributeValues$inboundSchema,
-  L2TpAttributeValues$Outbound,
-  L2TpAttributeValues$outboundSchema,
 } from "./l2tpattributevalues.js";
 
 export type L2TpStopCcn = {
@@ -30,41 +28,6 @@ export const L2TpStopCcn$inboundSchema: z.ZodType<
     "attribute_values": "attributeValues",
   });
 });
-
-/** @internal */
-export type L2TpStopCcn$Outbound = {
-  attribute_values?: L2TpAttributeValues$Outbound | undefined;
-};
-
-/** @internal */
-export const L2TpStopCcn$outboundSchema: z.ZodType<
-  L2TpStopCcn$Outbound,
-  z.ZodTypeDef,
-  L2TpStopCcn
-> = z.object({
-  attributeValues: L2TpAttributeValues$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    attributeValues: "attribute_values",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace L2TpStopCcn$ {
-  /** @deprecated use `L2TpStopCcn$inboundSchema` instead. */
-  export const inboundSchema = L2TpStopCcn$inboundSchema;
-  /** @deprecated use `L2TpStopCcn$outboundSchema` instead. */
-  export const outboundSchema = L2TpStopCcn$outboundSchema;
-  /** @deprecated use `L2TpStopCcn$Outbound` instead. */
-  export type Outbound = L2TpStopCcn$Outbound;
-}
-
-export function l2TpStopCcnToJSON(l2TpStopCcn: L2TpStopCcn): string {
-  return JSON.stringify(L2TpStopCcn$outboundSchema.parse(l2TpStopCcn));
-}
 
 export function l2TpStopCcnFromJSON(
   jsonString: string,

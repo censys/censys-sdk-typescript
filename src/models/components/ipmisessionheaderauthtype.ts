@@ -33,45 +33,6 @@ export const IpmiSessionHeaderAuthType$inboundSchema: z.ZodType<
   type: z.number().int().optional(),
 });
 
-/** @internal */
-export type IpmiSessionHeaderAuthType$Outbound = {
-  name?: string | undefined;
-  raw?: number | undefined;
-  type?: number | undefined;
-};
-
-/** @internal */
-export const IpmiSessionHeaderAuthType$outboundSchema: z.ZodType<
-  IpmiSessionHeaderAuthType$Outbound,
-  z.ZodTypeDef,
-  IpmiSessionHeaderAuthType
-> = z.object({
-  name: z.string().optional(),
-  raw: z.number().int().optional(),
-  type: z.number().int().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IpmiSessionHeaderAuthType$ {
-  /** @deprecated use `IpmiSessionHeaderAuthType$inboundSchema` instead. */
-  export const inboundSchema = IpmiSessionHeaderAuthType$inboundSchema;
-  /** @deprecated use `IpmiSessionHeaderAuthType$outboundSchema` instead. */
-  export const outboundSchema = IpmiSessionHeaderAuthType$outboundSchema;
-  /** @deprecated use `IpmiSessionHeaderAuthType$Outbound` instead. */
-  export type Outbound = IpmiSessionHeaderAuthType$Outbound;
-}
-
-export function ipmiSessionHeaderAuthTypeToJSON(
-  ipmiSessionHeaderAuthType: IpmiSessionHeaderAuthType,
-): string {
-  return JSON.stringify(
-    IpmiSessionHeaderAuthType$outboundSchema.parse(ipmiSessionHeaderAuthType),
-  );
-}
-
 export function ipmiSessionHeaderAuthTypeFromJSON(
   jsonString: string,
 ): SafeParseResult<IpmiSessionHeaderAuthType, SDKValidationError> {

@@ -21,38 +21,6 @@ export const Cwmp$inboundSchema: z.ZodType<Cwmp, z.ZodTypeDef, unknown> = z
     server: z.string().optional(),
   });
 
-/** @internal */
-export type Cwmp$Outbound = {
-  auth?: Array<string> | null | undefined;
-  cookies?: Array<string> | null | undefined;
-  server?: string | undefined;
-};
-
-/** @internal */
-export const Cwmp$outboundSchema: z.ZodType<Cwmp$Outbound, z.ZodTypeDef, Cwmp> =
-  z.object({
-    auth: z.nullable(z.array(z.string())).optional(),
-    cookies: z.nullable(z.array(z.string())).optional(),
-    server: z.string().optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Cwmp$ {
-  /** @deprecated use `Cwmp$inboundSchema` instead. */
-  export const inboundSchema = Cwmp$inboundSchema;
-  /** @deprecated use `Cwmp$outboundSchema` instead. */
-  export const outboundSchema = Cwmp$outboundSchema;
-  /** @deprecated use `Cwmp$Outbound` instead. */
-  export type Outbound = Cwmp$Outbound;
-}
-
-export function cwmpToJSON(cwmp: Cwmp): string {
-  return JSON.stringify(Cwmp$outboundSchema.parse(cwmp));
-}
-
 export function cwmpFromJSON(
   jsonString: string,
 ): SafeParseResult<Cwmp, SDKValidationError> {

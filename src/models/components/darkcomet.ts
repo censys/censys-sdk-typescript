@@ -20,37 +20,6 @@ export const Darkcomet$inboundSchema: z.ZodType<
   version: z.string().optional(),
 });
 
-/** @internal */
-export type Darkcomet$Outbound = {
-  version?: string | undefined;
-};
-
-/** @internal */
-export const Darkcomet$outboundSchema: z.ZodType<
-  Darkcomet$Outbound,
-  z.ZodTypeDef,
-  Darkcomet
-> = z.object({
-  version: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Darkcomet$ {
-  /** @deprecated use `Darkcomet$inboundSchema` instead. */
-  export const inboundSchema = Darkcomet$inboundSchema;
-  /** @deprecated use `Darkcomet$outboundSchema` instead. */
-  export const outboundSchema = Darkcomet$outboundSchema;
-  /** @deprecated use `Darkcomet$Outbound` instead. */
-  export type Outbound = Darkcomet$Outbound;
-}
-
-export function darkcometToJSON(darkcomet: Darkcomet): string {
-  return JSON.stringify(Darkcomet$outboundSchema.parse(darkcomet));
-}
-
 export function darkcometFromJSON(
   jsonString: string,
 ): SafeParseResult<Darkcomet, SDKValidationError> {

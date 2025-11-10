@@ -4,12 +4,8 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CountCondition,
-  CountCondition$inboundSchema,
   CountCondition$Outbound,
   CountCondition$outboundSchema,
 } from "./countcondition.js";
@@ -24,20 +20,6 @@ export type SearchValueCountsInputBody = {
    */
   query?: string | undefined;
 };
-
-/** @internal */
-export const SearchValueCountsInputBody$inboundSchema: z.ZodType<
-  SearchValueCountsInputBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  and_count_conditions: z.nullable(z.array(CountCondition$inboundSchema)),
-  query: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "and_count_conditions": "andCountConditions",
-  });
-});
 
 /** @internal */
 export type SearchValueCountsInputBody$Outbound = {
@@ -59,33 +41,10 @@ export const SearchValueCountsInputBody$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SearchValueCountsInputBody$ {
-  /** @deprecated use `SearchValueCountsInputBody$inboundSchema` instead. */
-  export const inboundSchema = SearchValueCountsInputBody$inboundSchema;
-  /** @deprecated use `SearchValueCountsInputBody$outboundSchema` instead. */
-  export const outboundSchema = SearchValueCountsInputBody$outboundSchema;
-  /** @deprecated use `SearchValueCountsInputBody$Outbound` instead. */
-  export type Outbound = SearchValueCountsInputBody$Outbound;
-}
-
 export function searchValueCountsInputBodyToJSON(
   searchValueCountsInputBody: SearchValueCountsInputBody,
 ): string {
   return JSON.stringify(
     SearchValueCountsInputBody$outboundSchema.parse(searchValueCountsInputBody),
-  );
-}
-
-export function searchValueCountsInputBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<SearchValueCountsInputBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SearchValueCountsInputBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SearchValueCountsInputBody' from JSON`,
   );
 }

@@ -23,43 +23,6 @@ export const DnsEDns$inboundSchema: z.ZodType<DnsEDns, z.ZodTypeDef, unknown> =
     version: z.number().int().optional(),
   });
 
-/** @internal */
-export type DnsEDns$Outbound = {
-  do?: boolean | undefined;
-  options?: Array<string> | null | undefined;
-  udp?: number | undefined;
-  version?: number | undefined;
-};
-
-/** @internal */
-export const DnsEDns$outboundSchema: z.ZodType<
-  DnsEDns$Outbound,
-  z.ZodTypeDef,
-  DnsEDns
-> = z.object({
-  do: z.boolean().optional(),
-  options: z.nullable(z.array(z.string())).optional(),
-  udp: z.number().int().optional(),
-  version: z.number().int().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DnsEDns$ {
-  /** @deprecated use `DnsEDns$inboundSchema` instead. */
-  export const inboundSchema = DnsEDns$inboundSchema;
-  /** @deprecated use `DnsEDns$outboundSchema` instead. */
-  export const outboundSchema = DnsEDns$outboundSchema;
-  /** @deprecated use `DnsEDns$Outbound` instead. */
-  export type Outbound = DnsEDns$Outbound;
-}
-
-export function dnsEDnsToJSON(dnsEDns: DnsEDns): string {
-  return JSON.stringify(DnsEDns$outboundSchema.parse(dnsEDns));
-}
-
 export function dnsEDnsFromJSON(
   jsonString: string,
 ): SafeParseResult<DnsEDns, SDKValidationError> {

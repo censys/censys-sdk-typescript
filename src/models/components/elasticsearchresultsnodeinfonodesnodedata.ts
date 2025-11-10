@@ -10,32 +10,22 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ElasticSearchResultsNodeInfoNodesNodeDataJVM,
   ElasticSearchResultsNodeInfoNodesNodeDataJVM$inboundSchema,
-  ElasticSearchResultsNodeInfoNodesNodeDataJVM$Outbound,
-  ElasticSearchResultsNodeInfoNodesNodeDataJVM$outboundSchema,
 } from "./elasticsearchresultsnodeinfonodesnodedatajvm.js";
 import {
   ElasticSearchResultsNodeInfoNodesNodeDataModules,
   ElasticSearchResultsNodeInfoNodesNodeDataModules$inboundSchema,
-  ElasticSearchResultsNodeInfoNodesNodeDataModules$Outbound,
-  ElasticSearchResultsNodeInfoNodesNodeDataModules$outboundSchema,
 } from "./elasticsearchresultsnodeinfonodesnodedatamodules.js";
 import {
   ElasticSearchResultsNodeInfoNodesNodeDataNodeSettings,
   ElasticSearchResultsNodeInfoNodesNodeDataNodeSettings$inboundSchema,
-  ElasticSearchResultsNodeInfoNodesNodeDataNodeSettings$Outbound,
-  ElasticSearchResultsNodeInfoNodesNodeDataNodeSettings$outboundSchema,
 } from "./elasticsearchresultsnodeinfonodesnodedatanodesettings.js";
 import {
   ElasticSearchResultsNodeInfoNodesNodeDataOS,
   ElasticSearchResultsNodeInfoNodesNodeDataOS$inboundSchema,
-  ElasticSearchResultsNodeInfoNodesNodeDataOS$Outbound,
-  ElasticSearchResultsNodeInfoNodesNodeDataOS$outboundSchema,
 } from "./elasticsearchresultsnodeinfonodesnodedataos.js";
 import {
   ElasticSearchResultsNodeInfoNodesNodeDataThreadPool,
   ElasticSearchResultsNodeInfoNodesNodeDataThreadPool$inboundSchema,
-  ElasticSearchResultsNodeInfoNodesNodeDataThreadPool$Outbound,
-  ElasticSearchResultsNodeInfoNodesNodeDataThreadPool$outboundSchema,
 } from "./elasticsearchresultsnodeinfonodesnodedatathreadpool.js";
 
 export type ElasticSearchResultsNodeInfoNodesNodeData = {
@@ -101,103 +91,6 @@ export const ElasticSearchResultsNodeInfoNodesNodeData$inboundSchema: z.ZodType<
     "total_indexing_buffer": "totalIndexingBuffer",
   });
 });
-
-/** @internal */
-export type ElasticSearchResultsNodeInfoNodesNodeData$Outbound = {
-  build_flavor?: string | undefined;
-  build_hash?: string | undefined;
-  build_type?: string | undefined;
-  host?: string | undefined;
-  ingest_processors?: Array<string> | null | undefined;
-  ip?: string | undefined;
-  ip_raw?: string | undefined;
-  jvm?: ElasticSearchResultsNodeInfoNodesNodeDataJVM$Outbound | undefined;
-  modules?:
-    | Array<ElasticSearchResultsNodeInfoNodesNodeDataModules$Outbound>
-    | null
-    | undefined;
-  name?: string | undefined;
-  os?: ElasticSearchResultsNodeInfoNodesNodeDataOS$Outbound | undefined;
-  roles?: Array<string> | null | undefined;
-  settings?:
-    | ElasticSearchResultsNodeInfoNodesNodeDataNodeSettings$Outbound
-    | undefined;
-  thread_pool_list?:
-    | Array<ElasticSearchResultsNodeInfoNodesNodeDataThreadPool$Outbound>
-    | null
-    | undefined;
-  total_indexing_buffer?: number | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const ElasticSearchResultsNodeInfoNodesNodeData$outboundSchema:
-  z.ZodType<
-    ElasticSearchResultsNodeInfoNodesNodeData$Outbound,
-    z.ZodTypeDef,
-    ElasticSearchResultsNodeInfoNodesNodeData
-  > = z.object({
-    buildFlavor: z.string().optional(),
-    buildHash: z.string().optional(),
-    buildType: z.string().optional(),
-    host: z.string().optional(),
-    ingestProcessors: z.nullable(z.array(z.string())).optional(),
-    ip: z.string().optional(),
-    ipRaw: z.string().optional(),
-    jvm: ElasticSearchResultsNodeInfoNodesNodeDataJVM$outboundSchema.optional(),
-    modules: z.nullable(
-      z.array(ElasticSearchResultsNodeInfoNodesNodeDataModules$outboundSchema),
-    ).optional(),
-    name: z.string().optional(),
-    os: ElasticSearchResultsNodeInfoNodesNodeDataOS$outboundSchema.optional(),
-    roles: z.nullable(z.array(z.string())).optional(),
-    settings:
-      ElasticSearchResultsNodeInfoNodesNodeDataNodeSettings$outboundSchema
-        .optional(),
-    threadPoolList: z.nullable(
-      z.array(
-        ElasticSearchResultsNodeInfoNodesNodeDataThreadPool$outboundSchema,
-      ),
-    ).optional(),
-    totalIndexingBuffer: z.number().int().optional(),
-    version: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      buildFlavor: "build_flavor",
-      buildHash: "build_hash",
-      buildType: "build_type",
-      ingestProcessors: "ingest_processors",
-      ipRaw: "ip_raw",
-      threadPoolList: "thread_pool_list",
-      totalIndexingBuffer: "total_indexing_buffer",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ElasticSearchResultsNodeInfoNodesNodeData$ {
-  /** @deprecated use `ElasticSearchResultsNodeInfoNodesNodeData$inboundSchema` instead. */
-  export const inboundSchema =
-    ElasticSearchResultsNodeInfoNodesNodeData$inboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfoNodesNodeData$outboundSchema` instead. */
-  export const outboundSchema =
-    ElasticSearchResultsNodeInfoNodesNodeData$outboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfoNodesNodeData$Outbound` instead. */
-  export type Outbound = ElasticSearchResultsNodeInfoNodesNodeData$Outbound;
-}
-
-export function elasticSearchResultsNodeInfoNodesNodeDataToJSON(
-  elasticSearchResultsNodeInfoNodesNodeData:
-    ElasticSearchResultsNodeInfoNodesNodeData,
-): string {
-  return JSON.stringify(
-    ElasticSearchResultsNodeInfoNodesNodeData$outboundSchema.parse(
-      elasticSearchResultsNodeInfoNodesNodeData,
-    ),
-  );
-}
 
 export function elasticSearchResultsNodeInfoNodesNodeDataFromJSON(
   jsonString: string,

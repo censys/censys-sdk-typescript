@@ -22,39 +22,6 @@ export const ExportList$inboundSchema: z.ZodType<
   groups: z.nullable(z.array(z.string())).optional(),
 });
 
-/** @internal */
-export type ExportList$Outbound = {
-  directory?: string | undefined;
-  groups?: Array<string> | null | undefined;
-};
-
-/** @internal */
-export const ExportList$outboundSchema: z.ZodType<
-  ExportList$Outbound,
-  z.ZodTypeDef,
-  ExportList
-> = z.object({
-  directory: z.string().optional(),
-  groups: z.nullable(z.array(z.string())).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExportList$ {
-  /** @deprecated use `ExportList$inboundSchema` instead. */
-  export const inboundSchema = ExportList$inboundSchema;
-  /** @deprecated use `ExportList$outboundSchema` instead. */
-  export const outboundSchema = ExportList$outboundSchema;
-  /** @deprecated use `ExportList$Outbound` instead. */
-  export type Outbound = ExportList$Outbound;
-}
-
-export function exportListToJSON(exportList: ExportList): string {
-  return JSON.stringify(ExportList$outboundSchema.parse(exportList));
-}
-
 export function exportListFromJSON(
   jsonString: string,
 ): SafeParseResult<ExportList, SDKValidationError> {

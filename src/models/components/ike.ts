@@ -6,18 +6,8 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  IkeV1,
-  IkeV1$inboundSchema,
-  IkeV1$Outbound,
-  IkeV1$outboundSchema,
-} from "./ikev1.js";
-import {
-  IkeV2,
-  IkeV2$inboundSchema,
-  IkeV2$Outbound,
-  IkeV2$outboundSchema,
-} from "./ikev2.js";
+import { IkeV1, IkeV1$inboundSchema } from "./ikev1.js";
+import { IkeV2, IkeV2$inboundSchema } from "./ikev2.js";
 
 export type Ike = {
   v1?: IkeV1 | undefined;
@@ -30,36 +20,6 @@ export const Ike$inboundSchema: z.ZodType<Ike, z.ZodTypeDef, unknown> = z
     v1: IkeV1$inboundSchema.optional(),
     v2: IkeV2$inboundSchema.optional(),
   });
-
-/** @internal */
-export type Ike$Outbound = {
-  v1?: IkeV1$Outbound | undefined;
-  v2?: IkeV2$Outbound | undefined;
-};
-
-/** @internal */
-export const Ike$outboundSchema: z.ZodType<Ike$Outbound, z.ZodTypeDef, Ike> = z
-  .object({
-    v1: IkeV1$outboundSchema.optional(),
-    v2: IkeV2$outboundSchema.optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Ike$ {
-  /** @deprecated use `Ike$inboundSchema` instead. */
-  export const inboundSchema = Ike$inboundSchema;
-  /** @deprecated use `Ike$outboundSchema` instead. */
-  export const outboundSchema = Ike$outboundSchema;
-  /** @deprecated use `Ike$Outbound` instead. */
-  export type Outbound = Ike$Outbound;
-}
-
-export function ikeToJSON(ike: Ike): string {
-  return JSON.stringify(Ike$outboundSchema.parse(ike));
-}
 
 export function ikeFromJSON(
   jsonString: string,

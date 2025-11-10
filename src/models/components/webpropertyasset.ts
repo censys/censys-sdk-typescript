@@ -6,12 +6,7 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Webproperty,
-  Webproperty$inboundSchema,
-  Webproperty$Outbound,
-  Webproperty$outboundSchema,
-} from "./webproperty.js";
+import { Webproperty, Webproperty$inboundSchema } from "./webproperty.js";
 
 export type WebpropertyAsset = {
   extensions: { [k: string]: any };
@@ -27,43 +22,6 @@ export const WebpropertyAsset$inboundSchema: z.ZodType<
   extensions: z.record(z.any()),
   resource: Webproperty$inboundSchema,
 });
-
-/** @internal */
-export type WebpropertyAsset$Outbound = {
-  extensions: { [k: string]: any };
-  resource: Webproperty$Outbound;
-};
-
-/** @internal */
-export const WebpropertyAsset$outboundSchema: z.ZodType<
-  WebpropertyAsset$Outbound,
-  z.ZodTypeDef,
-  WebpropertyAsset
-> = z.object({
-  extensions: z.record(z.any()),
-  resource: Webproperty$outboundSchema,
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebpropertyAsset$ {
-  /** @deprecated use `WebpropertyAsset$inboundSchema` instead. */
-  export const inboundSchema = WebpropertyAsset$inboundSchema;
-  /** @deprecated use `WebpropertyAsset$outboundSchema` instead. */
-  export const outboundSchema = WebpropertyAsset$outboundSchema;
-  /** @deprecated use `WebpropertyAsset$Outbound` instead. */
-  export type Outbound = WebpropertyAsset$Outbound;
-}
-
-export function webpropertyAssetToJSON(
-  webpropertyAsset: WebpropertyAsset,
-): string {
-  return JSON.stringify(
-    WebpropertyAsset$outboundSchema.parse(webpropertyAsset),
-  );
-}
 
 export function webpropertyAssetFromJSON(
   jsonString: string,

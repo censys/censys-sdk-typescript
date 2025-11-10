@@ -42,58 +42,6 @@ export const Evidence$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type Evidence$Outbound = {
-  data_path?: string | undefined;
-  exists?: boolean | undefined;
-  found_value?: string | undefined;
-  literal_match?: string | undefined;
-  negative?: boolean | undefined;
-  proprietary?: boolean | undefined;
-  regex?: string | undefined;
-  semver_expression?: string | undefined;
-};
-
-/** @internal */
-export const Evidence$outboundSchema: z.ZodType<
-  Evidence$Outbound,
-  z.ZodTypeDef,
-  Evidence
-> = z.object({
-  dataPath: z.string().optional(),
-  exists: z.boolean().optional(),
-  foundValue: z.string().optional(),
-  literalMatch: z.string().optional(),
-  negative: z.boolean().optional(),
-  proprietary: z.boolean().optional(),
-  regex: z.string().optional(),
-  semverExpression: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    dataPath: "data_path",
-    foundValue: "found_value",
-    literalMatch: "literal_match",
-    semverExpression: "semver_expression",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Evidence$ {
-  /** @deprecated use `Evidence$inboundSchema` instead. */
-  export const inboundSchema = Evidence$inboundSchema;
-  /** @deprecated use `Evidence$outboundSchema` instead. */
-  export const outboundSchema = Evidence$outboundSchema;
-  /** @deprecated use `Evidence$Outbound` instead. */
-  export type Outbound = Evidence$Outbound;
-}
-
-export function evidenceToJSON(evidence: Evidence): string {
-  return JSON.stringify(Evidence$outboundSchema.parse(evidence));
-}
-
 export function evidenceFromJSON(
   jsonString: string,
 ): SafeParseResult<Evidence, SDKValidationError> {

@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  LdapAttribute,
-  LdapAttribute$inboundSchema,
-  LdapAttribute$Outbound,
-  LdapAttribute$outboundSchema,
-} from "./ldapattribute.js";
+import { LdapAttribute, LdapAttribute$inboundSchema } from "./ldapattribute.js";
 
 export type Ldap = {
   /**
@@ -41,43 +36,6 @@ export const Ldap$inboundSchema: z.ZodType<Ldap, z.ZodTypeDef, unknown> = z
       "result_code": "resultCode",
     });
   });
-
-/** @internal */
-export type Ldap$Outbound = {
-  allows_anonymous_bind?: boolean | undefined;
-  attributes?: Array<LdapAttribute$Outbound> | null | undefined;
-  result_code?: number | undefined;
-};
-
-/** @internal */
-export const Ldap$outboundSchema: z.ZodType<Ldap$Outbound, z.ZodTypeDef, Ldap> =
-  z.object({
-    allowsAnonymousBind: z.boolean().optional(),
-    attributes: z.nullable(z.array(LdapAttribute$outboundSchema)).optional(),
-    resultCode: z.number().int().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      allowsAnonymousBind: "allows_anonymous_bind",
-      resultCode: "result_code",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Ldap$ {
-  /** @deprecated use `Ldap$inboundSchema` instead. */
-  export const inboundSchema = Ldap$inboundSchema;
-  /** @deprecated use `Ldap$outboundSchema` instead. */
-  export const outboundSchema = Ldap$outboundSchema;
-  /** @deprecated use `Ldap$Outbound` instead. */
-  export type Outbound = Ldap$Outbound;
-}
-
-export function ldapToJSON(ldap: Ldap): string {
-  return JSON.stringify(Ldap$outboundSchema.parse(ldap));
-}
 
 export function ldapFromJSON(
   jsonString: string,

@@ -35,61 +35,6 @@ export const ElasticSearchResultsNodeInfoNodesNodeDataThreadPool$inboundSchema:
     });
   });
 
-/** @internal */
-export type ElasticSearchResultsNodeInfoNodesNodeDataThreadPool$Outbound = {
-  keep_alive?: string | undefined;
-  max?: number | undefined;
-  min?: number | undefined;
-  queue_size?: number | undefined;
-  type?: string | undefined;
-};
-
-/** @internal */
-export const ElasticSearchResultsNodeInfoNodesNodeDataThreadPool$outboundSchema:
-  z.ZodType<
-    ElasticSearchResultsNodeInfoNodesNodeDataThreadPool$Outbound,
-    z.ZodTypeDef,
-    ElasticSearchResultsNodeInfoNodesNodeDataThreadPool
-  > = z.object({
-    keepAlive: z.string().optional(),
-    max: z.number().int().optional(),
-    min: z.number().int().optional(),
-    queueSize: z.number().int().optional(),
-    type: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      keepAlive: "keep_alive",
-      queueSize: "queue_size",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ElasticSearchResultsNodeInfoNodesNodeDataThreadPool$ {
-  /** @deprecated use `ElasticSearchResultsNodeInfoNodesNodeDataThreadPool$inboundSchema` instead. */
-  export const inboundSchema =
-    ElasticSearchResultsNodeInfoNodesNodeDataThreadPool$inboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfoNodesNodeDataThreadPool$outboundSchema` instead. */
-  export const outboundSchema =
-    ElasticSearchResultsNodeInfoNodesNodeDataThreadPool$outboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfoNodesNodeDataThreadPool$Outbound` instead. */
-  export type Outbound =
-    ElasticSearchResultsNodeInfoNodesNodeDataThreadPool$Outbound;
-}
-
-export function elasticSearchResultsNodeInfoNodesNodeDataThreadPoolToJSON(
-  elasticSearchResultsNodeInfoNodesNodeDataThreadPool:
-    ElasticSearchResultsNodeInfoNodesNodeDataThreadPool,
-): string {
-  return JSON.stringify(
-    ElasticSearchResultsNodeInfoNodesNodeDataThreadPool$outboundSchema.parse(
-      elasticSearchResultsNodeInfoNodesNodeDataThreadPool,
-    ),
-  );
-}
-
 export function elasticSearchResultsNodeInfoNodesNodeDataThreadPoolFromJSON(
   jsonString: string,
 ): SafeParseResult<

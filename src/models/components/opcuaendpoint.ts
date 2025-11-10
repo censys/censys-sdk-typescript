@@ -10,14 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   OpcUaDescription,
   OpcUaDescription$inboundSchema,
-  OpcUaDescription$Outbound,
-  OpcUaDescription$outboundSchema,
 } from "./opcuadescription.js";
 import {
   OpcUaUserTokenPolicy,
   OpcUaUserTokenPolicy$inboundSchema,
-  OpcUaUserTokenPolicy$Outbound,
-  OpcUaUserTokenPolicy$outboundSchema,
 } from "./opcuausertokenpolicy.js";
 
 export type OpcUaEndpoint = {
@@ -57,62 +53,6 @@ export const OpcUaEndpoint$inboundSchema: z.ZodType<
     "user_identity_token": "userIdentityToken",
   });
 });
-
-/** @internal */
-export type OpcUaEndpoint$Outbound = {
-  endpoint_url?: string | undefined;
-  security_level?: number | undefined;
-  security_mode?: number | undefined;
-  security_policy_uri?: string | undefined;
-  serve_cert?: string | undefined;
-  server?: OpcUaDescription$Outbound | undefined;
-  transport_profile_uri?: string | undefined;
-  user_identity_token?: Array<OpcUaUserTokenPolicy$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const OpcUaEndpoint$outboundSchema: z.ZodType<
-  OpcUaEndpoint$Outbound,
-  z.ZodTypeDef,
-  OpcUaEndpoint
-> = z.object({
-  endpointUrl: z.string().optional(),
-  securityLevel: z.number().int().optional(),
-  securityMode: z.number().int().optional(),
-  securityPolicyUri: z.string().optional(),
-  serveCert: z.string().optional(),
-  server: OpcUaDescription$outboundSchema.optional(),
-  transportProfileUri: z.string().optional(),
-  userIdentityToken: z.nullable(z.array(OpcUaUserTokenPolicy$outboundSchema))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    endpointUrl: "endpoint_url",
-    securityLevel: "security_level",
-    securityMode: "security_mode",
-    securityPolicyUri: "security_policy_uri",
-    serveCert: "serve_cert",
-    transportProfileUri: "transport_profile_uri",
-    userIdentityToken: "user_identity_token",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OpcUaEndpoint$ {
-  /** @deprecated use `OpcUaEndpoint$inboundSchema` instead. */
-  export const inboundSchema = OpcUaEndpoint$inboundSchema;
-  /** @deprecated use `OpcUaEndpoint$outboundSchema` instead. */
-  export const outboundSchema = OpcUaEndpoint$outboundSchema;
-  /** @deprecated use `OpcUaEndpoint$Outbound` instead. */
-  export type Outbound = OpcUaEndpoint$Outbound;
-}
-
-export function opcUaEndpointToJSON(opcUaEndpoint: OpcUaEndpoint): string {
-  return JSON.stringify(OpcUaEndpoint$outboundSchema.parse(opcUaEndpoint));
-}
 
 export function opcUaEndpointFromJSON(
   jsonString: string,

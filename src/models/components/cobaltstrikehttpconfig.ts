@@ -24,45 +24,6 @@ export const CobaltStrikeHttpConfig$inboundSchema: z.ZodType<
   verb: z.string().optional(),
 });
 
-/** @internal */
-export type CobaltStrikeHttpConfig$Outbound = {
-  client?: string | undefined;
-  uri?: string | undefined;
-  verb?: string | undefined;
-};
-
-/** @internal */
-export const CobaltStrikeHttpConfig$outboundSchema: z.ZodType<
-  CobaltStrikeHttpConfig$Outbound,
-  z.ZodTypeDef,
-  CobaltStrikeHttpConfig
-> = z.object({
-  client: z.string().optional(),
-  uri: z.string().optional(),
-  verb: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CobaltStrikeHttpConfig$ {
-  /** @deprecated use `CobaltStrikeHttpConfig$inboundSchema` instead. */
-  export const inboundSchema = CobaltStrikeHttpConfig$inboundSchema;
-  /** @deprecated use `CobaltStrikeHttpConfig$outboundSchema` instead. */
-  export const outboundSchema = CobaltStrikeHttpConfig$outboundSchema;
-  /** @deprecated use `CobaltStrikeHttpConfig$Outbound` instead. */
-  export type Outbound = CobaltStrikeHttpConfig$Outbound;
-}
-
-export function cobaltStrikeHttpConfigToJSON(
-  cobaltStrikeHttpConfig: CobaltStrikeHttpConfig,
-): string {
-  return JSON.stringify(
-    CobaltStrikeHttpConfig$outboundSchema.parse(cobaltStrikeHttpConfig),
-  );
-}
-
 export function cobaltStrikeHttpConfigFromJSON(
   jsonString: string,
 ): SafeParseResult<CobaltStrikeHttpConfig, SDKValidationError> {

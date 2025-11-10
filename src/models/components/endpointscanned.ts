@@ -6,18 +6,8 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  EndpointScan,
-  EndpointScan$inboundSchema,
-  EndpointScan$Outbound,
-  EndpointScan$outboundSchema,
-} from "./endpointscan.js";
-import {
-  FieldDiff,
-  FieldDiff$inboundSchema,
-  FieldDiff$Outbound,
-  FieldDiff$outboundSchema,
-} from "./fielddiff.js";
+import { EndpointScan, EndpointScan$inboundSchema } from "./endpointscan.js";
+import { FieldDiff, FieldDiff$inboundSchema } from "./fielddiff.js";
 
 export type EndpointScanned = {
   diff?: { [k: string]: FieldDiff } | undefined;
@@ -33,41 +23,6 @@ export const EndpointScanned$inboundSchema: z.ZodType<
   diff: z.record(FieldDiff$inboundSchema).optional(),
   scan: EndpointScan$inboundSchema.optional(),
 });
-
-/** @internal */
-export type EndpointScanned$Outbound = {
-  diff?: { [k: string]: FieldDiff$Outbound } | undefined;
-  scan?: EndpointScan$Outbound | undefined;
-};
-
-/** @internal */
-export const EndpointScanned$outboundSchema: z.ZodType<
-  EndpointScanned$Outbound,
-  z.ZodTypeDef,
-  EndpointScanned
-> = z.object({
-  diff: z.record(FieldDiff$outboundSchema).optional(),
-  scan: EndpointScan$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace EndpointScanned$ {
-  /** @deprecated use `EndpointScanned$inboundSchema` instead. */
-  export const inboundSchema = EndpointScanned$inboundSchema;
-  /** @deprecated use `EndpointScanned$outboundSchema` instead. */
-  export const outboundSchema = EndpointScanned$outboundSchema;
-  /** @deprecated use `EndpointScanned$Outbound` instead. */
-  export type Outbound = EndpointScanned$Outbound;
-}
-
-export function endpointScannedToJSON(
-  endpointScanned: EndpointScanned,
-): string {
-  return JSON.stringify(EndpointScanned$outboundSchema.parse(endpointScanned));
-}
 
 export function endpointScannedFromJSON(
   jsonString: string,

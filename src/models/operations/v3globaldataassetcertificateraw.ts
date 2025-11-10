@@ -29,89 +29,6 @@ export type V3GlobaldataAssetCertificateRawResponse = {
 };
 
 /** @internal */
-export const V3GlobaldataAssetCertificateRawGlobals$inboundSchema: z.ZodType<
-  V3GlobaldataAssetCertificateRawGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  organization_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "organization_id": "organizationId",
-  });
-});
-
-/** @internal */
-export type V3GlobaldataAssetCertificateRawGlobals$Outbound = {
-  organization_id?: string | undefined;
-};
-
-/** @internal */
-export const V3GlobaldataAssetCertificateRawGlobals$outboundSchema: z.ZodType<
-  V3GlobaldataAssetCertificateRawGlobals$Outbound,
-  z.ZodTypeDef,
-  V3GlobaldataAssetCertificateRawGlobals
-> = z.object({
-  organizationId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    organizationId: "organization_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3GlobaldataAssetCertificateRawGlobals$ {
-  /** @deprecated use `V3GlobaldataAssetCertificateRawGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    V3GlobaldataAssetCertificateRawGlobals$inboundSchema;
-  /** @deprecated use `V3GlobaldataAssetCertificateRawGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    V3GlobaldataAssetCertificateRawGlobals$outboundSchema;
-  /** @deprecated use `V3GlobaldataAssetCertificateRawGlobals$Outbound` instead. */
-  export type Outbound = V3GlobaldataAssetCertificateRawGlobals$Outbound;
-}
-
-export function v3GlobaldataAssetCertificateRawGlobalsToJSON(
-  v3GlobaldataAssetCertificateRawGlobals:
-    V3GlobaldataAssetCertificateRawGlobals,
-): string {
-  return JSON.stringify(
-    V3GlobaldataAssetCertificateRawGlobals$outboundSchema.parse(
-      v3GlobaldataAssetCertificateRawGlobals,
-    ),
-  );
-}
-
-export function v3GlobaldataAssetCertificateRawGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<V3GlobaldataAssetCertificateRawGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      V3GlobaldataAssetCertificateRawGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3GlobaldataAssetCertificateRawGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const V3GlobaldataAssetCertificateRawRequest$inboundSchema: z.ZodType<
-  V3GlobaldataAssetCertificateRawRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  organization_id: z.string().optional(),
-  certificate_id: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "organization_id": "organizationId",
-    "certificate_id": "certificateId",
-  });
-});
-
-/** @internal */
 export type V3GlobaldataAssetCertificateRawRequest$Outbound = {
   organization_id?: string | undefined;
   certificate_id: string;
@@ -132,21 +49,6 @@ export const V3GlobaldataAssetCertificateRawRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3GlobaldataAssetCertificateRawRequest$ {
-  /** @deprecated use `V3GlobaldataAssetCertificateRawRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    V3GlobaldataAssetCertificateRawRequest$inboundSchema;
-  /** @deprecated use `V3GlobaldataAssetCertificateRawRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    V3GlobaldataAssetCertificateRawRequest$outboundSchema;
-  /** @deprecated use `V3GlobaldataAssetCertificateRawRequest$Outbound` instead. */
-  export type Outbound = V3GlobaldataAssetCertificateRawRequest$Outbound;
-}
-
 export function v3GlobaldataAssetCertificateRawRequestToJSON(
   v3GlobaldataAssetCertificateRawRequest:
     V3GlobaldataAssetCertificateRawRequest,
@@ -155,17 +57,6 @@ export function v3GlobaldataAssetCertificateRawRequestToJSON(
     V3GlobaldataAssetCertificateRawRequest$outboundSchema.parse(
       v3GlobaldataAssetCertificateRawRequest,
     ),
-  );
-}
-
-export function v3GlobaldataAssetCertificateRawRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<V3GlobaldataAssetCertificateRawRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      V3GlobaldataAssetCertificateRawRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3GlobaldataAssetCertificateRawRequest' from JSON`,
   );
 }
 
@@ -183,53 +74,6 @@ export const V3GlobaldataAssetCertificateRawResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
-/** @internal */
-export type V3GlobaldataAssetCertificateRawResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-  Result: ReadableStream<Uint8Array>;
-};
-
-/** @internal */
-export const V3GlobaldataAssetCertificateRawResponse$outboundSchema: z.ZodType<
-  V3GlobaldataAssetCertificateRawResponse$Outbound,
-  z.ZodTypeDef,
-  V3GlobaldataAssetCertificateRawResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-  result: z.instanceof(ReadableStream<Uint8Array>),
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-    result: "Result",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3GlobaldataAssetCertificateRawResponse$ {
-  /** @deprecated use `V3GlobaldataAssetCertificateRawResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    V3GlobaldataAssetCertificateRawResponse$inboundSchema;
-  /** @deprecated use `V3GlobaldataAssetCertificateRawResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    V3GlobaldataAssetCertificateRawResponse$outboundSchema;
-  /** @deprecated use `V3GlobaldataAssetCertificateRawResponse$Outbound` instead. */
-  export type Outbound = V3GlobaldataAssetCertificateRawResponse$Outbound;
-}
-
-export function v3GlobaldataAssetCertificateRawResponseToJSON(
-  v3GlobaldataAssetCertificateRawResponse:
-    V3GlobaldataAssetCertificateRawResponse,
-): string {
-  return JSON.stringify(
-    V3GlobaldataAssetCertificateRawResponse$outboundSchema.parse(
-      v3GlobaldataAssetCertificateRawResponse,
-    ),
-  );
-}
 
 export function v3GlobaldataAssetCertificateRawResponseFromJSON(
   jsonString: string,

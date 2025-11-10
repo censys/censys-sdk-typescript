@@ -22,45 +22,6 @@ export const SearchAggregateResponseBucket$inboundSchema: z.ZodType<
   key: z.string(),
 });
 
-/** @internal */
-export type SearchAggregateResponseBucket$Outbound = {
-  count: number;
-  key: string;
-};
-
-/** @internal */
-export const SearchAggregateResponseBucket$outboundSchema: z.ZodType<
-  SearchAggregateResponseBucket$Outbound,
-  z.ZodTypeDef,
-  SearchAggregateResponseBucket
-> = z.object({
-  count: z.number().int(),
-  key: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SearchAggregateResponseBucket$ {
-  /** @deprecated use `SearchAggregateResponseBucket$inboundSchema` instead. */
-  export const inboundSchema = SearchAggregateResponseBucket$inboundSchema;
-  /** @deprecated use `SearchAggregateResponseBucket$outboundSchema` instead. */
-  export const outboundSchema = SearchAggregateResponseBucket$outboundSchema;
-  /** @deprecated use `SearchAggregateResponseBucket$Outbound` instead. */
-  export type Outbound = SearchAggregateResponseBucket$Outbound;
-}
-
-export function searchAggregateResponseBucketToJSON(
-  searchAggregateResponseBucket: SearchAggregateResponseBucket,
-): string {
-  return JSON.stringify(
-    SearchAggregateResponseBucket$outboundSchema.parse(
-      searchAggregateResponseBucket,
-    ),
-  );
-}
-
 export function searchAggregateResponseBucketFromJSON(
   jsonString: string,
 ): SafeParseResult<SearchAggregateResponseBucket, SDKValidationError> {

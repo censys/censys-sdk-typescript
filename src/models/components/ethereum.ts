@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   EthereumVersion,
   EthereumVersion$inboundSchema,
-  EthereumVersion$Outbound,
-  EthereumVersion$outboundSchema,
 } from "./ethereumversion.js";
 
 export type Ethereum = {
@@ -29,41 +27,6 @@ export const Ethereum$inboundSchema: z.ZodType<
   hashrate: z.string().optional(),
   version: EthereumVersion$inboundSchema.optional(),
 });
-
-/** @internal */
-export type Ethereum$Outbound = {
-  accounts?: Array<string> | null | undefined;
-  hashrate?: string | undefined;
-  version?: EthereumVersion$Outbound | undefined;
-};
-
-/** @internal */
-export const Ethereum$outboundSchema: z.ZodType<
-  Ethereum$Outbound,
-  z.ZodTypeDef,
-  Ethereum
-> = z.object({
-  accounts: z.nullable(z.array(z.string())).optional(),
-  hashrate: z.string().optional(),
-  version: EthereumVersion$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Ethereum$ {
-  /** @deprecated use `Ethereum$inboundSchema` instead. */
-  export const inboundSchema = Ethereum$inboundSchema;
-  /** @deprecated use `Ethereum$outboundSchema` instead. */
-  export const outboundSchema = Ethereum$outboundSchema;
-  /** @deprecated use `Ethereum$Outbound` instead. */
-  export type Outbound = Ethereum$Outbound;
-}
-
-export function ethereumToJSON(ethereum: Ethereum): string {
-  return JSON.stringify(Ethereum$outboundSchema.parse(ethereum));
-}
 
 export function ethereumFromJSON(
   jsonString: string,

@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CollectionEventsResponse,
   CollectionEventsResponse$inboundSchema,
-  CollectionEventsResponse$Outbound,
-  CollectionEventsResponse$outboundSchema,
 } from "./collectioneventsresponse.js";
 
 export type ResponseEnvelopeCollectionEventsResponse = {
@@ -25,46 +23,6 @@ export const ResponseEnvelopeCollectionEventsResponse$inboundSchema: z.ZodType<
 > = z.object({
   result: CollectionEventsResponse$inboundSchema.optional(),
 });
-
-/** @internal */
-export type ResponseEnvelopeCollectionEventsResponse$Outbound = {
-  result?: CollectionEventsResponse$Outbound | undefined;
-};
-
-/** @internal */
-export const ResponseEnvelopeCollectionEventsResponse$outboundSchema: z.ZodType<
-  ResponseEnvelopeCollectionEventsResponse$Outbound,
-  z.ZodTypeDef,
-  ResponseEnvelopeCollectionEventsResponse
-> = z.object({
-  result: CollectionEventsResponse$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseEnvelopeCollectionEventsResponse$ {
-  /** @deprecated use `ResponseEnvelopeCollectionEventsResponse$inboundSchema` instead. */
-  export const inboundSchema =
-    ResponseEnvelopeCollectionEventsResponse$inboundSchema;
-  /** @deprecated use `ResponseEnvelopeCollectionEventsResponse$outboundSchema` instead. */
-  export const outboundSchema =
-    ResponseEnvelopeCollectionEventsResponse$outboundSchema;
-  /** @deprecated use `ResponseEnvelopeCollectionEventsResponse$Outbound` instead. */
-  export type Outbound = ResponseEnvelopeCollectionEventsResponse$Outbound;
-}
-
-export function responseEnvelopeCollectionEventsResponseToJSON(
-  responseEnvelopeCollectionEventsResponse:
-    ResponseEnvelopeCollectionEventsResponse,
-): string {
-  return JSON.stringify(
-    ResponseEnvelopeCollectionEventsResponse$outboundSchema.parse(
-      responseEnvelopeCollectionEventsResponse,
-    ),
-  );
-}
 
 export function responseEnvelopeCollectionEventsResponseFromJSON(
   jsonString: string,

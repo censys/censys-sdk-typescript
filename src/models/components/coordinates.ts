@@ -22,39 +22,6 @@ export const Coordinates$inboundSchema: z.ZodType<
   longitude: z.number().optional(),
 });
 
-/** @internal */
-export type Coordinates$Outbound = {
-  latitude?: number | undefined;
-  longitude?: number | undefined;
-};
-
-/** @internal */
-export const Coordinates$outboundSchema: z.ZodType<
-  Coordinates$Outbound,
-  z.ZodTypeDef,
-  Coordinates
-> = z.object({
-  latitude: z.number().optional(),
-  longitude: z.number().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Coordinates$ {
-  /** @deprecated use `Coordinates$inboundSchema` instead. */
-  export const inboundSchema = Coordinates$inboundSchema;
-  /** @deprecated use `Coordinates$outboundSchema` instead. */
-  export const outboundSchema = Coordinates$outboundSchema;
-  /** @deprecated use `Coordinates$Outbound` instead. */
-  export type Outbound = Coordinates$Outbound;
-}
-
-export function coordinatesToJSON(coordinates: Coordinates): string {
-  return JSON.stringify(Coordinates$outboundSchema.parse(coordinates));
-}
-
 export function coordinatesFromJSON(
   jsonString: string,
 ): SafeParseResult<Coordinates, SDKValidationError> {

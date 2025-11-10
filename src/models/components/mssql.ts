@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   MssqlPreloginOptions,
   MssqlPreloginOptions$inboundSchema,
-  MssqlPreloginOptions$Outbound,
-  MssqlPreloginOptions$outboundSchema,
 } from "./mssqlpreloginoptions.js";
 
 export type Mssql = {
@@ -38,49 +36,6 @@ export const Mssql$inboundSchema: z.ZodType<Mssql, z.ZodTypeDef, unknown> = z
       "prelogin_options": "preloginOptions",
     });
   });
-
-/** @internal */
-export type Mssql$Outbound = {
-  encrypt_mode?: string | undefined;
-  instance_name?: string | undefined;
-  prelogin_options?: MssqlPreloginOptions$Outbound | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const Mssql$outboundSchema: z.ZodType<
-  Mssql$Outbound,
-  z.ZodTypeDef,
-  Mssql
-> = z.object({
-  encryptMode: z.string().optional(),
-  instanceName: z.string().optional(),
-  preloginOptions: MssqlPreloginOptions$outboundSchema.optional(),
-  version: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    encryptMode: "encrypt_mode",
-    instanceName: "instance_name",
-    preloginOptions: "prelogin_options",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Mssql$ {
-  /** @deprecated use `Mssql$inboundSchema` instead. */
-  export const inboundSchema = Mssql$inboundSchema;
-  /** @deprecated use `Mssql$outboundSchema` instead. */
-  export const outboundSchema = Mssql$outboundSchema;
-  /** @deprecated use `Mssql$Outbound` instead. */
-  export type Outbound = Mssql$Outbound;
-}
-
-export function mssqlToJSON(mssql: Mssql): string {
-  return JSON.stringify(Mssql$outboundSchema.parse(mssql));
-}
 
 export function mssqlFromJSON(
   jsonString: string,

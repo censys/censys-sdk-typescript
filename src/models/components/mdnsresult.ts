@@ -37,53 +37,6 @@ export const MdnsResult$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type MdnsResult$Outbound = {
-  addresses?: Array<string> | null | undefined;
-  full_name?: string | undefined;
-  port?: number | undefined;
-  priority?: number | undefined;
-  target?: string | undefined;
-  texts?: Array<string> | null | undefined;
-  weight?: number | undefined;
-};
-
-/** @internal */
-export const MdnsResult$outboundSchema: z.ZodType<
-  MdnsResult$Outbound,
-  z.ZodTypeDef,
-  MdnsResult
-> = z.object({
-  addresses: z.nullable(z.array(z.string())).optional(),
-  fullName: z.string().optional(),
-  port: z.number().int().optional(),
-  priority: z.number().int().optional(),
-  target: z.string().optional(),
-  texts: z.nullable(z.array(z.string())).optional(),
-  weight: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    fullName: "full_name",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MdnsResult$ {
-  /** @deprecated use `MdnsResult$inboundSchema` instead. */
-  export const inboundSchema = MdnsResult$inboundSchema;
-  /** @deprecated use `MdnsResult$outboundSchema` instead. */
-  export const outboundSchema = MdnsResult$outboundSchema;
-  /** @deprecated use `MdnsResult$Outbound` instead. */
-  export type Outbound = MdnsResult$Outbound;
-}
-
-export function mdnsResultToJSON(mdnsResult: MdnsResult): string {
-  return JSON.stringify(MdnsResult$outboundSchema.parse(mdnsResult));
-}
-
 export function mdnsResultFromJSON(
   jsonString: string,
 ): SafeParseResult<MdnsResult, SDKValidationError> {

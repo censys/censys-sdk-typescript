@@ -30,85 +30,6 @@ export type V3ThreathuntingScansGetResponse = {
 };
 
 /** @internal */
-export const V3ThreathuntingScansGetGlobals$inboundSchema: z.ZodType<
-  V3ThreathuntingScansGetGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  organization_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "organization_id": "organizationId",
-  });
-});
-
-/** @internal */
-export type V3ThreathuntingScansGetGlobals$Outbound = {
-  organization_id?: string | undefined;
-};
-
-/** @internal */
-export const V3ThreathuntingScansGetGlobals$outboundSchema: z.ZodType<
-  V3ThreathuntingScansGetGlobals$Outbound,
-  z.ZodTypeDef,
-  V3ThreathuntingScansGetGlobals
-> = z.object({
-  organizationId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    organizationId: "organization_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3ThreathuntingScansGetGlobals$ {
-  /** @deprecated use `V3ThreathuntingScansGetGlobals$inboundSchema` instead. */
-  export const inboundSchema = V3ThreathuntingScansGetGlobals$inboundSchema;
-  /** @deprecated use `V3ThreathuntingScansGetGlobals$outboundSchema` instead. */
-  export const outboundSchema = V3ThreathuntingScansGetGlobals$outboundSchema;
-  /** @deprecated use `V3ThreathuntingScansGetGlobals$Outbound` instead. */
-  export type Outbound = V3ThreathuntingScansGetGlobals$Outbound;
-}
-
-export function v3ThreathuntingScansGetGlobalsToJSON(
-  v3ThreathuntingScansGetGlobals: V3ThreathuntingScansGetGlobals,
-): string {
-  return JSON.stringify(
-    V3ThreathuntingScansGetGlobals$outboundSchema.parse(
-      v3ThreathuntingScansGetGlobals,
-    ),
-  );
-}
-
-export function v3ThreathuntingScansGetGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<V3ThreathuntingScansGetGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V3ThreathuntingScansGetGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3ThreathuntingScansGetGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const V3ThreathuntingScansGetRequest$inboundSchema: z.ZodType<
-  V3ThreathuntingScansGetRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  organization_id: z.string().optional(),
-  scan_id: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "organization_id": "organizationId",
-    "scan_id": "scanId",
-  });
-});
-
-/** @internal */
 export type V3ThreathuntingScansGetRequest$Outbound = {
   organization_id?: string | undefined;
   scan_id: string;
@@ -129,19 +50,6 @@ export const V3ThreathuntingScansGetRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3ThreathuntingScansGetRequest$ {
-  /** @deprecated use `V3ThreathuntingScansGetRequest$inboundSchema` instead. */
-  export const inboundSchema = V3ThreathuntingScansGetRequest$inboundSchema;
-  /** @deprecated use `V3ThreathuntingScansGetRequest$outboundSchema` instead. */
-  export const outboundSchema = V3ThreathuntingScansGetRequest$outboundSchema;
-  /** @deprecated use `V3ThreathuntingScansGetRequest$Outbound` instead. */
-  export type Outbound = V3ThreathuntingScansGetRequest$Outbound;
-}
-
 export function v3ThreathuntingScansGetRequestToJSON(
   v3ThreathuntingScansGetRequest: V3ThreathuntingScansGetRequest,
 ): string {
@@ -149,16 +57,6 @@ export function v3ThreathuntingScansGetRequestToJSON(
     V3ThreathuntingScansGetRequest$outboundSchema.parse(
       v3ThreathuntingScansGetRequest,
     ),
-  );
-}
-
-export function v3ThreathuntingScansGetRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<V3ThreathuntingScansGetRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V3ThreathuntingScansGetRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3ThreathuntingScansGetRequest' from JSON`,
   );
 }
 
@@ -176,50 +74,6 @@ export const V3ThreathuntingScansGetResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
-/** @internal */
-export type V3ThreathuntingScansGetResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-  Result: components.ResponseEnvelopeTrackedScan$Outbound;
-};
-
-/** @internal */
-export const V3ThreathuntingScansGetResponse$outboundSchema: z.ZodType<
-  V3ThreathuntingScansGetResponse$Outbound,
-  z.ZodTypeDef,
-  V3ThreathuntingScansGetResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-  result: components.ResponseEnvelopeTrackedScan$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-    result: "Result",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3ThreathuntingScansGetResponse$ {
-  /** @deprecated use `V3ThreathuntingScansGetResponse$inboundSchema` instead. */
-  export const inboundSchema = V3ThreathuntingScansGetResponse$inboundSchema;
-  /** @deprecated use `V3ThreathuntingScansGetResponse$outboundSchema` instead. */
-  export const outboundSchema = V3ThreathuntingScansGetResponse$outboundSchema;
-  /** @deprecated use `V3ThreathuntingScansGetResponse$Outbound` instead. */
-  export type Outbound = V3ThreathuntingScansGetResponse$Outbound;
-}
-
-export function v3ThreathuntingScansGetResponseToJSON(
-  v3ThreathuntingScansGetResponse: V3ThreathuntingScansGetResponse,
-): string {
-  return JSON.stringify(
-    V3ThreathuntingScansGetResponse$outboundSchema.parse(
-      v3ThreathuntingScansGetResponse,
-    ),
-  );
-}
 
 export function v3ThreathuntingScansGetResponseFromJSON(
   jsonString: string,

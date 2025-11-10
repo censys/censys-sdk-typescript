@@ -7,48 +7,16 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  CryptSetup,
-  CryptSetup$inboundSchema,
-  CryptSetup$Outbound,
-  CryptSetup$outboundSchema,
-} from "./cryptsetup.js";
-import {
-  MurmurMessage,
-  MurmurMessage$inboundSchema,
-  MurmurMessage$Outbound,
-  MurmurMessage$outboundSchema,
-} from "./murmurmessage.js";
+import { CryptSetup, CryptSetup$inboundSchema } from "./cryptsetup.js";
+import { MurmurMessage, MurmurMessage$inboundSchema } from "./murmurmessage.js";
 import {
   MurmurMurmurVersion,
   MurmurMurmurVersion$inboundSchema,
-  MurmurMurmurVersion$Outbound,
-  MurmurMurmurVersion$outboundSchema,
 } from "./murmurmurmurversion.js";
-import {
-  Reject,
-  Reject$inboundSchema,
-  Reject$Outbound,
-  Reject$outboundSchema,
-} from "./reject.js";
-import {
-  ServerConfig,
-  ServerConfig$inboundSchema,
-  ServerConfig$Outbound,
-  ServerConfig$outboundSchema,
-} from "./serverconfig.js";
-import {
-  ServerSync,
-  ServerSync$inboundSchema,
-  ServerSync$Outbound,
-  ServerSync$outboundSchema,
-} from "./serversync.js";
-import {
-  TextMessage,
-  TextMessage$inboundSchema,
-  TextMessage$Outbound,
-  TextMessage$outboundSchema,
-} from "./textmessage.js";
+import { Reject, Reject$inboundSchema } from "./reject.js";
+import { ServerConfig, ServerConfig$inboundSchema } from "./serverconfig.js";
+import { ServerSync, ServerSync$inboundSchema } from "./serversync.js";
+import { TextMessage, TextMessage$inboundSchema } from "./textmessage.js";
 
 export type Murmur = {
   cryptSetup?: CryptSetup | undefined;
@@ -80,57 +48,6 @@ export const Murmur$inboundSchema: z.ZodType<Murmur, z.ZodTypeDef, unknown> = z
       "text_messages": "textMessages",
     });
   });
-
-/** @internal */
-export type Murmur$Outbound = {
-  crypt_setup?: CryptSetup$Outbound | undefined;
-  murmur_messages?: Array<MurmurMessage$Outbound> | null | undefined;
-  reject?: Reject$Outbound | undefined;
-  server_config?: ServerConfig$Outbound | undefined;
-  server_sync?: ServerSync$Outbound | undefined;
-  text_messages?: Array<TextMessage$Outbound> | null | undefined;
-  version?: MurmurMurmurVersion$Outbound | undefined;
-};
-
-/** @internal */
-export const Murmur$outboundSchema: z.ZodType<
-  Murmur$Outbound,
-  z.ZodTypeDef,
-  Murmur
-> = z.object({
-  cryptSetup: CryptSetup$outboundSchema.optional(),
-  murmurMessages: z.nullable(z.array(MurmurMessage$outboundSchema)).optional(),
-  reject: Reject$outboundSchema.optional(),
-  serverConfig: ServerConfig$outboundSchema.optional(),
-  serverSync: ServerSync$outboundSchema.optional(),
-  textMessages: z.nullable(z.array(TextMessage$outboundSchema)).optional(),
-  version: MurmurMurmurVersion$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    cryptSetup: "crypt_setup",
-    murmurMessages: "murmur_messages",
-    serverConfig: "server_config",
-    serverSync: "server_sync",
-    textMessages: "text_messages",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Murmur$ {
-  /** @deprecated use `Murmur$inboundSchema` instead. */
-  export const inboundSchema = Murmur$inboundSchema;
-  /** @deprecated use `Murmur$outboundSchema` instead. */
-  export const outboundSchema = Murmur$outboundSchema;
-  /** @deprecated use `Murmur$Outbound` instead. */
-  export type Outbound = Murmur$Outbound;
-}
-
-export function murmurToJSON(murmur: Murmur): string {
-  return JSON.stringify(Murmur$outboundSchema.parse(murmur));
-}
 
 export function murmurFromJSON(
   jsonString: string,

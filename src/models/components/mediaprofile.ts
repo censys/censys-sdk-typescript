@@ -25,41 +25,6 @@ export const MediaProfile$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type MediaProfile$Outbound = {
-  max_profile_count?: number | undefined;
-};
-
-/** @internal */
-export const MediaProfile$outboundSchema: z.ZodType<
-  MediaProfile$Outbound,
-  z.ZodTypeDef,
-  MediaProfile
-> = z.object({
-  maxProfileCount: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    maxProfileCount: "max_profile_count",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MediaProfile$ {
-  /** @deprecated use `MediaProfile$inboundSchema` instead. */
-  export const inboundSchema = MediaProfile$inboundSchema;
-  /** @deprecated use `MediaProfile$outboundSchema` instead. */
-  export const outboundSchema = MediaProfile$outboundSchema;
-  /** @deprecated use `MediaProfile$Outbound` instead. */
-  export type Outbound = MediaProfile$Outbound;
-}
-
-export function mediaProfileToJSON(mediaProfile: MediaProfile): string {
-  return JSON.stringify(MediaProfile$outboundSchema.parse(mediaProfile));
-}
-
 export function mediaProfileFromJSON(
   jsonString: string,
 ): SafeParseResult<MediaProfile, SDKValidationError> {

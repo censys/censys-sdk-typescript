@@ -34,87 +34,6 @@ export type V3CollectionsCrudListResponse = {
 };
 
 /** @internal */
-export const V3CollectionsCrudListGlobals$inboundSchema: z.ZodType<
-  V3CollectionsCrudListGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  organization_id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "organization_id": "organizationId",
-  });
-});
-
-/** @internal */
-export type V3CollectionsCrudListGlobals$Outbound = {
-  organization_id?: string | undefined;
-};
-
-/** @internal */
-export const V3CollectionsCrudListGlobals$outboundSchema: z.ZodType<
-  V3CollectionsCrudListGlobals$Outbound,
-  z.ZodTypeDef,
-  V3CollectionsCrudListGlobals
-> = z.object({
-  organizationId: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    organizationId: "organization_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3CollectionsCrudListGlobals$ {
-  /** @deprecated use `V3CollectionsCrudListGlobals$inboundSchema` instead. */
-  export const inboundSchema = V3CollectionsCrudListGlobals$inboundSchema;
-  /** @deprecated use `V3CollectionsCrudListGlobals$outboundSchema` instead. */
-  export const outboundSchema = V3CollectionsCrudListGlobals$outboundSchema;
-  /** @deprecated use `V3CollectionsCrudListGlobals$Outbound` instead. */
-  export type Outbound = V3CollectionsCrudListGlobals$Outbound;
-}
-
-export function v3CollectionsCrudListGlobalsToJSON(
-  v3CollectionsCrudListGlobals: V3CollectionsCrudListGlobals,
-): string {
-  return JSON.stringify(
-    V3CollectionsCrudListGlobals$outboundSchema.parse(
-      v3CollectionsCrudListGlobals,
-    ),
-  );
-}
-
-export function v3CollectionsCrudListGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<V3CollectionsCrudListGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V3CollectionsCrudListGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3CollectionsCrudListGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const V3CollectionsCrudListRequest$inboundSchema: z.ZodType<
-  V3CollectionsCrudListRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  organization_id: z.string().optional(),
-  page_token: z.string().optional(),
-  page_size: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "organization_id": "organizationId",
-    "page_token": "pageToken",
-    "page_size": "pageSize",
-  });
-});
-
-/** @internal */
 export type V3CollectionsCrudListRequest$Outbound = {
   organization_id?: string | undefined;
   page_token?: string | undefined;
@@ -138,19 +57,6 @@ export const V3CollectionsCrudListRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3CollectionsCrudListRequest$ {
-  /** @deprecated use `V3CollectionsCrudListRequest$inboundSchema` instead. */
-  export const inboundSchema = V3CollectionsCrudListRequest$inboundSchema;
-  /** @deprecated use `V3CollectionsCrudListRequest$outboundSchema` instead. */
-  export const outboundSchema = V3CollectionsCrudListRequest$outboundSchema;
-  /** @deprecated use `V3CollectionsCrudListRequest$Outbound` instead. */
-  export type Outbound = V3CollectionsCrudListRequest$Outbound;
-}
-
 export function v3CollectionsCrudListRequestToJSON(
   v3CollectionsCrudListRequest: V3CollectionsCrudListRequest,
 ): string {
@@ -158,16 +64,6 @@ export function v3CollectionsCrudListRequestToJSON(
     V3CollectionsCrudListRequest$outboundSchema.parse(
       v3CollectionsCrudListRequest,
     ),
-  );
-}
-
-export function v3CollectionsCrudListRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<V3CollectionsCrudListRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V3CollectionsCrudListRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3CollectionsCrudListRequest' from JSON`,
   );
 }
 
@@ -185,50 +81,6 @@ export const V3CollectionsCrudListResponse$inboundSchema: z.ZodType<
     "Result": "result",
   });
 });
-
-/** @internal */
-export type V3CollectionsCrudListResponse$Outbound = {
-  Headers: { [k: string]: Array<string> };
-  Result: components.ResponseEnvelopeListCollectionsResponseV1$Outbound;
-};
-
-/** @internal */
-export const V3CollectionsCrudListResponse$outboundSchema: z.ZodType<
-  V3CollectionsCrudListResponse$Outbound,
-  z.ZodTypeDef,
-  V3CollectionsCrudListResponse
-> = z.object({
-  headers: z.record(z.array(z.string())),
-  result: components.ResponseEnvelopeListCollectionsResponseV1$outboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    headers: "Headers",
-    result: "Result",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3CollectionsCrudListResponse$ {
-  /** @deprecated use `V3CollectionsCrudListResponse$inboundSchema` instead. */
-  export const inboundSchema = V3CollectionsCrudListResponse$inboundSchema;
-  /** @deprecated use `V3CollectionsCrudListResponse$outboundSchema` instead. */
-  export const outboundSchema = V3CollectionsCrudListResponse$outboundSchema;
-  /** @deprecated use `V3CollectionsCrudListResponse$Outbound` instead. */
-  export type Outbound = V3CollectionsCrudListResponse$Outbound;
-}
-
-export function v3CollectionsCrudListResponseToJSON(
-  v3CollectionsCrudListResponse: V3CollectionsCrudListResponse,
-): string {
-  return JSON.stringify(
-    V3CollectionsCrudListResponse$outboundSchema.parse(
-      v3CollectionsCrudListResponse,
-    ),
-  );
-}
 
 export function v3CollectionsCrudListResponseFromJSON(
   jsonString: string,

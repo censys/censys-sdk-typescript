@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PrometheusMetricFamily,
   PrometheusMetricFamily$inboundSchema,
-  PrometheusMetricFamily$Outbound,
-  PrometheusMetricFamily$outboundSchema,
 } from "./prometheusmetricfamily.js";
 
 export type PrometheusTarget = {
@@ -31,46 +29,6 @@ export const PrometheusTarget$inboundSchema: z.ZodType<
     "metric_families": "metricFamilies",
   });
 });
-
-/** @internal */
-export type PrometheusTarget$Outbound = {
-  metric_families?: Array<PrometheusMetricFamily$Outbound> | null | undefined;
-};
-
-/** @internal */
-export const PrometheusTarget$outboundSchema: z.ZodType<
-  PrometheusTarget$Outbound,
-  z.ZodTypeDef,
-  PrometheusTarget
-> = z.object({
-  metricFamilies: z.nullable(z.array(PrometheusMetricFamily$outboundSchema))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    metricFamilies: "metric_families",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PrometheusTarget$ {
-  /** @deprecated use `PrometheusTarget$inboundSchema` instead. */
-  export const inboundSchema = PrometheusTarget$inboundSchema;
-  /** @deprecated use `PrometheusTarget$outboundSchema` instead. */
-  export const outboundSchema = PrometheusTarget$outboundSchema;
-  /** @deprecated use `PrometheusTarget$Outbound` instead. */
-  export type Outbound = PrometheusTarget$Outbound;
-}
-
-export function prometheusTargetToJSON(
-  prometheusTarget: PrometheusTarget,
-): string {
-  return JSON.stringify(
-    PrometheusTarget$outboundSchema.parse(prometheusTarget),
-  );
-}
 
 export function prometheusTargetFromJSON(
   jsonString: string,

@@ -31,47 +31,6 @@ export const WsDiscovery$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type WsDiscovery$Outbound = {
-  addresses?: Array<string> | null | undefined;
-  metadata_version?: number | undefined;
-  scopes?: Array<string> | null | undefined;
-  types?: Array<string> | null | undefined;
-};
-
-/** @internal */
-export const WsDiscovery$outboundSchema: z.ZodType<
-  WsDiscovery$Outbound,
-  z.ZodTypeDef,
-  WsDiscovery
-> = z.object({
-  addresses: z.nullable(z.array(z.string())).optional(),
-  metadataVersion: z.number().int().optional(),
-  scopes: z.nullable(z.array(z.string())).optional(),
-  types: z.nullable(z.array(z.string())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    metadataVersion: "metadata_version",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WsDiscovery$ {
-  /** @deprecated use `WsDiscovery$inboundSchema` instead. */
-  export const inboundSchema = WsDiscovery$inboundSchema;
-  /** @deprecated use `WsDiscovery$outboundSchema` instead. */
-  export const outboundSchema = WsDiscovery$outboundSchema;
-  /** @deprecated use `WsDiscovery$Outbound` instead. */
-  export type Outbound = WsDiscovery$Outbound;
-}
-
-export function wsDiscoveryToJSON(wsDiscovery: WsDiscovery): string {
-  return JSON.stringify(WsDiscovery$outboundSchema.parse(wsDiscovery));
-}
-
 export function wsDiscoveryFromJSON(
   jsonString: string,
 ): SafeParseResult<WsDiscovery, SDKValidationError> {

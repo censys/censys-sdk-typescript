@@ -30,40 +30,6 @@ export const Smtp$inboundSchema: z.ZodType<Smtp, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type Smtp$Outbound = {
-  ehlo?: string | undefined;
-  start_tls?: string | undefined;
-};
-
-/** @internal */
-export const Smtp$outboundSchema: z.ZodType<Smtp$Outbound, z.ZodTypeDef, Smtp> =
-  z.object({
-    ehlo: z.string().optional(),
-    startTls: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      startTls: "start_tls",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Smtp$ {
-  /** @deprecated use `Smtp$inboundSchema` instead. */
-  export const inboundSchema = Smtp$inboundSchema;
-  /** @deprecated use `Smtp$outboundSchema` instead. */
-  export const outboundSchema = Smtp$outboundSchema;
-  /** @deprecated use `Smtp$Outbound` instead. */
-  export type Outbound = Smtp$Outbound;
-}
-
-export function smtpToJSON(smtp: Smtp): string {
-  return JSON.stringify(Smtp$outboundSchema.parse(smtp));
-}
-
 export function smtpFromJSON(
   jsonString: string,
 ): SafeParseResult<Smtp, SDKValidationError> {

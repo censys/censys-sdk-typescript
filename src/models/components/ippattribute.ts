@@ -27,43 +27,6 @@ export const IppAttribute$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type IppAttribute$Outbound = {
-  name?: string | undefined;
-  value_tag?: number | undefined;
-};
-
-/** @internal */
-export const IppAttribute$outboundSchema: z.ZodType<
-  IppAttribute$Outbound,
-  z.ZodTypeDef,
-  IppAttribute
-> = z.object({
-  name: z.string().optional(),
-  valueTag: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    valueTag: "value_tag",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IppAttribute$ {
-  /** @deprecated use `IppAttribute$inboundSchema` instead. */
-  export const inboundSchema = IppAttribute$inboundSchema;
-  /** @deprecated use `IppAttribute$outboundSchema` instead. */
-  export const outboundSchema = IppAttribute$outboundSchema;
-  /** @deprecated use `IppAttribute$Outbound` instead. */
-  export type Outbound = IppAttribute$Outbound;
-}
-
-export function ippAttributeToJSON(ippAttribute: IppAttribute): string {
-  return JSON.stringify(IppAttribute$outboundSchema.parse(ippAttribute));
-}
-
 export function ippAttributeFromJSON(
   jsonString: string,
 ): SafeParseResult<IppAttribute, SDKValidationError> {

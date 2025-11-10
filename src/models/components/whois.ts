@@ -6,18 +6,8 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Network,
-  Network$inboundSchema,
-  Network$Outbound,
-  Network$outboundSchema,
-} from "./network.js";
-import {
-  Organization,
-  Organization$inboundSchema,
-  Organization$Outbound,
-  Organization$outboundSchema,
-} from "./organization.js";
+import { Network, Network$inboundSchema } from "./network.js";
+import { Organization, Organization$inboundSchema } from "./organization.js";
 
 export type Whois = {
   network?: Network | undefined;
@@ -30,39 +20,6 @@ export const Whois$inboundSchema: z.ZodType<Whois, z.ZodTypeDef, unknown> = z
     network: Network$inboundSchema.optional(),
     organization: Organization$inboundSchema.optional(),
   });
-
-/** @internal */
-export type Whois$Outbound = {
-  network?: Network$Outbound | undefined;
-  organization?: Organization$Outbound | undefined;
-};
-
-/** @internal */
-export const Whois$outboundSchema: z.ZodType<
-  Whois$Outbound,
-  z.ZodTypeDef,
-  Whois
-> = z.object({
-  network: Network$outboundSchema.optional(),
-  organization: Organization$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Whois$ {
-  /** @deprecated use `Whois$inboundSchema` instead. */
-  export const inboundSchema = Whois$inboundSchema;
-  /** @deprecated use `Whois$outboundSchema` instead. */
-  export const outboundSchema = Whois$outboundSchema;
-  /** @deprecated use `Whois$Outbound` instead. */
-  export type Outbound = Whois$Outbound;
-}
-
-export function whoisToJSON(whois: Whois): string {
-  return JSON.stringify(Whois$outboundSchema.parse(whois));
-}
 
 export function whoisFromJSON(
   jsonString: string,

@@ -33,22 +33,6 @@ export const ServiceIdTransportProtocol$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(ServiceIdTransportProtocol);
 
 /** @internal */
-export const ServiceIdTransportProtocol$outboundSchema: z.ZodNativeEnum<
-  typeof ServiceIdTransportProtocol
-> = ServiceIdTransportProtocol$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ServiceIdTransportProtocol$ {
-  /** @deprecated use `ServiceIdTransportProtocol$inboundSchema` instead. */
-  export const inboundSchema = ServiceIdTransportProtocol$inboundSchema;
-  /** @deprecated use `ServiceIdTransportProtocol$outboundSchema` instead. */
-  export const outboundSchema = ServiceIdTransportProtocol$outboundSchema;
-}
-
-/** @internal */
 export const ServiceId$inboundSchema: z.ZodType<
   ServiceId,
   z.ZodTypeDef,
@@ -63,47 +47,6 @@ export const ServiceId$inboundSchema: z.ZodType<
     "transport_protocol": "transportProtocol",
   });
 });
-
-/** @internal */
-export type ServiceId$Outbound = {
-  ip?: string | undefined;
-  port?: number | undefined;
-  protocol?: string | undefined;
-  transport_protocol?: string | undefined;
-};
-
-/** @internal */
-export const ServiceId$outboundSchema: z.ZodType<
-  ServiceId$Outbound,
-  z.ZodTypeDef,
-  ServiceId
-> = z.object({
-  ip: z.string().optional(),
-  port: z.number().int().optional(),
-  protocol: z.string().optional(),
-  transportProtocol: ServiceIdTransportProtocol$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    transportProtocol: "transport_protocol",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ServiceId$ {
-  /** @deprecated use `ServiceId$inboundSchema` instead. */
-  export const inboundSchema = ServiceId$inboundSchema;
-  /** @deprecated use `ServiceId$outboundSchema` instead. */
-  export const outboundSchema = ServiceId$outboundSchema;
-  /** @deprecated use `ServiceId$Outbound` instead. */
-  export type Outbound = ServiceId$Outbound;
-}
-
-export function serviceIdToJSON(serviceId: ServiceId): string {
-  return JSON.stringify(ServiceId$outboundSchema.parse(serviceId));
-}
 
 export function serviceIdFromJSON(
   jsonString: string,

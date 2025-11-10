@@ -4,10 +4,7 @@
 
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
-import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TargetWebOrigin = {
   /**
@@ -68,16 +65,6 @@ export type ScansRescanInputBody = {
 };
 
 /** @internal */
-export const TargetWebOrigin$inboundSchema: z.ZodType<
-  TargetWebOrigin,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  hostname: z.string(),
-  port: z.number().int(),
-});
-
-/** @internal */
 export type TargetWebOrigin$Outbound = {
   hostname: string;
   port: number;
@@ -93,44 +80,11 @@ export const TargetWebOrigin$outboundSchema: z.ZodType<
   port: z.number().int(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TargetWebOrigin$ {
-  /** @deprecated use `TargetWebOrigin$inboundSchema` instead. */
-  export const inboundSchema = TargetWebOrigin$inboundSchema;
-  /** @deprecated use `TargetWebOrigin$outboundSchema` instead. */
-  export const outboundSchema = TargetWebOrigin$outboundSchema;
-  /** @deprecated use `TargetWebOrigin$Outbound` instead. */
-  export type Outbound = TargetWebOrigin$Outbound;
-}
-
 export function targetWebOriginToJSON(
   targetWebOrigin: TargetWebOrigin,
 ): string {
   return JSON.stringify(TargetWebOrigin$outboundSchema.parse(targetWebOrigin));
 }
-
-export function targetWebOriginFromJSON(
-  jsonString: string,
-): SafeParseResult<TargetWebOrigin, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TargetWebOrigin$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TargetWebOrigin' from JSON`,
-  );
-}
-
-/** @internal */
-export const Two$inboundSchema: z.ZodType<Two, z.ZodTypeDef, unknown> = z
-  .object({
-    web_origin: z.lazy(() => TargetWebOrigin$inboundSchema),
-  }).transform((v) => {
-    return remap$(v, {
-      "web_origin": "webOrigin",
-    });
-  });
 
 /** @internal */
 export type Two$Outbound = {
@@ -147,69 +101,14 @@ export const Two$outboundSchema: z.ZodType<Two$Outbound, z.ZodTypeDef, Two> = z
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Two$ {
-  /** @deprecated use `Two$inboundSchema` instead. */
-  export const inboundSchema = Two$inboundSchema;
-  /** @deprecated use `Two$outboundSchema` instead. */
-  export const outboundSchema = Two$outboundSchema;
-  /** @deprecated use `Two$Outbound` instead. */
-  export type Outbound = Two$Outbound;
-}
-
 export function twoToJSON(two: Two): string {
   return JSON.stringify(Two$outboundSchema.parse(two));
 }
 
-export function twoFromJSON(
-  jsonString: string,
-): SafeParseResult<Two, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Two$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Two' from JSON`,
-  );
-}
-
-/** @internal */
-export const TargetTransportProtocol$inboundSchema: z.ZodNativeEnum<
-  typeof TargetTransportProtocol
-> = z.nativeEnum(TargetTransportProtocol);
-
 /** @internal */
 export const TargetTransportProtocol$outboundSchema: z.ZodNativeEnum<
   typeof TargetTransportProtocol
-> = TargetTransportProtocol$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TargetTransportProtocol$ {
-  /** @deprecated use `TargetTransportProtocol$inboundSchema` instead. */
-  export const inboundSchema = TargetTransportProtocol$inboundSchema;
-  /** @deprecated use `TargetTransportProtocol$outboundSchema` instead. */
-  export const outboundSchema = TargetTransportProtocol$outboundSchema;
-}
-
-/** @internal */
-export const TargetServiceId$inboundSchema: z.ZodType<
-  TargetServiceId,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  ip: z.string(),
-  port: z.number().int(),
-  protocol: z.string(),
-  transport_protocol: TargetTransportProtocol$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "transport_protocol": "transportProtocol",
-  });
-});
+> = z.nativeEnum(TargetTransportProtocol);
 
 /** @internal */
 export type TargetServiceId$Outbound = {
@@ -235,44 +134,11 @@ export const TargetServiceId$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TargetServiceId$ {
-  /** @deprecated use `TargetServiceId$inboundSchema` instead. */
-  export const inboundSchema = TargetServiceId$inboundSchema;
-  /** @deprecated use `TargetServiceId$outboundSchema` instead. */
-  export const outboundSchema = TargetServiceId$outboundSchema;
-  /** @deprecated use `TargetServiceId$Outbound` instead. */
-  export type Outbound = TargetServiceId$Outbound;
-}
-
 export function targetServiceIdToJSON(
   targetServiceId: TargetServiceId,
 ): string {
   return JSON.stringify(TargetServiceId$outboundSchema.parse(targetServiceId));
 }
-
-export function targetServiceIdFromJSON(
-  jsonString: string,
-): SafeParseResult<TargetServiceId, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TargetServiceId$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TargetServiceId' from JSON`,
-  );
-}
-
-/** @internal */
-export const One$inboundSchema: z.ZodType<One, z.ZodTypeDef, unknown> = z
-  .object({
-    service_id: z.lazy(() => TargetServiceId$inboundSchema),
-  }).transform((v) => {
-    return remap$(v, {
-      "service_id": "serviceId",
-    });
-  });
 
 /** @internal */
 export type One$Outbound = {
@@ -289,39 +155,9 @@ export const One$outboundSchema: z.ZodType<One$Outbound, z.ZodTypeDef, One> = z
     });
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace One$ {
-  /** @deprecated use `One$inboundSchema` instead. */
-  export const inboundSchema = One$inboundSchema;
-  /** @deprecated use `One$outboundSchema` instead. */
-  export const outboundSchema = One$outboundSchema;
-  /** @deprecated use `One$Outbound` instead. */
-  export type Outbound = One$Outbound;
-}
-
 export function oneToJSON(one: One): string {
   return JSON.stringify(One$outboundSchema.parse(one));
 }
-
-export function oneFromJSON(
-  jsonString: string,
-): SafeParseResult<One, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => One$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'One' from JSON`,
-  );
-}
-
-/** @internal */
-export const ScansRescanInputBodyTarget$inboundSchema: z.ZodType<
-  ScansRescanInputBodyTarget,
-  z.ZodTypeDef,
-  unknown
-> = z.union([z.lazy(() => One$inboundSchema), z.lazy(() => Two$inboundSchema)]);
 
 /** @internal */
 export type ScansRescanInputBodyTarget$Outbound = One$Outbound | Two$Outbound;
@@ -336,19 +172,6 @@ export const ScansRescanInputBodyTarget$outboundSchema: z.ZodType<
   z.lazy(() => Two$outboundSchema),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ScansRescanInputBodyTarget$ {
-  /** @deprecated use `ScansRescanInputBodyTarget$inboundSchema` instead. */
-  export const inboundSchema = ScansRescanInputBodyTarget$inboundSchema;
-  /** @deprecated use `ScansRescanInputBodyTarget$outboundSchema` instead. */
-  export const outboundSchema = ScansRescanInputBodyTarget$outboundSchema;
-  /** @deprecated use `ScansRescanInputBodyTarget$Outbound` instead. */
-  export type Outbound = ScansRescanInputBodyTarget$Outbound;
-}
-
 export function scansRescanInputBodyTargetToJSON(
   scansRescanInputBodyTarget: ScansRescanInputBodyTarget,
 ): string {
@@ -356,28 +179,6 @@ export function scansRescanInputBodyTargetToJSON(
     ScansRescanInputBodyTarget$outboundSchema.parse(scansRescanInputBodyTarget),
   );
 }
-
-export function scansRescanInputBodyTargetFromJSON(
-  jsonString: string,
-): SafeParseResult<ScansRescanInputBodyTarget, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ScansRescanInputBodyTarget$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ScansRescanInputBodyTarget' from JSON`,
-  );
-}
-
-/** @internal */
-export const ScansRescanInputBody$inboundSchema: z.ZodType<
-  ScansRescanInputBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  target: z.union([
-    z.lazy(() => One$inboundSchema),
-    z.lazy(() => Two$inboundSchema),
-  ]),
-});
 
 /** @internal */
 export type ScansRescanInputBody$Outbound = {
@@ -396,33 +197,10 @@ export const ScansRescanInputBody$outboundSchema: z.ZodType<
   ]),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ScansRescanInputBody$ {
-  /** @deprecated use `ScansRescanInputBody$inboundSchema` instead. */
-  export const inboundSchema = ScansRescanInputBody$inboundSchema;
-  /** @deprecated use `ScansRescanInputBody$outboundSchema` instead. */
-  export const outboundSchema = ScansRescanInputBody$outboundSchema;
-  /** @deprecated use `ScansRescanInputBody$Outbound` instead. */
-  export type Outbound = ScansRescanInputBody$Outbound;
-}
-
 export function scansRescanInputBodyToJSON(
   scansRescanInputBody: ScansRescanInputBody,
 ): string {
   return JSON.stringify(
     ScansRescanInputBody$outboundSchema.parse(scansRescanInputBody),
-  );
-}
-
-export function scansRescanInputBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<ScansRescanInputBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ScansRescanInputBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ScansRescanInputBody' from JSON`,
   );
 }

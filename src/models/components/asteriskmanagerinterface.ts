@@ -20,41 +20,6 @@ export const AsteriskManagerInterface$inboundSchema: z.ZodType<
   version: z.string().optional(),
 });
 
-/** @internal */
-export type AsteriskManagerInterface$Outbound = {
-  version?: string | undefined;
-};
-
-/** @internal */
-export const AsteriskManagerInterface$outboundSchema: z.ZodType<
-  AsteriskManagerInterface$Outbound,
-  z.ZodTypeDef,
-  AsteriskManagerInterface
-> = z.object({
-  version: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AsteriskManagerInterface$ {
-  /** @deprecated use `AsteriskManagerInterface$inboundSchema` instead. */
-  export const inboundSchema = AsteriskManagerInterface$inboundSchema;
-  /** @deprecated use `AsteriskManagerInterface$outboundSchema` instead. */
-  export const outboundSchema = AsteriskManagerInterface$outboundSchema;
-  /** @deprecated use `AsteriskManagerInterface$Outbound` instead. */
-  export type Outbound = AsteriskManagerInterface$Outbound;
-}
-
-export function asteriskManagerInterfaceToJSON(
-  asteriskManagerInterface: AsteriskManagerInterface,
-): string {
-  return JSON.stringify(
-    AsteriskManagerInterface$outboundSchema.parse(asteriskManagerInterface),
-  );
-}
-
 export function asteriskManagerInterfaceFromJSON(
   jsonString: string,
 ): SafeParseResult<AsteriskManagerInterface, SDKValidationError> {

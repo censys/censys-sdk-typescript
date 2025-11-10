@@ -28,48 +28,6 @@ export const AuthorityInfoAccess$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type AuthorityInfoAccess$Outbound = {
-  issuer_urls?: Array<string> | null | undefined;
-  ocsp_urls?: Array<string> | null | undefined;
-};
-
-/** @internal */
-export const AuthorityInfoAccess$outboundSchema: z.ZodType<
-  AuthorityInfoAccess$Outbound,
-  z.ZodTypeDef,
-  AuthorityInfoAccess
-> = z.object({
-  issuerUrls: z.nullable(z.array(z.string())).optional(),
-  ocspUrls: z.nullable(z.array(z.string())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    issuerUrls: "issuer_urls",
-    ocspUrls: "ocsp_urls",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuthorityInfoAccess$ {
-  /** @deprecated use `AuthorityInfoAccess$inboundSchema` instead. */
-  export const inboundSchema = AuthorityInfoAccess$inboundSchema;
-  /** @deprecated use `AuthorityInfoAccess$outboundSchema` instead. */
-  export const outboundSchema = AuthorityInfoAccess$outboundSchema;
-  /** @deprecated use `AuthorityInfoAccess$Outbound` instead. */
-  export type Outbound = AuthorityInfoAccess$Outbound;
-}
-
-export function authorityInfoAccessToJSON(
-  authorityInfoAccess: AuthorityInfoAccess,
-): string {
-  return JSON.stringify(
-    AuthorityInfoAccess$outboundSchema.parse(authorityInfoAccess),
-  );
-}
-
 export function authorityInfoAccessFromJSON(
   jsonString: string,
 ): SafeParseResult<AuthorityInfoAccess, SDKValidationError> {

@@ -32,52 +32,6 @@ export const TorServiceDescriptor$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type TorServiceDescriptor$Outbound = {
-  algorithm_name?: string | undefined;
-  hash?: string | undefined;
-  hash_bits?: number | undefined;
-  onion?: string | undefined;
-};
-
-/** @internal */
-export const TorServiceDescriptor$outboundSchema: z.ZodType<
-  TorServiceDescriptor$Outbound,
-  z.ZodTypeDef,
-  TorServiceDescriptor
-> = z.object({
-  algorithmName: z.string().optional(),
-  hash: z.string().optional(),
-  hashBits: z.number().int().optional(),
-  onion: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    algorithmName: "algorithm_name",
-    hashBits: "hash_bits",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TorServiceDescriptor$ {
-  /** @deprecated use `TorServiceDescriptor$inboundSchema` instead. */
-  export const inboundSchema = TorServiceDescriptor$inboundSchema;
-  /** @deprecated use `TorServiceDescriptor$outboundSchema` instead. */
-  export const outboundSchema = TorServiceDescriptor$outboundSchema;
-  /** @deprecated use `TorServiceDescriptor$Outbound` instead. */
-  export type Outbound = TorServiceDescriptor$Outbound;
-}
-
-export function torServiceDescriptorToJSON(
-  torServiceDescriptor: TorServiceDescriptor,
-): string {
-  return JSON.stringify(
-    TorServiceDescriptor$outboundSchema.parse(torServiceDescriptor),
-  );
-}
-
 export function torServiceDescriptorFromJSON(
   jsonString: string,
 ): SafeParseResult<TorServiceDescriptor, SDKValidationError> {

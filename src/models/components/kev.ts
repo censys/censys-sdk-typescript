@@ -42,21 +42,6 @@ export const KEVSource$inboundSchema: z.ZodNativeEnum<typeof KEVSource> = z
   .nativeEnum(KEVSource);
 
 /** @internal */
-export const KEVSource$outboundSchema: z.ZodNativeEnum<typeof KEVSource> =
-  KEVSource$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace KEVSource$ {
-  /** @deprecated use `KEVSource$inboundSchema` instead. */
-  export const inboundSchema = KEVSource$inboundSchema;
-  /** @deprecated use `KEVSource$outboundSchema` instead. */
-  export const outboundSchema = KEVSource$outboundSchema;
-}
-
-/** @internal */
 export const Kev$inboundSchema: z.ZodType<Kev, z.ZodTypeDef, unknown> = z
   .object({
     date_added: z.string().optional(),
@@ -68,43 +53,6 @@ export const Kev$inboundSchema: z.ZodType<Kev, z.ZodTypeDef, unknown> = z
       "date_due": "dateDue",
     });
   });
-
-/** @internal */
-export type Kev$Outbound = {
-  date_added?: string | undefined;
-  date_due?: string | undefined;
-  source?: string | undefined;
-};
-
-/** @internal */
-export const Kev$outboundSchema: z.ZodType<Kev$Outbound, z.ZodTypeDef, Kev> = z
-  .object({
-    dateAdded: z.string().optional(),
-    dateDue: z.string().optional(),
-    source: KEVSource$outboundSchema.optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      dateAdded: "date_added",
-      dateDue: "date_due",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Kev$ {
-  /** @deprecated use `Kev$inboundSchema` instead. */
-  export const inboundSchema = Kev$inboundSchema;
-  /** @deprecated use `Kev$outboundSchema` instead. */
-  export const outboundSchema = Kev$outboundSchema;
-  /** @deprecated use `Kev$Outbound` instead. */
-  export type Outbound = Kev$Outbound;
-}
-
-export function kevToJSON(kev: Kev): string {
-  return JSON.stringify(Kev$outboundSchema.parse(kev));
-}
 
 export function kevFromJSON(
   jsonString: string,

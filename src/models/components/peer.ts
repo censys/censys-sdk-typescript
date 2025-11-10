@@ -30,46 +30,6 @@ export const Peer$inboundSchema: z.ZodType<Peer, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type Peer$Outbound = {
-  ip?: string | undefined;
-  port?: number | undefined;
-  public_key?: string | undefined;
-  type?: string | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const Peer$outboundSchema: z.ZodType<Peer$Outbound, z.ZodTypeDef, Peer> =
-  z.object({
-    ip: z.string().optional(),
-    port: z.number().int().optional(),
-    publicKey: z.string().optional(),
-    type: z.string().optional(),
-    version: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      publicKey: "public_key",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Peer$ {
-  /** @deprecated use `Peer$inboundSchema` instead. */
-  export const inboundSchema = Peer$inboundSchema;
-  /** @deprecated use `Peer$outboundSchema` instead. */
-  export const outboundSchema = Peer$outboundSchema;
-  /** @deprecated use `Peer$Outbound` instead. */
-  export type Outbound = Peer$Outbound;
-}
-
-export function peerToJSON(peer: Peer): string {
-  return JSON.stringify(Peer$outboundSchema.parse(peer));
-}
-
 export function peerFromJSON(
   jsonString: string,
 ): SafeParseResult<Peer, SDKValidationError> {

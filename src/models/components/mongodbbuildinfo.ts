@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   MongodbBuildInfoBuildEnvironment,
   MongodbBuildInfoBuildEnvironment$inboundSchema,
-  MongodbBuildInfoBuildEnvironment$Outbound,
-  MongodbBuildInfoBuildEnvironment$outboundSchema,
 } from "./mongodbbuildinfobuildenvironment.js";
 
 export type MongodbBuildInfo = {
@@ -41,50 +39,6 @@ export const MongodbBuildInfo$inboundSchema: z.ZodType<
     "git_version": "gitVersion",
   });
 });
-
-/** @internal */
-export type MongodbBuildInfo$Outbound = {
-  build_environment?: MongodbBuildInfoBuildEnvironment$Outbound | undefined;
-  git_version?: string | undefined;
-  version?: string | undefined;
-};
-
-/** @internal */
-export const MongodbBuildInfo$outboundSchema: z.ZodType<
-  MongodbBuildInfo$Outbound,
-  z.ZodTypeDef,
-  MongodbBuildInfo
-> = z.object({
-  buildEnvironment: MongodbBuildInfoBuildEnvironment$outboundSchema.optional(),
-  gitVersion: z.string().optional(),
-  version: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    buildEnvironment: "build_environment",
-    gitVersion: "git_version",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MongodbBuildInfo$ {
-  /** @deprecated use `MongodbBuildInfo$inboundSchema` instead. */
-  export const inboundSchema = MongodbBuildInfo$inboundSchema;
-  /** @deprecated use `MongodbBuildInfo$outboundSchema` instead. */
-  export const outboundSchema = MongodbBuildInfo$outboundSchema;
-  /** @deprecated use `MongodbBuildInfo$Outbound` instead. */
-  export type Outbound = MongodbBuildInfo$Outbound;
-}
-
-export function mongodbBuildInfoToJSON(
-  mongodbBuildInfo: MongodbBuildInfo,
-): string {
-  return JSON.stringify(
-    MongodbBuildInfo$outboundSchema.parse(mongodbBuildInfo),
-  );
-}
 
 export function mongodbBuildInfoFromJSON(
   jsonString: string,

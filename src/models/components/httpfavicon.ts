@@ -50,54 +50,6 @@ export const HttpFavicon$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type HttpFavicon$Outbound = {
-  hash_md5?: string | undefined;
-  hash_phash?: string | undefined;
-  hash_sha256?: string | undefined;
-  hash_shodan?: number | undefined;
-  name?: string | undefined;
-  size?: number | undefined;
-};
-
-/** @internal */
-export const HttpFavicon$outboundSchema: z.ZodType<
-  HttpFavicon$Outbound,
-  z.ZodTypeDef,
-  HttpFavicon
-> = z.object({
-  hashMd5: z.string().optional(),
-  hashPhash: z.string().optional(),
-  hashSha256: z.string().optional(),
-  hashShodan: z.number().int().optional(),
-  name: z.string().optional(),
-  size: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    hashMd5: "hash_md5",
-    hashPhash: "hash_phash",
-    hashSha256: "hash_sha256",
-    hashShodan: "hash_shodan",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HttpFavicon$ {
-  /** @deprecated use `HttpFavicon$inboundSchema` instead. */
-  export const inboundSchema = HttpFavicon$inboundSchema;
-  /** @deprecated use `HttpFavicon$outboundSchema` instead. */
-  export const outboundSchema = HttpFavicon$outboundSchema;
-  /** @deprecated use `HttpFavicon$Outbound` instead. */
-  export type Outbound = HttpFavicon$Outbound;
-}
-
-export function httpFaviconToJSON(httpFavicon: HttpFavicon): string {
-  return JSON.stringify(HttpFavicon$outboundSchema.parse(httpFavicon));
-}
-
 export function httpFaviconFromJSON(
   jsonString: string,
 ): SafeParseResult<HttpFavicon, SDKValidationError> {

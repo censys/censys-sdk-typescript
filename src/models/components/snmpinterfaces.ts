@@ -28,41 +28,6 @@ export const SnmpInterfaces$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type SnmpInterfaces$Outbound = {
-  num_ifaces?: number | undefined;
-};
-
-/** @internal */
-export const SnmpInterfaces$outboundSchema: z.ZodType<
-  SnmpInterfaces$Outbound,
-  z.ZodTypeDef,
-  SnmpInterfaces
-> = z.object({
-  numIfaces: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    numIfaces: "num_ifaces",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SnmpInterfaces$ {
-  /** @deprecated use `SnmpInterfaces$inboundSchema` instead. */
-  export const inboundSchema = SnmpInterfaces$inboundSchema;
-  /** @deprecated use `SnmpInterfaces$outboundSchema` instead. */
-  export const outboundSchema = SnmpInterfaces$outboundSchema;
-  /** @deprecated use `SnmpInterfaces$Outbound` instead. */
-  export type Outbound = SnmpInterfaces$Outbound;
-}
-
-export function snmpInterfacesToJSON(snmpInterfaces: SnmpInterfaces): string {
-  return JSON.stringify(SnmpInterfaces$outboundSchema.parse(snmpInterfaces));
-}
-
 export function snmpInterfacesFromJSON(
   jsonString: string,
 ): SafeParseResult<SnmpInterfaces, SDKValidationError> {

@@ -37,56 +37,6 @@ export const Export$inboundSchema: z.ZodType<Export, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type Export$Outbound = {
-  details?: string | undefined;
-  max_payload_size?: number | undefined;
-  min_block_size?: number | undefined;
-  name?: string | undefined;
-  preferred_block_size?: number | undefined;
-  size?: number | undefined;
-  transmit_flags?: Array<string> | null | undefined;
-};
-
-/** @internal */
-export const Export$outboundSchema: z.ZodType<
-  Export$Outbound,
-  z.ZodTypeDef,
-  Export
-> = z.object({
-  details: z.string().optional(),
-  maxPayloadSize: z.number().int().optional(),
-  minBlockSize: z.number().int().optional(),
-  name: z.string().optional(),
-  preferredBlockSize: z.number().int().optional(),
-  size: z.number().int().optional(),
-  transmitFlags: z.nullable(z.array(z.string())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    maxPayloadSize: "max_payload_size",
-    minBlockSize: "min_block_size",
-    preferredBlockSize: "preferred_block_size",
-    transmitFlags: "transmit_flags",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Export$ {
-  /** @deprecated use `Export$inboundSchema` instead. */
-  export const inboundSchema = Export$inboundSchema;
-  /** @deprecated use `Export$outboundSchema` instead. */
-  export const outboundSchema = Export$outboundSchema;
-  /** @deprecated use `Export$Outbound` instead. */
-  export type Outbound = Export$Outbound;
-}
-
-export function exportToJSON(value: Export): string {
-  return JSON.stringify(Export$outboundSchema.parse(value));
-}
-
 export function exportFromJSON(
   jsonString: string,
 ): SafeParseResult<Export, SDKValidationError> {

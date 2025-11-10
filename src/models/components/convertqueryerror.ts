@@ -23,41 +23,6 @@ export const ConvertQueryError$inboundSchema: z.ZodType<
   message: z.string(),
 });
 
-/** @internal */
-export type ConvertQueryError$Outbound = {
-  message: string;
-};
-
-/** @internal */
-export const ConvertQueryError$outboundSchema: z.ZodType<
-  ConvertQueryError$Outbound,
-  z.ZodTypeDef,
-  ConvertQueryError
-> = z.object({
-  message: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConvertQueryError$ {
-  /** @deprecated use `ConvertQueryError$inboundSchema` instead. */
-  export const inboundSchema = ConvertQueryError$inboundSchema;
-  /** @deprecated use `ConvertQueryError$outboundSchema` instead. */
-  export const outboundSchema = ConvertQueryError$outboundSchema;
-  /** @deprecated use `ConvertQueryError$Outbound` instead. */
-  export type Outbound = ConvertQueryError$Outbound;
-}
-
-export function convertQueryErrorToJSON(
-  convertQueryError: ConvertQueryError,
-): string {
-  return JSON.stringify(
-    ConvertQueryError$outboundSchema.parse(convertQueryError),
-  );
-}
-
 export function convertQueryErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<ConvertQueryError, SDKValidationError> {

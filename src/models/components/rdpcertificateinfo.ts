@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   RdpEmbeddedRSACert,
   RdpEmbeddedRSACert$inboundSchema,
-  RdpEmbeddedRSACert$Outbound,
-  RdpEmbeddedRSACert$outboundSchema,
 } from "./rdpembeddedrsacert.js";
 
 export type RdpCertificateInfo = {
@@ -33,48 +31,6 @@ export const RdpCertificateInfo$inboundSchema: z.ZodType<
     "proprietary_rsa_key": "proprietaryRsaKey",
   });
 });
-
-/** @internal */
-export type RdpCertificateInfo$Outbound = {
-  internal_x509_chain_fps?: Array<string> | null | undefined;
-  proprietary_rsa_key?: RdpEmbeddedRSACert$Outbound | undefined;
-};
-
-/** @internal */
-export const RdpCertificateInfo$outboundSchema: z.ZodType<
-  RdpCertificateInfo$Outbound,
-  z.ZodTypeDef,
-  RdpCertificateInfo
-> = z.object({
-  internalX509ChainFps: z.nullable(z.array(z.string())).optional(),
-  proprietaryRsaKey: RdpEmbeddedRSACert$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    internalX509ChainFps: "internal_x509_chain_fps",
-    proprietaryRsaKey: "proprietary_rsa_key",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RdpCertificateInfo$ {
-  /** @deprecated use `RdpCertificateInfo$inboundSchema` instead. */
-  export const inboundSchema = RdpCertificateInfo$inboundSchema;
-  /** @deprecated use `RdpCertificateInfo$outboundSchema` instead. */
-  export const outboundSchema = RdpCertificateInfo$outboundSchema;
-  /** @deprecated use `RdpCertificateInfo$Outbound` instead. */
-  export type Outbound = RdpCertificateInfo$Outbound;
-}
-
-export function rdpCertificateInfoToJSON(
-  rdpCertificateInfo: RdpCertificateInfo,
-): string {
-  return JSON.stringify(
-    RdpCertificateInfo$outboundSchema.parse(rdpCertificateInfo),
-  );
-}
 
 export function rdpCertificateInfoFromJSON(
   jsonString: string,

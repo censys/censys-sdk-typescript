@@ -17,34 +17,6 @@ export const Auth$inboundSchema: z.ZodType<Auth, z.ZodTypeDef, unknown> = z
     enabled: z.boolean().optional(),
   });
 
-/** @internal */
-export type Auth$Outbound = {
-  enabled?: boolean | undefined;
-};
-
-/** @internal */
-export const Auth$outboundSchema: z.ZodType<Auth$Outbound, z.ZodTypeDef, Auth> =
-  z.object({
-    enabled: z.boolean().optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Auth$ {
-  /** @deprecated use `Auth$inboundSchema` instead. */
-  export const inboundSchema = Auth$inboundSchema;
-  /** @deprecated use `Auth$outboundSchema` instead. */
-  export const outboundSchema = Auth$outboundSchema;
-  /** @deprecated use `Auth$Outbound` instead. */
-  export type Outbound = Auth$Outbound;
-}
-
-export function authToJSON(auth: Auth): string {
-  return JSON.stringify(Auth$outboundSchema.parse(auth));
-}
-
 export function authFromJSON(
   jsonString: string,
 ): SafeParseResult<Auth, SDKValidationError> {

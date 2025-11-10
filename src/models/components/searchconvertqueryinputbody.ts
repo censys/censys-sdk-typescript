@@ -3,9 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { safeParse } from "../../lib/schemas.js";
-import { Result as SafeParseResult } from "../../types/fp.js";
-import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SearchConvertQueryInputBody = {
   /**
@@ -13,15 +10,6 @@ export type SearchConvertQueryInputBody = {
    */
   queries: Array<string> | null;
 };
-
-/** @internal */
-export const SearchConvertQueryInputBody$inboundSchema: z.ZodType<
-  SearchConvertQueryInputBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  queries: z.nullable(z.array(z.string())),
-});
 
 /** @internal */
 export type SearchConvertQueryInputBody$Outbound = {
@@ -37,19 +25,6 @@ export const SearchConvertQueryInputBody$outboundSchema: z.ZodType<
   queries: z.nullable(z.array(z.string())),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SearchConvertQueryInputBody$ {
-  /** @deprecated use `SearchConvertQueryInputBody$inboundSchema` instead. */
-  export const inboundSchema = SearchConvertQueryInputBody$inboundSchema;
-  /** @deprecated use `SearchConvertQueryInputBody$outboundSchema` instead. */
-  export const outboundSchema = SearchConvertQueryInputBody$outboundSchema;
-  /** @deprecated use `SearchConvertQueryInputBody$Outbound` instead. */
-  export type Outbound = SearchConvertQueryInputBody$Outbound;
-}
-
 export function searchConvertQueryInputBodyToJSON(
   searchConvertQueryInputBody: SearchConvertQueryInputBody,
 ): string {
@@ -57,15 +32,5 @@ export function searchConvertQueryInputBodyToJSON(
     SearchConvertQueryInputBody$outboundSchema.parse(
       searchConvertQueryInputBody,
     ),
-  );
-}
-
-export function searchConvertQueryInputBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<SearchConvertQueryInputBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SearchConvertQueryInputBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SearchConvertQueryInputBody' from JSON`,
   );
 }

@@ -27,47 +27,6 @@ export const Ibmnje$inboundSchema: z.ZodType<Ibmnje, z.ZodTypeDef, unknown> = z
     type: z.string().optional(),
   });
 
-/** @internal */
-export type Ibmnje$Outbound = {
-  ohost?: string | undefined;
-  oip?: string | undefined;
-  reason?: number | undefined;
-  rhost?: string | undefined;
-  rip?: string | undefined;
-  type?: string | undefined;
-};
-
-/** @internal */
-export const Ibmnje$outboundSchema: z.ZodType<
-  Ibmnje$Outbound,
-  z.ZodTypeDef,
-  Ibmnje
-> = z.object({
-  ohost: z.string().optional(),
-  oip: z.string().optional(),
-  reason: z.number().int().optional(),
-  rhost: z.string().optional(),
-  rip: z.string().optional(),
-  type: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Ibmnje$ {
-  /** @deprecated use `Ibmnje$inboundSchema` instead. */
-  export const inboundSchema = Ibmnje$inboundSchema;
-  /** @deprecated use `Ibmnje$outboundSchema` instead. */
-  export const outboundSchema = Ibmnje$outboundSchema;
-  /** @deprecated use `Ibmnje$Outbound` instead. */
-  export type Outbound = Ibmnje$Outbound;
-}
-
-export function ibmnjeToJSON(ibmnje: Ibmnje): string {
-  return JSON.stringify(Ibmnje$outboundSchema.parse(ibmnje));
-}
-
 export function ibmnjeFromJSON(
   jsonString: string,
 ): SafeParseResult<Ibmnje, SDKValidationError> {

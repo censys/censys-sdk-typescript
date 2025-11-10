@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   OracleDescriptor,
   OracleDescriptor$inboundSchema,
-  OracleDescriptor$Outbound,
-  OracleDescriptor$outboundSchema,
 } from "./oracledescriptor.js";
 
 export type Oracle = {
@@ -97,74 +95,6 @@ export const Oracle$inboundSchema: z.ZodType<Oracle, z.ZodTypeDef, unknown> = z
       "refuse_version": "refuseVersion",
     });
   });
-
-/** @internal */
-export type Oracle$Outbound = {
-  accept_version?: number | undefined;
-  connect_flags0?: { [k: string]: boolean } | undefined;
-  connect_flags1?: { [k: string]: boolean } | undefined;
-  did_resend?: boolean | undefined;
-  global_service_options?: { [k: string]: boolean } | undefined;
-  nsn_service_versions?: { [k: string]: string } | undefined;
-  nsn_version?: string | undefined;
-  refuse_error?: Array<OracleDescriptor$Outbound> | null | undefined;
-  refuse_error_raw?: string | undefined;
-  refuse_reason_app?: string | undefined;
-  refuse_reason_sys?: string | undefined;
-  refuse_version?: string | undefined;
-};
-
-/** @internal */
-export const Oracle$outboundSchema: z.ZodType<
-  Oracle$Outbound,
-  z.ZodTypeDef,
-  Oracle
-> = z.object({
-  acceptVersion: z.number().int().optional(),
-  connectFlags0: z.record(z.boolean()).optional(),
-  connectFlags1: z.record(z.boolean()).optional(),
-  didResend: z.boolean().optional(),
-  globalServiceOptions: z.record(z.boolean()).optional(),
-  nsnServiceVersions: z.record(z.string()).optional(),
-  nsnVersion: z.string().optional(),
-  refuseError: z.nullable(z.array(OracleDescriptor$outboundSchema)).optional(),
-  refuseErrorRaw: z.string().optional(),
-  refuseReasonApp: z.string().optional(),
-  refuseReasonSys: z.string().optional(),
-  refuseVersion: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    acceptVersion: "accept_version",
-    connectFlags0: "connect_flags0",
-    connectFlags1: "connect_flags1",
-    didResend: "did_resend",
-    globalServiceOptions: "global_service_options",
-    nsnServiceVersions: "nsn_service_versions",
-    nsnVersion: "nsn_version",
-    refuseError: "refuse_error",
-    refuseErrorRaw: "refuse_error_raw",
-    refuseReasonApp: "refuse_reason_app",
-    refuseReasonSys: "refuse_reason_sys",
-    refuseVersion: "refuse_version",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Oracle$ {
-  /** @deprecated use `Oracle$inboundSchema` instead. */
-  export const inboundSchema = Oracle$inboundSchema;
-  /** @deprecated use `Oracle$outboundSchema` instead. */
-  export const outboundSchema = Oracle$outboundSchema;
-  /** @deprecated use `Oracle$Outbound` instead. */
-  export type Outbound = Oracle$Outbound;
-}
-
-export function oracleToJSON(oracle: Oracle): string {
-  return JSON.stringify(Oracle$outboundSchema.parse(oracle));
-}
 
 export function oracleFromJSON(
   jsonString: string,

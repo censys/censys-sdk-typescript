@@ -23,43 +23,6 @@ export const Telnet$inboundSchema: z.ZodType<Telnet, z.ZodTypeDef, unknown> = z
     wont: z.record(z.nullable(z.string())).optional(),
   });
 
-/** @internal */
-export type Telnet$Outbound = {
-  do?: { [k: string]: string | null } | undefined;
-  dont?: { [k: string]: string | null } | undefined;
-  will?: { [k: string]: string | null } | undefined;
-  wont?: { [k: string]: string | null } | undefined;
-};
-
-/** @internal */
-export const Telnet$outboundSchema: z.ZodType<
-  Telnet$Outbound,
-  z.ZodTypeDef,
-  Telnet
-> = z.object({
-  do: z.record(z.nullable(z.string())).optional(),
-  dont: z.record(z.nullable(z.string())).optional(),
-  will: z.record(z.nullable(z.string())).optional(),
-  wont: z.record(z.nullable(z.string())).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Telnet$ {
-  /** @deprecated use `Telnet$inboundSchema` instead. */
-  export const inboundSchema = Telnet$inboundSchema;
-  /** @deprecated use `Telnet$outboundSchema` instead. */
-  export const outboundSchema = Telnet$outboundSchema;
-  /** @deprecated use `Telnet$Outbound` instead. */
-  export type Outbound = Telnet$Outbound;
-}
-
-export function telnetToJSON(telnet: Telnet): string {
-  return JSON.stringify(Telnet$outboundSchema.parse(telnet));
-}
-
 export function telnetFromJSON(
   jsonString: string,
 ): SafeParseResult<Telnet, SDKValidationError> {

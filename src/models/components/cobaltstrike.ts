@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CobaltStrikeConfig,
   CobaltStrikeConfig$inboundSchema,
-  CobaltStrikeConfig$Outbound,
-  CobaltStrikeConfig$outboundSchema,
 } from "./cobaltstrikeconfig.js";
 
 export type CobaltStrike = {
@@ -27,39 +25,6 @@ export const CobaltStrike$inboundSchema: z.ZodType<
   x64: CobaltStrikeConfig$inboundSchema.optional(),
   x86: CobaltStrikeConfig$inboundSchema.optional(),
 });
-
-/** @internal */
-export type CobaltStrike$Outbound = {
-  x64?: CobaltStrikeConfig$Outbound | undefined;
-  x86?: CobaltStrikeConfig$Outbound | undefined;
-};
-
-/** @internal */
-export const CobaltStrike$outboundSchema: z.ZodType<
-  CobaltStrike$Outbound,
-  z.ZodTypeDef,
-  CobaltStrike
-> = z.object({
-  x64: CobaltStrikeConfig$outboundSchema.optional(),
-  x86: CobaltStrikeConfig$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CobaltStrike$ {
-  /** @deprecated use `CobaltStrike$inboundSchema` instead. */
-  export const inboundSchema = CobaltStrike$inboundSchema;
-  /** @deprecated use `CobaltStrike$outboundSchema` instead. */
-  export const outboundSchema = CobaltStrike$outboundSchema;
-  /** @deprecated use `CobaltStrike$Outbound` instead. */
-  export type Outbound = CobaltStrike$Outbound;
-}
-
-export function cobaltStrikeToJSON(cobaltStrike: CobaltStrike): string {
-  return JSON.stringify(CobaltStrike$outboundSchema.parse(cobaltStrike));
-}
 
 export function cobaltStrikeFromJSON(
   jsonString: string,

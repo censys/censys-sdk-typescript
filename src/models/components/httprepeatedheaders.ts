@@ -23,41 +23,6 @@ export const HttpRepeatedHeaders$inboundSchema: z.ZodType<
   headers: z.nullable(z.array(z.string())).optional(),
 });
 
-/** @internal */
-export type HttpRepeatedHeaders$Outbound = {
-  headers?: Array<string> | null | undefined;
-};
-
-/** @internal */
-export const HttpRepeatedHeaders$outboundSchema: z.ZodType<
-  HttpRepeatedHeaders$Outbound,
-  z.ZodTypeDef,
-  HttpRepeatedHeaders
-> = z.object({
-  headers: z.nullable(z.array(z.string())).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace HttpRepeatedHeaders$ {
-  /** @deprecated use `HttpRepeatedHeaders$inboundSchema` instead. */
-  export const inboundSchema = HttpRepeatedHeaders$inboundSchema;
-  /** @deprecated use `HttpRepeatedHeaders$outboundSchema` instead. */
-  export const outboundSchema = HttpRepeatedHeaders$outboundSchema;
-  /** @deprecated use `HttpRepeatedHeaders$Outbound` instead. */
-  export type Outbound = HttpRepeatedHeaders$Outbound;
-}
-
-export function httpRepeatedHeadersToJSON(
-  httpRepeatedHeaders: HttpRepeatedHeaders,
-): string {
-  return JSON.stringify(
-    HttpRepeatedHeaders$outboundSchema.parse(httpRepeatedHeaders),
-  );
-}
-
 export function httpRepeatedHeadersFromJSON(
   jsonString: string,
 ): SafeParseResult<HttpRepeatedHeaders, SDKValidationError> {

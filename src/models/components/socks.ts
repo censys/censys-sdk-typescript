@@ -31,50 +31,6 @@ export const Socks$inboundSchema: z.ZodType<Socks, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type Socks$Outbound = {
-  no_authentication_required?: boolean | undefined;
-  preferred_authentication?: string | undefined;
-  preferred_authentication_value?: number | undefined;
-  socks_version?: number | undefined;
-};
-
-/** @internal */
-export const Socks$outboundSchema: z.ZodType<
-  Socks$Outbound,
-  z.ZodTypeDef,
-  Socks
-> = z.object({
-  noAuthenticationRequired: z.boolean().optional(),
-  preferredAuthentication: z.string().optional(),
-  preferredAuthenticationValue: z.number().int().optional(),
-  socksVersion: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    noAuthenticationRequired: "no_authentication_required",
-    preferredAuthentication: "preferred_authentication",
-    preferredAuthenticationValue: "preferred_authentication_value",
-    socksVersion: "socks_version",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Socks$ {
-  /** @deprecated use `Socks$inboundSchema` instead. */
-  export const inboundSchema = Socks$inboundSchema;
-  /** @deprecated use `Socks$outboundSchema` instead. */
-  export const outboundSchema = Socks$outboundSchema;
-  /** @deprecated use `Socks$Outbound` instead. */
-  export type Outbound = Socks$Outbound;
-}
-
-export function socksToJSON(socks: Socks): string {
-  return JSON.stringify(Socks$outboundSchema.parse(socks));
-}
-
 export function socksFromJSON(
   jsonString: string,
 ): SafeParseResult<Socks, SDKValidationError> {

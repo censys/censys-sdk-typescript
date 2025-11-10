@@ -44,58 +44,6 @@ export const PrometheusResponseActiveTargetDiscoveredLabels$inboundSchema:
     });
   });
 
-/** @internal */
-export type PrometheusResponseActiveTargetDiscoveredLabels$Outbound = {
-  address?: string | undefined;
-  job?: string | undefined;
-  metrics_path?: string | undefined;
-  scheme?: string | undefined;
-};
-
-/** @internal */
-export const PrometheusResponseActiveTargetDiscoveredLabels$outboundSchema:
-  z.ZodType<
-    PrometheusResponseActiveTargetDiscoveredLabels$Outbound,
-    z.ZodTypeDef,
-    PrometheusResponseActiveTargetDiscoveredLabels
-  > = z.object({
-    address: z.string().optional(),
-    job: z.string().optional(),
-    metricsPath: z.string().optional(),
-    scheme: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      metricsPath: "metrics_path",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PrometheusResponseActiveTargetDiscoveredLabels$ {
-  /** @deprecated use `PrometheusResponseActiveTargetDiscoveredLabels$inboundSchema` instead. */
-  export const inboundSchema =
-    PrometheusResponseActiveTargetDiscoveredLabels$inboundSchema;
-  /** @deprecated use `PrometheusResponseActiveTargetDiscoveredLabels$outboundSchema` instead. */
-  export const outboundSchema =
-    PrometheusResponseActiveTargetDiscoveredLabels$outboundSchema;
-  /** @deprecated use `PrometheusResponseActiveTargetDiscoveredLabels$Outbound` instead. */
-  export type Outbound =
-    PrometheusResponseActiveTargetDiscoveredLabels$Outbound;
-}
-
-export function prometheusResponseActiveTargetDiscoveredLabelsToJSON(
-  prometheusResponseActiveTargetDiscoveredLabels:
-    PrometheusResponseActiveTargetDiscoveredLabels,
-): string {
-  return JSON.stringify(
-    PrometheusResponseActiveTargetDiscoveredLabels$outboundSchema.parse(
-      prometheusResponseActiveTargetDiscoveredLabels,
-    ),
-  );
-}
-
 export function prometheusResponseActiveTargetDiscoveredLabelsFromJSON(
   jsonString: string,
 ): SafeParseResult<

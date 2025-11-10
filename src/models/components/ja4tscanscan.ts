@@ -27,43 +27,6 @@ export const Ja4TScanScan$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type Ja4TScanScan$Outbound = {
-  fingerprint?: string | undefined;
-  scan_time?: string | undefined;
-};
-
-/** @internal */
-export const Ja4TScanScan$outboundSchema: z.ZodType<
-  Ja4TScanScan$Outbound,
-  z.ZodTypeDef,
-  Ja4TScanScan
-> = z.object({
-  fingerprint: z.string().optional(),
-  scanTime: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    scanTime: "scan_time",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Ja4TScanScan$ {
-  /** @deprecated use `Ja4TScanScan$inboundSchema` instead. */
-  export const inboundSchema = Ja4TScanScan$inboundSchema;
-  /** @deprecated use `Ja4TScanScan$outboundSchema` instead. */
-  export const outboundSchema = Ja4TScanScan$outboundSchema;
-  /** @deprecated use `Ja4TScanScan$Outbound` instead. */
-  export type Outbound = Ja4TScanScan$Outbound;
-}
-
-export function ja4TScanScanToJSON(ja4TScanScan: Ja4TScanScan): string {
-  return JSON.stringify(Ja4TScanScan$outboundSchema.parse(ja4TScanScan));
-}
-
 export function ja4TScanScanFromJSON(
   jsonString: string,
 ): SafeParseResult<Ja4TScanScan, SDKValidationError> {

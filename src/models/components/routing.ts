@@ -51,52 +51,6 @@ export const Routing$inboundSchema: z.ZodType<Routing, z.ZodTypeDef, unknown> =
     });
   });
 
-/** @internal */
-export type Routing$Outbound = {
-  asn?: number | undefined;
-  bgp_prefix?: string | undefined;
-  country_code?: string | undefined;
-  description?: string | undefined;
-  name?: string | undefined;
-  organization?: string | undefined;
-};
-
-/** @internal */
-export const Routing$outboundSchema: z.ZodType<
-  Routing$Outbound,
-  z.ZodTypeDef,
-  Routing
-> = z.object({
-  asn: z.number().int().optional(),
-  bgpPrefix: z.string().optional(),
-  countryCode: z.string().optional(),
-  description: z.string().optional(),
-  name: z.string().optional(),
-  organization: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    bgpPrefix: "bgp_prefix",
-    countryCode: "country_code",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Routing$ {
-  /** @deprecated use `Routing$inboundSchema` instead. */
-  export const inboundSchema = Routing$inboundSchema;
-  /** @deprecated use `Routing$outboundSchema` instead. */
-  export const outboundSchema = Routing$outboundSchema;
-  /** @deprecated use `Routing$Outbound` instead. */
-  export type Outbound = Routing$Outbound;
-}
-
-export function routingToJSON(routing: Routing): string {
-  return JSON.stringify(Routing$outboundSchema.parse(routing));
-}
-
 export function routingFromJSON(
   jsonString: string,
 ): SafeParseResult<Routing, SDKValidationError> {

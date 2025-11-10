@@ -13,33 +13,6 @@ export type Cmore = {};
 export const Cmore$inboundSchema: z.ZodType<Cmore, z.ZodTypeDef, unknown> = z
   .object({});
 
-/** @internal */
-export type Cmore$Outbound = {};
-
-/** @internal */
-export const Cmore$outboundSchema: z.ZodType<
-  Cmore$Outbound,
-  z.ZodTypeDef,
-  Cmore
-> = z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Cmore$ {
-  /** @deprecated use `Cmore$inboundSchema` instead. */
-  export const inboundSchema = Cmore$inboundSchema;
-  /** @deprecated use `Cmore$outboundSchema` instead. */
-  export const outboundSchema = Cmore$outboundSchema;
-  /** @deprecated use `Cmore$Outbound` instead. */
-  export type Outbound = Cmore$Outbound;
-}
-
-export function cmoreToJSON(cmore: Cmore): string {
-  return JSON.stringify(Cmore$outboundSchema.parse(cmore));
-}
-
 export function cmoreFromJSON(
   jsonString: string,
 ): SafeParseResult<Cmore, SDKValidationError> {

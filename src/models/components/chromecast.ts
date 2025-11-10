@@ -10,14 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ChromecastApplication,
   ChromecastApplication$inboundSchema,
-  ChromecastApplication$Outbound,
-  ChromecastApplication$outboundSchema,
 } from "./chromecastapplication.js";
 import {
   ChromecastVolume,
   ChromecastVolume$inboundSchema,
-  ChromecastVolume$Outbound,
-  ChromecastVolume$outboundSchema,
 } from "./chromecastvolume.js";
 
 export type Chromecast = {
@@ -53,58 +49,6 @@ export const Chromecast$inboundSchema: z.ZodType<
     "universal_app_id": "universalAppId",
   });
 });
-
-/** @internal */
-export type Chromecast$Outbound = {
-  applications?: Array<ChromecastApplication$Outbound> | null | undefined;
-  icon_url?: string | undefined;
-  is_active_input?: boolean | undefined;
-  protocol_version?: number | undefined;
-  status_text?: string | undefined;
-  universal_app_id?: string | undefined;
-  volume?: ChromecastVolume$Outbound | undefined;
-};
-
-/** @internal */
-export const Chromecast$outboundSchema: z.ZodType<
-  Chromecast$Outbound,
-  z.ZodTypeDef,
-  Chromecast
-> = z.object({
-  applications: z.nullable(z.array(ChromecastApplication$outboundSchema))
-    .optional(),
-  iconUrl: z.string().optional(),
-  isActiveInput: z.boolean().optional(),
-  protocolVersion: z.number().int().optional(),
-  statusText: z.string().optional(),
-  universalAppId: z.string().optional(),
-  volume: ChromecastVolume$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    iconUrl: "icon_url",
-    isActiveInput: "is_active_input",
-    protocolVersion: "protocol_version",
-    statusText: "status_text",
-    universalAppId: "universal_app_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Chromecast$ {
-  /** @deprecated use `Chromecast$inboundSchema` instead. */
-  export const inboundSchema = Chromecast$inboundSchema;
-  /** @deprecated use `Chromecast$outboundSchema` instead. */
-  export const outboundSchema = Chromecast$outboundSchema;
-  /** @deprecated use `Chromecast$Outbound` instead. */
-  export type Outbound = Chromecast$Outbound;
-}
-
-export function chromecastToJSON(chromecast: Chromecast): string {
-  return JSON.stringify(Chromecast$outboundSchema.parse(chromecast));
-}
 
 export function chromecastFromJSON(
   jsonString: string,

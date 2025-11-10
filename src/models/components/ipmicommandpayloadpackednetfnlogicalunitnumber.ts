@@ -29,50 +29,6 @@ export const IpmiCommandPayloadPackedNetFnLogicalUnitNumber$inboundSchema:
     raw: z.number().int().optional(),
   });
 
-/** @internal */
-export type IpmiCommandPayloadPackedNetFnLogicalUnitNumber$Outbound = {
-  name?: string | undefined;
-  raw?: number | undefined;
-};
-
-/** @internal */
-export const IpmiCommandPayloadPackedNetFnLogicalUnitNumber$outboundSchema:
-  z.ZodType<
-    IpmiCommandPayloadPackedNetFnLogicalUnitNumber$Outbound,
-    z.ZodTypeDef,
-    IpmiCommandPayloadPackedNetFnLogicalUnitNumber
-  > = z.object({
-    name: z.string().optional(),
-    raw: z.number().int().optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace IpmiCommandPayloadPackedNetFnLogicalUnitNumber$ {
-  /** @deprecated use `IpmiCommandPayloadPackedNetFnLogicalUnitNumber$inboundSchema` instead. */
-  export const inboundSchema =
-    IpmiCommandPayloadPackedNetFnLogicalUnitNumber$inboundSchema;
-  /** @deprecated use `IpmiCommandPayloadPackedNetFnLogicalUnitNumber$outboundSchema` instead. */
-  export const outboundSchema =
-    IpmiCommandPayloadPackedNetFnLogicalUnitNumber$outboundSchema;
-  /** @deprecated use `IpmiCommandPayloadPackedNetFnLogicalUnitNumber$Outbound` instead. */
-  export type Outbound =
-    IpmiCommandPayloadPackedNetFnLogicalUnitNumber$Outbound;
-}
-
-export function ipmiCommandPayloadPackedNetFnLogicalUnitNumberToJSON(
-  ipmiCommandPayloadPackedNetFnLogicalUnitNumber:
-    IpmiCommandPayloadPackedNetFnLogicalUnitNumber,
-): string {
-  return JSON.stringify(
-    IpmiCommandPayloadPackedNetFnLogicalUnitNumber$outboundSchema.parse(
-      ipmiCommandPayloadPackedNetFnLogicalUnitNumber,
-    ),
-  );
-}
-
 export function ipmiCommandPayloadPackedNetFnLogicalUnitNumberFromJSON(
   jsonString: string,
 ): SafeParseResult<

@@ -37,57 +37,6 @@ export const OpcUaUserTokenPolicy$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type OpcUaUserTokenPolicy$Outbound = {
-  issued_token_type?: string | undefined;
-  issuer_endpoint_url?: string | undefined;
-  policy_id?: string | undefined;
-  security_policy_uri?: string | undefined;
-  token_type?: number | undefined;
-};
-
-/** @internal */
-export const OpcUaUserTokenPolicy$outboundSchema: z.ZodType<
-  OpcUaUserTokenPolicy$Outbound,
-  z.ZodTypeDef,
-  OpcUaUserTokenPolicy
-> = z.object({
-  issuedTokenType: z.string().optional(),
-  issuerEndpointUrl: z.string().optional(),
-  policyId: z.string().optional(),
-  securityPolicyUri: z.string().optional(),
-  tokenType: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    issuedTokenType: "issued_token_type",
-    issuerEndpointUrl: "issuer_endpoint_url",
-    policyId: "policy_id",
-    securityPolicyUri: "security_policy_uri",
-    tokenType: "token_type",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace OpcUaUserTokenPolicy$ {
-  /** @deprecated use `OpcUaUserTokenPolicy$inboundSchema` instead. */
-  export const inboundSchema = OpcUaUserTokenPolicy$inboundSchema;
-  /** @deprecated use `OpcUaUserTokenPolicy$outboundSchema` instead. */
-  export const outboundSchema = OpcUaUserTokenPolicy$outboundSchema;
-  /** @deprecated use `OpcUaUserTokenPolicy$Outbound` instead. */
-  export type Outbound = OpcUaUserTokenPolicy$Outbound;
-}
-
-export function opcUaUserTokenPolicyToJSON(
-  opcUaUserTokenPolicy: OpcUaUserTokenPolicy,
-): string {
-  return JSON.stringify(
-    OpcUaUserTokenPolicy$outboundSchema.parse(opcUaUserTokenPolicy),
-  );
-}
-
 export function opcUaUserTokenPolicyFromJSON(
   jsonString: string,
 ): SafeParseResult<OpcUaUserTokenPolicy, SDKValidationError> {

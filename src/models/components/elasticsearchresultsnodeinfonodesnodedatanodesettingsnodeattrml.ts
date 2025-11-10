@@ -31,57 +31,6 @@ export const ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrML$inb
     });
   });
 
-/** @internal */
-export type ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrML$Outbound =
-  {
-    enabled?: string | undefined;
-    machine_memory?: string | undefined;
-    max_open_jobs?: string | undefined;
-  };
-
-/** @internal */
-export const ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrML$outboundSchema:
-  z.ZodType<
-    ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrML$Outbound,
-    z.ZodTypeDef,
-    ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrML
-  > = z.object({
-    enabled: z.string().optional(),
-    machineMemory: z.string().optional(),
-    maxOpenJobs: z.string().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      machineMemory: "machine_memory",
-      maxOpenJobs: "max_open_jobs",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrML$ {
-  /** @deprecated use `ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrML$inboundSchema` instead. */
-  export const inboundSchema =
-    ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrML$inboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrML$outboundSchema` instead. */
-  export const outboundSchema =
-    ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrML$outboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrML$Outbound` instead. */
-  export type Outbound =
-    ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrML$Outbound;
-}
-
-export function elasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrMLToJSON(
-  elasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrML:
-    ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrML,
-): string {
-  return JSON.stringify(
-    ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrML$outboundSchema
-      .parse(elasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrML),
-  );
-}
-
 export function elasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttrMLFromJSON(
   jsonString: string,
 ): SafeParseResult<

@@ -28,48 +28,6 @@ export const SearchCapabilities$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type SearchCapabilities$Outbound = {
-  general_start_events?: boolean | undefined;
-  metadata_search?: boolean | undefined;
-};
-
-/** @internal */
-export const SearchCapabilities$outboundSchema: z.ZodType<
-  SearchCapabilities$Outbound,
-  z.ZodTypeDef,
-  SearchCapabilities
-> = z.object({
-  generalStartEvents: z.boolean().optional(),
-  metadataSearch: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    generalStartEvents: "general_start_events",
-    metadataSearch: "metadata_search",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SearchCapabilities$ {
-  /** @deprecated use `SearchCapabilities$inboundSchema` instead. */
-  export const inboundSchema = SearchCapabilities$inboundSchema;
-  /** @deprecated use `SearchCapabilities$outboundSchema` instead. */
-  export const outboundSchema = SearchCapabilities$outboundSchema;
-  /** @deprecated use `SearchCapabilities$Outbound` instead. */
-  export type Outbound = SearchCapabilities$Outbound;
-}
-
-export function searchCapabilitiesToJSON(
-  searchCapabilities: SearchCapabilities,
-): string {
-  return JSON.stringify(
-    SearchCapabilities$outboundSchema.parse(searchCapabilities),
-  );
-}
-
 export function searchCapabilitiesFromJSON(
   jsonString: string,
 ): SafeParseResult<SearchCapabilities, SDKValidationError> {

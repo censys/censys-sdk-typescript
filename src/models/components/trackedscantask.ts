@@ -32,22 +32,6 @@ export const TrackedScanTaskStatus$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(TrackedScanTaskStatus);
 
 /** @internal */
-export const TrackedScanTaskStatus$outboundSchema: z.ZodNativeEnum<
-  typeof TrackedScanTaskStatus
-> = TrackedScanTaskStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TrackedScanTaskStatus$ {
-  /** @deprecated use `TrackedScanTaskStatus$inboundSchema` instead. */
-  export const inboundSchema = TrackedScanTaskStatus$inboundSchema;
-  /** @deprecated use `TrackedScanTaskStatus$outboundSchema` instead. */
-  export const outboundSchema = TrackedScanTaskStatus$outboundSchema;
-}
-
-/** @internal */
 export const TrackedScanTask$inboundSchema: z.ZodType<
   TrackedScanTask,
   z.ZodTypeDef,
@@ -61,47 +45,6 @@ export const TrackedScanTask$inboundSchema: z.ZodType<
     "update_time": "updateTime",
   });
 });
-
-/** @internal */
-export type TrackedScanTask$Outbound = {
-  description?: string | undefined;
-  status?: string | undefined;
-  update_time?: string | undefined;
-};
-
-/** @internal */
-export const TrackedScanTask$outboundSchema: z.ZodType<
-  TrackedScanTask$Outbound,
-  z.ZodTypeDef,
-  TrackedScanTask
-> = z.object({
-  description: z.string().optional(),
-  status: TrackedScanTaskStatus$outboundSchema.optional(),
-  updateTime: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    updateTime: "update_time",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TrackedScanTask$ {
-  /** @deprecated use `TrackedScanTask$inboundSchema` instead. */
-  export const inboundSchema = TrackedScanTask$inboundSchema;
-  /** @deprecated use `TrackedScanTask$outboundSchema` instead. */
-  export const outboundSchema = TrackedScanTask$outboundSchema;
-  /** @deprecated use `TrackedScanTask$Outbound` instead. */
-  export type Outbound = TrackedScanTask$Outbound;
-}
-
-export function trackedScanTaskToJSON(
-  trackedScanTask: TrackedScanTask,
-): string {
-  return JSON.stringify(TrackedScanTask$outboundSchema.parse(trackedScanTask));
-}
 
 export function trackedScanTaskFromJSON(
   jsonString: string,

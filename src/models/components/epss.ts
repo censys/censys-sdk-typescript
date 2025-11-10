@@ -19,36 +19,6 @@ export const Epss$inboundSchema: z.ZodType<Epss, z.ZodTypeDef, unknown> = z
     score: z.number().optional(),
   });
 
-/** @internal */
-export type Epss$Outbound = {
-  percentile?: number | undefined;
-  score?: number | undefined;
-};
-
-/** @internal */
-export const Epss$outboundSchema: z.ZodType<Epss$Outbound, z.ZodTypeDef, Epss> =
-  z.object({
-    percentile: z.number().optional(),
-    score: z.number().optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Epss$ {
-  /** @deprecated use `Epss$inboundSchema` instead. */
-  export const inboundSchema = Epss$inboundSchema;
-  /** @deprecated use `Epss$outboundSchema` instead. */
-  export const outboundSchema = Epss$outboundSchema;
-  /** @deprecated use `Epss$Outbound` instead. */
-  export type Outbound = Epss$Outbound;
-}
-
-export function epssToJSON(epss: Epss): string {
-  return JSON.stringify(Epss$outboundSchema.parse(epss));
-}
-
 export function epssFromJSON(
   jsonString: string,
 ): SafeParseResult<Epss, SDKValidationError> {

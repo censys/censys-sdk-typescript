@@ -26,43 +26,6 @@ export const DsaPublicKey$inboundSchema: z.ZodType<
   y: z.string().optional(),
 });
 
-/** @internal */
-export type DsaPublicKey$Outbound = {
-  g?: string | undefined;
-  p?: string | undefined;
-  q?: string | undefined;
-  y?: string | undefined;
-};
-
-/** @internal */
-export const DsaPublicKey$outboundSchema: z.ZodType<
-  DsaPublicKey$Outbound,
-  z.ZodTypeDef,
-  DsaPublicKey
-> = z.object({
-  g: z.string().optional(),
-  p: z.string().optional(),
-  q: z.string().optional(),
-  y: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DsaPublicKey$ {
-  /** @deprecated use `DsaPublicKey$inboundSchema` instead. */
-  export const inboundSchema = DsaPublicKey$inboundSchema;
-  /** @deprecated use `DsaPublicKey$outboundSchema` instead. */
-  export const outboundSchema = DsaPublicKey$outboundSchema;
-  /** @deprecated use `DsaPublicKey$Outbound` instead. */
-  export type Outbound = DsaPublicKey$Outbound;
-}
-
-export function dsaPublicKeyToJSON(dsaPublicKey: DsaPublicKey): string {
-  return JSON.stringify(DsaPublicKey$outboundSchema.parse(dsaPublicKey));
-}
-
 export function dsaPublicKeyFromJSON(
   jsonString: string,
 ): SafeParseResult<DsaPublicKey, SDKValidationError> {

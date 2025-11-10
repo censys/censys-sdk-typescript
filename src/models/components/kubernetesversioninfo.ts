@@ -69,65 +69,6 @@ export const KubernetesVersionInfo$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type KubernetesVersionInfo$Outbound = {
-  build_date?: string | undefined;
-  compiler?: string | undefined;
-  git_commit?: string | undefined;
-  git_tree_state?: string | undefined;
-  git_version?: string | undefined;
-  go_version?: string | undefined;
-  major?: string | undefined;
-  minor?: string | undefined;
-  platform?: string | undefined;
-};
-
-/** @internal */
-export const KubernetesVersionInfo$outboundSchema: z.ZodType<
-  KubernetesVersionInfo$Outbound,
-  z.ZodTypeDef,
-  KubernetesVersionInfo
-> = z.object({
-  buildDate: z.string().optional(),
-  compiler: z.string().optional(),
-  gitCommit: z.string().optional(),
-  gitTreeState: z.string().optional(),
-  gitVersion: z.string().optional(),
-  goVersion: z.string().optional(),
-  major: z.string().optional(),
-  minor: z.string().optional(),
-  platform: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    buildDate: "build_date",
-    gitCommit: "git_commit",
-    gitTreeState: "git_tree_state",
-    gitVersion: "git_version",
-    goVersion: "go_version",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace KubernetesVersionInfo$ {
-  /** @deprecated use `KubernetesVersionInfo$inboundSchema` instead. */
-  export const inboundSchema = KubernetesVersionInfo$inboundSchema;
-  /** @deprecated use `KubernetesVersionInfo$outboundSchema` instead. */
-  export const outboundSchema = KubernetesVersionInfo$outboundSchema;
-  /** @deprecated use `KubernetesVersionInfo$Outbound` instead. */
-  export type Outbound = KubernetesVersionInfo$Outbound;
-}
-
-export function kubernetesVersionInfoToJSON(
-  kubernetesVersionInfo: KubernetesVersionInfo,
-): string {
-  return JSON.stringify(
-    KubernetesVersionInfo$outboundSchema.parse(kubernetesVersionInfo),
-  );
-}
-
 export function kubernetesVersionInfoFromJSON(
   jsonString: string,
 ): SafeParseResult<KubernetesVersionInfo, SDKValidationError> {

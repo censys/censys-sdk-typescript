@@ -13,30 +13,6 @@ export type Dnp3 = {};
 export const Dnp3$inboundSchema: z.ZodType<Dnp3, z.ZodTypeDef, unknown> = z
   .object({});
 
-/** @internal */
-export type Dnp3$Outbound = {};
-
-/** @internal */
-export const Dnp3$outboundSchema: z.ZodType<Dnp3$Outbound, z.ZodTypeDef, Dnp3> =
-  z.object({});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Dnp3$ {
-  /** @deprecated use `Dnp3$inboundSchema` instead. */
-  export const inboundSchema = Dnp3$inboundSchema;
-  /** @deprecated use `Dnp3$outboundSchema` instead. */
-  export const outboundSchema = Dnp3$outboundSchema;
-  /** @deprecated use `Dnp3$Outbound` instead. */
-  export type Outbound = Dnp3$Outbound;
-}
-
-export function dnp3ToJSON(dnp3: Dnp3): string {
-  return JSON.stringify(Dnp3$outboundSchema.parse(dnp3));
-}
-
 export function dnp3FromJSON(
   jsonString: string,
 ): SafeParseResult<Dnp3, SDKValidationError> {

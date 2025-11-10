@@ -30,46 +30,6 @@ export const ServerSync$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type ServerSync$Outbound = {
-  max_bandwidth?: number | undefined;
-  permissions?: Array<string> | null | undefined;
-  welcome_text?: string | undefined;
-};
-
-/** @internal */
-export const ServerSync$outboundSchema: z.ZodType<
-  ServerSync$Outbound,
-  z.ZodTypeDef,
-  ServerSync
-> = z.object({
-  maxBandwidth: z.number().int().optional(),
-  permissions: z.nullable(z.array(z.string())).optional(),
-  welcomeText: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    maxBandwidth: "max_bandwidth",
-    welcomeText: "welcome_text",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ServerSync$ {
-  /** @deprecated use `ServerSync$inboundSchema` instead. */
-  export const inboundSchema = ServerSync$inboundSchema;
-  /** @deprecated use `ServerSync$outboundSchema` instead. */
-  export const outboundSchema = ServerSync$outboundSchema;
-  /** @deprecated use `ServerSync$Outbound` instead. */
-  export type Outbound = ServerSync$Outbound;
-}
-
-export function serverSyncToJSON(serverSync: ServerSync): string {
-  return JSON.stringify(ServerSync$outboundSchema.parse(serverSync));
-}
-
 export function serverSyncFromJSON(
   jsonString: string,
 ): SafeParseResult<ServerSync, SDKValidationError> {

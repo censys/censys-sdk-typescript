@@ -10,38 +10,20 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CertificateExtensions,
   CertificateExtensions$inboundSchema,
-  CertificateExtensions$Outbound,
-  CertificateExtensions$outboundSchema,
 } from "./certificateextensions.js";
 import {
   DistinguishedName,
   DistinguishedName$inboundSchema,
-  DistinguishedName$Outbound,
-  DistinguishedName$outboundSchema,
 } from "./distinguishedname.js";
-import {
-  Extension,
-  Extension$inboundSchema,
-  Extension$Outbound,
-  Extension$outboundSchema,
-} from "./extension.js";
-import {
-  Signature,
-  Signature$inboundSchema,
-  Signature$Outbound,
-  Signature$outboundSchema,
-} from "./signature.js";
+import { Extension, Extension$inboundSchema } from "./extension.js";
+import { Signature, Signature$inboundSchema } from "./signature.js";
 import {
   SubjectKeyInfo,
   SubjectKeyInfo$inboundSchema,
-  SubjectKeyInfo$Outbound,
-  SubjectKeyInfo$outboundSchema,
 } from "./subjectkeyinfo.js";
 import {
   ValidityPeriod,
   ValidityPeriod$inboundSchema,
-  ValidityPeriod$Outbound,
-  ValidityPeriod$outboundSchema,
 } from "./validityperiod.js";
 
 export type CertificateParsed = {
@@ -104,77 +86,6 @@ export const CertificateParsed$inboundSchema: z.ZodType<
     "validity_period": "validityPeriod",
   });
 });
-
-/** @internal */
-export type CertificateParsed$Outbound = {
-  extensions?: CertificateExtensions$Outbound | undefined;
-  issuer?: DistinguishedName$Outbound | undefined;
-  issuer_dn?: string | undefined;
-  ja4x?: string | undefined;
-  redacted?: boolean | undefined;
-  serial_number?: string | undefined;
-  serial_number_hex?: string | undefined;
-  signature?: Signature$Outbound | undefined;
-  subject?: DistinguishedName$Outbound | undefined;
-  subject_dn?: string | undefined;
-  subject_key_info?: SubjectKeyInfo$Outbound | undefined;
-  unknown_extensions?: Array<Extension$Outbound> | null | undefined;
-  validity_period?: ValidityPeriod$Outbound | undefined;
-  version?: number | undefined;
-};
-
-/** @internal */
-export const CertificateParsed$outboundSchema: z.ZodType<
-  CertificateParsed$Outbound,
-  z.ZodTypeDef,
-  CertificateParsed
-> = z.object({
-  extensions: CertificateExtensions$outboundSchema.optional(),
-  issuer: DistinguishedName$outboundSchema.optional(),
-  issuerDn: z.string().optional(),
-  ja4x: z.string().optional(),
-  redacted: z.boolean().optional(),
-  serialNumber: z.string().optional(),
-  serialNumberHex: z.string().optional(),
-  signature: Signature$outboundSchema.optional(),
-  subject: DistinguishedName$outboundSchema.optional(),
-  subjectDn: z.string().optional(),
-  subjectKeyInfo: SubjectKeyInfo$outboundSchema.optional(),
-  unknownExtensions: z.nullable(z.array(Extension$outboundSchema)).optional(),
-  validityPeriod: ValidityPeriod$outboundSchema.optional(),
-  version: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    issuerDn: "issuer_dn",
-    serialNumber: "serial_number",
-    serialNumberHex: "serial_number_hex",
-    subjectDn: "subject_dn",
-    subjectKeyInfo: "subject_key_info",
-    unknownExtensions: "unknown_extensions",
-    validityPeriod: "validity_period",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CertificateParsed$ {
-  /** @deprecated use `CertificateParsed$inboundSchema` instead. */
-  export const inboundSchema = CertificateParsed$inboundSchema;
-  /** @deprecated use `CertificateParsed$outboundSchema` instead. */
-  export const outboundSchema = CertificateParsed$outboundSchema;
-  /** @deprecated use `CertificateParsed$Outbound` instead. */
-  export type Outbound = CertificateParsed$Outbound;
-}
-
-export function certificateParsedToJSON(
-  certificateParsed: CertificateParsed,
-): string {
-  return JSON.stringify(
-    CertificateParsed$outboundSchema.parse(certificateParsed),
-  );
-}
 
 export function certificateParsedFromJSON(
   jsonString: string,

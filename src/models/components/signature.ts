@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  KeyAlgorithm,
-  KeyAlgorithm$inboundSchema,
-  KeyAlgorithm$Outbound,
-  KeyAlgorithm$outboundSchema,
-} from "./keyalgorithm.js";
+import { KeyAlgorithm, KeyAlgorithm$inboundSchema } from "./keyalgorithm.js";
 
 export type Signature = {
   /**
@@ -46,48 +41,6 @@ export const Signature$inboundSchema: z.ZodType<
     "signature_algorithm": "signatureAlgorithm",
   });
 });
-
-/** @internal */
-export type Signature$Outbound = {
-  self_signed?: boolean | undefined;
-  signature_algorithm?: KeyAlgorithm$Outbound | undefined;
-  valid?: boolean | undefined;
-  value?: string | undefined;
-};
-
-/** @internal */
-export const Signature$outboundSchema: z.ZodType<
-  Signature$Outbound,
-  z.ZodTypeDef,
-  Signature
-> = z.object({
-  selfSigned: z.boolean().optional(),
-  signatureAlgorithm: KeyAlgorithm$outboundSchema.optional(),
-  valid: z.boolean().optional(),
-  value: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    selfSigned: "self_signed",
-    signatureAlgorithm: "signature_algorithm",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Signature$ {
-  /** @deprecated use `Signature$inboundSchema` instead. */
-  export const inboundSchema = Signature$inboundSchema;
-  /** @deprecated use `Signature$outboundSchema` instead. */
-  export const outboundSchema = Signature$outboundSchema;
-  /** @deprecated use `Signature$Outbound` instead. */
-  export type Outbound = Signature$Outbound;
-}
-
-export function signatureToJSON(signature: Signature): string {
-  return JSON.stringify(Signature$outboundSchema.parse(signature));
-}
 
 export function signatureFromJSON(
   jsonString: string,

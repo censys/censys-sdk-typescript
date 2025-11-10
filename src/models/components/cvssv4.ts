@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CVSSv4Components,
   CVSSv4Components$inboundSchema,
-  CVSSv4Components$Outbound,
-  CVSSv4Components$outboundSchema,
 } from "./cvssv4components.js";
 
 export type CVSSv4 = {
@@ -32,41 +30,6 @@ export const CVSSv4$inboundSchema: z.ZodType<CVSSv4, z.ZodTypeDef, unknown> = z
     score: z.number().optional(),
     vector: z.string().optional(),
   });
-
-/** @internal */
-export type CVSSv4$Outbound = {
-  components?: CVSSv4Components$Outbound | undefined;
-  score?: number | undefined;
-  vector?: string | undefined;
-};
-
-/** @internal */
-export const CVSSv4$outboundSchema: z.ZodType<
-  CVSSv4$Outbound,
-  z.ZodTypeDef,
-  CVSSv4
-> = z.object({
-  components: CVSSv4Components$outboundSchema.optional(),
-  score: z.number().optional(),
-  vector: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CVSSv4$ {
-  /** @deprecated use `CVSSv4$inboundSchema` instead. */
-  export const inboundSchema = CVSSv4$inboundSchema;
-  /** @deprecated use `CVSSv4$outboundSchema` instead. */
-  export const outboundSchema = CVSSv4$outboundSchema;
-  /** @deprecated use `CVSSv4$Outbound` instead. */
-  export type Outbound = CVSSv4$Outbound;
-}
-
-export function cvsSv4ToJSON(cvsSv4: CVSSv4): string {
-  return JSON.stringify(CVSSv4$outboundSchema.parse(cvsSv4));
-}
 
 export function cvsSv4FromJSON(
   jsonString: string,

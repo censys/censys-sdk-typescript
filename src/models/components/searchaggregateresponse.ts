@@ -10,8 +10,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   SearchAggregateResponseBucket,
   SearchAggregateResponseBucket$inboundSchema,
-  SearchAggregateResponseBucket$Outbound,
-  SearchAggregateResponseBucket$outboundSchema,
 } from "./searchaggregateresponsebucket.js";
 
 export type SearchAggregateResponse = {
@@ -41,56 +39,6 @@ export const SearchAggregateResponse$inboundSchema: z.ZodType<
     "total_count": "totalCount",
   });
 });
-
-/** @internal */
-export type SearchAggregateResponse$Outbound = {
-  buckets: Array<SearchAggregateResponseBucket$Outbound> | null;
-  is_more_than_total_hits: boolean;
-  other_count: number;
-  query_duration_millis: number;
-  total_count: number;
-};
-
-/** @internal */
-export const SearchAggregateResponse$outboundSchema: z.ZodType<
-  SearchAggregateResponse$Outbound,
-  z.ZodTypeDef,
-  SearchAggregateResponse
-> = z.object({
-  buckets: z.nullable(z.array(SearchAggregateResponseBucket$outboundSchema)),
-  isMoreThanTotalHits: z.boolean(),
-  otherCount: z.number().int(),
-  queryDurationMillis: z.number().int(),
-  totalCount: z.number().int(),
-}).transform((v) => {
-  return remap$(v, {
-    isMoreThanTotalHits: "is_more_than_total_hits",
-    otherCount: "other_count",
-    queryDurationMillis: "query_duration_millis",
-    totalCount: "total_count",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SearchAggregateResponse$ {
-  /** @deprecated use `SearchAggregateResponse$inboundSchema` instead. */
-  export const inboundSchema = SearchAggregateResponse$inboundSchema;
-  /** @deprecated use `SearchAggregateResponse$outboundSchema` instead. */
-  export const outboundSchema = SearchAggregateResponse$outboundSchema;
-  /** @deprecated use `SearchAggregateResponse$Outbound` instead. */
-  export type Outbound = SearchAggregateResponse$Outbound;
-}
-
-export function searchAggregateResponseToJSON(
-  searchAggregateResponse: SearchAggregateResponse,
-): string {
-  return JSON.stringify(
-    SearchAggregateResponse$outboundSchema.parse(searchAggregateResponse),
-  );
-}
 
 export function searchAggregateResponseFromJSON(
   jsonString: string,

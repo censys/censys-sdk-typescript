@@ -7,12 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Peer,
-  Peer$inboundSchema,
-  Peer$Outbound,
-  Peer$outboundSchema,
-} from "./peer.js";
+import { Peer, Peer$inboundSchema } from "./peer.js";
 
 export type RipplePeerResults = {
   buildVersion?: string | undefined;
@@ -47,62 +42,6 @@ export const RipplePeerResults$inboundSchema: z.ZodType<
     "validator_sites": "validatorSites",
   });
 });
-
-/** @internal */
-export type RipplePeerResults$Outbound = {
-  build_version?: string | undefined;
-  peer_crawler_response_version?: number | undefined;
-  peers?: Array<Peer$Outbound> | null | undefined;
-  pubkey_node?: string | undefined;
-  publisher_list?: Array<string> | null | undefined;
-  server_state?: string | undefined;
-  validator_sites?: Array<string> | null | undefined;
-};
-
-/** @internal */
-export const RipplePeerResults$outboundSchema: z.ZodType<
-  RipplePeerResults$Outbound,
-  z.ZodTypeDef,
-  RipplePeerResults
-> = z.object({
-  buildVersion: z.string().optional(),
-  peerCrawlerResponseVersion: z.number().int().optional(),
-  peers: z.nullable(z.array(Peer$outboundSchema)).optional(),
-  pubkeyNode: z.string().optional(),
-  publisherList: z.nullable(z.array(z.string())).optional(),
-  serverState: z.string().optional(),
-  validatorSites: z.nullable(z.array(z.string())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    buildVersion: "build_version",
-    peerCrawlerResponseVersion: "peer_crawler_response_version",
-    pubkeyNode: "pubkey_node",
-    publisherList: "publisher_list",
-    serverState: "server_state",
-    validatorSites: "validator_sites",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RipplePeerResults$ {
-  /** @deprecated use `RipplePeerResults$inboundSchema` instead. */
-  export const inboundSchema = RipplePeerResults$inboundSchema;
-  /** @deprecated use `RipplePeerResults$outboundSchema` instead. */
-  export const outboundSchema = RipplePeerResults$outboundSchema;
-  /** @deprecated use `RipplePeerResults$Outbound` instead. */
-  export type Outbound = RipplePeerResults$Outbound;
-}
-
-export function ripplePeerResultsToJSON(
-  ripplePeerResults: RipplePeerResults,
-): string {
-  return JSON.stringify(
-    RipplePeerResults$outboundSchema.parse(ripplePeerResults),
-  );
-}
 
 export function ripplePeerResultsFromJSON(
   jsonString: string,

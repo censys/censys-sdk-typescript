@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   CertificateAsset,
   CertificateAsset$inboundSchema,
-  CertificateAsset$Outbound,
-  CertificateAsset$outboundSchema,
 } from "./certificateasset.js";
 
 export type ResponseEnvelopeCertificateAsset = {
@@ -25,43 +23,6 @@ export const ResponseEnvelopeCertificateAsset$inboundSchema: z.ZodType<
 > = z.object({
   result: CertificateAsset$inboundSchema.optional(),
 });
-
-/** @internal */
-export type ResponseEnvelopeCertificateAsset$Outbound = {
-  result?: CertificateAsset$Outbound | undefined;
-};
-
-/** @internal */
-export const ResponseEnvelopeCertificateAsset$outboundSchema: z.ZodType<
-  ResponseEnvelopeCertificateAsset$Outbound,
-  z.ZodTypeDef,
-  ResponseEnvelopeCertificateAsset
-> = z.object({
-  result: CertificateAsset$outboundSchema.optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseEnvelopeCertificateAsset$ {
-  /** @deprecated use `ResponseEnvelopeCertificateAsset$inboundSchema` instead. */
-  export const inboundSchema = ResponseEnvelopeCertificateAsset$inboundSchema;
-  /** @deprecated use `ResponseEnvelopeCertificateAsset$outboundSchema` instead. */
-  export const outboundSchema = ResponseEnvelopeCertificateAsset$outboundSchema;
-  /** @deprecated use `ResponseEnvelopeCertificateAsset$Outbound` instead. */
-  export type Outbound = ResponseEnvelopeCertificateAsset$Outbound;
-}
-
-export function responseEnvelopeCertificateAssetToJSON(
-  responseEnvelopeCertificateAsset: ResponseEnvelopeCertificateAsset,
-): string {
-  return JSON.stringify(
-    ResponseEnvelopeCertificateAsset$outboundSchema.parse(
-      responseEnvelopeCertificateAsset,
-    ),
-  );
-}
 
 export function responseEnvelopeCertificateAssetFromJSON(
   jsonString: string,

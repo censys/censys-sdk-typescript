@@ -33,49 +33,6 @@ export const Coap$inboundSchema: z.ZodType<Coap, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type Coap$Outbound = {
-  code?: string | undefined;
-  message_id?: number | undefined;
-  message_type?: string | undefined;
-  payload?: string | undefined;
-  token?: string | undefined;
-  version?: number | undefined;
-};
-
-/** @internal */
-export const Coap$outboundSchema: z.ZodType<Coap$Outbound, z.ZodTypeDef, Coap> =
-  z.object({
-    code: z.string().optional(),
-    messageId: z.number().int().optional(),
-    messageType: z.string().optional(),
-    payload: z.string().optional(),
-    token: z.string().optional(),
-    version: z.number().int().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      messageId: "message_id",
-      messageType: "message_type",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Coap$ {
-  /** @deprecated use `Coap$inboundSchema` instead. */
-  export const inboundSchema = Coap$inboundSchema;
-  /** @deprecated use `Coap$outboundSchema` instead. */
-  export const outboundSchema = Coap$outboundSchema;
-  /** @deprecated use `Coap$Outbound` instead. */
-  export type Outbound = Coap$Outbound;
-}
-
-export function coapToJSON(coap: Coap): string {
-  return JSON.stringify(Coap$outboundSchema.parse(coap));
-}
-
 export function coapFromJSON(
   jsonString: string,
 ): SafeParseResult<Coap, SDKValidationError> {

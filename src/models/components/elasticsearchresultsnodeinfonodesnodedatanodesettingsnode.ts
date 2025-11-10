@@ -9,8 +9,6 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr,
   ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr$inboundSchema,
-  ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr$Outbound,
-  ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr$outboundSchema,
 } from "./elasticsearchresultsnodeinfonodesnodedatanodesettingsnodeattr.js";
 
 export type ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNode = {
@@ -32,54 +30,6 @@ export const ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNode$inboundSc
         .optional(),
     name: z.string().optional(),
   });
-
-/** @internal */
-export type ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNode$Outbound =
-  {
-    attr?:
-      | ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr$Outbound
-      | undefined;
-    name?: string | undefined;
-  };
-
-/** @internal */
-export const ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNode$outboundSchema:
-  z.ZodType<
-    ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNode$Outbound,
-    z.ZodTypeDef,
-    ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNode
-  > = z.object({
-    attr:
-      ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeAttr$outboundSchema
-        .optional(),
-    name: z.string().optional(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNode$ {
-  /** @deprecated use `ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNode$inboundSchema` instead. */
-  export const inboundSchema =
-    ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNode$inboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNode$outboundSchema` instead. */
-  export const outboundSchema =
-    ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNode$outboundSchema;
-  /** @deprecated use `ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNode$Outbound` instead. */
-  export type Outbound =
-    ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNode$Outbound;
-}
-
-export function elasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeToJSON(
-  elasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNode:
-    ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNode,
-): string {
-  return JSON.stringify(
-    ElasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNode$outboundSchema
-      .parse(elasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNode),
-  );
-}
 
 export function elasticSearchResultsNodeInfoNodesNodeDataNodeSettingsNodeFromJSON(
   jsonString: string,

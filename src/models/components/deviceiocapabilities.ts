@@ -43,63 +43,6 @@ export const DeviceIOCapabilities$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type DeviceIOCapabilities$Outbound = {
-  audio_outputs?: number | undefined;
-  audio_sources?: number | undefined;
-  digital_inputs?: number | undefined;
-  relay_outputs?: number | undefined;
-  serial_ports?: number | undefined;
-  video_outputs?: number | undefined;
-  video_source?: number | undefined;
-};
-
-/** @internal */
-export const DeviceIOCapabilities$outboundSchema: z.ZodType<
-  DeviceIOCapabilities$Outbound,
-  z.ZodTypeDef,
-  DeviceIOCapabilities
-> = z.object({
-  audioOutputs: z.number().int().optional(),
-  audioSources: z.number().int().optional(),
-  digitalInputs: z.number().int().optional(),
-  relayOutputs: z.number().int().optional(),
-  serialPorts: z.number().int().optional(),
-  videoOutputs: z.number().int().optional(),
-  videoSource: z.number().int().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    audioOutputs: "audio_outputs",
-    audioSources: "audio_sources",
-    digitalInputs: "digital_inputs",
-    relayOutputs: "relay_outputs",
-    serialPorts: "serial_ports",
-    videoOutputs: "video_outputs",
-    videoSource: "video_source",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeviceIOCapabilities$ {
-  /** @deprecated use `DeviceIOCapabilities$inboundSchema` instead. */
-  export const inboundSchema = DeviceIOCapabilities$inboundSchema;
-  /** @deprecated use `DeviceIOCapabilities$outboundSchema` instead. */
-  export const outboundSchema = DeviceIOCapabilities$outboundSchema;
-  /** @deprecated use `DeviceIOCapabilities$Outbound` instead. */
-  export type Outbound = DeviceIOCapabilities$Outbound;
-}
-
-export function deviceIOCapabilitiesToJSON(
-  deviceIOCapabilities: DeviceIOCapabilities,
-): string {
-  return JSON.stringify(
-    DeviceIOCapabilities$outboundSchema.parse(deviceIOCapabilities),
-  );
-}
-
 export function deviceIOCapabilitiesFromJSON(
   jsonString: string,
 ): SafeParseResult<DeviceIOCapabilities, SDKValidationError> {

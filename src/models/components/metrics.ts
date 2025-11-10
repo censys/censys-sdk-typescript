@@ -7,24 +7,9 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Cvss,
-  Cvss$inboundSchema,
-  Cvss$Outbound,
-  Cvss$outboundSchema,
-} from "./cvss.js";
-import {
-  CVSSv4,
-  CVSSv4$inboundSchema,
-  CVSSv4$Outbound,
-  CVSSv4$outboundSchema,
-} from "./cvssv4.js";
-import {
-  Epss,
-  Epss$inboundSchema,
-  Epss$Outbound,
-  Epss$outboundSchema,
-} from "./epss.js";
+import { Cvss, Cvss$inboundSchema } from "./cvss.js";
+import { CVSSv4, CVSSv4$inboundSchema } from "./cvssv4.js";
+import { Epss, Epss$inboundSchema } from "./epss.js";
 
 export type Metrics = {
   cvssV30?: Cvss | undefined;
@@ -47,49 +32,6 @@ export const Metrics$inboundSchema: z.ZodType<Metrics, z.ZodTypeDef, unknown> =
       "cvss_v40": "cvssV40",
     });
   });
-
-/** @internal */
-export type Metrics$Outbound = {
-  cvss_v30?: Cvss$Outbound | undefined;
-  cvss_v31?: Cvss$Outbound | undefined;
-  cvss_v40?: CVSSv4$Outbound | undefined;
-  epss?: Epss$Outbound | undefined;
-};
-
-/** @internal */
-export const Metrics$outboundSchema: z.ZodType<
-  Metrics$Outbound,
-  z.ZodTypeDef,
-  Metrics
-> = z.object({
-  cvssV30: Cvss$outboundSchema.optional(),
-  cvssV31: Cvss$outboundSchema.optional(),
-  cvssV40: CVSSv4$outboundSchema.optional(),
-  epss: Epss$outboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    cvssV30: "cvss_v30",
-    cvssV31: "cvss_v31",
-    cvssV40: "cvss_v40",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Metrics$ {
-  /** @deprecated use `Metrics$inboundSchema` instead. */
-  export const inboundSchema = Metrics$inboundSchema;
-  /** @deprecated use `Metrics$outboundSchema` instead. */
-  export const outboundSchema = Metrics$outboundSchema;
-  /** @deprecated use `Metrics$Outbound` instead. */
-  export type Outbound = Metrics$Outbound;
-}
-
-export function metricsToJSON(metrics: Metrics): string {
-  return JSON.stringify(Metrics$outboundSchema.parse(metrics));
-}
 
 export function metricsFromJSON(
   jsonString: string,

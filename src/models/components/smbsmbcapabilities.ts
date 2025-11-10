@@ -64,63 +64,6 @@ export const SmbSmbCapabilities$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type SmbSmbCapabilities$Outbound = {
-  smb_dfs_support?: boolean | undefined;
-  smb_directory_leasing_support?: boolean | undefined;
-  smb_encryption_support?: boolean | undefined;
-  smb_leasing_support?: boolean | undefined;
-  smb_multichan_support?: boolean | undefined;
-  smb_multicredit_support?: boolean | undefined;
-  smb_persistent_handle_support?: boolean | undefined;
-};
-
-/** @internal */
-export const SmbSmbCapabilities$outboundSchema: z.ZodType<
-  SmbSmbCapabilities$Outbound,
-  z.ZodTypeDef,
-  SmbSmbCapabilities
-> = z.object({
-  smbDfsSupport: z.boolean().optional(),
-  smbDirectoryLeasingSupport: z.boolean().optional(),
-  smbEncryptionSupport: z.boolean().optional(),
-  smbLeasingSupport: z.boolean().optional(),
-  smbMultichanSupport: z.boolean().optional(),
-  smbMulticreditSupport: z.boolean().optional(),
-  smbPersistentHandleSupport: z.boolean().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    smbDfsSupport: "smb_dfs_support",
-    smbDirectoryLeasingSupport: "smb_directory_leasing_support",
-    smbEncryptionSupport: "smb_encryption_support",
-    smbLeasingSupport: "smb_leasing_support",
-    smbMultichanSupport: "smb_multichan_support",
-    smbMulticreditSupport: "smb_multicredit_support",
-    smbPersistentHandleSupport: "smb_persistent_handle_support",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SmbSmbCapabilities$ {
-  /** @deprecated use `SmbSmbCapabilities$inboundSchema` instead. */
-  export const inboundSchema = SmbSmbCapabilities$inboundSchema;
-  /** @deprecated use `SmbSmbCapabilities$outboundSchema` instead. */
-  export const outboundSchema = SmbSmbCapabilities$outboundSchema;
-  /** @deprecated use `SmbSmbCapabilities$Outbound` instead. */
-  export type Outbound = SmbSmbCapabilities$Outbound;
-}
-
-export function smbSmbCapabilitiesToJSON(
-  smbSmbCapabilities: SmbSmbCapabilities,
-): string {
-  return JSON.stringify(
-    SmbSmbCapabilities$outboundSchema.parse(smbSmbCapabilities),
-  );
-}
-
 export function smbSmbCapabilitiesFromJSON(
   jsonString: string,
 ): SafeParseResult<SmbSmbCapabilities, SDKValidationError> {

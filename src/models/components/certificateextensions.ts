@@ -10,68 +10,37 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AuthorityInfoAccess,
   AuthorityInfoAccess$inboundSchema,
-  AuthorityInfoAccess$Outbound,
-  AuthorityInfoAccess$outboundSchema,
 } from "./authorityinfoaccess.js";
 import {
   BasicConstraints,
   BasicConstraints$inboundSchema,
-  BasicConstraints$Outbound,
-  BasicConstraints$outboundSchema,
 } from "./basicconstraints.js";
 import {
   CabfOrganizationId,
   CabfOrganizationId$inboundSchema,
-  CabfOrganizationId$Outbound,
-  CabfOrganizationId$outboundSchema,
 } from "./cabforganizationid.js";
 import {
   CertificatePolicy,
   CertificatePolicy$inboundSchema,
-  CertificatePolicy$Outbound,
-  CertificatePolicy$outboundSchema,
 } from "./certificatepolicy.js";
 import {
   ExtendedKeyUsage,
   ExtendedKeyUsage$inboundSchema,
-  ExtendedKeyUsage$Outbound,
-  ExtendedKeyUsage$outboundSchema,
 } from "./extendedkeyusage.js";
-import {
-  GeneralNames,
-  GeneralNames$inboundSchema,
-  GeneralNames$Outbound,
-  GeneralNames$outboundSchema,
-} from "./generalnames.js";
-import {
-  KeyUsage,
-  KeyUsage$inboundSchema,
-  KeyUsage$Outbound,
-  KeyUsage$outboundSchema,
-} from "./keyusage.js";
+import { GeneralNames, GeneralNames$inboundSchema } from "./generalnames.js";
+import { KeyUsage, KeyUsage$inboundSchema } from "./keyusage.js";
 import {
   NameConstraints,
   NameConstraints$inboundSchema,
-  NameConstraints$Outbound,
-  NameConstraints$outboundSchema,
 } from "./nameconstraints.js";
-import {
-  QcStatements,
-  QcStatements$inboundSchema,
-  QcStatements$Outbound,
-  QcStatements$outboundSchema,
-} from "./qcstatements.js";
+import { QcStatements, QcStatements$inboundSchema } from "./qcstatements.js";
 import {
   SignedCertificateTimestamp,
   SignedCertificateTimestamp$inboundSchema,
-  SignedCertificateTimestamp$Outbound,
-  SignedCertificateTimestamp$outboundSchema,
 } from "./signedcertificatetimestamp.js";
 import {
   TorServiceDescriptor,
   TorServiceDescriptor$inboundSchema,
-  TorServiceDescriptor$Outbound,
-  TorServiceDescriptor$outboundSchema,
 } from "./torservicedescriptor.js";
 
 export type CertificateExtensions = {
@@ -158,101 +127,6 @@ export const CertificateExtensions$inboundSchema: z.ZodType<
     "tor_service_descriptors": "torServiceDescriptors",
   });
 });
-
-/** @internal */
-export type CertificateExtensions$Outbound = {
-  authority_info_access?: AuthorityInfoAccess$Outbound | undefined;
-  authority_key_id?: string | undefined;
-  basic_constraints?: BasicConstraints$Outbound | undefined;
-  cabf_organization_id?: CabfOrganizationId$Outbound | undefined;
-  certificate_policies?: Array<CertificatePolicy$Outbound> | null | undefined;
-  crl_distribution_points?: Array<string> | null | undefined;
-  ct_poison?: boolean | undefined;
-  extended_key_usage?: ExtendedKeyUsage$Outbound | undefined;
-  issuer_alt_name?: GeneralNames$Outbound | undefined;
-  key_usage?: KeyUsage$Outbound | undefined;
-  name_constraints?: NameConstraints$Outbound | undefined;
-  qc_statements?: QcStatements$Outbound | undefined;
-  signed_certificate_timestamps?:
-    | Array<SignedCertificateTimestamp$Outbound>
-    | null
-    | undefined;
-  subject_alt_name?: GeneralNames$Outbound | undefined;
-  subject_key_id?: string | undefined;
-  tor_service_descriptors?:
-    | Array<TorServiceDescriptor$Outbound>
-    | null
-    | undefined;
-};
-
-/** @internal */
-export const CertificateExtensions$outboundSchema: z.ZodType<
-  CertificateExtensions$Outbound,
-  z.ZodTypeDef,
-  CertificateExtensions
-> = z.object({
-  authorityInfoAccess: AuthorityInfoAccess$outboundSchema.optional(),
-  authorityKeyId: z.string().optional(),
-  basicConstraints: BasicConstraints$outboundSchema.optional(),
-  cabfOrganizationId: CabfOrganizationId$outboundSchema.optional(),
-  certificatePolicies: z.nullable(z.array(CertificatePolicy$outboundSchema))
-    .optional(),
-  crlDistributionPoints: z.nullable(z.array(z.string())).optional(),
-  ctPoison: z.boolean().optional(),
-  extendedKeyUsage: ExtendedKeyUsage$outboundSchema.optional(),
-  issuerAltName: GeneralNames$outboundSchema.optional(),
-  keyUsage: KeyUsage$outboundSchema.optional(),
-  nameConstraints: NameConstraints$outboundSchema.optional(),
-  qcStatements: QcStatements$outboundSchema.optional(),
-  signedCertificateTimestamps: z.nullable(
-    z.array(SignedCertificateTimestamp$outboundSchema),
-  ).optional(),
-  subjectAltName: GeneralNames$outboundSchema.optional(),
-  subjectKeyId: z.string().optional(),
-  torServiceDescriptors: z.nullable(
-    z.array(TorServiceDescriptor$outboundSchema),
-  ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    authorityInfoAccess: "authority_info_access",
-    authorityKeyId: "authority_key_id",
-    basicConstraints: "basic_constraints",
-    cabfOrganizationId: "cabf_organization_id",
-    certificatePolicies: "certificate_policies",
-    crlDistributionPoints: "crl_distribution_points",
-    ctPoison: "ct_poison",
-    extendedKeyUsage: "extended_key_usage",
-    issuerAltName: "issuer_alt_name",
-    keyUsage: "key_usage",
-    nameConstraints: "name_constraints",
-    qcStatements: "qc_statements",
-    signedCertificateTimestamps: "signed_certificate_timestamps",
-    subjectAltName: "subject_alt_name",
-    subjectKeyId: "subject_key_id",
-    torServiceDescriptors: "tor_service_descriptors",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CertificateExtensions$ {
-  /** @deprecated use `CertificateExtensions$inboundSchema` instead. */
-  export const inboundSchema = CertificateExtensions$inboundSchema;
-  /** @deprecated use `CertificateExtensions$outboundSchema` instead. */
-  export const outboundSchema = CertificateExtensions$outboundSchema;
-  /** @deprecated use `CertificateExtensions$Outbound` instead. */
-  export type Outbound = CertificateExtensions$Outbound;
-}
-
-export function certificateExtensionsToJSON(
-  certificateExtensions: CertificateExtensions,
-): string {
-  return JSON.stringify(
-    CertificateExtensions$outboundSchema.parse(certificateExtensions),
-  );
-}
 
 export function certificateExtensionsFromJSON(
   jsonString: string,
