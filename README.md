@@ -111,18 +111,19 @@ run();
 <details open>
 <summary>Available methods</summary>
 
-### [accountManagement](docs/sdks/accountmanagement/README.md)
+### [AccountManagement](docs/sdks/accountmanagement/README.md)
 
 * [getOrganizationDetails](docs/sdks/accountmanagement/README.md#getorganizationdetails) - Get organization details
-* [getOrganizationCredits](docs/sdks/accountmanagement/README.md#getorganizationcredits) - Get organization credit statistics
+* [getOrganizationCredits](docs/sdks/accountmanagement/README.md#getorganizationcredits) - Get organization credit details
 * [getOrganizationCreditUsage](docs/sdks/accountmanagement/README.md#getorganizationcreditusage) - Get organization credit usage
 * [inviteUserToOrganization](docs/sdks/accountmanagement/README.md#inviteusertoorganization) - Invite user to organization
 * [listOrganizationMembers](docs/sdks/accountmanagement/README.md#listorganizationmembers) - List organization members
 * [removeOrganizationMember](docs/sdks/accountmanagement/README.md#removeorganizationmember) - Remove member from organization
 * [updateOrganizationMember](docs/sdks/accountmanagement/README.md#updateorganizationmember) - Update a member's roles in an organization
 * [getMemberCreditUsage](docs/sdks/accountmanagement/README.md#getmembercreditusage) - Get member credit usage
+* [getUserCredits](docs/sdks/accountmanagement/README.md#getusercredits) - Get Free user credit details
 
-### [collections](docs/sdks/collections/README.md)
+### [Collections](docs/sdks/collections/README.md)
 
 * [list](docs/sdks/collections/README.md#list) - List collections
 * [create](docs/sdks/collections/README.md#create) - Create a collection
@@ -133,7 +134,7 @@ run();
 * [aggregate](docs/sdks/collections/README.md#aggregate) - Aggregate results for a search query within a collection
 * [search](docs/sdks/collections/README.md#search) - Run a search query within a collection
 
-### [globalData](docs/sdks/globaldata/README.md)
+### [GlobalData](docs/sdks/globaldata/README.md)
 
 * [getCertificates](docs/sdks/globaldata/README.md#getcertificates) - Retrieve multiple certificates
 * [getCertificatesRaw](docs/sdks/globaldata/README.md#getcertificatesraw) - Retrieve multiple certificates in PEM format
@@ -150,11 +151,12 @@ run();
 * [convertLegacySearchQueries](docs/sdks/globaldata/README.md#convertlegacysearchqueries) - Convert Legacy Search queries to Platform queries
 * [search](docs/sdks/globaldata/README.md#search) - Run a search query
 
-### [threatHunting](docs/sdks/threathunting/README.md)
+### [ThreatHunting](docs/sdks/threathunting/README.md)
 
 * [getHostObservationsWithCertificate](docs/sdks/threathunting/README.md#gethostobservationswithcertificate) - Get host history for a certificate
 * [createTrackedScan](docs/sdks/threathunting/README.md#createtrackedscan) - Live Discovery: Initiate a new scan
 * [getTrackedScanThreatHunting](docs/sdks/threathunting/README.md#gettrackedscanthreathunting) - Get scan status
+* [listThreats](docs/sdks/threathunting/README.md#listthreats) - List active threats
 * [valueCounts](docs/sdks/threathunting/README.md#valuecounts) - CensEye: Retrieve value counts to discover pivots
 
 </details>
@@ -176,9 +178,10 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 <summary>Available standalone functions</summary>
 
 - [`accountManagementGetMemberCreditUsage`](docs/sdks/accountmanagement/README.md#getmembercreditusage) - Get member credit usage
-- [`accountManagementGetOrganizationCredits`](docs/sdks/accountmanagement/README.md#getorganizationcredits) - Get organization credit statistics
+- [`accountManagementGetOrganizationCredits`](docs/sdks/accountmanagement/README.md#getorganizationcredits) - Get organization credit details
 - [`accountManagementGetOrganizationCreditUsage`](docs/sdks/accountmanagement/README.md#getorganizationcreditusage) - Get organization credit usage
 - [`accountManagementGetOrganizationDetails`](docs/sdks/accountmanagement/README.md#getorganizationdetails) - Get organization details
+- [`accountManagementGetUserCredits`](docs/sdks/accountmanagement/README.md#getusercredits) - Get Free user credit details
 - [`accountManagementInviteUserToOrganization`](docs/sdks/accountmanagement/README.md#inviteusertoorganization) - Invite user to organization
 - [`accountManagementListOrganizationMembers`](docs/sdks/accountmanagement/README.md#listorganizationmembers) - List organization members
 - [`accountManagementRemoveOrganizationMember`](docs/sdks/accountmanagement/README.md#removeorganizationmember) - Remove member from organization
@@ -208,6 +211,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`threatHuntingCreateTrackedScan`](docs/sdks/threathunting/README.md#createtrackedscan) - Live Discovery: Initiate a new scan
 - [`threatHuntingGetHostObservationsWithCertificate`](docs/sdks/threathunting/README.md#gethostobservationswithcertificate) - Get host history for a certificate
 - [`threatHuntingGetTrackedScanThreatHunting`](docs/sdks/threathunting/README.md#gettrackedscanthreathunting) - Get scan status
+- [`threatHuntingListThreats`](docs/sdks/threathunting/README.md#listthreats) - List active threats
 - [`threatHuntingValueCounts`](docs/sdks/threathunting/README.md#valuecounts) - CensEye: Retrieve value counts to discover pivots
 
 </details>

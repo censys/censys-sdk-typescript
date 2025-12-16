@@ -6,6 +6,7 @@ import { accountManagementGetMemberCreditUsage } from "../funcs/accountManagemen
 import { accountManagementGetOrganizationCredits } from "../funcs/accountManagementGetOrganizationCredits.js";
 import { accountManagementGetOrganizationCreditUsage } from "../funcs/accountManagementGetOrganizationCreditUsage.js";
 import { accountManagementGetOrganizationDetails } from "../funcs/accountManagementGetOrganizationDetails.js";
+import { accountManagementGetUserCredits } from "../funcs/accountManagementGetUserCredits.js";
 import {
   accountManagementInviteUserToOrganization,
   InviteUserToOrganizationAcceptEnum,
@@ -48,7 +49,7 @@ export class AccountManagement extends ClientSDK {
   }
 
   /**
-   * Get organization credit statistics
+   * Get organization credit details
    *
    * @remarks
    * Retrieve credit balance and expiration information for an organization. <br><br>Credits expire 12 months after they are acquired.<br><br>This endpoint does not cost any credits to execute.
@@ -174,6 +175,21 @@ export class AccountManagement extends ClientSDK {
     return unwrapAsync(accountManagementGetMemberCreditUsage(
       this,
       request,
+      options,
+    ));
+  }
+
+  /**
+   * Get Free user credit details
+   *
+   * @remarks
+   * Retrieve your Free user account credit balance and refresh information. To retrieve the credit balance for a Starter or Enterprise account, use the [get organization credit details endpoint](https://docs.censys.com/reference/v3-accountmanagement-org-credits).<br><br>This endpoint does not cost any credits to execute.
+   */
+  async getUserCredits(
+    options?: RequestOptions,
+  ): Promise<operations.V3AccountmanagementUserCreditsResponse> {
+    return unwrapAsync(accountManagementGetUserCredits(
+      this,
       options,
     ));
   }

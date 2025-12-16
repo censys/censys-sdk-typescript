@@ -1,5 +1,4 @@
 # ThreatHunting
-(*threatHunting*)
 
 ## Overview
 
@@ -10,6 +9,7 @@ Endpoints related to the Threat Hunting product
 * [getHostObservationsWithCertificate](#gethostobservationswithcertificate) - Get host history for a certificate
 * [createTrackedScan](#createtrackedscan) - Live Discovery: Initiate a new scan
 * [getTrackedScanThreatHunting](#gettrackedscanthreathunting) - Get scan status
+* [listThreats](#listthreats) - List active threats
 * [valueCounts](#valuecounts) - CensEye: Retrieve value counts to discover pivots
 
 ## getHostObservationsWithCertificate
@@ -265,6 +265,83 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.AuthenticationError | 401                        | application/json           |
 | errors.ErrorModel          | 403, 404                   | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
+## listThreats
+
+Retrieve a list of active threats observed by Censys by aggregating threat IDs across hosts and web properties. Threats are active if their fingerprint has been identified on hosts or web properties by Censys scans. This information is also available on the [Explore Threats page in the Platform web UI](https://platform.censys.io/threats).
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v3-threathunting-threats-list" method="get" path="/v3/threat-hunting/threats" -->
+```typescript
+import { SDK } from "@censys/platform-sdk";
+
+const sdk = new SDK({
+  organizationId: "11111111-2222-3333-4444-555555555555",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.threatHunting.listThreats({
+    query: "*",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { threatHuntingListThreats } from "@censys/platform-sdk/funcs/threatHuntingListThreats.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  organizationId: "11111111-2222-3333-4444-555555555555",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await threatHuntingListThreats(sdk, {
+    query: "*",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("threatHuntingListThreats failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3ThreathuntingThreatsListRequest](../../models/operations/v3threathuntingthreatslistrequest.md)                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3ThreathuntingThreatsListResponse](../../models/operations/v3threathuntingthreatslistresponse.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 422                   | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## valueCounts

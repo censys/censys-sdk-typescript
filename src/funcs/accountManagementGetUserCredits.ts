@@ -3,10 +3,8 @@
  */
 
 import { SDKCore } from "../core.js";
-import { encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
-import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -26,18 +24,17 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get organization credit details
+ * Get Free user credit details
  *
  * @remarks
- * Retrieve credit balance and expiration information for an organization. <br><br>Credits expire 12 months after they are acquired.<br><br>This endpoint does not cost any credits to execute.
+ * Retrieve your Free user account credit balance and refresh information. To retrieve the credit balance for a Starter or Enterprise account, use the [get organization credit details endpoint](https://docs.censys.com/reference/v3-accountmanagement-org-credits).<br><br>This endpoint does not cost any credits to execute.
  */
-export function accountManagementGetOrganizationCredits(
+export function accountManagementGetUserCredits(
   client: SDKCore,
-  request: operations.V3AccountmanagementOrgCreditsRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.V3AccountmanagementOrgCreditsResponse,
+    operations.V3AccountmanagementUserCreditsResponse,
     | errors.AuthenticationError
     | errors.ErrorModel
     | SDKBaseError
@@ -52,19 +49,17 @@ export function accountManagementGetOrganizationCredits(
 > {
   return new APIPromise($do(
     client,
-    request,
     options,
   ));
 }
 
 async function $do(
   client: SDKCore,
-  request: operations.V3AccountmanagementOrgCreditsRequest,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      operations.V3AccountmanagementOrgCreditsResponse,
+      operations.V3AccountmanagementUserCreditsResponse,
       | errors.AuthenticationError
       | errors.ErrorModel
       | SDKBaseError
@@ -79,30 +74,7 @@ async function $do(
     APICall,
   ]
 > {
-  const parsed = safeParse(
-    request,
-    (value) =>
-      operations.V3AccountmanagementOrgCreditsRequest$outboundSchema.parse(
-        value,
-      ),
-    "Input validation failed",
-  );
-  if (!parsed.ok) {
-    return [parsed, { status: "invalid" }];
-  }
-  const payload = parsed.value;
-  const body = null;
-
-  const pathParams = {
-    organization_id: encodeSimple("organization_id", payload.organization_id, {
-      explode: false,
-      charEncoding: "percent",
-    }),
-  };
-
-  const path = pathToFunc(
-    "/v3/accounts/organizations/{organization_id}/credits",
-  )(pathParams);
+  const path = pathToFunc("/v3/accounts/users/credits")();
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
@@ -117,7 +89,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "v3-accountmanagement-org-credits",
+    operationID: "v3-accountmanagement-user-credits",
     oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
@@ -135,7 +107,6 @@ async function $do(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
-    body: body,
     userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
@@ -146,7 +117,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["401", "403", "404", "422", "4XX", "5XX"],
+    errorCodes: ["401", "404", "4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -160,7 +131,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.V3AccountmanagementOrgCreditsResponse,
+    operations.V3AccountmanagementUserCreditsResponse,
     | errors.AuthenticationError
     | errors.ErrorModel
     | SDKBaseError
@@ -174,11 +145,11 @@ async function $do(
   >(
     M.json(
       200,
-      operations.V3AccountmanagementOrgCreditsResponse$inboundSchema,
+      operations.V3AccountmanagementUserCreditsResponse$inboundSchema,
       { hdrs: true, key: "Result" },
     ),
     M.jsonErr(401, errors.AuthenticationError$inboundSchema),
-    M.jsonErr([403, 404, 422], errors.ErrorModel$inboundSchema, {
+    M.jsonErr(404, errors.ErrorModel$inboundSchema, {
       ctype: "application/problem+json",
     }),
     M.fail("4XX"),

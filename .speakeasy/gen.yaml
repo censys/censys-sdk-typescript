@@ -20,12 +20,13 @@ generation:
   schemas:
     allOfMergeStrategy: shallowMerge
   requestBodyFieldName: ""
+  persistentEdits: {}
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.8.0
+  version: 0.9.0
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -37,7 +38,7 @@ typescript:
   author: Speakeasy
   baseErrorName: SDKBaseError
   clientServerStatusCodesAsErrors: true
-  constFieldsAlwaysOptional: true
+  constFieldsAlwaysOptional: false
   defaultErrorName: SDKError
   enableCustomCodeRegions: false
   enableMCPServer: false
@@ -46,6 +47,9 @@ typescript:
   exportZodModelNamespace: false
   flattenGlobalSecurity: true
   flatteningOrder: parameters-first
+  formStringArrayEncodeMode: encoded-string
+  forwardCompatibleEnumsByDefault: false
+  forwardCompatibleUnionsByDefault: "false"
   generateExamples: true
   imports:
     option: openapi
@@ -55,17 +59,22 @@ typescript:
       operations: models/operations
       shared: models/components
       webhooks: models/webhooks
+  inferUnionDiscriminators: true
   inputModelSuffix: input
   jsonpath: legacy
+  laxMode: strict
   maxMethodParams: 0
   methodArguments: require-security-and-request
   modelPropertyCasing: camel
   moduleFormat: commonjs
+  multipartArrayFormat: legacy
   outputModelSuffix: output
   packageName: '@censys/platform-sdk'
+  preApplyUnionDiscriminators: true
   responseFormat: flat
   sseFlatResponse: false
   templateVersion: v2
+  unionStrategy: left-to-right
   usageSDKInitImports: []
   useIndexModules: true
   zodVersion: v3

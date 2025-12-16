@@ -1,5 +1,4 @@
 # AccountManagement
-(*accountManagement*)
 
 ## Overview
 
@@ -8,13 +7,14 @@ Endpoints related to the Account Management product
 ### Available Operations
 
 * [getOrganizationDetails](#getorganizationdetails) - Get organization details
-* [getOrganizationCredits](#getorganizationcredits) - Get organization credit statistics
+* [getOrganizationCredits](#getorganizationcredits) - Get organization credit details
 * [getOrganizationCreditUsage](#getorganizationcreditusage) - Get organization credit usage
 * [inviteUserToOrganization](#inviteusertoorganization) - Invite user to organization
 * [listOrganizationMembers](#listorganizationmembers) - List organization members
 * [removeOrganizationMember](#removeorganizationmember) - Remove member from organization
 * [updateOrganizationMember](#updateorganizationmember) - Update a member's roles in an organization
 * [getMemberCreditUsage](#getmembercreditusage) - Get member credit usage
+* [getUserCredits](#getusercredits) - Get Free user credit details
 
 ## getOrganizationDetails
 
@@ -636,4 +636,74 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.AuthenticationError | 401                        | application/json           |
 | errors.ErrorModel          | 400, 403, 404, 422         | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
+## getUserCredits
+
+Retrieve your Free user account credit balance and refresh information. To retrieve the credit balance for a Starter or Enterprise account, use the [get organization credit details endpoint](https://docs.censys.com/reference/v3-accountmanagement-org-credits).<br><br>This endpoint does not cost any credits to execute.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v3-accountmanagement-user-credits" method="get" path="/v3/accounts/users/credits" -->
+```typescript
+import { SDK } from "@censys/platform-sdk";
+
+const sdk = new SDK({
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.accountManagement.getUserCredits();
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { accountManagementGetUserCredits } from "@censys/platform-sdk/funcs/accountManagementGetUserCredits.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await accountManagementGetUserCredits(sdk);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("accountManagementGetUserCredits failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3AccountmanagementUserCreditsResponse](../../models/operations/v3accountmanagementusercreditsresponse.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 404                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
