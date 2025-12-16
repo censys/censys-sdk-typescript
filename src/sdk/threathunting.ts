@@ -5,6 +5,7 @@
 import { threatHuntingCreateTrackedScan } from "../funcs/threatHuntingCreateTrackedScan.js";
 import { threatHuntingGetHostObservationsWithCertificate } from "../funcs/threatHuntingGetHostObservationsWithCertificate.js";
 import { threatHuntingGetTrackedScanThreatHunting } from "../funcs/threatHuntingGetTrackedScanThreatHunting.js";
+import { threatHuntingListThreats } from "../funcs/threatHuntingListThreats.js";
 import { threatHuntingValueCounts } from "../funcs/threatHuntingValueCounts.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
@@ -59,6 +60,23 @@ export class ThreatHunting extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V3ThreathuntingScansGetResponse> {
     return unwrapAsync(threatHuntingGetTrackedScanThreatHunting(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * List active threats
+   *
+   * @remarks
+   * Retrieve a list of active threats observed by Censys by aggregating threat IDs across hosts and web properties. Threats are active if their fingerprint has been identified on hosts or web properties by Censys scans. This information is also available on the [Explore Threats page in the Platform web UI](https://platform.censys.io/threats).
+   */
+  async listThreats(
+    request: operations.V3ThreathuntingThreatsListRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3ThreathuntingThreatsListResponse> {
+    return unwrapAsync(threatHuntingListThreats(
       this,
       request,
       options,

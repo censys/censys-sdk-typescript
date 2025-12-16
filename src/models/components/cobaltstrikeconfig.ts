@@ -20,6 +20,7 @@ export type CobaltStrikeConfig = {
   cookieBeacon?: number | undefined;
   cryptoScheme?: number | undefined;
   dns?: boolean | undefined;
+  hostHeader?: string | undefined;
   httpGet?: CobaltStrikeHttpConfig | undefined;
   httpPost?: CobaltStrikeHttpConfig | undefined;
   jitter?: number | undefined;
@@ -43,6 +44,7 @@ export const CobaltStrikeConfig$inboundSchema: z.ZodType<
   cookie_beacon: z.number().int().optional(),
   crypto_scheme: z.number().int().optional(),
   dns: z.boolean().optional(),
+  host_header: z.string().optional(),
   http_get: CobaltStrikeHttpConfig$inboundSchema.optional(),
   http_post: CobaltStrikeHttpConfig$inboundSchema.optional(),
   jitter: z.number().int().optional(),
@@ -59,6 +61,7 @@ export const CobaltStrikeConfig$inboundSchema: z.ZodType<
   return remap$(v, {
     "cookie_beacon": "cookieBeacon",
     "crypto_scheme": "cryptoScheme",
+    "host_header": "hostHeader",
     "http_get": "httpGet",
     "http_post": "httpPost",
     "post_ex": "postEx",

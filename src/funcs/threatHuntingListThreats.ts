@@ -3,7 +3,7 @@
  */
 
 import { SDKCore } from "../core.js";
-import { encodeSimple } from "../lib/encodings.js";
+import { encodeFormQuery } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -26,18 +26,18 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get organization credit details
+ * List active threats
  *
  * @remarks
- * Retrieve credit balance and expiration information for an organization. <br><br>Credits expire 12 months after they are acquired.<br><br>This endpoint does not cost any credits to execute.
+ * Retrieve a list of active threats observed by Censys by aggregating threat IDs across hosts and web properties. Threats are active if their fingerprint has been identified on hosts or web properties by Censys scans. This information is also available on the [Explore Threats page in the Platform web UI](https://platform.censys.io/threats).
  */
-export function accountManagementGetOrganizationCredits(
+export function threatHuntingListThreats(
   client: SDKCore,
-  request: operations.V3AccountmanagementOrgCreditsRequest,
+  request: operations.V3ThreathuntingThreatsListRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.V3AccountmanagementOrgCreditsResponse,
+    operations.V3ThreathuntingThreatsListResponse,
     | errors.AuthenticationError
     | errors.ErrorModel
     | SDKBaseError
@@ -59,12 +59,12 @@ export function accountManagementGetOrganizationCredits(
 
 async function $do(
   client: SDKCore,
-  request: operations.V3AccountmanagementOrgCreditsRequest,
+  request: operations.V3ThreathuntingThreatsListRequest,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      operations.V3AccountmanagementOrgCreditsResponse,
+      operations.V3ThreathuntingThreatsListResponse,
       | errors.AuthenticationError
       | errors.ErrorModel
       | SDKBaseError
@@ -82,9 +82,7 @@ async function $do(
   const parsed = safeParse(
     request,
     (value) =>
-      operations.V3AccountmanagementOrgCreditsRequest$outboundSchema.parse(
-        value,
-      ),
+      operations.V3ThreathuntingThreatsListRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -93,16 +91,13 @@ async function $do(
   const payload = parsed.value;
   const body = null;
 
-  const pathParams = {
-    organization_id: encodeSimple("organization_id", payload.organization_id, {
-      explode: false,
-      charEncoding: "percent",
-    }),
-  };
+  const path = pathToFunc("/v3/threat-hunting/threats")();
 
-  const path = pathToFunc(
-    "/v3/accounts/organizations/{organization_id}/credits",
-  )(pathParams);
+  const query = encodeFormQuery({
+    "organization_id": payload.organization_id
+      ?? client._options.organizationId,
+    "query": payload.query,
+  }, { explode: false });
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
@@ -117,7 +112,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "v3-accountmanagement-org-credits",
+    operationID: "v3-threathunting-threats-list",
     oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
@@ -135,6 +130,7 @@ async function $do(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    query: query,
     body: body,
     userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
@@ -146,7 +142,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["401", "403", "404", "422", "4XX", "5XX"],
+    errorCodes: ["401", "403", "422", "4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -160,7 +156,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.V3AccountmanagementOrgCreditsResponse,
+    operations.V3ThreathuntingThreatsListResponse,
     | errors.AuthenticationError
     | errors.ErrorModel
     | SDKBaseError
@@ -172,13 +168,12 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(
-      200,
-      operations.V3AccountmanagementOrgCreditsResponse$inboundSchema,
-      { hdrs: true, key: "Result" },
-    ),
+    M.json(200, operations.V3ThreathuntingThreatsListResponse$inboundSchema, {
+      hdrs: true,
+      key: "Result",
+    }),
     M.jsonErr(401, errors.AuthenticationError$inboundSchema),
-    M.jsonErr([403, 404, 422], errors.ErrorModel$inboundSchema, {
+    M.jsonErr([403, 422], errors.ErrorModel$inboundSchema, {
       ctype: "application/problem+json",
     }),
     M.fail("4XX"),
