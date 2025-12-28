@@ -5,11 +5,11 @@
 ```typescript
 import { LabelSource } from "@censys/platform-sdk/models/components";
 
-let value: LabelSource = "censys";
+let value: LabelSource = "recog";
 ```
 
 ## Values
 
 ```typescript
-"" | "censys" | "recog" | "wappalyzer" | "third_party"
+"" | "censys" | "recog" | "wappalyzer" | "third_party" | "html_meta_extractor"
 ```

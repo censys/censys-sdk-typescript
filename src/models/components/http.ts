@@ -9,6 +9,10 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { HttpFavicon, HttpFavicon$inboundSchema } from "./httpfavicon.js";
 import {
+  HttpRedirectChainLink,
+  HttpRedirectChainLink$inboundSchema,
+} from "./httpredirectchainlink.js";
+import {
   HttpRepeatedHeaders,
   HttpRepeatedHeaders$inboundSchema,
 } from "./httprepeatedheaders.js";
@@ -43,6 +47,10 @@ export type Http = {
    */
   protocol?: string | undefined;
   /**
+   * If the scan redirects, the list of followup scans performed
+   */
+  redirectChain?: Array<HttpRedirectChainLink> | null | undefined;
+  /**
    * A 3-digit integer result code indicating the result of the services.http.request.
    */
   statusCode?: number | undefined;
@@ -70,6 +78,8 @@ export const Http$inboundSchema: z.ZodType<Http, z.ZodTypeDef, unknown> = z
     html_tags: z.nullable(z.array(z.string())).optional(),
     html_title: z.string().optional(),
     protocol: z.string().optional(),
+    redirect_chain: z.nullable(z.array(HttpRedirectChainLink$inboundSchema))
+      .optional(),
     status_code: z.number().int().optional(),
     status_reason: z.string().optional(),
     supported_versions: z.nullable(z.array(z.string())).optional(),
@@ -82,6 +92,7 @@ export const Http$inboundSchema: z.ZodType<Http, z.ZodTypeDef, unknown> = z
       "body_size": "bodySize",
       "html_tags": "htmlTags",
       "html_title": "htmlTitle",
+      "redirect_chain": "redirectChain",
       "status_code": "statusCode",
       "status_reason": "statusReason",
       "supported_versions": "supportedVersions",
