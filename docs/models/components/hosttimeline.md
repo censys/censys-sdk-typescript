@@ -12,7 +12,7 @@ let value: HostTimeline = {
       resource: {},
     },
   ],
-  scannedTo: new Date("2025-10-25T20:03:11.542Z"),
+  scannedTo: new Date("2026-10-25T20:03:11.542Z"),
 };
 ```
 

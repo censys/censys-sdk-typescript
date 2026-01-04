@@ -15,6 +15,7 @@ export const LabelSource = {
   Recog: "recog",
   Wappalyzer: "wappalyzer",
   ThirdParty: "third_party",
+  HtmlMetaExtractor: "html_meta_extractor",
 } as const;
 export type LabelSource = ClosedEnum<typeof LabelSource>;
 

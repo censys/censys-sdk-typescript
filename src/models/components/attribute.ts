@@ -18,6 +18,7 @@ export const Source = {
   Recog: "recog",
   Wappalyzer: "wappalyzer",
   ThirdParty: "third_party",
+  HtmlMetaExtractor: "html_meta_extractor",
 } as const;
 export type Source = ClosedEnum<typeof Source>;
 

@@ -14,6 +14,10 @@ import {
 } from "./chromedevtools.js";
 import { CobaltStrike, CobaltStrike$inboundSchema } from "./cobaltstrike.js";
 import { ElasticSearch, ElasticSearch$inboundSchema } from "./elasticsearch.js";
+import {
+  ExtractedEndpointData,
+  ExtractedEndpointData$inboundSchema,
+} from "./extractedendpointdata.js";
 import { Fortigate, Fortigate$inboundSchema } from "./fortigate.js";
 import { Graphql, Graphql$inboundSchema } from "./graphql.js";
 import { Http, Http$inboundSchema } from "./http.js";
@@ -57,6 +61,7 @@ export type EndpointScanState = {
   cobaltStrike?: CobaltStrike | undefined;
   elasticsearch?: ElasticSearch | undefined;
   endpointType?: string | undefined;
+  extracted?: ExtractedEndpointData | undefined;
   fortigate?: Fortigate | undefined;
   graphql?: Graphql | undefined;
   hostname?: string | undefined;
@@ -97,6 +102,7 @@ export const EndpointScanState$inboundSchema: z.ZodType<
   cobalt_strike: CobaltStrike$inboundSchema.optional(),
   elasticsearch: ElasticSearch$inboundSchema.optional(),
   endpoint_type: z.string().optional(),
+  extracted: ExtractedEndpointData$inboundSchema.optional(),
   fortigate: Fortigate$inboundSchema.optional(),
   graphql: Graphql$inboundSchema.optional(),
   hostname: z.string().optional(),

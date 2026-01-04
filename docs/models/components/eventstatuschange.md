@@ -6,7 +6,7 @@
 import { EventStatusChange } from "@censys/platform-sdk/models/components";
 
 let value: EventStatusChange = {
-  eventTime: new Date("2023-05-14T08:59:51.518Z"),
+  eventTime: new Date("2024-05-13T08:59:51.518Z"),
   newStatus: "populating",
 };
 ```

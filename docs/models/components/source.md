@@ -11,5 +11,5 @@ let value: Source = "";
 ## Values
 
 ```typescript
-"" | "censys" | "recog" | "wappalyzer" | "third_party"
+"" | "censys" | "recog" | "wappalyzer" | "third_party" | "html_meta_extractor"
 ```

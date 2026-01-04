@@ -21,6 +21,10 @@ export type CreditExpiration = {
    * The date and time the credit expiration will expire.
    */
   expiresAt?: Date | undefined;
+  /**
+   * The initial balance of the credit expiration (i.e. how much was purchased).
+   */
+  initialBalance: number;
 };
 
 /** @internal */
@@ -34,10 +38,12 @@ export const CreditExpiration$inboundSchema: z.ZodType<
     .optional(),
   expires_at: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
+  initial_balance: z.number().int(),
 }).transform((v) => {
   return remap$(v, {
     "created_at": "createdAt",
     "expires_at": "expiresAt",
+    "initial_balance": "initialBalance",
   });
 });
 

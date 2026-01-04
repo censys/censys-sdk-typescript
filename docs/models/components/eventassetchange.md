@@ -7,7 +7,7 @@ import { EventAssetChange } from "@censys/platform-sdk/models/components";
 
 let value: EventAssetChange = {
   changeType: "added",
-  eventTime: new Date("2023-06-17T22:15:30.757Z"),
+  eventTime: new Date("2024-06-16T22:15:30.757Z"),
   reason: "<value>",
 };
 ```
