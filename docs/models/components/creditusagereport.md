@@ -6,12 +6,12 @@
 import { CreditUsageReport } from "@censys/platform-sdk/models/components";
 
 let value: CreditUsageReport = {
-  endDate: new Date("2025-11-10T08:28:24.609Z"),
+  endDate: new Date("2026-11-10T08:28:24.609Z"),
   sourceBreakdown: {
     api: 415273,
     ui: 206100,
   },
-  startDate: new Date("2025-06-21T07:38:25.972Z"),
+  startDate: new Date("2026-06-21T07:38:25.972Z"),
   totalConsumed: 633998,
 };
 ```

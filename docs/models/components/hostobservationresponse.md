@@ -8,7 +8,7 @@ import { HostObservationResponse } from "@censys/platform-sdk/models/components"
 let value: HostObservationResponse = {
   ranges: [
     {
-      endTime: new Date("2024-04-12T04:26:55.576Z"),
+      endTime: new Date("2025-04-12T04:26:55.576Z"),
       ip: "144.9.125.76",
       port: 832378,
       protocols: [
@@ -16,7 +16,7 @@ let value: HostObservationResponse = {
         "<value 2>",
         "<value 3>",
       ],
-      startTime: new Date("2023-06-26T06:13:17.102Z"),
+      startTime: new Date("2024-06-25T06:13:17.102Z"),
       transportProtocol: "<value>",
     },
   ],

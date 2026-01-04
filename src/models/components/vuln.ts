@@ -35,6 +35,7 @@ export const VulnSource = {
   Recog: "recog",
   Wappalyzer: "wappalyzer",
   ThirdParty: "third_party",
+  HtmlMetaExtractor: "html_meta_extractor",
 } as const;
 export type VulnSource = ClosedEnum<typeof VulnSource>;
 

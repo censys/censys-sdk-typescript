@@ -18,6 +18,7 @@ export const ThreatSource = {
   Recog: "recog",
   Wappalyzer: "wappalyzer",
   ThirdParty: "third_party",
+  HtmlMetaExtractor: "html_meta_extractor",
 } as const;
 export type ThreatSource = ClosedEnum<typeof ThreatSource>;
 

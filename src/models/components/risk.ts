@@ -34,6 +34,7 @@ export const RiskSource1 = {
   Recog: "recog",
   Wappalyzer: "wappalyzer",
   ThirdParty: "third_party",
+  HtmlMetaExtractor: "html_meta_extractor",
 } as const;
 export type RiskSource1 = ClosedEnum<typeof RiskSource1>;
 
