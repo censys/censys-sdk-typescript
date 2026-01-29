@@ -7,7 +7,7 @@ import { Collection } from "@censys/platform-sdk/models/components";
 
 let value: Collection = {
   addedAssets24Hours: 181494,
-  createTime: new Date("2025-07-05T23:46:21.884Z"),
+  createTime: new Date("2026-07-05T23:46:21.884Z"),
   description:
     "yuck finally toward neglected where notwithstanding expansion whenever",
   id: "<id>",
@@ -26,6 +26,7 @@ let value: Collection = {
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | `addedAssets24Hours`                                                                          | *number*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `createTime`                                                                                  | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `createdBy`                                                                                   | *string*                                                                                      | :heavy_minus_sign:                                                                            | The ID of a Censys user who created the collection.                                           |
 | `description`                                                                                 | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `id`                                                                                          | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `name`                                                                                        | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |

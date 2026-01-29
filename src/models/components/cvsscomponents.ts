@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -20,7 +21,7 @@ export const AttackComplexity = {
 /**
  * Indicates conditions beyond the attacker’s control that must exist in order to exploit the vulnerability. The Attack Complexity metric is scored as either Low or High. There are two possible values: Low (L) – There are no specific pre-conditions required for exploitation, High (H) – The attacker must complete some number of preparatory steps in order to get access.
  */
-export type AttackComplexity = ClosedEnum<typeof AttackComplexity>;
+export type AttackComplexity = OpenEnum<typeof AttackComplexity>;
 
 /**
  * Indicates the level of access required for an attacker to exploit the vulnerability. The Attack Vector metric is scored in one of four levels: Network (N) – Vulnerabilities with this rating are remotely exploitable, from one or more hops away, up to, and including, remote exploitation over the Internet, Adjacent (A) – A vulnerability with this rating requires network adjacency for exploitation. The attack must be launched from the same physical or logical network, Local (L) – Vulnerabilities with this rating are not exploitable over a network, Physical (P) – An attacker must physically interact with the target system.
@@ -35,7 +36,7 @@ export const AttackVector = {
 /**
  * Indicates the level of access required for an attacker to exploit the vulnerability. The Attack Vector metric is scored in one of four levels: Network (N) – Vulnerabilities with this rating are remotely exploitable, from one or more hops away, up to, and including, remote exploitation over the Internet, Adjacent (A) – A vulnerability with this rating requires network adjacency for exploitation. The attack must be launched from the same physical or logical network, Local (L) – Vulnerabilities with this rating are not exploitable over a network, Physical (P) – An attacker must physically interact with the target system.
  */
-export type AttackVector = ClosedEnum<typeof AttackVector>;
+export type AttackVector = OpenEnum<typeof AttackVector>;
 
 /**
  * If an attack renders information unavailable, such as when a system crashes or through a DDoS attack, availability is negatively impacted. Availability has three possible values: None (N) – There is no loss of availability, Low (L) – Availability might be intermittently limited, or performance might be negatively impacted, as a result of a successful attack, High (H) – There is a complete loss of availability of the impacted system or information.
@@ -49,7 +50,7 @@ export const Availability = {
 /**
  * If an attack renders information unavailable, such as when a system crashes or through a DDoS attack, availability is negatively impacted. Availability has three possible values: None (N) – There is no loss of availability, Low (L) – Availability might be intermittently limited, or performance might be negatively impacted, as a result of a successful attack, High (H) – There is a complete loss of availability of the impacted system or information.
  */
-export type Availability = ClosedEnum<typeof Availability>;
+export type Availability = OpenEnum<typeof Availability>;
 
 /**
  * Refers to the disclosure of sensitive information to authorized and unauthorized users, with the goal being that only authorized users are able to access the target data. Confidentiality has three potential values: High (H) – The attacker has full access to all resources in the impacted system, including highly sensitive information such as encryption keys, Low (L) – The attacker has partial access to information, with no control over what, specifically, they are able to access, None (N) – No data is accessible to unauthorized users as a result of the exploit.
@@ -63,7 +64,7 @@ export const Confidentiality = {
 /**
  * Refers to the disclosure of sensitive information to authorized and unauthorized users, with the goal being that only authorized users are able to access the target data. Confidentiality has three potential values: High (H) – The attacker has full access to all resources in the impacted system, including highly sensitive information such as encryption keys, Low (L) – The attacker has partial access to information, with no control over what, specifically, they are able to access, None (N) – No data is accessible to unauthorized users as a result of the exploit.
  */
-export type Confidentiality = ClosedEnum<typeof Confidentiality>;
+export type Confidentiality = OpenEnum<typeof Confidentiality>;
 
 /**
  * Refers to whether the protected information has been tampered with or changed in any way. If there is no way for an attacker to alter the accuracy or completeness of the information, integrity has been maintained. Integrity has three values: None (N) – There is no loss of the integrity of any information, Low (L) – A limited amount of information might be tampered with or modified, but there is no serious impact on the protected system, High (H) – The attacker can modify any/all information on the target system, resulting in a complete loss of integrity.
@@ -77,7 +78,7 @@ export const Integrity = {
 /**
  * Refers to whether the protected information has been tampered with or changed in any way. If there is no way for an attacker to alter the accuracy or completeness of the information, integrity has been maintained. Integrity has three values: None (N) – There is no loss of the integrity of any information, Low (L) – A limited amount of information might be tampered with or modified, but there is no serious impact on the protected system, High (H) – The attacker can modify any/all information on the target system, resulting in a complete loss of integrity.
  */
-export type Integrity = ClosedEnum<typeof Integrity>;
+export type Integrity = OpenEnum<typeof Integrity>;
 
 /**
  * Describes the level of privileges or access an attacker must have before successful exploitation. There are three possible values: None (N) – There is no privilege or special access required to conduct the attack, Low (L) – The attacker requires basic, “user” level privileges to leverage the exploit, High (H) – Administrative or similar access privileges are required for successful attack.
@@ -91,7 +92,7 @@ export const PrivilegesRequired = {
 /**
  * Describes the level of privileges or access an attacker must have before successful exploitation. There are three possible values: None (N) – There is no privilege or special access required to conduct the attack, Low (L) – The attacker requires basic, “user” level privileges to leverage the exploit, High (H) – Administrative or similar access privileges are required for successful attack.
  */
-export type PrivilegesRequired = ClosedEnum<typeof PrivilegesRequired>;
+export type PrivilegesRequired = OpenEnum<typeof PrivilegesRequired>;
 
 /**
  * Determines whether a vulnerability in one system or component can impact another system or component. If a vulnerability in a vulnerable component can affect a component which is in a different security scope than the vulnerable component, a scope change occurs. Scope has two possible ratings: Changed (C) – An exploited vulnerability can have a carry over impact on another system, Unchanged (U) – The exploited vulnerability is limited in damage to only the local security authority.
@@ -104,7 +105,7 @@ export const Scope = {
 /**
  * Determines whether a vulnerability in one system or component can impact another system or component. If a vulnerability in a vulnerable component can affect a component which is in a different security scope than the vulnerable component, a scope change occurs. Scope has two possible ratings: Changed (C) – An exploited vulnerability can have a carry over impact on another system, Unchanged (U) – The exploited vulnerability is limited in damage to only the local security authority.
  */
-export type Scope = ClosedEnum<typeof Scope>;
+export type Scope = OpenEnum<typeof Scope>;
 
 /**
  * Describes whether a user, other than the attacker, is required to do anything or participate in exploitation of the vulnerability. User interaction has two possible values: None (N) – No user interaction is required, Required (R) – A user must complete some steps for the exploit to succeed. For example, a user might be required to install some software.
@@ -117,7 +118,7 @@ export const UserInteraction = {
 /**
  * Describes whether a user, other than the attacker, is required to do anything or participate in exploitation of the vulnerability. User interaction has two possible values: None (N) – No user interaction is required, Required (R) – A user must complete some steps for the exploit to succeed. For example, a user might be required to install some software.
  */
-export type UserInteraction = ClosedEnum<typeof UserInteraction>;
+export type UserInteraction = OpenEnum<typeof UserInteraction>;
 
 export type CVSSComponents = {
   /**
@@ -155,41 +156,57 @@ export type CVSSComponents = {
 };
 
 /** @internal */
-export const AttackComplexity$inboundSchema: z.ZodNativeEnum<
-  typeof AttackComplexity
-> = z.nativeEnum(AttackComplexity);
+export const AttackComplexity$inboundSchema: z.ZodType<
+  AttackComplexity,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(AttackComplexity);
 
 /** @internal */
-export const AttackVector$inboundSchema: z.ZodNativeEnum<typeof AttackVector> =
-  z.nativeEnum(AttackVector);
+export const AttackVector$inboundSchema: z.ZodType<
+  AttackVector,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(AttackVector);
 
 /** @internal */
-export const Availability$inboundSchema: z.ZodNativeEnum<typeof Availability> =
-  z.nativeEnum(Availability);
+export const Availability$inboundSchema: z.ZodType<
+  Availability,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(Availability);
 
 /** @internal */
-export const Confidentiality$inboundSchema: z.ZodNativeEnum<
-  typeof Confidentiality
-> = z.nativeEnum(Confidentiality);
+export const Confidentiality$inboundSchema: z.ZodType<
+  Confidentiality,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(Confidentiality);
 
 /** @internal */
-export const Integrity$inboundSchema: z.ZodNativeEnum<typeof Integrity> = z
-  .nativeEnum(Integrity);
+export const Integrity$inboundSchema: z.ZodType<
+  Integrity,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(Integrity);
 
 /** @internal */
-export const PrivilegesRequired$inboundSchema: z.ZodNativeEnum<
-  typeof PrivilegesRequired
-> = z.nativeEnum(PrivilegesRequired);
+export const PrivilegesRequired$inboundSchema: z.ZodType<
+  PrivilegesRequired,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(PrivilegesRequired);
 
 /** @internal */
-export const Scope$inboundSchema: z.ZodNativeEnum<typeof Scope> = z.nativeEnum(
-  Scope,
-);
+export const Scope$inboundSchema: z.ZodType<Scope, z.ZodTypeDef, unknown> =
+  openEnums.inboundSchema(Scope);
 
 /** @internal */
-export const UserInteraction$inboundSchema: z.ZodNativeEnum<
-  typeof UserInteraction
-> = z.nativeEnum(UserInteraction);
+export const UserInteraction$inboundSchema: z.ZodType<
+  UserInteraction,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(UserInteraction);
 
 /** @internal */
 export const CVSSComponents$inboundSchema: z.ZodType<

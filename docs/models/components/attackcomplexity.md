@@ -12,6 +12,8 @@ let value: AttackComplexity = "";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"" | "low" | "high"
+"" | "low" | "high" | Unrecognized<string>
 ```

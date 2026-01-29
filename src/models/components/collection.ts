@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -16,7 +17,7 @@ export const CollectionStatus = {
   Paused: "paused",
   Archived: "archived",
 } as const;
-export type CollectionStatus = ClosedEnum<typeof CollectionStatus>;
+export type CollectionStatus = OpenEnum<typeof CollectionStatus>;
 
 export const StatusReason = {
   Unspecified: "unspecified",
@@ -27,11 +28,15 @@ export const StatusReason = {
   QueryChanged: "query_changed",
   Initial: "initial",
 } as const;
-export type StatusReason = ClosedEnum<typeof StatusReason>;
+export type StatusReason = OpenEnum<typeof StatusReason>;
 
 export type Collection = {
   addedAssets24Hours: number;
   createTime: Date;
+  /**
+   * The ID of a Censys user who created the collection.
+   */
+  createdBy?: string | undefined;
   description: string;
   id: string;
   name: string;
@@ -43,13 +48,18 @@ export type Collection = {
 };
 
 /** @internal */
-export const CollectionStatus$inboundSchema: z.ZodNativeEnum<
-  typeof CollectionStatus
-> = z.nativeEnum(CollectionStatus);
+export const CollectionStatus$inboundSchema: z.ZodType<
+  CollectionStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(CollectionStatus);
 
 /** @internal */
-export const StatusReason$inboundSchema: z.ZodNativeEnum<typeof StatusReason> =
-  z.nativeEnum(StatusReason);
+export const StatusReason$inboundSchema: z.ZodType<
+  StatusReason,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(StatusReason);
 
 /** @internal */
 export const Collection$inboundSchema: z.ZodType<
@@ -61,6 +71,7 @@ export const Collection$inboundSchema: z.ZodType<
   create_time: z.string().datetime({ offset: true }).transform(v =>
     new Date(v)
   ),
+  created_by: z.string().optional(),
   description: z.string(),
   id: z.string(),
   name: z.string(),
@@ -73,6 +84,7 @@ export const Collection$inboundSchema: z.ZodType<
   return remap$(v, {
     "added_assets_24_hours": "addedAssets24Hours",
     "create_time": "createTime",
+    "created_by": "createdBy",
     "removed_assets_24_hours": "removedAssets24Hours",
     "status_reason": "statusReason",
     "total_assets": "totalAssets",

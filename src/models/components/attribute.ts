@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Cpe, Cpe$inboundSchema } from "./cpe.js";
@@ -18,8 +19,9 @@ export const Source = {
   Recog: "recog",
   Wappalyzer: "wappalyzer",
   ThirdParty: "third_party",
+  HtmlMetaExtractor: "html_meta_extractor",
 } as const;
-export type Source = ClosedEnum<typeof Source>;
+export type Source = OpenEnum<typeof Source>;
 
 export type Attribute = {
   components?: Array<Cpe> | null | undefined;
@@ -38,8 +40,8 @@ export type Attribute = {
 };
 
 /** @internal */
-export const Source$inboundSchema: z.ZodNativeEnum<typeof Source> = z
-  .nativeEnum(Source);
+export const Source$inboundSchema: z.ZodType<Source, z.ZodTypeDef, unknown> =
+  openEnums.inboundSchema(Source);
 
 /** @internal */
 export const Attribute$inboundSchema: z.ZodType<

@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Activemq, Activemq$inboundSchema } from "./activemq.js";
@@ -52,6 +53,7 @@ import { Ethereum, Ethereum$inboundSchema } from "./ethereum.js";
 import { Fox, Fox$inboundSchema } from "./fox.js";
 import { Ftp, Ftp$inboundSchema } from "./ftp.js";
 import { Gearman, Gearman$inboundSchema } from "./gearman.js";
+import { Hajime, Hajime$inboundSchema } from "./hajime.js";
 import { HidVertx, HidVertx$inboundSchema } from "./hidvertx.js";
 import { Hikvision, Hikvision$inboundSchema } from "./hikvision.js";
 import { Ibmnje, Ibmnje$inboundSchema } from "./ibmnje.js";
@@ -168,7 +170,7 @@ export const ServiceTransportProtocol = {
   Icmp: "icmp",
   Quic: "quic",
 } as const;
-export type ServiceTransportProtocol = ClosedEnum<
+export type ServiceTransportProtocol = OpenEnum<
   typeof ServiceTransportProtocol
 >;
 
@@ -208,6 +210,7 @@ export type Service = {
   fox?: Fox | undefined;
   ftp?: Ftp | undefined;
   gearman?: Gearman | undefined;
+  hajime?: Hajime | undefined;
   hardware?: Array<Attribute> | null | undefined;
   hidVertx?: HidVertx | undefined;
   hikvision?: Hikvision | undefined;
@@ -312,9 +315,11 @@ export type Service = {
 };
 
 /** @internal */
-export const ServiceTransportProtocol$inboundSchema: z.ZodNativeEnum<
-  typeof ServiceTransportProtocol
-> = z.nativeEnum(ServiceTransportProtocol);
+export const ServiceTransportProtocol$inboundSchema: z.ZodType<
+  ServiceTransportProtocol,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ServiceTransportProtocol);
 
 /** @internal */
 export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
@@ -355,6 +360,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     fox: Fox$inboundSchema.optional(),
     ftp: Ftp$inboundSchema.optional(),
     gearman: Gearman$inboundSchema.optional(),
+    hajime: Hajime$inboundSchema.optional(),
     hardware: z.nullable(z.array(Attribute$inboundSchema)).optional(),
     hid_vertx: HidVertx$inboundSchema.optional(),
     hikvision: Hikvision$inboundSchema.optional(),

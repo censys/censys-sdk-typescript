@@ -12,6 +12,8 @@ let value: ServerType = "redirecting";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"" | "recursive_resolver" | "authoritative" | "forwarding" | "redirecting"
+"" | "recursive_resolver" | "authoritative" | "forwarding" | "redirecting" | Unrecognized<string>
 ```

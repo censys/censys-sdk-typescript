@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Get a collection's events
  *
  * @remarks
- * Retrieve the event history for a collection. This includes the addition or removal of assets as well as collection status changes.
+ * Retrieve the event history for a collection. This includes the addition or removal of assets as well as collection status changes.<br><br>This endpoint does not cost credits to execute.
  */
 export function collectionsListEvents(
   client: SDKCore,

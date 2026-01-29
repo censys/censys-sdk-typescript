@@ -10,6 +10,8 @@ let value: ValueDensity = "";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"" | "diffuse" | "concentrated"
+"" | "diffuse" | "concentrated" | Unrecognized<string>
 ```

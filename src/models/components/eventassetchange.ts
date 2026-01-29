@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -13,7 +14,7 @@ export const ChangeType = {
   Added: "added",
   Removed: "removed",
 } as const;
-export type ChangeType = ClosedEnum<typeof ChangeType>;
+export type ChangeType = OpenEnum<typeof ChangeType>;
 
 export type EventAssetChange = {
   changeType: ChangeType;
@@ -22,8 +23,11 @@ export type EventAssetChange = {
 };
 
 /** @internal */
-export const ChangeType$inboundSchema: z.ZodNativeEnum<typeof ChangeType> = z
-  .nativeEnum(ChangeType);
+export const ChangeType$inboundSchema: z.ZodType<
+  ChangeType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ChangeType);
 
 /** @internal */
 export const EventAssetChange$inboundSchema: z.ZodType<

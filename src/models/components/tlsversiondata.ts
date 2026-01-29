@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -20,7 +21,7 @@ export const Version = {
   Dtlsv12: "dtlsv1_2",
   Dtlsv13: "dtlsv1_3",
 } as const;
-export type Version = ClosedEnum<typeof Version>;
+export type Version = OpenEnum<typeof Version>;
 
 export type TlsVersionData = {
   ja3s?: string | undefined;
@@ -29,8 +30,8 @@ export type TlsVersionData = {
 };
 
 /** @internal */
-export const Version$inboundSchema: z.ZodNativeEnum<typeof Version> = z
-  .nativeEnum(Version);
+export const Version$inboundSchema: z.ZodType<Version, z.ZodTypeDef, unknown> =
+  openEnums.inboundSchema(Version);
 
 /** @internal */
 export const TlsVersionData$inboundSchema: z.ZodType<

@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -19,7 +20,7 @@ export const RejectType = {
   NoCertificate: "no_certificate",
   AuthenticatorFail: "authenticator_fail",
 } as const;
-export type RejectType = ClosedEnum<typeof RejectType>;
+export type RejectType = OpenEnum<typeof RejectType>;
 
 export type Reject = {
   reason?: string | undefined;
@@ -27,8 +28,11 @@ export type Reject = {
 };
 
 /** @internal */
-export const RejectType$inboundSchema: z.ZodNativeEnum<typeof RejectType> = z
-  .nativeEnum(RejectType);
+export const RejectType$inboundSchema: z.ZodType<
+  RejectType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(RejectType);
 
 /** @internal */
 export const Reject$inboundSchema: z.ZodType<Reject, z.ZodTypeDef, unknown> = z

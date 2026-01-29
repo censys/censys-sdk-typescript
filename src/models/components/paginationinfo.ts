@@ -14,7 +14,7 @@ export type PaginationInfo = {
    */
   nextPageToken?: string | undefined;
   /**
-   * The number of members requested per page.
+   * The number of results requested per page.
    */
   pageSize: number;
 };

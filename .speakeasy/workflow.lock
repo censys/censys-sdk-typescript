@@ -1,21 +1,21 @@
-speakeasyVersion: 1.678.0
+speakeasyVersion: 1.700.2
 sources:
     converge-source:
         sourceNamespace: converge-source
-        sourceRevisionDigest: sha256:94f388f3d1883cdbe8be73e7a6628cba1b674d43e5a64cbaea0bf0ef2a5a0136
-        sourceBlobDigest: sha256:c0bbb1684a71f5fa9380f3035b7c397340d5e782f61ca15c0714f5cf53b13047
+        sourceRevisionDigest: sha256:7b3f780b817d3434a2d2aeb310cf8987d91c3d3a493f1b73bcf32ec3e877d56a
+        sourceBlobDigest: sha256:c82ea45eb541f2b2bd01aea26cd7a561098f9326ed7163df172c5ead3787bf44
         tags:
             - latest
-            - speakeasy-sdk-regen-1763080127
-            - 1.0.50
+            - speakeasy-sdk-regen-1766104252
+            - 1.0.71
 targets:
     censys-sdk-typescript:
         source: converge-source
         sourceNamespace: converge-source
-        sourceRevisionDigest: sha256:94f388f3d1883cdbe8be73e7a6628cba1b674d43e5a64cbaea0bf0ef2a5a0136
-        sourceBlobDigest: sha256:c0bbb1684a71f5fa9380f3035b7c397340d5e782f61ca15c0714f5cf53b13047
+        sourceRevisionDigest: sha256:7b3f780b817d3434a2d2aeb310cf8987d91c3d3a493f1b73bcf32ec3e877d56a
+        sourceBlobDigest: sha256:c82ea45eb541f2b2bd01aea26cd7a561098f9326ed7163df172c5ead3787bf44
         codeSamplesNamespace: converge-source-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:4cc3d9339a1bb3579187447de4dec5b14cacb6e73aa9456a8c195fe8a9359eb3
+        codeSamplesRevisionDigest: sha256:d7e13b38f8ba415dfaa67e5416c78c7528ed7e98db2d6240d1c833e7758e9e1d
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

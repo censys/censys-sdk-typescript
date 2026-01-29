@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * List collections
  *
  * @remarks
- * List all collections for an organization. Retrieved information includes collection ID, name, query, description, status, and asset count.
+ * List all collections for an organization. Retrieved information includes collection ID, name, query, description, status, and asset count.<br><br>This endpoint does not cost credits to execute.
  */
 export function collectionsList(
   client: SDKCore,

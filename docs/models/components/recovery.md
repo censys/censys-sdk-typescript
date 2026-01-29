@@ -10,6 +10,8 @@ let value: Recovery = "user";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"" | "automatic" | "user" | "irrecoverable"
+"" | "automatic" | "user" | "irrecoverable" | Unrecognized<string>
 ```

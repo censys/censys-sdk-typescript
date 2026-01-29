@@ -10,6 +10,8 @@ let value: ProviderUrgency = "clear";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"" | "clear" | "green" | "amber" | "red"
+"" | "clear" | "green" | "amber" | "red" | Unrecognized<string>
 ```

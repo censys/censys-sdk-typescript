@@ -12,6 +12,8 @@ let value: CVSSv4ComponentsAttackVector = "network";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"" | "network" | "adjacent" | "local" | "physical"
+"" | "network" | "adjacent" | "local" | "physical" | Unrecognized<string>
 ```

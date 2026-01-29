@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Evidence, Evidence$inboundSchema } from "./evidence.js";
@@ -18,8 +19,9 @@ export const ThreatSource = {
   Recog: "recog",
   Wappalyzer: "wappalyzer",
   ThirdParty: "third_party",
+  HtmlMetaExtractor: "html_meta_extractor",
 } as const;
-export type ThreatSource = ClosedEnum<typeof ThreatSource>;
+export type ThreatSource = OpenEnum<typeof ThreatSource>;
 
 export type Threat = {
   actors?: Array<ThreatActor> | null | undefined;
@@ -35,8 +37,11 @@ export type Threat = {
 };
 
 /** @internal */
-export const ThreatSource$inboundSchema: z.ZodNativeEnum<typeof ThreatSource> =
-  z.nativeEnum(ThreatSource);
+export const ThreatSource$inboundSchema: z.ZodType<
+  ThreatSource,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ThreatSource);
 
 /** @internal */
 export const Threat$inboundSchema: z.ZodType<Threat, z.ZodTypeDef, unknown> = z

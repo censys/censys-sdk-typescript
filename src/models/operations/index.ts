@@ -11,6 +11,7 @@ export * from "./v3accountmanagementorgdetails.js";
 export * from "./v3accountmanagementremoveorgmember.js";
 export * from "./v3accountmanagementupdateorgmember.js";
 export * from "./v3accountmanagementusercredits.js";
+export * from "./v3accountmanagementusercreditsusage.js";
 export * from "./v3collectionscrudcreate.js";
 export * from "./v3collectionscruddelete.js";
 export * from "./v3collectionscrudget.js";

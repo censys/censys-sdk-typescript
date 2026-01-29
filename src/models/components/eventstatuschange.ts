@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -15,7 +16,7 @@ export const NewStatus = {
   Paused: "paused",
   Archived: "archived",
 } as const;
-export type NewStatus = ClosedEnum<typeof NewStatus>;
+export type NewStatus = OpenEnum<typeof NewStatus>;
 
 export const OldStatus = {
   Active: "active",
@@ -23,7 +24,7 @@ export const OldStatus = {
   Paused: "paused",
   Archived: "archived",
 } as const;
-export type OldStatus = ClosedEnum<typeof OldStatus>;
+export type OldStatus = OpenEnum<typeof OldStatus>;
 
 export type EventStatusChange = {
   eventTime: Date;
@@ -33,12 +34,18 @@ export type EventStatusChange = {
 };
 
 /** @internal */
-export const NewStatus$inboundSchema: z.ZodNativeEnum<typeof NewStatus> = z
-  .nativeEnum(NewStatus);
+export const NewStatus$inboundSchema: z.ZodType<
+  NewStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(NewStatus);
 
 /** @internal */
-export const OldStatus$inboundSchema: z.ZodNativeEnum<typeof OldStatus> = z
-  .nativeEnum(OldStatus);
+export const OldStatus$inboundSchema: z.ZodType<
+  OldStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(OldStatus);
 
 /** @internal */
 export const EventStatusChange$inboundSchema: z.ZodType<

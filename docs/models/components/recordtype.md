@@ -10,6 +10,8 @@ let value: RecordType = "aaaa";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"" | "a" | "aaaa"
+"" | "a" | "aaaa" | Unrecognized<string>
 ```

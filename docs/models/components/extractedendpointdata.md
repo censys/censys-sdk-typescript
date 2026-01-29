@@ -1,0 +1,20 @@
+# ExtractedEndpointData
+
+## Example Usage
+
+```typescript
+import { ExtractedEndpointData } from "@censys/platform-sdk/models/components";
+
+let value: ExtractedEndpointData = {};
+```
+
+## Fields
+
+| Field                                                                                                                  | Type                                                                                                                   | Required                                                                                                               | Description                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `analyticsServices`                                                                                                    | [components.ExtractedEndpointDataAnalyticsService](../../models/components/extractedendpointdataanalyticsservice.md)[] | :heavy_minus_sign:                                                                                                     | N/A                                                                                                                    |
+| `copyrights`                                                                                                           | [components.ExtractedEndpointDataCopyright](../../models/components/extractedendpointdatacopyright.md)[]               | :heavy_minus_sign:                                                                                                     | N/A                                                                                                                    |
+| `ipAddresses`                                                                                                          | *string*[]                                                                                                             | :heavy_minus_sign:                                                                                                     | N/A                                                                                                                    |
+| `languages`                                                                                                            | *string*[]                                                                                                             | :heavy_minus_sign:                                                                                                     | N/A                                                                                                                    |
+| `links`                                                                                                                | *string*[]                                                                                                             | :heavy_minus_sign:                                                                                                     | N/A                                                                                                                    |
+| `macAddresses`                                                                                                         | *string*[]                                                                                                             | :heavy_minus_sign:                                                                                                     | N/A                                                                                                                    |

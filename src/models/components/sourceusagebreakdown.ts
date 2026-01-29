@@ -3,15 +3,24 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SourceUsageBreakdown = {
   /**
-   * The amount of credits consumed through the PlatformAPI.
+   * The amount of credits consumed through the Platform API.
    */
   api: number;
+  /**
+   * The amount of credits consumed through auto-replenishment.
+   */
+  autoReplenishment: number;
+  /**
+   * The amount of credits consumed through other operations.
+   */
+  other: number;
   /**
    * The amount of credits consumed through the Platform UI.
    */
@@ -25,7 +34,13 @@ export const SourceUsageBreakdown$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   api: z.number().int(),
+  auto_replenishment: z.number().int(),
+  other: z.number().int(),
   ui: z.number().int(),
+}).transform((v) => {
+  return remap$(v, {
+    "auto_replenishment": "autoReplenishment",
+  });
 });
 
 export function sourceUsageBreakdownFromJSON(

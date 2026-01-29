@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Evidence, Evidence$inboundSchema } from "./evidence.js";
@@ -15,8 +16,9 @@ export const LabelSource = {
   Recog: "recog",
   Wappalyzer: "wappalyzer",
   ThirdParty: "third_party",
+  HtmlMetaExtractor: "html_meta_extractor",
 } as const;
-export type LabelSource = ClosedEnum<typeof LabelSource>;
+export type LabelSource = OpenEnum<typeof LabelSource>;
 
 export type Label = {
   confidence?: number | undefined;
@@ -26,8 +28,11 @@ export type Label = {
 };
 
 /** @internal */
-export const LabelSource$inboundSchema: z.ZodNativeEnum<typeof LabelSource> = z
-  .nativeEnum(LabelSource);
+export const LabelSource$inboundSchema: z.ZodType<
+  LabelSource,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(LabelSource);
 
 /** @internal */
 export const Label$inboundSchema: z.ZodType<Label, z.ZodTypeDef, unknown> = z

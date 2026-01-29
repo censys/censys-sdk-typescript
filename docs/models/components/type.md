@@ -12,6 +12,8 @@ let value: Type = "";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"" | "root" | "intermediate" | "leaf"
+"" | "root" | "intermediate" | "leaf" | Unrecognized<string>
 ```

@@ -34,7 +34,7 @@ export enum DeleteAcceptEnum {
  * Delete a collection
  *
  * @remarks
- * Delete a collection.
+ * Delete a collection.<br><br>This endpoint does not cost credits to execute.
  */
 export function collectionsDelete(
   client: SDKCore,
