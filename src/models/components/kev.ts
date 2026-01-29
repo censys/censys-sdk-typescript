@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -20,7 +21,7 @@ export const KEVSource = {
 /**
  * The source checked to determine whether the CVE is in the KEV catalog.
  */
-export type KEVSource = ClosedEnum<typeof KEVSource>;
+export type KEVSource = OpenEnum<typeof KEVSource>;
 
 export type Kev = {
   /**
@@ -38,8 +39,11 @@ export type Kev = {
 };
 
 /** @internal */
-export const KEVSource$inboundSchema: z.ZodNativeEnum<typeof KEVSource> = z
-  .nativeEnum(KEVSource);
+export const KEVSource$inboundSchema: z.ZodType<
+  KEVSource,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(KEVSource);
 
 /** @internal */
 export const Kev$inboundSchema: z.ZodType<Kev, z.ZodTypeDef, unknown> = z

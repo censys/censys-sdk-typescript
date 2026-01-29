@@ -10,6 +10,8 @@ let value: RiskSource = "";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"" | "censys" | "cve"
+"" | "censys" | "cve" | Unrecognized<string>
 ```

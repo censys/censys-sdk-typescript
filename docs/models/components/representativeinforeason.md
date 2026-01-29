@@ -10,6 +10,8 @@ let value: RepresentativeInfoReason = "zscaler";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"" | "protocol_port_count" | "incapsula" | "zscaler"
+"" | "protocol_port_count" | "incapsula" | "zscaler" | Unrecognized<string>
 ```

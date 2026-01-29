@@ -7,6 +7,7 @@ import { accountManagementGetOrganizationCredits } from "../funcs/accountManagem
 import { accountManagementGetOrganizationCreditUsage } from "../funcs/accountManagementGetOrganizationCreditUsage.js";
 import { accountManagementGetOrganizationDetails } from "../funcs/accountManagementGetOrganizationDetails.js";
 import { accountManagementGetUserCredits } from "../funcs/accountManagementGetUserCredits.js";
+import { accountManagementGetUserCreditsUsage } from "../funcs/accountManagementGetUserCreditsUsage.js";
 import {
   accountManagementInviteUserToOrganization,
   InviteUserToOrganizationAcceptEnum,
@@ -49,7 +50,7 @@ export class AccountManagement extends ClientSDK {
   }
 
   /**
-   * Get organization credit details
+   * Get organization credit balance
    *
    * @remarks
    * Retrieve credit balance and expiration information for an organization. <br><br>Credits expire 12 months after they are acquired.<br><br>This endpoint does not cost any credits to execute.
@@ -69,7 +70,7 @@ export class AccountManagement extends ClientSDK {
    * Get organization credit usage
    *
    * @remarks
-   * Retrieve credit consumption information for an organization for a specific day.<br><br>Admins can obtain credit usage information for all users in their organization. Members may only retrieve usage information for their own account.<br><br>This endpoint does not cost any credits to execute.
+   * Retrieve credit information for an organization over a specific date range. You must include a start date in your request.<br><br>Admins can obtain credit usage information for all users in their organization. Members may only retrieve usage information for their own account.<br><br>This endpoint does not cost any credits to execute.
    */
   async getOrganizationCreditUsage(
     request: operations.V3AccountmanagementOrgCreditsUsageRequest,
@@ -163,10 +164,10 @@ export class AccountManagement extends ClientSDK {
   }
 
   /**
-   * Get member credit usage
+   * Get organization member credit usage
    *
    * @remarks
-   * Retrieve credit consumption information for an organization member for a specific day.<br><br>This endpoint does not cost any credits to execute.
+   * Retrieve credit consumption information for an organization member over a specific date range. You must include a start date in your request.<br><br>This endpoint does not cost any credits to execute.
    */
   async getMemberCreditUsage(
     request: operations.V3AccountmanagementMemberCreditsUsageRequest,
@@ -180,16 +181,33 @@ export class AccountManagement extends ClientSDK {
   }
 
   /**
-   * Get Free user credit details
+   * Get Free user credit balance
    *
    * @remarks
-   * Retrieve your Free user account credit balance and refresh information. To retrieve the credit balance for a Starter or Enterprise account, use the [get organization credit details endpoint](https://docs.censys.com/reference/v3-accountmanagement-org-credits).<br><br>This endpoint does not cost any credits to execute.
+   * Retrieve your Free user account credit balance and refresh information. To retrieve the credit balance for a Starter or Enterprise account, use the [get organization credit balance endpoint](https://docs.censys.com/reference/v3-accountmanagement-org-credits).<br><br>This endpoint does not cost any credits to execute.
    */
   async getUserCredits(
     options?: RequestOptions,
   ): Promise<operations.V3AccountmanagementUserCreditsResponse> {
     return unwrapAsync(accountManagementGetUserCredits(
       this,
+      options,
+    ));
+  }
+
+  /**
+   * Get Free user credit usage
+   *
+   * @remarks
+   * Retrieve your Free user account credit consumption information over a specific date range. You must include a start date in your request.<br><br>This endpoint does not cost any credits to execute.
+   */
+  async getUserCreditsUsage(
+    request: operations.V3AccountmanagementUserCreditsUsageRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3AccountmanagementUserCreditsUsageResponse> {
+    return unwrapAsync(accountManagementGetUserCreditsUsage(
+      this,
+      request,
       options,
     ));
   }

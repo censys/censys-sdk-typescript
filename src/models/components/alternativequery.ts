@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -14,7 +15,7 @@ export const Targets = {
   Cert: "cert",
   Unknown: "unknown",
 } as const;
-export type Targets = ClosedEnum<typeof Targets>;
+export type Targets = OpenEnum<typeof Targets>;
 
 export type AlternativeQuery = {
   /**
@@ -28,8 +29,8 @@ export type AlternativeQuery = {
 };
 
 /** @internal */
-export const Targets$inboundSchema: z.ZodNativeEnum<typeof Targets> = z
-  .nativeEnum(Targets);
+export const Targets$inboundSchema: z.ZodType<Targets, z.ZodTypeDef, unknown> =
+  openEnums.inboundSchema(Targets);
 
 /** @internal */
 export const AlternativeQuery$inboundSchema: z.ZodType<

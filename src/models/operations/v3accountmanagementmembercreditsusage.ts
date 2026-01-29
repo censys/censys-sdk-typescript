@@ -5,9 +5,23 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import { RFCDate } from "../../types/rfcdate.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+
+/**
+ * Whether to break down credit usage on a daily or monthly basis.
+ */
+export const QueryParamGranularity = {
+  Daily: "daily",
+  Monthly: "monthly",
+} as const;
+/**
+ * Whether to break down credit usage on a daily or monthly basis.
+ */
+export type QueryParamGranularity = ClosedEnum<typeof QueryParamGranularity>;
 
 export type V3AccountmanagementMemberCreditsUsageRequest = {
   /**
@@ -19,9 +33,21 @@ export type V3AccountmanagementMemberCreditsUsageRequest = {
    */
   userId: string;
   /**
-   * The date for the credit usage report in YYYY-MM-DD format (e.g., 2025-11-06).
+   * The date for the credit usage report in YYYY-MM-DD format (e.g., 2025-11-06). This field is deprecated and will be removed in a future version. Use start_date and end_date instead. The date must be on or after 2025-01-01 (the earliest date available for credit usage reports).
    */
-  date: string;
+  date?: string | undefined;
+  /**
+   * The start date for the credit usage report in YYYY-MM-DD format (e.g., 2025-11-01). Must be on or after 2025-01-01 (the earliest date available for credit usage reports).
+   */
+  startDate?: RFCDate | undefined;
+  /**
+   * The end date for the credit usage report in YYYY-MM-DD format (e.g., 2025-12-01). If omitted, will default to today's date. The date range (end_date - start_date) cannot exceed 365 days (1 year).
+   */
+  endDate?: RFCDate | undefined;
+  /**
+   * Whether to break down credit usage on a daily or monthly basis.
+   */
+  granularity?: QueryParamGranularity | undefined;
 };
 
 export type V3AccountmanagementMemberCreditsUsageResponse = {
@@ -30,10 +56,18 @@ export type V3AccountmanagementMemberCreditsUsageResponse = {
 };
 
 /** @internal */
+export const QueryParamGranularity$outboundSchema: z.ZodNativeEnum<
+  typeof QueryParamGranularity
+> = z.nativeEnum(QueryParamGranularity);
+
+/** @internal */
 export type V3AccountmanagementMemberCreditsUsageRequest$Outbound = {
   organization_id: string;
   user_id: string;
-  date: string;
+  date?: string | undefined;
+  start_date?: string | undefined;
+  end_date?: string | undefined;
+  granularity: string;
 };
 
 /** @internal */
@@ -45,11 +79,16 @@ export const V3AccountmanagementMemberCreditsUsageRequest$outboundSchema:
   > = z.object({
     organizationId: z.string(),
     userId: z.string(),
-    date: z.string(),
+    date: z.string().optional(),
+    startDate: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
+    endDate: z.instanceof(RFCDate).transform(v => v.toString()).optional(),
+    granularity: QueryParamGranularity$outboundSchema.default("daily"),
   }).transform((v) => {
     return remap$(v, {
       organizationId: "organization_id",
       userId: "user_id",
+      startDate: "start_date",
+      endDate: "end_date",
     });
   });
 

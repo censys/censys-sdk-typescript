@@ -4,7 +4,8 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -20,7 +21,7 @@ export const DnsResourceRecordType = {
 /**
  * An enumerated field indicating what type of data is in the "services.dns.additionals.response" field. For example, "A" signifies that the value in "services.dns.additionals.response" is an IPv4 address for the FQDN in "services.dns.additionals.name".
  */
-export type DnsResourceRecordType = ClosedEnum<typeof DnsResourceRecordType>;
+export type DnsResourceRecordType = OpenEnum<typeof DnsResourceRecordType>;
 
 export type DnsResourceRecord = {
   /**
@@ -38,9 +39,11 @@ export type DnsResourceRecord = {
 };
 
 /** @internal */
-export const DnsResourceRecordType$inboundSchema: z.ZodNativeEnum<
-  typeof DnsResourceRecordType
-> = z.nativeEnum(DnsResourceRecordType);
+export const DnsResourceRecordType$inboundSchema: z.ZodType<
+  DnsResourceRecordType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(DnsResourceRecordType);
 
 /** @internal */
 export const DnsResourceRecord$inboundSchema: z.ZodType<

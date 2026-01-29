@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -14,6 +15,10 @@ import {
 } from "./chromedevtools.js";
 import { CobaltStrike, CobaltStrike$inboundSchema } from "./cobaltstrike.js";
 import { ElasticSearch, ElasticSearch$inboundSchema } from "./elasticsearch.js";
+import {
+  ExtractedEndpointData,
+  ExtractedEndpointData$inboundSchema,
+} from "./extractedendpointdata.js";
 import { Fortigate, Fortigate$inboundSchema } from "./fortigate.js";
 import { Graphql, Graphql$inboundSchema } from "./graphql.js";
 import { Http, Http$inboundSchema } from "./http.js";
@@ -46,7 +51,7 @@ export const EndpointScanStateTransportProtocol = {
   Icmp: "icmp",
   Quic: "quic",
 } as const;
-export type EndpointScanStateTransportProtocol = ClosedEnum<
+export type EndpointScanStateTransportProtocol = OpenEnum<
   typeof EndpointScanStateTransportProtocol
 >;
 
@@ -57,6 +62,7 @@ export type EndpointScanState = {
   cobaltStrike?: CobaltStrike | undefined;
   elasticsearch?: ElasticSearch | undefined;
   endpointType?: string | undefined;
+  extracted?: ExtractedEndpointData | undefined;
   fortigate?: Fortigate | undefined;
   graphql?: Graphql | undefined;
   hostname?: string | undefined;
@@ -81,9 +87,11 @@ export type EndpointScanState = {
 };
 
 /** @internal */
-export const EndpointScanStateTransportProtocol$inboundSchema: z.ZodNativeEnum<
-  typeof EndpointScanStateTransportProtocol
-> = z.nativeEnum(EndpointScanStateTransportProtocol);
+export const EndpointScanStateTransportProtocol$inboundSchema: z.ZodType<
+  EndpointScanStateTransportProtocol,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(EndpointScanStateTransportProtocol);
 
 /** @internal */
 export const EndpointScanState$inboundSchema: z.ZodType<
@@ -97,6 +105,7 @@ export const EndpointScanState$inboundSchema: z.ZodType<
   cobalt_strike: CobaltStrike$inboundSchema.optional(),
   elasticsearch: ElasticSearch$inboundSchema.optional(),
   endpoint_type: z.string().optional(),
+  extracted: ExtractedEndpointData$inboundSchema.optional(),
   fortigate: Fortigate$inboundSchema.optional(),
   graphql: Graphql$inboundSchema.optional(),
   hostname: z.string().optional(),

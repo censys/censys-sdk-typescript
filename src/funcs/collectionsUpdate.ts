@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Update a collection
  *
  * @remarks
- * Update a collection's name, description, and/or query.
+ * Update a collection's name, description, and/or query.<br><br>This endpoint does not cost credits to execute.
  */
 export function collectionsUpdate(
   client: SDKCore,

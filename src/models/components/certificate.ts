@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -26,7 +27,7 @@ export const ParseStatus = {
   Fail: "fail",
   Corrupted: "corrupted",
 } as const;
-export type ParseStatus = ClosedEnum<typeof ParseStatus>;
+export type ParseStatus = OpenEnum<typeof ParseStatus>;
 
 /**
  * The extent to which the certificate's issuer validated the identity of the entity requesting the certificate. Options include Domain validated (DV), Organization Validated (OV), or Extended Validation (EV).
@@ -40,7 +41,7 @@ export const ValidationLevel = {
 /**
  * The extent to which the certificate's issuer validated the identity of the entity requesting the certificate. Options include Domain validated (DV), Organization Validated (OV), or Extended Validation (EV).
  */
-export type ValidationLevel = ClosedEnum<typeof ValidationLevel>;
+export type ValidationLevel = OpenEnum<typeof ValidationLevel>;
 
 export type Certificate = {
   /**
@@ -120,13 +121,18 @@ export type Certificate = {
 };
 
 /** @internal */
-export const ParseStatus$inboundSchema: z.ZodNativeEnum<typeof ParseStatus> = z
-  .nativeEnum(ParseStatus);
+export const ParseStatus$inboundSchema: z.ZodType<
+  ParseStatus,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ParseStatus);
 
 /** @internal */
-export const ValidationLevel$inboundSchema: z.ZodNativeEnum<
-  typeof ValidationLevel
-> = z.nativeEnum(ValidationLevel);
+export const ValidationLevel$inboundSchema: z.ZodType<
+  ValidationLevel,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ValidationLevel);
 
 /** @internal */
 export const Certificate$inboundSchema: z.ZodType<

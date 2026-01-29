@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -16,7 +17,7 @@ export const ServiceIdTransportProtocol = {
   Icmp: "icmp",
   Quic: "quic",
 } as const;
-export type ServiceIdTransportProtocol = ClosedEnum<
+export type ServiceIdTransportProtocol = OpenEnum<
   typeof ServiceIdTransportProtocol
 >;
 
@@ -28,9 +29,11 @@ export type ServiceId = {
 };
 
 /** @internal */
-export const ServiceIdTransportProtocol$inboundSchema: z.ZodNativeEnum<
-  typeof ServiceIdTransportProtocol
-> = z.nativeEnum(ServiceIdTransportProtocol);
+export const ServiceIdTransportProtocol$inboundSchema: z.ZodType<
+  ServiceIdTransportProtocol,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ServiceIdTransportProtocol);
 
 /** @internal */
 export const ServiceId$inboundSchema: z.ZodType<

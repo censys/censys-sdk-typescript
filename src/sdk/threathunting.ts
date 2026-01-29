@@ -70,7 +70,7 @@ export class ThreatHunting extends ClientSDK {
    * List active threats
    *
    * @remarks
-   * Retrieve a list of active threats observed by Censys by aggregating threat IDs across hosts and web properties. Threats are active if their fingerprint has been identified on hosts or web properties by Censys scans. This information is also available on the [Explore Threats page in the Platform web UI](https://platform.censys.io/threats).
+   * Retrieve a list of active threats observed by Censys by aggregating threat IDs across hosts and web properties. Threats are active if their fingerprint has been identified on hosts or web properties by Censys scans. This information is also available on the [Explore Threats page in the Platform web UI](https://platform.censys.io/threats).<br><br>This endpoint is available to organizations that have access to the Threat Hunting module.
    */
   async listThreats(
     request: operations.V3ThreathuntingThreatsListRequest,

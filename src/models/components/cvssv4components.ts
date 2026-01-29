@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -20,7 +21,7 @@ export const CVSSv4ComponentsAttackComplexity = {
 /**
  * Indicates conditions beyond the attacker’s control that must exist in order to exploit the vulnerability. The Attack Complexity metric is scored as either Low or High. There are two possible values: Low (L) – There are no specific pre-conditions required for exploitation, High (H) – The attacker must complete some number of preparatory steps in order to get access.
  */
-export type CVSSv4ComponentsAttackComplexity = ClosedEnum<
+export type CVSSv4ComponentsAttackComplexity = OpenEnum<
   typeof CVSSv4ComponentsAttackComplexity
 >;
 
@@ -29,7 +30,7 @@ export const AttackRequirements = {
   None: "none",
   Present: "present",
 } as const;
-export type AttackRequirements = ClosedEnum<typeof AttackRequirements>;
+export type AttackRequirements = OpenEnum<typeof AttackRequirements>;
 
 /**
  * Indicates the level of access required for an attacker to exploit the vulnerability. The Attack Vector metric is scored in one of four levels: Network (N) – Vulnerabilities with this rating are remotely exploitable, from one or more hops away, up to, and including, remote exploitation over the Internet, Adjacent (A) – A vulnerability with this rating requires network adjacency for exploitation. The attack must be launched from the same physical or logical network, Local (L) – Vulnerabilities with this rating are not exploitable over a network, Physical (P) – An attacker must physically interact with the target system.
@@ -44,7 +45,7 @@ export const CVSSv4ComponentsAttackVector = {
 /**
  * Indicates the level of access required for an attacker to exploit the vulnerability. The Attack Vector metric is scored in one of four levels: Network (N) – Vulnerabilities with this rating are remotely exploitable, from one or more hops away, up to, and including, remote exploitation over the Internet, Adjacent (A) – A vulnerability with this rating requires network adjacency for exploitation. The attack must be launched from the same physical or logical network, Local (L) – Vulnerabilities with this rating are not exploitable over a network, Physical (P) – An attacker must physically interact with the target system.
  */
-export type CVSSv4ComponentsAttackVector = ClosedEnum<
+export type CVSSv4ComponentsAttackVector = OpenEnum<
   typeof CVSSv4ComponentsAttackVector
 >;
 
@@ -53,7 +54,7 @@ export const Automatable = {
   No: "no",
   Yes: "yes",
 } as const;
-export type Automatable = ClosedEnum<typeof Automatable>;
+export type Automatable = OpenEnum<typeof Automatable>;
 
 /**
  * If an attack renders information unavailable, such as when a system crashes or through a DDoS attack, availability is negatively impacted. Availability has three possible values: None (N) – There is no loss of availability, Low (L) – Availability might be intermittently limited, or performance might be negatively impacted, as a result of a successful attack, High (H) – There is a complete loss of availability of the impacted system or information.
@@ -67,7 +68,7 @@ export const CVSSv4ComponentsAvailability = {
 /**
  * If an attack renders information unavailable, such as when a system crashes or through a DDoS attack, availability is negatively impacted. Availability has three possible values: None (N) – There is no loss of availability, Low (L) – Availability might be intermittently limited, or performance might be negatively impacted, as a result of a successful attack, High (H) – There is a complete loss of availability of the impacted system or information.
  */
-export type CVSSv4ComponentsAvailability = ClosedEnum<
+export type CVSSv4ComponentsAvailability = OpenEnum<
   typeof CVSSv4ComponentsAvailability
 >;
 
@@ -83,7 +84,7 @@ export const CVSSv4ComponentsConfidentiality = {
 /**
  * Refers to the disclosure of sensitive information to authorized and unauthorized users, with the goal being that only authorized users are able to access the target data. Confidentiality has three potential values: High (H) – The attacker has full access to all resources in the impacted system, including highly sensitive information such as encryption keys, Low (L) – The attacker has partial access to information, with no control over what, specifically, they are able to access, None (N) – No data is accessible to unauthorized users as a result of the exploit.
  */
-export type CVSSv4ComponentsConfidentiality = ClosedEnum<
+export type CVSSv4ComponentsConfidentiality = OpenEnum<
   typeof CVSSv4ComponentsConfidentiality
 >;
 
@@ -99,7 +100,7 @@ export const CVSSv4ComponentsIntegrity = {
 /**
  * Refers to whether the protected information has been tampered with or changed in any way. If there is no way for an attacker to alter the accuracy or completeness of the information, integrity has been maintained. Integrity has three values: None (N) – There is no loss of the integrity of any information, Low (L) – A limited amount of information might be tampered with or modified, but there is no serious impact on the protected system, High (H) – The attacker can modify any/all information on the target system, resulting in a complete loss of integrity.
  */
-export type CVSSv4ComponentsIntegrity = ClosedEnum<
+export type CVSSv4ComponentsIntegrity = OpenEnum<
   typeof CVSSv4ComponentsIntegrity
 >;
 
@@ -115,7 +116,7 @@ export const CVSSv4ComponentsPrivilegesRequired = {
 /**
  * Describes the level of privileges or access an attacker must have before successful exploitation. There are three possible values: None (N) – There is no privilege or special access required to conduct the attack, Low (L) – The attacker requires basic, “user” level privileges to leverage the exploit, High (H) – Administrative or similar access privileges are required for successful attack.
  */
-export type CVSSv4ComponentsPrivilegesRequired = ClosedEnum<
+export type CVSSv4ComponentsPrivilegesRequired = OpenEnum<
   typeof CVSSv4ComponentsPrivilegesRequired
 >;
 
@@ -126,7 +127,7 @@ export const ProviderUrgency = {
   Amber: "amber",
   Red: "red",
 } as const;
-export type ProviderUrgency = ClosedEnum<typeof ProviderUrgency>;
+export type ProviderUrgency = OpenEnum<typeof ProviderUrgency>;
 
 export const Recovery = {
   Unknown: "",
@@ -134,14 +135,14 @@ export const Recovery = {
   User: "user",
   Irrecoverable: "irrecoverable",
 } as const;
-export type Recovery = ClosedEnum<typeof Recovery>;
+export type Recovery = OpenEnum<typeof Recovery>;
 
 export const Safety = {
   Unknown: "",
   Negligible: "negligible",
   Present: "present",
 } as const;
-export type Safety = ClosedEnum<typeof Safety>;
+export type Safety = OpenEnum<typeof Safety>;
 
 /**
  * Describes whether a user, other than the attacker, is required to do anything or participate in exploitation of the vulnerability. User interaction has two possible values: None (N) – No user interaction is required, Required (R) – A user must complete some steps for the exploit to succeed. For example, a user might be required to install some software.
@@ -154,7 +155,7 @@ export const CVSSv4ComponentsUserInteraction = {
 /**
  * Describes whether a user, other than the attacker, is required to do anything or participate in exploitation of the vulnerability. User interaction has two possible values: None (N) – No user interaction is required, Required (R) – A user must complete some steps for the exploit to succeed. For example, a user might be required to install some software.
  */
-export type CVSSv4ComponentsUserInteraction = ClosedEnum<
+export type CVSSv4ComponentsUserInteraction = OpenEnum<
   typeof CVSSv4ComponentsUserInteraction
 >;
 
@@ -163,7 +164,7 @@ export const ValueDensity = {
   Diffuse: "diffuse",
   Concentrated: "concentrated",
 } as const;
-export type ValueDensity = ClosedEnum<typeof ValueDensity>;
+export type ValueDensity = OpenEnum<typeof ValueDensity>;
 
 export const VulnerabilityResponseEffort = {
   Unknown: "",
@@ -171,7 +172,7 @@ export const VulnerabilityResponseEffort = {
   Moderate: "moderate",
   High: "high",
 } as const;
-export type VulnerabilityResponseEffort = ClosedEnum<
+export type VulnerabilityResponseEffort = OpenEnum<
   typeof VulnerabilityResponseEffort
 >;
 
@@ -214,70 +215,99 @@ export type CVSSv4Components = {
 };
 
 /** @internal */
-export const CVSSv4ComponentsAttackComplexity$inboundSchema: z.ZodNativeEnum<
-  typeof CVSSv4ComponentsAttackComplexity
-> = z.nativeEnum(CVSSv4ComponentsAttackComplexity);
+export const CVSSv4ComponentsAttackComplexity$inboundSchema: z.ZodType<
+  CVSSv4ComponentsAttackComplexity,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(CVSSv4ComponentsAttackComplexity);
 
 /** @internal */
-export const AttackRequirements$inboundSchema: z.ZodNativeEnum<
-  typeof AttackRequirements
-> = z.nativeEnum(AttackRequirements);
+export const AttackRequirements$inboundSchema: z.ZodType<
+  AttackRequirements,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(AttackRequirements);
 
 /** @internal */
-export const CVSSv4ComponentsAttackVector$inboundSchema: z.ZodNativeEnum<
-  typeof CVSSv4ComponentsAttackVector
-> = z.nativeEnum(CVSSv4ComponentsAttackVector);
+export const CVSSv4ComponentsAttackVector$inboundSchema: z.ZodType<
+  CVSSv4ComponentsAttackVector,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(CVSSv4ComponentsAttackVector);
 
 /** @internal */
-export const Automatable$inboundSchema: z.ZodNativeEnum<typeof Automatable> = z
-  .nativeEnum(Automatable);
+export const Automatable$inboundSchema: z.ZodType<
+  Automatable,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(Automatable);
 
 /** @internal */
-export const CVSSv4ComponentsAvailability$inboundSchema: z.ZodNativeEnum<
-  typeof CVSSv4ComponentsAvailability
-> = z.nativeEnum(CVSSv4ComponentsAvailability);
+export const CVSSv4ComponentsAvailability$inboundSchema: z.ZodType<
+  CVSSv4ComponentsAvailability,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(CVSSv4ComponentsAvailability);
 
 /** @internal */
-export const CVSSv4ComponentsConfidentiality$inboundSchema: z.ZodNativeEnum<
-  typeof CVSSv4ComponentsConfidentiality
-> = z.nativeEnum(CVSSv4ComponentsConfidentiality);
+export const CVSSv4ComponentsConfidentiality$inboundSchema: z.ZodType<
+  CVSSv4ComponentsConfidentiality,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(CVSSv4ComponentsConfidentiality);
 
 /** @internal */
-export const CVSSv4ComponentsIntegrity$inboundSchema: z.ZodNativeEnum<
-  typeof CVSSv4ComponentsIntegrity
-> = z.nativeEnum(CVSSv4ComponentsIntegrity);
+export const CVSSv4ComponentsIntegrity$inboundSchema: z.ZodType<
+  CVSSv4ComponentsIntegrity,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(CVSSv4ComponentsIntegrity);
 
 /** @internal */
-export const CVSSv4ComponentsPrivilegesRequired$inboundSchema: z.ZodNativeEnum<
-  typeof CVSSv4ComponentsPrivilegesRequired
-> = z.nativeEnum(CVSSv4ComponentsPrivilegesRequired);
+export const CVSSv4ComponentsPrivilegesRequired$inboundSchema: z.ZodType<
+  CVSSv4ComponentsPrivilegesRequired,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(CVSSv4ComponentsPrivilegesRequired);
 
 /** @internal */
-export const ProviderUrgency$inboundSchema: z.ZodNativeEnum<
-  typeof ProviderUrgency
-> = z.nativeEnum(ProviderUrgency);
+export const ProviderUrgency$inboundSchema: z.ZodType<
+  ProviderUrgency,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ProviderUrgency);
 
 /** @internal */
-export const Recovery$inboundSchema: z.ZodNativeEnum<typeof Recovery> = z
-  .nativeEnum(Recovery);
+export const Recovery$inboundSchema: z.ZodType<
+  Recovery,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(Recovery);
 
 /** @internal */
-export const Safety$inboundSchema: z.ZodNativeEnum<typeof Safety> = z
-  .nativeEnum(Safety);
+export const Safety$inboundSchema: z.ZodType<Safety, z.ZodTypeDef, unknown> =
+  openEnums.inboundSchema(Safety);
 
 /** @internal */
-export const CVSSv4ComponentsUserInteraction$inboundSchema: z.ZodNativeEnum<
-  typeof CVSSv4ComponentsUserInteraction
-> = z.nativeEnum(CVSSv4ComponentsUserInteraction);
+export const CVSSv4ComponentsUserInteraction$inboundSchema: z.ZodType<
+  CVSSv4ComponentsUserInteraction,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(CVSSv4ComponentsUserInteraction);
 
 /** @internal */
-export const ValueDensity$inboundSchema: z.ZodNativeEnum<typeof ValueDensity> =
-  z.nativeEnum(ValueDensity);
+export const ValueDensity$inboundSchema: z.ZodType<
+  ValueDensity,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ValueDensity);
 
 /** @internal */
-export const VulnerabilityResponseEffort$inboundSchema: z.ZodNativeEnum<
-  typeof VulnerabilityResponseEffort
-> = z.nativeEnum(VulnerabilityResponseEffort);
+export const VulnerabilityResponseEffort$inboundSchema: z.ZodType<
+  VulnerabilityResponseEffort,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(VulnerabilityResponseEffort);
 
 /** @internal */
 export const CVSSv4Components$inboundSchema: z.ZodType<

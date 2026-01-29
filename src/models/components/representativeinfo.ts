@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -15,7 +16,7 @@ export const RepresentativeInfoReason = {
   Incapsula: "incapsula",
   Zscaler: "zscaler",
 } as const;
-export type RepresentativeInfoReason = ClosedEnum<
+export type RepresentativeInfoReason = OpenEnum<
   typeof RepresentativeInfoReason
 >;
 
@@ -27,9 +28,11 @@ export type RepresentativeInfo = {
 };
 
 /** @internal */
-export const RepresentativeInfoReason$inboundSchema: z.ZodNativeEnum<
-  typeof RepresentativeInfoReason
-> = z.nativeEnum(RepresentativeInfoReason);
+export const RepresentativeInfoReason$inboundSchema: z.ZodType<
+  RepresentativeInfoReason,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(RepresentativeInfoReason);
 
 /** @internal */
 export const RepresentativeInfo$inboundSchema: z.ZodType<

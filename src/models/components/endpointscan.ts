@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -47,7 +48,7 @@ export const EndpointScanTransportProtocol = {
   Icmp: "icmp",
   Quic: "quic",
 } as const;
-export type EndpointScanTransportProtocol = ClosedEnum<
+export type EndpointScanTransportProtocol = OpenEnum<
   typeof EndpointScanTransportProtocol
 >;
 
@@ -84,9 +85,11 @@ export type EndpointScan = {
 };
 
 /** @internal */
-export const EndpointScanTransportProtocol$inboundSchema: z.ZodNativeEnum<
-  typeof EndpointScanTransportProtocol
-> = z.nativeEnum(EndpointScanTransportProtocol);
+export const EndpointScanTransportProtocol$inboundSchema: z.ZodType<
+  EndpointScanTransportProtocol,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(EndpointScanTransportProtocol);
 
 /** @internal */
 export const EndpointScan$inboundSchema: z.ZodType<

@@ -5,28 +5,77 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  CreditUsageReportPeriod,
+  CreditUsageReportPeriod$inboundSchema,
+} from "./creditusagereportperiod.js";
 import {
   SourceUsageBreakdown,
   SourceUsageBreakdown$inboundSchema,
 } from "./sourceusagebreakdown.js";
 
+/**
+ * The granularity of the report.
+ */
+export const Granularity = {
+  Daily: "daily",
+  Monthly: "monthly",
+} as const;
+/**
+ * The granularity of the report.
+ */
+export type Granularity = OpenEnum<typeof Granularity>;
+
 export type CreditUsageReport = {
   /**
-   * The end date of the window for this report.
+   * The breakdown of credits consumed by consumer. This may not be present if the report is generated for a specific user.
    */
-  endDate: Date;
-  sourceBreakdown: SourceUsageBreakdown;
+  creditsConsumedByConsumer?: string | undefined;
+  creditsConsumedBySource: SourceUsageBreakdown;
   /**
-   * The start date of the window for this report.
+   * The end time of the window for this report.
    */
-  startDate: Date;
+  endTime: Date;
+  /**
+   * The granularity of the report.
+   */
+  granularity: Granularity;
+  /**
+   * The periods of the report (i.e. time buckets).
+   */
+  periods: Array<CreditUsageReportPeriod> | null;
+  /**
+   * The start time of the window for this report.
+   */
+  startTime: Date;
+  /**
+   * The total amount of credits added during the report period.
+   */
+  totalAdded: number;
   /**
    * The total amount of credits consumed during the report period.
    */
   totalConsumed: number;
+  /**
+   * The total amount of credits expired during the report period.
+   */
+  totalExpired: number;
+  /**
+   * The total number of transactions during the report period.
+   */
+  transactionCount: number;
 };
+
+/** @internal */
+export const Granularity$inboundSchema: z.ZodType<
+  Granularity,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(Granularity);
 
 /** @internal */
 export const CreditUsageReport$inboundSchema: z.ZodType<
@@ -34,16 +83,26 @@ export const CreditUsageReport$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  end_date: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  source_breakdown: SourceUsageBreakdown$inboundSchema,
-  start_date: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  credits_consumed_by_consumer: z.string().optional(),
+  credits_consumed_by_source: SourceUsageBreakdown$inboundSchema,
+  end_time: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  granularity: Granularity$inboundSchema.default("daily"),
+  periods: z.nullable(z.array(CreditUsageReportPeriod$inboundSchema)),
+  start_time: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  total_added: z.number().int(),
   total_consumed: z.number().int(),
+  total_expired: z.number().int(),
+  transaction_count: z.number().int(),
 }).transform((v) => {
   return remap$(v, {
-    "end_date": "endDate",
-    "source_breakdown": "sourceBreakdown",
-    "start_date": "startDate",
+    "credits_consumed_by_consumer": "creditsConsumedByConsumer",
+    "credits_consumed_by_source": "creditsConsumedBySource",
+    "end_time": "endTime",
+    "start_time": "startTime",
+    "total_added": "totalAdded",
     "total_consumed": "totalConsumed",
+    "total_expired": "totalExpired",
+    "transaction_count": "transactionCount",
   });
 });
 

@@ -10,6 +10,8 @@ let value: ChangeType = "removed";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"added" | "removed"
+"added" | "removed" | Unrecognized<string>
 ```

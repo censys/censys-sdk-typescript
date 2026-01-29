@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { DnsEDns, DnsEDns$inboundSchema } from "./dnsedns.js";
@@ -42,7 +43,7 @@ export const RCode = {
 /**
  * A enumerated field indicating the result of the request. The most common values are defined in RFC 1035.
  */
-export type RCode = ClosedEnum<typeof RCode>;
+export type RCode = OpenEnum<typeof RCode>;
 
 /**
  * An enumerated value indicating the behavior of the server. An AUTHORITATIVE server fulfills requests for domain names it controls, which are not listed by the server. FORWARDING and RECURSIVE_RESOLVER servers fulfill requests indirectly for domain names they do not control. A RECURSIVE_RESOLVER will query ip.parrotdns.com itself, resulting in its own IP address being present in the dns.answers.response field.
@@ -57,7 +58,7 @@ export const ServerType = {
 /**
  * An enumerated value indicating the behavior of the server. An AUTHORITATIVE server fulfills requests for domain names it controls, which are not listed by the server. FORWARDING and RECURSIVE_RESOLVER servers fulfill requests indirectly for domain names they do not control. A RECURSIVE_RESOLVER will query ip.parrotdns.com itself, resulting in its own IP address being present in the dns.answers.response field.
  */
-export type ServerType = ClosedEnum<typeof ServerType>;
+export type ServerType = OpenEnum<typeof ServerType>;
 
 export type Dns = {
   /**
@@ -93,13 +94,15 @@ export type Dns = {
 };
 
 /** @internal */
-export const RCode$inboundSchema: z.ZodNativeEnum<typeof RCode> = z.nativeEnum(
-  RCode,
-);
+export const RCode$inboundSchema: z.ZodType<RCode, z.ZodTypeDef, unknown> =
+  openEnums.inboundSchema(RCode);
 
 /** @internal */
-export const ServerType$inboundSchema: z.ZodNativeEnum<typeof ServerType> = z
-  .nativeEnum(ServerType);
+export const ServerType$inboundSchema: z.ZodType<
+  ServerType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(ServerType);
 
 /** @internal */
 export const Dns$inboundSchema: z.ZodType<Dns, z.ZodTypeDef, unknown> = z

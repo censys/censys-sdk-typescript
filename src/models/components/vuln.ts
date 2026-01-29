@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Cwe, Cwe$inboundSchema } from "./cwe.js";
@@ -18,7 +19,7 @@ export const VulnRiskSource = {
   Censys: "censys",
   Cve: "cve",
 } as const;
-export type VulnRiskSource = ClosedEnum<typeof VulnRiskSource>;
+export type VulnRiskSource = OpenEnum<typeof VulnRiskSource>;
 
 export const VulnSeverity = {
   Unknown: "",
@@ -27,7 +28,7 @@ export const VulnSeverity = {
   High: "high",
   Critical: "critical",
 } as const;
-export type VulnSeverity = ClosedEnum<typeof VulnSeverity>;
+export type VulnSeverity = OpenEnum<typeof VulnSeverity>;
 
 export const VulnSource = {
   Unknown: "",
@@ -35,8 +36,9 @@ export const VulnSource = {
   Recog: "recog",
   Wappalyzer: "wappalyzer",
   ThirdParty: "third_party",
+  HtmlMetaExtractor: "html_meta_extractor",
 } as const;
-export type VulnSource = ClosedEnum<typeof VulnSource>;
+export type VulnSource = OpenEnum<typeof VulnSource>;
 
 export type Vuln = {
   confidence?: number | undefined;
@@ -53,17 +55,25 @@ export type Vuln = {
 };
 
 /** @internal */
-export const VulnRiskSource$inboundSchema: z.ZodNativeEnum<
-  typeof VulnRiskSource
-> = z.nativeEnum(VulnRiskSource);
+export const VulnRiskSource$inboundSchema: z.ZodType<
+  VulnRiskSource,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(VulnRiskSource);
 
 /** @internal */
-export const VulnSeverity$inboundSchema: z.ZodNativeEnum<typeof VulnSeverity> =
-  z.nativeEnum(VulnSeverity);
+export const VulnSeverity$inboundSchema: z.ZodType<
+  VulnSeverity,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(VulnSeverity);
 
 /** @internal */
-export const VulnSource$inboundSchema: z.ZodNativeEnum<typeof VulnSource> = z
-  .nativeEnum(VulnSource);
+export const VulnSource$inboundSchema: z.ZodType<
+  VulnSource,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(VulnSource);
 
 /** @internal */
 export const Vuln$inboundSchema: z.ZodType<Vuln, z.ZodTypeDef, unknown> = z

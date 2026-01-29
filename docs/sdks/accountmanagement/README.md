@@ -7,14 +7,15 @@ Endpoints related to the Account Management product
 ### Available Operations
 
 * [getOrganizationDetails](#getorganizationdetails) - Get organization details
-* [getOrganizationCredits](#getorganizationcredits) - Get organization credit details
+* [getOrganizationCredits](#getorganizationcredits) - Get organization credit balance
 * [getOrganizationCreditUsage](#getorganizationcreditusage) - Get organization credit usage
 * [inviteUserToOrganization](#inviteusertoorganization) - Invite user to organization
 * [listOrganizationMembers](#listorganizationmembers) - List organization members
 * [removeOrganizationMember](#removeorganizationmember) - Remove member from organization
 * [updateOrganizationMember](#updateorganizationmember) - Update a member's roles in an organization
-* [getMemberCreditUsage](#getmembercreditusage) - Get member credit usage
-* [getUserCredits](#getusercredits) - Get Free user credit details
+* [getMemberCreditUsage](#getmembercreditusage) - Get organization member credit usage
+* [getUserCredits](#getusercredits) - Get Free user credit balance
+* [getUserCreditsUsage](#getusercreditsusage) - Get Free user credit usage
 
 ## getOrganizationDetails
 
@@ -168,13 +169,14 @@ run();
 
 ## getOrganizationCreditUsage
 
-Retrieve credit consumption information for an organization for a specific day.<br><br>Admins can obtain credit usage information for all users in their organization. Members may only retrieve usage information for their own account.<br><br>This endpoint does not cost any credits to execute.
+Retrieve credit information for an organization over a specific date range. You must include a start date in your request.<br><br>Admins can obtain credit usage information for all users in their organization. Members may only retrieve usage information for their own account.<br><br>This endpoint does not cost any credits to execute.
 
 ### Example Usage
 
 <!-- UsageSnippet language="typescript" operationID="v3-accountmanagement-org-credits-usage" method="get" path="/v3/accounts/organizations/{organization_id}/credits/usage" -->
 ```typescript
 import { SDK } from "@censys/platform-sdk";
+import { RFCDate } from "@censys/platform-sdk/types";
 
 const sdk = new SDK({
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
@@ -184,6 +186,8 @@ async function run() {
   const result = await sdk.accountManagement.getOrganizationCreditUsage({
     organizationId: "11111111-2222-3333-4444-555555555555",
     date: "2025-11-01",
+    startDate: new RFCDate("2025-11-01"),
+    endDate: new RFCDate("2025-12-01"),
   });
 
   console.log(result);
@@ -199,6 +203,7 @@ The standalone function version of this method:
 ```typescript
 import { SDKCore } from "@censys/platform-sdk/core.js";
 import { accountManagementGetOrganizationCreditUsage } from "@censys/platform-sdk/funcs/accountManagementGetOrganizationCreditUsage.js";
+import { RFCDate } from "@censys/platform-sdk/types";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -210,6 +215,8 @@ async function run() {
   const res = await accountManagementGetOrganizationCreditUsage(sdk, {
     organizationId: "11111111-2222-3333-4444-555555555555",
     date: "2025-11-01",
+    startDate: new RFCDate("2025-11-01"),
+    endDate: new RFCDate("2025-12-01"),
   });
   if (res.ok) {
     const { value: result } = res;
@@ -561,13 +568,14 @@ run();
 
 ## getMemberCreditUsage
 
-Retrieve credit consumption information for an organization member for a specific day.<br><br>This endpoint does not cost any credits to execute.
+Retrieve credit consumption information for an organization member over a specific date range. You must include a start date in your request.<br><br>This endpoint does not cost any credits to execute.
 
 ### Example Usage
 
 <!-- UsageSnippet language="typescript" operationID="v3-accountmanagement-member-credits-usage" method="get" path="/v3/accounts/organizations/{organization_id}/members/{user_id}/credits/usage" -->
 ```typescript
 import { SDK } from "@censys/platform-sdk";
+import { RFCDate } from "@censys/platform-sdk/types";
 
 const sdk = new SDK({
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
@@ -578,6 +586,8 @@ async function run() {
     organizationId: "11111111-2222-3333-4444-555555555555",
     userId: "11111111-2222-3333-4444-555555555555",
     date: "2025-11-01",
+    startDate: new RFCDate("2025-11-01"),
+    endDate: new RFCDate("2025-12-01"),
   });
 
   console.log(result);
@@ -593,6 +603,7 @@ The standalone function version of this method:
 ```typescript
 import { SDKCore } from "@censys/platform-sdk/core.js";
 import { accountManagementGetMemberCreditUsage } from "@censys/platform-sdk/funcs/accountManagementGetMemberCreditUsage.js";
+import { RFCDate } from "@censys/platform-sdk/types";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -605,6 +616,8 @@ async function run() {
     organizationId: "11111111-2222-3333-4444-555555555555",
     userId: "11111111-2222-3333-4444-555555555555",
     date: "2025-11-01",
+    startDate: new RFCDate("2025-11-01"),
+    endDate: new RFCDate("2025-12-01"),
   });
   if (res.ok) {
     const { value: result } = res;
@@ -640,7 +653,7 @@ run();
 
 ## getUserCredits
 
-Retrieve your Free user account credit balance and refresh information. To retrieve the credit balance for a Starter or Enterprise account, use the [get organization credit details endpoint](https://docs.censys.com/reference/v3-accountmanagement-org-credits).<br><br>This endpoint does not cost any credits to execute.
+Retrieve your Free user account credit balance and refresh information. To retrieve the credit balance for a Starter or Enterprise account, use the [get organization credit balance endpoint](https://docs.censys.com/reference/v3-accountmanagement-org-credits).<br><br>This endpoint does not cost any credits to execute.
 
 ### Example Usage
 
@@ -699,6 +712,87 @@ run();
 ### Response
 
 **Promise\<[operations.V3AccountmanagementUserCreditsResponse](../../models/operations/v3accountmanagementusercreditsresponse.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 404                        | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
+## getUserCreditsUsage
+
+Retrieve your Free user account credit consumption information over a specific date range. You must include a start date in your request.<br><br>This endpoint does not cost any credits to execute.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v3-accountmanagement-user-credits-usage" method="get" path="/v3/accounts/users/credits/usage" -->
+```typescript
+import { SDK } from "@censys/platform-sdk";
+import { RFCDate } from "@censys/platform-sdk/types";
+
+const sdk = new SDK({
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.accountManagement.getUserCreditsUsage({
+    date: "2025-11-01",
+    startDate: new RFCDate("2025-11-01"),
+    endDate: new RFCDate("2025-12-01"),
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { accountManagementGetUserCreditsUsage } from "@censys/platform-sdk/funcs/accountManagementGetUserCreditsUsage.js";
+import { RFCDate } from "@censys/platform-sdk/types";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await accountManagementGetUserCreditsUsage(sdk, {
+    date: "2025-11-01",
+    startDate: new RFCDate("2025-11-01"),
+    endDate: new RFCDate("2025-12-01"),
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("accountManagementGetUserCreditsUsage failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3AccountmanagementUserCreditsUsageRequest](../../models/operations/v3accountmanagementusercreditsusagerequest.md)                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3AccountmanagementUserCreditsUsageResponse](../../models/operations/v3accountmanagementusercreditsusageresponse.md)\>**
 
 ### Errors
 

@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -14,7 +15,7 @@ export const RecordType = {
   A: "a",
   Aaaa: "aaaa",
 } as const;
-export type RecordType = ClosedEnum<typeof RecordType>;
+export type RecordType = OpenEnum<typeof RecordType>;
 
 export type HostDnsForwardResolution = {
   name?: string | undefined;
@@ -24,8 +25,11 @@ export type HostDnsForwardResolution = {
 };
 
 /** @internal */
-export const RecordType$inboundSchema: z.ZodNativeEnum<typeof RecordType> = z
-  .nativeEnum(RecordType);
+export const RecordType$inboundSchema: z.ZodType<
+  RecordType,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(RecordType);
 
 /** @internal */
 export const HostDnsForwardResolution$inboundSchema: z.ZodType<

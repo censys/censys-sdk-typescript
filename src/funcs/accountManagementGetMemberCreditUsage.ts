@@ -26,10 +26,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get member credit usage
+ * Get organization member credit usage
  *
  * @remarks
- * Retrieve credit consumption information for an organization member for a specific day.<br><br>This endpoint does not cost any credits to execute.
+ * Retrieve credit consumption information for an organization member over a specific date range. You must include a start date in your request.<br><br>This endpoint does not cost any credits to execute.
  */
 export function accountManagementGetMemberCreditUsage(
   client: SDKCore,
@@ -109,6 +109,9 @@ async function $do(
 
   const query = encodeFormQuery({
     "date": payload.date,
+    "end_date": payload.end_date,
+    "granularity": payload.granularity,
+    "start_date": payload.start_date,
   }, { explode: false });
 
   const headers = new Headers(compactMap({

@@ -9,7 +9,7 @@ let value: ListCollectionsResponseV1 = {
   collections: [
     {
       addedAssets24Hours: 220488,
-      createTime: new Date("2023-02-08T06:29:28.344Z"),
+      createTime: new Date("2024-02-08T06:29:28.344Z"),
       description: "scornful persecute that gee wetly innocently",
       id: "<id>",
       name: "<value>",

@@ -10,6 +10,8 @@ let value: TrackedScanTaskStatus = "rejected";
 
 ## Values
 
+This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
+
 ```typescript
-"" | "scanning" | "scanned" | "rejected" | "timed_out" | "completed" | "ignored"
+"" | "scanning" | "scanned" | "rejected" | "timed_out" | "completed" | "ignored" | Unrecognized<string>
 ```

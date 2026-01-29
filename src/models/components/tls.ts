@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { TlsChain, TlsChain$inboundSchema } from "./tlschain.js";
@@ -32,7 +33,7 @@ export const VersionSelected = {
 /**
  * Certificate version v1(0), v2(1), v3(2).
  */
-export type VersionSelected = ClosedEnum<typeof VersionSelected>;
+export type VersionSelected = OpenEnum<typeof VersionSelected>;
 
 export type Tls = {
   /**
@@ -60,9 +61,11 @@ export type Tls = {
 };
 
 /** @internal */
-export const VersionSelected$inboundSchema: z.ZodNativeEnum<
-  typeof VersionSelected
-> = z.nativeEnum(VersionSelected);
+export const VersionSelected$inboundSchema: z.ZodType<
+  VersionSelected,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(VersionSelected);
 
 /** @internal */
 export const Tls$inboundSchema: z.ZodType<Tls, z.ZodTypeDef, unknown> = z

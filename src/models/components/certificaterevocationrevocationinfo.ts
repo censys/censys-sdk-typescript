@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -28,7 +29,7 @@ export const Reason = {
 /**
  * An enumerated value indicating the issuer-supplied reason for the revocation.
  */
-export type Reason = ClosedEnum<typeof Reason>;
+export type Reason = OpenEnum<typeof Reason>;
 
 export type CertificateRevocationRevocationInfo = {
   nextUpdate?: string | undefined;
@@ -47,8 +48,8 @@ export type CertificateRevocationRevocationInfo = {
 };
 
 /** @internal */
-export const Reason$inboundSchema: z.ZodNativeEnum<typeof Reason> = z
-  .nativeEnum(Reason);
+export const Reason$inboundSchema: z.ZodType<Reason, z.ZodTypeDef, unknown> =
+  openEnums.inboundSchema(Reason);
 
 /** @internal */
 export const CertificateRevocationRevocationInfo$inboundSchema: z.ZodType<

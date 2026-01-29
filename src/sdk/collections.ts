@@ -24,7 +24,7 @@ export class Collections extends ClientSDK {
    * List collections
    *
    * @remarks
-   * List all collections for an organization. Retrieved information includes collection ID, name, query, description, status, and asset count.
+   * List all collections for an organization. Retrieved information includes collection ID, name, query, description, status, and asset count.<br><br>This endpoint does not cost credits to execute.
    */
   async list(
     request: operations.V3CollectionsCrudListRequest,
@@ -41,7 +41,7 @@ export class Collections extends ClientSDK {
    * Create a collection
    *
    * @remarks
-   * Create a new collection.
+   * Create a new collection.<br><br>This endpoint does not cost credits to execute.
    */
   async create(
     request: operations.V3CollectionsCrudCreateRequest,
@@ -58,7 +58,7 @@ export class Collections extends ClientSDK {
    * Delete a collection
    *
    * @remarks
-   * Delete a collection.
+   * Delete a collection.<br><br>This endpoint does not cost credits to execute.
    */
   async delete(
     request: operations.V3CollectionsCrudDeleteRequest,
@@ -75,7 +75,7 @@ export class Collections extends ClientSDK {
    * Get a collection
    *
    * @remarks
-   * Retrieve information about a collection. Retrieved information includes its name, query, description, status, and asset count.
+   * Retrieve information about a collection. Retrieved information includes its name, query, description, status, and asset count.<br><br>This endpoint does not cost credits to execute.
    */
   async get(
     request: operations.V3CollectionsCrudGetRequest,
@@ -92,7 +92,7 @@ export class Collections extends ClientSDK {
    * Update a collection
    *
    * @remarks
-   * Update a collection's name, description, and/or query.
+   * Update a collection's name, description, and/or query.<br><br>This endpoint does not cost credits to execute.
    */
   async update(
     request: operations.V3CollectionsCrudUpdateRequest,
@@ -109,7 +109,7 @@ export class Collections extends ClientSDK {
    * Get a collection's events
    *
    * @remarks
-   * Retrieve the event history for a collection. This includes the addition or removal of assets as well as collection status changes.
+   * Retrieve the event history for a collection. This includes the addition or removal of assets as well as collection status changes.<br><br>This endpoint does not cost credits to execute.
    */
   async listEvents(
     request: operations.V3CollectionsListEventsRequest,

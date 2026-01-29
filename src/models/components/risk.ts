@@ -5,7 +5,8 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
+import * as openEnums from "../../types/enums.js";
+import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Cvss, Cvss$inboundSchema } from "./cvss.js";
@@ -17,7 +18,7 @@ export const RiskSource = {
   Censys: "censys",
   Cve: "cve",
 } as const;
-export type RiskSource = ClosedEnum<typeof RiskSource>;
+export type RiskSource = OpenEnum<typeof RiskSource>;
 
 export const Severity = {
   Unknown: "",
@@ -26,7 +27,7 @@ export const Severity = {
   High: "high",
   Critical: "critical",
 } as const;
-export type Severity = ClosedEnum<typeof Severity>;
+export type Severity = OpenEnum<typeof Severity>;
 
 export const RiskSource1 = {
   Unknown: "",
@@ -34,8 +35,9 @@ export const RiskSource1 = {
   Recog: "recog",
   Wappalyzer: "wappalyzer",
   ThirdParty: "third_party",
+  HtmlMetaExtractor: "html_meta_extractor",
 } as const;
-export type RiskSource1 = ClosedEnum<typeof RiskSource1>;
+export type RiskSource1 = OpenEnum<typeof RiskSource1>;
 
 export type Risk = {
   confidence?: number | undefined;
@@ -51,16 +53,25 @@ export type Risk = {
 };
 
 /** @internal */
-export const RiskSource$inboundSchema: z.ZodNativeEnum<typeof RiskSource> = z
-  .nativeEnum(RiskSource);
+export const RiskSource$inboundSchema: z.ZodType<
+  RiskSource,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(RiskSource);
 
 /** @internal */
-export const Severity$inboundSchema: z.ZodNativeEnum<typeof Severity> = z
-  .nativeEnum(Severity);
+export const Severity$inboundSchema: z.ZodType<
+  Severity,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(Severity);
 
 /** @internal */
-export const RiskSource1$inboundSchema: z.ZodNativeEnum<typeof RiskSource1> = z
-  .nativeEnum(RiskSource1);
+export const RiskSource1$inboundSchema: z.ZodType<
+  RiskSource1,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(RiskSource1);
 
 /** @internal */
 export const Risk$inboundSchema: z.ZodType<Risk, z.ZodTypeDef, unknown> = z

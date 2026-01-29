@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Get organization credit usage
  *
  * @remarks
- * Retrieve credit consumption information for an organization for a specific day.<br><br>Admins can obtain credit usage information for all users in their organization. Members may only retrieve usage information for their own account.<br><br>This endpoint does not cost any credits to execute.
+ * Retrieve credit information for an organization over a specific date range. You must include a start date in your request.<br><br>Admins can obtain credit usage information for all users in their organization. Members may only retrieve usage information for their own account.<br><br>This endpoint does not cost any credits to execute.
  */
 export function accountManagementGetOrganizationCreditUsage(
   client: SDKCore,
@@ -106,6 +106,10 @@ async function $do(
 
   const query = encodeFormQuery({
     "date": payload.date,
+    "end_date": payload.end_date,
+    "granularity": payload.granularity,
+    "include_consumer_breakdown": payload.include_consumer_breakdown,
+    "start_date": payload.start_date,
   }, { explode: false });
 
   const headers = new Headers(compactMap({

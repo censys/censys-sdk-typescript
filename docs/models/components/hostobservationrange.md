@@ -6,11 +6,11 @@
 import { HostObservationRange } from "@censys/platform-sdk/models/components";
 
 let value: HostObservationRange = {
-  endTime: new Date("2024-09-07T11:35:49.699Z"),
+  endTime: new Date("2025-09-07T11:35:49.699Z"),
   ip: "192.212.58.199",
   port: 900685,
   protocols: [],
-  startTime: new Date("2023-11-10T19:39:08.911Z"),
+  startTime: new Date("2024-11-09T19:39:08.911Z"),
   transportProtocol: "<value>",
 };
 ```

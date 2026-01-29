@@ -114,14 +114,15 @@ run();
 ### [AccountManagement](docs/sdks/accountmanagement/README.md)
 
 * [getOrganizationDetails](docs/sdks/accountmanagement/README.md#getorganizationdetails) - Get organization details
-* [getOrganizationCredits](docs/sdks/accountmanagement/README.md#getorganizationcredits) - Get organization credit details
+* [getOrganizationCredits](docs/sdks/accountmanagement/README.md#getorganizationcredits) - Get organization credit balance
 * [getOrganizationCreditUsage](docs/sdks/accountmanagement/README.md#getorganizationcreditusage) - Get organization credit usage
 * [inviteUserToOrganization](docs/sdks/accountmanagement/README.md#inviteusertoorganization) - Invite user to organization
 * [listOrganizationMembers](docs/sdks/accountmanagement/README.md#listorganizationmembers) - List organization members
 * [removeOrganizationMember](docs/sdks/accountmanagement/README.md#removeorganizationmember) - Remove member from organization
 * [updateOrganizationMember](docs/sdks/accountmanagement/README.md#updateorganizationmember) - Update a member's roles in an organization
-* [getMemberCreditUsage](docs/sdks/accountmanagement/README.md#getmembercreditusage) - Get member credit usage
-* [getUserCredits](docs/sdks/accountmanagement/README.md#getusercredits) - Get Free user credit details
+* [getMemberCreditUsage](docs/sdks/accountmanagement/README.md#getmembercreditusage) - Get organization member credit usage
+* [getUserCredits](docs/sdks/accountmanagement/README.md#getusercredits) - Get Free user credit balance
+* [getUserCreditsUsage](docs/sdks/accountmanagement/README.md#getusercreditsusage) - Get Free user credit usage
 
 ### [Collections](docs/sdks/collections/README.md)
 
@@ -177,11 +178,12 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`accountManagementGetMemberCreditUsage`](docs/sdks/accountmanagement/README.md#getmembercreditusage) - Get member credit usage
-- [`accountManagementGetOrganizationCredits`](docs/sdks/accountmanagement/README.md#getorganizationcredits) - Get organization credit details
+- [`accountManagementGetMemberCreditUsage`](docs/sdks/accountmanagement/README.md#getmembercreditusage) - Get organization member credit usage
+- [`accountManagementGetOrganizationCredits`](docs/sdks/accountmanagement/README.md#getorganizationcredits) - Get organization credit balance
 - [`accountManagementGetOrganizationCreditUsage`](docs/sdks/accountmanagement/README.md#getorganizationcreditusage) - Get organization credit usage
 - [`accountManagementGetOrganizationDetails`](docs/sdks/accountmanagement/README.md#getorganizationdetails) - Get organization details
-- [`accountManagementGetUserCredits`](docs/sdks/accountmanagement/README.md#getusercredits) - Get Free user credit details
+- [`accountManagementGetUserCredits`](docs/sdks/accountmanagement/README.md#getusercredits) - Get Free user credit balance
+- [`accountManagementGetUserCreditsUsage`](docs/sdks/accountmanagement/README.md#getusercreditsusage) - Get Free user credit usage
 - [`accountManagementInviteUserToOrganization`](docs/sdks/accountmanagement/README.md#inviteusertoorganization) - Invite user to organization
 - [`accountManagementListOrganizationMembers`](docs/sdks/accountmanagement/README.md#listorganizationmembers) - List organization members
 - [`accountManagementRemoveOrganizationMember`](docs/sdks/accountmanagement/README.md#removeorganizationmember) - Remove member from organization

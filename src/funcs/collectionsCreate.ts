@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Create a collection
  *
  * @remarks
- * Create a new collection.
+ * Create a new collection.<br><br>This endpoint does not cost credits to execute.
  */
 export function collectionsCreate(
   client: SDKCore,
