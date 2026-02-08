@@ -47,6 +47,7 @@ import { Ethereum, Ethereum$inboundSchema } from "./ethereum.js";
 import { Fox, Fox$inboundSchema } from "./fox.js";
 import { Ftp, Ftp$inboundSchema } from "./ftp.js";
 import { Gearman, Gearman$inboundSchema } from "./gearman.js";
+import { Gemini, Gemini$inboundSchema } from "./gemini.js";
 import { Hajime, Hajime$inboundSchema } from "./hajime.js";
 import { HidVertx, HidVertx$inboundSchema } from "./hidvertx.js";
 import { Hikvision, Hikvision$inboundSchema } from "./hikvision.js";
@@ -194,6 +195,7 @@ export type ServiceScan = {
   fox?: Fox | undefined;
   ftp?: Ftp | undefined;
   gearman?: Gearman | undefined;
+  gemini?: Gemini | undefined;
   hajime?: Hajime | undefined;
   hidVertx?: HidVertx | undefined;
   hikvision?: Hikvision | undefined;
@@ -334,6 +336,7 @@ export const ServiceScan$inboundSchema: z.ZodType<
   fox: Fox$inboundSchema.optional(),
   ftp: Ftp$inboundSchema.optional(),
   gearman: Gearman$inboundSchema.optional(),
+  gemini: Gemini$inboundSchema.optional(),
   hajime: Hajime$inboundSchema.optional(),
   hid_vertx: HidVertx$inboundSchema.optional(),
   hikvision: Hikvision$inboundSchema.optional(),

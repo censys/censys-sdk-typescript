@@ -143,7 +143,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["401", "403", "4XX", "5XX"],
+    errorCodes: ["400", "401", "403", "4XX", "500", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -174,7 +174,10 @@ async function $do(
       key: "Result",
     }),
     M.jsonErr(401, errors.AuthenticationError$inboundSchema),
-    M.jsonErr(403, errors.ErrorModel$inboundSchema, {
+    M.jsonErr([400, 403], errors.ErrorModel$inboundSchema, {
+      ctype: "application/problem+json",
+    }),
+    M.jsonErr(500, errors.ErrorModel$inboundSchema, {
       ctype: "application/problem+json",
     }),
     M.fail("4XX"),

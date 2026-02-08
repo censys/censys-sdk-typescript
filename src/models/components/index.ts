@@ -156,6 +156,7 @@ export * from "./forwarddnsresolved.js";
 export * from "./fox.js";
 export * from "./ftp.js";
 export * from "./gearman.js";
+export * from "./gemini.js";
 export * from "./generalnames.js";
 export * from "./generalsubtreeip.js";
 export * from "./graphql.js";
