@@ -90,6 +90,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.AuthenticationError | 401                        | application/json           |
 | errors.ErrorModel          | 403, 404, 422              | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getOrganizationCredits
@@ -165,6 +166,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.AuthenticationError | 401                        | application/json           |
 | errors.ErrorModel          | 403, 404, 422              | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getOrganizationCreditUsage
@@ -248,6 +250,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.AuthenticationError | 401                        | application/json           |
 | errors.ErrorModel          | 400, 403, 404, 422         | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## inviteUserToOrganization
@@ -328,7 +331,8 @@ run();
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.AuthenticationError | 401                        | application/json           |
-| errors.ErrorModel          | 403, 404, 422              | application/problem+json   |
+| errors.ErrorModel          | 403, 404, 409, 422         | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## listOrganizationMembers
@@ -403,7 +407,8 @@ run();
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.AuthenticationError | 401                        | application/json           |
-| errors.ErrorModel          | 403, 404                   | application/problem+json   |
+| errors.ErrorModel          | 403, 404, 422              | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## removeOrganizationMember
@@ -481,6 +486,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.AuthenticationError | 401                        | application/json           |
 | errors.ErrorModel          | 403, 404, 409, 422         | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## updateOrganizationMember
@@ -563,7 +569,8 @@ run();
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.AuthenticationError | 401                        | application/json           |
-| errors.ErrorModel          | 400, 403, 404, 422         | application/problem+json   |
+| errors.ErrorModel          | 400, 403, 404, 409, 422    | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getMemberCreditUsage
@@ -649,6 +656,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.AuthenticationError | 401                        | application/json           |
 | errors.ErrorModel          | 400, 403, 404, 422         | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getUserCredits
@@ -719,6 +727,7 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.AuthenticationError | 401                        | application/json           |
 | errors.ErrorModel          | 404                        | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getUserCreditsUsage
@@ -799,5 +808,6 @@ run();
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.AuthenticationError | 401                        | application/json           |
-| errors.ErrorModel          | 404                        | application/problem+json   |
+| errors.ErrorModel          | 400, 404                   | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
