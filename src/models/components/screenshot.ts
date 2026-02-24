@@ -11,6 +11,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type Screenshot = {
   extractedText?: string | undefined;
   handle?: string | undefined;
+  palsimhash?: string | undefined;
   phash?: string | undefined;
 };
 
@@ -22,6 +23,7 @@ export const Screenshot$inboundSchema: z.ZodType<
 > = z.object({
   extracted_text: z.string().optional(),
   handle: z.string().optional(),
+  palsimhash: z.string().optional(),
   phash: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {

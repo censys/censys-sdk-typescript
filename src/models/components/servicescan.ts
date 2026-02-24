@@ -44,9 +44,14 @@ import { ElfFile, ElfFile$inboundSchema } from "./elffile.js";
 import { Epmd, Epmd$inboundSchema } from "./epmd.js";
 import { Etcd, Etcd$inboundSchema } from "./etcd.js";
 import { Ethereum, Ethereum$inboundSchema } from "./ethereum.js";
+import {
+  FlashSocketPolicy,
+  FlashSocketPolicy$inboundSchema,
+} from "./flashsocketpolicy.js";
 import { Fox, Fox$inboundSchema } from "./fox.js";
 import { Ftp, Ftp$inboundSchema } from "./ftp.js";
 import { Gearman, Gearman$inboundSchema } from "./gearman.js";
+import { Gemini, Gemini$inboundSchema } from "./gemini.js";
 import { Hajime, Hajime$inboundSchema } from "./hajime.js";
 import { HidVertx, HidVertx$inboundSchema } from "./hidvertx.js";
 import { Hikvision, Hikvision$inboundSchema } from "./hikvision.js";
@@ -61,7 +66,10 @@ import { Krpc, Krpc$inboundSchema } from "./krpc.js";
 import { L2Tp, L2Tp$inboundSchema } from "./l2tp.js";
 import { Ldap, Ldap$inboundSchema } from "./ldap.js";
 import { Lpd, Lpd$inboundSchema } from "./lpd.js";
+import { Mavlink, Mavlink$inboundSchema } from "./mavlink.js";
 import { Mdns, Mdns$inboundSchema } from "./mdns.js";
+import { Melsec, Melsec$inboundSchema } from "./melsec.js";
+import { Memberlist, Memberlist$inboundSchema } from "./memberlist.js";
 import { Memcached, Memcached$inboundSchema } from "./memcached.js";
 import {
   MikrotikWinbox,
@@ -112,7 +120,17 @@ import { Rifatron, Rifatron$inboundSchema } from "./rifatron.js";
 import { Ripple, Ripple$inboundSchema } from "./ripple.js";
 import { Rlogin, Rlogin$inboundSchema } from "./rlogin.js";
 import { Rocketmq, Rocketmq$inboundSchema } from "./rocketmq.js";
+import { RouterosApi, RouterosApi$inboundSchema } from "./routerosapi.js";
 import { Rtsp, Rtsp$inboundSchema } from "./rtsp.js";
+import {
+  RustdeskHeartbeat,
+  RustdeskHeartbeat$inboundSchema,
+} from "./rustdeskheartbeat.js";
+import { RustdeskRelay, RustdeskRelay$inboundSchema } from "./rustdeskrelay.js";
+import {
+  RustdeskRendezvous,
+  RustdeskRendezvous$inboundSchema,
+} from "./rustdeskrendezvous.js";
 import { S7, S7$inboundSchema } from "./s7.js";
 import { SapRouter, SapRouter$inboundSchema } from "./saprouter.js";
 import { Scpi, Scpi$inboundSchema } from "./scpi.js";
@@ -191,9 +209,11 @@ export type ServiceScan = {
   epmd?: Epmd | undefined;
   etcd?: Etcd | undefined;
   ethereum?: Ethereum | undefined;
+  flashSocketPolicy?: FlashSocketPolicy | undefined;
   fox?: Fox | undefined;
   ftp?: Ftp | undefined;
   gearman?: Gearman | undefined;
+  gemini?: Gemini | undefined;
   hajime?: Hajime | undefined;
   hidVertx?: HidVertx | undefined;
   hikvision?: Hikvision | undefined;
@@ -210,7 +230,10 @@ export type ServiceScan = {
   l2tp?: L2Tp | undefined;
   ldap?: Ldap | undefined;
   lpd?: Lpd | undefined;
+  mavlink?: Mavlink | undefined;
   mdns?: Mdns | undefined;
+  melsec?: Melsec | undefined;
+  memberlist?: Memberlist | undefined;
   memcached?: Memcached | undefined;
   mikrotikWinbox?: MikrotikWinbox | undefined;
   minecraft?: Minecraft | undefined;
@@ -254,7 +277,11 @@ export type ServiceScan = {
   ripple?: Ripple | undefined;
   rlogin?: Rlogin | undefined;
   rocketmq?: Rocketmq | undefined;
+  routerosApi?: RouterosApi | undefined;
   rtsp?: Rtsp | undefined;
+  rustdeskHeartbeat?: RustdeskHeartbeat | undefined;
+  rustdeskRelay?: RustdeskRelay | undefined;
+  rustdeskRendezvous?: RustdeskRendezvous | undefined;
   s7?: S7 | undefined;
   sapRouter?: SapRouter | undefined;
   scanTime?: string | undefined;
@@ -331,9 +358,11 @@ export const ServiceScan$inboundSchema: z.ZodType<
   epmd: Epmd$inboundSchema.optional(),
   etcd: Etcd$inboundSchema.optional(),
   ethereum: Ethereum$inboundSchema.optional(),
+  flash_socket_policy: FlashSocketPolicy$inboundSchema.optional(),
   fox: Fox$inboundSchema.optional(),
   ftp: Ftp$inboundSchema.optional(),
   gearman: Gearman$inboundSchema.optional(),
+  gemini: Gemini$inboundSchema.optional(),
   hajime: Hajime$inboundSchema.optional(),
   hid_vertx: HidVertx$inboundSchema.optional(),
   hikvision: Hikvision$inboundSchema.optional(),
@@ -350,7 +379,10 @@ export const ServiceScan$inboundSchema: z.ZodType<
   l2tp: L2Tp$inboundSchema.optional(),
   ldap: Ldap$inboundSchema.optional(),
   lpd: Lpd$inboundSchema.optional(),
+  mavlink: Mavlink$inboundSchema.optional(),
   mdns: Mdns$inboundSchema.optional(),
+  melsec: Melsec$inboundSchema.optional(),
+  memberlist: Memberlist$inboundSchema.optional(),
   memcached: Memcached$inboundSchema.optional(),
   mikrotik_winbox: MikrotikWinbox$inboundSchema.optional(),
   minecraft: Minecraft$inboundSchema.optional(),
@@ -394,7 +426,11 @@ export const ServiceScan$inboundSchema: z.ZodType<
   ripple: Ripple$inboundSchema.optional(),
   rlogin: Rlogin$inboundSchema.optional(),
   rocketmq: Rocketmq$inboundSchema.optional(),
+  routeros_api: RouterosApi$inboundSchema.optional(),
   rtsp: Rtsp$inboundSchema.optional(),
+  rustdesk_heartbeat: RustdeskHeartbeat$inboundSchema.optional(),
+  rustdesk_relay: RustdeskRelay$inboundSchema.optional(),
+  rustdesk_rendezvous: RustdeskRendezvous$inboundSchema.optional(),
   s7: S7$inboundSchema.optional(),
   sap_router: SapRouter$inboundSchema.optional(),
   scan_time: z.string().optional(),
@@ -439,6 +475,7 @@ export const ServiceScan$inboundSchema: z.ZodType<
     "crestron_din_ap2": "crestronDinAp2",
     "dvr_ip": "dvrIp",
     "elf_file": "elfFile",
+    "flash_socket_policy": "flashSocketPolicy",
     "hid_vertx": "hidVertx",
     "is_success": "isSuccess",
     "mikrotik_winbox": "mikrotikWinbox",
@@ -451,6 +488,10 @@ export const ServiceScan$inboundSchema: z.ZodType<
     "profinet_cm": "profinetCm",
     "redlion_crimson": "redlionCrimson",
     "representative_info": "representativeInfo",
+    "routeros_api": "routerosApi",
+    "rustdesk_heartbeat": "rustdeskHeartbeat",
+    "rustdesk_relay": "rustdeskRelay",
+    "rustdesk_rendezvous": "rustdeskRendezvous",
     "sap_router": "sapRouter",
     "scan_time": "scanTime",
     "seven_days_to_die": "sevenDaysToDie",

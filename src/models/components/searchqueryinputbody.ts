@@ -11,7 +11,7 @@ export type SearchQueryInputBody = {
    */
   fields?: Array<string> | null | undefined;
   /**
-   * amount of results to return per page
+   * Number of results to return to per page. The default and maximum is 100.
    */
   pageSize?: number | null | undefined;
   /**

@@ -8,6 +8,7 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Attribute, Attribute$inboundSchema } from "./attribute.js";
+import { Greynoise, Greynoise$inboundSchema } from "./greynoise.js";
 import { HostDns, HostDns$inboundSchema } from "./hostdns.js";
 import { Label, Label$inboundSchema } from "./label.js";
 import { Location, Location$inboundSchema } from "./location.js";
@@ -18,6 +19,7 @@ import { Whois, Whois$inboundSchema } from "./whois.js";
 export type Host = {
   autonomousSystem?: Routing | undefined;
   dns?: HostDns | undefined;
+  greynoise?: Greynoise | undefined;
   hardware?: Attribute | undefined;
   ip?: string | undefined;
   labels?: Array<Label> | null | undefined;
@@ -33,6 +35,7 @@ export const Host$inboundSchema: z.ZodType<Host, z.ZodTypeDef, unknown> = z
   .object({
     autonomous_system: Routing$inboundSchema.optional(),
     dns: HostDns$inboundSchema.optional(),
+    greynoise: Greynoise$inboundSchema.optional(),
     hardware: Attribute$inboundSchema.optional(),
     ip: z.string().optional(),
     labels: z.nullable(z.array(Label$inboundSchema)).optional(),

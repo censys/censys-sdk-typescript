@@ -26,6 +26,7 @@ export type HttpRedirectChainLink = {
   path?: string | undefined;
   port?: number | undefined;
   reason?: string | undefined;
+  scheme?: string | undefined;
   transportProtocol?: HttpRedirectChainLinkTransportProtocol | undefined;
 };
 
@@ -46,6 +47,7 @@ export const HttpRedirectChainLink$inboundSchema: z.ZodType<
   path: z.string().optional(),
   port: z.number().int().optional(),
   reason: z.string().optional(),
+  scheme: z.string().optional(),
   transport_protocol: HttpRedirectChainLinkTransportProtocol$inboundSchema
     .optional(),
 }).transform((v) => {
