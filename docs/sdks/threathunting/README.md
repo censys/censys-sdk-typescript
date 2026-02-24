@@ -96,7 +96,8 @@ run();
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.AuthenticationError | 401                        | application/json           |
-| errors.ErrorModel          | 403                        | application/problem+json   |
+| errors.ErrorModel          | 400, 403, 404              | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## createTrackedScan
@@ -187,7 +188,8 @@ run();
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.AuthenticationError | 401                        | application/json           |
-| errors.ErrorModel          | 403                        | application/problem+json   |
+| errors.ErrorModel          | 400, 403, 422              | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## getTrackedScanThreatHunting
@@ -264,7 +266,8 @@ run();
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.AuthenticationError | 401                        | application/json           |
-| errors.ErrorModel          | 403, 404                   | application/problem+json   |
+| errors.ErrorModel          | 400, 403, 404              | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## listThreats
@@ -341,7 +344,8 @@ run();
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.AuthenticationError | 401                        | application/json           |
-| errors.ErrorModel          | 403, 422                   | application/problem+json   |
+| errors.ErrorModel          | 400, 403, 422              | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## valueCounts
@@ -446,5 +450,6 @@ run();
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.AuthenticationError | 401                        | application/json           |
-| errors.ErrorModel          | 403                        | application/problem+json   |
+| errors.ErrorModel          | 400, 403, 422              | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
