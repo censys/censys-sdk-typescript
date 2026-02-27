@@ -1,13 +1,7 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { SDK } from "@censys/platform-sdk";
+import { RFCDate } from "@censys/platform-sdk/types";
 import {
-  V3CollectionsCrudCreateRequest,
-  V3CollectionsCrudDeleteRequest,
-  V3CollectionsCrudGetRequest,
-  V3CollectionsCrudUpdateRequest,
-  V3CollectionsListEventsRequest,
-  V3CollectionsSearchAggregateRequest,
-  V3CollectionsSearchQueryRequest,
   V3GlobaldataAssetCertificateListPostRequest,
   V3GlobaldataAssetCertificateListRawPostRequest,
   V3GlobaldataAssetCertificateRequest,
@@ -19,291 +13,412 @@ import {
   V3GlobaldataAssetWebpropertyRequest,
   V3GlobaldataSearchAggregateRequest,
   V3GlobaldataSearchQueryRequest,
+  V3GlobaldataSearchConvertRequest,
+  V3GlobaldataScansRescanRequest,
+  V3GlobaldataScansGetRequest,
+  V3CollectionsCrudCreateRequest,
+  V3CollectionsCrudDeleteRequest,
+  V3CollectionsCrudGetRequest,
+  V3CollectionsCrudUpdateRequest,
+  V3CollectionsListEventsRequest,
+  V3CollectionsSearchAggregateRequest,
+  V3CollectionsSearchQueryRequest,
+  V3AccountmanagementOrgDetailsRequest,
+  V3AccountmanagementOrgCreditsRequest,
+  V3AccountmanagementOrgCreditsUsageRequest,
+  V3AccountmanagementListOrgMembersRequest,
+  V3AccountmanagementMemberCreditsUsageRequest,
+  V3AccountmanagementUserCreditsUsageRequest,
   V3ThreathuntingValueCountsRequest,
+  V3ThreathuntingGetHostObservationsWithCertificateRequest,
+  V3ThreathuntingThreatsListRequest,
+  V3ThreathuntingScansDiscoveryRequest,
+  V3ThreathuntingScansGetRequest,
 } from "@censys/platform-sdk/models/operations";
+
+const CERT_IDS = [
+  "00000002741c89f06524afbbb4720876bc173aca3a6ce344e08584859b9ac34e",
+  "000000033b547e13ee216c65b0ff50237f0decef12acb76fce0a96afa9c70d50",
+];
+const HOST_IDS = ["1.1.1.1", "8.8.8.8"];
+const WEB_PROPERTY_IDS = ["104.236.29.250:443", "78.133.74.135:49152"];
+const COLLECTION_QUERY =
+  "host.services.protocol='SSH' and host.location.country = 'Netherlands' and host.services.port = 9100 and host.autonomous_system.name = 'WORLDSTREAM'";
+
+function thirtyDaysAgo(): RFCDate {
+  const d = new Date();
+  d.setDate(d.getDate() - 30);
+  return new RFCDate(d);
+}
 
 describe("Censys SDK", () => {
   let sdk: SDK;
+  const orgId = process.env["ORG_ID"]!;
 
   beforeEach(() => {
     sdk = new SDK({
-      organizationId: process.env["ORG_ID"],
+      organizationId: orgId,
       personalAccessToken: process.env["TOKEN"],
     });
   });
 
-  describe("Global Data Certificate", () => {
-    it("should get certificate by ID", async () => {
-      const certID =
-        "00000002741c89f06524afbbb4720876bc173aca3a6ce344e08584859b9ac34e";
+  // ---------------------------------------------------------------------------
+  // Global Data
+  // ---------------------------------------------------------------------------
+  describe("Global Data", () => {
+    describe("Certificates", () => {
+      it("should get certificate by ID", async () => {
+        const request = {
+          certificateId: CERT_IDS[0],
+        } satisfies V3GlobaldataAssetCertificateRequest;
 
-      const request = {
-        certificateId: certID,
-      } satisfies V3GlobaldataAssetCertificateRequest;
+        const response = await sdk.globalData.getCertificate(request);
+        expect(response.result.result?.resource.fingerprintSha256).toBe(
+          CERT_IDS[0]
+        );
+      });
 
-      const response = await sdk.globalData.getCertificate(request);
+      it("should get certificate in raw format by ID", async () => {
+        const request = {
+          certificateId: CERT_IDS[0],
+        } satisfies V3GlobaldataAssetCertificateRawRequest;
 
-      expect(response).toBeDefined();
-      expect(response.result.result?.resource.fingerprintSha256).toBe(certID);
+        const response = await sdk.globalData.getCertificateRaw(request);
+        expect(response.result).toBeDefined();
+      });
+
+      it("should get multiple certificates by IDs", async () => {
+        const request = {
+          assetCertificateListInputBody: { certificateIds: CERT_IDS },
+        } satisfies V3GlobaldataAssetCertificateListPostRequest;
+
+        const response = await sdk.globalData.getCertificates(request);
+        expect(response.result.result?.length).toBe(CERT_IDS.length);
+      });
+
+      it("should get multiple certificates in raw format by IDs", async () => {
+        const request = {
+          assetCertificateListInputBody: { certificateIds: CERT_IDS },
+        } satisfies V3GlobaldataAssetCertificateListRawPostRequest;
+
+        const response = await sdk.globalData.getCertificatesRaw(request);
+        expect(response.result).toBeDefined();
+      });
     });
 
-    it("should get certificate in raw format by ID", async () => {
-      const certID =
-        "00000002741c89f06524afbbb4720876bc173aca3a6ce344e08584859b9ac34e";
+    describe("Hosts", () => {
+      it("should get multiple hosts by IPs", async () => {
+        const request = {
+          assetHostListInputBody: { hostIds: HOST_IDS },
+        } satisfies V3GlobaldataAssetHostListPostRequest;
 
-      const request = {
-        certificateId: certID,
-      } satisfies V3GlobaldataAssetCertificateRawRequest;
+        const response = await sdk.globalData.getHosts(request);
+        expect(response).toBeDefined();
+      });
 
-      const response = await sdk.globalData.getCertificateRaw(request);
+      it("should get host by IP", async () => {
+        const request = {
+          hostId: "1.1.1.1",
+          atTime: new Date("2025-03-20T00:00:00Z"),
+        } satisfies V3GlobaldataAssetHostRequest;
 
-      expect(response).toBeDefined();
-      expect(response.result).toBeDefined();
-    });
-  });
+        const response = await sdk.globalData.getHost(request);
+        expect(response.result.result).toBeDefined();
+      });
 
-  it("should get multiple certificates by IDs", async () => {
-    const certIDs = [
-      "00000002741c89f06524afbbb4720876bc173aca3a6ce344e08584859b9ac34e",
-      "000000033b547e13ee216c65b0ff50237f0decef12acb76fce0a96afa9c70d50",
-    ];
+      it(
+        "should get host timeline",
+        async () => {
+          const request: V3GlobaldataAssetHostTimelineRequest = {
+            hostId: "125.13.31.107",
+            startTime: new Date("2025-03-20T00:00:00Z"),
+            endTime: new Date("2025-03-22T00:00:00Z"),
+          };
 
-    const request = {
-      assetCertificateListInputBody: {
-        certificateIds: certIDs,
-      },
-    } satisfies V3GlobaldataAssetCertificateListPostRequest;
-
-    const response = await sdk.globalData.getCertificates(request);
-
-    expect(response).toBeDefined();
-    expect(response.result.result?.length).toBe(certIDs.length);
-  });
-
-  it("should get multiple certificates in raw format by IDs", async () => {
-    const certIDs = [
-      "00000002741c89f06524afbbb4720876bc173aca3a6ce344e08584859b9ac34e",
-      "000000033b547e13ee216c65b0ff50237f0decef12acb76fce0a96afa9c70d50",
-    ];
-
-    const request = {
-      assetCertificateListInputBody: {
-        certificateIds: certIDs,
-      },
-    } satisfies V3GlobaldataAssetCertificateListRawPostRequest;
-
-    const response = await sdk.globalData.getCertificatesRaw(request);
-
-    expect(response).toBeDefined();
-    expect(response.result).toBeDefined();
-  });
-
-  describe("Global Data Host List", () => {
-    it("should get multiple hosts by IPs", async () => {
-      const hostIDs = ["1.1.1.1", "8.8.8.8"];
-
-      const request = {
-        assetHostListInputBody: {
-          hostIds: hostIDs,
+          const response = await sdk.globalData.getHostTimeline(request);
+          expect(response.result.result).toBeDefined();
         },
-      } satisfies V3GlobaldataAssetHostListPostRequest;
-
-      const response = await sdk.globalData.getHosts(request);
-
-      expect(response).toBeDefined();
+        30_000
+      );
     });
 
-    it("should get host by IP with optional time", async () => {
-      const hostID = "125.13.31.107";
-      const atTime = new Date("2025-03-20T00:00:00Z");
+    describe("Web Properties", () => {
+      it("should get web property by ID", async () => {
+        const request = {
+          webpropertyId: WEB_PROPERTY_IDS[0],
+        } satisfies V3GlobaldataAssetWebpropertyRequest;
 
-      const request = {
-        hostId: hostID,
-        atTime,
-      } satisfies V3GlobaldataAssetHostRequest;
+        const response = await sdk.globalData.getWebProperty(request);
+        expect(response.result.result).toBeDefined();
+      });
 
-      const response = await sdk.globalData.getHost(request);
+      it("should get multiple web properties by IDs", async () => {
+        const request = {
+          assetWebpropertyListInputBody: {
+            webpropertyIds: WEB_PROPERTY_IDS,
+          },
+        } satisfies V3GlobaldataAssetWebpropertyListPostRequest;
 
-      expect(response).toBeDefined();
-      expect(response.result.result).toBeDefined();
+        const response = await sdk.globalData.getWebProperties(request);
+        expect(response.result.result?.length).toBe(WEB_PROPERTY_IDS.length);
+      });
     });
 
-    it("should get host timeline with time range", async () => {
-      const hostID = "125.13.31.107";
-      const startTime = new Date("2025-03-20T00:00:00Z");
-      const endTime = new Date("2025-03-22T00:00:00Z");
+    describe("Search", () => {
+      it("should perform search query", async () => {
+        const request = {
+          searchQueryInputBody: {
+            query: "web.port: *",
+            pageSize: 3,
+            fields: ["web.port"],
+          },
+        } satisfies V3GlobaldataSearchQueryRequest;
 
-      const request: V3GlobaldataAssetHostTimelineRequest = {
-        hostId: hostID,
-        startTime,
-        endTime,
-      };
+        const response = await sdk.globalData.search(request);
+        expect(response.result.result).toBeDefined();
+      });
 
-      const response = await sdk.globalData.getHostTimeline(request);
+      it("should perform aggregate search", async () => {
+        const request = {
+          searchAggregateInputBody: {
+            field: "web.endpoints.http.status_reason",
+            numberOfBuckets: 2,
+            query: "web.port: *",
+          },
+        } satisfies V3GlobaldataSearchAggregateRequest;
 
-      expect(response).toBeDefined();
-      expect(response.result.result).toBeDefined();
-    });
-  });
+        const response = await sdk.globalData.aggregate(request);
+        expect(response.result.result).toBeDefined();
+      });
 
-  describe("Global Data Web Property", () => {
-    it("should get web property by ID", async () => {
-      const webPropertyID = "104.236.29.250:443";
+      it("should convert legacy search queries", async () => {
+        const request = {
+          searchConvertQueryInputBody: {
+            queries: ["parsed.names: censys.io AND tags: trusted"],
+          },
+        } satisfies V3GlobaldataSearchConvertRequest;
 
-      const request = {
-        webpropertyId: webPropertyID,
-      } satisfies V3GlobaldataAssetWebpropertyRequest;
-
-      const response = await sdk.globalData.getWebProperty(request);
-
-      expect(response).toBeDefined();
-      expect(response.result.result).toBeDefined();
-    });
-
-    it("should get multiple web properties by IDs", async () => {
-      const webPropertyIDs = ["104.236.29.250:443", "78.133.74.135:49152"];
-
-      const request = {
-        assetWebpropertyListInputBody: {
-          webpropertyIds: webPropertyIDs,
-        },
-      } satisfies V3GlobaldataAssetWebpropertyListPostRequest;
-
-      const response = await sdk.globalData.getWebProperties(request);
-
-      expect(response).toBeDefined();
-      expect(response.result.result?.length).toBe(webPropertyIDs.length);
-    });
-  });
-
-  describe("Global Data Search", () => {
-    it("should perform aggregate search", async () => {
-      const request = {
-        searchAggregateInputBody: {
-          field: "web.endpoints.http.status_reason",
-          numberOfBuckets: 2,
-          query: "web.port: *",
-        },
-      } satisfies V3GlobaldataSearchAggregateRequest;
-
-      const response = await sdk.globalData.aggregate(request);
-
-      expect(response).toBeDefined();
-      expect(response.result.result).toBeDefined();
+        const response =
+          await sdk.globalData.convertLegacySearchQueries(request);
+        expect(response.result.result).toBeDefined();
+      });
     });
 
-    it("should perform search query", async () => {
-      const pageSize = 3;
+    describe("Tracked Scans (Live Rescan)", () => {
+      it("should create and get a tracked scan", async () => {
+        const createRequest = {
+          scansRescanInputBody: {
+            target: {
+              serviceId: {
+                ip: "1.1.1.1",
+                port: 443,
+                protocol: "HTTP",
+                transportProtocol: "tcp" as const,
+              },
+            },
+          },
+        } satisfies V3GlobaldataScansRescanRequest;
 
-      const request = {
-        searchQueryInputBody: {
-          query: "web.port: *",
-          pageSize,
-          fields: ["web.port"],
-        },
-      } satisfies V3GlobaldataSearchQueryRequest;
+        const createResponse =
+          await sdk.globalData.createTrackedScan(createRequest);
+        const scanId = createResponse.result.result?.trackedScanId ?? "";
+        expect(scanId).toBeTruthy();
 
-      const response = await sdk.globalData.search(request);
-
-      expect(response).toBeDefined();
-      expect(response.result.result).toBeDefined();
+        const getRequest = { scanId } satisfies V3GlobaldataScansGetRequest;
+        const getResponse = await sdk.globalData.getTrackedScan(getRequest);
+        expect(getResponse.result.result).toBeDefined();
+      });
     });
   });
 
+  // ---------------------------------------------------------------------------
+  // Collections
+  // ---------------------------------------------------------------------------
   describe("Collections", () => {
-    it("should perform full CRUD operations on collections", async () => {
-      const randomString = Math.random().toString(36).substring(2, 15); // Make it random to prevent name collisions. Might require manual test clean up from time to time.
-      const collectionName = `Test Collection NL - ${randomString}`;
-      const collectionDescription = `Test Collection NL - ${randomString} description`;
-      const collectionQuery =
-        "host.services.protocol='SSH' and host.location.country = 'Netherlands' and host.services.port = 9100 and host.autonomous_system.name = 'WORLDSTREAM'";
+    it("should list collections", async () => {
+      const response = await sdk.collections.list({});
+      expect(response.result.result).toBeDefined();
+    });
 
-      const createRequest = {
-        crudCreateInputBody: {
-          name: collectionName,
-          description: collectionDescription,
-          query: collectionQuery,
-        },
-      } satisfies V3CollectionsCrudCreateRequest;
+    it(
+      "should perform full CRUD operations",
+      async () => {
+        const tag = Math.random().toString(36).substring(2, 15);
+        const name = `Test Collection TS - ${tag}`;
+        const description = `Description - ${tag}`;
 
-      const response = await sdk.collections.create(createRequest);
-      expect(response).toBeDefined();
+        // Create
+        const createRequest = {
+          crudCreateInputBody: {
+            name,
+            description,
+            query: COLLECTION_QUERY,
+          },
+        } satisfies V3CollectionsCrudCreateRequest;
+        const createResponse = await sdk.collections.create(createRequest);
+        const collectionUid = createResponse.result.result?.id ?? "";
+        expect(collectionUid).toBeTruthy();
 
-      const collectionUid = response.result.result?.id ?? "";
-      expect(collectionUid).toBeDefined();
+        // Get
+        const getRequest = {
+          collectionUid,
+        } satisfies V3CollectionsCrudGetRequest;
+        const getResponse = await sdk.collections.get(getRequest);
+        expect(getResponse.result.result?.name).toBe(name);
 
-      const getRequest = {
-        collectionUid,
-      } satisfies V3CollectionsCrudGetRequest;
+        // List Events
+        const listEventsRequest = {
+          collectionUid,
+        } satisfies V3CollectionsListEventsRequest;
+        const listEventsResponse =
+          await sdk.collections.listEvents(listEventsRequest);
+        expect(listEventsResponse).toBeDefined();
 
-      const getResult = await sdk.collections.get(getRequest);
-      expect(getResult).toBeDefined();
+        // Aggregate
+        const aggregateRequest = {
+          collectionUid,
+          searchAggregateInputBody: {
+            field: "host.autonomous_system.name",
+            numberOfBuckets: 10,
+            query: "host.services.labels.value = 'REMOTE_ACCESS'",
+          },
+        } satisfies V3CollectionsSearchAggregateRequest;
+        const aggregateResponse =
+          await sdk.collections.aggregate(aggregateRequest);
+        expect(aggregateResponse).toBeDefined();
 
-      const listEventsRequest = {
-        collectionUid,
-      } satisfies V3CollectionsListEventsRequest;
+        // Search
+        const searchRequest = {
+          collectionUid,
+          searchQueryInputBody: {
+            query: "host.services.labels.value = 'REMOTE_ACCESS'",
+          },
+        } satisfies V3CollectionsSearchQueryRequest;
+        const searchResponse = await sdk.collections.search(searchRequest);
+        expect(searchResponse).toBeDefined();
 
-      const listEventsResult = await sdk.collections.listEvents(
-        listEventsRequest
-      );
-      expect(listEventsResult).toBeDefined();
+        // Update
+        const newName = `Updated - ${tag}`;
+        const updateRequest = {
+          collectionUid,
+          crudUpdateInputBody: {
+            name: newName,
+            description,
+            query: COLLECTION_QUERY,
+          },
+        } satisfies V3CollectionsCrudUpdateRequest;
+        const updateResponse = await sdk.collections.update(updateRequest);
+        expect(updateResponse).toBeDefined();
 
-      const searchAggregateRequest = {
-        collectionUid,
-        searchAggregateInputBody: {
-          field: "host.autonomous_system.name",
-          numberOfBuckets: 10,
-          query: "host.services.labels.value = 'REMOTE_ACCESS'",
-        },
-      } satisfies V3CollectionsSearchAggregateRequest;
+        const updatedGet = await sdk.collections.get(getRequest);
+        expect(updatedGet.result.result?.name).toBe(newName);
 
-      const searchAggregateResult = await sdk.collections.aggregate(
-        searchAggregateRequest
-      );
-      expect(searchAggregateResult).toBeDefined();
+        // Delete
+        const deleteRequest = {
+          collectionUid,
+        } satisfies V3CollectionsCrudDeleteRequest;
+        await sdk.collections.delete(deleteRequest);
 
-      const searchQueryRequest = {
-        collectionUid,
-        searchQueryInputBody: {
-          query: "host.services.labels.value = 'REMOTE_ACCESS'",
-        },
-      } satisfies V3CollectionsSearchQueryRequest;
-
-      const searchQueryResult = await sdk.collections.search(
-        searchQueryRequest
-      );
-
-      expect(searchQueryResult).toBeDefined();
-
-      const newDescription = `New desc - ${randomString} description`;
-      const newName = `New name - ${randomString}`;
-
-      const updateRequest = {
-        collectionUid,
-        crudUpdateInputBody: {
-          description: newDescription,
-          name: newName,
-          query: collectionQuery,
-        },
-      } satisfies V3CollectionsCrudUpdateRequest;
-
-      const updateResult = await sdk.collections.update(updateRequest);
-      expect(updateResult).toBeDefined();
-
-      const updatedGetResult = await sdk.collections.get(getRequest);
-      expect(updatedGetResult.result.result?.description).toBe(newDescription);
-
-      const deleteRequest = {
-        collectionUid,
-      } satisfies V3CollectionsCrudDeleteRequest;
-
-      const deleteResult = await sdk.collections.delete(deleteRequest);
-      expect(deleteResult).toBeDefined();
-
-      await expect(sdk.collections.get(getRequest)).rejects.toThrow();
-    }, 60_000); // Extra long-lived to ensure it we have time to complete these tests.
+        await expect(sdk.collections.get(getRequest)).rejects.toThrow();
+      },
+      60_000
+    );
   });
 
+  // ---------------------------------------------------------------------------
+  // Account Management
+  // ---------------------------------------------------------------------------
+  describe("Account Management", () => {
+    describe("Organization", () => {
+      it("should get organization details", async () => {
+        const request = {
+          organizationId: orgId,
+          includeMemberCounts: true,
+        } satisfies V3AccountmanagementOrgDetailsRequest;
+
+        const response =
+          await sdk.accountManagement.getOrganizationDetails(request);
+        expect(response.result.result).toBeDefined();
+      });
+
+      it("should get organization credits", async () => {
+        const request = {
+          organizationId: orgId,
+        } satisfies V3AccountmanagementOrgCreditsRequest;
+
+        const response =
+          await sdk.accountManagement.getOrganizationCredits(request);
+        expect(response.result.result).toBeDefined();
+      });
+
+      it("should get organization credit usage", async () => {
+        const request = {
+          organizationId: orgId,
+          startDate: thirtyDaysAgo(),
+          granularity: "daily",
+        } satisfies V3AccountmanagementOrgCreditsUsageRequest;
+
+        const response =
+          await sdk.accountManagement.getOrganizationCreditUsage(request);
+        expect(response.result.result).toBeDefined();
+      });
+    });
+
+    describe("Members", () => {
+      it("should list organization members", async () => {
+        const request = {
+          organizationId: orgId,
+        } satisfies V3AccountmanagementListOrgMembersRequest;
+
+        const response =
+          await sdk.accountManagement.listOrganizationMembers(request);
+        expect(response.result.result).toBeDefined();
+      });
+
+      it("should get member credit usage", async () => {
+        const membersResponse =
+          await sdk.accountManagement.listOrganizationMembers({
+            organizationId: orgId,
+          });
+        const userId =
+          membersResponse.result.result?.members?.[0]?.uid ?? "";
+        expect(userId).toBeTruthy();
+
+        const request = {
+          organizationId: orgId,
+          userId,
+          startDate: thirtyDaysAgo(),
+          granularity: "daily",
+        } satisfies V3AccountmanagementMemberCreditsUsageRequest;
+
+        const response =
+          await sdk.accountManagement.getMemberCreditUsage(request);
+        expect(response.result.result).toBeDefined();
+      });
+    });
+
+    describe("User", () => {
+      it("should get user credits", async () => {
+        const response = await sdk.accountManagement.getUserCredits();
+        expect(response.result.result).toBeDefined();
+      });
+
+      it("should get user credit usage", async () => {
+        const request = {
+          startDate: thirtyDaysAgo(),
+          granularity: "daily",
+        } satisfies V3AccountmanagementUserCreditsUsageRequest;
+
+        const response =
+          await sdk.accountManagement.getUserCreditsUsage(request);
+        expect(response.result.result).toBeDefined();
+      });
+    });
+  });
+
+  // ---------------------------------------------------------------------------
+  // Threat Hunting
+  // ---------------------------------------------------------------------------
   describe("Threat Hunting", () => {
     it("should perform value counts search", async () => {
       const request = {
@@ -320,9 +435,47 @@ describe("Censys SDK", () => {
       } satisfies V3ThreathuntingValueCountsRequest;
 
       const response = await sdk.threatHunting.valueCounts(request);
-
-      expect(response).toBeDefined();
       expect(response.result.result).toBeDefined();
+    });
+
+    it("should get host observations with certificate", async () => {
+      const request = {
+        certificateId: CERT_IDS[0],
+      } satisfies V3ThreathuntingGetHostObservationsWithCertificateRequest;
+
+      const response =
+        await sdk.threatHunting.getHostObservationsWithCertificate(request);
+      expect(response.result.result).toBeDefined();
+    });
+
+    it("should list threats", async () => {
+      const request = {} satisfies V3ThreathuntingThreatsListRequest;
+
+      const response = await sdk.threatHunting.listThreats(request);
+      expect(response.result.result).toBeDefined();
+    });
+
+    it("should create and get a tracked scan (Live Discovery)", async () => {
+      const createRequest = {
+        scansDiscoveryInputBody: {
+          target: {
+            hostPort: {
+              ip: "1.1.1.1",
+              port: 443,
+            },
+          },
+        },
+      } satisfies V3ThreathuntingScansDiscoveryRequest;
+
+      const createResponse =
+        await sdk.threatHunting.createTrackedScan(createRequest);
+      const scanId = createResponse.result.result?.trackedScanId ?? "";
+      expect(scanId).toBeTruthy();
+
+      const getRequest = { scanId } satisfies V3ThreathuntingScansGetRequest;
+      const getResponse =
+        await sdk.threatHunting.getTrackedScanThreatHunting(getRequest);
+      expect(getResponse.result.result).toBeDefined();
     });
   });
 });
