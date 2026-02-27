@@ -34,6 +34,7 @@ export * from "./v3globaldatascansrescan.js";
 export * from "./v3globaldatasearchaggregate.js";
 export * from "./v3globaldatasearchconvert.js";
 export * from "./v3globaldatasearchquery.js";
+export * from "./v3globaldataserviceonhost.js";
 export * from "./v3threathuntinggethostobservationswithcertificate.js";
 export * from "./v3threathuntingscansdiscovery.js";
 export * from "./v3threathuntingscansget.js";

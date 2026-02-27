@@ -15,6 +15,7 @@ import { globalDataGetHostTimeline } from "../funcs/globalDataGetHostTimeline.js
 import { globalDataGetTrackedScan } from "../funcs/globalDataGetTrackedScan.js";
 import { globalDataGetWebProperties } from "../funcs/globalDataGetWebProperties.js";
 import { globalDataGetWebProperty } from "../funcs/globalDataGetWebProperty.js";
+import { globalDataListServicesOnHost } from "../funcs/globalDataListServicesOnHost.js";
 import { globalDataSearch } from "../funcs/globalDataSearch.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
@@ -117,6 +118,23 @@ export class GlobalData extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V3GlobaldataAssetHostResponse> {
     return unwrapAsync(globalDataGetHost(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get service history for a host
+   *
+   * @remarks
+   * Retrieve historical service observations for a host. This endpoint returns time ranges during which services were detected on the host.<br><br>You can define a specific time frame of interest. If you do not specify a time frame, this endpoint will search the historical dataset that is available to your account.<br><br>You can filter by port number, protocol, and transport protocol.
+   */
+  async listServicesOnHost(
+    request: operations.V3GlobaldataServiceOnHostRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3GlobaldataServiceOnHostResponse> {
+    return unwrapAsync(globalDataListServicesOnHost(
       this,
       request,
       options,

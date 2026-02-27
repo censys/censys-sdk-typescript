@@ -94,6 +94,7 @@ async function $do(
   const path = pathToFunc("/v3/collections")();
 
   const query = encodeFormQuery({
+    "collection_statuses": payload.collection_statuses,
     "organization_id": payload.organization_id
       ?? client._options.organizationId,
     "page_size": payload.page_size,

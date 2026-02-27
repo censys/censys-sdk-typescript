@@ -8,9 +8,7 @@ import { CreditUsageReport } from "@censys/platform-sdk/models/components";
 let value: CreditUsageReport = {
   creditsConsumedBySource: {
     api: 581368,
-    autoReplenishment: 390321,
-    other: 351320,
-    ui: 844559,
+    ui: 390321,
   },
   endTime: new Date("2026-11-10T08:28:24.609Z"),
   periods: [],
