@@ -11,6 +11,7 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Activemq, Activemq$inboundSchema } from "./activemq.js";
 import { Amqp, Amqp$inboundSchema } from "./amqp.js";
+import { AnermaCfForth, AnermaCfForth$inboundSchema } from "./anermacfforth.js";
 import { AnyConnect, AnyConnect$inboundSchema } from "./anyconnect.js";
 import {
   AsteriskManagerInterface,
@@ -32,6 +33,10 @@ import {
   CrestronDinAp2,
   CrestronDinAp2$inboundSchema,
 } from "./crestrondinap2.js";
+import {
+  CursorOnTarget,
+  CursorOnTarget$inboundSchema,
+} from "./cursorontarget.js";
 import { Cwmp, Cwmp$inboundSchema } from "./cwmp.js";
 import { Darkcomet, Darkcomet$inboundSchema } from "./darkcomet.js";
 import { Darkgate, Darkgate$inboundSchema } from "./darkgate.js";
@@ -55,6 +60,7 @@ import {
   FlashSocketPolicy$inboundSchema,
 } from "./flashsocketpolicy.js";
 import { Fox, Fox$inboundSchema } from "./fox.js";
+import { Frps, Frps$inboundSchema } from "./frps.js";
 import { Ftp, Ftp$inboundSchema } from "./ftp.js";
 import { Gearman, Gearman$inboundSchema } from "./gearman.js";
 import { Gemini, Gemini$inboundSchema } from "./gemini.js";
@@ -62,6 +68,7 @@ import { Hajime, Hajime$inboundSchema } from "./hajime.js";
 import { HidVertx, HidVertx$inboundSchema } from "./hidvertx.js";
 import { Hikvision, Hikvision$inboundSchema } from "./hikvision.js";
 import { Ibmnje, Ibmnje$inboundSchema } from "./ibmnje.js";
+import { Icap, Icap$inboundSchema } from "./icap.js";
 import { Ike, Ike$inboundSchema } from "./ike.js";
 import { Imap, Imap$inboundSchema } from "./imap.js";
 import { Iota, Iota$inboundSchema } from "./iota.js";
@@ -160,6 +167,7 @@ import { Spice, Spice$inboundSchema } from "./spice.js";
 import { Ssdp, Ssdp$inboundSchema } from "./ssdp.js";
 import { Ssh, Ssh$inboundSchema } from "./ssh.js";
 import { Steam, Steam$inboundSchema } from "./steam.js";
+import { Stun, Stun$inboundSchema } from "./stun.js";
 import { TacacsPlus, TacacsPlus$inboundSchema } from "./tacacsplus.js";
 import { TeamViewer, TeamViewer$inboundSchema } from "./teamviewer.js";
 import { Telnet, Telnet$inboundSchema } from "./telnet.js";
@@ -195,6 +203,7 @@ export type ServiceTransportProtocol = OpenEnum<
 export type Service = {
   activemq?: Activemq | undefined;
   amqp?: Amqp | undefined;
+  anermaCfForth?: AnermaCfForth | undefined;
   anyConnect?: AnyConnect | undefined;
   asteriskManagerInterface?: AsteriskManagerInterface | undefined;
   bacnet?: Bacnet | undefined;
@@ -209,6 +218,7 @@ export type Service = {
   coap?: Coap | undefined;
   crestronCp3?: CrestronCp3 | undefined;
   crestronDinAp2?: CrestronDinAp2 | undefined;
+  cursorOnTarget?: CursorOnTarget | undefined;
   cwmp?: Cwmp | undefined;
   darkcomet?: Darkcomet | undefined;
   darkgate?: Darkgate | undefined;
@@ -227,6 +237,7 @@ export type Service = {
   exposures?: Array<Risk> | null | undefined;
   flashSocketPolicy?: FlashSocketPolicy | undefined;
   fox?: Fox | undefined;
+  frps?: Frps | undefined;
   ftp?: Ftp | undefined;
   gearman?: Gearman | undefined;
   gemini?: Gemini | undefined;
@@ -235,6 +246,7 @@ export type Service = {
   hidVertx?: HidVertx | undefined;
   hikvision?: Hikvision | undefined;
   ibmnje?: Ibmnje | undefined;
+  icap?: Icap | undefined;
   ike?: Ike | undefined;
   imap?: Imap | undefined;
   iota?: Iota | undefined;
@@ -321,6 +333,7 @@ export type Service = {
   ssdp?: Ssdp | undefined;
   ssh?: Ssh | undefined;
   steam?: Steam | undefined;
+  stun?: Stun | undefined;
   tacacsPlus?: TacacsPlus | undefined;
   teamViewer?: TeamViewer | undefined;
   telnet?: Telnet | undefined;
@@ -353,6 +366,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
   z.object({
     activemq: Activemq$inboundSchema.optional(),
     amqp: Amqp$inboundSchema.optional(),
+    anerma_cf_forth: AnermaCfForth$inboundSchema.optional(),
     any_connect: AnyConnect$inboundSchema.optional(),
     asterisk_manager_interface: AsteriskManagerInterface$inboundSchema
       .optional(),
@@ -368,6 +382,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     coap: Coap$inboundSchema.optional(),
     crestron_cp3: CrestronCp3$inboundSchema.optional(),
     crestron_din_ap2: CrestronDinAp2$inboundSchema.optional(),
+    cursor_on_target: CursorOnTarget$inboundSchema.optional(),
     cwmp: Cwmp$inboundSchema.optional(),
     darkcomet: Darkcomet$inboundSchema.optional(),
     darkgate: Darkgate$inboundSchema.optional(),
@@ -386,6 +401,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     exposures: z.nullable(z.array(Risk$inboundSchema)).optional(),
     flash_socket_policy: FlashSocketPolicy$inboundSchema.optional(),
     fox: Fox$inboundSchema.optional(),
+    frps: Frps$inboundSchema.optional(),
     ftp: Ftp$inboundSchema.optional(),
     gearman: Gearman$inboundSchema.optional(),
     gemini: Gemini$inboundSchema.optional(),
@@ -394,6 +410,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     hid_vertx: HidVertx$inboundSchema.optional(),
     hikvision: Hikvision$inboundSchema.optional(),
     ibmnje: Ibmnje$inboundSchema.optional(),
+    icap: Icap$inboundSchema.optional(),
     ike: Ike$inboundSchema.optional(),
     imap: Imap$inboundSchema.optional(),
     iota: Iota$inboundSchema.optional(),
@@ -480,6 +497,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     ssdp: Ssdp$inboundSchema.optional(),
     ssh: Ssh$inboundSchema.optional(),
     steam: Steam$inboundSchema.optional(),
+    stun: Stun$inboundSchema.optional(),
     tacacs_plus: TacacsPlus$inboundSchema.optional(),
     team_viewer: TeamViewer$inboundSchema.optional(),
     telnet: Telnet$inboundSchema.optional(),
@@ -500,6 +518,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     zeromq: Zeromq$inboundSchema.optional(),
   }).transform((v) => {
     return remap$(v, {
+      "anerma_cf_forth": "anermaCfForth",
       "any_connect": "anyConnect",
       "asterisk_manager_interface": "asteriskManagerInterface",
       "banner_hash_sha256": "bannerHashSha256",
@@ -508,6 +527,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
       "cisco_ipsla": "ciscoIpsla",
       "crestron_cp3": "crestronCp3",
       "crestron_din_ap2": "crestronDinAp2",
+      "cursor_on_target": "cursorOnTarget",
       "dvr_ip": "dvrIp",
       "elf_file": "elfFile",
       "flash_socket_policy": "flashSocketPolicy",

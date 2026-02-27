@@ -16,11 +16,11 @@ export type SourceUsageBreakdown = {
   /**
    * The amount of credits consumed through auto-replenishment.
    */
-  autoReplenishment: number;
+  autoReplenishment?: number | undefined;
   /**
    * The amount of credits consumed through other operations.
    */
-  other: number;
+  other?: number | undefined;
   /**
    * The amount of credits consumed through the Platform UI.
    */
@@ -34,8 +34,8 @@ export const SourceUsageBreakdown$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   api: z.number().int(),
-  auto_replenishment: z.number().int(),
-  other: z.number().int(),
+  auto_replenishment: z.number().int().optional(),
+  other: z.number().int().optional(),
   ui: z.number().int(),
 }).transform((v) => {
   return remap$(v, {

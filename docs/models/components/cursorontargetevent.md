@@ -1,0 +1,27 @@
+# CursorOnTargetEvent
+
+## Example Usage
+
+```typescript
+import { CursorOnTargetEvent } from "@censys/platform-sdk/models/components";
+
+let value: CursorOnTargetEvent = {};
+```
+
+## Fields
+
+| Field                                                                              | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `callsign`                                                                         | *string*                                                                           | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `endpoint`                                                                         | *string*                                                                           | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `how`                                                                              | *string*                                                                           | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `point`                                                                            | [components.CursorOnTargetPoint](../../models/components/cursorontargetpoint.md)   | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `stale`                                                                            | *string*                                                                           | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `start`                                                                            | *string*                                                                           | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `status`                                                                           | [components.CursorOnTargetStatus](../../models/components/cursorontargetstatus.md) | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `takv`                                                                             | [components.CursorOnTargetTakv](../../models/components/cursorontargettakv.md)     | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `time`                                                                             | *string*                                                                           | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `type`                                                                             | *string*                                                                           | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `uid`                                                                              | *string*                                                                           | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `version`                                                                          | *string*                                                                           | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `videoUrl`                                                                         | *string*                                                                           | :heavy_minus_sign:                                                                 | N/A                                                                                |

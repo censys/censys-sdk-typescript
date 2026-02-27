@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -12,6 +13,14 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type V3CollectionsCrudListGlobals = {
   organizationId?: string | undefined;
 };
+
+export const CollectionStatuses = {
+  Populating: "populating",
+  Active: "active",
+  Paused: "paused",
+  Archived: "archived",
+} as const;
+export type CollectionStatuses = ClosedEnum<typeof CollectionStatuses>;
 
 export type V3CollectionsCrudListRequest = {
   /**
@@ -26,6 +35,10 @@ export type V3CollectionsCrudListRequest = {
    * amount of results to return per page
    */
   pageSize?: number | undefined;
+  /**
+   * statuses of collection for results to be filtered on.
+   */
+  collectionStatuses?: Array<CollectionStatuses> | null | undefined;
 };
 
 export type V3CollectionsCrudListResponse = {
@@ -34,10 +47,16 @@ export type V3CollectionsCrudListResponse = {
 };
 
 /** @internal */
+export const CollectionStatuses$outboundSchema: z.ZodNativeEnum<
+  typeof CollectionStatuses
+> = z.nativeEnum(CollectionStatuses);
+
+/** @internal */
 export type V3CollectionsCrudListRequest$Outbound = {
   organization_id?: string | undefined;
   page_token?: string | undefined;
   page_size?: number | undefined;
+  collection_statuses?: Array<string> | null | undefined;
 };
 
 /** @internal */
@@ -49,11 +68,14 @@ export const V3CollectionsCrudListRequest$outboundSchema: z.ZodType<
   organizationId: z.string().optional(),
   pageToken: z.string().optional(),
   pageSize: z.number().int().optional(),
+  collectionStatuses: z.nullable(z.array(CollectionStatuses$outboundSchema))
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     organizationId: "organization_id",
     pageToken: "page_token",
     pageSize: "page_size",
+    collectionStatuses: "collection_statuses",
   });
 });
 

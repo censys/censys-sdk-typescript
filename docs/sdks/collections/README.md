@@ -34,6 +34,10 @@ async function run() {
   const result = await sdk.collections.list({
     pageToken: "<next_page_token>",
     pageSize: 1,
+    collectionStatuses: [
+      "populating",
+      "active",
+    ],
   });
 
   console.log(result);
@@ -61,6 +65,10 @@ async function run() {
   const res = await collectionsList(sdk, {
     pageToken: "<next_page_token>",
     pageSize: 1,
+    collectionStatuses: [
+      "populating",
+      "active",
+    ],
   });
   if (res.ok) {
     const { value: result } = res;
