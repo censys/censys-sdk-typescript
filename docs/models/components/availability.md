@@ -8,11 +8,11 @@ If an attack renders information unavailable, such as when a system crashes or t
 import { Availability } from "@censys/platform-sdk/models/components";
 
 let value: Availability = "high";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "" | "none" | "low" | "high" | Unrecognized<string>

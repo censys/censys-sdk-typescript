@@ -12,6 +12,7 @@ import { Greynoise, Greynoise$inboundSchema } from "./greynoise.js";
 import { HostDns, HostDns$inboundSchema } from "./hostdns.js";
 import { Label, Label$inboundSchema } from "./label.js";
 import { Location, Location$inboundSchema } from "./location.js";
+import { Reputation, Reputation$inboundSchema } from "./reputation.js";
 import { Routing, Routing$inboundSchema } from "./routing.js";
 import { Service, Service$inboundSchema } from "./service.js";
 import { Whois, Whois$inboundSchema } from "./whois.js";
@@ -25,6 +26,7 @@ export type Host = {
   labels?: Array<Label> | null | undefined;
   location?: Location | undefined;
   operatingSystem?: Attribute | undefined;
+  reputation?: Reputation | undefined;
   serviceCount?: number | undefined;
   services?: Array<Service> | null | undefined;
   whois?: Whois | undefined;
@@ -41,6 +43,7 @@ export const Host$inboundSchema: z.ZodType<Host, z.ZodTypeDef, unknown> = z
     labels: z.nullable(z.array(Label$inboundSchema)).optional(),
     location: Location$inboundSchema.optional(),
     operating_system: Attribute$inboundSchema.optional(),
+    reputation: Reputation$inboundSchema.optional(),
     service_count: z.number().int().optional(),
     services: z.nullable(z.array(Service$inboundSchema)).optional(),
     whois: Whois$inboundSchema.optional(),

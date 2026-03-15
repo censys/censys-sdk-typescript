@@ -13,7 +13,13 @@ import {
 } from "./serviceonhostrange.js";
 
 export type ServicesOnHostResponse = {
+  /**
+   * A token that can be used to retrieve the next page of ranges.
+   */
   nextPageToken: string;
+  /**
+   * The list of requested services.
+   */
   ranges: Array<ServiceOnHostRange> | null;
 };
 
@@ -23,12 +29,11 @@ export const ServicesOnHostResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  NextPageToken: z.string(),
-  Ranges: z.nullable(z.array(ServiceOnHostRange$inboundSchema)),
+  next_page_token: z.string(),
+  ranges: z.nullable(z.array(ServiceOnHostRange$inboundSchema)),
 }).transform((v) => {
   return remap$(v, {
-    "NextPageToken": "nextPageToken",
-    "Ranges": "ranges",
+    "next_page_token": "nextPageToken",
   });
 });
 

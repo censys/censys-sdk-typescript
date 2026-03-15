@@ -8,11 +8,11 @@ Indicates the level of access required for an attacker to exploit the vulnerabil
 import { CVSSv4ComponentsAttackVector } from "@censys/platform-sdk/models/components";
 
 let value: CVSSv4ComponentsAttackVector = "network";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "" | "network" | "adjacent" | "local" | "physical" | Unrecognized<string>
