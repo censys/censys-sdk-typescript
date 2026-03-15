@@ -8,11 +8,11 @@ Indicates conditions beyond the attacker’s control that must exist in order to
 import { CVSSv4ComponentsAttackComplexity } from "@censys/platform-sdk/models/components";
 
 let value: CVSSv4ComponentsAttackComplexity = "high";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "" | "low" | "high" | Unrecognized<string>

@@ -8,11 +8,11 @@ Describes the level of privileges or access an attacker must have before success
 import { CVSSv4ComponentsPrivilegesRequired } from "@censys/platform-sdk/models/components";
 
 let value: CVSSv4ComponentsPrivilegesRequired = "none";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "" | "none" | "low" | "high" | Unrecognized<string>

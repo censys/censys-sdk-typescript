@@ -6,11 +6,11 @@
 import { VulnSeverity } from "@censys/platform-sdk/models/components";
 
 let value: VulnSeverity = "medium";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "" | "low" | "medium" | "high" | "critical" | Unrecognized<string>

@@ -8,11 +8,11 @@ Describes whether a user, other than the attacker, is required to do anything or
 import { CVSSv4ComponentsUserInteraction } from "@censys/platform-sdk/models/components";
 
 let value: CVSSv4ComponentsUserInteraction = "";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "" | "none" | "required" | Unrecognized<string>

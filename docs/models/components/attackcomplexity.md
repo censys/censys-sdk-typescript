@@ -8,11 +8,11 @@ Indicates conditions beyond the attacker’s control that must exist in order to
 import { AttackComplexity } from "@censys/platform-sdk/models/components";
 
 let value: AttackComplexity = "";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "" | "low" | "high" | Unrecognized<string>
