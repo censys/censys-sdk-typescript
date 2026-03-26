@@ -12,7 +12,7 @@ import {
 
 export type CountCondition = {
   /**
-   * Field-value pairs to count matches for. Must target fields from the same nested object.
+   * Field-value pairs to count matches for. Must target fields from the same nested object and may contain at most 5 pairs per group.
    */
   fieldValuePairs: Array<FieldValuePair> | null;
 };

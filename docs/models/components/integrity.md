@@ -8,11 +8,11 @@ Refers to whether the protected information has been tampered with or changed in
 import { Integrity } from "@censys/platform-sdk/models/components";
 
 let value: Integrity = "high";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "" | "none" | "low" | "high" | Unrecognized<string>

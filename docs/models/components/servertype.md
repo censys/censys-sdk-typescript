@@ -8,11 +8,11 @@ An enumerated value indicating the behavior of the server. An AUTHORITATIVE serv
 import { ServerType } from "@censys/platform-sdk/models/components";
 
 let value: ServerType = "redirecting";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "" | "recursive_resolver" | "authoritative" | "forwarding" | "redirecting" | Unrecognized<string>

@@ -155,6 +155,9 @@ run();
 
 ### [ThreatHunting](docs/sdks/threathunting/README.md)
 
+* [createCenseyeJob](docs/sdks/threathunting/README.md#createcenseyejob) - CensEye: Create a pivot analysis job
+* [getCenseyeJob](docs/sdks/threathunting/README.md#getcenseyejob) - CensEye: Get job status
+* [getCenseyeJobResults](docs/sdks/threathunting/README.md#getcenseyejobresults) - CensEye: Get job results
 * [getHostObservationsWithCertificate](docs/sdks/threathunting/README.md#gethostobservationswithcertificate) - Get host history for a certificate
 * [createTrackedScan](docs/sdks/threathunting/README.md#createtrackedscan) - Live Discovery: Initiate a new scan
 * [getTrackedScanThreatHunting](docs/sdks/threathunting/README.md#gettrackedscanthreathunting) - Get scan status
@@ -212,7 +215,10 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`globalDataGetWebProperty`](docs/sdks/globaldata/README.md#getwebproperty) - Get a web property
 - [`globalDataListServicesOnHost`](docs/sdks/globaldata/README.md#listservicesonhost) - Get service history for a host
 - [`globalDataSearch`](docs/sdks/globaldata/README.md#search) - Run a search query
+- [`threatHuntingCreateCenseyeJob`](docs/sdks/threathunting/README.md#createcenseyejob) - CensEye: Create a pivot analysis job
 - [`threatHuntingCreateTrackedScan`](docs/sdks/threathunting/README.md#createtrackedscan) - Live Discovery: Initiate a new scan
+- [`threatHuntingGetCenseyeJob`](docs/sdks/threathunting/README.md#getcenseyejob) - CensEye: Get job status
+- [`threatHuntingGetCenseyeJobResults`](docs/sdks/threathunting/README.md#getcenseyejobresults) - CensEye: Get job results
 - [`threatHuntingGetHostObservationsWithCertificate`](docs/sdks/threathunting/README.md#gethostobservationswithcertificate) - Get host history for a certificate
 - [`threatHuntingGetTrackedScanThreatHunting`](docs/sdks/threathunting/README.md#gettrackedscanthreathunting) - Get scan status
 - [`threatHuntingListThreats`](docs/sdks/threathunting/README.md#listthreats) - List active threats

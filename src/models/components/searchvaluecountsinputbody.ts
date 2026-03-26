@@ -12,7 +12,7 @@ import {
 
 export type SearchValueCountsInputBody = {
   /**
-   * Groups of field-value pairs to count matches for.
+   * Groups of field-value pairs to count matches for. Each group may contain up to 5 field-value pairs.
    */
   andCountConditions: Array<CountCondition> | null;
   /**

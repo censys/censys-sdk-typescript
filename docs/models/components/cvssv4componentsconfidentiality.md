@@ -8,11 +8,11 @@ Refers to the disclosure of sensitive information to authorized and unauthorized
 import { CVSSv4ComponentsConfidentiality } from "@censys/platform-sdk/models/components";
 
 let value: CVSSv4ComponentsConfidentiality = "low";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "" | "none" | "low" | "high" | Unrecognized<string>

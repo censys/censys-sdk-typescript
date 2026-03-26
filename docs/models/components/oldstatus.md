@@ -6,11 +6,11 @@
 import { OldStatus } from "@censys/platform-sdk/models/components";
 
 let value: OldStatus = "archived";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "active" | "populating" | "paused" | "archived" | Unrecognized<string>

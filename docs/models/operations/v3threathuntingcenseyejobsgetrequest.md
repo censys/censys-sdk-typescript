@@ -1,0 +1,18 @@
+# V3ThreathuntingCenseyeJobsGetRequest
+
+## Example Usage
+
+```typescript
+import { V3ThreathuntingCenseyeJobsGetRequest } from "@censys/platform-sdk/models/operations";
+
+let value: V3ThreathuntingCenseyeJobsGetRequest = {
+  jobId: "1d6a446a-0bb8-4231-be50-7235b6a31d0e",
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                                                                                | Type                                                                                                                                                                                                                 | Required                                                                                                                                                                                                             | Description                                                                                                                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `organizationId`                                                                                                                                                                                                     | *string*                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                   | The ID of a Censys organization to associate the request with. See the [Getting Started docs](https://docs.censys.com/reference/get-started#step-3-find-and-use-your-organization-id-optional) for more information. |
+| `jobId`                                                                                                                                                                                                              | *string*                                                                                                                                                                                                             | :heavy_check_mark:                                                                                                                                                                                                   | The unique identifier of the CensEye job.                                                                                                                                                                            |
