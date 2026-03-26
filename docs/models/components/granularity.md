@@ -8,11 +8,11 @@ The granularity of the report.
 import { Granularity } from "@censys/platform-sdk/models/components";
 
 let value: Granularity = "daily";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "daily" | "monthly" | Unrecognized<string>

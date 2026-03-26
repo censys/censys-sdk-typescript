@@ -102,7 +102,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/v3/collections/{collection_uid}")(pathParams);
 
   const query = encodeFormQuery({

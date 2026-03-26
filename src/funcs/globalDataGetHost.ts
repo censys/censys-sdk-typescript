@@ -97,7 +97,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/v3/global/asset/host/{host_id}")(pathParams);
 
   const query = encodeFormQuery({

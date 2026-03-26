@@ -101,7 +101,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/v3/collections/{collection_uid}/search/aggregate")(
     pathParams,
   );

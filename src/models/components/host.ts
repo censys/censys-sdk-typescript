@@ -12,6 +12,12 @@ import { Greynoise, Greynoise$inboundSchema } from "./greynoise.js";
 import { HostDns, HostDns$inboundSchema } from "./hostdns.js";
 import { Label, Label$inboundSchema } from "./label.js";
 import { Location, Location$inboundSchema } from "./location.js";
+import {
+  NetworkClassification,
+  NetworkClassification$inboundSchema,
+} from "./networkclassification.js";
+import { Privacy, Privacy$inboundSchema } from "./privacy.js";
+import { Reputation, Reputation$inboundSchema } from "./reputation.js";
 import { Routing, Routing$inboundSchema } from "./routing.js";
 import { Service, Service$inboundSchema } from "./service.js";
 import { Whois, Whois$inboundSchema } from "./whois.js";
@@ -24,7 +30,16 @@ export type Host = {
   ip?: string | undefined;
   labels?: Array<Label> | null | undefined;
   location?: Location | undefined;
+  /**
+   * Information about what type of network the host belongs to.
+   */
+  network?: Array<NetworkClassification> | null | undefined;
   operatingSystem?: Attribute | undefined;
+  /**
+   * Information about privacy services used by the IP, such as VPNs, Proxies, or Tor.
+   */
+  privacy?: Array<Privacy> | null | undefined;
+  reputation?: Reputation | undefined;
   serviceCount?: number | undefined;
   services?: Array<Service> | null | undefined;
   whois?: Whois | undefined;
@@ -40,7 +55,11 @@ export const Host$inboundSchema: z.ZodType<Host, z.ZodTypeDef, unknown> = z
     ip: z.string().optional(),
     labels: z.nullable(z.array(Label$inboundSchema)).optional(),
     location: Location$inboundSchema.optional(),
+    network: z.nullable(z.array(NetworkClassification$inboundSchema))
+      .optional(),
     operating_system: Attribute$inboundSchema.optional(),
+    privacy: z.nullable(z.array(Privacy$inboundSchema)).optional(),
+    reputation: Reputation$inboundSchema.optional(),
     service_count: z.number().int().optional(),
     services: z.nullable(z.array(Service$inboundSchema)).optional(),
     whois: Whois$inboundSchema.optional(),

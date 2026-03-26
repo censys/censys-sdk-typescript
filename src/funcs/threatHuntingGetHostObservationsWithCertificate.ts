@@ -99,7 +99,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc(
     "/v3/threat-hunting/certificate/{certificate_id}/observations/hosts",
   )(pathParams);

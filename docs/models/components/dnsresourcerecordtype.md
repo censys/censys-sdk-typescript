@@ -8,11 +8,11 @@ An enumerated field indicating what type of data is in the "services.dns.additio
 import { DnsResourceRecordType } from "@censys/platform-sdk/models/components";
 
 let value: DnsResourceRecordType = "a";
+
+// Open enum: unrecognized values are captured as Unrecognized<string>
 ```
 
 ## Values
-
-This is an open enum. Unrecognized values will be captured as the `Unrecognized<string>` branded type.
 
 ```typescript
 "" | "a" | "txt" | "ns" | Unrecognized<string>

@@ -149,6 +149,7 @@ import {
   RustdeskRendezvous$inboundSchema,
 } from "./rustdeskrendezvous.js";
 import { S7, S7$inboundSchema } from "./s7.js";
+import { Sapient, Sapient$inboundSchema } from "./sapient.js";
 import { SapRouter, SapRouter$inboundSchema } from "./saprouter.js";
 import { Scpi, Scpi$inboundSchema } from "./scpi.js";
 import { Screenshot, Screenshot$inboundSchema } from "./screenshot.js";
@@ -317,6 +318,7 @@ export type Service = {
   rustdeskRendezvous?: RustdeskRendezvous | undefined;
   s7?: S7 | undefined;
   sapRouter?: SapRouter | undefined;
+  sapient?: Sapient | undefined;
   scanTime?: string | undefined;
   scpi?: Scpi | undefined;
   screenshots?: Array<Screenshot> | null | undefined;
@@ -481,6 +483,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     rustdesk_rendezvous: RustdeskRendezvous$inboundSchema.optional(),
     s7: S7$inboundSchema.optional(),
     sap_router: SapRouter$inboundSchema.optional(),
+    sapient: Sapient$inboundSchema.optional(),
     scan_time: z.string().optional(),
     scpi: Scpi$inboundSchema.optional(),
     screenshots: z.nullable(z.array(Screenshot$inboundSchema)).optional(),
