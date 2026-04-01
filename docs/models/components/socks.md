@@ -16,3 +16,4 @@ let value: Socks = {};
 | `preferredAuthentication`      | *string*                       | :heavy_minus_sign:             | N/A                            |
 | `preferredAuthenticationValue` | *number*                       | :heavy_minus_sign:             | N/A                            |
 | `socksVersion`                 | *number*                       | :heavy_minus_sign:             | N/A                            |
+| `supportedVersions`            | *number*[]                     | :heavy_minus_sign:             | N/A                            |

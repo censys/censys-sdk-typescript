@@ -13,6 +13,7 @@ export type Socks = {
   preferredAuthentication?: string | undefined;
   preferredAuthenticationValue?: number | undefined;
   socksVersion?: number | undefined;
+  supportedVersions?: Array<number> | null | undefined;
 };
 
 /** @internal */
@@ -22,12 +23,14 @@ export const Socks$inboundSchema: z.ZodType<Socks, z.ZodTypeDef, unknown> = z
     preferred_authentication: z.string().optional(),
     preferred_authentication_value: z.number().int().optional(),
     socks_version: z.number().int().optional(),
+    supported_versions: z.nullable(z.array(z.number().int())).optional(),
   }).transform((v) => {
     return remap$(v, {
       "no_authentication_required": "noAuthenticationRequired",
       "preferred_authentication": "preferredAuthentication",
       "preferred_authentication_value": "preferredAuthenticationValue",
       "socks_version": "socksVersion",
+      "supported_versions": "supportedVersions",
     });
   });
 
