@@ -1,4 +1,4 @@
-# ThreatHunting
+# AdversaryInvestigation
 
 ## Overview
 
@@ -11,7 +11,6 @@ Endpoints related to the Adversary Investigation product
 * [getCenseyeJobResults](#getcenseyejobresults) - CensEye: Get job results
 * [getHostObservationsWithCertificate](#gethostobservationswithcertificate) - Get host history for a certificate
 * [createTrackedScan](#createtrackedscan) - Live Discovery: Initiate a new scan
-* [getTrackedScanThreatHunting](#gettrackedscanthreathunting) - Get scan status
 * [listThreats](#listthreats) - List active threats
 * [valueCounts](#valuecounts) - CensEye: Retrieve value counts to discover pivots
 
@@ -31,7 +30,7 @@ const sdk = new SDK({
 });
 
 async function run() {
-  const result = await sdk.threatHunting.createCenseyeJob({
+  const result = await sdk.adversaryInvestigation.createCenseyeJob({
     createCenseyeJobInputBody: {
       target: {
         certificateId: "3daf2843a77b6f4e6af43cd9b6f6746053b8c928e056e8a724808db8905a94cf",
@@ -121,7 +120,7 @@ const sdk = new SDK({
 });
 
 async function run() {
-  const result = await sdk.threatHunting.getCenseyeJob({
+  const result = await sdk.adversaryInvestigation.getCenseyeJob({
     jobId: "3c47b971-5db6-4a9e-8d59-14fc0486172b",
   });
 
@@ -199,7 +198,7 @@ const sdk = new SDK({
 });
 
 async function run() {
-  const result = await sdk.threatHunting.getCenseyeJobResults({
+  const result = await sdk.adversaryInvestigation.getCenseyeJobResults({
     jobId: "e58e9a0e-e104-42cf-9d0e-fe88713bc6e3",
   });
 
@@ -277,7 +276,7 @@ const sdk = new SDK({
 });
 
 async function run() {
-  const result = await sdk.threatHunting.getHostObservationsWithCertificate({
+  const result = await sdk.adversaryInvestigation.getHostObservationsWithCertificate({
     certificateId: "55af8a301eb51abdaf7c31bec951638fe5a99d5d92117eca2be493026613fa46",
     startTime: "2023-01-01T00:00:00Z",
     endTime: "2023-12-31T23:59:59Z",
@@ -365,7 +364,7 @@ const sdk = new SDK({
 });
 
 async function run() {
-  const result = await sdk.threatHunting.createTrackedScan({
+  const result = await sdk.adversaryInvestigation.createTrackedScan({
     scansDiscoveryInputBody: {
       target: {
         hostnamePort: {
@@ -441,84 +440,6 @@ run();
 | errors.ErrorModel          | 500                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
-## getTrackedScanThreatHunting
-
-Retrieve the current status of a scan by its ID. This endpoint works for both [Live Discovery scans](https://docs.censys.com/reference/v3-threathunting-scans-discovery#/) and [Live Rescans](https://docs.censys.com/reference/v3-globaldata-scans-rescan#/).<br><br>If the scan was successful, perform a lookup on the target asset to retrieve detailed scan information.<br><br>This endpoint is available to all Enterprise customers. This endpoint does not cost any credits to execute.
-
-### Example Usage
-
-<!-- UsageSnippet language="typescript" operationID="v3-threathunting-scans-get" method="get" path="/v3/threat-hunting/scans/{scan_id}" -->
-```typescript
-import { SDK } from "@censys/platform-sdk";
-
-const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
-  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
-});
-
-async function run() {
-  const result = await sdk.threatHunting.getTrackedScanThreatHunting({
-    scanId: "cd62e794-9f12-4c2f-b5b3-153853aaf8d9",
-  });
-
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { SDKCore } from "@censys/platform-sdk/core.js";
-import { threatHuntingGetTrackedScanThreatHunting } from "@censys/platform-sdk/funcs/threatHuntingGetTrackedScanThreatHunting.js";
-
-// Use `SDKCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
-  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
-});
-
-async function run() {
-  const res = await threatHuntingGetTrackedScanThreatHunting(sdk, {
-    scanId: "cd62e794-9f12-4c2f-b5b3-153853aaf8d9",
-  });
-  if (res.ok) {
-    const { value: result } = res;
-    console.log(result);
-  } else {
-    console.log("threatHuntingGetTrackedScanThreatHunting failed:", res.error);
-  }
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.V3ThreathuntingScansGetRequest](../../models/operations/v3threathuntingscansgetrequest.md)                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[operations.V3ThreathuntingScansGetResponse](../../models/operations/v3threathuntingscansgetresponse.md)\>**
-
-### Errors
-
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.AuthenticationError | 401                        | application/json           |
-| errors.ErrorModel          | 400, 403, 404              | application/problem+json   |
-| errors.ErrorModel          | 500                        | application/problem+json   |
-| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
-
 ## listThreats
 
 Retrieve a list of active threats observed by Censys by aggregating threat IDs across hosts and web properties. Threats are active if their fingerprint has been identified on hosts or web properties by Censys scans. This information is also available on the [Explore Threats page in the Platform web UI](https://platform.censys.io/threats).<br><br>This endpoint is available to organizations that have access to the Adversary Investigation module.
@@ -535,7 +456,7 @@ const sdk = new SDK({
 });
 
 async function run() {
-  const result = await sdk.threatHunting.listThreats({
+  const result = await sdk.adversaryInvestigation.listThreats({
     query: "*",
   });
 
@@ -613,7 +534,7 @@ const sdk = new SDK({
 });
 
 async function run() {
-  const result = await sdk.threatHunting.valueCounts({
+  const result = await sdk.adversaryInvestigation.valueCounts({
     searchValueCountsInputBody: {
       andCountConditions: [
         {

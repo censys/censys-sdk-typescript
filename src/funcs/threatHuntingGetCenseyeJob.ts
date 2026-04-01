@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * CensEye: Get job status
  *
  * @remarks
- * Retrieve the current status of a CensEye pivot analysis job. Use this to poll for completion before fetching results.<br><br>To use this endpoint, your organization must have access to the Threat Hunting module.
+ * Retrieve the current status of a CensEye pivot analysis job. Use this to poll for completion before fetching results.<br><br>To use this endpoint, your organization must have access to the Adversary Investigation module.
  */
 export function threatHuntingGetCenseyeJob(
   client: SDKCore,
