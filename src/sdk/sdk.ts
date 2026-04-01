@@ -4,6 +4,7 @@
 
 import { ClientSDK } from "../lib/sdks.js";
 import { AccountManagement } from "./accountmanagement.js";
+import { AdversaryInvestigation } from "./adversaryinvestigation.js";
 import { Collections } from "./collections.js";
 import { GlobalData } from "./globaldata.js";
 import { ThreatHunting } from "./threathunting.js";
@@ -27,5 +28,12 @@ export class SDK extends ClientSDK {
   private _threatHunting?: ThreatHunting;
   get threatHunting(): ThreatHunting {
     return (this._threatHunting ??= new ThreatHunting(this._options));
+  }
+
+  private _adversaryInvestigation?: AdversaryInvestigation;
+  get adversaryInvestigation(): AdversaryInvestigation {
+    return (this._adversaryInvestigation ??= new AdversaryInvestigation(
+      this._options,
+    ));
   }
 }

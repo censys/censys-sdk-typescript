@@ -124,6 +124,16 @@ run();
 * [getUserCredits](docs/sdks/accountmanagement/README.md#getusercredits) - Get Free user credit balance
 * [getUserCreditsUsage](docs/sdks/accountmanagement/README.md#getusercreditsusage) - Get Free user credit usage
 
+### [AdversaryInvestigation](docs/sdks/adversaryinvestigation/README.md)
+
+* [createCenseyeJob](docs/sdks/adversaryinvestigation/README.md#createcenseyejob) - CensEye: Create a pivot analysis job
+* [getCenseyeJob](docs/sdks/adversaryinvestigation/README.md#getcenseyejob) - CensEye: Get job status
+* [getCenseyeJobResults](docs/sdks/adversaryinvestigation/README.md#getcenseyejobresults) - CensEye: Get job results
+* [getHostObservationsWithCertificate](docs/sdks/adversaryinvestigation/README.md#gethostobservationswithcertificate) - Get host history for a certificate
+* [createTrackedScan](docs/sdks/adversaryinvestigation/README.md#createtrackedscan) - Live Discovery: Initiate a new scan
+* [listThreats](docs/sdks/adversaryinvestigation/README.md#listthreats) - List active threats
+* [valueCounts](docs/sdks/adversaryinvestigation/README.md#valuecounts) - CensEye: Retrieve value counts to discover pivots
+
 ### [Collections](docs/sdks/collections/README.md)
 
 * [list](docs/sdks/collections/README.md#list) - List collections
@@ -215,13 +225,20 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`globalDataGetWebProperty`](docs/sdks/globaldata/README.md#getwebproperty) - Get a web property
 - [`globalDataListServicesOnHost`](docs/sdks/globaldata/README.md#listservicesonhost) - Get service history for a host
 - [`globalDataSearch`](docs/sdks/globaldata/README.md#search) - Run a search query
+- [`threatHuntingCreateCenseyeJob`](docs/sdks/adversaryinvestigation/README.md#createcenseyejob) - CensEye: Create a pivot analysis job
 - [`threatHuntingCreateCenseyeJob`](docs/sdks/threathunting/README.md#createcenseyejob) - CensEye: Create a pivot analysis job
+- [`threatHuntingCreateTrackedScan`](docs/sdks/adversaryinvestigation/README.md#createtrackedscan) - Live Discovery: Initiate a new scan
 - [`threatHuntingCreateTrackedScan`](docs/sdks/threathunting/README.md#createtrackedscan) - Live Discovery: Initiate a new scan
+- [`threatHuntingGetCenseyeJob`](docs/sdks/adversaryinvestigation/README.md#getcenseyejob) - CensEye: Get job status
 - [`threatHuntingGetCenseyeJob`](docs/sdks/threathunting/README.md#getcenseyejob) - CensEye: Get job status
+- [`threatHuntingGetCenseyeJobResults`](docs/sdks/adversaryinvestigation/README.md#getcenseyejobresults) - CensEye: Get job results
 - [`threatHuntingGetCenseyeJobResults`](docs/sdks/threathunting/README.md#getcenseyejobresults) - CensEye: Get job results
+- [`threatHuntingGetHostObservationsWithCertificate`](docs/sdks/adversaryinvestigation/README.md#gethostobservationswithcertificate) - Get host history for a certificate
 - [`threatHuntingGetHostObservationsWithCertificate`](docs/sdks/threathunting/README.md#gethostobservationswithcertificate) - Get host history for a certificate
 - [`threatHuntingGetTrackedScanThreatHunting`](docs/sdks/threathunting/README.md#gettrackedscanthreathunting) - Get scan status
+- [`threatHuntingListThreats`](docs/sdks/adversaryinvestigation/README.md#listthreats) - List active threats
 - [`threatHuntingListThreats`](docs/sdks/threathunting/README.md#listthreats) - List active threats
+- [`threatHuntingValueCounts`](docs/sdks/adversaryinvestigation/README.md#valuecounts) - CensEye: Retrieve value counts to discover pivots
 - [`threatHuntingValueCounts`](docs/sdks/threathunting/README.md#valuecounts) - CensEye: Retrieve value counts to discover pivots
 
 </details>
@@ -386,8 +403,8 @@ run();
 ### Error Classes
 **Primary errors:**
 * [`SDKBaseError`](./src/models/errors/sdkbaseerror.ts): The base class for HTTP error responses.
-  * [`ErrorModel`](./src/models/errors/errormodel.ts): Generic error.
-  * [`AuthenticationError`](./src/models/errors/authenticationerror.ts): Request does not contain a valid Authorization token. Status code `401`.
+  * [`ErrorModel`](./src/models/errors/errormodel.ts): *
+  * [`AuthenticationError`](./src/models/errors/authenticationerror.ts): Request does not contain a valid Authorization token. Status code `401`. *
 
 <details><summary>Less common errors (6)</summary>
 
@@ -405,6 +422,8 @@ run();
 * [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
+
+\* Check [the method documentation](#available-resources-and-operations) to see if the error is applicable.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->

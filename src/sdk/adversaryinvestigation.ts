@@ -7,14 +7,13 @@ import { threatHuntingCreateTrackedScan } from "../funcs/threatHuntingCreateTrac
 import { threatHuntingGetCenseyeJob } from "../funcs/threatHuntingGetCenseyeJob.js";
 import { threatHuntingGetCenseyeJobResults } from "../funcs/threatHuntingGetCenseyeJobResults.js";
 import { threatHuntingGetHostObservationsWithCertificate } from "../funcs/threatHuntingGetHostObservationsWithCertificate.js";
-import { threatHuntingGetTrackedScanThreatHunting } from "../funcs/threatHuntingGetTrackedScanThreatHunting.js";
 import { threatHuntingListThreats } from "../funcs/threatHuntingListThreats.js";
 import { threatHuntingValueCounts } from "../funcs/threatHuntingValueCounts.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
-export class ThreatHunting extends ClientSDK {
+export class AdversaryInvestigation extends ClientSDK {
   /**
    * CensEye: Create a pivot analysis job
    *
@@ -97,23 +96,6 @@ export class ThreatHunting extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V3ThreathuntingScansDiscoveryResponse> {
     return unwrapAsync(threatHuntingCreateTrackedScan(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * Get scan status
-   *
-   * @remarks
-   * Retrieve the current status of a scan by its ID. This endpoint works for both [Live Discovery scans](https://docs.censys.com/reference/v3-threathunting-scans-discovery#/) and [Live Rescans](https://docs.censys.com/reference/v3-globaldata-scans-rescan#/).<br><br>If the scan was successful, perform a lookup on the target asset to retrieve detailed scan information.<br><br>This endpoint is available to all Enterprise customers. This endpoint does not cost any credits to execute.
-   */
-  async getTrackedScanThreatHunting(
-    request: operations.V3ThreathuntingScansGetRequest,
-    options?: RequestOptions,
-  ): Promise<operations.V3ThreathuntingScansGetResponse> {
-    return unwrapAsync(threatHuntingGetTrackedScanThreatHunting(
       this,
       request,
       options,
