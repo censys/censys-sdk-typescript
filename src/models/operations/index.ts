@@ -38,6 +38,7 @@ export * from "./v3globaldataserviceonhost.js";
 export * from "./v3threathuntingcenseyejobresults.js";
 export * from "./v3threathuntingcenseyejobscreate.js";
 export * from "./v3threathuntingcenseyejobsget.js";
+export * from "./v3threathuntingcenseyejobslist.js";
 export * from "./v3threathuntinggethostobservationswithcertificate.js";
 export * from "./v3threathuntingscansdiscovery.js";
 export * from "./v3threathuntingscansget.js";

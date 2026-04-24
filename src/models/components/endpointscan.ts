@@ -24,6 +24,7 @@ import {
 } from "./ivantiavalanche.js";
 import { Jenkins, Jenkins$inboundSchema } from "./jenkins.js";
 import { Kubernetes, Kubernetes$inboundSchema } from "./kubernetes.js";
+import { Mcp, Mcp$inboundSchema } from "./mcp.js";
 import { Ollama, Ollama$inboundSchema } from "./ollama.js";
 import { OpenDirectory, OpenDirectory$inboundSchema } from "./opendirectory.js";
 import {
@@ -68,6 +69,7 @@ export type EndpointScan = {
   ivantiAvalanche?: IvantiAvalanche | undefined;
   jenkins?: Jenkins | undefined;
   kubernetes?: Kubernetes | undefined;
+  mcp?: Mcp | undefined;
   ollama?: Ollama | undefined;
   openDirectory?: OpenDirectory | undefined;
   path?: string | undefined;
@@ -112,6 +114,7 @@ export const EndpointScan$inboundSchema: z.ZodType<
   ivanti_avalanche: IvantiAvalanche$inboundSchema.optional(),
   jenkins: Jenkins$inboundSchema.optional(),
   kubernetes: Kubernetes$inboundSchema.optional(),
+  mcp: Mcp$inboundSchema.optional(),
   ollama: Ollama$inboundSchema.optional(),
   open_directory: OpenDirectory$inboundSchema.optional(),
   path: z.string().optional(),
