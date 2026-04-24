@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -18,6 +19,10 @@ export type Greynoise = {
    */
   classification?: string | undefined;
   /**
+   * The last time the IP address was observed.
+   */
+  lastObservedTime?: string | undefined;
+  /**
    * The tags associated with the IP address.
    */
   tags?: Array<GreynoiseTag> | null | undefined;
@@ -31,7 +36,12 @@ export const Greynoise$inboundSchema: z.ZodType<
 > = z.object({
   actor: z.string().optional(),
   classification: z.string().optional(),
+  last_observed_time: z.string().optional(),
   tags: z.nullable(z.array(GreynoiseTag$inboundSchema)).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "last_observed_time": "lastObservedTime",
+  });
 });
 
 export function greynoiseFromJSON(

@@ -165,6 +165,7 @@ run();
 
 ### [ThreatHunting](docs/sdks/threathunting/README.md)
 
+* [listCenseyeJobs](docs/sdks/threathunting/README.md#listcenseyejobs) - CensEye: List jobs
 * [createCenseyeJob](docs/sdks/threathunting/README.md#createcenseyejob) - CensEye: Create a pivot analysis job
 * [getCenseyeJob](docs/sdks/threathunting/README.md#getcenseyejob) - CensEye: Get job status
 * [getCenseyeJobResults](docs/sdks/threathunting/README.md#getcenseyejobresults) - CensEye: Get job results
@@ -236,6 +237,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`threatHuntingGetHostObservationsWithCertificate`](docs/sdks/adversaryinvestigation/README.md#gethostobservationswithcertificate) - Get host history for a certificate
 - [`threatHuntingGetHostObservationsWithCertificate`](docs/sdks/threathunting/README.md#gethostobservationswithcertificate) - Get host history for a certificate
 - [`threatHuntingGetTrackedScanThreatHunting`](docs/sdks/threathunting/README.md#gettrackedscanthreathunting) - Get scan status
+- [`threatHuntingListCenseyeJobs`](docs/sdks/threathunting/README.md#listcenseyejobs) - CensEye: List jobs
 - [`threatHuntingListThreats`](docs/sdks/adversaryinvestigation/README.md#listthreats) - List active threats
 - [`threatHuntingListThreats`](docs/sdks/threathunting/README.md#listthreats) - List active threats
 - [`threatHuntingValueCounts`](docs/sdks/adversaryinvestigation/README.md#valuecounts) - CensEye: Retrieve value counts to discover pivots

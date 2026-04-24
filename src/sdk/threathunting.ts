@@ -8,6 +8,7 @@ import { threatHuntingGetCenseyeJob } from "../funcs/threatHuntingGetCenseyeJob.
 import { threatHuntingGetCenseyeJobResults } from "../funcs/threatHuntingGetCenseyeJobResults.js";
 import { threatHuntingGetHostObservationsWithCertificate } from "../funcs/threatHuntingGetHostObservationsWithCertificate.js";
 import { threatHuntingGetTrackedScanThreatHunting } from "../funcs/threatHuntingGetTrackedScanThreatHunting.js";
+import { threatHuntingListCenseyeJobs } from "../funcs/threatHuntingListCenseyeJobs.js";
 import { threatHuntingListThreats } from "../funcs/threatHuntingListThreats.js";
 import { threatHuntingValueCounts } from "../funcs/threatHuntingValueCounts.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
@@ -16,10 +17,27 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class ThreatHunting extends ClientSDK {
   /**
+   * CensEye: List jobs
+   *
+   * @remarks
+   * List CensEye pivot analysis jobs for the current organization. Results are paginated. Optionally filter by asset (host, web property, or certificate).
+   */
+  async listCenseyeJobs(
+    request: operations.V3ThreathuntingCenseyeJobsListRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3ThreathuntingCenseyeJobsListResponse> {
+    return unwrapAsync(threatHuntingListCenseyeJobs(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * CensEye: Create a pivot analysis job
    *
    * @remarks
-   * Create an asynchronous CensEye pivot analysis job for a host, web property, or certificate. The job extracts default pivot fields from the target asset and counts matching documents for each field-value pair. Poll the job status endpoint to track progress, then retrieve results when complete.<br><br>To use this endpoint, your organization must have access to the Adversary Investigation module.
+   * Create an asynchronous CensEye pivot analysis job for a host, web property, or certificate. The job extracts default pivot fields from the target asset and counts matching documents for each field-value pair. Poll the job status endpoint to track progress, then retrieve results when complete.<br><br>To use this endpoint, your organization must have access to the Adversary Investigation module.<br><br>This endpoint costs 44 credits to execute for a host, 28 credits to execute for a web property, and 7 credits to execute for a certificate.
    */
   async createCenseyeJob(
     request: operations.V3ThreathuntingCenseyeJobsCreateRequest,
