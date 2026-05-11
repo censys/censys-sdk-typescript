@@ -1,0 +1,18 @@
+# V3TagsDeleteTagRequest
+
+## Example Usage
+
+```typescript
+import { V3TagsDeleteTagRequest } from "@censys/platform-sdk/models/operations";
+
+let value: V3TagsDeleteTagRequest = {
+  tagId: "d5fba89c-c6ff-445a-b326-eb02ac49072a",
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                                                                                | Type                                                                                                                                                                                                                 | Required                                                                                                                                                                                                             | Description                                                                                                                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `organizationId`                                                                                                                                                                                                     | *string*                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                   | The ID of a Censys organization to associate the request with. See the [Getting Started docs](https://docs.censys.com/reference/get-started#step-3-find-and-use-your-organization-id-optional) for more information. |
+| `tagId`                                                                                                                                                                                                              | *string*                                                                                                                                                                                                             | :heavy_check_mark:                                                                                                                                                                                                   | The ID of the tag to delete.                                                                                                                                                                                         |

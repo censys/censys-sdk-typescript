@@ -16,6 +16,10 @@ import {
   HostAssetWithMatchedServices$inboundSchema,
 } from "./hostassetwithmatchedservices.js";
 import {
+  SearchQueryTagInfo,
+  SearchQueryTagInfo$inboundSchema,
+} from "./searchquerytaginfo.js";
+import {
   WebpropertyAsset,
   WebpropertyAsset$inboundSchema,
 } from "./webpropertyasset.js";
@@ -23,6 +27,10 @@ import {
 export type SearchQueryHit = {
   certificateV1?: CertificateAsset | undefined;
   hostV1?: HostAssetWithMatchedServices | undefined;
+  /**
+   * Tags applied to this asset.
+   */
+  tags?: Array<SearchQueryTagInfo> | null | undefined;
   webpropertyV1?: WebpropertyAsset | undefined;
 };
 
@@ -34,6 +42,7 @@ export const SearchQueryHit$inboundSchema: z.ZodType<
 > = z.object({
   certificate_v1: CertificateAsset$inboundSchema.optional(),
   host_v1: HostAssetWithMatchedServices$inboundSchema.optional(),
+  tags: z.nullable(z.array(SearchQueryTagInfo$inboundSchema)).optional(),
   webproperty_v1: WebpropertyAsset$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {

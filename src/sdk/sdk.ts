@@ -7,6 +7,7 @@ import { AccountManagement } from "./accountmanagement.js";
 import { AdversaryInvestigation } from "./adversaryinvestigation.js";
 import { Collections } from "./collections.js";
 import { GlobalData } from "./globaldata.js";
+import { TagsAndComments } from "./tagsandcomments.js";
 import { ThreatHunting } from "./threathunting.js";
 
 export class SDK extends ClientSDK {
@@ -23,6 +24,11 @@ export class SDK extends ClientSDK {
   private _globalData?: GlobalData;
   get globalData(): GlobalData {
     return (this._globalData ??= new GlobalData(this._options));
+  }
+
+  private _tagsAndComments?: TagsAndComments;
+  get tagsAndComments(): TagsAndComments {
+    return (this._tagsAndComments ??= new TagsAndComments(this._options));
   }
 
   private _threatHunting?: ThreatHunting;
