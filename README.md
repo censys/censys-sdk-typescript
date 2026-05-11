@@ -163,6 +163,17 @@ run();
 * [convertLegacySearchQueries](docs/sdks/globaldata/README.md#convertlegacysearchqueries) - Convert Legacy Search queries to Platform queries
 * [search](docs/sdks/globaldata/README.md#search) - Run a search query
 
+### [TagsAndComments](docs/sdks/tagsandcomments/README.md)
+
+* [listTags](docs/sdks/tagsandcomments/README.md#listtags) - List tags
+* [createTag](docs/sdks/tagsandcomments/README.md#createtag) - Create a tag
+* [deleteTag](docs/sdks/tagsandcomments/README.md#deletetag) - Delete a tag
+* [getTag](docs/sdks/tagsandcomments/README.md#gettag) - Get a tag
+* [updateTag](docs/sdks/tagsandcomments/README.md#updatetag) - Update a tag
+* [listTagAssignments](docs/sdks/tagsandcomments/README.md#listtagassignments) - List tag assignments
+* [createTagAssignment](docs/sdks/tagsandcomments/README.md#createtagassignment) - Create a tag assignment
+* [deleteTagAssignment](docs/sdks/tagsandcomments/README.md#deletetagassignment) - Delete a tag assignment
+
 ### [ThreatHunting](docs/sdks/threathunting/README.md)
 
 * [listCenseyeJobs](docs/sdks/threathunting/README.md#listcenseyejobs) - CensEye: List jobs
@@ -226,6 +237,14 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`globalDataGetWebProperty`](docs/sdks/globaldata/README.md#getwebproperty) - Get a web property
 - [`globalDataListServicesOnHost`](docs/sdks/globaldata/README.md#listservicesonhost) - Get service history for a host
 - [`globalDataSearch`](docs/sdks/globaldata/README.md#search) - Run a search query
+- [`tagsAndCommentsCreateTag`](docs/sdks/tagsandcomments/README.md#createtag) - Create a tag
+- [`tagsAndCommentsCreateTagAssignment`](docs/sdks/tagsandcomments/README.md#createtagassignment) - Create a tag assignment
+- [`tagsAndCommentsDeleteTag`](docs/sdks/tagsandcomments/README.md#deletetag) - Delete a tag
+- [`tagsAndCommentsDeleteTagAssignment`](docs/sdks/tagsandcomments/README.md#deletetagassignment) - Delete a tag assignment
+- [`tagsAndCommentsGetTag`](docs/sdks/tagsandcomments/README.md#gettag) - Get a tag
+- [`tagsAndCommentsListTagAssignments`](docs/sdks/tagsandcomments/README.md#listtagassignments) - List tag assignments
+- [`tagsAndCommentsListTags`](docs/sdks/tagsandcomments/README.md#listtags) - List tags
+- [`tagsAndCommentsUpdateTag`](docs/sdks/tagsandcomments/README.md#updatetag) - Update a tag
 - [`threatHuntingCreateCenseyeJob`](docs/sdks/adversaryinvestigation/README.md#createcenseyejob) - CensEye: Create a pivot analysis job
 - [`threatHuntingCreateCenseyeJob`](docs/sdks/threathunting/README.md#createcenseyejob) - CensEye: Create a pivot analysis job
 - [`threatHuntingCreateTrackedScan`](docs/sdks/adversaryinvestigation/README.md#createtrackedscan) - Live Discovery: Initiate a new scan

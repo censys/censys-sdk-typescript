@@ -1,0 +1,20 @@
+# CreateTagInputBody
+
+## Example Usage
+
+```typescript
+import { CreateTagInputBody } from "@censys/platform-sdk/models/components";
+
+let value: CreateTagInputBody = {
+  name: "<value>",
+  privacy: "private",
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                                                  | Type                                                                                                                                                                                   | Required                                                                                                                                                                               | Description                                                                                                                                                                            |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `description`                                                                                                                                                                          | *string*                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                     | A human-readable description of the tag.                                                                                                                                               |
+| `name`                                                                                                                                                                                 | *string*                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                     | The display name of the tag. Must be unique within the organization.                                                                                                                   |
+| `privacy`                                                                                                                                                                              | [components.CreateTagInputBodyPrivacy](../../models/components/createtaginputbodyprivacy.md)                                                                                           | :heavy_check_mark:                                                                                                                                                                     | Tag visibility and management settings. `private` tags are only visible to and editable by organization admins. `shared` tags are visible to and editable by all organization members. |
