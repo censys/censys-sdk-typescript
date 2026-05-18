@@ -1,6 +1,6 @@
 {
   "name": "@censys/platform-sdk",
-  "version": "0.10.6",
+  "version": "0.10.7",
   "author": "Speakeasy",
   "main": "./index.js",
   "sideEffects": false,
