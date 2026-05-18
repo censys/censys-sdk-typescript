@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 50d8a8aa-8772-4a95-9f7b-f8e1bd905c4e
 management:
-  docChecksum: 8b5b5812db5f05a9cf51ce74fad49d41
-  docVersion: 1.0.100
-  speakeasyVersion: 1.762.0
-  generationVersion: 2.882.0
-  releaseVersion: 0.10.6
-  configChecksum: 3185c48c0f3159bec533dea6e43ab786
+  docChecksum: ae0f03b6de5fb5075151e83fd7a36e3f
+  docVersion: 1.0.101
+  speakeasyVersion: 1.763.1
+  generationVersion: 2.884.4
+  releaseVersion: 0.10.7
+  configChecksum: f28dbeead327b410dd578f5e48a0406a
   repoURL: https://github.com/censys/censys-sdk-typescript.git
   installationURL: https://github.com/censys/censys-sdk-typescript
   published: true
 persistentEdits:
-  generation_id: d8acee23-f13b-45d2-9272-2913f6fce763
-  pristine_commit_hash: b61c6b92245e1d51627ce32edda5fd99aa3ec1f3
-  pristine_tree_hash: 67d5a6a30b3bf11e2071ea8932411bc94158f3e6
+  generation_id: 152eb336-146c-4177-97ae-ad4cefbd5423
+  pristine_commit_hash: 73578e045a37a27443f44d7b55f0534ee825c61c
+  pristine_tree_hash: 7399c62c5c35a1ae97b7f5a830a65b957ec4f9a3
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -3480,12 +3480,12 @@ trackedFiles:
     pristine_git_object: 22f3212da7f26c4c5352b919e2393cd091e63445
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:0882a15dd30b485f83bbefe8c8e042dded46e368
-    pristine_git_object: 3aa30f1bc2854d8a2a73fc84dd3a4716a6e61434
+    last_write_checksum: sha1:6c57068db8b8b1a22ced296a8dd5ac3b2e273101
+    pristine_git_object: 6f9929922bc1ba87b3ece862fd497c843e8348ea
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:2ce7ee8ca03da265ebe0e01583cfea92f737b447
-    pristine_git_object: bd83af6f5b74b278da8d1966416edd90da12bd02
+    last_write_checksum: sha1:7801c052191e10ea12f50b9115854eb6f03b36c3
+    pristine_git_object: 24baf5c06702494e4c0d9aefaf6a655ecb8d06c6
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:ce840032c45608f5f4022b32bcce32cb69c5ed26
@@ -3712,8 +3712,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:0d6e9825e4dc69bf8050828619f6a63a442fa3d4
-    pristine_git_object: 9f147979c6f4667f5e09accb6dba553f61d71d96
+    last_write_checksum: sha1:d59b9255fa349d0a40a879caaaad545864c40bb0
+    pristine_git_object: 1c218bf1c2a55873ad5fdb71d9dfc067c853d85a
   src/lib/dlv.ts:
     id: b1988214835a
     last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
