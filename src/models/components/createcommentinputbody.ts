@@ -5,37 +5,41 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 
-export type CreateTagAssignmentInputBody = {
+export type CreateCommentInputBody = {
   /**
    * The identifier of the asset (host IP, certificate SHA-256 fingerprint, or web property hostname:port).
    */
   assetId: string;
+  /**
+   * The comment body text.
+   */
+  body: string;
 };
 
 /** @internal */
-export type CreateTagAssignmentInputBody$Outbound = {
+export type CreateCommentInputBody$Outbound = {
   asset_id: string;
+  body: string;
 };
 
 /** @internal */
-export const CreateTagAssignmentInputBody$outboundSchema: z.ZodType<
-  CreateTagAssignmentInputBody$Outbound,
+export const CreateCommentInputBody$outboundSchema: z.ZodType<
+  CreateCommentInputBody$Outbound,
   z.ZodTypeDef,
-  CreateTagAssignmentInputBody
+  CreateCommentInputBody
 > = z.object({
   assetId: z.string(),
+  body: z.string(),
 }).transform((v) => {
   return remap$(v, {
     assetId: "asset_id",
   });
 });
 
-export function createTagAssignmentInputBodyToJSON(
-  createTagAssignmentInputBody: CreateTagAssignmentInputBody,
+export function createCommentInputBodyToJSON(
+  createCommentInputBody: CreateCommentInputBody,
 ): string {
   return JSON.stringify(
-    CreateTagAssignmentInputBody$outboundSchema.parse(
-      createTagAssignmentInputBody,
-    ),
+    CreateCommentInputBody$outboundSchema.parse(createCommentInputBody),
   );
 }

@@ -10,35 +10,29 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type V3TagsListAssignmentsGlobals = {
+export type V3CommentsListCommentsGlobals = {
   organizationId?: string | undefined;
 };
 
 /**
  * Sort order. Supported values: create_time_asc, create_time_desc.
  */
-export const V3TagsListAssignmentsQueryParamOrderBy = {
+export const OrderBy = {
   CreateTimeAsc: "create_time_asc",
   CreateTimeDesc: "create_time_desc",
 } as const;
 /**
  * Sort order. Supported values: create_time_asc, create_time_desc.
  */
-export type V3TagsListAssignmentsQueryParamOrderBy = ClosedEnum<
-  typeof V3TagsListAssignmentsQueryParamOrderBy
->;
+export type OrderBy = ClosedEnum<typeof OrderBy>;
 
-export type V3TagsListAssignmentsRequest = {
+export type V3CommentsListCommentsRequest = {
   /**
    * The ID of a Censys organization to associate the request with. See the [Getting Started docs](https://docs.censys.com/reference/get-started#step-3-find-and-use-your-organization-id-optional) for more information.
    */
   organizationId?: string | undefined;
   /**
-   * The ID of the tag whose assignments to list.
-   */
-  tagId: string;
-  /**
-   * Number of assignments to return per page.
+   * Number of comments to return per page.
    */
   pageSize?: number | undefined;
   /**
@@ -48,98 +42,91 @@ export type V3TagsListAssignmentsRequest = {
   /**
    * Sort order. Supported values: create_time_asc, create_time_desc.
    */
-  orderBy?: V3TagsListAssignmentsQueryParamOrderBy | undefined;
+  orderBy?: OrderBy | undefined;
   /**
-   * The identifier of the asset (host IP, certificate SHA-256 fingerprint, or web property hostname:port).
+   * Filter comments by asset identifier (host IP, certificate fingerprint, or web property hostname:port).
    */
   assetId?: string | undefined;
   /**
-   * RFC3339 timestamp. Only return assignments created before this time.
+   * Filter comments by the user ID of the user who created the comment.
+   */
+  createdBy?: string | undefined;
+  /**
+   * Filter comments created before this RFC3339 timestamp.
    */
   createdBefore?: Date | undefined;
   /**
-   * RFC3339 timestamp. Only return assignments created after this time.
+   * Filter comments created after this RFC3339 timestamp.
    */
   createdAfter?: Date | undefined;
-  /**
-   * Filter by the user ID of the user who created the assignment.
-   */
-  createdBy?: string | undefined;
 };
 
-export type V3TagsListAssignmentsResponse = {
+export type V3CommentsListCommentsResponse = {
   headers: { [k: string]: Array<string> };
-  result: components.ResponseEnvelopeTagAssignmentsList;
+  result: components.ResponseEnvelopeCommentsList;
 };
 
 /** @internal */
-export const V3TagsListAssignmentsQueryParamOrderBy$outboundSchema:
-  z.ZodNativeEnum<typeof V3TagsListAssignmentsQueryParamOrderBy> = z.nativeEnum(
-    V3TagsListAssignmentsQueryParamOrderBy,
-  );
+export const OrderBy$outboundSchema: z.ZodNativeEnum<typeof OrderBy> = z
+  .nativeEnum(OrderBy);
 
 /** @internal */
-export type V3TagsListAssignmentsRequest$Outbound = {
+export type V3CommentsListCommentsRequest$Outbound = {
   organization_id?: string | undefined;
-  tag_id: string;
   page_size: number;
   page_token?: string | undefined;
   order_by: string;
   asset_id?: string | undefined;
+  created_by?: string | undefined;
   created_before?: string | undefined;
   created_after?: string | undefined;
-  created_by?: string | undefined;
 };
 
 /** @internal */
-export const V3TagsListAssignmentsRequest$outboundSchema: z.ZodType<
-  V3TagsListAssignmentsRequest$Outbound,
+export const V3CommentsListCommentsRequest$outboundSchema: z.ZodType<
+  V3CommentsListCommentsRequest$Outbound,
   z.ZodTypeDef,
-  V3TagsListAssignmentsRequest
+  V3CommentsListCommentsRequest
 > = z.object({
   organizationId: z.string().optional(),
-  tagId: z.string(),
   pageSize: z.number().int().default(100),
   pageToken: z.string().optional(),
-  orderBy: V3TagsListAssignmentsQueryParamOrderBy$outboundSchema.default(
-    "create_time_desc",
-  ),
+  orderBy: OrderBy$outboundSchema.default("create_time_desc"),
   assetId: z.string().optional(),
+  createdBy: z.string().optional(),
   createdBefore: z.date().transform(v => v.toISOString()).optional(),
   createdAfter: z.date().transform(v => v.toISOString()).optional(),
-  createdBy: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     organizationId: "organization_id",
-    tagId: "tag_id",
     pageSize: "page_size",
     pageToken: "page_token",
     orderBy: "order_by",
     assetId: "asset_id",
+    createdBy: "created_by",
     createdBefore: "created_before",
     createdAfter: "created_after",
-    createdBy: "created_by",
   });
 });
 
-export function v3TagsListAssignmentsRequestToJSON(
-  v3TagsListAssignmentsRequest: V3TagsListAssignmentsRequest,
+export function v3CommentsListCommentsRequestToJSON(
+  v3CommentsListCommentsRequest: V3CommentsListCommentsRequest,
 ): string {
   return JSON.stringify(
-    V3TagsListAssignmentsRequest$outboundSchema.parse(
-      v3TagsListAssignmentsRequest,
+    V3CommentsListCommentsRequest$outboundSchema.parse(
+      v3CommentsListCommentsRequest,
     ),
   );
 }
 
 /** @internal */
-export const V3TagsListAssignmentsResponse$inboundSchema: z.ZodType<
-  V3TagsListAssignmentsResponse,
+export const V3CommentsListCommentsResponse$inboundSchema: z.ZodType<
+  V3CommentsListCommentsResponse,
   z.ZodTypeDef,
   unknown
 > = z.object({
   Headers: z.record(z.array(z.string())).default({}),
-  Result: components.ResponseEnvelopeTagAssignmentsList$inboundSchema,
+  Result: components.ResponseEnvelopeCommentsList$inboundSchema,
 }).transform((v) => {
   return remap$(v, {
     "Headers": "headers",
@@ -147,12 +134,12 @@ export const V3TagsListAssignmentsResponse$inboundSchema: z.ZodType<
   });
 });
 
-export function v3TagsListAssignmentsResponseFromJSON(
+export function v3CommentsListCommentsResponseFromJSON(
   jsonString: string,
-): SafeParseResult<V3TagsListAssignmentsResponse, SDKValidationError> {
+): SafeParseResult<V3CommentsListCommentsResponse, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => V3TagsListAssignmentsResponse$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3TagsListAssignmentsResponse' from JSON`,
+    (x) => V3CommentsListCommentsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V3CommentsListCommentsResponse' from JSON`,
   );
 }

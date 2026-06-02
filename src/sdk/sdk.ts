@@ -21,14 +21,14 @@ export class SDK extends ClientSDK {
     return (this._collections ??= new Collections(this._options));
   }
 
-  private _globalData?: GlobalData;
-  get globalData(): GlobalData {
-    return (this._globalData ??= new GlobalData(this._options));
-  }
-
   private _tagsAndComments?: TagsAndComments;
   get tagsAndComments(): TagsAndComments {
     return (this._tagsAndComments ??= new TagsAndComments(this._options));
+  }
+
+  private _globalData?: GlobalData;
+  get globalData(): GlobalData {
+    return (this._globalData ??= new GlobalData(this._options));
   }
 
   private _threatHunting?: ThreatHunting;

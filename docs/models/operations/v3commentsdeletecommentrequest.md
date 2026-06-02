@@ -1,0 +1,18 @@
+# V3CommentsDeleteCommentRequest
+
+## Example Usage
+
+```typescript
+import { V3CommentsDeleteCommentRequest } from "@censys/platform-sdk/models/operations";
+
+let value: V3CommentsDeleteCommentRequest = {
+  commentId: "abd1b311-02a9-457c-b6c1-19057e009fef",
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                                                                                | Type                                                                                                                                                                                                                 | Required                                                                                                                                                                                                             | Description                                                                                                                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `organizationId`                                                                                                                                                                                                     | *string*                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                   | The ID of a Censys organization to associate the request with. See the [Getting Started docs](https://docs.censys.com/reference/get-started#step-3-find-and-use-your-organization-id-optional) for more information. |
+| `commentId`                                                                                                                                                                                                          | *string*                                                                                                                                                                                                             | :heavy_check_mark:                                                                                                                                                                                                   | The ID of the comment to delete.                                                                                                                                                                                     |

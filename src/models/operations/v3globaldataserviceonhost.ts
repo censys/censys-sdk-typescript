@@ -27,7 +27,7 @@ export const TransportProtocol = {
  */
 export type TransportProtocol = ClosedEnum<typeof TransportProtocol>;
 
-export const OrderBy = {
+export const QueryParamOrderBy = {
   PortASC: "port ASC",
   PortDESC: "port DESC",
   ProtocolASC: "protocol ASC",
@@ -35,7 +35,7 @@ export const OrderBy = {
   TransportProtocolASC: "transport_protocol ASC",
   TransportProtocolDESC: "transport_protocol DESC",
 } as const;
-export type OrderBy = ClosedEnum<typeof OrderBy>;
+export type QueryParamOrderBy = ClosedEnum<typeof QueryParamOrderBy>;
 
 export type V3GlobaldataServiceOnHostRequest = {
   /**
@@ -77,7 +77,7 @@ export type V3GlobaldataServiceOnHostRequest = {
   /**
    * Order observations by these fields. Multiple values can be provided to sort by multiple fields (e.g., ['port DESC', 'protocol ASC']).
    */
-  orderBy?: Array<OrderBy> | null | undefined;
+  orderBy?: Array<QueryParamOrderBy> | null | undefined;
 };
 
 export type V3GlobaldataServiceOnHostResponse = {
@@ -91,8 +91,9 @@ export const TransportProtocol$outboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(TransportProtocol);
 
 /** @internal */
-export const OrderBy$outboundSchema: z.ZodNativeEnum<typeof OrderBy> = z
-  .nativeEnum(OrderBy);
+export const QueryParamOrderBy$outboundSchema: z.ZodNativeEnum<
+  typeof QueryParamOrderBy
+> = z.nativeEnum(QueryParamOrderBy);
 
 /** @internal */
 export type V3GlobaldataServiceOnHostRequest$Outbound = {
@@ -123,7 +124,7 @@ export const V3GlobaldataServiceOnHostRequest$outboundSchema: z.ZodType<
   protocol: z.string().optional(),
   transportProtocol: TransportProtocol$outboundSchema.optional(),
   hostId: z.string(),
-  orderBy: z.nullable(z.array(OrderBy$outboundSchema)).optional(),
+  orderBy: z.nullable(z.array(QueryParamOrderBy$outboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
     organizationId: "organization_id",

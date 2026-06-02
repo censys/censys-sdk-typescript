@@ -1,13 +1,13 @@
-# AssetType
+# TagAssignmentAssetType
 
 The inferred type of the asset.
 
 ## Example Usage
 
 ```typescript
-import { AssetType } from "@censys/platform-sdk/models/components";
+import { TagAssignmentAssetType } from "@censys/platform-sdk/models/components";
 
-let value: AssetType = "host";
+let value: TagAssignmentAssetType = "certificate";
 
 // Open enum: unrecognized values are captured as Unrecognized<string>
 ```
