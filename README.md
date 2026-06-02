@@ -165,6 +165,10 @@ run();
 
 ### [TagsAndComments](docs/sdks/tagsandcomments/README.md)
 
+* [listComments](docs/sdks/tagsandcomments/README.md#listcomments) - List comments
+* [createComment](docs/sdks/tagsandcomments/README.md#createcomment) - Create a comment
+* [deleteComment](docs/sdks/tagsandcomments/README.md#deletecomment) - Delete a comment
+* [updateComment](docs/sdks/tagsandcomments/README.md#updatecomment) - Update a comment
 * [listTags](docs/sdks/tagsandcomments/README.md#listtags) - List tags
 * [createTag](docs/sdks/tagsandcomments/README.md#createtag) - Create a tag
 * [deleteTag](docs/sdks/tagsandcomments/README.md#deletetag) - Delete a tag
@@ -237,13 +241,17 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`globalDataGetWebProperty`](docs/sdks/globaldata/README.md#getwebproperty) - Get a web property
 - [`globalDataListServicesOnHost`](docs/sdks/globaldata/README.md#listservicesonhost) - Get service history for a host
 - [`globalDataSearch`](docs/sdks/globaldata/README.md#search) - Run a search query
+- [`tagsAndCommentsCreateComment`](docs/sdks/tagsandcomments/README.md#createcomment) - Create a comment
 - [`tagsAndCommentsCreateTag`](docs/sdks/tagsandcomments/README.md#createtag) - Create a tag
 - [`tagsAndCommentsCreateTagAssignment`](docs/sdks/tagsandcomments/README.md#createtagassignment) - Create a tag assignment
+- [`tagsAndCommentsDeleteComment`](docs/sdks/tagsandcomments/README.md#deletecomment) - Delete a comment
 - [`tagsAndCommentsDeleteTag`](docs/sdks/tagsandcomments/README.md#deletetag) - Delete a tag
 - [`tagsAndCommentsDeleteTagAssignment`](docs/sdks/tagsandcomments/README.md#deletetagassignment) - Delete a tag assignment
 - [`tagsAndCommentsGetTag`](docs/sdks/tagsandcomments/README.md#gettag) - Get a tag
+- [`tagsAndCommentsListComments`](docs/sdks/tagsandcomments/README.md#listcomments) - List comments
 - [`tagsAndCommentsListTagAssignments`](docs/sdks/tagsandcomments/README.md#listtagassignments) - List tag assignments
 - [`tagsAndCommentsListTags`](docs/sdks/tagsandcomments/README.md#listtags) - List tags
+- [`tagsAndCommentsUpdateComment`](docs/sdks/tagsandcomments/README.md#updatecomment) - Update a comment
 - [`tagsAndCommentsUpdateTag`](docs/sdks/tagsandcomments/README.md#updatetag) - Update a tag
 - [`threatHuntingCreateCenseyeJob`](docs/sdks/adversaryinvestigation/README.md#createcenseyejob) - CensEye: Create a pivot analysis job
 - [`threatHuntingCreateCenseyeJob`](docs/sdks/threathunting/README.md#createcenseyejob) - CensEye: Create a pivot analysis job

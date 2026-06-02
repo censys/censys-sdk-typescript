@@ -13,15 +13,16 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 /**
  * The inferred type of the asset.
  */
-export const AssetType = {
+export const TagAssignmentAssetType = {
   Host: "host",
   Certificate: "certificate",
   WebProperty: "web_property",
+  Unknown: "unknown",
 } as const;
 /**
  * The inferred type of the asset.
  */
-export type AssetType = OpenEnum<typeof AssetType>;
+export type TagAssignmentAssetType = OpenEnum<typeof TagAssignmentAssetType>;
 
 export type TagAssignment = {
   /**
@@ -31,7 +32,7 @@ export type TagAssignment = {
   /**
    * The inferred type of the asset.
    */
-  assetType: AssetType;
+  assetType: TagAssignmentAssetType;
   /**
    * RFC3339 timestamp when the assignment was created.
    */
@@ -55,11 +56,11 @@ export type TagAssignment = {
 };
 
 /** @internal */
-export const AssetType$inboundSchema: z.ZodType<
-  AssetType,
+export const TagAssignmentAssetType$inboundSchema: z.ZodType<
+  TagAssignmentAssetType,
   z.ZodTypeDef,
   unknown
-> = openEnums.inboundSchema(AssetType);
+> = openEnums.inboundSchema(TagAssignmentAssetType);
 
 /** @internal */
 export const TagAssignment$inboundSchema: z.ZodType<
@@ -68,7 +69,7 @@ export const TagAssignment$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   asset_id: z.string(),
-  asset_type: AssetType$inboundSchema,
+  asset_type: TagAssignmentAssetType$inboundSchema,
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   created_by: z.string(),
   id: z.string(),

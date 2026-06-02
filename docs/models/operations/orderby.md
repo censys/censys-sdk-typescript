@@ -1,15 +1,17 @@
 # OrderBy
 
+Sort order. Supported values: create_time_asc, create_time_desc.
+
 ## Example Usage
 
 ```typescript
 import { OrderBy } from "@censys/platform-sdk/models/operations";
 
-let value: OrderBy = "protocol ASC";
+let value: OrderBy = "create_time_asc";
 ```
 
 ## Values
 
 ```typescript
-"port ASC" | "port DESC" | "protocol ASC" | "protocol DESC" | "transport_protocol ASC" | "transport_protocol DESC"
+"create_time_asc" | "create_time_desc"
 ```

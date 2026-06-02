@@ -17,7 +17,7 @@ export type V3TagsListTagsGlobals = {
 /**
  * Sort order. Supported values: name_asc, name_desc, created_at_asc, created_at_desc, updated_at_asc, updated_at_desc.
  */
-export const QueryParamOrderBy = {
+export const V3TagsListTagsQueryParamOrderBy = {
   NameAsc: "name_asc",
   NameDesc: "name_desc",
   CreatedAtAsc: "created_at_asc",
@@ -28,7 +28,9 @@ export const QueryParamOrderBy = {
 /**
  * Sort order. Supported values: name_asc, name_desc, created_at_asc, created_at_desc, updated_at_asc, updated_at_desc.
  */
-export type QueryParamOrderBy = ClosedEnum<typeof QueryParamOrderBy>;
+export type V3TagsListTagsQueryParamOrderBy = ClosedEnum<
+  typeof V3TagsListTagsQueryParamOrderBy
+>;
 
 /**
  * Filter tags by privacy setting.
@@ -58,7 +60,7 @@ export type V3TagsListTagsRequest = {
   /**
    * Sort order. Supported values: name_asc, name_desc, created_at_asc, created_at_desc, updated_at_asc, updated_at_desc.
    */
-  orderBy?: QueryParamOrderBy | undefined;
+  orderBy?: V3TagsListTagsQueryParamOrderBy | undefined;
   /**
    * Filter tags by name (exact match).
    */
@@ -79,9 +81,9 @@ export type V3TagsListTagsResponse = {
 };
 
 /** @internal */
-export const QueryParamOrderBy$outboundSchema: z.ZodNativeEnum<
-  typeof QueryParamOrderBy
-> = z.nativeEnum(QueryParamOrderBy);
+export const V3TagsListTagsQueryParamOrderBy$outboundSchema: z.ZodNativeEnum<
+  typeof V3TagsListTagsQueryParamOrderBy
+> = z.nativeEnum(V3TagsListTagsQueryParamOrderBy);
 
 /** @internal */
 export const Privacy$outboundSchema: z.ZodNativeEnum<typeof Privacy> = z
@@ -107,7 +109,7 @@ export const V3TagsListTagsRequest$outboundSchema: z.ZodType<
   organizationId: z.string().optional(),
   pageSize: z.number().int().default(100),
   pageToken: z.string().optional(),
-  orderBy: QueryParamOrderBy$outboundSchema.default("name_asc"),
+  orderBy: V3TagsListTagsQueryParamOrderBy$outboundSchema.default("name_asc"),
   name: z.string().optional(),
   createdBy: z.string().optional(),
   privacy: Privacy$outboundSchema.optional(),
