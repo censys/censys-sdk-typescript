@@ -102,6 +102,7 @@ async function $do(
 
   const query = encodeFormQuery({
     "asset_id": payload.asset_id,
+    "asset_type": payload.asset_type,
     "created_after": payload.created_after,
     "created_before": payload.created_before,
     "created_by": payload.created_by,

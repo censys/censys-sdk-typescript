@@ -15,6 +15,10 @@ import { globalDataGetHostTimeline } from "../funcs/globalDataGetHostTimeline.js
 import { globalDataGetTrackedScan } from "../funcs/globalDataGetTrackedScan.js";
 import { globalDataGetWebProperties } from "../funcs/globalDataGetWebProperties.js";
 import { globalDataGetWebProperty } from "../funcs/globalDataGetWebProperty.js";
+import { globalDataListDnsIpResolutionBounds } from "../funcs/globalDataListDnsIpResolutionBounds.js";
+import { globalDataListDnsIpResolutionRanges } from "../funcs/globalDataListDnsIpResolutionRanges.js";
+import { globalDataListDnsNameResolutionBounds } from "../funcs/globalDataListDnsNameResolutionBounds.js";
+import { globalDataListDnsNameResolutionRanges } from "../funcs/globalDataListDnsNameResolutionRanges.js";
 import { globalDataListServicesOnHost } from "../funcs/globalDataListServicesOnHost.js";
 import { globalDataSearch } from "../funcs/globalDataSearch.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
@@ -186,6 +190,74 @@ export class GlobalData extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V3GlobaldataAssetWebpropertyResponse> {
     return unwrapAsync(globalDataGetWebProperty(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get latest DNS names that resolved to an IP
+   *
+   * @remarks
+   * Retrieve the latest domain names that resolved to the IP you provide (A and AAAA). You can narrow results with `record_types` (A or AAAA).<br><br>[Learn more about Censys Active DNS Resolution](https://docs.censys.com/docs/platform-active-dns).<br><br>This endpoint is in beta and is only available to Censys Enterprise users.
+   */
+  async listDnsIpResolutionBounds(
+    request: operations.V3GlobaldataDnsIpResolutionBoundRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3GlobaldataDnsIpResolutionBoundResponse> {
+    return unwrapAsync(globalDataListDnsIpResolutionBounds(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get DNS names that resolved to an IP within a time window
+   *
+   * @remarks
+   * Retrieve domain names that resolved to the IP you provide (A and AAAA) within the requested time window.<br><br>[Learn more about Censys Active DNS Resolution](https://docs.censys.com/docs/platform-active-dns).<br><br>This endpoint is in beta and is only available to Censys Enterprise users.
+   */
+  async listDnsIpResolutionRanges(
+    request: operations.V3GlobaldataDnsIpResolutionRangesRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3GlobaldataDnsIpResolutionRangesResponse> {
+    return unwrapAsync(globalDataListDnsIpResolutionRanges(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get latest DNS resolution records for a name
+   *
+   * @remarks
+   * Retrieve the latest DNS resolution records for a name. This endpoint returns the latest observed A, AAAA, MX, NS, SOA, and TXT records for the name you provide. You can filter by one or more record types using `record_types`.<br><br>[Learn more about Censys Active DNS Resolution](https://docs.censys.com/docs/platform-active-dns).<br><br>This endpoint is in beta and is only available to Censys Enterprise users.
+   */
+  async listDnsNameResolutionBounds(
+    request: operations.V3GlobaldataDnsNameResolutionBoundRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3GlobaldataDnsNameResolutionBoundResponse> {
+    return unwrapAsync(globalDataListDnsNameResolutionBounds(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get historical DNS resolution ranges for a name
+   *
+   * @remarks
+   * Retrieve historical DNS resolution observations for a name. Each item is one window during which a record value was observed by Censys.<br><br>[Learn more about Censys Active DNS Resolution](https://docs.censys.com/docs/platform-active-dns).<br><br>This endpoint is in beta and is only available to Censys Enterprise users.
+   */
+  async listDnsNameResolutionRanges(
+    request: operations.V3GlobaldataDnsNameResolutionRangesRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3GlobaldataDnsNameResolutionRangesResponse> {
+    return unwrapAsync(globalDataListDnsNameResolutionRanges(
       this,
       request,
       options,

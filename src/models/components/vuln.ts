@@ -51,6 +51,7 @@ export type Vuln = {
   riskSource?: VulnRiskSource | undefined;
   severity?: VulnSeverity | undefined;
   source?: VulnSource | undefined;
+  type?: Array<string> | null | undefined;
   year?: number | undefined;
 };
 
@@ -88,6 +89,7 @@ export const Vuln$inboundSchema: z.ZodType<Vuln, z.ZodTypeDef, unknown> = z
     risk_source: VulnRiskSource$inboundSchema.optional(),
     severity: VulnSeverity$inboundSchema.optional(),
     source: VulnSource$inboundSchema.optional(),
+    type: z.nullable(z.array(z.string())).optional(),
     year: z.number().int().optional(),
   }).transform((v) => {
     return remap$(v, {

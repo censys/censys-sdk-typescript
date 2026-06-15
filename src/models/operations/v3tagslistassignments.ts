@@ -28,6 +28,19 @@ export type V3TagsListAssignmentsQueryParamOrderBy = ClosedEnum<
   typeof V3TagsListAssignmentsQueryParamOrderBy
 >;
 
+/**
+ * Filter assignments by asset type.
+ */
+export const AssetType = {
+  Host: "host",
+  WebProperty: "web_property",
+  Certificate: "certificate",
+} as const;
+/**
+ * Filter assignments by asset type.
+ */
+export type AssetType = ClosedEnum<typeof AssetType>;
+
 export type V3TagsListAssignmentsRequest = {
   /**
    * The ID of a Censys organization to associate the request with. See the [Getting Started docs](https://docs.censys.com/reference/get-started#step-3-find-and-use-your-organization-id-optional) for more information.
@@ -54,6 +67,10 @@ export type V3TagsListAssignmentsRequest = {
    */
   assetId?: string | undefined;
   /**
+   * Filter assignments by asset type.
+   */
+  assetType?: AssetType | undefined;
+  /**
    * RFC3339 timestamp. Only return assignments created before this time.
    */
   createdBefore?: Date | undefined;
@@ -79,6 +96,10 @@ export const V3TagsListAssignmentsQueryParamOrderBy$outboundSchema:
   );
 
 /** @internal */
+export const AssetType$outboundSchema: z.ZodNativeEnum<typeof AssetType> = z
+  .nativeEnum(AssetType);
+
+/** @internal */
 export type V3TagsListAssignmentsRequest$Outbound = {
   organization_id?: string | undefined;
   tag_id: string;
@@ -86,6 +107,7 @@ export type V3TagsListAssignmentsRequest$Outbound = {
   page_token?: string | undefined;
   order_by: string;
   asset_id?: string | undefined;
+  asset_type?: string | undefined;
   created_before?: string | undefined;
   created_after?: string | undefined;
   created_by?: string | undefined;
@@ -105,6 +127,7 @@ export const V3TagsListAssignmentsRequest$outboundSchema: z.ZodType<
     "create_time_desc",
   ),
   assetId: z.string().optional(),
+  assetType: AssetType$outboundSchema.optional(),
   createdBefore: z.date().transform(v => v.toISOString()).optional(),
   createdAfter: z.date().transform(v => v.toISOString()).optional(),
   createdBy: z.string().optional(),
@@ -116,6 +139,7 @@ export const V3TagsListAssignmentsRequest$outboundSchema: z.ZodType<
     pageToken: "page_token",
     orderBy: "order_by",
     assetId: "asset_id",
+    assetType: "asset_type",
     createdBefore: "created_before",
     createdAfter: "created_after",
     createdBy: "created_by",
