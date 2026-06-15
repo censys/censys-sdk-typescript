@@ -49,6 +49,7 @@ export type Risk = {
   riskSource?: RiskSource | undefined;
   severity?: Severity | undefined;
   source?: RiskSource1 | undefined;
+  type?: Array<string> | null | undefined;
   year?: number | undefined;
 };
 
@@ -85,6 +86,7 @@ export const Risk$inboundSchema: z.ZodType<Risk, z.ZodTypeDef, unknown> = z
     risk_source: RiskSource$inboundSchema.optional(),
     severity: Severity$inboundSchema.optional(),
     source: RiskSource1$inboundSchema.optional(),
+    type: z.nullable(z.array(z.string())).optional(),
     year: z.number().int().optional(),
   }).transform((v) => {
     return remap$(v, {

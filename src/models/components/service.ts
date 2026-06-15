@@ -217,6 +217,7 @@ export type Service = {
   ciscoIpsla?: CiscoIpsla | undefined;
   cmore?: Cmore | undefined;
   coap?: Coap | undefined;
+  compromises?: Array<Risk> | null | undefined;
   crestronCp3?: CrestronCp3 | undefined;
   crestronDinAp2?: CrestronDinAp2 | undefined;
   cursorOnTarget?: CursorOnTarget | undefined;
@@ -382,6 +383,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     cisco_ipsla: CiscoIpsla$inboundSchema.optional(),
     cmore: Cmore$inboundSchema.optional(),
     coap: Coap$inboundSchema.optional(),
+    compromises: z.nullable(z.array(Risk$inboundSchema)).optional(),
     crestron_cp3: CrestronCp3$inboundSchema.optional(),
     crestron_din_ap2: CrestronDinAp2$inboundSchema.optional(),
     cursor_on_target: CursorOnTarget$inboundSchema.optional(),

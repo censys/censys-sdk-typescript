@@ -1,0 +1,28 @@
+# DnsResolutionRecord
+
+## Example Usage
+
+```typescript
+import { DnsResolutionRecord } from "@censys/platform-sdk/models/components";
+
+let value: DnsResolutionRecord = {
+  firstSeen: new Date("2025-03-18T07:29:05.117Z"),
+  lastSeen: new Date("2026-12-07T22:41:06.224Z"),
+  recordType: "SOA",
+};
+```
+
+## Fields
+
+| Field                                                                                                       | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
+| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `firstSeen`                                                                                                 | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)               | :heavy_check_mark:                                                                                          | The time this record was first observed.                                                                    |
+| `ip`                                                                                                        | *string*                                                                                                    | :heavy_minus_sign:                                                                                          | The IP of the record. IPv4 if the record_type is A. IPv6 if the record_type is AAAA. Otherwise not present. |
+| `lastSeen`                                                                                                  | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)               | :heavy_check_mark:                                                                                          | The time this record was last observed.                                                                     |
+| `mailServer`                                                                                                | *string*                                                                                                    | :heavy_minus_sign:                                                                                          | The MX mail server. Only present when record_type is MX. Otherwise not present.                             |
+| `mname`                                                                                                     | *string*                                                                                                    | :heavy_minus_sign:                                                                                          | The primary name server. Only present when record_type is SOA. Otherwise not present.                       |
+| `nameServer`                                                                                                | *string*                                                                                                    | :heavy_minus_sign:                                                                                          | The name server. Only present when record_type is NS. Otherwise not present.                                |
+| `priority`                                                                                                  | *number*                                                                                                    | :heavy_minus_sign:                                                                                          | The MX priority. Only present when record_type is MX. Otherwise not present.                                |
+| `recordType`                                                                                                | [components.DnsResolutionRecordRecordType](../../models/components/dnsresolutionrecordrecordtype.md)        | :heavy_check_mark:                                                                                          | The record type. Either A, AAAA, MX, NS, SOA, or TXT.                                                       |
+| `rname`                                                                                                     | *string*                                                                                                    | :heavy_minus_sign:                                                                                          | The responsible contact, as email. Only present when record_type is SOA. Otherwise not present.             |
+| `value`                                                                                                     | *string*                                                                                                    | :heavy_minus_sign:                                                                                          | Full, untruncated string. Only present when record_type is TXT. Otherwise not present.                      |

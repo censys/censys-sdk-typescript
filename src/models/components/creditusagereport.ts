@@ -34,7 +34,7 @@ export type CreditUsageReport = {
   /**
    * The breakdown of credits consumed by consumer. This may not be present if the report is generated for a specific user.
    */
-  creditsConsumedByConsumer?: string | undefined;
+  creditsConsumedByConsumer?: { [k: string]: number } | undefined;
   creditsConsumedBySource: SourceUsageBreakdown;
   /**
    * The end time of the window for this report.
@@ -83,7 +83,7 @@ export const CreditUsageReport$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  credits_consumed_by_consumer: z.string().optional(),
+  credits_consumed_by_consumer: z.record(z.number().int()).optional(),
   credits_consumed_by_source: SourceUsageBreakdown$inboundSchema,
   end_time: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   granularity: Granularity$inboundSchema.default("daily"),
