@@ -9,6 +9,10 @@ import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  HttpRedirectChainLinkHttpStatus,
+  HttpRedirectChainLinkHttpStatus$inboundSchema,
+} from "./httpredirectchainlinkhttpstatus.js";
 
 export const HttpRedirectChainLinkTransportProtocol = {
   Unknown: "",
@@ -23,6 +27,7 @@ export type HttpRedirectChainLinkTransportProtocol = OpenEnum<
 
 export type HttpRedirectChainLink = {
   hostname?: string | undefined;
+  httpStatus?: HttpRedirectChainLinkHttpStatus | undefined;
   path?: string | undefined;
   port?: number | undefined;
   reason?: string | undefined;
@@ -44,6 +49,7 @@ export const HttpRedirectChainLink$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   hostname: z.string().optional(),
+  http_status: HttpRedirectChainLinkHttpStatus$inboundSchema.optional(),
   path: z.string().optional(),
   port: z.number().int().optional(),
   reason: z.string().optional(),
@@ -52,6 +58,7 @@ export const HttpRedirectChainLink$inboundSchema: z.ZodType<
     .optional(),
 }).transform((v) => {
   return remap$(v, {
+    "http_status": "httpStatus",
     "transport_protocol": "transportProtocol",
   });
 });

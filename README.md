@@ -151,12 +151,17 @@ run();
 * [getCertificatesRaw](docs/sdks/globaldata/README.md#getcertificatesraw) - Retrieve multiple certificates in PEM format
 * [getCertificate](docs/sdks/globaldata/README.md#getcertificate) - Get a certificate
 * [getCertificateRaw](docs/sdks/globaldata/README.md#getcertificateraw) - Get a certificate in PEM format
+* [getHostEnrichment](docs/sdks/globaldata/README.md#gethostenrichment) - Get host enrichment
 * [getHosts](docs/sdks/globaldata/README.md#gethosts) - Retrieve multiple hosts
 * [getHost](docs/sdks/globaldata/README.md#gethost) - Get a host
 * [listServicesOnHost](docs/sdks/globaldata/README.md#listservicesonhost) - Get service history for a host
 * [getHostTimeline](docs/sdks/globaldata/README.md#gethosttimeline) - Get host event history
 * [getWebProperties](docs/sdks/globaldata/README.md#getwebproperties) - Retrieve multiple web properties
 * [getWebProperty](docs/sdks/globaldata/README.md#getwebproperty) - Get a web property
+* [listDnsIpResolutionBounds](docs/sdks/globaldata/README.md#listdnsipresolutionbounds) - Get latest DNS names that resolved to an IP
+* [listDnsIpResolutionRanges](docs/sdks/globaldata/README.md#listdnsipresolutionranges) - Get DNS names that resolved to an IP within a time window
+* [listDnsNameResolutionBounds](docs/sdks/globaldata/README.md#listdnsnameresolutionbounds) - Get latest DNS resolution records for a name
+* [listDnsNameResolutionRanges](docs/sdks/globaldata/README.md#listdnsnameresolutionranges) - Get historical DNS resolution ranges for a name
 * [createTrackedScan](docs/sdks/globaldata/README.md#createtrackedscan) - Live Rescan: Initiate a new rescan
 * [getTrackedScan](docs/sdks/globaldata/README.md#gettrackedscan) - Get scan status
 * [aggregate](docs/sdks/globaldata/README.md#aggregate) - Aggregate results for a search query
@@ -176,7 +181,11 @@ run();
 * [updateTag](docs/sdks/tagsandcomments/README.md#updatetag) - Update a tag
 * [listTagAssignments](docs/sdks/tagsandcomments/README.md#listtagassignments) - List tag assignments
 * [createTagAssignment](docs/sdks/tagsandcomments/README.md#createtagassignment) - Create a tag assignment
+* [bulkCreateTagAssignments](docs/sdks/tagsandcomments/README.md#bulkcreatetagassignments) - Bulk create tag assignments
+* [bulkDeleteTagAssignments](docs/sdks/tagsandcomments/README.md#bulkdeletetagassignments) - Bulk delete tag assignments
 * [deleteTagAssignment](docs/sdks/tagsandcomments/README.md#deletetagassignment) - Delete a tag assignment
+* [listTagOperations](docs/sdks/tagsandcomments/README.md#listtagoperations) - List tag operations
+* [cancelTagOperation](docs/sdks/tagsandcomments/README.md#canceltagoperation) - Cancel a tag operation
 
 ### [ThreatHunting](docs/sdks/threathunting/README.md)
 
@@ -234,13 +243,21 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`globalDataGetCertificates`](docs/sdks/globaldata/README.md#getcertificates) - Retrieve multiple certificates
 - [`globalDataGetCertificatesRaw`](docs/sdks/globaldata/README.md#getcertificatesraw) - Retrieve multiple certificates in PEM format
 - [`globalDataGetHost`](docs/sdks/globaldata/README.md#gethost) - Get a host
+- [`globalDataGetHostEnrichment`](docs/sdks/globaldata/README.md#gethostenrichment) - Get host enrichment
 - [`globalDataGetHosts`](docs/sdks/globaldata/README.md#gethosts) - Retrieve multiple hosts
 - [`globalDataGetHostTimeline`](docs/sdks/globaldata/README.md#gethosttimeline) - Get host event history
 - [`globalDataGetTrackedScan`](docs/sdks/globaldata/README.md#gettrackedscan) - Get scan status
 - [`globalDataGetWebProperties`](docs/sdks/globaldata/README.md#getwebproperties) - Retrieve multiple web properties
 - [`globalDataGetWebProperty`](docs/sdks/globaldata/README.md#getwebproperty) - Get a web property
+- [`globalDataListDnsIpResolutionBounds`](docs/sdks/globaldata/README.md#listdnsipresolutionbounds) - Get latest DNS names that resolved to an IP
+- [`globalDataListDnsIpResolutionRanges`](docs/sdks/globaldata/README.md#listdnsipresolutionranges) - Get DNS names that resolved to an IP within a time window
+- [`globalDataListDnsNameResolutionBounds`](docs/sdks/globaldata/README.md#listdnsnameresolutionbounds) - Get latest DNS resolution records for a name
+- [`globalDataListDnsNameResolutionRanges`](docs/sdks/globaldata/README.md#listdnsnameresolutionranges) - Get historical DNS resolution ranges for a name
 - [`globalDataListServicesOnHost`](docs/sdks/globaldata/README.md#listservicesonhost) - Get service history for a host
 - [`globalDataSearch`](docs/sdks/globaldata/README.md#search) - Run a search query
+- [`tagsAndCommentsBulkCreateTagAssignments`](docs/sdks/tagsandcomments/README.md#bulkcreatetagassignments) - Bulk create tag assignments
+- [`tagsAndCommentsBulkDeleteTagAssignments`](docs/sdks/tagsandcomments/README.md#bulkdeletetagassignments) - Bulk delete tag assignments
+- [`tagsAndCommentsCancelTagOperation`](docs/sdks/tagsandcomments/README.md#canceltagoperation) - Cancel a tag operation
 - [`tagsAndCommentsCreateComment`](docs/sdks/tagsandcomments/README.md#createcomment) - Create a comment
 - [`tagsAndCommentsCreateTag`](docs/sdks/tagsandcomments/README.md#createtag) - Create a tag
 - [`tagsAndCommentsCreateTagAssignment`](docs/sdks/tagsandcomments/README.md#createtagassignment) - Create a tag assignment
@@ -250,6 +267,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`tagsAndCommentsGetTag`](docs/sdks/tagsandcomments/README.md#gettag) - Get a tag
 - [`tagsAndCommentsListComments`](docs/sdks/tagsandcomments/README.md#listcomments) - List comments
 - [`tagsAndCommentsListTagAssignments`](docs/sdks/tagsandcomments/README.md#listtagassignments) - List tag assignments
+- [`tagsAndCommentsListTagOperations`](docs/sdks/tagsandcomments/README.md#listtagoperations) - List tag operations
 - [`tagsAndCommentsListTags`](docs/sdks/tagsandcomments/README.md#listtags) - List tags
 - [`tagsAndCommentsUpdateComment`](docs/sdks/tagsandcomments/README.md#updatecomment) - Update a comment
 - [`tagsAndCommentsUpdateTag`](docs/sdks/tagsandcomments/README.md#updatetag) - Update a tag

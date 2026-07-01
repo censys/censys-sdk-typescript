@@ -1,0 +1,26 @@
+# HostEnrichment
+
+## Example Usage
+
+```typescript
+import { HostEnrichment } from "@censys/platform-sdk/models/components";
+
+let value: HostEnrichment = {};
+```
+
+## Fields
+
+| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `autonomousSystem`                                                                     | [components.Routing](../../models/components/routing.md)                               | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `dns`                                                                                  | [components.HostDns](../../models/components/hostdns.md)                               | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `ip`                                                                                   | *string*                                                                               | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `labels`                                                                               | [components.Label](../../models/components/label.md)[]                                 | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `location`                                                                             | [components.Location](../../models/components/location.md)                             | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `network`                                                                              | [components.NetworkClassification](../../models/components/networkclassification.md)[] | :heavy_minus_sign:                                                                     | Information about what type of network the host belongs to.                            |
+| `privacy`                                                                              | [components.Privacy](../../models/components/privacy.md)[]                             | :heavy_minus_sign:                                                                     | Information about privacy services used by the IP, such as VPNs, Proxies, or Tor.      |
+| `reputation`                                                                           | [components.Reputation](../../models/components/reputation.md)                         | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `serviceCount`                                                                         | *number*                                                                               | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `services`                                                                             | [components.HostEnrichmentService](../../models/components/hostenrichmentservice.md)[] | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `thirdParty`                                                                           | [components.ThirdParty](../../models/components/thirdparty.md)                         | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `whois`                                                                                | [components.Whois](../../models/components/whois.md)                                   | :heavy_minus_sign:                                                                     | N/A                                                                                    |

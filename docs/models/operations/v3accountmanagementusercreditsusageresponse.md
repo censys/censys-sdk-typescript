@@ -9,6 +9,9 @@ let value: V3AccountmanagementUserCreditsUsageResponse = {
   headers: {},
   result: {
     result: {
+      creditsConsumedByConsumer: {
+        "user@example.com": 3000,
+      },
       creditsConsumedBySource: {
         api: 581368,
         ui: 390321,

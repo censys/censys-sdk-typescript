@@ -17,7 +17,11 @@ Endpoints related to asset tagging and commenting
 * [updateTag](#updatetag) - Update a tag
 * [listTagAssignments](#listtagassignments) - List tag assignments
 * [createTagAssignment](#createtagassignment) - Create a tag assignment
+* [bulkCreateTagAssignments](#bulkcreatetagassignments) - Bulk create tag assignments
+* [bulkDeleteTagAssignments](#bulkdeletetagassignments) - Bulk delete tag assignments
 * [deleteTagAssignment](#deletetagassignment) - Delete a tag assignment
+* [listTagOperations](#listtagoperations) - List tag operations
+* [cancelTagOperation](#canceltagoperation) - Cancel a tag operation
 
 ## listComments
 
@@ -897,6 +901,170 @@ run();
 | errors.ErrorModel          | 500                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
+## bulkCreateTagAssignments
+
+Start a long-running operation that assigns a tag to every asset matching a CenQL query. The operation runs asynchronously; use the returned operation to track its progress.<br><br>A tag can hold a limited number of asset assignments, and the limit depends on your plan. If the operation reaches that limit before every matching asset is tagged, it finishes with status `limit_reached`.<br><br>This endpoint does not cost any credits to execute.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v3-tags-bulk-create-assignments" method="post" path="/v3/tags/{tag_id}/assignments/bulk-create" -->
+```typescript
+import { SDK } from "@censys/platform-sdk";
+
+const sdk = new SDK({
+  organizationId: "11111111-2222-3333-4444-555555555555",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.tagsAndComments.bulkCreateTagAssignments({
+    tagId: "1de943e6-02d8-47bb-8655-559621fc968c",
+    bulkCreateTagAssignmentsInputBody: {
+      query: "<value>",
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { tagsAndCommentsBulkCreateTagAssignments } from "@censys/platform-sdk/funcs/tagsAndCommentsBulkCreateTagAssignments.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  organizationId: "11111111-2222-3333-4444-555555555555",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await tagsAndCommentsBulkCreateTagAssignments(sdk, {
+    tagId: "1de943e6-02d8-47bb-8655-559621fc968c",
+    bulkCreateTagAssignmentsInputBody: {
+      query: "<value>",
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("tagsAndCommentsBulkCreateTagAssignments failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3TagsBulkCreateAssignmentsRequest](../../models/operations/v3tagsbulkcreateassignmentsrequest.md)                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3TagsBulkCreateAssignmentsResponse](../../models/operations/v3tagsbulkcreateassignmentsresponse.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 404, 409, 422         | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
+## bulkDeleteTagAssignments
+
+Start a long-running operation that removes a tag from its assigned assets, optionally restricted to a creation-time window. The operation runs asynchronously; use the returned operation to track its progress.<br><br>This endpoint does not cost any credits to execute.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v3-tags-bulk-delete-assignments" method="post" path="/v3/tags/{tag_id}/assignments/bulk-delete" -->
+```typescript
+import { SDK } from "@censys/platform-sdk";
+
+const sdk = new SDK({
+  organizationId: "11111111-2222-3333-4444-555555555555",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.tagsAndComments.bulkDeleteTagAssignments({
+    tagId: "4fb0c28f-5f77-4d94-8d15-c0c621009061",
+    bulkDeleteTagAssignmentsInputBody: {},
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { tagsAndCommentsBulkDeleteTagAssignments } from "@censys/platform-sdk/funcs/tagsAndCommentsBulkDeleteTagAssignments.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  organizationId: "11111111-2222-3333-4444-555555555555",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await tagsAndCommentsBulkDeleteTagAssignments(sdk, {
+    tagId: "4fb0c28f-5f77-4d94-8d15-c0c621009061",
+    bulkDeleteTagAssignmentsInputBody: {},
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("tagsAndCommentsBulkDeleteTagAssignments failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3TagsBulkDeleteAssignmentsRequest](../../models/operations/v3tagsbulkdeleteassignmentsrequest.md)                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3TagsBulkDeleteAssignmentsResponse](../../models/operations/v3tagsbulkdeleteassignmentsresponse.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 404, 409, 422         | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
 ## deleteTagAssignment
 
 Remove a tag assignment from an asset. This action is permanent and cannot be undone. Removing an assignment only detaches the tag from the specified asset; the tag itself is not deleted. Only the tag's creator or an organization admin can delete an assignment for a `private` tag. Assignments for `shared` tags can be deleted by any organization member.<br><br>This endpoint does not cost any credits to execute.
@@ -974,5 +1142,163 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.AuthenticationError | 401                        | application/json           |
 | errors.ErrorModel          | 403, 404, 422              | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
+## listTagOperations
+
+Retrieve a paginated list of bulk tag operations. Provide a tag ID in the path to scope the listing to a single tag, or `-` to list operations across all tags in your organization. Use query parameters to filter by type or status.<br><br>This endpoint does not cost any credits to execute.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v3-tags-list-operations" method="get" path="/v3/tags/{tag_id}/operations" -->
+```typescript
+import { SDK } from "@censys/platform-sdk";
+
+const sdk = new SDK({
+  organizationId: "11111111-2222-3333-4444-555555555555",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.tagsAndComments.listTagOperations({
+    tagId: "123e4567-e89b-12d3-a456-426614174000",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { tagsAndCommentsListTagOperations } from "@censys/platform-sdk/funcs/tagsAndCommentsListTagOperations.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  organizationId: "11111111-2222-3333-4444-555555555555",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await tagsAndCommentsListTagOperations(sdk, {
+    tagId: "123e4567-e89b-12d3-a456-426614174000",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("tagsAndCommentsListTagOperations failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3TagsListOperationsRequest](../../models/operations/v3tagslistoperationsrequest.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3TagsListOperationsResponse](../../models/operations/v3tagslistoperationsresponse.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 409, 422              | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
+## cancelTagOperation
+
+Request cancellation of an in-progress bulk tag operation. Cancellation is cooperative: the operation finishes the page it is currently processing, then stops. Work already committed before cancellation is preserved.<br><br>Cancellation is not a rollback — it stops further work but does not remove assignments the operation already created. To remove assignments, use the bulk-delete endpoint. An operation that has already finished cannot be cancelled.<br><br>This endpoint does not cost any credits to execute.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v3-tags-cancel-operation" method="post" path="/v3/tags/{tag_id}/operations/{operation_id}/cancel" -->
+```typescript
+import { SDK } from "@censys/platform-sdk";
+
+const sdk = new SDK({
+  organizationId: "11111111-2222-3333-4444-555555555555",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.tagsAndComments.cancelTagOperation({
+    tagId: "59da45bf-13dd-4601-8b86-c3af7e33fd9a",
+    operationId: "174d4e39-b9c5-4b3f-aa69-5937abd03e40",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { tagsAndCommentsCancelTagOperation } from "@censys/platform-sdk/funcs/tagsAndCommentsCancelTagOperation.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  organizationId: "11111111-2222-3333-4444-555555555555",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await tagsAndCommentsCancelTagOperation(sdk, {
+    tagId: "59da45bf-13dd-4601-8b86-c3af7e33fd9a",
+    operationId: "174d4e39-b9c5-4b3f-aa69-5937abd03e40",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("tagsAndCommentsCancelTagOperation failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3TagsCancelOperationRequest](../../models/operations/v3tagscanceloperationrequest.md)                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3TagsCancelOperationResponse](../../models/operations/v3tagscanceloperationresponse.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 404, 409, 422         | application/problem+json   |
 | errors.ErrorModel          | 500                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |

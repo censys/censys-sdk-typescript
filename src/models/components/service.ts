@@ -26,6 +26,10 @@ import {
 } from "./checkpointtopology.js";
 import { Chromecast, Chromecast$inboundSchema } from "./chromecast.js";
 import { CiscoIpsla, CiscoIpsla$inboundSchema } from "./ciscoipsla.js";
+import {
+  ClickHouseNative,
+  ClickHouseNative$inboundSchema,
+} from "./clickhousenative.js";
 import { Cmore, Cmore$inboundSchema } from "./cmore.js";
 import { Coap, Coap$inboundSchema } from "./coap.js";
 import { CrestronCp3, CrestronCp3$inboundSchema } from "./crestroncp3.js";
@@ -42,6 +46,7 @@ import { Darkcomet, Darkcomet$inboundSchema } from "./darkcomet.js";
 import { Darkgate, Darkgate$inboundSchema } from "./darkgate.js";
 import { Dcerpc, Dcerpc$inboundSchema } from "./dcerpc.js";
 import { Dhcpdiscover, Dhcpdiscover$inboundSchema } from "./dhcpdiscover.js";
+import { Dicom, Dicom$inboundSchema } from "./dicom.js";
 import { Dnp3, Dnp3$inboundSchema } from "./dnp3.js";
 import { Dns, Dns$inboundSchema } from "./dns.js";
 import { Dtls, Dtls$inboundSchema } from "./dtls.js";
@@ -55,6 +60,7 @@ import {
 import { Epmd, Epmd$inboundSchema } from "./epmd.js";
 import { Etcd, Etcd$inboundSchema } from "./etcd.js";
 import { Ethereum, Ethereum$inboundSchema } from "./ethereum.js";
+import { Fins, Fins$inboundSchema } from "./fins.js";
 import {
   FlashSocketPolicy,
   FlashSocketPolicy$inboundSchema,
@@ -64,11 +70,13 @@ import { Frps, Frps$inboundSchema } from "./frps.js";
 import { Ftp, Ftp$inboundSchema } from "./ftp.js";
 import { Gearman, Gearman$inboundSchema } from "./gearman.js";
 import { Gemini, Gemini$inboundSchema } from "./gemini.js";
+import { Gopher, Gopher$inboundSchema } from "./gopher.js";
 import { Hajime, Hajime$inboundSchema } from "./hajime.js";
 import { HidVertx, HidVertx$inboundSchema } from "./hidvertx.js";
 import { Hikvision, Hikvision$inboundSchema } from "./hikvision.js";
 import { Ibmnje, Ibmnje$inboundSchema } from "./ibmnje.js";
 import { Icap, Icap$inboundSchema } from "./icap.js";
+import { Iec608705104, Iec608705104$inboundSchema } from "./iec608705104.js";
 import { Ike, Ike$inboundSchema } from "./ike.js";
 import { Imap, Imap$inboundSchema } from "./imap.js";
 import { Iota, Iota$inboundSchema } from "./iota.js";
@@ -77,6 +85,7 @@ import { Ipp, Ipp$inboundSchema } from "./ipp.js";
 import { Iscsi, Iscsi$inboundSchema } from "./iscsi.js";
 import { Ja4TScanScan, Ja4TScanScan$inboundSchema } from "./ja4tscanscan.js";
 import { JarmScan, JarmScan$inboundSchema } from "./jarmscan.js";
+import { JavaRmi, JavaRmi$inboundSchema } from "./javarmi.js";
 import { Krpc, Krpc$inboundSchema } from "./krpc.js";
 import { L2Tp, L2Tp$inboundSchema } from "./l2tp.js";
 import { Label, Label$inboundSchema } from "./label.js";
@@ -109,6 +118,7 @@ import { Ntrip, Ntrip$inboundSchema } from "./ntrip.js";
 import { Onc, Onc$inboundSchema } from "./onc.js";
 import { Onvif, Onvif$inboundSchema } from "./onvif.js";
 import { OpcUa, OpcUa$inboundSchema } from "./opcua.js";
+import { Openflow, Openflow$inboundSchema } from "./openflow.js";
 import { Openvpn, Openvpn$inboundSchema } from "./openvpn.js";
 import { OpenvpnMgmt, OpenvpnMgmt$inboundSchema } from "./openvpnmgmt.js";
 import { Oracle, Oracle$inboundSchema } from "./oracle.js";
@@ -129,6 +139,10 @@ import {
   RedlionCrimson$inboundSchema,
 } from "./redlioncrimson.js";
 import {
+  ReolinkBaichuan,
+  ReolinkBaichuan$inboundSchema,
+} from "./reolinkbaichuan.js";
+import {
   RepresentativeInfo,
   RepresentativeInfo$inboundSchema,
 } from "./representativeinfo.js";
@@ -138,6 +152,7 @@ import { Risk, Risk$inboundSchema } from "./risk.js";
 import { Rlogin, Rlogin$inboundSchema } from "./rlogin.js";
 import { Rocketmq, Rocketmq$inboundSchema } from "./rocketmq.js";
 import { RouterosApi, RouterosApi$inboundSchema } from "./routerosapi.js";
+import { Rtmp, Rtmp$inboundSchema } from "./rtmp.js";
 import { Rtsp, Rtsp$inboundSchema } from "./rtsp.js";
 import {
   RustdeskHeartbeat,
@@ -169,7 +184,9 @@ import { Ssdp, Ssdp$inboundSchema } from "./ssdp.js";
 import { Ssh, Ssh$inboundSchema } from "./ssh.js";
 import { Steam, Steam$inboundSchema } from "./steam.js";
 import { Stun, Stun$inboundSchema } from "./stun.js";
+import { Synergy, Synergy$inboundSchema } from "./synergy.js";
 import { TacacsPlus, TacacsPlus$inboundSchema } from "./tacacsplus.js";
+import { Tarantool, Tarantool$inboundSchema } from "./tarantool.js";
 import { TeamViewer, TeamViewer$inboundSchema } from "./teamviewer.js";
 import { Telnet, Telnet$inboundSchema } from "./telnet.js";
 import { Threat, Threat$inboundSchema } from "./threat.js";
@@ -185,6 +202,7 @@ import { Ventrilo, Ventrilo$inboundSchema } from "./ventrilo.js";
 import { Vnc, Vnc$inboundSchema } from "./vnc.js";
 import { Vuln, Vuln$inboundSchema } from "./vuln.js";
 import { WeblogicT3, WeblogicT3$inboundSchema } from "./weblogict3.js";
+import { WinceCerdisp, WinceCerdisp$inboundSchema } from "./wincecerdisp.js";
 import { Winrm, Winrm$inboundSchema } from "./winrm.js";
 import { WsDiscovery, WsDiscovery$inboundSchema } from "./wsdiscovery.js";
 import { X11, X11$inboundSchema } from "./x11.js";
@@ -215,8 +233,10 @@ export type Service = {
   checkpointTopology?: CheckpointTopology | undefined;
   chromecast?: Chromecast | undefined;
   ciscoIpsla?: CiscoIpsla | undefined;
+  clickhouseNative?: ClickHouseNative | undefined;
   cmore?: Cmore | undefined;
   coap?: Coap | undefined;
+  compromises?: Array<Risk> | null | undefined;
   crestronCp3?: CrestronCp3 | undefined;
   crestronDinAp2?: CrestronDinAp2 | undefined;
   cursorOnTarget?: CursorOnTarget | undefined;
@@ -225,6 +245,7 @@ export type Service = {
   darkgate?: Darkgate | undefined;
   dcerpc?: Dcerpc | undefined;
   dhcpdiscover?: Dhcpdiscover | undefined;
+  dicom?: Dicom | undefined;
   dnp3?: Dnp3 | undefined;
   dns?: Dns | undefined;
   dtls?: Dtls | undefined;
@@ -236,18 +257,21 @@ export type Service = {
   etcd?: Etcd | undefined;
   ethereum?: Ethereum | undefined;
   exposures?: Array<Risk> | null | undefined;
+  fins?: Fins | undefined;
   flashSocketPolicy?: FlashSocketPolicy | undefined;
   fox?: Fox | undefined;
   frps?: Frps | undefined;
   ftp?: Ftp | undefined;
   gearman?: Gearman | undefined;
   gemini?: Gemini | undefined;
+  gopher?: Gopher | undefined;
   hajime?: Hajime | undefined;
   hardware?: Array<Attribute> | null | undefined;
   hidVertx?: HidVertx | undefined;
   hikvision?: Hikvision | undefined;
   ibmnje?: Ibmnje | undefined;
   icap?: Icap | undefined;
+  iec608705104?: Iec608705104 | undefined;
   ike?: Ike | undefined;
   imap?: Imap | undefined;
   iota?: Iota | undefined;
@@ -257,6 +281,7 @@ export type Service = {
   iscsi?: Iscsi | undefined;
   ja4tscan?: Ja4TScanScan | undefined;
   jarm?: JarmScan | undefined;
+  javaRmi?: JavaRmi | undefined;
   krpc?: Krpc | undefined;
   l2tp?: L2Tp | undefined;
   labels?: Array<Label> | null | undefined;
@@ -287,6 +312,7 @@ export type Service = {
   onc?: Onc | undefined;
   onvif?: Onvif | undefined;
   opcUa?: OpcUa | undefined;
+  openflow?: Openflow | undefined;
   openvpn?: Openvpn | undefined;
   openvpnMgmt?: OpenvpnMgmt | undefined;
   operatingSystems?: Array<Attribute> | null | undefined;
@@ -306,12 +332,14 @@ export type Service = {
   redis?: Redis | undefined;
   redline?: Redline | undefined;
   redlionCrimson?: RedlionCrimson | undefined;
+  reolinkBaichuan?: ReolinkBaichuan | undefined;
   representativeInfo?: RepresentativeInfo | undefined;
   rifatron?: Rifatron | undefined;
   ripple?: Ripple | undefined;
   rlogin?: Rlogin | undefined;
   rocketmq?: Rocketmq | undefined;
   routerosApi?: RouterosApi | undefined;
+  rtmp?: Rtmp | undefined;
   rtsp?: Rtsp | undefined;
   rustdeskHeartbeat?: RustdeskHeartbeat | undefined;
   rustdeskRelay?: RustdeskRelay | undefined;
@@ -336,7 +364,9 @@ export type Service = {
   ssh?: Ssh | undefined;
   steam?: Steam | undefined;
   stun?: Stun | undefined;
+  synergy?: Synergy | undefined;
   tacacsPlus?: TacacsPlus | undefined;
+  tarantool?: Tarantool | undefined;
   teamViewer?: TeamViewer | undefined;
   telnet?: Telnet | undefined;
   threats?: Array<Threat> | null | undefined;
@@ -350,6 +380,7 @@ export type Service = {
   vnc?: Vnc | undefined;
   vulns?: Array<Vuln> | null | undefined;
   weblogicT3?: WeblogicT3 | undefined;
+  winceCerdisp?: WinceCerdisp | undefined;
   winrm?: Winrm | undefined;
   wsDiscovery?: WsDiscovery | undefined;
   x11?: X11 | undefined;
@@ -380,8 +411,10 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     checkpoint_topology: CheckpointTopology$inboundSchema.optional(),
     chromecast: Chromecast$inboundSchema.optional(),
     cisco_ipsla: CiscoIpsla$inboundSchema.optional(),
+    clickhouse_native: ClickHouseNative$inboundSchema.optional(),
     cmore: Cmore$inboundSchema.optional(),
     coap: Coap$inboundSchema.optional(),
+    compromises: z.nullable(z.array(Risk$inboundSchema)).optional(),
     crestron_cp3: CrestronCp3$inboundSchema.optional(),
     crestron_din_ap2: CrestronDinAp2$inboundSchema.optional(),
     cursor_on_target: CursorOnTarget$inboundSchema.optional(),
@@ -390,6 +423,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     darkgate: Darkgate$inboundSchema.optional(),
     dcerpc: Dcerpc$inboundSchema.optional(),
     dhcpdiscover: Dhcpdiscover$inboundSchema.optional(),
+    dicom: Dicom$inboundSchema.optional(),
     dnp3: Dnp3$inboundSchema.optional(),
     dns: Dns$inboundSchema.optional(),
     dtls: Dtls$inboundSchema.optional(),
@@ -401,18 +435,21 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     etcd: Etcd$inboundSchema.optional(),
     ethereum: Ethereum$inboundSchema.optional(),
     exposures: z.nullable(z.array(Risk$inboundSchema)).optional(),
+    fins: Fins$inboundSchema.optional(),
     flash_socket_policy: FlashSocketPolicy$inboundSchema.optional(),
     fox: Fox$inboundSchema.optional(),
     frps: Frps$inboundSchema.optional(),
     ftp: Ftp$inboundSchema.optional(),
     gearman: Gearman$inboundSchema.optional(),
     gemini: Gemini$inboundSchema.optional(),
+    gopher: Gopher$inboundSchema.optional(),
     hajime: Hajime$inboundSchema.optional(),
     hardware: z.nullable(z.array(Attribute$inboundSchema)).optional(),
     hid_vertx: HidVertx$inboundSchema.optional(),
     hikvision: Hikvision$inboundSchema.optional(),
     ibmnje: Ibmnje$inboundSchema.optional(),
     icap: Icap$inboundSchema.optional(),
+    iec60870_5_104: Iec608705104$inboundSchema.optional(),
     ike: Ike$inboundSchema.optional(),
     imap: Imap$inboundSchema.optional(),
     iota: Iota$inboundSchema.optional(),
@@ -422,6 +459,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     iscsi: Iscsi$inboundSchema.optional(),
     ja4tscan: Ja4TScanScan$inboundSchema.optional(),
     jarm: JarmScan$inboundSchema.optional(),
+    java_rmi: JavaRmi$inboundSchema.optional(),
     krpc: Krpc$inboundSchema.optional(),
     l2tp: L2Tp$inboundSchema.optional(),
     labels: z.nullable(z.array(Label$inboundSchema)).optional(),
@@ -452,6 +490,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     onc: Onc$inboundSchema.optional(),
     onvif: Onvif$inboundSchema.optional(),
     opc_ua: OpcUa$inboundSchema.optional(),
+    openflow: Openflow$inboundSchema.optional(),
     openvpn: Openvpn$inboundSchema.optional(),
     openvpn_mgmt: OpenvpnMgmt$inboundSchema.optional(),
     operating_systems: z.nullable(z.array(Attribute$inboundSchema)).optional(),
@@ -471,12 +510,14 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     redis: Redis$inboundSchema.optional(),
     redline: Redline$inboundSchema.optional(),
     redlion_crimson: RedlionCrimson$inboundSchema.optional(),
+    reolink_baichuan: ReolinkBaichuan$inboundSchema.optional(),
     representative_info: RepresentativeInfo$inboundSchema.optional(),
     rifatron: Rifatron$inboundSchema.optional(),
     ripple: Ripple$inboundSchema.optional(),
     rlogin: Rlogin$inboundSchema.optional(),
     rocketmq: Rocketmq$inboundSchema.optional(),
     routeros_api: RouterosApi$inboundSchema.optional(),
+    rtmp: Rtmp$inboundSchema.optional(),
     rtsp: Rtsp$inboundSchema.optional(),
     rustdesk_heartbeat: RustdeskHeartbeat$inboundSchema.optional(),
     rustdesk_relay: RustdeskRelay$inboundSchema.optional(),
@@ -501,7 +542,9 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     ssh: Ssh$inboundSchema.optional(),
     steam: Steam$inboundSchema.optional(),
     stun: Stun$inboundSchema.optional(),
+    synergy: Synergy$inboundSchema.optional(),
     tacacs_plus: TacacsPlus$inboundSchema.optional(),
+    tarantool: Tarantool$inboundSchema.optional(),
     team_viewer: TeamViewer$inboundSchema.optional(),
     telnet: Telnet$inboundSchema.optional(),
     threats: z.nullable(z.array(Threat$inboundSchema)).optional(),
@@ -515,6 +558,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     vnc: Vnc$inboundSchema.optional(),
     vulns: z.nullable(z.array(Vuln$inboundSchema)).optional(),
     weblogic_t3: WeblogicT3$inboundSchema.optional(),
+    wince_cerdisp: WinceCerdisp$inboundSchema.optional(),
     winrm: Winrm$inboundSchema.optional(),
     ws_discovery: WsDiscovery$inboundSchema.optional(),
     x11: X11$inboundSchema.optional(),
@@ -528,6 +572,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
       "banner_hex": "bannerHex",
       "checkpoint_topology": "checkpointTopology",
       "cisco_ipsla": "ciscoIpsla",
+      "clickhouse_native": "clickhouseNative",
       "crestron_cp3": "crestronCp3",
       "crestron_din_ap2": "crestronDinAp2",
       "cursor_on_target": "cursorOnTarget",
@@ -535,6 +580,8 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
       "elf_file": "elfFile",
       "flash_socket_policy": "flashSocketPolicy",
       "hid_vertx": "hidVertx",
+      "iec60870_5_104": "iec608705104",
+      "java_rmi": "javaRmi",
       "mikrotik_winbox": "mikrotikWinbox",
       "monero_p2p": "moneroP2p",
       "nats_io": "natsIo",
@@ -545,6 +592,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
       "pc_anywhere": "pcAnywhere",
       "profinet_cm": "profinetCm",
       "redlion_crimson": "redlionCrimson",
+      "reolink_baichuan": "reolinkBaichuan",
       "representative_info": "representativeInfo",
       "routeros_api": "routerosApi",
       "rustdesk_heartbeat": "rustdeskHeartbeat",
@@ -559,6 +607,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
       "transport_protocol": "transportProtocol",
       "unitronics_pcom": "unitronicsPcom",
       "weblogic_t3": "weblogicT3",
+      "wince_cerdisp": "winceCerdisp",
       "ws_discovery": "wsDiscovery",
     });
   });
