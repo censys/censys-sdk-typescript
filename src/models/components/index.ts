@@ -216,6 +216,7 @@ export * from "./hostdnsforwardresolution.js";
 export * from "./hostdnsreverseresolution.js";
 export * from "./hostenrichment.js";
 export * from "./hostenrichmentasset.js";
+export * from "./hostenrichmentgreynoise.js";
 export * from "./hostenrichmentservice.js";
 export * from "./hostobservationrange.js";
 export * from "./hostobservationresponse.js";

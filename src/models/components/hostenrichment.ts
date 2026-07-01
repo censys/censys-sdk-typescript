@@ -9,6 +9,10 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { HostDns, HostDns$inboundSchema } from "./hostdns.js";
 import {
+  HostEnrichmentGreynoise,
+  HostEnrichmentGreynoise$inboundSchema,
+} from "./hostenrichmentgreynoise.js";
+import {
   HostEnrichmentService,
   HostEnrichmentService$inboundSchema,
 } from "./hostenrichmentservice.js";
@@ -27,6 +31,7 @@ import { Whois, Whois$inboundSchema } from "./whois.js";
 export type HostEnrichment = {
   autonomousSystem?: Routing | undefined;
   dns?: HostDns | undefined;
+  greynoise?: HostEnrichmentGreynoise | undefined;
   ip?: string | undefined;
   labels?: Array<Label> | null | undefined;
   location?: Location | undefined;
@@ -53,6 +58,7 @@ export const HostEnrichment$inboundSchema: z.ZodType<
 > = z.object({
   autonomous_system: Routing$inboundSchema.optional(),
   dns: HostDns$inboundSchema.optional(),
+  greynoise: HostEnrichmentGreynoise$inboundSchema.optional(),
   ip: z.string().optional(),
   labels: z.nullable(z.array(Label$inboundSchema)).optional(),
   location: Location$inboundSchema.optional(),
