@@ -229,3 +229,13 @@ Based on:
 - [typescript v0.12.0] .
 ### Releases
 - [NPM v0.12.0] https://www.npmjs.com/package/@censys/platform-sdk/v/0.12.0 - .
+
+## 2026-07-01 20:26:54
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.787.0 (2.914.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v0.12.1] .
+### Releases
+- [NPM v0.12.1] https://www.npmjs.com/package/@censys/platform-sdk/v/0.12.1 - .
