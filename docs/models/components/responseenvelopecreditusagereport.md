@@ -7,6 +7,9 @@ import { ResponseEnvelopeCreditUsageReport } from "@censys/platform-sdk/models/c
 
 let value: ResponseEnvelopeCreditUsageReport = {
   result: {
+    creditsConsumedByConsumer: {
+      "user@example.com": 3000,
+    },
     creditsConsumedBySource: {
       api: 581368,
       ui: 390321,

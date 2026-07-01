@@ -13,6 +13,10 @@ import {
   ChromeDevtools,
   ChromeDevtools$inboundSchema,
 } from "./chromedevtools.js";
+import {
+  ClickHouseHttp,
+  ClickHouseHttp$inboundSchema,
+} from "./clickhousehttp.js";
 import { CobaltStrike, CobaltStrike$inboundSchema } from "./cobaltstrike.js";
 import { ElasticSearch, ElasticSearch$inboundSchema } from "./elasticsearch.js";
 import {
@@ -22,13 +26,20 @@ import {
 import { Fortigate, Fortigate$inboundSchema } from "./fortigate.js";
 import { Graphql, Graphql$inboundSchema } from "./graphql.js";
 import { Http, Http$inboundSchema } from "./http.js";
+import { Influxdb, Influxdb$inboundSchema } from "./influxdb.js";
 import {
   IvantiAvalanche,
   IvantiAvalanche$inboundSchema,
 } from "./ivantiavalanche.js";
 import { Jenkins, Jenkins$inboundSchema } from "./jenkins.js";
+import { Jupyter, Jupyter$inboundSchema } from "./jupyter.js";
+import { Keycloak, Keycloak$inboundSchema } from "./keycloak.js";
 import { Kubernetes, Kubernetes$inboundSchema } from "./kubernetes.js";
 import { Mcp, Mcp$inboundSchema } from "./mcp.js";
+import {
+  NginxProxyManager,
+  NginxProxyManager$inboundSchema,
+} from "./nginxproxymanager.js";
 import { Ollama, Ollama$inboundSchema } from "./ollama.js";
 import { OpenDirectory, OpenDirectory$inboundSchema } from "./opendirectory.js";
 import {
@@ -41,9 +52,13 @@ import {
   PrometheusTarget,
   PrometheusTarget$inboundSchema,
 } from "./prometheustarget.js";
+import { ProxmoxVe, ProxmoxVe$inboundSchema } from "./proxmoxve.js";
 import { RedlionWeb, RedlionWeb$inboundSchema } from "./redlionweb.js";
 import { ScadaView, ScadaView$inboundSchema } from "./scadaview.js";
 import { Screenshot, Screenshot$inboundSchema } from "./screenshot.js";
+import { SynologyDsm, SynologyDsm$inboundSchema } from "./synologydsm.js";
+import { Vault, Vault$inboundSchema } from "./vault.js";
+import { Wordpress, Wordpress$inboundSchema } from "./wordpress.js";
 
 export const EndpointScanStateTransportProtocol = {
   Unknown: "",
@@ -60,6 +75,7 @@ export type EndpointScanState = {
   banner?: string | undefined;
   bannerHashSha256?: string | undefined;
   chromeDevtools?: ChromeDevtools | undefined;
+  clickhouseHttp?: ClickHouseHttp | undefined;
   cobaltStrike?: CobaltStrike | undefined;
   elasticsearch?: ElasticSearch | undefined;
   endpointType?: string | undefined;
@@ -68,11 +84,15 @@ export type EndpointScanState = {
   graphql?: Graphql | undefined;
   hostname?: string | undefined;
   http?: Http | undefined;
+  influxdb?: Influxdb | undefined;
   ip?: string | undefined;
   ivantiAvalanche?: IvantiAvalanche | undefined;
   jenkins?: Jenkins | undefined;
+  jupyter?: Jupyter | undefined;
+  keycloak?: Keycloak | undefined;
   kubernetes?: Kubernetes | undefined;
   mcp?: Mcp | undefined;
+  nginxProxyManager?: NginxProxyManager | undefined;
   ollama?: Ollama | undefined;
   openDirectory?: OpenDirectory | undefined;
   path?: string | undefined;
@@ -81,11 +101,15 @@ export type EndpointScanState = {
   pprof?: Pprof | undefined;
   prometheus?: Prometheus | undefined;
   prometheusTarget?: PrometheusTarget | undefined;
+  proxmoxVe?: ProxmoxVe | undefined;
   redlionWeb?: RedlionWeb | undefined;
   scadaView?: ScadaView | undefined;
   scanTime?: string | undefined;
   screenshots?: Array<Screenshot> | null | undefined;
+  synologyDsm?: SynologyDsm | undefined;
   transportProtocol?: EndpointScanStateTransportProtocol | undefined;
+  vault?: Vault | undefined;
+  wordpress?: Wordpress | undefined;
 };
 
 /** @internal */
@@ -104,6 +128,7 @@ export const EndpointScanState$inboundSchema: z.ZodType<
   banner: z.string().optional(),
   banner_hash_sha256: z.string().optional(),
   chrome_devtools: ChromeDevtools$inboundSchema.optional(),
+  clickhouse_http: ClickHouseHttp$inboundSchema.optional(),
   cobalt_strike: CobaltStrike$inboundSchema.optional(),
   elasticsearch: ElasticSearch$inboundSchema.optional(),
   endpoint_type: z.string().optional(),
@@ -112,11 +137,15 @@ export const EndpointScanState$inboundSchema: z.ZodType<
   graphql: Graphql$inboundSchema.optional(),
   hostname: z.string().optional(),
   http: Http$inboundSchema.optional(),
+  influxdb: Influxdb$inboundSchema.optional(),
   ip: z.string().optional(),
   ivanti_avalanche: IvantiAvalanche$inboundSchema.optional(),
   jenkins: Jenkins$inboundSchema.optional(),
+  jupyter: Jupyter$inboundSchema.optional(),
+  keycloak: Keycloak$inboundSchema.optional(),
   kubernetes: Kubernetes$inboundSchema.optional(),
   mcp: Mcp$inboundSchema.optional(),
+  nginx_proxy_manager: NginxProxyManager$inboundSchema.optional(),
   ollama: Ollama$inboundSchema.optional(),
   open_directory: OpenDirectory$inboundSchema.optional(),
   path: z.string().optional(),
@@ -125,25 +154,33 @@ export const EndpointScanState$inboundSchema: z.ZodType<
   pprof: Pprof$inboundSchema.optional(),
   prometheus: Prometheus$inboundSchema.optional(),
   prometheus_target: PrometheusTarget$inboundSchema.optional(),
+  proxmox_ve: ProxmoxVe$inboundSchema.optional(),
   redlion_web: RedlionWeb$inboundSchema.optional(),
   scada_view: ScadaView$inboundSchema.optional(),
   scan_time: z.string().optional(),
   screenshots: z.nullable(z.array(Screenshot$inboundSchema)).optional(),
+  synology_dsm: SynologyDsm$inboundSchema.optional(),
   transport_protocol: EndpointScanStateTransportProtocol$inboundSchema
     .optional(),
+  vault: Vault$inboundSchema.optional(),
+  wordpress: Wordpress$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "banner_hash_sha256": "bannerHashSha256",
     "chrome_devtools": "chromeDevtools",
+    "clickhouse_http": "clickhouseHttp",
     "cobalt_strike": "cobaltStrike",
     "endpoint_type": "endpointType",
     "ivanti_avalanche": "ivantiAvalanche",
+    "nginx_proxy_manager": "nginxProxyManager",
     "open_directory": "openDirectory",
     "plex_media_server": "plexMediaServer",
     "prometheus_target": "prometheusTarget",
+    "proxmox_ve": "proxmoxVe",
     "redlion_web": "redlionWeb",
     "scada_view": "scadaView",
     "scan_time": "scanTime",
+    "synology_dsm": "synologyDsm",
     "transport_protocol": "transportProtocol",
   });
 });

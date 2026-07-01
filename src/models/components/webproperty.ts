@@ -22,6 +22,7 @@ import { Vuln, Vuln$inboundSchema } from "./vuln.js";
 
 export type Webproperty = {
   cert?: Certificate | undefined;
+  compromises?: Array<Risk> | null | undefined;
   endpoints?: Array<EndpointScanState> | null | undefined;
   exposures?: Array<Risk> | null | undefined;
   hardware?: Array<Attribute> | null | undefined;
@@ -45,6 +46,7 @@ export const Webproperty$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   cert: Certificate$inboundSchema.optional(),
+  compromises: z.nullable(z.array(Risk$inboundSchema)).optional(),
   endpoints: z.nullable(z.array(EndpointScanState$inboundSchema)).optional(),
   exposures: z.nullable(z.array(Risk$inboundSchema)).optional(),
   hardware: z.nullable(z.array(Attribute$inboundSchema)).optional(),
