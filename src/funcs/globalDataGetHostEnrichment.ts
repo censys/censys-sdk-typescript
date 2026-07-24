@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Get host enrichment
  *
  * @remarks
- * Retrieve enrichment data for a single host, optimized for high-volume SOC enrichment use cases. A host IP is its IP address.
+ * Retrieve enrichment data for a single host. This endpoint is optimized for high-volume SOC enrichment use cases.<br><br>This endpoint does not consume standard Censys credits. Core organizations may perform up to 20,000 enrichment calls per day. Core + Unlimited Enrichment organizations may perform an unlimited amount of enrichment calls per day.<br><br>[Learn more about the enrichment API here](https://docs.censys.com/docs/host-enrichment).
  */
 export function globalDataGetHostEnrichment(
   client: SDKCore,
@@ -189,8 +189,12 @@ async function $do(
       },
     ),
     M.jsonErr(401, errors.AuthenticationError$inboundSchema),
-    M.jsonErr([400, 403, 404, 409, 429], errors.ErrorModel$inboundSchema, {
+    M.jsonErr([400, 403, 404, 409], errors.ErrorModel$inboundSchema, {
       ctype: "application/problem+json",
+    }),
+    M.jsonErr(429, errors.ErrorModel$inboundSchema, {
+      ctype: "application/problem+json",
+      hdrs: true,
     }),
     M.jsonErr(500, errors.ErrorModel$inboundSchema, {
       ctype: "application/problem+json",

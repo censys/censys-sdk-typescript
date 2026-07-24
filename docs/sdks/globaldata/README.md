@@ -17,10 +17,10 @@ Endpoints related to the Global Data product
 * [getHostTimeline](#gethosttimeline) - Get host event history
 * [getWebProperties](#getwebproperties) - Retrieve multiple web properties
 * [getWebProperty](#getwebproperty) - Get a web property
-* [listDnsIpResolutionBounds](#listdnsipresolutionbounds) - Get latest DNS names that resolved to an IP
-* [listDnsIpResolutionRanges](#listdnsipresolutionranges) - Get DNS names that resolved to an IP within a time window
-* [listDnsNameResolutionBounds](#listdnsnameresolutionbounds) - Get latest DNS resolution records for a name
-* [listDnsNameResolutionRanges](#listdnsnameresolutionranges) - Get historical DNS resolution ranges for a name
+* [listDnsIpResolutionBounds](#listdnsipresolutionbounds) - Get DNS names that resolved to an IP (aggregated bounds)
+* [listDnsIpResolutionRanges](#listdnsipresolutionranges) - Get DNS names that resolved to an IP (ranges)
+* [listDnsNameResolutionBounds](#listdnsnameresolutionbounds) - Get DNS resolution records for a name (aggregated bounds)
+* [listDnsNameResolutionRanges](#listdnsnameresolutionranges) - Get DNS resolution records for a name (ranges)
 * [createTrackedScan](#createtrackedscan) - Live Rescan: Initiate a new rescan
 * [getTrackedScan](#gettrackedscan) - Get scan status
 * [aggregate](#aggregate) - Aggregate results for a search query
@@ -357,7 +357,7 @@ run();
 
 ## getHostEnrichment
 
-Retrieve enrichment data for a single host, optimized for high-volume SOC enrichment use cases. A host IP is its IP address.
+Retrieve enrichment data for a single host. This endpoint is optimized for high-volume SOC enrichment use cases.<br><br>This endpoint does not consume standard Censys credits. Core organizations may perform up to 20,000 enrichment calls per day. Core + Unlimited Enrichment organizations may perform an unlimited amount of enrichment calls per day.<br><br>[Learn more about the enrichment API here](https://docs.censys.com/docs/host-enrichment).
 
 ### Example Usage
 
@@ -429,7 +429,8 @@ run();
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.AuthenticationError | 401                        | application/json           |
-| errors.ErrorModel          | 400, 403, 404, 409, 429    | application/problem+json   |
+| errors.ErrorModel          | 400, 403, 404, 409         | application/problem+json   |
+| errors.ErrorModel          | 429                        | application/problem+json   |
 | errors.ErrorModel          | 500                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
@@ -943,7 +944,7 @@ run();
 
 ## listDnsIpResolutionBounds
 
-Retrieve the latest domain names that resolved to the IP you provide (A and AAAA). You can narrow results with `record_types` (A or AAAA).<br><br>[Learn more about Censys Active DNS Resolution](https://docs.censys.com/docs/platform-active-dns).<br><br>This endpoint is in beta and is only available to Censys Enterprise users.
+Retrieve the domain names that resolved to an IP during a time frame. You can narrow results with `record_types` (A or AAAA).<br><br>Results are aggregated per domain name and multiple distinct ranges for a name will be grouped into one row of results. For example, if `censys.com` resolved to `1.1.1.1` from January 1 to January 7 during two different ranges of January 1 to January 3 and January 5 to January 7, and you targeted January 1 through January 7 with your API call, then this endpoint will group those ranges into one entry for `censys.com` in the response.<br><br>To retrieve domain names for an IP with each record broken down by time range, use the [ranges endpoint](https://docs.censys.com/reference/v3-globaldata-dns-ip-resolution-ranges)<br><br>This endpoint is only available to organizations on the Censys Search and Censys Core plans.<br><br>[Learn more about Censys Active DNS](https://docs.censys.com/docs/platform-active-dns).
 
 ### Example Usage
 
@@ -1033,7 +1034,7 @@ run();
 
 ## listDnsIpResolutionRanges
 
-Retrieve domain names that resolved to the IP you provide (A and AAAA) within the requested time window.<br><br>[Learn more about Censys Active DNS Resolution](https://docs.censys.com/docs/platform-active-dns).<br><br>This endpoint is in beta and is only available to Censys Enterprise users.
+Retrieve the domain names that resolved to an IP during a time frame. You can narrow results with `record_types` (A or AAAA).<br><br>Record results are broken down based on time range. For example, if `censys.com` resolved to `1.1.1.1` from January 1 to January 7 during two different ranges of January 1 to January 3 and January 5 to January 7, and you targeted January 1 through January 7 with your API call, then this endpoint will return one row for each of those distinct ranges.<br><br>To retrieve domain names for an IP with each result aggregated by name, use the [bounds endpoint endpoint](https://docs.censys.com/reference/v3-globaldata-dns-ip-resolution-bound).<br><br>This endpoint is only available to organizations on the Censys Search and Censys Core plans.<br><br>[Learn more about Censys Active DNS](https://docs.censys.com/docs/platform-active-dns).
 
 ### Example Usage
 
@@ -1125,7 +1126,7 @@ run();
 
 ## listDnsNameResolutionBounds
 
-Retrieve the latest DNS resolution records for a name. This endpoint returns the latest observed A, AAAA, MX, NS, SOA, and TXT records for the name you provide. You can filter by one or more record types using `record_types`.<br><br>[Learn more about Censys Active DNS Resolution](https://docs.censys.com/docs/platform-active-dns).<br><br>This endpoint is in beta and is only available to Censys Enterprise users.
+Retrieve the DNS resolution records for a name. This endpoint returns observed A, AAAA, MX, NS, SOA, and TXT records for the name you provide. You can filter by one or more record types using record_types.<br><br>Results are aggregated per record distinct ranges for a record will be grouped into one row of results. For example, if `censys.com` resolved to `1.1.1.1` from January 1 to January 7 during two different ranges of January 1 to January 3 and January 5 to January 7, and you targeted January 1 through January 7 with your API call, then this endpoint will group those ranges into one entry for the `1.1.1.1` A record in the response.<br><br>To retrieve records for a name with each record broken down by time range, use the [ranges endpoint](https://docs.censys.com/reference/v3-globaldata-dns-name-resolution-ranges).<br><br>This endpoint is only available to organizations on the Censys Search and Censys Core plans.<br><br>[Learn more about Censys Active DNS](https://docs.censys.com/docs/platform-active-dns).
 
 ### Example Usage
 
@@ -1215,7 +1216,7 @@ run();
 
 ## listDnsNameResolutionRanges
 
-Retrieve historical DNS resolution observations for a name. Each item is one window during which a record value was observed by Censys.<br><br>[Learn more about Censys Active DNS Resolution](https://docs.censys.com/docs/platform-active-dns).<br><br>This endpoint is in beta and is only available to Censys Enterprise users.
+Retrieve the records that resolved for a name during a time frame. This endpoint returns observed A, AAAA, MX, NS, SOA, and TXT records for the name you provide. You can filter by one or more record types using `record_types`.<br><br>Record results are broken down based on time range. For example, if `censys.com` resolved to `1.1.1.1` from January 1 to January 7 during two different ranges of January 1 to January 3 and January 5 to January 7, and you targeted January 1 through January 7 with your API call, then this endpoint will return one row for each of those distinct ranges for the `1.1.1.1` A record.<br><br>To retrieve records for a name with each result aggregated per record, use the [bounds endpoint endpoint](https://docs.censys.com/reference/v3-globaldata-dns-name-resolution-bound).<br><br>This endpoint is only available to organizations on the Censys Search and Censys Core plans.<br><br>[Learn more about Censys Active DNS](https://docs.censys.com/docs/platform-active-dns).
 
 ### Example Usage
 

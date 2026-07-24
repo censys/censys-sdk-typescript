@@ -158,10 +158,10 @@ run();
 * [getHostTimeline](docs/sdks/globaldata/README.md#gethosttimeline) - Get host event history
 * [getWebProperties](docs/sdks/globaldata/README.md#getwebproperties) - Retrieve multiple web properties
 * [getWebProperty](docs/sdks/globaldata/README.md#getwebproperty) - Get a web property
-* [listDnsIpResolutionBounds](docs/sdks/globaldata/README.md#listdnsipresolutionbounds) - Get latest DNS names that resolved to an IP
-* [listDnsIpResolutionRanges](docs/sdks/globaldata/README.md#listdnsipresolutionranges) - Get DNS names that resolved to an IP within a time window
-* [listDnsNameResolutionBounds](docs/sdks/globaldata/README.md#listdnsnameresolutionbounds) - Get latest DNS resolution records for a name
-* [listDnsNameResolutionRanges](docs/sdks/globaldata/README.md#listdnsnameresolutionranges) - Get historical DNS resolution ranges for a name
+* [listDnsIpResolutionBounds](docs/sdks/globaldata/README.md#listdnsipresolutionbounds) - Get DNS names that resolved to an IP (aggregated bounds)
+* [listDnsIpResolutionRanges](docs/sdks/globaldata/README.md#listdnsipresolutionranges) - Get DNS names that resolved to an IP (ranges)
+* [listDnsNameResolutionBounds](docs/sdks/globaldata/README.md#listdnsnameresolutionbounds) - Get DNS resolution records for a name (aggregated bounds)
+* [listDnsNameResolutionRanges](docs/sdks/globaldata/README.md#listdnsnameresolutionranges) - Get DNS resolution records for a name (ranges)
 * [createTrackedScan](docs/sdks/globaldata/README.md#createtrackedscan) - Live Rescan: Initiate a new rescan
 * [getTrackedScan](docs/sdks/globaldata/README.md#gettrackedscan) - Get scan status
 * [aggregate](docs/sdks/globaldata/README.md#aggregate) - Aggregate results for a search query
@@ -249,10 +249,10 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`globalDataGetTrackedScan`](docs/sdks/globaldata/README.md#gettrackedscan) - Get scan status
 - [`globalDataGetWebProperties`](docs/sdks/globaldata/README.md#getwebproperties) - Retrieve multiple web properties
 - [`globalDataGetWebProperty`](docs/sdks/globaldata/README.md#getwebproperty) - Get a web property
-- [`globalDataListDnsIpResolutionBounds`](docs/sdks/globaldata/README.md#listdnsipresolutionbounds) - Get latest DNS names that resolved to an IP
-- [`globalDataListDnsIpResolutionRanges`](docs/sdks/globaldata/README.md#listdnsipresolutionranges) - Get DNS names that resolved to an IP within a time window
-- [`globalDataListDnsNameResolutionBounds`](docs/sdks/globaldata/README.md#listdnsnameresolutionbounds) - Get latest DNS resolution records for a name
-- [`globalDataListDnsNameResolutionRanges`](docs/sdks/globaldata/README.md#listdnsnameresolutionranges) - Get historical DNS resolution ranges for a name
+- [`globalDataListDnsIpResolutionBounds`](docs/sdks/globaldata/README.md#listdnsipresolutionbounds) - Get DNS names that resolved to an IP (aggregated bounds)
+- [`globalDataListDnsIpResolutionRanges`](docs/sdks/globaldata/README.md#listdnsipresolutionranges) - Get DNS names that resolved to an IP (ranges)
+- [`globalDataListDnsNameResolutionBounds`](docs/sdks/globaldata/README.md#listdnsnameresolutionbounds) - Get DNS resolution records for a name (aggregated bounds)
+- [`globalDataListDnsNameResolutionRanges`](docs/sdks/globaldata/README.md#listdnsnameresolutionranges) - Get DNS resolution records for a name (ranges)
 - [`globalDataListServicesOnHost`](docs/sdks/globaldata/README.md#listservicesonhost) - Get service history for a host
 - [`globalDataSearch`](docs/sdks/globaldata/README.md#search) - Run a search query
 - [`tagsAndCommentsBulkCreateTagAssignments`](docs/sdks/tagsandcomments/README.md#bulkcreatetagassignments) - Bulk create tag assignments

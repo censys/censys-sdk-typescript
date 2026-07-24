@@ -9,6 +9,7 @@ import * as openEnums from "../../types/enums.js";
 import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import { Argocd, Argocd$inboundSchema } from "./argocd.js";
 import {
   ChromeDevtools,
   ChromeDevtools$inboundSchema,
@@ -72,6 +73,7 @@ export type EndpointScanStateTransportProtocol = OpenEnum<
 >;
 
 export type EndpointScanState = {
+  argocd?: Argocd | undefined;
   banner?: string | undefined;
   bannerHashSha256?: string | undefined;
   chromeDevtools?: ChromeDevtools | undefined;
@@ -125,6 +127,7 @@ export const EndpointScanState$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  argocd: Argocd$inboundSchema.optional(),
   banner: z.string().optional(),
   banner_hash_sha256: z.string().optional(),
   chrome_devtools: ChromeDevtools$inboundSchema.optional(),
