@@ -27,10 +27,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get DNS names that resolved to an IP within a time window
+ * Get DNS names that resolved to an IP (ranges)
  *
  * @remarks
- * Retrieve domain names that resolved to the IP you provide (A and AAAA) within the requested time window.<br><br>[Learn more about Censys Active DNS Resolution](https://docs.censys.com/docs/platform-active-dns).<br><br>This endpoint is in beta and is only available to Censys Enterprise users.
+ * Retrieve the domain names that resolved to an IP during a time frame. You can narrow results with `record_types` (A or AAAA).<br><br>Record results are broken down based on time range. For example, if `censys.com` resolved to `1.1.1.1` from January 1 to January 7 during two different ranges of January 1 to January 3 and January 5 to January 7, and you targeted January 1 through January 7 with your API call, then this endpoint will return one row for each of those distinct ranges.<br><br>To retrieve domain names for an IP with each result aggregated by name, use the [bounds endpoint endpoint](https://docs.censys.com/reference/v3-globaldata-dns-ip-resolution-bound).<br><br>This endpoint is only available to organizations on the Censys Search and Censys Core plans.<br><br>[Learn more about Censys Active DNS](https://docs.censys.com/docs/platform-active-dns).
  */
 export function globalDataListDnsIpResolutionRanges(
   client: SDKCore,

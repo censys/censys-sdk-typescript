@@ -27,10 +27,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get latest DNS resolution records for a name
+ * Get DNS resolution records for a name (aggregated bounds)
  *
  * @remarks
- * Retrieve the latest DNS resolution records for a name. This endpoint returns the latest observed A, AAAA, MX, NS, SOA, and TXT records for the name you provide. You can filter by one or more record types using `record_types`.<br><br>[Learn more about Censys Active DNS Resolution](https://docs.censys.com/docs/platform-active-dns).<br><br>This endpoint is in beta and is only available to Censys Enterprise users.
+ * Retrieve the DNS resolution records for a name. This endpoint returns observed A, AAAA, MX, NS, SOA, and TXT records for the name you provide. You can filter by one or more record types using record_types.<br><br>Results are aggregated per record distinct ranges for a record will be grouped into one row of results. For example, if `censys.com` resolved to `1.1.1.1` from January 1 to January 7 during two different ranges of January 1 to January 3 and January 5 to January 7, and you targeted January 1 through January 7 with your API call, then this endpoint will group those ranges into one entry for the `1.1.1.1` A record in the response.<br><br>To retrieve records for a name with each record broken down by time range, use the [ranges endpoint](https://docs.censys.com/reference/v3-globaldata-dns-name-resolution-ranges).<br><br>This endpoint is only available to organizations on the Censys Search and Censys Core plans.<br><br>[Learn more about Censys Active DNS](https://docs.censys.com/docs/platform-active-dns).
  */
 export function globalDataListDnsNameResolutionBounds(
   client: SDKCore,
