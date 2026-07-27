@@ -21,6 +21,7 @@ import {
   tagsAndCommentsDeleteTagAssignment,
 } from "../funcs/tagsAndCommentsDeleteTagAssignment.js";
 import { tagsAndCommentsGetTag } from "../funcs/tagsAndCommentsGetTag.js";
+import { tagsAndCommentsGetTagOperation } from "../funcs/tagsAndCommentsGetTagOperation.js";
 import { tagsAndCommentsListComments } from "../funcs/tagsAndCommentsListComments.js";
 import { tagsAndCommentsListTagAssignments } from "../funcs/tagsAndCommentsListTagAssignments.js";
 import { tagsAndCommentsListTagOperations } from "../funcs/tagsAndCommentsListTagOperations.js";
@@ -291,6 +292,23 @@ export class TagsAndComments extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V3TagsListOperationsResponse> {
     return unwrapAsync(tagsAndCommentsListTagOperations(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get a tag operation
+   *
+   * @remarks
+   * Retrieve a single bulk tag operation by ID, including its current status and progress counts. Use this to poll the status of an operation started by the bulk-create or bulk-delete endpoints.<br><br>This endpoint does not cost any credits to execute.
+   */
+  async getTagOperation(
+    request: operations.V3TagsGetOperationRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3TagsGetOperationResponse> {
+    return unwrapAsync(tagsAndCommentsGetTagOperation(
       this,
       request,
       options,

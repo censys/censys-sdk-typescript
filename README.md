@@ -185,6 +185,7 @@ run();
 * [bulkDeleteTagAssignments](docs/sdks/tagsandcomments/README.md#bulkdeletetagassignments) - Bulk delete tag assignments
 * [deleteTagAssignment](docs/sdks/tagsandcomments/README.md#deletetagassignment) - Delete a tag assignment
 * [listTagOperations](docs/sdks/tagsandcomments/README.md#listtagoperations) - List tag operations
+* [getTagOperation](docs/sdks/tagsandcomments/README.md#gettagoperation) - Get a tag operation
 * [cancelTagOperation](docs/sdks/tagsandcomments/README.md#canceltagoperation) - Cancel a tag operation
 
 ### [ThreatHunting](docs/sdks/threathunting/README.md)
@@ -265,6 +266,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`tagsAndCommentsDeleteTag`](docs/sdks/tagsandcomments/README.md#deletetag) - Delete a tag
 - [`tagsAndCommentsDeleteTagAssignment`](docs/sdks/tagsandcomments/README.md#deletetagassignment) - Delete a tag assignment
 - [`tagsAndCommentsGetTag`](docs/sdks/tagsandcomments/README.md#gettag) - Get a tag
+- [`tagsAndCommentsGetTagOperation`](docs/sdks/tagsandcomments/README.md#gettagoperation) - Get a tag operation
 - [`tagsAndCommentsListComments`](docs/sdks/tagsandcomments/README.md#listcomments) - List comments
 - [`tagsAndCommentsListTagAssignments`](docs/sdks/tagsandcomments/README.md#listtagassignments) - List tag assignments
 - [`tagsAndCommentsListTagOperations`](docs/sdks/tagsandcomments/README.md#listtagoperations) - List tag operations

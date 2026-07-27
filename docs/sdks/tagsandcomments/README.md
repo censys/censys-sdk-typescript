@@ -21,6 +21,7 @@ Endpoints related to asset tagging and commenting
 * [bulkDeleteTagAssignments](#bulkdeletetagassignments) - Bulk delete tag assignments
 * [deleteTagAssignment](#deletetagassignment) - Delete a tag assignment
 * [listTagOperations](#listtagoperations) - List tag operations
+* [getTagOperation](#gettagoperation) - Get a tag operation
 * [cancelTagOperation](#canceltagoperation) - Cancel a tag operation
 
 ## listComments
@@ -1220,6 +1221,86 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.AuthenticationError | 401                        | application/json           |
 | errors.ErrorModel          | 403, 409, 422              | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
+## getTagOperation
+
+Retrieve a single bulk tag operation by ID, including its current status and progress counts. Use this to poll the status of an operation started by the bulk-create or bulk-delete endpoints.<br><br>This endpoint does not cost any credits to execute.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v3-tags-get-operation" method="get" path="/v3/tags/{tag_id}/operations/{operation_id}" -->
+```typescript
+import { SDK } from "@censys/platform-sdk";
+
+const sdk = new SDK({
+  organizationId: "11111111-2222-3333-4444-555555555555",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.tagsAndComments.getTagOperation({
+    tagId: "7fd3732a-0f74-46ae-9b99-cf8d471365c7",
+    operationId: "1d645480-2c36-4fbe-b3ee-eabcaa515ece",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { tagsAndCommentsGetTagOperation } from "@censys/platform-sdk/funcs/tagsAndCommentsGetTagOperation.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  organizationId: "11111111-2222-3333-4444-555555555555",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await tagsAndCommentsGetTagOperation(sdk, {
+    tagId: "7fd3732a-0f74-46ae-9b99-cf8d471365c7",
+    operationId: "1d645480-2c36-4fbe-b3ee-eabcaa515ece",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("tagsAndCommentsGetTagOperation failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3TagsGetOperationRequest](../../models/operations/v3tagsgetoperationrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3TagsGetOperationResponse](../../models/operations/v3tagsgetoperationresponse.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 404, 409, 422         | application/problem+json   |
 | errors.ErrorModel          | 500                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
