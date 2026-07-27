@@ -51,6 +51,7 @@ export * from "./v3tagscreateassignment.js";
 export * from "./v3tagscreatetag.js";
 export * from "./v3tagsdeleteassignment.js";
 export * from "./v3tagsdeletetag.js";
+export * from "./v3tagsgetoperation.js";
 export * from "./v3tagsgettag.js";
 export * from "./v3tagslistassignments.js";
 export * from "./v3tagslistoperations.js";
