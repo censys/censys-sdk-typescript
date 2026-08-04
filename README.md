@@ -158,6 +158,7 @@ run();
 * [getHostTimeline](docs/sdks/globaldata/README.md#gethosttimeline) - Get host event history
 * [getWebProperties](docs/sdks/globaldata/README.md#getwebproperties) - Retrieve multiple web properties
 * [getWebProperty](docs/sdks/globaldata/README.md#getwebproperty) - Get a web property
+* [getWebPropertyTimeline](docs/sdks/globaldata/README.md#getwebpropertytimeline) - Get web property event history
 * [listDnsIpResolutionBounds](docs/sdks/globaldata/README.md#listdnsipresolutionbounds) - Get DNS names that resolved to an IP (aggregated bounds)
 * [listDnsIpResolutionRanges](docs/sdks/globaldata/README.md#listdnsipresolutionranges) - Get DNS names that resolved to an IP (ranges)
 * [listDnsNameResolutionBounds](docs/sdks/globaldata/README.md#listdnsnameresolutionbounds) - Get DNS resolution records for a name (aggregated bounds)
@@ -250,6 +251,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`globalDataGetTrackedScan`](docs/sdks/globaldata/README.md#gettrackedscan) - Get scan status
 - [`globalDataGetWebProperties`](docs/sdks/globaldata/README.md#getwebproperties) - Retrieve multiple web properties
 - [`globalDataGetWebProperty`](docs/sdks/globaldata/README.md#getwebproperty) - Get a web property
+- [`globalDataGetWebPropertyTimeline`](docs/sdks/globaldata/README.md#getwebpropertytimeline) - Get web property event history
 - [`globalDataListDnsIpResolutionBounds`](docs/sdks/globaldata/README.md#listdnsipresolutionbounds) - Get DNS names that resolved to an IP (aggregated bounds)
 - [`globalDataListDnsIpResolutionRanges`](docs/sdks/globaldata/README.md#listdnsipresolutionranges) - Get DNS names that resolved to an IP (ranges)
 - [`globalDataListDnsNameResolutionBounds`](docs/sdks/globaldata/README.md#listdnsnameresolutionbounds) - Get DNS resolution records for a name (aggregated bounds)

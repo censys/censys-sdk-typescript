@@ -34,6 +34,7 @@ export * from "./v3globaldataassethostlistpost.js";
 export * from "./v3globaldataassethosttimeline.js";
 export * from "./v3globaldataassetwebproperty.js";
 export * from "./v3globaldataassetwebpropertylistpost.js";
+export * from "./v3globaldataassetwebpropertytimeline.js";
 export * from "./v3globaldatadnsipresolutionbound.js";
 export * from "./v3globaldatadnsipresolutionranges.js";
 export * from "./v3globaldatadnsnameresolutionbound.js";
