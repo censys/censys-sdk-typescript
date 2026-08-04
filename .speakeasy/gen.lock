@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 50d8a8aa-8772-4a95-9f7b-f8e1bd905c4e
 management:
-  docChecksum: f11f36a009a350c23dcc79ac36737159
-  docVersion: 1.0.123
-  speakeasyVersion: 1.791.0
-  generationVersion: 2.924.0
-  releaseVersion: 0.12.3
-  configChecksum: 80e2f561ba4ef3c3052a883098d09428
+  docChecksum: 675728091831dc0dbf72fdee4fb1bb47
+  docVersion: 1.0.124
+  speakeasyVersion: 1.791.1
+  generationVersion: 2.926.2
+  releaseVersion: 0.12.4
+  configChecksum: 2853c448c2035b393882bc0acd367cee
   repoURL: https://github.com/censys/censys-sdk-typescript.git
   installationURL: https://github.com/censys/censys-sdk-typescript
   published: true
 persistentEdits:
-  generation_id: 816eacda-cd21-44bb-8bc1-7e1e287d0834
-  pristine_commit_hash: ebbe7966dce125b8a2e6a3fdfd86dea011f1b0eb
-  pristine_tree_hash: b788a1f39840aa0e24e50479498c5949f9fbf79f
+  generation_id: c0fc7eff-f182-4f7b-a7cc-5af0675e31e2
+  pristine_commit_hash: c980b6c91e3bfc49103318fada144407426aa7cb
+  pristine_tree_hash: ece93e3774dbdc5195c26b5a4c271d15ad1b5c3d
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -2334,6 +2334,10 @@ trackedFiles:
     id: 09ea96a1f089
     last_write_checksum: sha1:76ce3b4d3ec4c659f14b61d2ed6ba0f0407d73b2
     pristine_git_object: d1e6053f931a53e022d81569f04c008be58fdc50
+  docs/models/components/responseenvelopewebpropertytimeline.md:
+    id: 77b00c0c3e65
+    last_write_checksum: sha1:89e8d013fba6bea526ae7dd089403c0955a16034
+    pristine_git_object: af86b1d2f7f5e8d836c368e7975e429d87387c50
   docs/models/components/reversednsresolved.md:
     id: af18edeeeecd
     last_write_checksum: sha1:d73b453137187198cc9f2f8ad2c00beac687a1e7
@@ -3174,6 +3178,18 @@ trackedFiles:
     id: a6324fe0c4bb
     last_write_checksum: sha1:ec47c65a1e0660982ea144d8fa4268554ee842d4
     pristine_git_object: 414c6a0ddc6b42266b773da1895be6b1291a8c8b
+  docs/models/components/webpropertytimeline.md:
+    id: 04466599c8d7
+    last_write_checksum: sha1:76509f09807d0fe801d877826c3df8b65c2087a4
+    pristine_git_object: 685ee217d95af1f91d32d3e4768275b7fe3b2d97
+  docs/models/components/webtimelineevent.md:
+    id: 9c4f0edae09a
+    last_write_checksum: sha1:6db477dabf320596b9a33835713a1a81799ddfa2
+    pristine_git_object: f3ebf4a4fb3b590bc98b1013848801ae7014052a
+  docs/models/components/webtimelineeventasset.md:
+    id: 2bfa2ed93b7a
+    last_write_checksum: sha1:39b81d8d9e2c8474d4619310aa79f767c812b48b
+    pristine_git_object: a036ce66de411146238391ab35e0a6f8507dd679
   docs/models/components/whois.md:
     id: e82f6059fa5c
     last_write_checksum: sha1:35bc22c594f45a30fa443abdd39a435e98561033
@@ -3634,6 +3650,18 @@ trackedFiles:
     id: 1c82e45bd023
     last_write_checksum: sha1:ed2d7e5ac3356c4aa50e689a7ce4052532899c5d
     pristine_git_object: 208be6231898b825bf21dd343e6cfa092397ddc7
+  docs/models/operations/v3globaldataassetwebpropertytimelineglobals.md:
+    id: 5dbe00e5931c
+    last_write_checksum: sha1:19b82518c56273889311a2d513767159fa5003bb
+    pristine_git_object: af0e15499cd422fba4a3dbfde2aceb1b499432a9
+  docs/models/operations/v3globaldataassetwebpropertytimelinerequest.md:
+    id: b79f0598e4be
+    last_write_checksum: sha1:56840750523978c6d0687bc05ae6a3c6ac4f6546
+    pristine_git_object: fcc1635f93e70d756259a3db00c3ecaae62f778a
+  docs/models/operations/v3globaldataassetwebpropertytimelineresponse.md:
+    id: a1404d82b3ce
+    last_write_checksum: sha1:b4a134350524cd4c0377b8783343d34bbc0a9ab6
+    pristine_git_object: 45cfced74ab0d741066497de05edbb417c97ea91
   docs/models/operations/v3globaldatadnsipresolutionboundglobals.md:
     id: ad64b3fdc367
     last_write_checksum: sha1:ee21994e89fc18c147b20e93f4954b37141667f9
@@ -4052,8 +4080,8 @@ trackedFiles:
     pristine_git_object: b5d89cba889058f6bd1a7f4bf6428f3eb45a53a9
   docs/sdks/globaldata/README.md:
     id: 0c68886632e6
-    last_write_checksum: sha1:8c299ef05c0477bd873322e0ae71829f191267a1
-    pristine_git_object: 496d871d1b344e23e8cef71af32db52627782c83
+    last_write_checksum: sha1:e1bd26d4414c7b7a0f74e0f05782722330933e70
+    pristine_git_object: 9751a97f005cf51e4c7a908a17e8bca1d17ebae7
   docs/sdks/tagsandcomments/README.md:
     id: 092d693513d0
     last_write_checksum: sha1:cf3166ab81935af664bed8867ca044aa827d55e9
@@ -4088,12 +4116,12 @@ trackedFiles:
     pristine_git_object: 22f3212da7f26c4c5352b919e2393cd091e63445
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:fb37ee51cda79d51ad4392736507c5a8dc8b7bf6
-    pristine_git_object: f903f7947cb8229deb5b428417f6d3473c5447da
+    last_write_checksum: sha1:1043395ffd7637f4ac6bfa58b49850a2cbe94190
+    pristine_git_object: 8020a4cf95c8943913a5aebb4388f5e9bbec4331
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:d053eabafc01a026c668916703acd6344b4990cf
-    pristine_git_object: 597bb41b2846136fda4e592d4acefa2aa7c7ae11
+    last_write_checksum: sha1:31c4e152f31b7abd3974bb74bd064774489b82d7
+    pristine_git_object: d1caa6d5b55b3e66afc8ce01adc60603f2cf2c2c
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:ce840032c45608f5f4022b32bcce32cb69c5ed26
@@ -4226,6 +4254,10 @@ trackedFiles:
     id: b53d0080241b
     last_write_checksum: sha1:d2e3d6c1f05bd7e42274e2b4a0b6a7bf2eefea3c
     pristine_git_object: f9342068d4e5bc457ece39ddc8a0a602b8d45989
+  src/funcs/globalDataGetWebPropertyTimeline.ts:
+    id: 1e466e21e6ac
+    last_write_checksum: sha1:0ce2f60834a51abd603911da2376419b3bf6023f
+    pristine_git_object: 42458ab1097a49d871c8177de3bdaed29cad810b
   src/funcs/globalDataListDnsIpResolutionBounds.ts:
     id: fccf9c67daa6
     last_write_checksum: sha1:1ea36d045b97187e0a1d450ba494865f85294ea2
@@ -4376,8 +4408,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:d28bf2a3cd9a7e6defaf5c879e5ca37711ac8c73
-    pristine_git_object: e2cd5dc39ea696b0373a705428c349c9e06dbbba
+    last_write_checksum: sha1:7c369e23cb12d1f7fcc6e800a793e6410970f1f3
+    pristine_git_object: 9d1811e5dd5e9d8e0cd33473344cca3efb38a9e2
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:50d9b187dcfc3cca8d3bbd9fe074f865d715d2b0
@@ -5420,8 +5452,8 @@ trackedFiles:
     pristine_git_object: b7c795f71916e8b758513a6a58e91a0968a4ae8e
   src/models/components/index.ts:
     id: 0aa842dce54d
-    last_write_checksum: sha1:3e50eafdef5236134ebb5e85679c4b459e62dcd4
-    pristine_git_object: 733d5995f491978cd4263767361004b88319171d
+    last_write_checksum: sha1:eb90c26e7e0fc061aeb6905a4ab94187932361df
+    pristine_git_object: 2cd03cee65fbc7975957332c2879dfd37e0adece
   src/models/components/influxdb.ts:
     id: 68ea2ebc0a1e
     last_write_checksum: sha1:c51ad676c3f8f0ff1e60aa3e4ee10d1f39166a9a
@@ -6518,6 +6550,10 @@ trackedFiles:
     id: 83bd329ff100
     last_write_checksum: sha1:1b4b590d1bc3821fff69cf7d6efa5e95d442cf9a
     pristine_git_object: 8b4e0fc12dcb125293d830f9a385978f6a09a475
+  src/models/components/responseenvelopewebpropertytimeline.ts:
+    id: 2c969a1b8e79
+    last_write_checksum: sha1:285ee5d009aafb4f424146389625dcd014576d1f
+    pristine_git_object: eae62e6566f933b8bf4771f18225f2481ba23193
   src/models/components/reversednsresolved.ts:
     id: f2bed01c8817
     last_write_checksum: sha1:89090595d156347bf9af5c2692aab55efce6e1c1
@@ -7186,6 +7222,18 @@ trackedFiles:
     id: b8ed4da75fd1
     last_write_checksum: sha1:ae6ba41feb934ae77c4ae21cb64725d72b00127e
     pristine_git_object: 9f372f404fea3cf2736b0bdb3deea2f085f3ad50
+  src/models/components/webpropertytimeline.ts:
+    id: aaefd2fb85fd
+    last_write_checksum: sha1:8aa2204c5deb6c3453971935c84b6e672a4c873c
+    pristine_git_object: f32d50f2cff723be7f00553b6fe15ba7c9e6c825
+  src/models/components/webtimelineevent.ts:
+    id: e48b3f9a93f2
+    last_write_checksum: sha1:3d79af2194cda1df89df29c0171e7418d67ff855
+    pristine_git_object: 1bddbc9ba99a6c18448256eff9f87f6d66902305
+  src/models/components/webtimelineeventasset.ts:
+    id: 37e1c8ace0e0
+    last_write_checksum: sha1:ac815038e757601372f3fafd77aba2814d3035a7
+    pristine_git_object: f31c293ddfaff65a0bc3cf56709374d50f47f48b
   src/models/components/whois.ts:
     id: 0ffead8d17a5
     last_write_checksum: sha1:1a429baaed4a60bf4d93f1139e29d97753b62a7e
@@ -7268,8 +7316,8 @@ trackedFiles:
     pristine_git_object: 6826e1208a5d7b7d310535d18909646522bf0fbd
   src/models/operations/index.ts:
     id: 0d9ffaf774d2
-    last_write_checksum: sha1:49b99fee7716679179fb470d8941df65be4a53e9
-    pristine_git_object: 3d6045d72289546335e5ab0cb5e66284df417755
+    last_write_checksum: sha1:e119eb5b9a3f7c0c92569fea3a4e3ab7b1b05e07
+    pristine_git_object: 1957705408008deb82bfe3f90a6af460922532b2
   src/models/operations/v3accountmanagementinviteusertoorg.ts:
     id: 28cd057637e0
     last_write_checksum: sha1:4b30160547236346aa98139f09c72ef69476d061
@@ -7398,6 +7446,10 @@ trackedFiles:
     id: ca2d7afb995e
     last_write_checksum: sha1:7202a21ad54c9733230a4795c54291a259232735
     pristine_git_object: 8c1b5c6aed26e844c9517035bbf22d8d46bc54f4
+  src/models/operations/v3globaldataassetwebpropertytimeline.ts:
+    id: 0f93bcb0b287
+    last_write_checksum: sha1:c89c99b621907de47e45749d4bbab034bb6b7f2e
+    pristine_git_object: 5e622307150e60f842944bc688f3013888d645df
   src/models/operations/v3globaldatadnsipresolutionbound.ts:
     id: 17768473ab76
     last_write_checksum: sha1:8c070636c3eae651748e01a10e93bcb1d6e0a735
@@ -7540,8 +7592,8 @@ trackedFiles:
     pristine_git_object: 019e23b82a59d413146300b2b5675f6fe1ab5922
   src/sdk/globaldata.ts:
     id: a02598ab66c9
-    last_write_checksum: sha1:4774af3149aecd6e37eabdcb7e2a182b7d778dac
-    pristine_git_object: 66710529aa857b930fad558b2430e459fb15ed33
+    last_write_checksum: sha1:41312582e378b90b174c7204313aa52939c0851e
+    pristine_git_object: 785250b683c5c930aa1b3e6ea20d3cb71e8ae887
   src/sdk/index.ts:
     id: a857902a703f
     last_write_checksum: sha1:ed6d64f2a6135349aa8498b8d8cff9ba85c7fb8f
@@ -8809,6 +8861,23 @@ examples:
         "401":
           application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
         "403":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+        "500":
+          application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
+  v3-globaldata-asset-webproperty-timeline:
+    speakeasy-default-v3-globaldata-asset-webproperty-timeline:
+      parameters:
+        path:
+          webproperty_id: "platform.censys.io:80"
+        query:
+          start_time: "2025-01-02T00:00:00Z"
+          end_time: "2025-01-01T00:00:00Z"
+      responses:
+        "200":
+          application/vnd.censys.api.v3.web_timeline_event.v1+json: {}
+        "401":
+          application/json: {"error": {"code": 401, "message": "Access credentials are invalid", "reason": "Access token is not active", "status": "Unauthorized"}}
+        "400":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}
         "500":
           application/problem+json: {"detail": "Property foo is required but is missing.", "instance": "https://example.com/error-log/abc123", "status": 400, "title": "Bad Request", "type": "https://example.com/errors/example"}

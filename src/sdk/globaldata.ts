@@ -16,6 +16,7 @@ import { globalDataGetHostTimeline } from "../funcs/globalDataGetHostTimeline.js
 import { globalDataGetTrackedScan } from "../funcs/globalDataGetTrackedScan.js";
 import { globalDataGetWebProperties } from "../funcs/globalDataGetWebProperties.js";
 import { globalDataGetWebProperty } from "../funcs/globalDataGetWebProperty.js";
+import { globalDataGetWebPropertyTimeline } from "../funcs/globalDataGetWebPropertyTimeline.js";
 import { globalDataListDnsIpResolutionBounds } from "../funcs/globalDataListDnsIpResolutionBounds.js";
 import { globalDataListDnsIpResolutionRanges } from "../funcs/globalDataListDnsIpResolutionRanges.js";
 import { globalDataListDnsNameResolutionBounds } from "../funcs/globalDataListDnsNameResolutionBounds.js";
@@ -208,6 +209,23 @@ export class GlobalData extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V3GlobaldataAssetWebpropertyResponse> {
     return unwrapAsync(globalDataGetWebProperty(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get web property event history
+   *
+   * @remarks
+   * Retrieve event history for a web property. Web properties are identified using a combination of a hostname and port joined with a colon, such as `platform.censys.io:80`. URL-encode the colon when used in the path (e.g. `platform.censys.io%3A80`).
+   */
+  async getWebPropertyTimeline(
+    request: operations.V3GlobaldataAssetWebpropertyTimelineRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3GlobaldataAssetWebpropertyTimelineResponse> {
+    return unwrapAsync(globalDataGetWebPropertyTimeline(
       this,
       request,
       options,

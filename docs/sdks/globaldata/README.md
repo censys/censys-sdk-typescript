@@ -17,6 +17,7 @@ Endpoints related to the Global Data product
 * [getHostTimeline](#gethosttimeline) - Get host event history
 * [getWebProperties](#getwebproperties) - Retrieve multiple web properties
 * [getWebProperty](#getwebproperty) - Get a web property
+* [getWebPropertyTimeline](#getwebpropertytimeline) - Get web property event history
 * [listDnsIpResolutionBounds](#listdnsipresolutionbounds) - Get DNS names that resolved to an IP (aggregated bounds)
 * [listDnsIpResolutionRanges](#listdnsipresolutionranges) - Get DNS names that resolved to an IP (ranges)
 * [listDnsNameResolutionBounds](#listdnsnameresolutionbounds) - Get DNS resolution records for a name (aggregated bounds)
@@ -932,6 +933,88 @@ run();
 ### Response
 
 **Promise\<[operations.V3GlobaldataAssetWebpropertyResponse](../../models/operations/v3globaldataassetwebpropertyresponse.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 400, 403, 404, 422         | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
+## getWebPropertyTimeline
+
+Retrieve event history for a web property. Web properties are identified using a combination of a hostname and port joined with a colon, such as `platform.censys.io:80`. URL-encode the colon when used in the path (e.g. `platform.censys.io%3A80`).
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v3-globaldata-asset-webproperty-timeline" method="get" path="/v3/global/asset/webproperty/{webproperty_id}/timeline" -->
+```typescript
+import { SDK } from "@censys/platform-sdk";
+
+const sdk = new SDK({
+  organizationId: "11111111-2222-3333-4444-555555555555",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.globalData.getWebPropertyTimeline({
+    webpropertyId: "platform.censys.io:80",
+    startTime: new Date("2025-01-02T00:00:00Z"),
+    endTime: new Date("2025-01-01T00:00:00Z"),
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { globalDataGetWebPropertyTimeline } from "@censys/platform-sdk/funcs/globalDataGetWebPropertyTimeline.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  organizationId: "11111111-2222-3333-4444-555555555555",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await globalDataGetWebPropertyTimeline(sdk, {
+    webpropertyId: "platform.censys.io:80",
+    startTime: new Date("2025-01-02T00:00:00Z"),
+    endTime: new Date("2025-01-01T00:00:00Z"),
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("globalDataGetWebPropertyTimeline failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3GlobaldataAssetWebpropertyTimelineRequest](../../models/operations/v3globaldataassetwebpropertytimelinerequest.md)                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3GlobaldataAssetWebpropertyTimelineResponse](../../models/operations/v3globaldataassetwebpropertytimelineresponse.md)\>**
 
 ### Errors
 
