@@ -12,6 +12,10 @@ import {
   ReputationEvidenceExternalSignal$inboundSchema,
 } from "./reputationevidenceexternalsignal.js";
 import {
+  ReputationEvidenceFeature,
+  ReputationEvidenceFeature$inboundSchema,
+} from "./reputationevidencefeature.js";
+import {
   ReputationEvidenceFieldValue,
   ReputationEvidenceFieldValue$inboundSchema,
 } from "./reputationevidencefieldvalue.js";
@@ -25,6 +29,7 @@ export type ReputationEvidence = {
   category?: string | undefined;
   evidenceScore?: number | undefined;
   externalSignals?: Array<ReputationEvidenceExternalSignal> | null | undefined;
+  feature?: ReputationEvidenceFeature | undefined;
   threats?: Array<ReputationEvidenceThreat> | null | undefined;
 };
 
@@ -42,6 +47,7 @@ export const ReputationEvidence$inboundSchema: z.ZodType<
   external_signals: z.nullable(
     z.array(ReputationEvidenceExternalSignal$inboundSchema),
   ).optional(),
+  feature: ReputationEvidenceFeature$inboundSchema.optional(),
   threats: z.nullable(z.array(ReputationEvidenceThreat$inboundSchema))
     .optional(),
 }).transform((v) => {

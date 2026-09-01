@@ -10,6 +10,10 @@ import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
+  ReputationClassProbability,
+  ReputationClassProbability$inboundSchema,
+} from "./reputationclassprobability.js";
+import {
   ReputationEvidence,
   ReputationEvidence$inboundSchema,
 } from "./reputationevidence.js";
@@ -25,10 +29,13 @@ export const ScoreLevel = {
 export type ScoreLevel = OpenEnum<typeof ScoreLevel>;
 
 export type Reputation = {
+  classProbabilities?: Array<ReputationClassProbability> | null | undefined;
   evidence?: Array<ReputationEvidence> | null | undefined;
+  label?: string | undefined;
   modelVersion?: string | undefined;
   score?: number | undefined;
   scoreLevel?: ScoreLevel | undefined;
+  scoreSuppressed?: boolean | undefined;
 };
 
 /** @internal */
@@ -44,14 +51,21 @@ export const Reputation$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  class_probabilities: z.nullable(
+    z.array(ReputationClassProbability$inboundSchema),
+  ).optional(),
   evidence: z.nullable(z.array(ReputationEvidence$inboundSchema)).optional(),
+  label: z.string().optional(),
   model_version: z.string().optional(),
   score: z.number().optional(),
   score_level: ScoreLevel$inboundSchema.optional(),
+  score_suppressed: z.boolean().optional(),
 }).transform((v) => {
   return remap$(v, {
+    "class_probabilities": "classProbabilities",
     "model_version": "modelVersion",
     "score_level": "scoreLevel",
+    "score_suppressed": "scoreSuppressed",
   });
 });
 
