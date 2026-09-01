@@ -28,7 +28,7 @@ export type Tag = {
    */
   createdAt: Date;
   /**
-   * The user ID of the user who created the tag.
+   * The ID of the user or service account that created the tag.
    */
   createdBy: string;
   /**

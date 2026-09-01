@@ -54,6 +54,7 @@ import { RedlionWeb, RedlionWeb$inboundSchema } from "./redlionweb.js";
 import { ScadaView, ScadaView$inboundSchema } from "./scadaview.js";
 import { Screenshot, Screenshot$inboundSchema } from "./screenshot.js";
 import { SynologyDsm, SynologyDsm$inboundSchema } from "./synologydsm.js";
+import { TailscaleDerp, TailscaleDerp$inboundSchema } from "./tailscalederp.js";
 import { Tls, Tls$inboundSchema } from "./tls.js";
 import { Vault, Vault$inboundSchema } from "./vault.js";
 import { Wordpress, Wordpress$inboundSchema } from "./wordpress.js";
@@ -106,6 +107,7 @@ export type EndpointScan = {
   scanTime?: string | undefined;
   screenshots?: Array<Screenshot> | null | undefined;
   synologyDsm?: SynologyDsm | undefined;
+  tailscaleDerp?: TailscaleDerp | undefined;
   tls?: Tls | undefined;
   transportProtocol?: EndpointScanTransportProtocol | undefined;
   vault?: Vault | undefined;
@@ -161,6 +163,7 @@ export const EndpointScan$inboundSchema: z.ZodType<
   scan_time: z.string().optional(),
   screenshots: z.nullable(z.array(Screenshot$inboundSchema)).optional(),
   synology_dsm: SynologyDsm$inboundSchema.optional(),
+  tailscale_derp: TailscaleDerp$inboundSchema.optional(),
   tls: Tls$inboundSchema.optional(),
   transport_protocol: EndpointScanTransportProtocol$inboundSchema.optional(),
   vault: Vault$inboundSchema.optional(),
@@ -183,6 +186,7 @@ export const EndpointScan$inboundSchema: z.ZodType<
     "scada_view": "scadaView",
     "scan_time": "scanTime",
     "synology_dsm": "synologyDsm",
+    "tailscale_derp": "tailscaleDerp",
     "transport_protocol": "transportProtocol",
   });
 });

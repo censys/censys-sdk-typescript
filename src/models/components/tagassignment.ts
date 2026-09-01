@@ -38,7 +38,7 @@ export type TagAssignment = {
    */
   createdAt: Date;
   /**
-   * The user ID of the user who created the assignment.
+   * The ID of the user or service account that created the assignment.
    */
   createdBy: string;
   /**

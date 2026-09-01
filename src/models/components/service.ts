@@ -32,6 +32,7 @@ import {
 } from "./clickhousenative.js";
 import { Cmore, Cmore$inboundSchema } from "./cmore.js";
 import { Coap, Coap$inboundSchema } from "./coap.js";
+import { ComelitIcona, ComelitIcona$inboundSchema } from "./comeliticona.js";
 import { CortexXdrP2P, CortexXdrP2P$inboundSchema } from "./cortexxdrp2p.js";
 import { CrestronCp3, CrestronCp3$inboundSchema } from "./crestroncp3.js";
 import {
@@ -49,6 +50,7 @@ import { Dcerpc, Dcerpc$inboundSchema } from "./dcerpc.js";
 import { DenonHeos, DenonHeos$inboundSchema } from "./denonheos.js";
 import { Dhcpdiscover, Dhcpdiscover$inboundSchema } from "./dhcpdiscover.js";
 import { Dicom, Dicom$inboundSchema } from "./dicom.js";
+import { Dlt, Dlt$inboundSchema } from "./dlt.js";
 import { Dnp3, Dnp3$inboundSchema } from "./dnp3.js";
 import { Dns, Dns$inboundSchema } from "./dns.js";
 import {
@@ -56,6 +58,7 @@ import {
   DotnetNegotiateStream$inboundSchema,
 } from "./dotnetnegotiatestream.js";
 import { Dtls, Dtls$inboundSchema } from "./dtls.js";
+import { Dubbo, Dubbo$inboundSchema } from "./dubbo.js";
 import { DvrIp, DvrIp$inboundSchema } from "./dvrip.js";
 import { Eip, Eip$inboundSchema } from "./eip.js";
 import {
@@ -75,6 +78,7 @@ import {
   FlashSocketPolicy,
   FlashSocketPolicy$inboundSchema,
 } from "./flashsocketpolicy.js";
+import { FourdServer, FourdServer$inboundSchema } from "./fourdserver.js";
 import { Fox, Fox$inboundSchema } from "./fox.js";
 import { Frps, Frps$inboundSchema } from "./frps.js";
 import { Ftp, Ftp$inboundSchema } from "./ftp.js";
@@ -85,12 +89,17 @@ import { Gopher, Gopher$inboundSchema } from "./gopher.js";
 import { Hajime, Hajime$inboundSchema } from "./hajime.js";
 import { HidVertx, HidVertx$inboundSchema } from "./hidvertx.js";
 import { Hikvision, Hikvision$inboundSchema } from "./hikvision.js";
+import {
+  HoosatHtndGrpc,
+  HoosatHtndGrpc$inboundSchema,
+} from "./hoosathtndgrpc.js";
 import { Ibmnje, Ibmnje$inboundSchema } from "./ibmnje.js";
 import { Icap, Icap$inboundSchema } from "./icap.js";
 import { Iec608705104, Iec608705104$inboundSchema } from "./iec608705104.js";
 import { Ike, Ike$inboundSchema } from "./ike.js";
 import { Imap, Imap$inboundSchema } from "./imap.js";
 import { Iota, Iota$inboundSchema } from "./iota.js";
+import { Iperf3, Iperf3$inboundSchema } from "./iperf3.js";
 import { Ipmi, Ipmi$inboundSchema } from "./ipmi.js";
 import { Ipp, Ipp$inboundSchema } from "./ipp.js";
 import { IscDhcpOmapi, IscDhcpOmapi$inboundSchema } from "./iscdhcpomapi.js";
@@ -99,11 +108,16 @@ import { Ja4TScanScan, Ja4TScanScan$inboundSchema } from "./ja4tscanscan.js";
 import { JarmScan, JarmScan$inboundSchema } from "./jarmscan.js";
 import { JavaRmi, JavaRmi$inboundSchema } from "./javarmi.js";
 import { KcodesNetusb, KcodesNetusb$inboundSchema } from "./kcodesnetusb.js";
+import { Knxip, Knxip$inboundSchema } from "./knxip.js";
 import { Krpc, Krpc$inboundSchema } from "./krpc.js";
 import { L2Tp, L2Tp$inboundSchema } from "./l2tp.js";
 import { Label, Label$inboundSchema } from "./label.js";
 import { Ldap, Ldap$inboundSchema } from "./ldap.js";
 import { Lpd, Lpd$inboundSchema } from "./lpd.js";
+import {
+  ManticoreSphinxapi,
+  ManticoreSphinxapi$inboundSchema,
+} from "./manticoresphinxapi.js";
 import { Mavlink, Mavlink$inboundSchema } from "./mavlink.js";
 import { Mdns, Mdns$inboundSchema } from "./mdns.js";
 import { Melsec, Melsec$inboundSchema } from "./melsec.js";
@@ -118,6 +132,7 @@ import { Mms, Mms$inboundSchema } from "./mms.js";
 import { Modbus, Modbus$inboundSchema } from "./modbus.js";
 import { MoneroP2P, MoneroP2P$inboundSchema } from "./monerop2p.js";
 import { Mongodb, Mongodb$inboundSchema } from "./mongodb.js";
+import { MplsLdp, MplsLdp$inboundSchema } from "./mplsldp.js";
 import { Mqtt, Mqtt$inboundSchema } from "./mqtt.js";
 import { Mssql, Mssql$inboundSchema } from "./mssql.js";
 import { Murmur, Murmur$inboundSchema } from "./murmur.js";
@@ -127,6 +142,7 @@ import { NatsIo, NatsIo$inboundSchema } from "./natsio.js";
 import { Nbd, Nbd$inboundSchema } from "./nbd.js";
 import { NfsMountd, NfsMountd$inboundSchema } from "./nfsmountd.js";
 import { Nmea, Nmea$inboundSchema } from "./nmea.js";
+import { Nrpe, Nrpe$inboundSchema } from "./nrpe.js";
 import { Ntp, Ntp$inboundSchema } from "./ntp.js";
 import { Ntrip, Ntrip$inboundSchema } from "./ntrip.js";
 import { Onc, Onc$inboundSchema } from "./onc.js";
@@ -155,6 +171,7 @@ import {
   RedlionCrimson,
   RedlionCrimson$inboundSchema,
 } from "./redlioncrimson.js";
+import { Redshift, Redshift$inboundSchema } from "./redshift.js";
 import {
   ReolinkBaichuan,
   ReolinkBaichuan$inboundSchema,
@@ -194,6 +211,7 @@ import { Sip, Sip$inboundSchema } from "./sip.js";
 import { Skinny, Skinny$inboundSchema } from "./skinny.js";
 import { Smb, Smb$inboundSchema } from "./smb.js";
 import { Smtp, Smtp$inboundSchema } from "./smtp.js";
+import { Smux, Smux$inboundSchema } from "./smux.js";
 import { Snmp, Snmp$inboundSchema } from "./snmp.js";
 import { Socks, Socks$inboundSchema } from "./socks.js";
 import { Spice, Spice$inboundSchema } from "./spice.js";
@@ -212,6 +230,7 @@ import { Threat, Threat$inboundSchema } from "./threat.js";
 import { Tibia, Tibia$inboundSchema } from "./tibia.js";
 import { Tls, Tls$inboundSchema } from "./tls.js";
 import { TplinkKasa, TplinkKasa$inboundSchema } from "./tplinkkasa.js";
+import { TvtControl, TvtControl$inboundSchema } from "./tvtcontrol.js";
 import { TwampControl, TwampControl$inboundSchema } from "./twampcontrol.js";
 import {
   UnitronicsPcom,
@@ -256,6 +275,7 @@ export type Service = {
   clickhouseNative?: ClickHouseNative | undefined;
   cmore?: Cmore | undefined;
   coap?: Coap | undefined;
+  comelitIcona?: ComelitIcona | undefined;
   compromises?: Array<Risk> | null | undefined;
   cortexXdrP2p?: CortexXdrP2P | undefined;
   crestronCp3?: CrestronCp3 | undefined;
@@ -268,10 +288,12 @@ export type Service = {
   denonHeos?: DenonHeos | undefined;
   dhcpdiscover?: Dhcpdiscover | undefined;
   dicom?: Dicom | undefined;
+  dlt?: Dlt | undefined;
   dnp3?: Dnp3 | undefined;
   dns?: Dns | undefined;
   dotnetNegotiateStream?: DotnetNegotiateStream | undefined;
   dtls?: Dtls | undefined;
+  dubbo?: Dubbo | undefined;
   dvrIp?: DvrIp | undefined;
   eip?: Eip | undefined;
   elasticsearchTransport?: ElasticsearchTransport | undefined;
@@ -283,6 +305,7 @@ export type Service = {
   exposures?: Array<Risk> | null | undefined;
   fins?: Fins | undefined;
   flashSocketPolicy?: FlashSocketPolicy | undefined;
+  fourdServer?: FourdServer | undefined;
   fox?: Fox | undefined;
   frps?: Frps | undefined;
   ftp?: Ftp | undefined;
@@ -294,6 +317,7 @@ export type Service = {
   hardware?: Array<Attribute> | null | undefined;
   hidVertx?: HidVertx | undefined;
   hikvision?: Hikvision | undefined;
+  hoosatHtndGrpc?: HoosatHtndGrpc | undefined;
   ibmnje?: Ibmnje | undefined;
   icap?: Icap | undefined;
   iec608705104?: Iec608705104 | undefined;
@@ -301,6 +325,7 @@ export type Service = {
   imap?: Imap | undefined;
   iota?: Iota | undefined;
   ip?: string | undefined;
+  iperf3?: Iperf3 | undefined;
   ipmi?: Ipmi | undefined;
   ipp?: Ipp | undefined;
   iscDhcpOmapi?: IscDhcpOmapi | undefined;
@@ -309,11 +334,13 @@ export type Service = {
   jarm?: JarmScan | undefined;
   javaRmi?: JavaRmi | undefined;
   kcodesNetusb?: KcodesNetusb | undefined;
+  knxip?: Knxip | undefined;
   krpc?: Krpc | undefined;
   l2tp?: L2Tp | undefined;
   labels?: Array<Label> | null | undefined;
   ldap?: Ldap | undefined;
   lpd?: Lpd | undefined;
+  manticoreSphinxapi?: ManticoreSphinxapi | undefined;
   mavlink?: Mavlink | undefined;
   mdns?: Mdns | undefined;
   melsec?: Melsec | undefined;
@@ -326,6 +353,7 @@ export type Service = {
   modbus?: Modbus | undefined;
   moneroP2p?: MoneroP2P | undefined;
   mongodb?: Mongodb | undefined;
+  mplsLdp?: MplsLdp | undefined;
   mqtt?: Mqtt | undefined;
   mssql?: Mssql | undefined;
   murmur?: Murmur | undefined;
@@ -335,6 +363,7 @@ export type Service = {
   nbd?: Nbd | undefined;
   nfsMountd?: NfsMountd | undefined;
   nmea?: Nmea | undefined;
+  nrpe?: Nrpe | undefined;
   ntp?: Ntp | undefined;
   ntrip?: Ntrip | undefined;
   onc?: Onc | undefined;
@@ -363,6 +392,7 @@ export type Service = {
   redis?: Redis | undefined;
   redline?: Redline | undefined;
   redlionCrimson?: RedlionCrimson | undefined;
+  redshift?: Redshift | undefined;
   reolinkBaichuan?: ReolinkBaichuan | undefined;
   representativeInfo?: RepresentativeInfo | undefined;
   rifatron?: Rifatron | undefined;
@@ -387,6 +417,7 @@ export type Service = {
   skinny?: Skinny | undefined;
   smb?: Smb | undefined;
   smtp?: Smtp | undefined;
+  smux?: Smux | undefined;
   snmp?: Snmp | undefined;
   socks?: Socks | undefined;
   software?: Array<Attribute> | null | undefined;
@@ -407,6 +438,7 @@ export type Service = {
   tls?: Tls | undefined;
   tplinkKasa?: TplinkKasa | undefined;
   transportProtocol?: ServiceTransportProtocol | undefined;
+  tvtControl?: TvtControl | undefined;
   twampControl?: TwampControl | undefined;
   unitronicsPcom?: UnitronicsPcom | undefined;
   upnp?: Upnp | undefined;
@@ -448,6 +480,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     clickhouse_native: ClickHouseNative$inboundSchema.optional(),
     cmore: Cmore$inboundSchema.optional(),
     coap: Coap$inboundSchema.optional(),
+    comelit_icona: ComelitIcona$inboundSchema.optional(),
     compromises: z.nullable(z.array(Risk$inboundSchema)).optional(),
     cortex_xdr_p2p: CortexXdrP2P$inboundSchema.optional(),
     crestron_cp3: CrestronCp3$inboundSchema.optional(),
@@ -460,10 +493,12 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     denon_heos: DenonHeos$inboundSchema.optional(),
     dhcpdiscover: Dhcpdiscover$inboundSchema.optional(),
     dicom: Dicom$inboundSchema.optional(),
+    dlt: Dlt$inboundSchema.optional(),
     dnp3: Dnp3$inboundSchema.optional(),
     dns: Dns$inboundSchema.optional(),
     dotnet_negotiate_stream: DotnetNegotiateStream$inboundSchema.optional(),
     dtls: Dtls$inboundSchema.optional(),
+    dubbo: Dubbo$inboundSchema.optional(),
     dvr_ip: DvrIp$inboundSchema.optional(),
     eip: Eip$inboundSchema.optional(),
     elasticsearch_transport: ElasticsearchTransport$inboundSchema.optional(),
@@ -475,6 +510,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     exposures: z.nullable(z.array(Risk$inboundSchema)).optional(),
     fins: Fins$inboundSchema.optional(),
     flash_socket_policy: FlashSocketPolicy$inboundSchema.optional(),
+    fourd_server: FourdServer$inboundSchema.optional(),
     fox: Fox$inboundSchema.optional(),
     frps: Frps$inboundSchema.optional(),
     ftp: Ftp$inboundSchema.optional(),
@@ -486,6 +522,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     hardware: z.nullable(z.array(Attribute$inboundSchema)).optional(),
     hid_vertx: HidVertx$inboundSchema.optional(),
     hikvision: Hikvision$inboundSchema.optional(),
+    hoosat_htnd_grpc: HoosatHtndGrpc$inboundSchema.optional(),
     ibmnje: Ibmnje$inboundSchema.optional(),
     icap: Icap$inboundSchema.optional(),
     iec60870_5_104: Iec608705104$inboundSchema.optional(),
@@ -493,6 +530,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     imap: Imap$inboundSchema.optional(),
     iota: Iota$inboundSchema.optional(),
     ip: z.string().optional(),
+    iperf3: Iperf3$inboundSchema.optional(),
     ipmi: Ipmi$inboundSchema.optional(),
     ipp: Ipp$inboundSchema.optional(),
     isc_dhcp_omapi: IscDhcpOmapi$inboundSchema.optional(),
@@ -501,11 +539,13 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     jarm: JarmScan$inboundSchema.optional(),
     java_rmi: JavaRmi$inboundSchema.optional(),
     kcodes_netusb: KcodesNetusb$inboundSchema.optional(),
+    knxip: Knxip$inboundSchema.optional(),
     krpc: Krpc$inboundSchema.optional(),
     l2tp: L2Tp$inboundSchema.optional(),
     labels: z.nullable(z.array(Label$inboundSchema)).optional(),
     ldap: Ldap$inboundSchema.optional(),
     lpd: Lpd$inboundSchema.optional(),
+    manticore_sphinxapi: ManticoreSphinxapi$inboundSchema.optional(),
     mavlink: Mavlink$inboundSchema.optional(),
     mdns: Mdns$inboundSchema.optional(),
     melsec: Melsec$inboundSchema.optional(),
@@ -518,6 +558,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     modbus: Modbus$inboundSchema.optional(),
     monero_p2p: MoneroP2P$inboundSchema.optional(),
     mongodb: Mongodb$inboundSchema.optional(),
+    mpls_ldp: MplsLdp$inboundSchema.optional(),
     mqtt: Mqtt$inboundSchema.optional(),
     mssql: Mssql$inboundSchema.optional(),
     murmur: Murmur$inboundSchema.optional(),
@@ -527,6 +568,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     nbd: Nbd$inboundSchema.optional(),
     nfs_mountd: NfsMountd$inboundSchema.optional(),
     nmea: Nmea$inboundSchema.optional(),
+    nrpe: Nrpe$inboundSchema.optional(),
     ntp: Ntp$inboundSchema.optional(),
     ntrip: Ntrip$inboundSchema.optional(),
     onc: Onc$inboundSchema.optional(),
@@ -555,6 +597,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     redis: Redis$inboundSchema.optional(),
     redline: Redline$inboundSchema.optional(),
     redlion_crimson: RedlionCrimson$inboundSchema.optional(),
+    redshift: Redshift$inboundSchema.optional(),
     reolink_baichuan: ReolinkBaichuan$inboundSchema.optional(),
     representative_info: RepresentativeInfo$inboundSchema.optional(),
     rifatron: Rifatron$inboundSchema.optional(),
@@ -579,6 +622,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     skinny: Skinny$inboundSchema.optional(),
     smb: Smb$inboundSchema.optional(),
     smtp: Smtp$inboundSchema.optional(),
+    smux: Smux$inboundSchema.optional(),
     snmp: Snmp$inboundSchema.optional(),
     socks: Socks$inboundSchema.optional(),
     software: z.nullable(z.array(Attribute$inboundSchema)).optional(),
@@ -599,6 +643,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     tls: Tls$inboundSchema.optional(),
     tplink_kasa: TplinkKasa$inboundSchema.optional(),
     transport_protocol: ServiceTransportProtocol$inboundSchema.optional(),
+    tvt_control: TvtControl$inboundSchema.optional(),
     twamp_control: TwampControl$inboundSchema.optional(),
     unitronics_pcom: UnitronicsPcom$inboundSchema.optional(),
     upnp: Upnp$inboundSchema.optional(),
@@ -621,6 +666,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
       "checkpoint_topology": "checkpointTopology",
       "cisco_ipsla": "ciscoIpsla",
       "clickhouse_native": "clickhouseNative",
+      "comelit_icona": "comelitIcona",
       "cortex_xdr_p2p": "cortexXdrP2p",
       "crestron_cp3": "crestronCp3",
       "crestron_din_ap2": "crestronDinAp2",
@@ -631,13 +677,17 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
       "elasticsearch_transport": "elasticsearchTransport",
       "elf_file": "elfFile",
       "flash_socket_policy": "flashSocketPolicy",
+      "fourd_server": "fourdServer",
       "hid_vertx": "hidVertx",
+      "hoosat_htnd_grpc": "hoosatHtndGrpc",
       "iec60870_5_104": "iec608705104",
       "isc_dhcp_omapi": "iscDhcpOmapi",
       "java_rmi": "javaRmi",
       "kcodes_netusb": "kcodesNetusb",
+      "manticore_sphinxapi": "manticoreSphinxapi",
       "mikrotik_winbox": "mikrotikWinbox",
       "monero_p2p": "moneroP2p",
+      "mpls_ldp": "mplsLdp",
       "nats_io": "natsIo",
       "nfs_mountd": "nfsMountd",
       "opc_ua": "opcUa",
@@ -664,6 +714,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
       "telexper_tlxp": "telexperTlxp",
       "tplink_kasa": "tplinkKasa",
       "transport_protocol": "transportProtocol",
+      "tvt_control": "tvtControl",
       "twamp_control": "twampControl",
       "unitronics_pcom": "unitronicsPcom",
       "weblogic_t3": "weblogicT3",
