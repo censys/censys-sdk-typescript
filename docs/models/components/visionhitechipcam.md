@@ -1,0 +1,22 @@
+# VisionhitechIpcam
+
+## Example Usage
+
+```typescript
+import { VisionhitechIpcam } from "@censys/platform-sdk/models/components";
+
+let value: VisionhitechIpcam = {};
+```
+
+## Fields
+
+| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `codec`                                                                                              | *string*                                                                                             | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |
+| `constraintSetFlags`                                                                                 | *number*                                                                                             | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |
+| `height`                                                                                             | *number*                                                                                             | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |
+| `levelIdc`                                                                                           | *string*                                                                                             | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |
+| `nalType`                                                                                            | *string*[]                                                                                           | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |
+| `profileIdc`                                                                                         | *string*                                                                                             | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |
+| `seiUserData`                                                                                        | [components.VisionhitechIpcamSeiUserData](../../models/components/visionhitechipcamseiuserdata.md)[] | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |
+| `width`                                                                                              | *number*                                                                                             | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |

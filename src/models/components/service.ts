@@ -19,6 +19,7 @@ import {
 } from "./asteriskmanagerinterface.js";
 import { Attribute, Attribute$inboundSchema } from "./attribute.js";
 import { Bacnet, Bacnet$inboundSchema } from "./bacnet.js";
+import { BluemaxNuttcp, BluemaxNuttcp$inboundSchema } from "./bluemaxnuttcp.js";
 import { Certificate, Certificate$inboundSchema } from "./certificate.js";
 import {
   CheckpointTopology,
@@ -27,10 +28,19 @@ import {
 import { Chromecast, Chromecast$inboundSchema } from "./chromecast.js";
 import { CiscoIpsla, CiscoIpsla$inboundSchema } from "./ciscoipsla.js";
 import {
+  CiscoSdwanVdaemon,
+  CiscoSdwanVdaemon$inboundSchema,
+} from "./ciscosdwanvdaemon.js";
+import { Clamav, Clamav$inboundSchema } from "./clamav.js";
+import {
   ClickHouseNative,
   ClickHouseNative$inboundSchema,
 } from "./clickhousenative.js";
 import { Cmore, Cmore$inboundSchema } from "./cmore.js";
+import {
+  CnordSecurityCenter,
+  CnordSecurityCenter$inboundSchema,
+} from "./cnordsecuritycenter.js";
 import { Coap, Coap$inboundSchema } from "./coap.js";
 import { ComelitIcona, ComelitIcona$inboundSchema } from "./comeliticona.js";
 import { CortexXdrP2P, CortexXdrP2P$inboundSchema } from "./cortexxdrp2p.js";
@@ -84,8 +94,13 @@ import { Frps, Frps$inboundSchema } from "./frps.js";
 import { Ftp, Ftp$inboundSchema } from "./ftp.js";
 import { Gearman, Gearman$inboundSchema } from "./gearman.js";
 import { Gemini, Gemini$inboundSchema } from "./gemini.js";
+import {
+  GeovisionAudio,
+  GeovisionAudio$inboundSchema,
+} from "./geovisionaudio.js";
 import { Giop, Giop$inboundSchema } from "./giop.js";
 import { Gopher, Gopher$inboundSchema } from "./gopher.js";
+import { GrilConsole, GrilConsole$inboundSchema } from "./grilconsole.js";
 import { Hajime, Hajime$inboundSchema } from "./hajime.js";
 import { HidVertx, HidVertx$inboundSchema } from "./hidvertx.js";
 import { Hikvision, Hikvision$inboundSchema } from "./hikvision.js";
@@ -113,7 +128,9 @@ import { Krpc, Krpc$inboundSchema } from "./krpc.js";
 import { L2Tp, L2Tp$inboundSchema } from "./l2tp.js";
 import { Label, Label$inboundSchema } from "./label.js";
 import { Ldap, Ldap$inboundSchema } from "./ldap.js";
+import { Libp2P, Libp2P$inboundSchema } from "./libp2p.js";
 import { Lpd, Lpd$inboundSchema } from "./lpd.js";
+import { Managesieve, Managesieve$inboundSchema } from "./managesieve.js";
 import {
   ManticoreSphinxapi,
   ManticoreSphinxapi$inboundSchema,
@@ -151,10 +168,14 @@ import { OpcUa, OpcUa$inboundSchema } from "./opcua.js";
 import { Openflow, Openflow$inboundSchema } from "./openflow.js";
 import { Openvpn, Openvpn$inboundSchema } from "./openvpn.js";
 import { OpenvpnMgmt, OpenvpnMgmt$inboundSchema } from "./openvpnmgmt.js";
+import { OpwFsc3000, OpwFsc3000$inboundSchema } from "./opwfsc3000.js";
 import { Oracle, Oracle$inboundSchema } from "./oracle.js";
+import { OrencoAtrtu, OrencoAtrtu$inboundSchema } from "./orencoatrtu.js";
+import { OtlpGrpc, OtlpGrpc$inboundSchema } from "./otlpgrpc.js";
 import { PcAnywhere, PcAnywhere$inboundSchema } from "./pcanywhere.js";
 import { PerforceP4D, PerforceP4D$inboundSchema } from "./perforcep4d.js";
 import { Pgbouncer, Pgbouncer$inboundSchema } from "./pgbouncer.js";
+import { Pigeonhole, Pigeonhole$inboundSchema } from "./pigeonhole.js";
 import { Pop3, Pop3$inboundSchema } from "./pop3.js";
 import { Portmap, Portmap$inboundSchema } from "./portmap.js";
 import { Postgres, Postgres$inboundSchema } from "./postgres.js";
@@ -215,18 +236,25 @@ import { Smux, Smux$inboundSchema } from "./smux.js";
 import { Snmp, Snmp$inboundSchema } from "./snmp.js";
 import { Socks, Socks$inboundSchema } from "./socks.js";
 import { Spice, Spice$inboundSchema } from "./spice.js";
+import {
+  SpotifyConnect,
+  SpotifyConnect$inboundSchema,
+} from "./spotifyconnect.js";
 import { Ssdp, Ssdp$inboundSchema } from "./ssdp.js";
 import { Ssh, Ssh$inboundSchema } from "./ssh.js";
 import { Steam, Steam$inboundSchema } from "./steam.js";
+import { Stomp, Stomp$inboundSchema } from "./stomp.js";
 import { Stun, Stun$inboundSchema } from "./stun.js";
 import { SyncthingBep, SyncthingBep$inboundSchema } from "./syncthingbep.js";
 import { Synergy, Synergy$inboundSchema } from "./synergy.js";
 import { TacacsPlus, TacacsPlus$inboundSchema } from "./tacacsplus.js";
 import { Tarantool, Tarantool$inboundSchema } from "./tarantool.js";
+import { TaurusStb, TaurusStb$inboundSchema } from "./taurusstb.js";
 import { TeamViewer, TeamViewer$inboundSchema } from "./teamviewer.js";
 import { TelexperTlxp, TelexperTlxp$inboundSchema } from "./telexpertlxp.js";
 import { Telnet, Telnet$inboundSchema } from "./telnet.js";
 import { Threat, Threat$inboundSchema } from "./threat.js";
+import { Thrulay, Thrulay$inboundSchema } from "./thrulay.js";
 import { Tibia, Tibia$inboundSchema } from "./tibia.js";
 import { Tls, Tls$inboundSchema } from "./tls.js";
 import { TplinkKasa, TplinkKasa$inboundSchema } from "./tplinkkasa.js";
@@ -237,12 +265,22 @@ import {
   UnitronicsPcom$inboundSchema,
 } from "./unitronicspcom.js";
 import { Upnp, Upnp$inboundSchema } from "./upnp.js";
+import { UtilinetLpp, UtilinetLpp$inboundSchema } from "./utilinetlpp.js";
+import {
+  VantageInfusion,
+  VantageInfusion$inboundSchema,
+} from "./vantageinfusion.js";
 import { Ventrilo, Ventrilo$inboundSchema } from "./ventrilo.js";
+import {
+  VisionhitechIpcam,
+  VisionhitechIpcam$inboundSchema,
+} from "./visionhitechipcam.js";
 import { Vnc, Vnc$inboundSchema } from "./vnc.js";
 import { Vuln, Vuln$inboundSchema } from "./vuln.js";
 import { WeblogicT3, WeblogicT3$inboundSchema } from "./weblogict3.js";
 import { WinceCerdisp, WinceCerdisp$inboundSchema } from "./wincecerdisp.js";
 import { Winrm, Winrm$inboundSchema } from "./winrm.js";
+import { WowRealmd, WowRealmd$inboundSchema } from "./wowrealmd.js";
 import { WsDiscovery, WsDiscovery$inboundSchema } from "./wsdiscovery.js";
 import { X11, X11$inboundSchema } from "./x11.js";
 import { Zeromq, Zeromq$inboundSchema } from "./zeromq.js";
@@ -268,12 +306,16 @@ export type Service = {
   banner?: string | undefined;
   bannerHashSha256?: string | undefined;
   bannerHex?: string | undefined;
+  bluemaxNuttcp?: BluemaxNuttcp | undefined;
   cert?: Certificate | undefined;
   checkpointTopology?: CheckpointTopology | undefined;
   chromecast?: Chromecast | undefined;
   ciscoIpsla?: CiscoIpsla | undefined;
+  ciscoSdwanVdaemon?: CiscoSdwanVdaemon | undefined;
+  clamav?: Clamav | undefined;
   clickhouseNative?: ClickHouseNative | undefined;
   cmore?: Cmore | undefined;
+  cnordSecurityCenter?: CnordSecurityCenter | undefined;
   coap?: Coap | undefined;
   comelitIcona?: ComelitIcona | undefined;
   compromises?: Array<Risk> | null | undefined;
@@ -311,8 +353,10 @@ export type Service = {
   ftp?: Ftp | undefined;
   gearman?: Gearman | undefined;
   gemini?: Gemini | undefined;
+  geovisionAudio?: GeovisionAudio | undefined;
   giop?: Giop | undefined;
   gopher?: Gopher | undefined;
+  grilConsole?: GrilConsole | undefined;
   hajime?: Hajime | undefined;
   hardware?: Array<Attribute> | null | undefined;
   hidVertx?: HidVertx | undefined;
@@ -339,7 +383,9 @@ export type Service = {
   l2tp?: L2Tp | undefined;
   labels?: Array<Label> | null | undefined;
   ldap?: Ldap | undefined;
+  libp2p?: Libp2P | undefined;
   lpd?: Lpd | undefined;
+  managesieve?: Managesieve | undefined;
   manticoreSphinxapi?: ManticoreSphinxapi | undefined;
   mavlink?: Mavlink | undefined;
   mdns?: Mdns | undefined;
@@ -373,10 +419,14 @@ export type Service = {
   openvpn?: Openvpn | undefined;
   openvpnMgmt?: OpenvpnMgmt | undefined;
   operatingSystems?: Array<Attribute> | null | undefined;
+  opwFsc3000?: OpwFsc3000 | undefined;
   oracle?: Oracle | undefined;
+  orencoAtrtu?: OrencoAtrtu | undefined;
+  otlpGrpc?: OtlpGrpc | undefined;
   pcAnywhere?: PcAnywhere | undefined;
   perforceP4d?: PerforceP4D | undefined;
   pgbouncer?: Pgbouncer | undefined;
+  pigeonhole?: Pigeonhole | undefined;
   pop3?: Pop3 | undefined;
   port?: number | undefined;
   portmap?: Portmap | undefined;
@@ -422,18 +472,22 @@ export type Service = {
   socks?: Socks | undefined;
   software?: Array<Attribute> | null | undefined;
   spice?: Spice | undefined;
+  spotifyConnect?: SpotifyConnect | undefined;
   ssdp?: Ssdp | undefined;
   ssh?: Ssh | undefined;
   steam?: Steam | undefined;
+  stomp?: Stomp | undefined;
   stun?: Stun | undefined;
   syncthingBep?: SyncthingBep | undefined;
   synergy?: Synergy | undefined;
   tacacsPlus?: TacacsPlus | undefined;
   tarantool?: Tarantool | undefined;
+  taurusStb?: TaurusStb | undefined;
   teamViewer?: TeamViewer | undefined;
   telexperTlxp?: TelexperTlxp | undefined;
   telnet?: Telnet | undefined;
   threats?: Array<Threat> | null | undefined;
+  thrulay?: Thrulay | undefined;
   tibia?: Tibia | undefined;
   tls?: Tls | undefined;
   tplinkKasa?: TplinkKasa | undefined;
@@ -442,12 +496,16 @@ export type Service = {
   twampControl?: TwampControl | undefined;
   unitronicsPcom?: UnitronicsPcom | undefined;
   upnp?: Upnp | undefined;
+  utilinetLpp?: UtilinetLpp | undefined;
+  vantageInfusion?: VantageInfusion | undefined;
   ventrilo?: Ventrilo | undefined;
+  visionhitechIpcam?: VisionhitechIpcam | undefined;
   vnc?: Vnc | undefined;
   vulns?: Array<Vuln> | null | undefined;
   weblogicT3?: WeblogicT3 | undefined;
   winceCerdisp?: WinceCerdisp | undefined;
   winrm?: Winrm | undefined;
+  wowRealmd?: WowRealmd | undefined;
   wsDiscovery?: WsDiscovery | undefined;
   x11?: X11 | undefined;
   zeromq?: Zeromq | undefined;
@@ -473,12 +531,16 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     banner: z.string().optional(),
     banner_hash_sha256: z.string().optional(),
     banner_hex: z.string().optional(),
+    bluemax_nuttcp: BluemaxNuttcp$inboundSchema.optional(),
     cert: Certificate$inboundSchema.optional(),
     checkpoint_topology: CheckpointTopology$inboundSchema.optional(),
     chromecast: Chromecast$inboundSchema.optional(),
     cisco_ipsla: CiscoIpsla$inboundSchema.optional(),
+    cisco_sdwan_vdaemon: CiscoSdwanVdaemon$inboundSchema.optional(),
+    clamav: Clamav$inboundSchema.optional(),
     clickhouse_native: ClickHouseNative$inboundSchema.optional(),
     cmore: Cmore$inboundSchema.optional(),
+    cnord_security_center: CnordSecurityCenter$inboundSchema.optional(),
     coap: Coap$inboundSchema.optional(),
     comelit_icona: ComelitIcona$inboundSchema.optional(),
     compromises: z.nullable(z.array(Risk$inboundSchema)).optional(),
@@ -516,8 +578,10 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     ftp: Ftp$inboundSchema.optional(),
     gearman: Gearman$inboundSchema.optional(),
     gemini: Gemini$inboundSchema.optional(),
+    geovision_audio: GeovisionAudio$inboundSchema.optional(),
     giop: Giop$inboundSchema.optional(),
     gopher: Gopher$inboundSchema.optional(),
+    gril_console: GrilConsole$inboundSchema.optional(),
     hajime: Hajime$inboundSchema.optional(),
     hardware: z.nullable(z.array(Attribute$inboundSchema)).optional(),
     hid_vertx: HidVertx$inboundSchema.optional(),
@@ -544,7 +608,9 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     l2tp: L2Tp$inboundSchema.optional(),
     labels: z.nullable(z.array(Label$inboundSchema)).optional(),
     ldap: Ldap$inboundSchema.optional(),
+    libp2p: Libp2P$inboundSchema.optional(),
     lpd: Lpd$inboundSchema.optional(),
+    managesieve: Managesieve$inboundSchema.optional(),
     manticore_sphinxapi: ManticoreSphinxapi$inboundSchema.optional(),
     mavlink: Mavlink$inboundSchema.optional(),
     mdns: Mdns$inboundSchema.optional(),
@@ -578,10 +644,14 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     openvpn: Openvpn$inboundSchema.optional(),
     openvpn_mgmt: OpenvpnMgmt$inboundSchema.optional(),
     operating_systems: z.nullable(z.array(Attribute$inboundSchema)).optional(),
+    opw_fsc3000: OpwFsc3000$inboundSchema.optional(),
     oracle: Oracle$inboundSchema.optional(),
+    orenco_atrtu: OrencoAtrtu$inboundSchema.optional(),
+    otlp_grpc: OtlpGrpc$inboundSchema.optional(),
     pc_anywhere: PcAnywhere$inboundSchema.optional(),
     perforce_p4d: PerforceP4D$inboundSchema.optional(),
     pgbouncer: Pgbouncer$inboundSchema.optional(),
+    pigeonhole: Pigeonhole$inboundSchema.optional(),
     pop3: Pop3$inboundSchema.optional(),
     port: z.number().int().optional(),
     portmap: Portmap$inboundSchema.optional(),
@@ -627,18 +697,22 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     socks: Socks$inboundSchema.optional(),
     software: z.nullable(z.array(Attribute$inboundSchema)).optional(),
     spice: Spice$inboundSchema.optional(),
+    spotify_connect: SpotifyConnect$inboundSchema.optional(),
     ssdp: Ssdp$inboundSchema.optional(),
     ssh: Ssh$inboundSchema.optional(),
     steam: Steam$inboundSchema.optional(),
+    stomp: Stomp$inboundSchema.optional(),
     stun: Stun$inboundSchema.optional(),
     syncthing_bep: SyncthingBep$inboundSchema.optional(),
     synergy: Synergy$inboundSchema.optional(),
     tacacs_plus: TacacsPlus$inboundSchema.optional(),
     tarantool: Tarantool$inboundSchema.optional(),
+    taurus_stb: TaurusStb$inboundSchema.optional(),
     team_viewer: TeamViewer$inboundSchema.optional(),
     telexper_tlxp: TelexperTlxp$inboundSchema.optional(),
     telnet: Telnet$inboundSchema.optional(),
     threats: z.nullable(z.array(Threat$inboundSchema)).optional(),
+    thrulay: Thrulay$inboundSchema.optional(),
     tibia: Tibia$inboundSchema.optional(),
     tls: Tls$inboundSchema.optional(),
     tplink_kasa: TplinkKasa$inboundSchema.optional(),
@@ -647,12 +721,16 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     twamp_control: TwampControl$inboundSchema.optional(),
     unitronics_pcom: UnitronicsPcom$inboundSchema.optional(),
     upnp: Upnp$inboundSchema.optional(),
+    utilinet_lpp: UtilinetLpp$inboundSchema.optional(),
+    vantage_infusion: VantageInfusion$inboundSchema.optional(),
     ventrilo: Ventrilo$inboundSchema.optional(),
+    visionhitech_ipcam: VisionhitechIpcam$inboundSchema.optional(),
     vnc: Vnc$inboundSchema.optional(),
     vulns: z.nullable(z.array(Vuln$inboundSchema)).optional(),
     weblogic_t3: WeblogicT3$inboundSchema.optional(),
     wince_cerdisp: WinceCerdisp$inboundSchema.optional(),
     winrm: Winrm$inboundSchema.optional(),
+    wow_realmd: WowRealmd$inboundSchema.optional(),
     ws_discovery: WsDiscovery$inboundSchema.optional(),
     x11: X11$inboundSchema.optional(),
     zeromq: Zeromq$inboundSchema.optional(),
@@ -663,9 +741,12 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
       "asterisk_manager_interface": "asteriskManagerInterface",
       "banner_hash_sha256": "bannerHashSha256",
       "banner_hex": "bannerHex",
+      "bluemax_nuttcp": "bluemaxNuttcp",
       "checkpoint_topology": "checkpointTopology",
       "cisco_ipsla": "ciscoIpsla",
+      "cisco_sdwan_vdaemon": "ciscoSdwanVdaemon",
       "clickhouse_native": "clickhouseNative",
+      "cnord_security_center": "cnordSecurityCenter",
       "comelit_icona": "comelitIcona",
       "cortex_xdr_p2p": "cortexXdrP2p",
       "crestron_cp3": "crestronCp3",
@@ -678,6 +759,8 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
       "elf_file": "elfFile",
       "flash_socket_policy": "flashSocketPolicy",
       "fourd_server": "fourdServer",
+      "geovision_audio": "geovisionAudio",
+      "gril_console": "grilConsole",
       "hid_vertx": "hidVertx",
       "hoosat_htnd_grpc": "hoosatHtndGrpc",
       "iec60870_5_104": "iec608705104",
@@ -693,6 +776,9 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
       "opc_ua": "opcUa",
       "openvpn_mgmt": "openvpnMgmt",
       "operating_systems": "operatingSystems",
+      "opw_fsc3000": "opwFsc3000",
+      "orenco_atrtu": "orencoAtrtu",
+      "otlp_grpc": "otlpGrpc",
       "pc_anywhere": "pcAnywhere",
       "perforce_p4d": "perforceP4d",
       "profinet_cm": "profinetCm",
@@ -708,8 +794,10 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
       "sap_router": "sapRouter",
       "scan_time": "scanTime",
       "seven_days_to_die": "sevenDaysToDie",
+      "spotify_connect": "spotifyConnect",
       "syncthing_bep": "syncthingBep",
       "tacacs_plus": "tacacsPlus",
+      "taurus_stb": "taurusStb",
       "team_viewer": "teamViewer",
       "telexper_tlxp": "telexperTlxp",
       "tplink_kasa": "tplinkKasa",
@@ -717,8 +805,12 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
       "tvt_control": "tvtControl",
       "twamp_control": "twampControl",
       "unitronics_pcom": "unitronicsPcom",
+      "utilinet_lpp": "utilinetLpp",
+      "vantage_infusion": "vantageInfusion",
+      "visionhitech_ipcam": "visionhitechIpcam",
       "weblogic_t3": "weblogicT3",
       "wince_cerdisp": "winceCerdisp",
+      "wow_realmd": "wowRealmd",
       "ws_discovery": "wsDiscovery",
     });
   });
