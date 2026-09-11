@@ -37,6 +37,7 @@ import { Jupyter, Jupyter$inboundSchema } from "./jupyter.js";
 import { Keycloak, Keycloak$inboundSchema } from "./keycloak.js";
 import { Kubernetes, Kubernetes$inboundSchema } from "./kubernetes.js";
 import { Mcp, Mcp$inboundSchema } from "./mcp.js";
+import { NetflixNrdp, NetflixNrdp$inboundSchema } from "./netflixnrdp.js";
 import {
   NginxProxyManager,
   NginxProxyManager$inboundSchema,
@@ -95,6 +96,7 @@ export type EndpointScanState = {
   keycloak?: Keycloak | undefined;
   kubernetes?: Kubernetes | undefined;
   mcp?: Mcp | undefined;
+  netflixNrdp?: NetflixNrdp | undefined;
   nginxProxyManager?: NginxProxyManager | undefined;
   ollama?: Ollama | undefined;
   openDirectory?: OpenDirectory | undefined;
@@ -150,6 +152,7 @@ export const EndpointScanState$inboundSchema: z.ZodType<
   keycloak: Keycloak$inboundSchema.optional(),
   kubernetes: Kubernetes$inboundSchema.optional(),
   mcp: Mcp$inboundSchema.optional(),
+  netflix_nrdp: NetflixNrdp$inboundSchema.optional(),
   nginx_proxy_manager: NginxProxyManager$inboundSchema.optional(),
   ollama: Ollama$inboundSchema.optional(),
   open_directory: OpenDirectory$inboundSchema.optional(),
@@ -178,6 +181,7 @@ export const EndpointScanState$inboundSchema: z.ZodType<
     "cobalt_strike": "cobaltStrike",
     "endpoint_type": "endpointType",
     "ivanti_avalanche": "ivantiAvalanche",
+    "netflix_nrdp": "netflixNrdp",
     "nginx_proxy_manager": "nginxProxyManager",
     "open_directory": "openDirectory",
     "plex_media_server": "plexMediaServer",
