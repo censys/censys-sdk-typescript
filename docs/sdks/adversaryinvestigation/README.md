@@ -25,7 +25,7 @@ Create an asynchronous CensEye pivot analysis job for a host, web property, or c
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -57,7 +57,7 @@ import { threatHuntingCreateCenseyeJob } from "@censys/platform-sdk/funcs/threat
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -115,7 +115,7 @@ Retrieve the current status of a CensEye pivot analysis job. Use this to poll fo
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -141,7 +141,7 @@ import { threatHuntingGetCenseyeJob } from "@censys/platform-sdk/funcs/threatHun
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -193,7 +193,7 @@ Retrieve the results of a completed CensEye pivot analysis job. Each result cont
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -219,7 +219,7 @@ import { threatHuntingGetCenseyeJobResults } from "@censys/platform-sdk/funcs/th
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -271,7 +271,7 @@ Retrieve the historical observations of hosts associated with a certificate. Thi
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -302,7 +302,7 @@ import { threatHuntingGetHostObservationsWithCertificate } from "@censys/platfor
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -359,7 +359,7 @@ Initiate a scan to look for a currently unobserved service at a specific IP and 
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -392,7 +392,7 @@ import { threatHuntingCreateTrackedScan } from "@censys/platform-sdk/funcs/threa
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -451,7 +451,7 @@ Retrieve a list of active threats observed by Censys by aggregating threat IDs a
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -477,7 +477,7 @@ import { threatHuntingListThreats } from "@censys/platform-sdk/funcs/threatHunti
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -529,7 +529,7 @@ Get counts of web assets for specific field-value pairs and combinations of fiel
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -569,7 +569,7 @@ import { threatHuntingValueCounts } from "@censys/platform-sdk/funcs/threatHunti
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
