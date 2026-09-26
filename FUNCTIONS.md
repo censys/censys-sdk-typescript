@@ -25,7 +25,7 @@ import { globalDataSearch } from "@censys/platform-sdk/funcs/globalDataSearch.js
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
