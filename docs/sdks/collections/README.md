@@ -26,7 +26,7 @@ List all collections for an organization. Retrieved information includes collect
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -57,7 +57,7 @@ import { collectionsList } from "@censys/platform-sdk/funcs/collectionsList.js";
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -114,7 +114,7 @@ Create a new collection.<br><br>This endpoint does not cost credits to execute.
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -144,7 +144,7 @@ import { collectionsCreate } from "@censys/platform-sdk/funcs/collectionsCreate.
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -200,7 +200,7 @@ Delete a collection.<br><br>This endpoint does not cost credits to execute.
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -226,7 +226,7 @@ import { collectionsDelete } from "@censys/platform-sdk/funcs/collectionsDelete.
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -278,7 +278,7 @@ Retrieve information about a collection. Retrieved information includes its name
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -304,7 +304,7 @@ import { collectionsGet } from "@censys/platform-sdk/funcs/collectionsGet.js";
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -356,7 +356,7 @@ Update a collection's name, description, and/or query.<br><br>This endpoint does
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -387,7 +387,7 @@ import { collectionsUpdate } from "@censys/platform-sdk/funcs/collectionsUpdate.
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -444,7 +444,7 @@ Retrieve the event history for a collection. This includes the addition or remov
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -474,7 +474,7 @@ import { collectionsListEvents } from "@censys/platform-sdk/funcs/collectionsLis
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -530,7 +530,7 @@ Aggregate results for a Platform search query that targets a collection's assets
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -561,7 +561,7 @@ import { collectionsAggregate } from "@censys/platform-sdk/funcs/collectionsAggr
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -618,7 +618,7 @@ Run a search query across a collection's assets. Reference the [documentation on
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -651,7 +651,7 @@ import { collectionsSearch } from "@censys/platform-sdk/funcs/collectionsSearch.
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 

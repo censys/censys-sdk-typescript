@@ -11,6 +11,12 @@ Endpoints related to the Adversary Investigation product
 * [getCenseyeJob](#getcenseyejob) - CensEye: Get job status
 * [getCenseyeJobResults](#getcenseyejobresults) - CensEye: Get job results
 * [getHostObservationsWithCertificate](#gethostobservationswithcertificate) - Get host history for a certificate
+* [createInvestigationFileUpload](#createinvestigationfileupload) - Investigations: Create file upload
+* [listInvestigationJobs](#listinvestigationjobs) - Investigations: List jobs
+* [createInvestigationJob](#createinvestigationjob) - Investigations: Create job
+* [getInvestigationJob](#getinvestigationjob) - Investigations: Get job status
+* [getInvestigationJobResults](#getinvestigationjobresults) - Investigations: Get job results
+* [getInvestigationUsage](#getinvestigationusage) - Investigations: Get usage
 * [createTrackedScan](#createtrackedscan) - Live Discovery: Initiate a new scan
 * [getTrackedScanThreatHunting](#gettrackedscanthreathunting) - Get scan status
 * [listThreats](#listthreats) - List active threats
@@ -27,7 +33,7 @@ List CensEye pivot analysis jobs for the current organization. Results are pagin
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -55,7 +61,7 @@ import { threatHuntingListCenseyeJobs } from "@censys/platform-sdk/funcs/threatH
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -109,7 +115,7 @@ Create an asynchronous CensEye pivot analysis job for a host, web property, or c
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -141,7 +147,7 @@ import { threatHuntingCreateCenseyeJob } from "@censys/platform-sdk/funcs/threat
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -199,7 +205,7 @@ Retrieve the current status of a CensEye pivot analysis job. Use this to poll fo
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -225,7 +231,7 @@ import { threatHuntingGetCenseyeJob } from "@censys/platform-sdk/funcs/threatHun
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -277,7 +283,7 @@ Retrieve the results of a completed CensEye pivot analysis job. Each result cont
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -303,7 +309,7 @@ import { threatHuntingGetCenseyeJobResults } from "@censys/platform-sdk/funcs/th
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -346,7 +352,7 @@ run();
 
 ## getHostObservationsWithCertificate
 
-Retrieve the historical observations of hosts associated with a certificate. This is useful for threat hunting, detection engineering, and timeline generation. Certificate history is also visible to Adversary Investigation users in the Platform UI on the [certificate timeline](https://docs.censys.com/docs/platform-threat-hunting-use-cert-history-to-build-better-detections#/).<br><br>You can define a specific time frame of interest. If you do not specify a time frame, this endpoint will search the historical dataset that is available to your account. You may also filter results by port and transport protocol.<br><br>This endpoint is available to organizations that have access to the Adversary Investigation module. It costs 5 credits per page of results.
+Retrieve the historical observations of hosts associated with a certificate. This is useful for threat hunting, detection engineering, and timeline generation. Certificate history is also visible to Adversary Investigation users in the Platform UI on the [certificate timeline](https://docs.censys.com/docs/platform-threat-hunting-use-cert-history-to-build-better-detections#/).<br><br>You can define a specific time frame of interest. If you do not specify a time frame, this endpoint will search the historical dataset that is available to your account.<br><br>For workspaces with a history limit, the API returns observation ranges that overlap the allowed history window. The window starts at 00:00 UTC the allowed number of days ago and ends at the time of the request. Ranges are returned in full, with their original start and end times, even if they extend outside the window.<br><br>You may also filter results by port and transport protocol.<br><br>This endpoint is available to organizations that have access to the Adversary Investigation module. This endpoint costs one credit per page of results.
 
 ### Example Usage
 
@@ -355,7 +361,7 @@ Retrieve the historical observations of hosts associated with a certificate. Thi
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -386,7 +392,7 @@ import { threatHuntingGetHostObservationsWithCertificate } from "@censys/platfor
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -432,6 +438,494 @@ run();
 | errors.ErrorModel          | 500                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
+## createInvestigationFileUpload
+
+Prepare to attach an evidence file to an investigation. This endpoint does not accept the file. It returns a URL to send the file to and an identifier to pass to the [create job endpoint](https://docs.censys.com/reference/v3-threathunting-investigations-jobs-create) afterwards.<br><br>Upload the file with an HTTP PUT to `upload_url` and send `upload_headers` exactly as returned by this endpoint. The URL grants access to that one file and stops working at `expire_time`; a file uploaded before that stays usable afterwards. Prepare one upload per file.<br><br>Start the investigation promptly after uploading. There is a limit on how many uploaded files you may hold without using them and starting an investigation from a file releases its slot. A file that no investigation references is discarded once it passes the service's retention window for unused uploads. A file an investigation does reference is kept with that investigation for as long as the investigation itself.<br><br>To use this endpoint, your organization must have access to the Adversary Investigation module.<br><br>This endpoint does not cost any credits to execute.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v3-threathunting-investigations-files-create" method="post" path="/v3/threat-hunting/investigations/files" -->
+```typescript
+import { SDK } from "@censys/platform-sdk";
+
+const sdk = new SDK({
+  organizationId: "<id>",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.threatHunting.createInvestigationFileUpload({
+    createInvestigationFileInputBody: {
+      contentType: "application/pdf",
+      filename: "incident-report.pdf",
+      sizeBytes: 1048576,
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { threatHuntingCreateInvestigationFileUpload } from "@censys/platform-sdk/funcs/threatHuntingCreateInvestigationFileUpload.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  organizationId: "<id>",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await threatHuntingCreateInvestigationFileUpload(sdk, {
+    createInvestigationFileInputBody: {
+      contentType: "application/pdf",
+      filename: "incident-report.pdf",
+      sizeBytes: 1048576,
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("threatHuntingCreateInvestigationFileUpload failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3ThreathuntingInvestigationsFilesCreateRequest](../../models/operations/v3threathuntinginvestigationsfilescreaterequest.md)                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3ThreathuntingInvestigationsFilesCreateResponse](../../models/operations/v3threathuntinginvestigationsfilescreateresponse.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 409, 413, 422, 429    | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
+## listInvestigationJobs
+
+List the AI investigations you have started. The most recent investigations are listed first and only investigations that have not passed their retention period are shown. Results are paginated and include investigations started in the Platform UI as well as through the API.<br><br>To use this endpoint, your organization must have access to the Adversary Investigation module.<br><br>This endpoint does not cost any credits to execute.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v3-threathunting-investigations-jobs-list" method="get" path="/v3/threat-hunting/investigations/jobs" -->
+```typescript
+import { SDK } from "@censys/platform-sdk";
+
+const sdk = new SDK({
+  organizationId: "<id>",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.threatHunting.listInvestigationJobs({});
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { threatHuntingListInvestigationJobs } from "@censys/platform-sdk/funcs/threatHuntingListInvestigationJobs.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  organizationId: "<id>",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await threatHuntingListInvestigationJobs(sdk, {});
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("threatHuntingListInvestigationJobs failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3ThreathuntingInvestigationsJobsListRequest](../../models/operations/v3threathuntinginvestigationsjobslistrequest.md)                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3ThreathuntingInvestigationsJobsListResponse](../../models/operations/v3threathuntinginvestigationsjobslistresponse.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 409, 422              | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
+## createInvestigationJob
+
+Start an [AI investigation](https://docs.censys.com/docs/platform-ai-investigations) from a set of indicators, a set of previously uploaded evidence files, or both. Supply at least one `indicators` or `file_ids`. To use files, upload them first with the [create file upload endpoint](https://docs.censys.com/reference/v3-threathunting-investigations-files-create).<br><br>This endpoint returns a `job_id` that you can poll to retrieve its status and results.<br><br>Provide `start_time` and `end_time` to scope the investigation to a time frame, or `start_time` alone to scope it from that time up to now. Omit both to investigate current data.<br><br>To use this endpoint, your organization must have access to the Adversary Investigation module.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v3-threathunting-investigations-jobs-create" method="post" path="/v3/threat-hunting/investigations/jobs" -->
+```typescript
+import { SDK } from "@censys/platform-sdk";
+
+const sdk = new SDK({
+  organizationId: "<id>",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.threatHunting.createInvestigationJob({
+    createInvestigationJobInputBody: {
+      endTime: new Date("2026-08-01T00:00:00Z"),
+      fileIds: [
+        "file_550e8400-e29b-41d4-a716-446655440000",
+      ],
+      indicators: [
+        "1.1.1.1",
+        "example.com",
+      ],
+      startTime: new Date("2026-06-01T00:00:00Z"),
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { threatHuntingCreateInvestigationJob } from "@censys/platform-sdk/funcs/threatHuntingCreateInvestigationJob.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  organizationId: "<id>",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await threatHuntingCreateInvestigationJob(sdk, {
+    createInvestigationJobInputBody: {
+      endTime: new Date("2026-08-01T00:00:00Z"),
+      fileIds: [
+        "file_550e8400-e29b-41d4-a716-446655440000",
+      ],
+      indicators: [
+        "1.1.1.1",
+        "example.com",
+      ],
+      startTime: new Date("2026-06-01T00:00:00Z"),
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("threatHuntingCreateInvestigationJob failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3ThreathuntingInvestigationsJobsCreateRequest](../../models/operations/v3threathuntinginvestigationsjobscreaterequest.md)                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3ThreathuntingInvestigationsJobsCreateResponse](../../models/operations/v3threathuntinginvestigationsjobscreateresponse.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 409, 413, 422, 429    | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
+## getInvestigationJob
+
+Retrieve the status of one AI investigation. Poll this endpoint until the investigation is completed, then download its report and evidence.<br><br>An investigation that does not exist, belongs to another user, or has passed its retention window will return a “not found” response.<br><br>To use this endpoint, your organization must have access to the Adversary Investigation module.<br><br>This endpoint does not cost any credits to execute.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v3-threathunting-investigations-jobs-get" method="get" path="/v3/threat-hunting/investigations/jobs/{job_id}" -->
+```typescript
+import { SDK } from "@censys/platform-sdk";
+
+const sdk = new SDK({
+  organizationId: "<id>",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.threatHunting.getInvestigationJob({
+    jobId: "9f1c7f36-34af-416b-82b3-b496756f4d5e",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { threatHuntingGetInvestigationJob } from "@censys/platform-sdk/funcs/threatHuntingGetInvestigationJob.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  organizationId: "<id>",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await threatHuntingGetInvestigationJob(sdk, {
+    jobId: "9f1c7f36-34af-416b-82b3-b496756f4d5e",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("threatHuntingGetInvestigationJob failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3ThreathuntingInvestigationsJobsGetRequest](../../models/operations/v3threathuntinginvestigationsjobsgetrequest.md)                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3ThreathuntingInvestigationsJobsGetResponse](../../models/operations/v3threathuntinginvestigationsjobsgetresponse.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 404, 409, 422         | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
+## getInvestigationJobResults
+
+Download the ZIP archive that contains a completed AI investigation's report and evidence. You can only retrieve the job results for an investigation you started. The archive is composed when you request it and is never stored.<br><br>Investigations that did not publish any findings or have passed their retention windows will return a “not found” response.<br><br>If an investigation’s ZIP archive is larger than 20 megabytes, you will receive a “payload too large” response. You can only retrieve the results for investigations that exceed this size limit within the Platform UI.<br><br>To use this endpoint, your organization must have access to the Adversary Investigation module.<br><br>This endpoint does not cost any credits to execute.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v3-threathunting-investigations-jobs-results" method="get" path="/v3/threat-hunting/investigations/jobs/{job_id}/results" -->
+```typescript
+import { SDK } from "@censys/platform-sdk";
+
+const sdk = new SDK({
+  organizationId: "<id>",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.threatHunting.getInvestigationJobResults({
+    jobId: "abfb0cd9-3719-491a-be31-8dbbaaff559c",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { threatHuntingGetInvestigationJobResults } from "@censys/platform-sdk/funcs/threatHuntingGetInvestigationJobResults.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  organizationId: "<id>",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await threatHuntingGetInvestigationJobResults(sdk, {
+    jobId: "abfb0cd9-3719-491a-be31-8dbbaaff559c",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("threatHuntingGetInvestigationJobResults failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3ThreathuntingInvestigationsJobsResultsRequest](../../models/operations/v3threathuntinginvestigationsjobsresultsrequest.md)                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3ThreathuntingInvestigationsJobsResultsResponse](../../models/operations/v3threathuntinginvestigationsjobsresultsresponse.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 404, 409, 413, 422    | application/problem+json   |
+| errors.ErrorModel          | 500, 503, 504              | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
+## getInvestigationUsage
+
+Retrieve your organization's investigation limit, current usage, and the number of remaining investigations.<br><br>To use this endpoint, your organization must have access to the Adversary Investigation module.<br><br>This endpoint does not cost any credits to execute.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v3-threathunting-investigations-usage-get" method="get" path="/v3/threat-hunting/investigations/usage" -->
+```typescript
+import { SDK } from "@censys/platform-sdk";
+
+const sdk = new SDK({
+  organizationId: "<id>",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.threatHunting.getInvestigationUsage({});
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { threatHuntingGetInvestigationUsage } from "@censys/platform-sdk/funcs/threatHuntingGetInvestigationUsage.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  organizationId: "<id>",
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await threatHuntingGetInvestigationUsage(sdk, {});
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("threatHuntingGetInvestigationUsage failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3ThreathuntingInvestigationsUsageGetRequest](../../models/operations/v3threathuntinginvestigationsusagegetrequest.md)                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3ThreathuntingInvestigationsUsageGetResponse](../../models/operations/v3threathuntinginvestigationsusagegetresponse.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 409, 422              | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
 ## createTrackedScan
 
 Initiate a scan to look for a currently unobserved service at a specific IP and port (`ip:port`) or hostname and port (`hostname:port`). This is equivalent to the [Live Discovery](https://docs.censys.com/docs/platform-threat-hunting-use-live-scan-and-rescan-to-validate-infrastructure#/) feature available in the UI, but you can also target web properties in addition to hosts.<br><br>The scan may take several minutes to complete. The response will contain a scan ID that you can use to [monitor the scan's status](https://docs.censys.com/reference/v3-threathunting-scans-get#/). After the scan completes, perform a lookup on the target asset to retrieve detailed scan information.<br><br>This endpoint is available to organizations that have access to the Adversary Investigation module. It costs 15 credits to execute this endpoint.
@@ -443,7 +937,7 @@ Initiate a scan to look for a currently unobserved service at a specific IP and 
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -476,7 +970,7 @@ import { threatHuntingCreateTrackedScan } from "@censys/platform-sdk/funcs/threa
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -535,7 +1029,7 @@ Retrieve the current status of a scan by its ID. This endpoint works for both [L
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -561,7 +1055,7 @@ import { threatHuntingGetTrackedScanThreatHunting } from "@censys/platform-sdk/f
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -613,7 +1107,7 @@ Retrieve a list of active threats observed by Censys by aggregating threat IDs a
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -639,7 +1133,7 @@ import { threatHuntingListThreats } from "@censys/platform-sdk/funcs/threatHunti
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -691,7 +1185,7 @@ Get counts of web assets for specific field-value pairs and combinations of fiel
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -731,7 +1225,7 @@ import { threatHuntingValueCounts } from "@censys/platform-sdk/funcs/threatHunti
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 

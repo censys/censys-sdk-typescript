@@ -177,7 +177,7 @@ async function $do(
       key: "Result",
     }),
     M.jsonErr(401, errors.AuthenticationError$inboundSchema),
-    M.jsonErr([400, 403, 422], errors.ErrorModel$inboundSchema, {
+    M.jsonErr([400, 403, 409, 422], errors.ErrorModel$inboundSchema, {
       ctype: "application/problem+json",
     }),
     M.jsonErr(500, errors.ErrorModel$inboundSchema, {

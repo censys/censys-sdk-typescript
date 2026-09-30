@@ -3,12 +3,18 @@
  */
 
 import { threatHuntingCreateCenseyeJob } from "../funcs/threatHuntingCreateCenseyeJob.js";
+import { threatHuntingCreateInvestigationFileUpload } from "../funcs/threatHuntingCreateInvestigationFileUpload.js";
+import { threatHuntingCreateInvestigationJob } from "../funcs/threatHuntingCreateInvestigationJob.js";
 import { threatHuntingCreateTrackedScan } from "../funcs/threatHuntingCreateTrackedScan.js";
 import { threatHuntingGetCenseyeJob } from "../funcs/threatHuntingGetCenseyeJob.js";
 import { threatHuntingGetCenseyeJobResults } from "../funcs/threatHuntingGetCenseyeJobResults.js";
 import { threatHuntingGetHostObservationsWithCertificate } from "../funcs/threatHuntingGetHostObservationsWithCertificate.js";
+import { threatHuntingGetInvestigationJob } from "../funcs/threatHuntingGetInvestigationJob.js";
+import { threatHuntingGetInvestigationJobResults } from "../funcs/threatHuntingGetInvestigationJobResults.js";
+import { threatHuntingGetInvestigationUsage } from "../funcs/threatHuntingGetInvestigationUsage.js";
 import { threatHuntingGetTrackedScanThreatHunting } from "../funcs/threatHuntingGetTrackedScanThreatHunting.js";
 import { threatHuntingListCenseyeJobs } from "../funcs/threatHuntingListCenseyeJobs.js";
+import { threatHuntingListInvestigationJobs } from "../funcs/threatHuntingListInvestigationJobs.js";
 import { threatHuntingListThreats } from "../funcs/threatHuntingListThreats.js";
 import { threatHuntingValueCounts } from "../funcs/threatHuntingValueCounts.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
@@ -88,7 +94,7 @@ export class ThreatHunting extends ClientSDK {
    * Get host history for a certificate
    *
    * @remarks
-   * Retrieve the historical observations of hosts associated with a certificate. This is useful for threat hunting, detection engineering, and timeline generation. Certificate history is also visible to Adversary Investigation users in the Platform UI on the [certificate timeline](https://docs.censys.com/docs/platform-threat-hunting-use-cert-history-to-build-better-detections#/).<br><br>You can define a specific time frame of interest. If you do not specify a time frame, this endpoint will search the historical dataset that is available to your account. You may also filter results by port and transport protocol.<br><br>This endpoint is available to organizations that have access to the Adversary Investigation module. It costs 5 credits per page of results.
+   * Retrieve the historical observations of hosts associated with a certificate. This is useful for threat hunting, detection engineering, and timeline generation. Certificate history is also visible to Adversary Investigation users in the Platform UI on the [certificate timeline](https://docs.censys.com/docs/platform-threat-hunting-use-cert-history-to-build-better-detections#/).<br><br>You can define a specific time frame of interest. If you do not specify a time frame, this endpoint will search the historical dataset that is available to your account.<br><br>For workspaces with a history limit, the API returns observation ranges that overlap the allowed history window. The window starts at 00:00 UTC the allowed number of days ago and ends at the time of the request. Ranges are returned in full, with their original start and end times, even if they extend outside the window.<br><br>You may also filter results by port and transport protocol.<br><br>This endpoint is available to organizations that have access to the Adversary Investigation module. This endpoint costs one credit per page of results.
    */
   async getHostObservationsWithCertificate(
     request:
@@ -98,6 +104,108 @@ export class ThreatHunting extends ClientSDK {
     operations.V3ThreathuntingGetHostObservationsWithCertificateResponse
   > {
     return unwrapAsync(threatHuntingGetHostObservationsWithCertificate(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Investigations: Create file upload
+   *
+   * @remarks
+   * Prepare to attach an evidence file to an investigation. This endpoint does not accept the file. It returns a URL to send the file to and an identifier to pass to the [create job endpoint](https://docs.censys.com/reference/v3-threathunting-investigations-jobs-create) afterwards.<br><br>Upload the file with an HTTP PUT to `upload_url` and send `upload_headers` exactly as returned by this endpoint. The URL grants access to that one file and stops working at `expire_time`; a file uploaded before that stays usable afterwards. Prepare one upload per file.<br><br>Start the investigation promptly after uploading. There is a limit on how many uploaded files you may hold without using them and starting an investigation from a file releases its slot. A file that no investigation references is discarded once it passes the service's retention window for unused uploads. A file an investigation does reference is kept with that investigation for as long as the investigation itself.<br><br>To use this endpoint, your organization must have access to the Adversary Investigation module.<br><br>This endpoint does not cost any credits to execute.
+   */
+  async createInvestigationFileUpload(
+    request: operations.V3ThreathuntingInvestigationsFilesCreateRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3ThreathuntingInvestigationsFilesCreateResponse> {
+    return unwrapAsync(threatHuntingCreateInvestigationFileUpload(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Investigations: List jobs
+   *
+   * @remarks
+   * List the AI investigations you have started. The most recent investigations are listed first and only investigations that have not passed their retention period are shown. Results are paginated and include investigations started in the Platform UI as well as through the API.<br><br>To use this endpoint, your organization must have access to the Adversary Investigation module.<br><br>This endpoint does not cost any credits to execute.
+   */
+  async listInvestigationJobs(
+    request: operations.V3ThreathuntingInvestigationsJobsListRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3ThreathuntingInvestigationsJobsListResponse> {
+    return unwrapAsync(threatHuntingListInvestigationJobs(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Investigations: Create job
+   *
+   * @remarks
+   * Start an [AI investigation](https://docs.censys.com/docs/platform-ai-investigations) from a set of indicators, a set of previously uploaded evidence files, or both. Supply at least one `indicators` or `file_ids`. To use files, upload them first with the [create file upload endpoint](https://docs.censys.com/reference/v3-threathunting-investigations-files-create).<br><br>This endpoint returns a `job_id` that you can poll to retrieve its status and results.<br><br>Provide `start_time` and `end_time` to scope the investigation to a time frame, or `start_time` alone to scope it from that time up to now. Omit both to investigate current data.<br><br>To use this endpoint, your organization must have access to the Adversary Investigation module.
+   */
+  async createInvestigationJob(
+    request: operations.V3ThreathuntingInvestigationsJobsCreateRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3ThreathuntingInvestigationsJobsCreateResponse> {
+    return unwrapAsync(threatHuntingCreateInvestigationJob(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Investigations: Get job status
+   *
+   * @remarks
+   * Retrieve the status of one AI investigation. Poll this endpoint until the investigation is completed, then download its report and evidence.<br><br>An investigation that does not exist, belongs to another user, or has passed its retention window will return a “not found” response.<br><br>To use this endpoint, your organization must have access to the Adversary Investigation module.<br><br>This endpoint does not cost any credits to execute.
+   */
+  async getInvestigationJob(
+    request: operations.V3ThreathuntingInvestigationsJobsGetRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3ThreathuntingInvestigationsJobsGetResponse> {
+    return unwrapAsync(threatHuntingGetInvestigationJob(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Investigations: Get job results
+   *
+   * @remarks
+   * Download the ZIP archive that contains a completed AI investigation's report and evidence. You can only retrieve the job results for an investigation you started. The archive is composed when you request it and is never stored.<br><br>Investigations that did not publish any findings or have passed their retention windows will return a “not found” response.<br><br>If an investigation’s ZIP archive is larger than 20 megabytes, you will receive a “payload too large” response. You can only retrieve the results for investigations that exceed this size limit within the Platform UI.<br><br>To use this endpoint, your organization must have access to the Adversary Investigation module.<br><br>This endpoint does not cost any credits to execute.
+   */
+  async getInvestigationJobResults(
+    request: operations.V3ThreathuntingInvestigationsJobsResultsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3ThreathuntingInvestigationsJobsResultsResponse> {
+    return unwrapAsync(threatHuntingGetInvestigationJobResults(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Investigations: Get usage
+   *
+   * @remarks
+   * Retrieve your organization's investigation limit, current usage, and the number of remaining investigations.<br><br>To use this endpoint, your organization must have access to the Adversary Investigation module.<br><br>This endpoint does not cost any credits to execute.
+   */
+  async getInvestigationUsage(
+    request: operations.V3ThreathuntingInvestigationsUsageGetRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3ThreathuntingInvestigationsUsageGetResponse> {
+    return unwrapAsync(threatHuntingGetInvestigationUsage(
       this,
       request,
       options,
