@@ -1,0 +1,18 @@
+# V3ThreathuntingInvestigationsJobsGetRequest
+
+## Example Usage
+
+```typescript
+import { V3ThreathuntingInvestigationsJobsGetRequest } from "@censys/platform-sdk/models/operations";
+
+let value: V3ThreathuntingInvestigationsJobsGetRequest = {
+  jobId: "dff1f0ba-e6ea-450e-b84c-88e3572fe3aa",
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                                                                                | Type                                                                                                                                                                                                                 | Required                                                                                                                                                                                                             | Description                                                                                                                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `organizationId`                                                                                                                                                                                                     | *string*                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                   | The ID of a Censys organization to associate the request with. See the [Getting Started docs](https://docs.censys.com/reference/get-started#step-3-find-and-use-your-organization-id-optional) for more information. |
+| `jobId`                                                                                                                                                                                                              | *string*                                                                                                                                                                                                             | :heavy_check_mark:                                                                                                                                                                                                   | The unique identifier of the investigation.                                                                                                                                                                          |

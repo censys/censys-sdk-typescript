@@ -82,7 +82,7 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 import { SDK } from "@censys/platform-sdk";
 
 const sdk = new SDK({
-  organizationId: "11111111-2222-3333-4444-555555555555",
+  organizationId: "<id>",
   personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
@@ -130,6 +130,12 @@ run();
 * [getCenseyeJob](docs/sdks/adversaryinvestigation/README.md#getcenseyejob) - CensEye: Get job status
 * [getCenseyeJobResults](docs/sdks/adversaryinvestigation/README.md#getcenseyejobresults) - CensEye: Get job results
 * [getHostObservationsWithCertificate](docs/sdks/adversaryinvestigation/README.md#gethostobservationswithcertificate) - Get host history for a certificate
+* [createInvestigationFileUpload](docs/sdks/adversaryinvestigation/README.md#createinvestigationfileupload) - Investigations: Create file upload
+* [listInvestigationJobs](docs/sdks/adversaryinvestigation/README.md#listinvestigationjobs) - Investigations: List jobs
+* [createInvestigationJob](docs/sdks/adversaryinvestigation/README.md#createinvestigationjob) - Investigations: Create job
+* [getInvestigationJob](docs/sdks/adversaryinvestigation/README.md#getinvestigationjob) - Investigations: Get job status
+* [getInvestigationJobResults](docs/sdks/adversaryinvestigation/README.md#getinvestigationjobresults) - Investigations: Get job results
+* [getInvestigationUsage](docs/sdks/adversaryinvestigation/README.md#getinvestigationusage) - Investigations: Get usage
 * [createTrackedScan](docs/sdks/adversaryinvestigation/README.md#createtrackedscan) - Live Discovery: Initiate a new scan
 * [listThreats](docs/sdks/adversaryinvestigation/README.md#listthreats) - List active threats
 * [valueCounts](docs/sdks/adversaryinvestigation/README.md#valuecounts) - CensEye: Retrieve value counts to discover pivots
@@ -196,6 +202,12 @@ run();
 * [getCenseyeJob](docs/sdks/threathunting/README.md#getcenseyejob) - CensEye: Get job status
 * [getCenseyeJobResults](docs/sdks/threathunting/README.md#getcenseyejobresults) - CensEye: Get job results
 * [getHostObservationsWithCertificate](docs/sdks/threathunting/README.md#gethostobservationswithcertificate) - Get host history for a certificate
+* [createInvestigationFileUpload](docs/sdks/threathunting/README.md#createinvestigationfileupload) - Investigations: Create file upload
+* [listInvestigationJobs](docs/sdks/threathunting/README.md#listinvestigationjobs) - Investigations: List jobs
+* [createInvestigationJob](docs/sdks/threathunting/README.md#createinvestigationjob) - Investigations: Create job
+* [getInvestigationJob](docs/sdks/threathunting/README.md#getinvestigationjob) - Investigations: Get job status
+* [getInvestigationJobResults](docs/sdks/threathunting/README.md#getinvestigationjobresults) - Investigations: Get job results
+* [getInvestigationUsage](docs/sdks/threathunting/README.md#getinvestigationusage) - Investigations: Get usage
 * [createTrackedScan](docs/sdks/threathunting/README.md#createtrackedscan) - Live Discovery: Initiate a new scan
 * [getTrackedScanThreatHunting](docs/sdks/threathunting/README.md#gettrackedscanthreathunting) - Get scan status
 * [listThreats](docs/sdks/threathunting/README.md#listthreats) - List active threats
@@ -277,6 +289,10 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`tagsAndCommentsUpdateTag`](docs/sdks/tagsandcomments/README.md#updatetag) - Update a tag
 - [`threatHuntingCreateCenseyeJob`](docs/sdks/adversaryinvestigation/README.md#createcenseyejob) - CensEye: Create a pivot analysis job
 - [`threatHuntingCreateCenseyeJob`](docs/sdks/threathunting/README.md#createcenseyejob) - CensEye: Create a pivot analysis job
+- [`threatHuntingCreateInvestigationFileUpload`](docs/sdks/adversaryinvestigation/README.md#createinvestigationfileupload) - Investigations: Create file upload
+- [`threatHuntingCreateInvestigationFileUpload`](docs/sdks/threathunting/README.md#createinvestigationfileupload) - Investigations: Create file upload
+- [`threatHuntingCreateInvestigationJob`](docs/sdks/adversaryinvestigation/README.md#createinvestigationjob) - Investigations: Create job
+- [`threatHuntingCreateInvestigationJob`](docs/sdks/threathunting/README.md#createinvestigationjob) - Investigations: Create job
 - [`threatHuntingCreateTrackedScan`](docs/sdks/adversaryinvestigation/README.md#createtrackedscan) - Live Discovery: Initiate a new scan
 - [`threatHuntingCreateTrackedScan`](docs/sdks/threathunting/README.md#createtrackedscan) - Live Discovery: Initiate a new scan
 - [`threatHuntingGetCenseyeJob`](docs/sdks/adversaryinvestigation/README.md#getcenseyejob) - CensEye: Get job status
@@ -285,8 +301,16 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`threatHuntingGetCenseyeJobResults`](docs/sdks/threathunting/README.md#getcenseyejobresults) - CensEye: Get job results
 - [`threatHuntingGetHostObservationsWithCertificate`](docs/sdks/adversaryinvestigation/README.md#gethostobservationswithcertificate) - Get host history for a certificate
 - [`threatHuntingGetHostObservationsWithCertificate`](docs/sdks/threathunting/README.md#gethostobservationswithcertificate) - Get host history for a certificate
+- [`threatHuntingGetInvestigationJob`](docs/sdks/adversaryinvestigation/README.md#getinvestigationjob) - Investigations: Get job status
+- [`threatHuntingGetInvestigationJob`](docs/sdks/threathunting/README.md#getinvestigationjob) - Investigations: Get job status
+- [`threatHuntingGetInvestigationJobResults`](docs/sdks/adversaryinvestigation/README.md#getinvestigationjobresults) - Investigations: Get job results
+- [`threatHuntingGetInvestigationJobResults`](docs/sdks/threathunting/README.md#getinvestigationjobresults) - Investigations: Get job results
+- [`threatHuntingGetInvestigationUsage`](docs/sdks/adversaryinvestigation/README.md#getinvestigationusage) - Investigations: Get usage
+- [`threatHuntingGetInvestigationUsage`](docs/sdks/threathunting/README.md#getinvestigationusage) - Investigations: Get usage
 - [`threatHuntingGetTrackedScanThreatHunting`](docs/sdks/threathunting/README.md#gettrackedscanthreathunting) - Get scan status
 - [`threatHuntingListCenseyeJobs`](docs/sdks/threathunting/README.md#listcenseyejobs) - CensEye: List jobs
+- [`threatHuntingListInvestigationJobs`](docs/sdks/adversaryinvestigation/README.md#listinvestigationjobs) - Investigations: List jobs
+- [`threatHuntingListInvestigationJobs`](docs/sdks/threathunting/README.md#listinvestigationjobs) - Investigations: List jobs
 - [`threatHuntingListThreats`](docs/sdks/adversaryinvestigation/README.md#listthreats) - List active threats
 - [`threatHuntingListThreats`](docs/sdks/threathunting/README.md#listthreats) - List active threats
 - [`threatHuntingValueCounts`](docs/sdks/adversaryinvestigation/README.md#valuecounts) - CensEye: Retrieve value counts to discover pivots
