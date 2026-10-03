@@ -14,7 +14,7 @@ export type V3AccountmanagementRemoveOrgMemberRequest = {
    */
   organizationId: string;
   /**
-   * The ID of a Censys user. You can obtain a user's ID by listing members of an organization.
+   * The ID of a Censys user. You can obtain a user's ID by listing users in an organization.
    */
   userId: string;
 };

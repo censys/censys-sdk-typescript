@@ -32,10 +32,10 @@ export enum UpdateOrganizationMemberAcceptEnum {
 }
 
 /**
- * Update a member's roles in an organization
+ * Update a user's Platform-wide roles in an organization
  *
  * @remarks
- * Update the roles assigned to an organization member. This operation replaces a member's roles with the list provided in the request body. To remove all roles from a member, provide an empty list. To completely remove a member from an organization, use the [remove member endpoint](https://docs.censys.com/reference/v3-accountmanagement-remove-org-member).<br><br>Only users with the Admin role in the provided organization can perform this operation.<br><br>This endpoint does not cost any credits to execute.
+ * Update the [Platform-wide roles](https://docs.censys.com/docs/role-based-access-control#platform-wide-roles) assigned to a user in an organization. This operation replaces a user's Platform-wide roles with the list provided in the request body. To remove all assigned Platform-wide roles from a user, provide an empty list. To completely remove a user from an organization, use the [remove user endpoint](https://docs.censys.com/reference/v3-accountmanagement-remove-org-member).<br><br>Only users with the Platform Admin role in the provided organization can perform this operation.<br><br>This endpoint does not cost any credits to execute.
  */
 export function accountManagementUpdateOrganizationMember(
   client: SDKCore,

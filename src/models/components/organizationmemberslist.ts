@@ -17,7 +17,7 @@ import {
 
 export type OrganizationMembersList = {
   /**
-   * The list of members in the organization.
+   * The list of users in the organization.
    */
   members: Array<OrganizationMember> | null;
   pagination: PaginationInfo;

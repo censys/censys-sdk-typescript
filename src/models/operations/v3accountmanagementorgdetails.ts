@@ -15,7 +15,7 @@ export type V3AccountmanagementOrgDetailsRequest = {
    */
   organizationId: string;
   /**
-   * Whether to include how many members are in this organization, split by role.
+   * Whether to include how many users are in this organization, split by Platform-wide role.
    */
   includeMemberCounts?: boolean | undefined;
 };

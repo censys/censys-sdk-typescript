@@ -15,7 +15,7 @@ export type V3AccountmanagementListOrgMembersRequest = {
    */
   organizationId: string;
   /**
-   * Number of members to return per page
+   * Number of users to return per page
    */
   pageSize?: number | undefined;
   /**

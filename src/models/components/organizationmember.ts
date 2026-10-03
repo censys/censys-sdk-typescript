@@ -34,7 +34,7 @@ export type OrganizationMember = {
    */
   latestLoginTime?: Date | undefined;
   /**
-   * The roles this member has in the organization.
+   * The Platform-wide roles the user has in the organization.
    */
   roles: Array<string> | null;
   /**
