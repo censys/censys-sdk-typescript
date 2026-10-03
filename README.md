@@ -117,10 +117,10 @@ run();
 * [getOrganizationCredits](docs/sdks/accountmanagement/README.md#getorganizationcredits) - Get organization credit balance
 * [getOrganizationCreditUsage](docs/sdks/accountmanagement/README.md#getorganizationcreditusage) - Get organization credit usage
 * [inviteUserToOrganization](docs/sdks/accountmanagement/README.md#inviteusertoorganization) - Invite user to organization
-* [listOrganizationMembers](docs/sdks/accountmanagement/README.md#listorganizationmembers) - List organization members
-* [removeOrganizationMember](docs/sdks/accountmanagement/README.md#removeorganizationmember) - Remove member from organization
-* [updateOrganizationMember](docs/sdks/accountmanagement/README.md#updateorganizationmember) - Update a member's roles in an organization
-* [getMemberCreditUsage](docs/sdks/accountmanagement/README.md#getmembercreditusage) - Get organization member credit usage
+* [listOrganizationMembers](docs/sdks/accountmanagement/README.md#listorganizationmembers) - List organization users
+* [removeOrganizationMember](docs/sdks/accountmanagement/README.md#removeorganizationmember) - Remove user from organization
+* [updateOrganizationMember](docs/sdks/accountmanagement/README.md#updateorganizationmember) - Update a user's Platform-wide roles in an organization
+* [getMemberCreditUsage](docs/sdks/accountmanagement/README.md#getmembercreditusage) - Get organization user credit usage
 * [getUserCredits](docs/sdks/accountmanagement/README.md#getusercredits) - Get Free user credit balance
 * [getUserCreditsUsage](docs/sdks/accountmanagement/README.md#getusercreditsusage) - Get Free user credit usage
 
@@ -231,16 +231,16 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`accountManagementGetMemberCreditUsage`](docs/sdks/accountmanagement/README.md#getmembercreditusage) - Get organization member credit usage
+- [`accountManagementGetMemberCreditUsage`](docs/sdks/accountmanagement/README.md#getmembercreditusage) - Get organization user credit usage
 - [`accountManagementGetOrganizationCredits`](docs/sdks/accountmanagement/README.md#getorganizationcredits) - Get organization credit balance
 - [`accountManagementGetOrganizationCreditUsage`](docs/sdks/accountmanagement/README.md#getorganizationcreditusage) - Get organization credit usage
 - [`accountManagementGetOrganizationDetails`](docs/sdks/accountmanagement/README.md#getorganizationdetails) - Get organization details
 - [`accountManagementGetUserCredits`](docs/sdks/accountmanagement/README.md#getusercredits) - Get Free user credit balance
 - [`accountManagementGetUserCreditsUsage`](docs/sdks/accountmanagement/README.md#getusercreditsusage) - Get Free user credit usage
 - [`accountManagementInviteUserToOrganization`](docs/sdks/accountmanagement/README.md#inviteusertoorganization) - Invite user to organization
-- [`accountManagementListOrganizationMembers`](docs/sdks/accountmanagement/README.md#listorganizationmembers) - List organization members
-- [`accountManagementRemoveOrganizationMember`](docs/sdks/accountmanagement/README.md#removeorganizationmember) - Remove member from organization
-- [`accountManagementUpdateOrganizationMember`](docs/sdks/accountmanagement/README.md#updateorganizationmember) - Update a member's roles in an organization
+- [`accountManagementListOrganizationMembers`](docs/sdks/accountmanagement/README.md#listorganizationmembers) - List organization users
+- [`accountManagementRemoveOrganizationMember`](docs/sdks/accountmanagement/README.md#removeorganizationmember) - Remove user from organization
+- [`accountManagementUpdateOrganizationMember`](docs/sdks/accountmanagement/README.md#updateorganizationmember) - Update a user's Platform-wide roles in an organization
 - [`collectionsAggregate`](docs/sdks/collections/README.md#aggregate) - Aggregate results for a search query within a collection
 - [`collectionsCreate`](docs/sdks/collections/README.md#create) - Create a collection
 - [`collectionsDelete`](docs/sdks/collections/README.md#delete) - Delete a collection

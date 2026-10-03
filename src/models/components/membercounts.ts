@@ -9,7 +9,7 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
- * The number of members users in the organization, split by role.
+ * The number of users in the organization, split by Platform-wide role.
  */
 export type ByRole = {
   /**
@@ -24,11 +24,11 @@ export type ByRole = {
 
 export type MemberCounts = {
   /**
-   * The number of members users in the organization, split by role.
+   * The number of users in the organization, split by Platform-wide role.
    */
   byRole: ByRole;
   /**
-   * The total number of members users in the organization.
+   * The total number of users in the organization.
    */
   total: number;
 };
