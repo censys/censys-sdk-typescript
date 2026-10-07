@@ -10,16 +10,18 @@ Endpoints related to the Account Management product
 * [getOrganizationCredits](#getorganizationcredits) - Get organization credit balance
 * [getOrganizationCreditUsage](#getorganizationcreditusage) - Get organization credit usage
 * [inviteUserToOrganization](#inviteusertoorganization) - Invite user to organization
-* [listOrganizationMembers](#listorganizationmembers) - List organization members
-* [removeOrganizationMember](#removeorganizationmember) - Remove member from organization
-* [updateOrganizationMember](#updateorganizationmember) - Update a member's roles in an organization
-* [getMemberCreditUsage](#getmembercreditusage) - Get organization member credit usage
+* [listOrganizationMembers](#listorganizationmembers) - List organization users
+* [removeOrganizationMember](#removeorganizationmember) - Remove user from organization
+* [updateOrganizationMember](#updateorganizationmember) - Update a user's Platform-wide roles in an organization
+* [getMemberCreditUsage](#getmembercreditusage) - Get organization user credit usage
+* [removeOrganizationMemberModule](#removeorganizationmembermodule) - Remove a user's module access
+* [setOrganizationMemberModuleRole](#setorganizationmembermodulerole) - Set a user's module role
 * [getUserCredits](#getusercredits) - Get Free user credit balance
 * [getUserCreditsUsage](#getusercreditsusage) - Get Free user credit usage
 
 ## getOrganizationDetails
 
-Retrieve an organization's details, including the count of organization members broken down by role and organization settings such as AI training and MFA requirements.<br><br>This endpoint does not cost any credits to execute.
+Retrieve an organization's details, including the count of users broken down by [Platform-wide role](https://docs.censys.com/docs/role-based-access-control#platform-wide-roles) and organization settings such as AI training and MFA requirements. Set `include_modules` to true to include entitled modules, available roles, and seat capacity.<br><br>This endpoint does not cost any credits to execute.
 
 ### Example Usage
 
@@ -171,7 +173,7 @@ run();
 
 ## getOrganizationCreditUsage
 
-Retrieve credit information for an organization over a specific date range. You must include a start date in your request.<br><br>Admins can obtain credit usage information for all users in their organization. Members may only retrieve usage information for their own account.<br><br>This endpoint does not cost any credits to execute.
+Retrieve credit information for an organization over a specific date range. You must include a start date in your request.<br><br>Users with the Platform Admin role can obtain credit usage information for all users in their organization. Other users may only retrieve usage information for their own account.<br><br>This endpoint does not cost any credits to execute.
 
 ### Example Usage
 
@@ -255,7 +257,7 @@ run();
 
 ## inviteUserToOrganization
 
-Invite a user to an organization. The user will receive an email to join the organization. This is equivalent to [adding a new member via the UI](https://docs.censys.com/docs/platform-org-management#invite-members).<br><br>Only users with the Admin role in the provided organization can perform this operation.<br><br>This endpoint does not cost any credits to execute.
+Invite a user to an organization. The user will receive an email to join the organization. This is equivalent to [adding a new user via the UI](https://docs.censys.com/docs/platform-org-management#invite-members).<br><br>Only users with the Platform Admin role in the provided organization can perform this operation.<br><br>This endpoint does not cost any credits to execute.
 
 ### Example Usage
 
@@ -337,7 +339,7 @@ run();
 
 ## listOrganizationMembers
 
-Retrieve a paginated list of an organization's members and their user details, including their user ID, email, name, creation time, and roles.<br><br>This endpoint does not cost any credits to execute.
+Retrieve a paginated list of an organization's users and their details, including their user ID, email, name, creation time, [Platform-wide roles](https://docs.censys.com/docs/role-based-access-control#platform-wide-roles), and [module roles](https://docs.censys.com/docs/role-based-access-control#module-roles).<br><br>This endpoint does not cost any credits to execute.
 
 ### Example Usage
 
@@ -413,7 +415,7 @@ run();
 
 ## removeOrganizationMember
 
-Remove a user from an organization. This is equivalent to [removing a member via the UI](https://docs.censys.com/docs/platform-org-management#remove-members).<br><br>Only users with the Admin role in the provided organization can perform this operation.<br><br>This endpoint does not cost any credits to execute.
+Remove a user from an organization. This is equivalent to [removing a user via the UI](https://docs.censys.com/docs/platform-org-management#remove-members).<br><br>Only users with the Platform Admin role in the provided organization can perform this operation.<br><br>This endpoint does not cost any credits to execute.
 
 ### Example Usage
 
@@ -491,7 +493,7 @@ run();
 
 ## updateOrganizationMember
 
-Update the roles assigned to an organization member. This operation replaces a member's roles with the list provided in the request body. To remove all roles from a member, provide an empty list. To completely remove a member from an organization, use the [remove member endpoint](https://docs.censys.com/reference/v3-accountmanagement-remove-org-member).<br><br>Only users with the Admin role in the provided organization can perform this operation.<br><br>This endpoint does not cost any credits to execute.
+Update the [Platform-wide roles](https://docs.censys.com/docs/role-based-access-control#platform-wide-roles) assigned to a user in an organization. This operation replaces a user's Platform-wide roles with the list provided in the request body. To remove all assigned Platform-wide roles from a user, provide an empty list. To completely remove a user from an organization, use the [remove user endpoint](https://docs.censys.com/reference/v3-accountmanagement-remove-org-member).<br><br>Only users with the Platform Admin role in the provided organization can perform this operation.<br><br>This endpoint does not cost any credits to execute.
 
 ### Example Usage
 
@@ -575,7 +577,7 @@ run();
 
 ## getMemberCreditUsage
 
-Retrieve credit consumption information for an organization member over a specific date range. You must include a start date in your request.<br><br>This endpoint does not cost any credits to execute.
+Retrieve credit consumption information for a user in an organization over a specific date range. You must include a start date in your request.<br><br>This endpoint does not cost any credits to execute.
 
 ### Example Usage
 
@@ -656,6 +658,172 @@ run();
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.AuthenticationError | 401                        | application/json           |
 | errors.ErrorModel          | 400, 403, 404, 422         | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
+## removeOrganizationMemberModule
+
+Remove a user's access to the specified module. Only users with the Platform Admin role in the organization can perform this operation. This endpoint does not cost any credits to execute.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v3-accountmanagement-remove-member-module" method="delete" path="/v3/accounts/organizations/{organization_id}/members/{user_id}/modules/{module}" -->
+```typescript
+import { SDK } from "@censys/platform-sdk";
+
+const sdk = new SDK({
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.accountManagement.removeOrganizationMemberModule({
+    organizationId: "11111111-2222-3333-4444-555555555555",
+    userId: "11111111-2222-3333-4444-555555555555",
+    module: "<value>",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { accountManagementRemoveOrganizationMemberModule } from "@censys/platform-sdk/funcs/accountManagementRemoveOrganizationMemberModule.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await accountManagementRemoveOrganizationMemberModule(sdk, {
+    organizationId: "11111111-2222-3333-4444-555555555555",
+    userId: "11111111-2222-3333-4444-555555555555",
+    module: "<value>",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("accountManagementRemoveOrganizationMemberModule failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3AccountmanagementRemoveMemberModuleRequest](../../models/operations/v3accountmanagementremovemembermodulerequest.md)                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3AccountmanagementRemoveMemberModuleResponse](../../models/operations/v3accountmanagementremovemembermoduleresponse.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 403, 404, 409, 422         | application/problem+json   |
+| errors.ErrorModel          | 500                        | application/problem+json   |
+| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+
+## setOrganizationMemberModuleRole
+
+Assign a [module role](https://docs.censys.com/docs/role-based-access-control#module-roles) to a user in an organization or replace their existing role in that module. Only users with the Platform Admin role in the organization can perform this operation. This endpoint does not cost any credits to execute.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v3-accountmanagement-set-member-module-role" method="put" path="/v3/accounts/organizations/{organization_id}/members/{user_id}/modules/{module}" -->
+```typescript
+import { SDK } from "@censys/platform-sdk";
+
+const sdk = new SDK({
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const result = await sdk.accountManagement.setOrganizationMemberModuleRole({
+    organizationId: "11111111-2222-3333-4444-555555555555",
+    userId: "11111111-2222-3333-4444-555555555555",
+    module: "<value>",
+    setMemberModuleRoleInputBody: {
+      role: "<value>",
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@censys/platform-sdk/core.js";
+import { accountManagementSetOrganizationMemberModuleRole } from "@censys/platform-sdk/funcs/accountManagementSetOrganizationMemberModuleRole.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  personalAccessToken: "<YOUR_BEARER_TOKEN_HERE>",
+});
+
+async function run() {
+  const res = await accountManagementSetOrganizationMemberModuleRole(sdk, {
+    organizationId: "11111111-2222-3333-4444-555555555555",
+    userId: "11111111-2222-3333-4444-555555555555",
+    module: "<value>",
+    setMemberModuleRoleInputBody: {
+      role: "<value>",
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("accountManagementSetOrganizationMemberModuleRole failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3AccountmanagementSetMemberModuleRoleRequest](../../models/operations/v3accountmanagementsetmembermodulerolerequest.md)                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3AccountmanagementSetMemberModuleRoleResponse](../../models/operations/v3accountmanagementsetmembermoduleroleresponse.md)\>**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.AuthenticationError | 401                        | application/json           |
+| errors.ErrorModel          | 400, 403, 404, 409, 422    | application/problem+json   |
 | errors.ErrorModel          | 500                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 

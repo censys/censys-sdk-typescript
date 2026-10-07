@@ -15,7 +15,11 @@ export type V3AccountmanagementOrgDetailsRequest = {
    */
   organizationId: string;
   /**
-   * Whether to include how many members are in this organization, split by role.
+   * Whether to include the organization's entitled modules, available roles, and seat capacity.
+   */
+  includeModules?: boolean | undefined;
+  /**
+   * Whether to include how many users are in this organization, split by Platform-wide role.
    */
   includeMemberCounts?: boolean | undefined;
 };
@@ -28,6 +32,7 @@ export type V3AccountmanagementOrgDetailsResponse = {
 /** @internal */
 export type V3AccountmanagementOrgDetailsRequest$Outbound = {
   organization_id: string;
+  include_modules: boolean;
   include_member_counts: boolean;
 };
 
@@ -38,10 +43,12 @@ export const V3AccountmanagementOrgDetailsRequest$outboundSchema: z.ZodType<
   V3AccountmanagementOrgDetailsRequest
 > = z.object({
   organizationId: z.string(),
+  includeModules: z.boolean().default(false),
   includeMemberCounts: z.boolean().default(false),
 }).transform((v) => {
   return remap$(v, {
     organizationId: "organization_id",
+    includeModules: "include_modules",
     includeMemberCounts: "include_member_counts",
   });
 });

@@ -13,7 +13,7 @@ export type Roles = ClosedEnum<typeof Roles>;
 
 export type UpdateMemberRoleInputBody = {
   /**
-   * Array of role identifiers to assign to the user
+   * The Platform-wide roles to assign to the user.
    */
   roles: Array<Roles> | null;
 };

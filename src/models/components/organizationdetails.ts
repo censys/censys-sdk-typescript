@@ -9,6 +9,10 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { MemberCounts, MemberCounts$inboundSchema } from "./membercounts.js";
 import {
+  OrganizationModule,
+  OrganizationModule$inboundSchema,
+} from "./organizationmodule.js";
+import {
   OrganizationPreferences,
   OrganizationPreferences$inboundSchema,
 } from "./organizationpreferences.js";
@@ -19,6 +23,10 @@ export type OrganizationDetails = {
    */
   createdAt?: Date | undefined;
   memberCounts?: MemberCounts | undefined;
+  /**
+   * The modules this organization is entitled to. Only present when include_modules is true; empty when the organization has none.
+   */
+  modules?: Array<OrganizationModule> | undefined;
   /**
    * The name of the organization.
    */
@@ -39,6 +47,7 @@ export const OrganizationDetails$inboundSchema: z.ZodType<
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   member_counts: MemberCounts$inboundSchema.optional(),
+  modules: z.array(OrganizationModule$inboundSchema).optional(),
   name: z.string(),
   preferences: OrganizationPreferences$inboundSchema.optional(),
   uid: z.string(),

@@ -3,7 +3,7 @@
  */
 
 import { SDKCore } from "../core.js";
-import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
 import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
@@ -26,19 +26,26 @@ import * as operations from "../models/operations/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
+export enum SetOrganizationMemberModuleRoleAcceptEnum {
+  applicationJson = "application/json",
+  applicationProblemPlusJson = "application/problem+json",
+}
+
 /**
- * Get organization credit usage
+ * Set a user's module role
  *
  * @remarks
- * Retrieve credit information for an organization over a specific date range. You must include a start date in your request.<br><br>Users with the Platform Admin role can obtain credit usage information for all users in their organization. Other users may only retrieve usage information for their own account.<br><br>This endpoint does not cost any credits to execute.
+ * Assign a [module role](https://docs.censys.com/docs/role-based-access-control#module-roles) to a user in an organization or replace their existing role in that module. Only users with the Platform Admin role in the organization can perform this operation. This endpoint does not cost any credits to execute.
  */
-export function accountManagementGetOrganizationCreditUsage(
+export function accountManagementSetOrganizationMemberModuleRole(
   client: SDKCore,
-  request: operations.V3AccountmanagementOrgCreditsUsageRequest,
-  options?: RequestOptions,
+  request: operations.V3AccountmanagementSetMemberModuleRoleRequest,
+  options?: RequestOptions & {
+    acceptHeaderOverride?: SetOrganizationMemberModuleRoleAcceptEnum;
+  },
 ): APIPromise<
   Result<
-    operations.V3AccountmanagementOrgCreditsUsageResponse,
+    operations.V3AccountmanagementSetMemberModuleRoleResponse | undefined,
     | errors.AuthenticationError
     | errors.ErrorModel
     | SDKBaseError
@@ -60,12 +67,14 @@ export function accountManagementGetOrganizationCreditUsage(
 
 async function $do(
   client: SDKCore,
-  request: operations.V3AccountmanagementOrgCreditsUsageRequest,
-  options?: RequestOptions,
+  request: operations.V3AccountmanagementSetMemberModuleRoleRequest,
+  options?: RequestOptions & {
+    acceptHeaderOverride?: SetOrganizationMemberModuleRoleAcceptEnum;
+  },
 ): Promise<
   [
     Result<
-      operations.V3AccountmanagementOrgCreditsUsageResponse,
+      operations.V3AccountmanagementSetMemberModuleRoleResponse | undefined,
       | errors.AuthenticationError
       | errors.ErrorModel
       | SDKBaseError
@@ -83,37 +92,40 @@ async function $do(
   const parsed = safeParse(
     request,
     (value) =>
-      operations.V3AccountmanagementOrgCreditsUsageRequest$outboundSchema.parse(
-        value,
-      ),
+      operations.V3AccountmanagementSetMemberModuleRoleRequest$outboundSchema
+        .parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = null;
+  const body = encodeJSON("body", payload.SetMemberModuleRoleInputBody, {
+    explode: true,
+  });
 
   const pathParams = {
+    module: encodeSimple("module", payload.module, {
+      explode: false,
+      charEncoding: "percent",
+    }),
     organization_id: encodeSimple("organization_id", payload.organization_id, {
+      explode: false,
+      charEncoding: "percent",
+    }),
+    user_id: encodeSimple("user_id", payload.user_id, {
       explode: false,
       charEncoding: "percent",
     }),
   };
   const path = pathToFunc(
-    "/v3/accounts/organizations/{organization_id}/credits/usage",
+    "/v3/accounts/organizations/{organization_id}/members/{user_id}/modules/{module}",
   )(pathParams);
 
-  const query = encodeFormQuery({
-    "date": payload.date,
-    "end_date": payload.end_date,
-    "granularity": payload.granularity,
-    "include_consumer_breakdown": payload.include_consumer_breakdown,
-    "start_date": payload.start_date,
-  }, { explode: false });
-
   const headers = new Headers(compactMap({
-    Accept: "application/json",
+    "Content-Type": "application/json",
+    Accept: options?.acceptHeaderOverride
+      || "application/json;q=1, application/problem+json;q=0",
   }));
 
   const secConfig = await extractSecurity(client._options.personalAccessToken);
@@ -125,7 +137,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "v3-accountmanagement-org-credits-usage",
+    operationID: "v3-accountmanagement-set-member-module-role",
     oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
@@ -139,11 +151,10 @@ async function $do(
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
-    method: "GET",
+    method: "PUT",
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
-    query: query,
     body: body,
     userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
@@ -170,7 +181,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.V3AccountmanagementOrgCreditsUsageResponse,
+    operations.V3AccountmanagementSetMemberModuleRoleResponse | undefined,
     | errors.AuthenticationError
     | errors.ErrorModel
     | SDKBaseError
@@ -182,13 +193,14 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(
-      200,
-      operations.V3AccountmanagementOrgCreditsUsageResponse$inboundSchema,
-      { hdrs: true, key: "Result" },
+    M.nil(
+      204,
+      operations.V3AccountmanagementSetMemberModuleRoleResponse$inboundSchema
+        .optional(),
+      { hdrs: true },
     ),
     M.jsonErr(401, errors.AuthenticationError$inboundSchema),
-    M.jsonErr([400, 403, 404, 422], errors.ErrorModel$inboundSchema, {
+    M.jsonErr([400, 403, 404, 409, 422], errors.ErrorModel$inboundSchema, {
       ctype: "application/problem+json",
     }),
     M.jsonErr(500, errors.ErrorModel$inboundSchema, {

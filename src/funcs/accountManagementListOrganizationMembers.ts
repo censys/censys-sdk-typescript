@@ -27,10 +27,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * List organization members
+ * List organization users
  *
  * @remarks
- * Retrieve a paginated list of an organization's members and their user details, including their user ID, email, name, creation time, and roles.<br><br>This endpoint does not cost any credits to execute.
+ * Retrieve a paginated list of an organization's users and their details, including their user ID, email, name, creation time, [Platform-wide roles](https://docs.censys.com/docs/role-based-access-control#platform-wide-roles), and [module roles](https://docs.censys.com/docs/role-based-access-control#module-roles).<br><br>This endpoint does not cost any credits to execute.
  */
 export function accountManagementListOrganizationMembers(
   client: SDKCore,
