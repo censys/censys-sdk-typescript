@@ -1,13 +1,14 @@
-# V3AccountmanagementRemoveOrgMemberRequest
+# V3AccountmanagementRemoveMemberModuleRequest
 
 ## Example Usage
 
 ```typescript
-import { V3AccountmanagementRemoveOrgMemberRequest } from "@censys/platform-sdk/models/operations";
+import { V3AccountmanagementRemoveMemberModuleRequest } from "@censys/platform-sdk/models/operations";
 
-let value: V3AccountmanagementRemoveOrgMemberRequest = {
+let value: V3AccountmanagementRemoveMemberModuleRequest = {
   organizationId: "11111111-2222-3333-4444-555555555555",
   userId: "11111111-2222-3333-4444-555555555555",
+  module: "<value>",
 };
 ```
 
@@ -17,3 +18,4 @@ let value: V3AccountmanagementRemoveOrgMemberRequest = {
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `organizationId`                                                                                                                                                                       | *string*                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                     | The ID of a Censys organization. See the [Getting Started docs](https://docs.censys.com/reference/get-started#step-3-find-and-use-your-organization-id-optional) for more information. | 11111111-2222-3333-4444-555555555555                                                                                                                                                   |
 | `userId`                                                                                                                                                                               | *string*                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                     | The ID of a Censys user. You can obtain a user's ID by listing users in an organization.                                                                                               | 11111111-2222-3333-4444-555555555555                                                                                                                                                   |
+| `module`                                                                                                                                                                               | *string*                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                     | The module identifier, for example platform-search.                                                                                                                                    |                                                                                                                                                                                        |

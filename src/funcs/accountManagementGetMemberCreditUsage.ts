@@ -27,10 +27,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get organization member credit usage
+ * Get organization user credit usage
  *
  * @remarks
- * Retrieve credit consumption information for an organization member over a specific date range. You must include a start date in your request.<br><br>This endpoint does not cost any credits to execute.
+ * Retrieve credit consumption information for a user in an organization over a specific date range. You must include a start date in your request.<br><br>This endpoint does not cost any credits to execute.
  */
 export function accountManagementGetMemberCreditUsage(
   client: SDKCore,

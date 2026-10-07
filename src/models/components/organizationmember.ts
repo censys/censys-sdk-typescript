@@ -7,6 +7,10 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  MemberModuleRole,
+  MemberModuleRole$inboundSchema,
+} from "./membermodulerole.js";
 
 export type OrganizationMember = {
   /**
@@ -34,7 +38,11 @@ export type OrganizationMember = {
    */
   latestLoginTime?: Date | undefined;
   /**
-   * The roles this member has in the organization.
+   * The module roles this user holds. Empty when the user holds no module roles; absent when module roles could not be retrieved. A role in a module also grants access to the modules included with it; see included_with on the organization's modules.
+   */
+  moduleRoles?: Array<MemberModuleRole> | undefined;
+  /**
+   * The Platform-wide roles the user has in the organization.
    */
   roles: Array<string> | null;
   /**
@@ -60,6 +68,7 @@ export const OrganizationMember$inboundSchema: z.ZodType<
   latest_login_time: z.string().datetime({ offset: true }).transform(v =>
     new Date(v)
   ).optional(),
+  module_roles: z.array(MemberModuleRole$inboundSchema).optional(),
   roles: z.nullable(z.array(z.string())),
   uid: z.string(),
 }).transform((v) => {
@@ -69,6 +78,7 @@ export const OrganizationMember$inboundSchema: z.ZodType<
     "first_name": "firstName",
     "last_name": "lastName",
     "latest_login_time": "latestLoginTime",
+    "module_roles": "moduleRoles",
   });
 });
 

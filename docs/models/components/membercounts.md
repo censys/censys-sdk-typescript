@@ -13,7 +13,7 @@ let value: MemberCounts = {
 
 ## Fields
 
-| Field                                                           | Type                                                            | Required                                                        | Description                                                     |
-| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
-| `byRole`                                                        | [components.ByRole](../../models/components/byrole.md)          | :heavy_check_mark:                                              | The number of members users in the organization, split by role. |
-| `total`                                                         | *number*                                                        | :heavy_check_mark:                                              | The total number of members users in the organization.          |
+| Field                                                                 | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `byRole`                                                              | [components.ByRole](../../models/components/byrole.md)                | :heavy_check_mark:                                                    | The number of users in the organization, split by Platform-wide role. |
+| `total`                                                               | *number*                                                              | :heavy_check_mark:                                                    | The total number of users in the organization.                        |

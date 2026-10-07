@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Get organization details
  *
  * @remarks
- * Retrieve an organization's details, including the count of organization members broken down by role and organization settings such as AI training and MFA requirements.<br><br>This endpoint does not cost any credits to execute.
+ * Retrieve an organization's details, including the count of users broken down by [Platform-wide role](https://docs.censys.com/docs/role-based-access-control#platform-wide-roles) and organization settings such as AI training and MFA requirements. Set `include_modules` to true to include entitled modules, available roles, and seat capacity.<br><br>This endpoint does not cost any credits to execute.
  */
 export function accountManagementGetOrganizationDetails(
   client: SDKCore,
@@ -106,6 +106,7 @@ async function $do(
 
   const query = encodeFormQuery({
     "include_member_counts": payload.include_member_counts,
+    "include_modules": payload.include_modules,
   }, { explode: false });
 
   const headers = new Headers(compactMap({

@@ -32,10 +32,10 @@ export enum RemoveOrganizationMemberAcceptEnum {
 }
 
 /**
- * Remove member from organization
+ * Remove user from organization
  *
  * @remarks
- * Remove a user from an organization. This is equivalent to [removing a member via the UI](https://docs.censys.com/docs/platform-org-management#remove-members).<br><br>Only users with the Admin role in the provided organization can perform this operation.<br><br>This endpoint does not cost any credits to execute.
+ * Remove a user from an organization. This is equivalent to [removing a user via the UI](https://docs.censys.com/docs/platform-org-management#remove-members).<br><br>Only users with the Platform Admin role in the provided organization can perform this operation.<br><br>This endpoint does not cost any credits to execute.
  */
 export function accountManagementRemoveOrganizationMember(
   client: SDKCore,
