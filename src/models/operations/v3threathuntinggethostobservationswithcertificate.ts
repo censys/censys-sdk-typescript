@@ -35,7 +35,7 @@ export type V3ThreathuntingGetHostObservationsWithCertificateRequest = {
    */
   port?: number | undefined;
   /**
-   * The transport protocol to filter by
+   * The application protocol to filter by
    */
   protocol?: string | undefined;
   /**
