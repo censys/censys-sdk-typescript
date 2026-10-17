@@ -50,6 +50,14 @@ export type Tls = {
   ja3s?: string | undefined;
   ja4s?: string | undefined;
   /**
+   * Key exchange group selected by the server: the TLS 1.3 key_share group or the TLS 1.2 ECDHE curve, e.g. X25519MLKEM768.
+   */
+  keyExchangeGroup?: string | undefined;
+  /**
+   * Post-quantum TLS 1.3 key exchange groups the server accepts, e.g. X25519MLKEM768.
+   */
+  pqcGroups?: Array<string> | null | undefined;
+  /**
    * Certificate chain information.
    */
   presentedChain?: Array<TlsChain> | null | undefined;
@@ -74,6 +82,8 @@ export const Tls$inboundSchema: z.ZodType<Tls, z.ZodTypeDef, unknown> = z
     fingerprint_sha256: z.string().optional(),
     ja3s: z.string().optional(),
     ja4s: z.string().optional(),
+    key_exchange_group: z.string().optional(),
+    pqc_groups: z.nullable(z.array(z.string())).optional(),
     presented_chain: z.nullable(z.array(TlsChain$inboundSchema)).optional(),
     version_selected: VersionSelected$inboundSchema.optional(),
     versions: z.nullable(z.array(TlsVersionData$inboundSchema)).optional(),
@@ -81,6 +91,8 @@ export const Tls$inboundSchema: z.ZodType<Tls, z.ZodTypeDef, unknown> = z
     return remap$(v, {
       "cipher_selected": "cipherSelected",
       "fingerprint_sha256": "fingerprintSha256",
+      "key_exchange_group": "keyExchangeGroup",
+      "pqc_groups": "pqcGroups",
       "presented_chain": "presentedChain",
       "version_selected": "versionSelected",
     });
