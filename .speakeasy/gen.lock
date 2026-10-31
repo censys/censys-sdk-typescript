@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 50d8a8aa-8772-4a95-9f7b-f8e1bd905c4e
 management:
-  docChecksum: 3ffa85fab1635a9c117c051258bad813
-  docVersion: 1.0.157
+  docChecksum: d5982843a031c32022c2f407f5b5e40a
+  docVersion: 1.0.159
   speakeasyVersion: 1.805.0
   generationVersion: 2.954.8
-  releaseVersion: 0.12.12
-  configChecksum: 72203228a1f0e6fc746acbafa28d2832
+  releaseVersion: 0.12.13
+  configChecksum: 8ca7591d558ee44ce6102347a6338f11
   repoURL: https://github.com/censys/censys-sdk-typescript.git
   installationURL: https://github.com/censys/censys-sdk-typescript
   published: true
 persistentEdits:
-  generation_id: af481df9-5843-49c8-bd51-3327d8d151d8
-  pristine_commit_hash: 98371304357ccc62b8c2c2974eccddbee36477be
-  pristine_tree_hash: 7042903e46502beaf0ee646170f4080c6bad2fd1
+  generation_id: 3bd40cc1-6763-4ea7-9e52-bf11fb914574
+  pristine_commit_hash: 77397f6cc45d0d87c9ea73846ecf8c44d36774e2
+  pristine_tree_hash: 9cdf9dcae67e1c8b4332a91f99b684ba1207f7fa
 features:
   typescript:
     acceptHeaders: 2.81.2
@@ -4428,8 +4428,8 @@ trackedFiles:
     pristine_git_object: 0167253f1737525f2d3a6c800745eb69c80926f7
   docs/sdks/tagsandcomments/README.md:
     id: 092d693513d0
-    last_write_checksum: sha1:b8ac266100bcb812443a6fc886a5c9135b800f50
-    pristine_git_object: 61662b07cfd2dd5af627207cd33148d6112455aa
+    last_write_checksum: sha1:bc34760f2701bf966aa8f6b8bc2cca3ff01fee12
+    pristine_git_object: 90c90842d8a590e1e258d3f8ec4af6dfb366b772
   docs/sdks/threathunting/README.md:
     id: 9d697938ee45
     last_write_checksum: sha1:b05883aae7b278b2c0350a22b58c58182c076d65
@@ -4460,12 +4460,12 @@ trackedFiles:
     pristine_git_object: 22f3212da7f26c4c5352b919e2393cd091e63445
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:a06ffb77714bf6d8d18898511ba28eb3041381b5
-    pristine_git_object: 2e179bc9909bb161ed66e94f7cb05c61c0210c85
+    last_write_checksum: sha1:28521ab5e09cca240c3ad23a1f4db8ff04412333
+    pristine_git_object: 84258ac102a7d371d441bd853a59a97a40c1402f
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:b8faa38f6eb976c22d8e3f761ed79535cababed7
-    pristine_git_object: 007ef5a6fa04f873b13f09dfe26002d8fe783ac9
+    last_write_checksum: sha1:cae4d494cfc73f46844cc3c272a46f2066435492
+    pristine_git_object: 2da2b58c0329d2c381b510fa08ab3965d700d46f
   src/core.ts:
     id: f431fdbcd144
     last_write_checksum: sha1:ce840032c45608f5f4022b32bcce32cb69c5ed26
@@ -4700,8 +4700,8 @@ trackedFiles:
     pristine_git_object: 060bad538171c9a0e721deb01f107d50e7a40f28
   src/funcs/tagsAndCommentsUpdateTag.ts:
     id: 860638da387e
-    last_write_checksum: sha1:0b7bb738f2c4faf0f6580a14ddc4e7943cffc467
-    pristine_git_object: 01a34677f572ac29d3cb7056dc7481b200e24386
+    last_write_checksum: sha1:2517437c3e8e97cea16313d27e14a4441a55d15a
+    pristine_git_object: c6b8398dd72d51f878739b2b27375692ed7d6514
   src/funcs/threatHuntingCreateCenseyeJob.ts:
     id: 60b2f388ff4b
     last_write_checksum: sha1:d231ec095b18f7955a02f7f5a24f5d2e2b1e890d
@@ -4784,8 +4784,8 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:b8c5428d9aef72a6656c134ddc161b56a536f572
-    pristine_git_object: 0562e3db90c8d1910b87aa78f694cfa0aadb099f
+    last_write_checksum: sha1:6f38ced920c20a667e9912d377f678928b01a278
+    pristine_git_object: 4a896b8d037846636c9bd234c8d7b7d1f5d112f5
   src/lib/encodings.ts:
     id: 3bd8ead98afd
     last_write_checksum: sha1:a257d6f6108693db2197617c579400bc8f0da914
@@ -8256,8 +8256,8 @@ trackedFiles:
     pristine_git_object: 6035525c276e871b6b0c488cee30aaee10d69cb1
   src/sdk/tagsandcomments.ts:
     id: 9dcd35338402
-    last_write_checksum: sha1:22c3c1539d6c7fef145a9a2b433a1be8bbc428c0
-    pristine_git_object: 8924c8d7cd1ce4fe2d2edeb692cbc324ac941f2d
+    last_write_checksum: sha1:ea084779001b40cee811bfa99440a246da09ac81
+    pristine_git_object: fd42cbc44dab7a659ead20e71c666c064f9c0ee3
   src/sdk/threathunting.ts:
     id: 14d889a1e2da
     last_write_checksum: sha1:b0229b506feedc36fe2632e27669e37540dd0e7c
