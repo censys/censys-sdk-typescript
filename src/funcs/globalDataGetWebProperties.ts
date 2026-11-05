@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Retrieve multiple web properties
  *
  * @remarks
- * Retrieve information about multiple web properties. You can retrieve up to 100 web properties per call. Web properties are identified using a combination of a hostname and port joined with a colon, such as `platform.censys.io:80`.
+ * Retrieve information about multiple web properties. You can retrieve up to 100 web properties per call. Web properties are identified using a combination of a hostname and port joined with a colon, such as `platform.censys.io:80`.<br><br>In a SOC environment, use this endpoint to check up to 100 suspicious hostnames at once, such as domains from phishing reports or proxy logs, to find the live and malicious ones.
  */
 export function globalDataGetWebProperties(
   client: SDKCore,

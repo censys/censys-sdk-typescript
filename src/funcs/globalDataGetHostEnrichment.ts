@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Get host enrichment
  *
  * @remarks
- * Retrieve enrichment data for a single host. This endpoint is optimized for high-volume SOC enrichment use cases.<br><br>This endpoint does not consume standard Censys credits. Core organizations may perform up to 20,000 enrichment calls per day. Core + Unlimited Enrichment organizations may perform an unlimited amount of enrichment calls per day.<br><br>[Learn more about the enrichment API here](https://docs.censys.com/docs/host-enrichment).
+ * Retrieve enrichment data for a single host. This endpoint is optimized for high-volume SOC enrichment use cases.<br><br>Use this endpoint to add Censys context (location, ASN, labels, reputation, and more) to IPs in your SIEM or SOAR at high volume, without spending standard credits.<br><br>This endpoint does not consume standard Censys credits. Core organizations may perform up to 20,000 enrichment calls per day. Core + Unlimited Enrichment organizations may perform an unlimited amount of enrichment calls per day.<br><br>[Learn more about the enrichment API here](https://docs.censys.com/docs/host-enrichment).
  */
 export function globalDataGetHostEnrichment(
   client: SDKCore,

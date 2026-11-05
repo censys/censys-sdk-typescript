@@ -7,6 +7,7 @@ import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import { HttpCopyright, HttpCopyright$inboundSchema } from "./httpcopyright.js";
 import { HttpFavicon, HttpFavicon$inboundSchema } from "./httpfavicon.js";
 import {
   HttpRedirectChainLink,
@@ -30,7 +31,12 @@ export type Http = {
    * The length, in bytes, of services.http.response.body; at most, 64KB.
    */
   bodySize?: number | undefined;
+  /**
+   * Copyright notices declared by or found in the page, the one most likely to be the site's own first.
+   */
+  copyrights?: Array<HttpCopyright> | null | undefined;
   favicons?: Array<HttpFavicon> | null | undefined;
+  googleSiteVerification?: Array<string> | null | undefined;
   /**
    * The key-value header pairs included in the response.
    */
@@ -75,7 +81,9 @@ export const Http$inboundSchema: z.ZodType<Http, z.ZodTypeDef, unknown> = z
     body_hash_sha256: z.string().optional(),
     body_hash_tlsh: z.string().optional(),
     body_size: z.number().int().optional(),
+    copyrights: z.nullable(z.array(HttpCopyright$inboundSchema)).optional(),
     favicons: z.nullable(z.array(HttpFavicon$inboundSchema)).optional(),
+    google_site_verification: z.nullable(z.array(z.string())).optional(),
     headers: z.record(HttpRepeatedHeaders$inboundSchema).optional(),
     html_tags: z.nullable(z.array(z.string())).optional(),
     html_title: z.string().optional(),
@@ -93,6 +101,7 @@ export const Http$inboundSchema: z.ZodType<Http, z.ZodTypeDef, unknown> = z
       "body_hash_sha256": "bodyHashSha256",
       "body_hash_tlsh": "bodyHashTlsh",
       "body_size": "bodySize",
+      "google_site_verification": "googleSiteVerification",
       "html_tags": "htmlTags",
       "html_title": "htmlTitle",
       "network_log": "networkLog",

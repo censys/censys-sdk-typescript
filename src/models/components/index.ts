@@ -251,6 +251,7 @@ export * from "./hosttimeline.js";
 export * from "./hosttimelineevent.js";
 export * from "./hosttimelineeventasset.js";
 export * from "./http.js";
+export * from "./httpcopyright.js";
 export * from "./httpfavicon.js";
 export * from "./httpredirectchainlink.js";
 export * from "./httpredirectchainlinkhttpstatus.js";

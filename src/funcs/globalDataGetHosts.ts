@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Retrieve multiple hosts
  *
  * @remarks
- * Retrieve information about multiple hosts. You can retrieve up to 100 hosts per call. A host ID is its IP address.
+ * Retrieve information about multiple hosts. You can retrieve up to 100 hosts per call. A host ID is its IP address.<br><br>In a SOC environment, use this endpoint to look up multiple IPs from an alert, log, or threat feed in one call, so you can triage a whole indicator list quickly.
  */
 export function globalDataGetHosts(
   client: SDKCore,

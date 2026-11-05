@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Retrieve multiple certificates
  *
  * @remarks
- * Retrieve information about multiple certificates. You can retrieve up to 1,000 certificates per call. A certificate ID is its SHA-256 fingerprint in the Censys dataset.
+ * Retrieve information about multiple certificates. You can retrieve up to 1,000 certificates per call. A certificate ID is its SHA-256 fingerprint.<br><br>In a SOC environment, use this endpoint to bulk-check multiple certificates from network telemetry for self-signed, newly issued, or lookalike certs.
  */
 export function globalDataGetCertificates(
   client: SDKCore,

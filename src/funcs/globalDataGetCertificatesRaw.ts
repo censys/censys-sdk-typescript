@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Retrieve multiple certificates in PEM format
  *
  * @remarks
- * Retrieve the raw PEM-encoded format for multiple certificates. You can retrieve up to 1,000 certificates per call. A certificate ID is its SHA-256 fingerprint in the Censys dataset.
+ * Retrieve the raw PEM-encoded format for multiple certificates. You can retrieve up to 1,000 certificates per call. A certificate ID is its SHA-256 fingerprint.<br><br>Use this endpoint to export raw PEMs for multiple certificates at once, for bulk analysis or sharing with your detection pipeline.
  */
 export function globalDataGetCertificatesRaw(
   client: SDKCore,

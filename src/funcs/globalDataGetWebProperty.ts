@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Get a web property
  *
  * @remarks
- * Retrieve information about a single web property. Web properties are identified using a combination of a hostname and port joined with a colon, such as `platform.censys.io:80`.
+ * Retrieve information about a single web property. Web properties are identified using a combination of a hostname and port joined with a colon, such as `platform.censys.io:80`.<br><br>In a SOC environment, use this endpoint to inspect the current content, technologies, and certificate for a hostname and port from a phishing or C2 alert.
  */
 export function globalDataGetWebProperty(
   client: SDKCore,

@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Get host event history
  *
  * @remarks
- * Retrieve event history for a host. A host ID is its IP address.<br><br>Note that when a service protocol changes after a new scan (for example, from `UNKNOWN` to `NETBIOS`), this information will be reflected in the `scan` object.
+ * Retrieve event history for a host. A host ID is its IP address.<br><br>Note that when a service protocol changes after a new scan (for example, from `UNKNOWN` to `NETBIOS`), this information will be reflected in the `scan` object.<br><br>In a SOC environment, use this endpoint to see what changed on an IP over time, such as new services, certificate swaps, and software changes, to reconstruct when attacker infrastructure was stood up or modified.
  */
 export function globalDataGetHostTimeline(
   client: SDKCore,
