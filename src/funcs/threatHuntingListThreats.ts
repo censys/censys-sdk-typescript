@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * List active threats
  *
  * @remarks
- * Retrieve a list of active threats observed by Censys by aggregating threat IDs across hosts and web properties. Threats are active if their fingerprint has been identified on hosts or web properties by Censys scans. This information is also available on the [Explore Threats page in the Platform web UI](https://platform.censys.io/threats).<br><br>This endpoint is available to organizations that have access to the Adversary Investigation module.
+ * Retrieve a list of active threats observed by Censys by aggregating threat IDs across hosts and web properties. Use this endpoint to see currently active threats so you can prioritize which malicious infrastructure to hunt or block first.<br><br>Threats are active if their fingerprint has been identified on hosts or web properties by Censys scans. This information is also available on the [Explore Threats page in the Platform web UI](https://platform.censys.io/threats).<br><br>This endpoint is available to organizations that have access to the Adversary Investigation module.
  */
 export function threatHuntingListThreats(
   client: SDKCore,

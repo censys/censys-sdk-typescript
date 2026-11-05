@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Get a collection
  *
  * @remarks
- * Retrieve information about a collection. Retrieved information includes its name, query, description, status, and asset count.<br><br>This endpoint does not cost credits to execute.
+ * Retrieve information about a collection. Retrieved information includes its name, query, description, status, and asset count. Use it to confirm it still reflects the scope you intend to monitor.<br><br>This endpoint does not cost credits to execute.
  */
 export function collectionsGet(
   client: SDKCore,

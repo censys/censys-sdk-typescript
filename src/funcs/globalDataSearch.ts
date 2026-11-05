@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Run a search query
  *
  * @remarks
- * Run a search query across Censys data. Reference the [documentation on Censys Query Language](https://docs.censys.com/docs/censys-query-language#/) for information about query syntax. Host services that match your search criteria will be returned in a `matched_services` object.
+ * Run a search query across Censys data. Reference the [documentation on Censys Query Language](https://docs.censys.com/docs/censys-query-language#/) for information about query syntax.<br><br>Host services that match your search criteria will be returned in a `matched_services` object.<br><br>In a SOC environment, use this endpoint to hunt for hosts, web properties, or certificates that match an indicator, such as a C2 banner, JARM, or favicon hash to scope infrastructure tied to an alert.
  */
 export function globalDataSearch(
   client: SDKCore,

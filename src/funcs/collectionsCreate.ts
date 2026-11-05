@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Create a collection
  *
  * @remarks
- * Create a new collection.<br><br>This endpoint does not cost credits to execute.
+ * Create a new [collection](https://docs.censys.com/docs/platform-collections).<br><br>In a SOC environment, use this endpoint to save a query as a dynamic asset group, such as all internet-facing RDP hosts or a threat's footprint, so SOC monitoring and reporting stay scoped as assets change.<br><br>This endpoint does not cost credits to execute.
  */
 export function collectionsCreate(
   client: SDKCore,

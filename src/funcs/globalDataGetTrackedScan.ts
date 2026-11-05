@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Get scan status
  *
  * @remarks
- * Retrieve the current status of a scan by its ID. This endpoint works for both [Live Discovery scans](https://docs.censys.com/reference/v3-threathunting-scans-discovery#/) and [Live Rescans](https://docs.censys.com/reference/v3-globaldata-scans-rescan#/).<br><br>If the scan was successful, perform a lookup on the target asset to retrieve detailed scan information.<br><br>This endpoint is available to all Enterprise customers. This endpoint does not cost any credits to execute.
+ * Retrieve the current status of a scan by its ID. This endpoint works for both [Live Discovery scans](https://docs.censys.com/reference/v3-threathunting-scans-discovery#/) and [Live Rescans](https://docs.censys.com/reference/v3-globaldata-scans-rescan#/).<br><br>Use this endpoint to check whether a Live Discovery or Live Rescan scan has finished, so automation knows when fresh data is ready to pull.<br><br>If the scan was successful, perform a lookup on the target asset to retrieve detailed scan information.<br><br>This endpoint is available to all enterprise customers. This endpoint does not cost any credits to execute.
  */
 export function globalDataGetTrackedScan(
   client: SDKCore,

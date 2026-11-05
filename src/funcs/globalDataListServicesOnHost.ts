@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Get service history for a host
  *
  * @remarks
- * Retrieve historical service observations for a host. This endpoint returns time ranges during which services were detected on the host.<br><br>You can define a specific time frame of interest. If you do not specify a time frame, this endpoint will search the historical dataset that is available to your account.<br><br>You can filter by port number, protocol, and transport protocol.
+ * Retrieve historical service observations for a host. This endpoint returns time ranges during which services were detected on the host.<br><br>You can define a specific time frame of interest. If you do not specify a time frame, this endpoint will search the historical dataset that is available to your account.<br><br>You can filter by port number, protocol, and transport protocol.<br><br>In a SOC environment, use this endpoint to see when a specific service was exposed on an IP, so you can check whether it was live during the window of a suspected incident.
  */
 export function globalDataListServicesOnHost(
   client: SDKCore,

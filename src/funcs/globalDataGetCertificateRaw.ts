@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Get a certificate in PEM format
  *
  * @remarks
- * Retrieve the raw PEM-encoded format of a certificate. A certificate ID is its SHA-256 fingerprint in the Censys dataset.
+ * Retrieve the raw PEM-encoded format of a certificate. A certificate ID is its SHA-256 fingerprint.<br><br>Use this endpoint to retrieve the raw PEM of a suspicious certificate for offline analysis or to feed other tooling.
  */
 export function globalDataGetCertificateRaw(
   client: SDKCore,

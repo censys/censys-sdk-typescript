@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * CensEye: Get job results
  *
  * @remarks
- * Retrieve the results of a completed CensEye pivot analysis job. Each result contains a count and the field-value pairs that were analyzed. Results may be empty if the job is still running.<br><br>Results are paginated. Use the `next_page_token` from the response to fetch subsequent pages.<br><br>To use this endpoint, your organization must have access to the Adversary Investigation module.
+ * Retrieve the results of a completed CensEye pivot analysis job. Use this endpoint to retrieve the pivots from a finished job, then turn the most distinctive ones into searches or blocklist candidates.<br><br>Each result contains a count and the field-value pairs that were analyzed. Results may be empty if the job is still running.<br><br>Results are paginated. Use the `next_page_token` from the response to fetch subsequent pages.<br><br>To use this endpoint, your organization must have access to the Adversary Investigation module.
  */
 export function threatHuntingGetCenseyeJobResults(
   client: SDKCore,

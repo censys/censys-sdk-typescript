@@ -41,7 +41,7 @@ export class Collections extends ClientSDK {
    * Create a collection
    *
    * @remarks
-   * Create a new collection.<br><br>This endpoint does not cost credits to execute.
+   * Create a new [collection](https://docs.censys.com/docs/platform-collections).<br><br>In a SOC environment, use this endpoint to save a query as a dynamic asset group, such as all internet-facing RDP hosts or a threat's footprint, so SOC monitoring and reporting stay scoped as assets change.<br><br>This endpoint does not cost credits to execute.
    */
   async create(
     request: operations.V3CollectionsCrudCreateRequest,
@@ -75,7 +75,7 @@ export class Collections extends ClientSDK {
    * Get a collection
    *
    * @remarks
-   * Retrieve information about a collection. Retrieved information includes its name, query, description, status, and asset count.<br><br>This endpoint does not cost credits to execute.
+   * Retrieve information about a collection. Retrieved information includes its name, query, description, status, and asset count. Use it to confirm it still reflects the scope you intend to monitor.<br><br>This endpoint does not cost credits to execute.
    */
   async get(
     request: operations.V3CollectionsCrudGetRequest,
@@ -109,7 +109,7 @@ export class Collections extends ClientSDK {
    * Get a collection's events
    *
    * @remarks
-   * Retrieve the event history for a collection. This includes the addition or removal of assets as well as collection status changes.<br><br>This endpoint does not cost credits to execute.
+   * Retrieve the event history for a collection. This includes the addition or removal of assets as well as collection status changes.<br><br>In a SOC environment, use this endpoint to see which assets were added or removed and when, to catch new exposure or unexpected changes in a monitored scope.<br><br>This endpoint does not cost credits to execute.
    */
   async listEvents(
     request: operations.V3CollectionsListEventsRequest,
@@ -126,7 +126,7 @@ export class Collections extends ClientSDK {
    * Aggregate results for a search query within a collection
    *
    * @remarks
-   * Aggregate results for a Platform search query that targets a collection's assets. This functionality is equivalent to the [Report Builder](https://docs.censys.com/docs/platform-report-builder#/) in the Platform web UI.
+   * Aggregate results for a Platform search query that targets a collection's assets. This functionality is equivalent to the [Report Builder](https://docs.censys.com/docs/platform-report-builder#/) in the Platform web UI.<br><br>In a SOC environment, use this endpoint to count and bucket matches by field, such as port, country, or software, inside a collection so you can spot exposure trends without pulling every asset.
    */
   async aggregate(
     request: operations.V3CollectionsSearchAggregateRequest,
@@ -143,7 +143,7 @@ export class Collections extends ClientSDK {
    * Run a search query within a collection
    *
    * @remarks
-   * Run a search query across a collection's assets. Reference the [documentation on Censys Query Language](https://docs.censys.com/docs/censys-query-language#/) for information about query syntax. Host services that match your search criteria will be returned in a `matched_services` object.
+   * Run a search query across a collection's assets. Reference the [documentation on Censys Query Language](https://docs.censys.com/docs/censys-query-language#/) for information about query syntax. Host services that match your search criteria will be returned in a `matched_services` object.<br><br>In a SOC environment, use this endpoint to search only within the defined scope of a collection, so triage and hunting results stay relevant instead of covering the whole internet.
    */
   async search(
     request: operations.V3CollectionsSearchQueryRequest,

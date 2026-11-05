@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Run a search query within a collection
  *
  * @remarks
- * Run a search query across a collection's assets. Reference the [documentation on Censys Query Language](https://docs.censys.com/docs/censys-query-language#/) for information about query syntax. Host services that match your search criteria will be returned in a `matched_services` object.
+ * Run a search query across a collection's assets. Reference the [documentation on Censys Query Language](https://docs.censys.com/docs/censys-query-language#/) for information about query syntax. Host services that match your search criteria will be returned in a `matched_services` object.<br><br>In a SOC environment, use this endpoint to search only within the defined scope of a collection, so triage and hunting results stay relevant instead of covering the whole internet.
  */
 export function collectionsSearch(
   client: SDKCore,

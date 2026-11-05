@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Aggregate results for a search query
  *
  * @remarks
- * Aggregate results for a Platform search query. This functionality is equivalent to the [Report Builder](https://docs.censys.com/docs/platform-report-builder#/) in the Platform web UI.
+ * Aggregate results for a Platform search query. This functionality is equivalent to the [Report Builder](https://docs.censys.com/docs/platform-report-builder#/) in the Platform web UI.<br><br>In a SOC environment, use this endpoint to count and bucket matches by field, such as country, ASN, or port, to size a campaign or spot where malicious infrastructure clusters without pulling every record.
  */
 export function globalDataAggregate(
   client: SDKCore,
