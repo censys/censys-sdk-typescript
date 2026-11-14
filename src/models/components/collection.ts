@@ -10,6 +10,18 @@ import { OpenEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Collection visibility. `private` collections are visible to their creator and organization admins. `shared` collections are also visible to all organization members. Only the creator and organization admins can edit a collection.
+ */
+export const CollectionPrivacy = {
+  Private: "private",
+  Shared: "shared",
+} as const;
+/**
+ * Collection visibility. `private` collections are visible to their creator and organization admins. `shared` collections are also visible to all organization members. Only the creator and organization admins can edit a collection.
+ */
+export type CollectionPrivacy = OpenEnum<typeof CollectionPrivacy>;
+
 export const CollectionStatus = {
   Unspecified: "unspecified",
   Populating: "populating",
@@ -34,18 +46,29 @@ export type Collection = {
   addedAssets24Hours: number;
   createTime: Date;
   /**
-   * The ID of a Censys user who created the collection.
+   * The ID of the user or service account that created the collection.
    */
   createdBy?: string | undefined;
   description: string;
   id: string;
   name: string;
+  /**
+   * Collection visibility. `private` collections are visible to their creator and organization admins. `shared` collections are also visible to all organization members. Only the creator and organization admins can edit a collection.
+   */
+  privacy: CollectionPrivacy;
   query: string;
   removedAssets24Hours: number;
   status: CollectionStatus;
   statusReason: StatusReason | null;
   totalAssets: number;
 };
+
+/** @internal */
+export const CollectionPrivacy$inboundSchema: z.ZodType<
+  CollectionPrivacy,
+  z.ZodTypeDef,
+  unknown
+> = openEnums.inboundSchema(CollectionPrivacy);
 
 /** @internal */
 export const CollectionStatus$inboundSchema: z.ZodType<
@@ -75,6 +98,7 @@ export const Collection$inboundSchema: z.ZodType<
   description: z.string(),
   id: z.string(),
   name: z.string(),
+  privacy: CollectionPrivacy$inboundSchema,
   query: z.string(),
   removed_assets_24_hours: z.number().int(),
   status: CollectionStatus$inboundSchema,

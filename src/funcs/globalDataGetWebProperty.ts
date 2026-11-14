@@ -106,6 +106,8 @@ async function $do(
 
   const query = encodeFormQuery({
     "at_time": payload.at_time,
+    "exclude_fields": payload.exclude_fields,
+    "fields": payload.fields,
     "organization_id": payload.organization_id
       ?? client._options.organizationId,
   }, { explode: false });
