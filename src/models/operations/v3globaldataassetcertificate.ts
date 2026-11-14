@@ -22,6 +22,14 @@ export type V3GlobaldataAssetCertificateRequest = {
    * The SHA-256 certificate fingerprint.
    */
   certificateId: string;
+  /**
+   * Comma-separated list of fields to include in the response, in dot notation (for example `services.port`). Repeated fields are filtered per element. Omit the parameter or pass `*` to return every field. Unknown fields are rejected.
+   */
+  fields?: string | undefined;
+  /**
+   * Comma-separated list of fields to exclude from the response, in dot notation (for example `services.banner`). Repeated fields are filtered per element. Unknown fields are rejected. Cannot be used together with `fields`.
+   */
+  excludeFields?: string | undefined;
 };
 
 export type V3GlobaldataAssetCertificateResponse = {
@@ -33,6 +41,8 @@ export type V3GlobaldataAssetCertificateResponse = {
 export type V3GlobaldataAssetCertificateRequest$Outbound = {
   organization_id?: string | undefined;
   certificate_id: string;
+  fields?: string | undefined;
+  exclude_fields?: string | undefined;
 };
 
 /** @internal */
@@ -43,10 +53,13 @@ export const V3GlobaldataAssetCertificateRequest$outboundSchema: z.ZodType<
 > = z.object({
   organizationId: z.string().optional(),
   certificateId: z.string(),
+  fields: z.string().optional(),
+  excludeFields: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     organizationId: "organization_id",
     certificateId: "certificate_id",
+    excludeFields: "exclude_fields",
   });
 });
 
