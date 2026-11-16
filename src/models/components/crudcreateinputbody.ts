@@ -3,6 +3,21 @@
  */
 
 import * as z from "zod/v3";
+import { ClosedEnum } from "../../types/enums.js";
+
+/**
+ * Collection visibility. `private` collections are visible to their creator and organization admins. `shared` collections are also visible to all organization members. Only the creator and organization admins can edit a collection.
+ */
+export const CrudCreateInputBodyPrivacy = {
+  Private: "private",
+  Shared: "shared",
+} as const;
+/**
+ * Collection visibility. `private` collections are visible to their creator and organization admins. `shared` collections are also visible to all organization members. Only the creator and organization admins can edit a collection.
+ */
+export type CrudCreateInputBodyPrivacy = ClosedEnum<
+  typeof CrudCreateInputBodyPrivacy
+>;
 
 export type CrudCreateInputBody = {
   /**
@@ -14,15 +29,25 @@ export type CrudCreateInputBody = {
    */
   name: string;
   /**
+   * Collection visibility. `private` collections are visible to their creator and organization admins. `shared` collections are also visible to all organization members. Only the creator and organization admins can edit a collection.
+   */
+  privacy?: CrudCreateInputBodyPrivacy | undefined;
+  /**
    * query string to search upon to build the collection
    */
   query: string;
 };
 
 /** @internal */
+export const CrudCreateInputBodyPrivacy$outboundSchema: z.ZodNativeEnum<
+  typeof CrudCreateInputBodyPrivacy
+> = z.nativeEnum(CrudCreateInputBodyPrivacy);
+
+/** @internal */
 export type CrudCreateInputBody$Outbound = {
   description?: string | undefined;
   name: string;
+  privacy: string;
   query: string;
 };
 
@@ -34,6 +59,7 @@ export const CrudCreateInputBody$outboundSchema: z.ZodType<
 > = z.object({
   description: z.string().optional(),
   name: z.string(),
+  privacy: CrudCreateInputBodyPrivacy$outboundSchema.default("private"),
   query: z.string(),
 });
 

@@ -102,6 +102,8 @@ async function $do(
 
   const query = encodeFormQuery({
     "at_time": payload.at_time,
+    "exclude_fields": payload.exclude_fields,
+    "fields": payload.fields,
     "organization_id": payload.organization_id
       ?? client._options.organizationId,
   }, { explode: false });
@@ -182,7 +184,7 @@ async function $do(
       key: "Result",
     }),
     M.jsonErr(401, errors.AuthenticationError$inboundSchema),
-    M.jsonErr([400, 403, 404], errors.ErrorModel$inboundSchema, {
+    M.jsonErr([400, 403, 404, 422], errors.ErrorModel$inboundSchema, {
       ctype: "application/problem+json",
     }),
     M.jsonErr(500, errors.ErrorModel$inboundSchema, {

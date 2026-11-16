@@ -26,6 +26,14 @@ export type V3GlobaldataAssetWebpropertyRequest = {
    * RFC3339 Timestamp to view a webproperty at a specific point in time. Must be a valid RFC3339 string. Ensure that you suffix the date with T00:00:00Z or a specific time
    */
   atTime?: Date | undefined;
+  /**
+   * Comma-separated list of fields to include in the response, in dot notation (for example `services.port`). Repeated fields are filtered per element. Omit the parameter or pass `*` to return every field. Unknown fields are rejected.
+   */
+  fields?: string | undefined;
+  /**
+   * Comma-separated list of fields to exclude from the response, in dot notation (for example `services.banner`). Repeated fields are filtered per element. Unknown fields are rejected. Cannot be used together with `fields`.
+   */
+  excludeFields?: string | undefined;
 };
 
 export type V3GlobaldataAssetWebpropertyResponse = {
@@ -38,6 +46,8 @@ export type V3GlobaldataAssetWebpropertyRequest$Outbound = {
   organization_id?: string | undefined;
   webproperty_id: string;
   at_time?: string | undefined;
+  fields?: string | undefined;
+  exclude_fields?: string | undefined;
 };
 
 /** @internal */
@@ -49,11 +59,14 @@ export const V3GlobaldataAssetWebpropertyRequest$outboundSchema: z.ZodType<
   organizationId: z.string().optional(),
   webpropertyId: z.string(),
   atTime: z.date().transform(v => v.toISOString()).optional(),
+  fields: z.string().optional(),
+  excludeFields: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     organizationId: "organization_id",
     webpropertyId: "webproperty_id",
     atTime: "at_time",
+    excludeFields: "exclude_fields",
   });
 });
 
