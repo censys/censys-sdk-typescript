@@ -92,7 +92,7 @@ export class Collections extends ClientSDK {
    * Update a collection
    *
    * @remarks
-   * Update a collection's name, description, and/or query.<br><br>This endpoint does not cost credits to execute.
+   * Update a collection's name, description, query, and/or privacy.<br><br>This endpoint does not cost credits to execute.
    */
   async update(
     request: operations.V3CollectionsCrudUpdateRequest,

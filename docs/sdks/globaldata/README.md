@@ -218,6 +218,8 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.globalData.getCertificate({
     certificateId: "3daf2843a77b6f4e6af43cd9b6f6746053b8c928e056e8a724808db8905a94cf",
+    fields: "fingerprint_sha256,parsed.subject_dn",
+    excludeFields: "names,fingerprint_sha1",
   });
 
   console.log(result);
@@ -244,6 +246,8 @@ const sdk = new SDKCore({
 async function run() {
   const res = await globalDataGetCertificate(sdk, {
     certificateId: "3daf2843a77b6f4e6af43cd9b6f6746053b8c928e056e8a724808db8905a94cf",
+    fields: "fingerprint_sha256,parsed.subject_dn",
+    excludeFields: "names,fingerprint_sha1",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -274,7 +278,7 @@ run();
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.AuthenticationError | 401                        | application/json           |
-| errors.ErrorModel          | 400, 403, 404              | application/problem+json   |
+| errors.ErrorModel          | 400, 403, 404, 422         | application/problem+json   |
 | errors.ErrorModel          | 500                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
@@ -374,6 +378,8 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.globalData.getHostEnrichment({
     hostIp: "8.8.8.8",
+    fields: "ip,greynoise.classification,third_party.mallory",
+    excludeFields: "whois,services",
   });
 
   console.log(result);
@@ -400,6 +406,8 @@ const sdk = new SDKCore({
 async function run() {
   const res = await globalDataGetHostEnrichment(sdk, {
     hostIp: "8.8.8.8",
+    fields: "ip,greynoise.classification,third_party.mallory",
+    excludeFields: "whois,services",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -430,7 +438,7 @@ run();
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.AuthenticationError | 401                        | application/json           |
-| errors.ErrorModel          | 400, 403, 404, 409         | application/problem+json   |
+| errors.ErrorModel          | 400, 403, 404, 409, 422    | application/problem+json   |
 | errors.ErrorModel          | 429                        | application/problem+json   |
 | errors.ErrorModel          | 500                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
@@ -542,6 +550,8 @@ async function run() {
   const result = await sdk.globalData.getHost({
     hostId: "8.8.8.8",
     atTime: new Date("2025-01-01T00:00:00Z"),
+    fields: "ip,services.port,services.protocol",
+    excludeFields: "services.banner,services.cert",
   });
 
   console.log(result);
@@ -569,6 +579,8 @@ async function run() {
   const res = await globalDataGetHost(sdk, {
     hostId: "8.8.8.8",
     atTime: new Date("2025-01-01T00:00:00Z"),
+    fields: "ip,services.port,services.protocol",
+    excludeFields: "services.banner,services.cert",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -599,7 +611,7 @@ run();
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.AuthenticationError | 401                        | application/json           |
-| errors.ErrorModel          | 400, 403, 404              | application/problem+json   |
+| errors.ErrorModel          | 400, 403, 404, 422         | application/problem+json   |
 | errors.ErrorModel          | 500                        | application/problem+json   |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
@@ -882,6 +894,8 @@ async function run() {
   const result = await sdk.globalData.getWebProperty({
     webpropertyId: "platform.censys.io:80",
     atTime: new Date("2025-01-01T00:00:00Z"),
+    fields: "hostname,port,tls.cipher_selected",
+    excludeFields: "cert,endpoints.http.body",
   });
 
   console.log(result);
@@ -909,6 +923,8 @@ async function run() {
   const res = await globalDataGetWebProperty(sdk, {
     webpropertyId: "platform.censys.io:80",
     atTime: new Date("2025-01-01T00:00:00Z"),
+    fields: "hostname,port,tls.cipher_selected",
+    excludeFields: "cert,endpoints.http.body",
   });
   if (res.ok) {
     const { value: result } = res;
