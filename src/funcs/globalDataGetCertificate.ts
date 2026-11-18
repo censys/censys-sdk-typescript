@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Get a certificate
  *
  * @remarks
- * Retrieve information about a single certificate. A certificate ID is its SHA-256 fingerprint.<br><br>In a SOC environment, use this endpoint to look up a certificate by SHA-256 fingerprint to see its subject, issuer, and validity, so you can vet certs seen in TLS logs or alerts.
+ * Retrieve information about a single certificate. A certificate ID is its SHA-256 fingerprint. Use `fields` to include specific fields in the response. Use `exclude_fields` to omit specific fields from the response.<br><br>In a SOC environment, use this endpoint to look up a certificate by SHA-256 fingerprint to see its subject, issuer, and validity, so you can vet certs seen in TLS logs or alerts.
  */
 export function globalDataGetCertificate(
   client: SDKCore,

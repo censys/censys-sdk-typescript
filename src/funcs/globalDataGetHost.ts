@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Get a host
  *
  * @remarks
- * Retrieve information about a single host. A host ID is its IP address.<br><br>In a SOC environment, use this endpoint to pull the current services, software, certificates, and labels on an IP from an alert, so you can quickly judge whether it is malicious or benign.
+ * Retrieve information about a single host. A host ID is its IP address. Use `fields` to include specific fields in the response. Use `exclude_fields` to omit specific fields from the response.<br><br>In a SOC environment, use this endpoint to pull the current services, software, certificates, and labels on an IP from an alert, so you can quickly judge whether it is malicious or benign.
  */
 export function globalDataGetHost(
   client: SDKCore,
