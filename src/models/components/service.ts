@@ -99,6 +99,7 @@ import {
   GeovisionAudio$inboundSchema,
 } from "./geovisionaudio.js";
 import { Giop, Giop$inboundSchema } from "./giop.js";
+import { Gluster, Gluster$inboundSchema } from "./gluster.js";
 import { Gopher, Gopher$inboundSchema } from "./gopher.js";
 import { GrilConsole, GrilConsole$inboundSchema } from "./grilconsole.js";
 import { Hajime, Hajime$inboundSchema } from "./hajime.js";
@@ -355,6 +356,7 @@ export type Service = {
   gemini?: Gemini | undefined;
   geovisionAudio?: GeovisionAudio | undefined;
   giop?: Giop | undefined;
+  gluster?: Gluster | undefined;
   gopher?: Gopher | undefined;
   grilConsole?: GrilConsole | undefined;
   hajime?: Hajime | undefined;
@@ -580,6 +582,7 @@ export const Service$inboundSchema: z.ZodType<Service, z.ZodTypeDef, unknown> =
     gemini: Gemini$inboundSchema.optional(),
     geovision_audio: GeovisionAudio$inboundSchema.optional(),
     giop: Giop$inboundSchema.optional(),
+    gluster: Gluster$inboundSchema.optional(),
     gopher: Gopher$inboundSchema.optional(),
     gril_console: GrilConsole$inboundSchema.optional(),
     hajime: Hajime$inboundSchema.optional(),
